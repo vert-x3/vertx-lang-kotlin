@@ -27,6 +27,12 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-codegen</artifactId>
+      <classifier>tck</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
       <type>test-jar</type>
       <scope>test</scope>
@@ -87,6 +93,12 @@
             <goals>
               <goal>test-compile</goal>
             </goals>
+            <configuration>
+              <sourceDirs>
+                <source>src/test/kotlin</source>
+                <source>target/generated-test-sources/kotlin</source>
+              </sourceDirs>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -111,10 +123,10 @@
               <outputDirectory>${project.build.directory}/sources/vertx-core</outputDirectory>
             </configuration>
           </execution>
-          <!-- Unpack codegen source code to src/test/java -->
+          <!-- Unpack codegen source code to sources/test/java -->
           <execution>
-            <id>unpack-codegen</id>
-            <phase>generate-test-sources</phase>
+            <id>unpack-tck</id>
+            <phase>generate-sources</phase>
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
@@ -123,7 +135,7 @@
               <includeArtifactIds>vertx-codegen</includeArtifactIds>
               <includeTypes>jar</includeTypes>
               <includeClassifiers>tck-sources</includeClassifiers>
-              <outputDirectory>${project.build.directory}/sources/test</outputDirectory>
+              <outputDirectory>${project.build.directory}/sources/vertx-codegen</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -132,11 +144,10 @@
       <plugin>
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
         <configuration>
           <systemProperties>
-            <java.util.logging.SimpleFormatter.format>%4$s: %3$s - %5$s %6$s%n
-            </java.util.logging.SimpleFormatter.format>
+            <java.util.logging.SimpleFormatter.format>%4$s: %3$s - %5$s %6$s%n</java.util.logging.SimpleFormatter.format>
           </systemProperties>
         </configuration>
         <executions>
@@ -152,33 +163,67 @@
                 <processor>io.vertx.codegen.CodeGenProcessor</processor>
               </processors>
               <optionMap>
-                <generators>kotlin</generators>
-                <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
-                <docgen.output>${project.build.directory}/generated/doc</docgen.output>
-                <codeGenerators>Kotlin</codeGenerators>
+                <codegen.output>${project.build.directory}/generated-sources</codegen.output>
+                <codegen.generators>Kotlin</codegen.generators>
               </optionMap>
               <sourceDirectory>${project.build.directory}/sources/vertx-core</sourceDirectory>
             </configuration>
           </execution>
+          <!-- Run the annotation processor on vertx-codegen TCK and generate the Kotlin API -->
+          <execution>
+            <id>generate-tck</id>
+            <goals>
+              <goal>process-test</goal>
+            </goals>
+            <phase>generate-test-sources</phase>
+            <configuration>
+              <processors>
+                <processor>io.vertx.codegen.CodeGenProcessor</processor>
+              </processors>
+              <optionMap>
+                <codegen.output>${project.build.directory}/generated-test-sources</codegen.output>
+                <codegen.generators>Kotlin</codegen.generators>
+              </optionMap>
+              <sourceDirectory>${project.build.directory}/sources/vertx-codegen</sourceDirectory>
+              <defaultOutputDirectory>${project.build.directory}/generated-test-sources/apt</defaultOutputDirectory>
+            </configuration>
+          </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.12</version>
-
         <executions>
           <execution>
             <id>attach-generated-sources</id>
             <phase>generate-sources</phase>
-
             <goals>
               <goal>add-source</goal>
             </goals>
             <configuration>
               <sources>
                 <source>${project.build.directory}/generated-sources/kotlin</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>attach-generated-test-sources</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-test-sources/kotlin</source>
               </sources>
             </configuration>
           </execution>
