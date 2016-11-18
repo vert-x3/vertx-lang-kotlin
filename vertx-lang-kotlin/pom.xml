@@ -154,6 +154,7 @@
                                 <generators>kotlin</generators>
                                 <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                                 <docgen.output>${project.build.directory}/generated/doc</docgen.output>
+                                <codeGenerators>Kotlin</codeGenerators>
                             </optionMap>
                             <sourceDirectory>${project.build.directory}/sources/vertx-core</sourceDirectory>
                         </configuration>
