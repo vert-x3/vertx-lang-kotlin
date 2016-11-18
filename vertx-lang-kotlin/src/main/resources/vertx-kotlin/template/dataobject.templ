@@ -1,99 +1,96 @@
 @code{
-    def mapKotlinType(type) {
-        if (type.name == 'void' || type.name == 'java.lang.Void') {
-            ret = 'Unit';
-        } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
-            ret = 'Any';
-        } else if (type.name == 'Throwable' || type.name == 'java.lang.Throwable') {
-            ret = 'Throwable';
-        } else if (type.kind == CLASS_STRING) {
-            ret = 'String';
-        } else if (type.kind == CLASS_PRIMITIVE || type.kind == CLASS_BOXED_PRIMITIVE) {
-            if (type.name == 'byte' || type.name == 'java.lang.Byte') {
-                ret = 'Byte';
-            } else if (type.name == 'short' || type.name == 'java.lang.Short') {
-                ret = 'Short';
-            } else if (type.name == 'int' || type.name == 'java.lang.Integer') {
-                ret = 'Int';
-            } else if (type.name == 'long' || type.name == 'java.lang.Long') {
-                ret = 'Long';
-            } else if (type.name == 'float' || type.name == 'java.lang.Float') {
-                ret = 'Float';
-            } else if (type.name == 'double' || type.name == 'java.lang.Double') {
-                ret = 'Double';
-            } else if (type.name == 'boolean' || type.name == 'java.lang.Boolean') {
-                ret = 'Boolean';
-            } else if (type.name == 'char' || type.name == 'java.lang.Character') {
-                ret = 'Char';
-            }
-        } else if (type.kind == CLASS_DATA_OBJECT) {
-            ret = type.raw.name
-        }  else if (type.kind == CLASS_ENUM) {
-            ret = type.simpleName;
-        } else if (type.kind == CLASS_JSON_OBJECT || type.kind == CLASS_JSON_ARRAY) {
-            ret = type.name
-        } else {
-            ret = type.name
-        }
+  def mapKotlinType(type) {
+    if (type.name == 'void' || type.name == 'java.lang.Void') {
+      ret = 'Unit';
+    } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
+      ret = 'Any';
+    } else if (type.name == 'Throwable' || type.name == 'java.lang.Throwable') {
+      ret = 'Throwable';
+    } else if (type.kind == CLASS_STRING) {
+      ret = 'String';
+    } else if (type.kind == CLASS_PRIMITIVE || type.kind == CLASS_BOXED_PRIMITIVE) {
+      if (type.name == 'byte' || type.name == 'java.lang.Byte') {
+        ret = 'Byte';
+      } else if (type.name == 'short' || type.name == 'java.lang.Short') {
+        ret = 'Short';
+      } else if (type.name == 'int' || type.name == 'java.lang.Integer') {
+        ret = 'Int';
+      } else if (type.name == 'long' || type.name == 'java.lang.Long') {
+        ret = 'Long';
+      } else if (type.name == 'float' || type.name == 'java.lang.Float') {
+        ret = 'Float';
+      } else if (type.name == 'double' || type.name == 'java.lang.Double') {
+        ret = 'Double';
+      } else if (type.name == 'boolean' || type.name == 'java.lang.Boolean') {
+        ret = 'Boolean';
+      } else if (type.name == 'char' || type.name == 'java.lang.Character') {
+        ret = 'Char';
+      }
+    } else if (type.kind == CLASS_DATA_OBJECT) {
+      ret = type.raw.name
+    }  else if (type.kind == CLASS_ENUM) {
+      ret = type.simpleName;
+    } else if (type.kind == CLASS_JSON_OBJECT || type.kind == CLASS_JSON_ARRAY) {
+      ret = type.name
+    } else {
+      ret = type.name
+    }
+    return ret
+  }
 
-        return ret
+  def applyPropertyKind(type, kind) {
+    if (kind.isList()) {
+      return 'List<' + type + '>'
+    } else if (kind.isSet()) {
+      return 'Set<' + type + '>';
+    }
+    return type
+  }
+
+  def syntheticName(property, type) {
+    if (property.getterMethod != null && !property.getterMethod.startsWith("get")) {
+      return property.getterMethod
+    }
+    return property.name
+  }
+
+  def filterProperties(properties) {
+    var result = [];
+
+    for (p : properties) {
+      if (p.setterMethod != null && p.getterMethod != null) {
+        result.add(p)
+      }
     }
 
-    def applyPropertyKind(type, kind) {
-        if (kind.isList()) {
-            return 'List<' + type + '>'
-        } else if (kind.isSet()) {
-            return 'Set<' + type + '>';
-        }
+    return result
+  }
 
-        return type
+  def enumProperties(properties) {
+    var result = [];
+
+    for (p : properties) {
+      if (p.type.kind == CLASS_ENUM) {
+        result.add(p);
+      }
     }
 
-    def syntheticName(property, type) {
-        if (property.getterMethod != null && !property.getterMethod.startsWith("get")) {
-            return property.getterMethod
-        }
+    return result
+  }
 
-        return property.name
+  def enumImports(properties) {
+    var result = new java.util.HashSet();
+
+    for (p : enumProperties(properties)) {
+      result.add(p.type.name);
     }
 
-    def filterProperties(properties) {
-        var result = [];
+    var asList = [];
+    asList.addAll(result);
+    java.util.Collections.sort(asList);
 
-        for (p : properties) {
-            if (p.setterMethod != null && p.getterMethod != null) {
-                result.add(p)
-            }
-        }
-
-        return result
-    }
-
-    def enumProperties(properties) {
-        var result = [];
-
-        for (p : properties) {
-            if (p.type.kind == CLASS_ENUM) {
-                result.add(p);
-            }
-        }
-
-        return result
-    }
-
-    def enumImports(properties) {
-        var result = new java.util.HashSet();
-
-        for (p : enumProperties(properties)) {
-            result.add(p.type.name);
-        }
-
-        var asList = [];
-        asList.addAll(result);
-        java.util.Collections.sort(asList);
-
-        return asList;
-    }
+    return asList;
+  }
 }
 
 package @{type.raw.translatePackageName("kotlin")}\n
@@ -105,14 +102,14 @@ import @{fqName}\n
 \n
 
 fun ${type.raw.simpleName}(\n
-    @foreach{property:filterProperties(properties)}
-    @{property.name}: @{applyPropertyKind(mapKotlinType(property.type), property.kind)}? = null@end{',\n'}
+  @foreach{property:filterProperties(properties)}
+  @{property.name}: @{applyPropertyKind(mapKotlinType(property.type), property.kind)}? = null@end{',\n'}
 ): @{type.raw.simpleName} = @{type.raw.name}().apply {\n
 \n
 @foreach{property:filterProperties(properties)}
-    if (@{property.name} != null) {\n
-        this.@{syntheticName(property, mapKotlinType(property.type))} = @{property.name}\n
-    }\n
+  if (@{property.name} != null) {\n
+    this.@{syntheticName(property, mapKotlinType(property.type))} = @{property.name}\n
+  }\n
 \n
 @end{}
 }\n
