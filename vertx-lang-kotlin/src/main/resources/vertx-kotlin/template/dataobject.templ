@@ -43,6 +43,8 @@
       return 'List<' + type + '>'
     } else if (kind.isSet()) {
       return 'Set<' + type + '>';
+    } else if (kind.isMap()) {
+      return 'Map<String, ' + type + '>';
     }
     return type
   }
@@ -56,39 +58,24 @@
 
   def filterProperties(properties) {
     var result = [];
-
     for (p : properties) {
-      if (p.setterMethod != null && p.getterMethod != null) {
+      if (p.setterMethod != null) {
         result.add(p)
       }
     }
-
     return result
   }
 
-  def enumProperties(properties) {
-    var result = [];
-
+  def genImports() {
+    var result = new java.util.HashSet();
     for (p : properties) {
-      if (p.type.kind == CLASS_ENUM) {
-        result.add(p);
+      if (p.type.kind == CLASS_ENUM || p.type.kind == CLASS_DATA_OBJECT) {
+        result.add(p.type.name);
       }
     }
-
-    return result
-  }
-
-  def enumImports(properties) {
-    var result = new java.util.HashSet();
-
-    for (p : enumProperties(properties)) {
-      result.add(p.type.name);
-    }
-
     var asList = [];
     asList.addAll(result);
     java.util.Collections.sort(asList);
-
     return asList;
   }
 }
@@ -96,8 +83,8 @@
 package @{type.raw.translatePackageName("kotlin")}\n
 \n
 import @{type.raw.name}\n
-@foreach{fqName:enumImports(properties)}
-import @{fqName}\n
+@foreach{genImport:genImports()}
+import @{genImport}\n
 @end{}
 \n
 
@@ -108,7 +95,7 @@ fun ${type.raw.simpleName}(\n
 \n
 @foreach{property:filterProperties(properties)}
   if (@{property.name} != null) {\n
-    this.@{syntheticName(property, mapKotlinType(property.type))} = @{property.name}\n
+    this.@{property.setterMethod}(@{property.name})\n
   }\n
 \n
 @end{}
