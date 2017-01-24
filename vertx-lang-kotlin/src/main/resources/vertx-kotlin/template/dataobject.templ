@@ -1,4 +1,31 @@
+@includeNamed{'/vertx-java/template/common-lib.templ'}
 @code{
+
+  /**
+   * Render a tag link to an html link, this function is used as parameter of the
+   * renderDocToHtml function when it needs to render tag links.
+   */
+  def renderLinkToHtml(link) {
+    var rawType = link.targetType.raw;
+    if (rawType.module != null) {
+      var label = link.label.trim();
+      if (rawType.kind == CLASS_DATA_OBJECT) {
+        return "[" + rawType.name + "]";
+      } else {
+        if (type.kind == CLASS_API) {
+          var elt = link.targetElement;
+          var eltKind = elt.getKind().name();
+          var ret = "[" + rawType.name + "]";
+          if (label.length() > 0) {
+            ret += "[" + label + "]" + ret;
+          }
+          return ret;
+        }
+      }
+    }
+    return "[" + rawType.name + "]";
+  }
+
   def mapKotlinType(type) {
     if (type.name == 'void' || type.name == 'java.lang.Void') {
       ret = 'Unit';
@@ -88,6 +115,20 @@ import @{genImport}\n
 @end{}
 \n
 
+@if{doc != null}
+/**\n
+ * A function providing a DSL for building [@{type.name}] objects.\n
+ *\n
+@{renderDocToHtml(" *", doc, renderLinkToHtml)}
+ *\n
+	@foreach{property:filterProperties(properties)}
+ * @param @{property.name} @if{property.doc != null}@{renderTokensToHtml("", property.doc.tokens, renderLinkToHtml, "")}@end{}\n
+	@end{}
+ *\n
+ * <p/>\n
+ * NOTE: This function has been automatically generated from the [@{type.name} original] using Vert.x codegen.\n
+ */\n
+@end{}
 fun ${type.raw.simpleName}(\n
 	@foreach{property:filterProperties(properties)}
   @{property.name}: @{applyPropertyKind(mapKotlinType(property.type), property.kind)}? = null@end{',\n'}
