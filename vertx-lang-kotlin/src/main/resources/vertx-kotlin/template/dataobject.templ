@@ -104,7 +104,7 @@ import @{fqName}\n
 fun ${type.raw.simpleName}(\n
   @foreach{property:filterProperties(properties)}
   @{property.name}: @{applyPropertyKind(mapKotlinType(property.type), property.kind)}? = null@end{',\n'}
-): @{type.raw.simpleName} = @{type.raw.name}().apply {\n
+): @{type.raw.simpleName} = @{type.raw.name}(@if{!hasEmptyConstructor}io.vertx.core.json.JsonObject()@end{}).apply {\n
 \n
 @foreach{property:filterProperties(properties)}
   if (@{property.name} != null) {\n
