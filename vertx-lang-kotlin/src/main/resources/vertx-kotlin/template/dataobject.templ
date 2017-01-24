@@ -59,7 +59,7 @@
   def filterProperties(properties) {
     var result = [];
     for (p : properties) {
-      if (p.setterMethod != null) {
+      if (p.setterMethod != null || p.adderMethod != null) {
         result.add(p)
       }
     }
@@ -95,7 +95,17 @@ fun ${type.raw.simpleName}(\n
 \n
 @foreach{property:filterProperties(properties)}
   if (@{property.name} != null) {\n
+	@if{property.setterMethod != null}
     this.@{property.setterMethod}(@{property.name})\n
+	@else{}
+    for (item in @{property.name}) {\n
+		@if{property.kind.map}
+      this.@{property.adderMethod}(item.key, item.value)\n
+		@else{}
+      this.@{property.adderMethod}(item)\n
+		@end{}
+    }\n
+	@end{}
   }\n
 \n
 @end{}
