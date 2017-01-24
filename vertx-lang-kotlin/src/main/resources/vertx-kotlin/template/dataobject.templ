@@ -89,7 +89,7 @@ import @{genImport}\n
 \n
 
 fun ${type.raw.simpleName}(\n
-  @foreach{property:filterProperties(properties)}
+	@foreach{property:filterProperties(properties)}
   @{property.name}: @{applyPropertyKind(mapKotlinType(property.type), property.kind)}? = null@end{',\n'}
 ): @{type.raw.simpleName} = @{type.raw.name}(@if{!hasEmptyConstructor}io.vertx.core.json.JsonObject()@end{}).apply {\n
 \n
@@ -107,7 +107,6 @@ fun ${type.raw.simpleName}(\n
     }\n
 	@end{}
   }\n
-\n
 @end{}
 }\n
 \n
