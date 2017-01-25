@@ -96,7 +96,7 @@
   def genImports() {
     var result = new java.util.HashSet();
     for (p : properties) {
-      if (p.type.kind == CLASS_ENUM || p.type.kind == CLASS_DATA_OBJECT) {
+      if ((p.type.kind == CLASS_ENUM || p.type.kind == CLASS_DATA_OBJECT) && p.type != type) {
         result.add(p.type.name);
       }
     }
