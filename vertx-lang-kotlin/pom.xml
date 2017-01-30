@@ -9,7 +9,6 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.vertx</groupId>
   <artifactId>vertx-lang-kotlin</artifactId>
 
   <dependencies>
@@ -68,6 +67,7 @@
   </dependencies>
 
   <build>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -76,27 +76,26 @@
         <executions>
           <execution>
             <id>compile</id>
-            <phase>compile</phase>
             <goals>
               <goal>compile</goal>
             </goals>
+            <phase>compile</phase>
             <configuration>
               <sourceDirs>
-                <source>src/main/kotlin</source>
-                <source>target/generated-sources/kotlin</source>
+                <sourceDir>target/generated-sources/kotlin</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
           <execution>
-            <id>test-compile</id>
-            <phase>test-compile</phase>
+            <id>>test-compile</id>
             <goals>
               <goal>test-compile</goal>
             </goals>
+            <phase>test-compile</phase>
             <configuration>
               <sourceDirs>
-                <source>src/test/kotlin</source>
-                <source>target/generated-test-sources/kotlin</source>
+                <sourceDir>src/test/kotlin</sourceDir>
+                <sourceDir>target/generated-test-sources/kotlin</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
@@ -197,39 +196,6 @@
           </dependency>
         </dependencies>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.12</version>
-        <executions>
-          <execution>
-            <id>attach-generated-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.build.directory}/generated-sources/kotlin</source>
-              </sources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>attach-generated-test-sources</id>
-            <phase>generate-test-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.build.directory}/generated-test-sources/kotlin</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -241,7 +207,6 @@
               <goal>test-jar-no-fork</goal>
             </goals>
             <phase>package</phase>
-
             <configuration>
               <includes>
                 <include>**/*.kt</include>
