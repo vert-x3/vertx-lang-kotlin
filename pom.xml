@@ -63,9 +63,4 @@
       <artifactId>vertx-core</artifactId>
     </dependency>
   </dependencies>
-
-  <build>
-    <sourceDirectory>src/main/kotlin</sourceDirectory>
-    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-  </build>
 </project>
