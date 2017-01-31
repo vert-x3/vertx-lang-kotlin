@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-kotlin-common-json</artifactId>
+      <artifactId>vertx-kotlin-common</artifactId>
       <version>${project.version}</version>
     </dependency>
 
