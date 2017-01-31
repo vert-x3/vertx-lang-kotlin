@@ -31,7 +31,7 @@ and receive.
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -52,8 +52,8 @@ Sending packets is as easy as shown here:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.buffer.Buffer
-import io.vertx.lang.kotlin.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -88,7 +88,7 @@ So to listen on a specific address and port you would do something like shown he
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -126,8 +126,8 @@ This is show here:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.buffer.Buffer
-import io.vertx.lang.kotlin.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -161,7 +161,7 @@ would do something like shown here:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -192,7 +192,7 @@ This is shown here:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))
@@ -237,7 +237,7 @@ like shown here:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
 ))

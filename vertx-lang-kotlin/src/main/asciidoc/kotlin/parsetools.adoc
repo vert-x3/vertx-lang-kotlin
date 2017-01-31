@@ -28,9 +28,9 @@ Let's see the associated code:
 
 [source, kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.buffer.Buffer
 import io.vertx.kotlin.core.parsetools.RecordParser
-import io.vertx.lang.kotlin.*
 
 var parser = RecordParser.newDelimited("\n", { h ->
   println(h.toString())
@@ -47,8 +47,8 @@ You can also produce fixed sized chunks as follows:
 
 [source, kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.parsetools.RecordParser
-import io.vertx.lang.kotlin.*
 
 RecordParser.newFixed(4, { h ->
   println(h.toString())

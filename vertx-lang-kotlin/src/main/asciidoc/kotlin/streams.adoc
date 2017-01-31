@@ -28,7 +28,7 @@ to the `NetSocket`:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
@@ -52,7 +52,7 @@ writing to it:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
@@ -73,7 +73,7 @@ really want to do is pause the `NetSocket` when the write queue is full:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
@@ -94,7 +94,7 @@ it when the write queue has processed its backlog:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
@@ -123,8 +123,8 @@ You just feed it the `ReadStream` plus the `WriteStream` then start it:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.streams.Pump
-import io.vertx.lang.kotlin.*
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
