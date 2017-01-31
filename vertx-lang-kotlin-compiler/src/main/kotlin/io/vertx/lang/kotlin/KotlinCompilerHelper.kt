@@ -24,7 +24,12 @@ import java.util.jar.*
  * Author: Sergey Mashkov
  */
 object KotlinCompilerHelper {
-  fun compileKotlinScript(classLoader: ClassLoader, scriptMode: Boolean, url: URL, predicate: (GenerationState, ClassDescriptor) -> Boolean): List<Class<*>> {
+  fun compileKotlinScript(classLoader: ClassLoader,
+                          scriptMode: Boolean,
+                          url: URL,
+                          predicate: (GenerationState, ClassDescriptor) -> Boolean
+  ): Map<Class<*>, ClassDescriptor> {
+
     setIdeaIoUseFallback()
 
     val configuration = CompilerConfiguration()
@@ -41,7 +46,7 @@ object KotlinCompilerHelper {
 
     if (scriptMode) {
       configuration.put(JVMConfigurationKeys.MODULE_NAME, "dynamic")
-      configuration.add(JVMConfigurationKeys.SCRIPT_DEFINITIONS, StandardScriptDefinition)
+      configuration.add(JVMConfigurationKeys.SCRIPT_DEFINITIONS, VerticleScriptDefinition)
     }
 
     val classPath = (
@@ -57,7 +62,7 @@ object KotlinCompilerHelper {
     }
     configuration.add(JVMConfigurationKeys.CONTENT_ROOTS, KotlinSourceRoot(Paths.get(url.toURI()).toString()))
 
-    val collected = HashSet<String>()
+    val collected = HashMap<String, ClassDescriptor>()
 
     val environment = KotlinCoreEnvironment.createForProduction(Disposable { }, configuration, EnvironmentConfigFiles.JVM_CONFIG_FILES)
     val finalState = KotlinToJVMBytecodeCompiler.analyzeAndGenerate(environment, GenerationStateEventCallback { state ->
@@ -66,18 +71,18 @@ object KotlinCompilerHelper {
           .filter { it !in collected }
           .mapNotNull { state.bindingContext.get(BindingContext.FQNAME_TO_CLASS_DESCRIPTOR, FqNameUnsafe(it.replace("$", "."))) }
           .filter { predicate(state, it) }
-          .mapNotNull { state.typeMapper.mapClass(it).className }
+          .associateBy { state.typeMapper.mapClass(it).className }
     })
 
     if (printingMessageCollector.hasErrors()) {
       throw CompilationException("Compilation failed", null, null)
     }
     if (finalState == null) {
-      return emptyList()
+      return emptyMap()
     }
 
     val compilerClassLoader = GeneratedClassLoader(finalState.factory, classLoader)
-    return collected.map { compilerClassLoader.loadClass(it) }
+    return collected.mapKeys { compilerClassLoader.loadClass(it.key) }
   }
 
   private fun ClassLoader.classPath() = (classPathImpl() + manifestClassPath()).distinct()
