@@ -22,7 +22,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.version>1.0.4</kotlin.version>
+    <kotlin.version>1.0.6</kotlin.version>
     <junit.version>4.12</junit.version>
     <stack.version>3.4.0-SNAPSHOT</stack.version>
   </properties>
