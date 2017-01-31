@@ -3,6 +3,7 @@ package io.vertx
 import io.vertx.core.*
 import org.junit.*
 import java.util.concurrent.*
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.*
 
 class KotlinVerticleFactoryTest {
@@ -26,6 +27,40 @@ class KotlinVerticleFactoryTest {
     for (i in 1..3) {
       assertEquals(i.toString(), vertx.sharedData().getLocalMap<String, String>("M")["M$i"])
     }
+  }
+
+  @Test
+  fun testScript() {
+    val fut = CompletableFuture<String>()
+    vertx.eventBus().consumer<String>("test-address", { fut.complete(it.body()) })
+    val id = vertx.deployVerticleBlocking("scriptVerticle.kts")
+    assertEquals(id, fut.get(10L, TimeUnit.SECONDS));
+  }
+
+  @Test
+  fun testScriptAsyncStart() {
+    val fut = CompletableFuture<String>()
+    vertx.eventBus().consumer<String>("test-address", { fut.complete(it.body()) })
+    val id = vertx.deployVerticleBlocking("scriptVerticleWithAsyncStart.kts")
+    assertEquals(id, fut.get(10L, TimeUnit.SECONDS));
+  }
+
+  @Test
+  fun testScriptWithStop() {
+    val fut = CompletableFuture<String>()
+    vertx.eventBus().consumer<String>("test-address", { fut.complete(it.body()) })
+    val id = vertx.deployVerticleBlocking("scriptVerticleWithStop.kts")
+    vertx.undeploy(id)
+    assertEquals(id, fut.get(10L, TimeUnit.SECONDS));
+  }
+
+  @Test
+  fun testScriptWithAsyncStop() {
+    val fut = CompletableFuture<String>()
+    vertx.eventBus().consumer<String>("test-address", { fut.complete(it.body()) })
+    val id = vertx.deployVerticleBlocking("scriptVerticleWithAsyncStop.kts")
+    vertx.undeploy(id)
+    assertEquals(id, fut.get(10L, TimeUnit.SECONDS));
   }
 
   @Test
@@ -67,22 +102,15 @@ class KotlinVerticleFactoryTest {
     vertx.deployVerticleBlocking("src/test/resources/singleVerticle.kt")
   }
 
-  private fun Vertx.deployVerticleBlocking(name: String) {
-    val latch = CountDownLatch(1)
-    var e: Throwable? = null
-
+  private fun Vertx.deployVerticleBlocking(name: String) : String {
+    val fut = CompletableFuture<String>()
     deployVerticle(name) {
       if (it.failed()) {
-        e = it.cause()
+        fut.completeExceptionally(it.cause());
+      } else {
+        fut.complete(it.result())
       }
-
-      latch.countDown()
     }
-
-    if (!latch.await(10L, TimeUnit.SECONDS)) {
-      throw TimeoutException("Verticle $name deployment timeout ")
-    }
-
-    e?.let { throw it }
+    return fut.get(10L, TimeUnit.SECONDS);
   }
 }

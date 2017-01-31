@@ -16,17 +16,17 @@ class KotlinCompilerHelperTest {
 
   @Test
   fun testClassesWithFunctions() {
-    assertEquals(listOf("test.A", "test.B"), compile(File("src/test/resources/classesWithFunctions.kt")).map { it.name }.sorted())
+    assertEquals(listOf("test.A", "test.B"), compile(File("src/test/resources/classesWithFunctions.kt")).map { it.key.name }.sorted())
   }
 
   @Test
   fun testNestedClasses() {
-    assertEquals(listOf("test.Outer", "test.Outer\$Inner"), compile(File("src/test/resources/nestedClasses.kt")).map { it.name }.sorted())
+    assertEquals(listOf("test.Outer", "test.Outer\$Inner"), compile(File("src/test/resources/nestedClasses.kt")).map { it.key.name }.sorted())
   }
 
   @Test
   fun testScript() {
-    assertEquals(listOf("Script"), compile(File("src/test/resources/script.kts"), script = true).map { it.name })
+    assertEquals(listOf("Script"), compile(File("src/test/resources/script.kts"), script = true).map { it.key.name })
   }
 
   private fun compile(file: File, script: Boolean = false) =

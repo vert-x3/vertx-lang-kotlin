@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.types.*
 import org.jetbrains.kotlin.types.typeUtil.*
 import java.io.*
 
-class KotlinVerticleFactory : VerticleFactory {
+open class KotlinVerticleFactory : VerticleFactory {
   override fun prefix() = "kt"
 
   override fun createVerticle(verticleName: String, classLoader: ClassLoader): Verticle {
@@ -28,21 +28,30 @@ class KotlinVerticleFactory : VerticleFactory {
       throw IllegalStateException("Cannot find verticle script: $verticleName on classpath")
     }
 
-    val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, false, url) { state, it ->
+    val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, prefix() == "kts", url) { state, it ->
       it.kind == ClassKind.CLASS
           && it.modality != Modality.ABSTRACT
           && it.modality != Modality.SEALED
           &&
           (it.defaultType.constructor.supertypes.any { it.isVerticleType() }
               || it.defaultType.supertypes().any { it.isVerticleType() }
+              || it is ScriptDescriptor
               )
           && it.effectiveVisibility().publicApi
     }
 
     return when (verticleClasses.size) {
       0 -> throw IllegalStateException("No verticle classes found in the file")
-      1 -> verticleClasses.single().verticle()
-      else -> CompositeVerticle(verticleClasses.map { it.verticle() })
+      1 -> toVerticle(verticleClasses.toList().single())
+      else -> CompositeVerticle(verticleClasses.map { it -> toVerticle(it.toPair()) })
+    }
+  }
+
+  private fun toVerticle(entry : Pair<Class<*>, ClassDescriptor>) : Verticle {
+    if (entry.second is ScriptDescriptor) {
+      return ScriptVerticle(entry.first)
+    } else {
+      return entry.first.verticle()
     }
   }
 
