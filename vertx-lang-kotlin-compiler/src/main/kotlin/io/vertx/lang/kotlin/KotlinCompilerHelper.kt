@@ -33,7 +33,8 @@ object KotlinCompilerHelper {
     configuration.put(CLIConfigurationKeys.ALLOW_KOTLIN_PACKAGE, false)
     configuration.put(CLIConfigurationKeys.REPORT_PERF, false)
 
-    configuration.put(CommonConfigurationKeys.LANGUAGE_FEATURE_SETTINGS, LanguageVersion.LATEST)
+
+    configuration.put(CommonConfigurationKeys.LANGUAGE_VERSION_SETTINGS, LanguageVersionSettingsImpl.DEFAULT);
 
     configuration.put(JVMConfigurationKeys.JVM_TARGET, JvmTarget.JVM_1_6)
     configuration.put(JVMConfigurationKeys.MODULE_NAME, JvmAbi.DEFAULT_MODULE_NAME)
