@@ -100,7 +100,7 @@ You get a reference to the event bus as follows:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var eb = vertx.eventBus()
 
@@ -115,7 +115,7 @@ Here's an example:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var eb = vertx.eventBus()
 
@@ -136,7 +136,7 @@ to return a +MessageConsumer+ with no handler set, and then set the handler on t
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var eb = vertx.eventBus()
 
@@ -155,7 +155,7 @@ on the +MessageConsumer+ object.
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 consumer.completionHandler({ res ->
   if (res.succeeded()) {
@@ -176,7 +176,7 @@ be notified when this is complete use `link:../../apidocs/io/vertx/core/eventbus
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 consumer.unregister({ res ->
   if (res.succeeded()) {
@@ -195,7 +195,7 @@ address to publish it to.
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 eventBus.publish("news.uk.sport", "Yay! Someone kicked a ball")
 
@@ -212,7 +212,7 @@ You can send a message with `link:../../apidocs/io/vertx/core/eventbus/EventBus.
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 eventBus.send("news.uk.sport", "Yay! Someone kicked a ball")
 
@@ -249,7 +249,7 @@ The receiver:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var consumer = eventBus.consumer("news.uk.sport")
 consumer.handler({ message ->
@@ -263,7 +263,7 @@ The sender:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 eventBus.send("news.uk.sport", "Yay! Someone kicked a ball across a patch of grass", { ar ->
   if (ar.succeeded()) {
@@ -318,8 +318,8 @@ instance as clustered;
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.Vertx
-import io.vertx.lang.kotlin.*
 
 var options = io.vertx.core.VertxOptions(
 )
@@ -360,8 +360,8 @@ the event bus acts as a server and client, the configuration is close to
 [source,kotlin]
 ----
 import io.vertx.core.http.ClientAuth
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.Vertx
-import io.vertx.lang.kotlin.*
 
 var options = io.vertx.core.VertxOptions(
   eventBusOptions = io.vertx.core.eventbus.EventBusOptions(
@@ -403,8 +403,8 @@ When used in containers, you can also configure the public host and port:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.Vertx
-import io.vertx.lang.kotlin.*
 
 var options = io.vertx.core.VertxOptions(
   eventBusOptions = io.vertx.core.eventbus.EventBusOptions(

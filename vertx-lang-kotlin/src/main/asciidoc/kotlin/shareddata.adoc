@@ -26,8 +26,8 @@ Here's an example of using a shared local map:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.buffer.Buffer
-import io.vertx.lang.kotlin.*
 
 
 var sd = vertx.sharedData()
@@ -67,7 +67,7 @@ Getting the map is asynchronous and the result is returned to you in the handler
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 
 var sd = vertx.sharedData()
@@ -91,7 +91,7 @@ The actual put is asynchronous and the handler is notified once it is complete:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 
 map.put("foo", "bar", { resPut ->
@@ -113,7 +113,7 @@ The actual get is asynchronous and the handler is notified with the result some 
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 
 map.get("foo", { resGet ->
@@ -154,7 +154,7 @@ another caller can obtain it.
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 sd.getLock("mylock", { res ->
   if (res.succeeded()) {
@@ -179,7 +179,7 @@ with a failure:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 sd.getLockWithTimeout("mylock", 10000, { res ->
   if (res.succeeded()) {
@@ -203,7 +203,7 @@ You obtain an instance with `link:../../apidocs/io/vertx/core/shareddata/SharedD
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 sd.getCounter("mycounter", { res ->
   if (res.succeeded()) {

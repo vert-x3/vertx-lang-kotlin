@@ -9,14 +9,13 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.vertx</groupId>
   <artifactId>vertx-lang-kotlin-compiler</artifactId>
 
   <dependencies>
     <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-kotlin-common-compiler</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-compiler</artifactId>
+      <version>${kotlin.version}</version>
     </dependency>
   </dependencies>
 

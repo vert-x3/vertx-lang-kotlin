@@ -29,8 +29,8 @@ describe options and arguments:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(io.vertx.core.cli.Option(
   longName = "directory",
@@ -64,8 +64,8 @@ configure the option to receive several values using `link:../../apidocs/io/vert
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").setSummary("A command line interface illustrating the options valuation.").addOption(io.vertx.core.cli.Option(
   longName = "flag",
@@ -87,8 +87,8 @@ the parsing:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
   longName = "mandatory",
@@ -102,8 +102,8 @@ the command line:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
   longName = "optional",
@@ -119,8 +119,8 @@ If the option value is contrained to a fixed set, you can set the different acce
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
   longName = "color",
@@ -142,8 +142,8 @@ index `0`:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").addArgument(io.vertx.core.cli.Argument(
   index = 0,
@@ -159,8 +159,8 @@ If you don't set the argument indexes, it computes it automatically by using the
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("some-name").addArgument(io.vertx.core.cli.Argument(
   description = "the first argument",
@@ -188,8 +188,8 @@ Once your `link:../../apidocs/io/vertx/core/cli/CLI.html[CLI]` instance is confi
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(io.vertx.core.cli.Option(
   longName = "directory",
@@ -228,7 +228,7 @@ each option and argument:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var commandLine = cli.parse(userCommandLineArguments)
 
@@ -251,7 +251,7 @@ method:
 
 [source,kotlin]
 ----
-import io.vertx.lang.kotlin.*
+import io.vertx.kotlin.common.json.*
 
 var commandLine = cli.parse(userCommandLineArguments)
 var opt = commandLine.getOptionValue("my-option")
@@ -265,8 +265,8 @@ won't failed, but give you the opportunity to check if the user asks for help:
 
 [source,kotlin]
 ----
+import io.vertx.kotlin.common.json.*
 import io.vertx.kotlin.core.cli.CLI
-import io.vertx.lang.kotlin.*
 
 var cli = CLI.create("test").addOption(io.vertx.core.cli.Option(
   longName = "help",
