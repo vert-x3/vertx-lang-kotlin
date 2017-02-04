@@ -66,10 +66,8 @@
   }
 
   def applyPropertyKind(type, kind) {
-    if (kind.isList()) {
-      return 'List<' + type + '>'
-    } else if (kind.isSet()) {
-      return 'Set<' + type + '>';
+    if (kind.isList() || kind.isSet) {
+      return 'Iterable<' + type + '>'
     } else if (kind.isMap()) {
       return 'Map<String, ' + type + '>';
     }
@@ -137,7 +135,14 @@ fun ${type.raw.simpleName}(\n
 @foreach{property:filterProperties(properties)}
   if (@{property.name} != null) {\n
 	@if{property.setterMethod != null}
-    this.@{property.setterMethod}(@{property.name})\n
+    this.@{property.setterMethod}(
+		@if{property.kind.list}
+			@{property.name}.toList()
+		@else{property.kind.set}
+			@{property.name}.toSet()
+		@else{}
+			@{property.name}
+		@end{})\n
 	@else{}
     for (item in @{property.name}) {\n
 		@if{property.kind.map}

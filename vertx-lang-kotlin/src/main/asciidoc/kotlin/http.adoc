@@ -336,8 +336,8 @@ the aggregation yourself as follows:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 // Create an empty buffer
@@ -803,8 +803,8 @@ at any one time:
 [source,kotlin]
 ----
 import io.vertx.core.http.HttpMethod
+import io.vertx.core.streams.Pump
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.streams.Pump
 
 vertx.createHttpServer().requestHandler({ request ->
   var response = request.response()
@@ -831,8 +831,8 @@ Here's an example:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 var frameType = 40
@@ -1213,8 +1213,8 @@ Methods exist to write strings in UTF-8 encoding and in any specific encoding an
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 // Write string encoded in UTF-8
@@ -1236,8 +1236,8 @@ single call to the `end` function.
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 // Write string and end the request (send it) in a single call
@@ -1331,8 +1331,8 @@ before calling `end` with no arguments
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 // End the request with a string
 request.end("some-data")
@@ -1450,8 +1450,8 @@ For, example, you could pump a file on disk to a http request body as follows:
 
 [source,kotlin]
 ----
+import io.vertx.core.streams.Pump
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.streams.Pump
 
 
 request.setChunked(true)
@@ -1473,8 +1473,8 @@ To send such frames, you can use the `link:../../apidocs/io/vertx/core/http/Http
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 var frameType = 40
@@ -1614,8 +1614,8 @@ either aggregate it yourself:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 client.getNow("some-uri", { response ->
@@ -2067,8 +2067,8 @@ endpoint:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 var data = Buffer.buffer()
 for (i in 0 until 8) {
@@ -2356,8 +2356,8 @@ If you wish to write a single binary WebSocket message to the WebSocket you can 
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 // Write a simple message
 var buffer = Buffer.buffer().appendInt(123).appendFloat(1.23f)
@@ -2387,8 +2387,8 @@ Here's an example for binary frames:
 
 [source,kotlin]
 ----
+import io.vertx.core.http.WebSocketFrame
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.http.WebSocketFrame
 
 
 var frame1 = WebSocketFrame.binaryFrame(buffer1, false)
@@ -2412,8 +2412,8 @@ Here's an example:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 // Send a websocket messages consisting of a single final text frame:

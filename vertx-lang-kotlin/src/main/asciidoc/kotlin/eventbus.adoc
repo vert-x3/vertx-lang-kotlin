@@ -119,7 +119,7 @@ import io.vertx.kotlin.common.json.*
 
 var eb = vertx.eventBus()
 
-eb.consumer("news.uk.sport", { message ->
+eb.consumer<Any>("news.uk.sport", { message ->
   println("I have received a message: ${message.body()}")
 })
 
@@ -140,7 +140,7 @@ import io.vertx.kotlin.common.json.*
 
 var eb = vertx.eventBus()
 
-var consumer = eb.consumer("news.uk.sport")
+var consumer = eb.consumer<Any>("news.uk.sport")
 consumer.handler({ message ->
   println("I have received a message: ${message.body()}")
 })
@@ -251,7 +251,7 @@ The receiver:
 ----
 import io.vertx.kotlin.common.json.*
 
-var consumer = eventBus.consumer("news.uk.sport")
+var consumer = eventBus.consumer<Any>("news.uk.sport")
 consumer.handler({ message ->
   println("I have received a message: ${message.body()}")
   message.reply("how interesting!")
@@ -265,7 +265,7 @@ The sender:
 ----
 import io.vertx.kotlin.common.json.*
 
-eventBus.send("news.uk.sport", "Yay! Someone kicked a ball across a patch of grass", { ar ->
+eventBus.send<Any>("news.uk.sport", "Yay! Someone kicked a ball across a patch of grass", { ar ->
   if (ar.succeeded()) {
     println("Received reply: ${ar.result().body()}")
   }
@@ -318,8 +318,8 @@ instance as clustered;
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var options = io.vertx.core.VertxOptions(
 )
@@ -359,9 +359,9 @@ the event bus acts as a server and client, the configuration is close to
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.core.http.ClientAuth
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var options = io.vertx.core.VertxOptions(
   eventBusOptions = io.vertx.core.eventbus.EventBusOptions(
@@ -403,8 +403,8 @@ When used in containers, you can also configure the public host and port:
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var options = io.vertx.core.VertxOptions(
   eventBusOptions = io.vertx.core.eventbus.EventBusOptions(

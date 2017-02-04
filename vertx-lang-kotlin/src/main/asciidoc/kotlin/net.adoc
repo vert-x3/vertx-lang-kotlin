@@ -156,8 +156,8 @@ You write to a socket using one of `link:../../apidocs/io/vertx/core/net/NetSock
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 // Write a buffer

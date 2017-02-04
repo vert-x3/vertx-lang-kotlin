@@ -14,6 +14,7 @@ import io.vertx.kotlin.codegen.testmodel.DataObjectWithMapAdders;
 import io.vertx.kotlin.codegen.testmodel.TestDataObject;
 import io.vertx.kotlin.codegen.testmodel.DataObjectWithBuffer;
 import io.vertx.kotlin.codegen.testmodel.DataObjectWithNestedBuffer;
+import io.vertx.kotlin.core.http.HttpServerOptions
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -130,5 +131,15 @@ class DataObjectTCKTest {
         enumValues = mapOf("1" to TestEnum.TIM, "2" to TestEnum.JULIEN),
         genEnumValues = mapOf("1" to TestGenEnum.BOB, "2" to TestGenEnum.LAURA)
     ))
+  }
+
+  @Test
+  fun testCreateCollectionPropertyFromIterable() {
+    HttpServerOptions(
+        enabledCipherSuites = listOf("1", "2", "3")
+    )
+    HttpServerOptions(
+        enabledCipherSuites = setOf("1", "2", "3")
+    )
   }
 }
