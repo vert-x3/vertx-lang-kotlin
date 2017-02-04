@@ -26,27 +26,27 @@ Here's an example of using a shared local map:
 
 [source,kotlin]
 ----
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 var sd = vertx.sharedData()
 
-var map1 = sd.getLocalMap("mymap1")
+var map1 = sd.getLocalMap<Any, Any>("mymap1")
 
 map1.put("foo", "bar")
 
-var map2 = sd.getLocalMap("mymap2")
+var map2 = sd.getLocalMap<Any, Any>("mymap2")
 
 map2.put("eek", Buffer.buffer().appendInt(123))
 
 // Then... in another part of your application:
 
-map1 = sd.getLocalMap("mymap1")
+map1 = sd.getLocalMap<Any, Any>("mymap1")
 
 var val = map1.get("foo")
 
-map2 = sd.getLocalMap("mymap2")
+map2 = sd.getLocalMap<Any, Any>("mymap2")
 
 var buff = map2.get("eek")
 
@@ -72,7 +72,7 @@ import io.vertx.kotlin.common.json.*
 
 var sd = vertx.sharedData()
 
-sd.getClusterWideMap("mymap", { res ->
+sd.getClusterWideMap<String, String>("mymap", { res ->
   if (res.succeeded()) {
     var map = res.result()
   } else {

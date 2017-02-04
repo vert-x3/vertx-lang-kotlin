@@ -52,8 +52,8 @@ If you're embedding Vert.x then you simply create an instance as follows:
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var vertx = Vertx.vertx()
 
@@ -70,8 +70,8 @@ When creating a Vertx object you can also specify options if the defaults aren't
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var vertx = Vertx.vertx(io.vertx.core.VertxOptions(
   workerPoolSize = 40))
@@ -296,7 +296,7 @@ result handler to be called back asynchronous when the blocking code has been ex
 import io.vertx.kotlin.common.json.*
 
 var someAPI = examples.CoreExamples.BlockingAPI()
-vertx.executeBlocking({ future ->
+vertx.executeBlocking<Any>({ future ->
   // Call some blocking API that takes a significant amount of time to return
   var result = someAPI.blockingMethod("hello")
   future.complete(result)
@@ -327,7 +327,7 @@ import io.vertx.kotlin.common.json.*
 
 var someAPI = examples.CoreExamples.BlockingAPI()
 var executor = vertx.createSharedWorkerExecutor("my-worker-pool")
-executor.executeBlocking({ future ->
+executor.executeBlocking<Any>({ future ->
   // Call some blocking API that takes a significant amount of time to return
   var result = someAPI.blockingMethod("hello")
   future.complete(result)
@@ -385,14 +385,14 @@ _succeeded_ when all the futures are and _failed_ when at least one of the futur
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
+import io.vertx.core.Future
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
-import io.vertx.kotlin.core.Future
 
-var httpServerFuture = Future.future()
+var httpServerFuture = Future.future<Any>()
 httpServer.listen(httpServerFuture.completer())
 
-var netServerFuture = Future.future()
+var netServerFuture = Future.future<Any>()
 netServer.listen(netServerFuture.completer())
 
 CompositeFuture.all(httpServerFuture, netServerFuture).setHandler({ ar ->
@@ -414,8 +414,8 @@ Alternatively, you can pass a list (potentially empty) of futures:
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
 
 CompositeFuture.all(listOf(future1, future2, future3))
 
@@ -428,8 +428,8 @@ all the futures are failed:
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
 
 CompositeFuture.any(future1, future2).setHandler({ ar ->
   if (ar.succeeded()) {
@@ -445,8 +445,8 @@ A list of futures can be used also:
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
 
 CompositeFuture.any(listOf(f1, f2, f3))
 
@@ -459,8 +459,8 @@ them is failed:
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
 
 CompositeFuture.join(future1, future2, future3).setHandler({ ar ->
   if (ar.succeeded()) {
@@ -476,8 +476,8 @@ A list of futures can be used also:
 
 [source,kotlin]
 ----
+import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.CompositeFuture
 
 CompositeFuture.join(listOf(future1, future2, future3))
 
@@ -490,20 +490,20 @@ for chaining futures (so sequential composition).
 
 [source,kotlin]
 ----
+import io.vertx.core.Future
+import io.vertx.core.buffer.Buffer
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Future
-import io.vertx.kotlin.core.buffer.Buffer
 
 
 var fs = vertx.fileSystem()
-var startFuture = Future.future()
+var startFuture = Future.future<Any>()
 
-var fut1 = Future.future()
+var fut1 = Future.future<Any>()
 fs.createFile("/foo", fut1.completer())
 
-fut1.compose({ v ->
+fut1.compose<Any>({ v ->
   // When the file is created (fut1), execute this:
-  var fut2 = Future.future()
+  var fut2 = Future.future<Any>()
   fs.writeFile("/foo", Buffer.buffer(), fut2.completer())
   return fut2
 }).compose({ v ->
@@ -880,8 +880,8 @@ context is created. You can test the _type_ of context you have retrieved:
 
 [source, kotlin]
 ----
+import io.vertx.core.Context
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Context
 
 var context = vertx.getOrCreateContext()
 if (context.isEventLoopContext()) {
@@ -920,7 +920,7 @@ import io.vertx.kotlin.common.json.*
 var context = vertx.getOrCreateContext()
 context.put("data", "hello")
 context.runOnContext({ v ->
-  var hello = context.get("data")
+  var hello = context.get<Any>("data")
 })
 
 ----
@@ -1504,8 +1504,8 @@ DNS servers can be also configured when creating a `link:../../apidocs/io/vertx/
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var vertx = Vertx.vertx(io.vertx.core.VertxOptions(
   addressResolverOptions = io.vertx.core.dns.AddressResolverOptions(
@@ -1520,8 +1520,8 @@ The resolver can be configured to use an alternative _hosts_ file:
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var vertx = Vertx.vertx(io.vertx.core.VertxOptions(
   addressResolverOptions = io.vertx.core.dns.AddressResolverOptions(
@@ -1534,8 +1534,8 @@ list can be provided:
 
 [source,kotlin]
 ----
+import io.vertx.core.Vertx
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.Vertx
 
 var vertx = Vertx.vertx(io.vertx.core.VertxOptions(
   addressResolverOptions = io.vertx.core.dns.AddressResolverOptions(

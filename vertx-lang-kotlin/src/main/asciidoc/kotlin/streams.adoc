@@ -123,8 +123,8 @@ You just feed it the `ReadStream` plus the `WriteStream` then start it:
 
 [source,kotlin]
 ----
+import io.vertx.core.streams.Pump
 import io.vertx.kotlin.common.json.*
-import io.vertx.kotlin.core.streams.Pump
 
 var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
   port = 1234,
