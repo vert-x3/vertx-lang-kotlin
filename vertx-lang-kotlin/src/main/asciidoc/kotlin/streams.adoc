@@ -28,9 +28,10 @@ to the `NetSocket`:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.net.NetServerOptions
+import io.vertx.kotlin.core.net.*
 
-var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
+var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
 server.connectHandler({ sock ->
@@ -52,9 +53,10 @@ writing to it:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.net.NetServerOptions
+import io.vertx.kotlin.core.net.*
 
-var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
+var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
 server.connectHandler({ sock ->
@@ -73,9 +75,10 @@ really want to do is pause the `NetSocket` when the write queue is full:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.net.NetServerOptions
+import io.vertx.kotlin.core.net.*
 
-var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
+var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
 server.connectHandler({ sock ->
@@ -94,9 +97,10 @@ it when the write queue has processed its backlog:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.net.NetServerOptions
+import io.vertx.kotlin.core.net.*
 
-var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
+var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
 server.connectHandler({ sock ->
@@ -123,10 +127,11 @@ You just feed it the `ReadStream` plus the `WriteStream` then start it:
 
 [source,kotlin]
 ----
+import io.vertx.core.net.NetServerOptions
 import io.vertx.core.streams.Pump
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.net.*
 
-var server = vertx.createNetServer(io.vertx.core.net.NetServerOptions(
+var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
 server.connectHandler({ sock ->

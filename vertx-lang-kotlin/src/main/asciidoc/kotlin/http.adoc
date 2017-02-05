@@ -13,7 +13,6 @@ The simplest way to create an HTTP server, using all default options is as follo
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var server = vertx.createHttpServer()
@@ -27,10 +26,11 @@ instance when creating it:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpServerOptions
+import io.vertx.kotlin.core.http.*
 
 
-var options = io.vertx.core.http.HttpServerOptions(
+var options = HttpServerOptions(
   maxWebsocketFrameSize = 1000000)
 
 var server = vertx.createHttpServer(options)
@@ -49,12 +49,15 @@ To handle `h2` requests, TLS must be enabled along with `link:../../apidocs/io/v
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpServerOptions
+import io.vertx.core.net.JksOptions
+import io.vertx.kotlin.core.http.*
+import io.vertx.kotlin.core.net.*
 
-var options = io.vertx.core.http.HttpServerOptions(
+var options = HttpServerOptions(
   useAlpn = true,
   ssl = true,
-  keyStoreOptions = io.vertx.core.net.JksOptions(
+  keyStoreOptions = JksOptions(
     path = "/path/to/my/keystore"))
 
 var server = vertx.createHttpServer(options)
@@ -87,10 +90,11 @@ For debugging purposes, network activity can be logged.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpServerOptions
+import io.vertx.kotlin.core.http.*
 
 
-var options = io.vertx.core.http.HttpServerOptions(
+var options = HttpServerOptions(
   logActivity = true)
 
 var server = vertx.createHttpServer(options)
@@ -108,7 +112,6 @@ To tell the server to listen at the host and port as specified in the options:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var server = vertx.createHttpServer()
@@ -120,7 +123,6 @@ Or to specify the host and port in the call to listen, ignoring what is configur
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var server = vertx.createHttpServer()
@@ -138,7 +140,6 @@ For example:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var server = vertx.createHttpServer()
@@ -158,7 +159,6 @@ To be notified when a request arrives you need to set a `link:../../apidocs/io/v
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var server = vertx.createHttpServer()
@@ -189,7 +189,6 @@ Here's a simple example of a server handling a request and replying with "hello 
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 vertx.createHttpServer().requestHandler({ request ->
@@ -251,7 +250,6 @@ It also has case-insensitive keys, that means you can do the following:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var headers = request.headers()
@@ -319,7 +317,6 @@ this will get called every time a chunk of the request body arrives. Here's an e
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.handler({ buffer ->
@@ -337,7 +334,6 @@ the aggregation yourself as follows:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 // Create an empty buffer
@@ -359,7 +355,6 @@ for you. The body handler is called once when all the body has been received:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.bodyHandler({ totalBuffer ->
@@ -393,7 +388,6 @@ once the entire body has been read:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 server.requestHandler({ request ->
@@ -420,7 +414,6 @@ The object passed into the handler is a `link:../../apidocs/io/vertx/core/http/H
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 server.requestHandler({ request ->
@@ -437,7 +430,6 @@ exhaustion, instead, the upload data is received in chunks:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.uploadHandler({ upload ->
@@ -456,7 +448,6 @@ If you just want to upload the file to disk somewhere you can use `link:../../ap
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.uploadHandler({ upload ->
@@ -488,7 +479,6 @@ this will get called every time a custom frame arrives. Here's an example:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.customFrameHandler({ frame ->
@@ -536,7 +526,6 @@ With a single buffer:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.write(buffer)
@@ -547,7 +536,6 @@ With a string. In this case the string will encoded using UTF-8 and the result w
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.write("hello world!")
@@ -559,7 +547,6 @@ result written to the wire.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.write("hello world!", "UTF-16")
@@ -585,7 +572,6 @@ With no arguments, the response is simply ended.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.write("hello world!")
@@ -598,7 +584,6 @@ calling write with a string or buffer followed by calling end with no arguments.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.end("hello world!")
@@ -623,7 +608,6 @@ HTTP response headers can be added to the response by adding them directly to th
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 var headers = response.headers()
@@ -636,7 +620,6 @@ Or you can use `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#pu
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.putHeader("content-type", "text/html").putHeader("other-header", "wibble")
@@ -656,7 +639,6 @@ You put the HTTP response into chunked mode as follows:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.setChunked(true)
@@ -675,7 +657,6 @@ To add trailers to the response, add them directly to the `link:../../apidocs/io
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.setChunked(true)
@@ -688,7 +669,6 @@ Or use `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#putTrailer
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var response = request.response()
 response.setChunked(true)
@@ -715,7 +695,6 @@ Here's a very simple web server that serves files from the file system using sen
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 vertx.createHttpServer().requestHandler({ request ->
   var file = ""
@@ -745,7 +724,6 @@ When there is a need to serve just a segment of a file, say starting from a give
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 vertx.createHttpServer().requestHandler({ request ->
   var offset = 0
@@ -774,7 +752,6 @@ case you can just do:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 vertx.createHttpServer().requestHandler({ request ->
   var offset = 0
@@ -804,7 +781,6 @@ at any one time:
 ----
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.streams.Pump
-import io.vertx.kotlin.common.json.*
 
 vertx.createHttpServer().requestHandler({ request ->
   var response = request.response()
@@ -832,7 +808,6 @@ Here's an example:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 var frameType = 40
@@ -856,7 +831,6 @@ HTTP/2 supports stream reset at any time during the request/response:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 // Reset the stream
@@ -868,7 +842,6 @@ By default the `NO_ERROR` (0) error code is sent, another code can sent instead:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 // Cancel the stream
@@ -883,7 +856,6 @@ The request handler are notified of stream reset events with the `link:../../api
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.response().exceptionHandler({ err ->
@@ -904,7 +876,6 @@ When a server process a request, it can push a request/response to the client:
 [source,kotlin]
 ----
 import io.vertx.core.http.HttpMethod
-import io.vertx.kotlin.common.json.*
 
 
 var response = request.response()
@@ -980,7 +951,6 @@ You create an `link:../../apidocs/io/vertx/core/http/HttpClient.html[HttpClient]
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var client = vertx.createHttpClient()
 
@@ -990,9 +960,10 @@ If you want to configure options for the client, you create it as follows:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.kotlin.core.http.*
 
-var options = io.vertx.core.http.HttpClientOptions(
+var options = HttpClientOptions(
   keepAlive = false)
 var client = vertx.createHttpClient(options)
 
@@ -1007,12 +978,13 @@ For `h2` requests, TLS must be enabled with _Application-Layer Protocol Negotiat
 
 [source,kotlin]
 ----
+import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpVersion
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.http.*
 
 
-var options = io.vertx.core.http.HttpClientOptions(
-  protocolVersion = "HTTP_2",
+var options = HttpClientOptions(
+  protocolVersion = HttpVersion.HTTP_2,
   ssl = true,
   useAlpn = true,
   trustAll = true)
@@ -1025,12 +997,13 @@ For `h2c` requests, TLS must be disabled, the client will do an HTTP/1.1 request
 
 [source,kotlin]
 ----
+import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpVersion
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.http.*
 
 
-var options = io.vertx.core.http.HttpClientOptions(
-  protocolVersion = "HTTP_2")
+var options = HttpClientOptions(
+  protocolVersion = HttpVersion.HTTP_2)
 
 var client = vertx.createHttpClient(options)
 
@@ -1054,9 +1027,10 @@ For debugging purposes, network activity can be logged.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.kotlin.core.http.*
 
-var options = io.vertx.core.http.HttpClientOptions(
+var options = HttpClientOptions(
   logActivity = true)
 var client = vertx.createHttpClient(options)
 
@@ -1074,10 +1048,11 @@ every time you make a request you can configure the client with a default host/p
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.kotlin.core.http.*
 
 // Set the default host
-var options = io.vertx.core.http.HttpClientOptions(
+var options = HttpClientOptions(
   defaultHost = "wibble.com")
 // Can also set default port if you want...
 var client = vertx.createHttpClient(options)
@@ -1092,7 +1067,6 @@ simply specify the host/port when doing the request.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var client = vertx.createHttpClient()
 
@@ -1123,7 +1097,6 @@ called with the http response when it comes back.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var client = vertx.createHttpClient()
 
@@ -1149,7 +1122,6 @@ the HTTP method at run-time:
 [source,kotlin]
 ----
 import io.vertx.core.http.HttpMethod
-import io.vertx.kotlin.common.json.*
 
 var client = vertx.createHttpClient()
 
@@ -1178,7 +1150,6 @@ Here are some examples of writing a POST request with a body:
 m
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var client = vertx.createHttpClient()
 
@@ -1214,7 +1185,6 @@ Methods exist to write strings in UTF-8 encoding and in any specific encoding an
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 // Write string encoded in UTF-8
@@ -1237,7 +1207,6 @@ single call to the `end` function.
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 // Write string and end the request (send it) in a single call
@@ -1272,7 +1241,6 @@ You can write headers to a request using the `link:../../apidocs/io/vertx/core/h
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 // Write some headers using the headers() multimap
@@ -1290,7 +1258,6 @@ You can also write headers using `link:../../apidocs/io/vertx/core/http/HttpClie
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 // Write some headers using the putHeader method
@@ -1320,7 +1287,6 @@ Requests can be ended in several ways. With no arguments the request is simply e
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 request.end()
 
@@ -1332,7 +1298,6 @@ before calling `end` with no arguments
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 // End the request with a string
 request.end("some-data")
@@ -1357,7 +1322,6 @@ no need to set the `Content-Length` of the request up-front.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.setChunked(true)
@@ -1387,7 +1351,6 @@ You can handle exceptions corresponding to a request by setting an exception han
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var request = client.post("some-uri", { response ->
@@ -1405,7 +1368,6 @@ This does not handle non _2xx_ response that need to be handled in the
 
 [source, kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var request = client.post("some-uri", { response ->
   if (response.statusCode() == 200) {
@@ -1431,7 +1393,6 @@ not provide a handler when the request is created and set it later on the reques
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var request = client.post("some-uri")
@@ -1451,7 +1412,6 @@ For, example, you could pump a file on disk to a http request body as follows:
 [source,kotlin]
 ----
 import io.vertx.core.streams.Pump
-import io.vertx.kotlin.common.json.*
 
 
 request.setChunked(true)
@@ -1474,7 +1434,6 @@ To send such frames, you can use the `link:../../apidocs/io/vertx/core/http/Http
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 var frameType = 40
@@ -1495,7 +1454,6 @@ HTTP/2 supports stream reset at any time during the request/response:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.reset()
@@ -1507,7 +1465,6 @@ By default the NO_ERROR (0) error code is sent, another code can sent instead:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.reset(8)
@@ -1522,7 +1479,6 @@ The request handler are notified of stream reset events with the `link:../../api
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 request.exceptionHandler({ err ->
@@ -1544,7 +1500,6 @@ and `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html#statusMessage
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 client.getNow("some-uri", { response ->
@@ -1571,7 +1526,6 @@ The object returned is a `link:../../apidocs/io/vertx/core/MultiMap.html[MultiMa
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var contentType = response.headers().get("content-type")
@@ -1597,7 +1551,6 @@ a `link:../../apidocs/io/vertx/core/buffer/Buffer.html[Buffer]` representing the
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 client.getNow("some-uri", { response ->
@@ -1615,7 +1568,6 @@ either aggregate it yourself:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 client.getNow("some-uri", { response ->
@@ -1642,7 +1594,6 @@ is called with the entire body when the response has been fully read:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 client.getNow("some-uri", { response ->
@@ -1691,7 +1642,6 @@ Here's an example:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var request = client.put("some-uri", { response ->
@@ -1720,7 +1670,6 @@ to have the client continue sending the body:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 httpServer.requestHandler({ request ->
@@ -1748,7 +1697,6 @@ cannot be a logical protocol constraint):
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 httpServer.requestHandler({ request ->
@@ -1780,7 +1728,6 @@ A push handler can be set on a request to receive the request/response pushed by
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 var request = client.get("/index.html", { response ->
@@ -1808,7 +1755,6 @@ If the client does not want to receive a pushed request, it can reset the stream
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 request.pushHandler({ pushedRequest ->
   if (pushedRequest.path() == "/main.js") {
@@ -1833,7 +1779,6 @@ frame arrives. Here's an example:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 response.customFrameHandler({ frame ->
 
@@ -1924,10 +1869,11 @@ can be used.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.kotlin.core.http.*
 
 
-var clientOptions = io.vertx.core.http.HttpClientOptions(
+var clientOptions = HttpClientOptions(
   http2MultiplexingLimit = 10,
   http2MaxPoolSize = 3)
 
@@ -1963,7 +1909,6 @@ The `link:../../apidocs/io/vertx/core/http/HttpServerRequest.html#connection--[c
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var connection = request.connection()
 
@@ -1973,7 +1918,6 @@ A connection handler can be set on the server to be notified of any incoming con
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var server = vertx.createHttpServer(http2Options)
 
@@ -1989,7 +1933,6 @@ The `link:../../apidocs/io/vertx/core/http/HttpClientRequest.html#connection--[c
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var connection = request.connection()
 
@@ -1999,7 +1942,6 @@ A connection handler can be set on the request to be notified when the connectio
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 request.connectionHandler({ connection ->
   println("Connected to the server")
@@ -2021,9 +1963,10 @@ The settings can be changed at any time after the connection is established:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.Http2Settings
+import io.vertx.kotlin.core.http.*
 
-connection.updateSettings(io.vertx.core.http.Http2Settings(
+connection.updateSettings(Http2Settings(
   maxConcurrentStreams = 100))
 
 ----
@@ -2033,9 +1976,10 @@ to be notified of the acknowledgment:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.http.Http2Settings
+import io.vertx.kotlin.core.http.*
 
-connection.updateSettings(io.vertx.core.http.Http2Settings(
+connection.updateSettings(Http2Settings(
   maxConcurrentStreams = 100), { ar ->
   if (ar.succeeded()) {
     println("The settings update has been acknowledged ")
@@ -2049,7 +1993,6 @@ when the new remote settings are received:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.remoteSettingsHandler({ settings ->
   println("Received new settings")
@@ -2068,7 +2011,6 @@ endpoint:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 var data = Buffer.buffer()
 for (i in 0 until 8) {
@@ -2087,7 +2029,6 @@ an handler can be set to be notified for each ping received:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.pingHandler({ ping ->
   println("Got pinged by remote side")
@@ -2109,7 +2050,6 @@ waits some time (30 seconds by default) until all current streams closed and clo
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.shutdown()
 
@@ -2124,7 +2064,6 @@ close:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.goAway(0)
 
@@ -2134,7 +2073,6 @@ Conversely, it is also possible to be notified when `GOAWAY` are received:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.goAwayHandler({ goAway ->
   println("Received a go away frame")
@@ -2147,7 +2085,6 @@ have been closed and the connection can be closed:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 connection.goAway(0)
 connection.shutdownHandler({ v ->
@@ -2202,7 +2139,6 @@ Let's take a verticle creating a HTTP server such as:
 .io.vertx.examples.http.sharing.HttpServerVerticle
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 vertx.createHttpServer().requestHandler({ request ->
   request.response().end("Hello from server ${this}")
@@ -2220,7 +2156,6 @@ receiving a request it calls the server handlers following a round robin strateg
 Let's now imagine a client such as:
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 vertx.setPeriodic(100, { l ->
   vertx.createHttpClient().getNow(8080, "localhost", "/", { resp ->
@@ -2274,7 +2209,6 @@ When a WebSocket connection is made to the server, the handler will be called, p
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 server.websocketHandler({ websocket ->
@@ -2287,7 +2221,6 @@ You can choose to reject the WebSocket by calling `link:../../apidocs/io/vertx/c
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 server.websocketHandler({ websocket ->
@@ -2307,7 +2240,6 @@ call `link:../../apidocs/io/vertx/core/http/HttpServerRequest.html#upgrade--[upg
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 server.requestHandler({ request ->
@@ -2341,7 +2273,6 @@ The handler will be called with an instance of `link:../../apidocs/io/vertx/core
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 client.websocket("/some-uri", { websocket ->
   println("Connected!")
@@ -2357,7 +2288,6 @@ If you wish to write a single binary WebSocket message to the WebSocket you can 
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 // Write a simple message
 var buffer = Buffer.buffer().appendInt(123).appendFloat(1.23f)
@@ -2388,7 +2318,6 @@ Here's an example for binary frames:
 [source,kotlin]
 ----
 import io.vertx.core.http.WebSocketFrame
-import io.vertx.kotlin.common.json.*
 
 
 var frame1 = WebSocketFrame.binaryFrame(buffer1, false)
@@ -2413,7 +2342,6 @@ Here's an example:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
 
 
 // Send a websocket messages consisting of a single final text frame:
@@ -2438,7 +2366,6 @@ for example:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 
 websocket.frameHandler({ frame ->
@@ -2475,13 +2402,16 @@ Here's an example of using an HTTP proxy:
 
 [source,kotlin]
 ----
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.core.net.ProxyOptions
 import io.vertx.core.net.ProxyType
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.http.*
+import io.vertx.kotlin.core.net.*
 
 
-var options = io.vertx.core.http.HttpClientOptions(
-  proxyOptions = io.vertx.core.net.ProxyOptions(
-    type = "HTTP",
+var options = HttpClientOptions(
+  proxyOptions = ProxyOptions(
+    type = ProxyType.HTTP,
     host = "localhost",
     port = 3128,
     username = "username",
@@ -2501,13 +2431,16 @@ For a SOCKS5 proxy:
 
 [source,kotlin]
 ----
+import io.vertx.core.http.HttpClientOptions
+import io.vertx.core.net.ProxyOptions
 import io.vertx.core.net.ProxyType
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.http.*
+import io.vertx.kotlin.core.net.*
 
 
-var options = io.vertx.core.http.HttpClientOptions(
-  proxyOptions = io.vertx.core.net.ProxyOptions(
-    type = "SOCKS5",
+var options = HttpClientOptions(
+  proxyOptions = ProxyOptions(
+    type = ProxyType.SOCKS5,
     host = "localhost",
     port = 1080,
     username = "username",
