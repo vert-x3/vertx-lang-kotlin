@@ -26,6 +26,11 @@
     return "[" + rawType.name + "]";
   }
 
+  def renderTokensKotlinDoc(margin, tokens, linkToHtml, lineSep) {
+    /* Fix for what seems to be a kotlin bug */
+    return renderTokensToHtml(margin, tokens, renderLinkToHtml, lineSep).replace("/*", "/<star>");
+  }
+
   def mapKotlinType(type) {
     if (type.name == 'void' || type.name == 'java.lang.Void') {
       ret = 'Unit';
@@ -120,7 +125,7 @@ import @{genImport}\n
 @{renderDocToHtml(" *", doc, renderLinkToHtml)}
  *\n
 	@foreach{property:filterProperties(properties)}
- * @param @{property.name} @if{property.doc != null}@{renderTokensToHtml("", property.doc.tokens, renderLinkToHtml, "")}@end{}\n
+ * @param @{property.name} @if{property.doc != null}@{renderTokensKotlinDoc("", property.doc.tokens, renderLinkToHtml, "")}@end{}\n
 	@end{}
  *\n
  * <p/>\n
