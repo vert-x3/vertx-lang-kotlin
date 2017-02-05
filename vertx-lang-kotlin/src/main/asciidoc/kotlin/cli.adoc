@@ -29,17 +29,19 @@ describe options and arguments:
 
 [source,kotlin]
 ----
+import io.vertx.core.cli.Argument
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(Option(
   longName = "directory",
   shortName = "R",
   description = "enables directory support",
-  flag = true)).addArgument(io.vertx.core.cli.Argument(
+  flag = true)).addArgument(Argument(
   index = 0,
   description = "The source",
-  argName = "source")).addArgument(io.vertx.core.cli.Argument(
+  argName = "source")).addArgument(Argument(
   index = 1,
   description = "The destination",
   argName = "target"))
@@ -65,16 +67,17 @@ configure the option to receive several values using `link:../../apidocs/io/vert
 [source,kotlin]
 ----
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").setSummary("A command line interface illustrating the options valuation.").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("some-name").setSummary("A command line interface illustrating the options valuation.").addOption(Option(
   longName = "flag",
   shortName = "f",
   flag = true,
-  description = "a flag")).addOption(io.vertx.core.cli.Option(
+  description = "a flag")).addOption(Option(
   longName = "single",
   shortName = "s",
-  description = "a single-valued option")).addOption(io.vertx.core.cli.Option(
+  description = "a single-valued option")).addOption(Option(
   longName = "multiple",
   shortName = "m",
   multiValued = true,
@@ -88,9 +91,10 @@ the parsing:
 [source,kotlin]
 ----
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("some-name").addOption(Option(
   longName = "mandatory",
   required = true,
   description = "a mandatory option"))
@@ -103,9 +107,10 @@ the command line:
 [source,kotlin]
 ----
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("some-name").addOption(Option(
   longName = "optional",
   defaultValue = "hello",
   description = "an optional option with a default value"))
@@ -120,9 +125,10 @@ If the option value is contrained to a fixed set, you can set the different acce
 [source,kotlin]
 ----
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("some-name").addOption(Option(
   longName = "color",
   defaultValue = "green",
   choices = listOf("blue", "red", "green"),
@@ -142,13 +148,14 @@ index `0`:
 
 [source,kotlin]
 ----
+import io.vertx.core.cli.Argument
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").addArgument(io.vertx.core.cli.Argument(
+var cli = CLI.create("some-name").addArgument(Argument(
   index = 0,
   description = "the first argument",
-  argName = "arg1")).addArgument(io.vertx.core.cli.Argument(
+  argName = "arg1")).addArgument(Argument(
   index = 1,
   description = "the second argument",
   argName = "arg2"))
@@ -159,12 +166,13 @@ If you don't set the argument indexes, it computes it automatically by using the
 
 [source,kotlin]
 ----
+import io.vertx.core.cli.Argument
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("some-name").addArgument(io.vertx.core.cli.Argument(
+var cli = CLI.create("some-name").addArgument(Argument(
   description = "the first argument",
-  argName = "arg1")).addArgument(io.vertx.core.cli.Argument(
+  argName = "arg1")).addArgument(Argument(
   description = "the second argument",
   argName = "arg2"))
 
@@ -188,17 +196,19 @@ Once your `link:../../apidocs/io/vertx/core/cli/CLI.html[CLI]` instance is confi
 
 [source,kotlin]
 ----
+import io.vertx.core.cli.Argument
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("copy").setSummary("A command line interface to copy files.").addOption(Option(
   longName = "directory",
   shortName = "R",
   description = "enables directory support",
-  flag = true)).addArgument(io.vertx.core.cli.Argument(
+  flag = true)).addArgument(Argument(
   index = 0,
   description = "The source",
-  argName = "source")).addArgument(io.vertx.core.cli.Argument(
+  argName = "source")).addArgument(Argument(
   index = 0,
   description = "The destination",
   argName = "target"))
@@ -228,7 +238,6 @@ each option and argument:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var commandLine = cli.parse(userCommandLineArguments)
 
@@ -251,7 +260,6 @@ method:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
 
 var commandLine = cli.parse(userCommandLineArguments)
 var opt = commandLine.getOptionValue<Any>("my-option")
@@ -266,13 +274,14 @@ won't failed, but give you the opportunity to check if the user asks for help:
 [source,kotlin]
 ----
 import io.vertx.core.cli.CLI
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.cli.Option
+import io.vertx.kotlin.core.cli.*
 
-var cli = CLI.create("test").addOption(io.vertx.core.cli.Option(
+var cli = CLI.create("test").addOption(Option(
   longName = "help",
   shortName = "h",
   flag = true,
-  help = true)).addOption(io.vertx.core.cli.Option(
+  help = true)).addOption(Option(
   longName = "mandatory",
   required = true))
 

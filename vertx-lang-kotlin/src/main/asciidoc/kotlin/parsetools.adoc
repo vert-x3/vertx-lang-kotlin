@@ -30,7 +30,6 @@ Let's see the associated code:
 ----
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.parsetools.RecordParser
-import io.vertx.kotlin.common.json.*
 
 var parser = RecordParser.newDelimited("\n", { h ->
   println(h.toString())
@@ -48,7 +47,6 @@ You can also produce fixed sized chunks as follows:
 [source, kotlin]
 ----
 import io.vertx.core.parsetools.RecordParser
-import io.vertx.kotlin.common.json.*
 
 RecordParser.newFixed(4, { h ->
   println(h.toString())

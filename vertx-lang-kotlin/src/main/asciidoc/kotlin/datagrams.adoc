@@ -31,10 +31,10 @@ and receive.
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 
 ----
 
@@ -53,10 +53,10 @@ Sending packets is as easy as shown here:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 var buffer = Buffer.buffer("content")
 // Send a Buffer
 socket.send(buffer, 1234, "10.0.0.1", { asyncResult ->
@@ -88,10 +88,10 @@ So to listen on a specific address and port you would do something like shown he
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 socket.listen(1234, "0.0.0.0", { asyncResult ->
   if (asyncResult.succeeded()) {
     socket.handler({ packet ->
@@ -127,10 +127,10 @@ This is show here:
 [source,kotlin]
 ----
 import io.vertx.core.buffer.Buffer
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 var buffer = Buffer.buffer("content")
 // Send a Buffer to a multicast address
 socket.send(buffer, 1234, "230.0.0.1", { asyncResult ->
@@ -161,10 +161,10 @@ would do something like shown here:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 socket.listen(1234, "0.0.0.0", { asyncResult ->
   if (asyncResult.succeeded()) {
     socket.handler({ packet ->
@@ -192,10 +192,10 @@ This is shown here:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 socket.listen(1234, "0.0.0.0", { asyncResult ->
   if (asyncResult.succeeded()) {
     socket.handler({ packet ->
@@ -237,10 +237,10 @@ like shown here:
 
 [source,kotlin]
 ----
-import io.vertx.kotlin.common.json.*
+import io.vertx.core.datagram.DatagramSocketOptions
+import io.vertx.kotlin.core.datagram.*
 
-var socket = vertx.createDatagramSocket(io.vertx.core.datagram.DatagramSocketOptions(
-))
+var socket = vertx.createDatagramSocket(DatagramSocketOptions())
 
 // Some code
 
