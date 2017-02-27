@@ -1,13 +1,6 @@
 package io.vertx.lang.kotlin;
 
-import io.vertx.codegen.Case;
-import io.vertx.codegen.type.ClassKind;
-import io.vertx.codegen.type.ClassTypeInfo;
-import io.vertx.codegen.type.EnumTypeInfo;
-import io.vertx.codegen.type.TypeInfo;
-import io.vertx.codegen.type.TypeMirrorFactory;
 import io.vertx.codetrans.CodeTranslator;
-import io.vertx.codetrans.lang.js.JavaScriptLang;
 import io.vertx.codetrans.lang.kotlin.KotlinLang;
 import io.vertx.docgen.Coordinate;
 import io.vertx.docgen.DocGenerator;
@@ -15,7 +8,6 @@ import io.vertx.docgen.JavaDocGenerator;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
