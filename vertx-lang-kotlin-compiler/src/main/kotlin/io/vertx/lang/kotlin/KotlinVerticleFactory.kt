@@ -28,7 +28,7 @@ open class KotlinVerticleFactory : VerticleFactory {
       throw IllegalStateException("Cannot find verticle script: $verticleName on classpath")
     }
 
-    val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, prefix() == "kts", url) { state, it ->
+    val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, prefix() == "kts", url) { _, it ->
       it.kind == ClassKind.CLASS
           && it.modality != Modality.ABSTRACT
           && it.modality != Modality.SEALED

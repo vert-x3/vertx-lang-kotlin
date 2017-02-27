@@ -13,7 +13,6 @@ import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.load.java.*
 import org.jetbrains.kotlin.name.*
 import org.jetbrains.kotlin.resolve.*
-import org.jetbrains.kotlin.script.*
 import java.io.*
 import java.net.*
 import java.nio.file.*
@@ -38,14 +37,15 @@ object KotlinCompilerHelper {
     configuration.put(CLIConfigurationKeys.ALLOW_KOTLIN_PACKAGE, false)
     configuration.put(CLIConfigurationKeys.REPORT_PERF, false)
 
-
-    configuration.put(CommonConfigurationKeys.LANGUAGE_VERSION_SETTINGS, LanguageVersionSettingsImpl.DEFAULT);
+    configuration.put(CommonConfigurationKeys.LANGUAGE_VERSION_SETTINGS, LanguageVersionSettingsImpl.DEFAULT)
 
     configuration.put(JVMConfigurationKeys.JVM_TARGET, JvmTarget.JVM_1_6)
-    configuration.put(JVMConfigurationKeys.MODULE_NAME, JvmAbi.DEFAULT_MODULE_NAME)
+    configuration.put(JVMConfigurationKeys.RETAIN_OUTPUT_IN_MEMORY, true)
+    configuration.put(JVMConfigurationKeys.SKIP_RUNTIME_VERSION_CHECK, true)
+    configuration.put(CommonConfigurationKeys.MODULE_NAME, JvmAbi.DEFAULT_MODULE_NAME)
 
     if (scriptMode) {
-      configuration.put(JVMConfigurationKeys.MODULE_NAME, "dynamic")
+      configuration.put(CommonConfigurationKeys.MODULE_NAME, "dynamic")
       configuration.add(JVMConfigurationKeys.SCRIPT_DEFINITIONS, VerticleScriptDefinition)
     }
 
@@ -65,14 +65,7 @@ object KotlinCompilerHelper {
     val collected = HashMap<String, ClassDescriptor>()
 
     val environment = KotlinCoreEnvironment.createForProduction(Disposable { }, configuration, EnvironmentConfigFiles.JVM_CONFIG_FILES)
-    val finalState = KotlinToJVMBytecodeCompiler.analyzeAndGenerate(environment, GenerationStateEventCallback { state ->
-      collected += state.factory.getClassFiles().toList()
-          .map { it.relativePath.removeSuffix(".class").replace("/", ".") }
-          .filter { it !in collected }
-          .mapNotNull { state.bindingContext.get(BindingContext.FQNAME_TO_CLASS_DESCRIPTOR, FqNameUnsafe(it.replace("$", "."))) }
-          .filter { predicate(state, it) }
-          .associateBy { state.typeMapper.mapClass(it).className }
-    })
+    val finalState = KotlinToJVMBytecodeCompiler.analyzeAndGenerate(environment)
 
     if (printingMessageCollector.hasErrors()) {
       throw CompilationException("Compilation failed", null, null)
@@ -82,7 +75,14 @@ object KotlinCompilerHelper {
     }
 
     val compilerClassLoader = GeneratedClassLoader(finalState.factory, classLoader)
-    return collected.mapKeys { compilerClassLoader.loadClass(it.key) }
+
+    return finalState.factory.getClassFiles().toList()
+        .map { it.relativePath.removeSuffix(".class").replace("/", ".") }
+        .filter { it !in collected }
+        .mapNotNull { finalState.bindingContext.get(BindingContext.FQNAME_TO_CLASS_DESCRIPTOR, FqNameUnsafe(it.replace("$", "."))) }
+        .filter { predicate(finalState, it) }
+        .associateBy { finalState.typeMapper.mapClass(it).className }
+        .mapKeys { compilerClassLoader.loadClass(it.key) }
   }
 
   private fun ClassLoader.classPath() = (classPathImpl() + manifestClassPath()).distinct()
@@ -106,7 +106,7 @@ object KotlinCompilerHelper {
 
   private fun propertyClassPath(key: String) = System.getProperty(key)
       ?.split(File.pathSeparator)
-      ?.filter { it.isNotEmpty() }
+      ?.filter(String::isNotEmpty)
       ?.map { Paths.get(it) }
       ?: emptyList()
 
