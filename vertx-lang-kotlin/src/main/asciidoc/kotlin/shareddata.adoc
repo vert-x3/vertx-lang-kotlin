@@ -26,8 +26,6 @@ Here's an example of using a shared local map:
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 
 var sd = vertx.sharedData()
 
@@ -67,7 +65,6 @@ Getting the map is asynchronous and the result is returned to you in the handler
 [source,kotlin]
 ----
 
-
 var sd = vertx.sharedData()
 
 sd.getClusterWideMap<String, String>("mymap", { res ->
@@ -90,7 +87,6 @@ The actual put is asynchronous and the handler is notified once it is complete:
 [source,kotlin]
 ----
 
-
 map.put("foo", "bar", { resPut ->
   if (resPut.succeeded()) {
     // Successfully put the value
@@ -110,7 +106,6 @@ The actual get is asynchronous and the handler is notified with the result some 
 
 [source,kotlin]
 ----
-
 
 map.get("foo", { resGet ->
   if (resGet.succeeded()) {
@@ -150,7 +145,6 @@ another caller can obtain it.
 
 [source,kotlin]
 ----
-
 sd.getLock("mylock", { res ->
   if (res.succeeded()) {
     // Got the lock!
@@ -174,7 +168,6 @@ with a failure:
 
 [source,kotlin]
 ----
-
 sd.getLockWithTimeout("mylock", 10000, { res ->
   if (res.succeeded()) {
     // Got the lock!
@@ -197,7 +190,6 @@ You obtain an instance with `link:../../apidocs/io/vertx/core/shareddata/SharedD
 
 [source,kotlin]
 ----
-
 sd.getCounter("mycounter", { res ->
   if (res.succeeded()) {
     var counter = res.result()

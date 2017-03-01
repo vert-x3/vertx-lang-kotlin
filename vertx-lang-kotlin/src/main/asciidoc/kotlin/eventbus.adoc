@@ -100,7 +100,6 @@ You get a reference to the event bus as follows:
 
 [source,kotlin]
 ----
-
 var eb = vertx.eventBus()
 
 ----
@@ -114,7 +113,6 @@ Here's an example:
 
 [source,kotlin]
 ----
-
 var eb = vertx.eventBus()
 
 eb.consumer<Any>("news.uk.sport", { message ->
@@ -134,7 +132,6 @@ to return a +MessageConsumer+ with no handler set, and then set the handler on t
 
 [source,kotlin]
 ----
-
 var eb = vertx.eventBus()
 
 var consumer = eb.consumer<Any>("news.uk.sport")
@@ -152,7 +149,6 @@ on the +MessageConsumer+ object.
 
 [source,kotlin]
 ----
-
 consumer.completionHandler({ res ->
   if (res.succeeded()) {
     println("The handler registration has reached all nodes")
@@ -172,7 +168,6 @@ be notified when this is complete use `link:../../apidocs/io/vertx/core/eventbus
 
 [source,kotlin]
 ----
-
 consumer.unregister({ res ->
   if (res.succeeded()) {
     println("The handler un-registration has reached all nodes")
@@ -190,7 +185,6 @@ address to publish it to.
 
 [source,kotlin]
 ----
-
 eventBus.publish("news.uk.sport", "Yay! Someone kicked a ball")
 
 ----
@@ -206,7 +200,6 @@ You can send a message with `link:../../apidocs/io/vertx/core/eventbus/EventBus.
 
 [source,kotlin]
 ----
-
 eventBus.send("news.uk.sport", "Yay! Someone kicked a ball")
 
 ----
@@ -242,7 +235,6 @@ The receiver:
 
 [source,kotlin]
 ----
-
 var consumer = eventBus.consumer<Any>("news.uk.sport")
 consumer.handler({ message ->
   println("I have received a message: ${message.body()}")
@@ -255,7 +247,6 @@ The sender:
 
 [source,kotlin]
 ----
-
 eventBus.send<Any>("news.uk.sport", "Yay! Someone kicked a ball across a patch of grass", { ar ->
   if (ar.succeeded()) {
     println("Received reply: ${ar.result().body()}")
@@ -309,10 +300,6 @@ instance as clustered;
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.kotlin.core.*
-
 var options = VertxOptions()
 Vertx.clusteredVertx(options, { res ->
   if (res.succeeded()) {
@@ -350,15 +337,6 @@ the event bus acts as a server and client, the configuration is close to
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.core.eventbus.EventBusOptions
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.JksOptions
-import io.vertx.kotlin.core.*
-import io.vertx.kotlin.core.eventbus.*
-import io.vertx.kotlin.core.net.*
-
 var options = VertxOptions(
   eventBusOptions = EventBusOptions(
     ssl = true,
@@ -399,12 +377,6 @@ When used in containers, you can also configure the public host and port:
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.core.eventbus.EventBusOptions
-import io.vertx.kotlin.core.*
-import io.vertx.kotlin.core.eventbus.*
-
 var options = VertxOptions(
   eventBusOptions = EventBusOptions(
     clusterPublicHost = "whatever",

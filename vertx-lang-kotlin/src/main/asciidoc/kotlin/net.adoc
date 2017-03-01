@@ -9,7 +9,6 @@ The simplest way to create a TCP server, using all default options is as follows
 [source,kotlin]
 ----
 
-
 var server = vertx.createNetServer()
 
 ----
@@ -21,9 +20,6 @@ instance when creating it:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetServerOptions(
   port = 4321)
@@ -41,7 +37,6 @@ To tell the server to listen at the host and port as specified in the options:
 [source,kotlin]
 ----
 
-
 var server = vertx.createNetServer()
 server.listen()
 
@@ -51,7 +46,6 @@ Or to specify the host and port in the call to listen, ignoring what is configur
 
 [source,kotlin]
 ----
-
 
 var server = vertx.createNetServer()
 server.listen(1234, "localhost")
@@ -69,7 +63,6 @@ For example:
 
 [source,kotlin]
 ----
-
 
 var server = vertx.createNetServer()
 server.listen(1234, "localhost", { res ->
@@ -91,7 +84,6 @@ To find out the real port the server is listening on you can call `link:../../ap
 [source,kotlin]
 ----
 
-
 var server = vertx.createNetServer()
 server.listen(0, "localhost", { res ->
   if (res.succeeded()) {
@@ -109,7 +101,6 @@ To be notified when a connection is made you need to set a `link:../../apidocs/i
 
 [source,kotlin]
 ----
-
 
 var server = vertx.createNetServer()
 server.connectHandler({ socket ->
@@ -134,7 +125,6 @@ the socket.
 [source,kotlin]
 ----
 
-
 var server = vertx.createNetServer()
 server.connectHandler({ socket ->
   socket.handler({ buffer ->
@@ -150,8 +140,6 @@ You write to a socket using one of `link:../../apidocs/io/vertx/core/net/NetSock
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 
 // Write a buffer
 var buffer = Buffer.buffer().appendFloat(12.34f).appendInt(123)
@@ -176,7 +164,6 @@ on it:
 
 [source,kotlin]
 ----
-
 
 socket.closeHandler({ v ->
   println("The socket has been closed")
@@ -217,7 +204,6 @@ classpath resolution or disabling it.
 [source,kotlin]
 ----
 
-
 socket.sendFile("myfile.dat")
 
 ----
@@ -250,7 +236,6 @@ This handler will then be called when the close has fully completed.
 [source,kotlin]
 ----
 
-
 server.close({ res ->
   if (res.succeeded()) {
     println("Server is now closed")
@@ -280,7 +265,6 @@ You can instantiate more instances programmatically in your code:
 [source,kotlin]
 ----
 
-
 // Create a few instances so we can utilise cores
 
 for (i in 0 until 10) {
@@ -307,9 +291,6 @@ or when programmatically deploying your verticle
 
 [source,kotlin]
 ----
-import io.vertx.core.DeploymentOptions
-import io.vertx.kotlin.core.*
-
 
 var options = DeploymentOptions(
   instances = 10)
@@ -340,7 +321,6 @@ The simplest way to create a TCP client, using all default options is as follows
 [source,kotlin]
 ----
 
-
 var client = vertx.createNetClient()
 
 ----
@@ -352,9 +332,6 @@ instance when creating it:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetClientOptions(
   connectTimeout = 10000)
@@ -370,9 +347,6 @@ specifying the port and host of the server and a handler that will be called wit
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetClientOptions(
   connectTimeout = 10000)
@@ -399,9 +373,6 @@ only apply to creating initial connections.
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetClientOptions(
   reconnectAttempts = 10,
@@ -420,9 +391,6 @@ For debugging purposes, network activity can be logged:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetServerOptions(
   logActivity = true)
@@ -435,9 +403,6 @@ for the client
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 
 var options = NetClientOptions(
   logActivity = true)
@@ -499,10 +464,6 @@ The password for the key store should also be provided:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   keyStoreOptions = JksOptions(
@@ -516,10 +477,6 @@ Alternatively you can read the key store yourself as a buffer and provide that d
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/server-keystore.jks")
 var jksOptions = JksOptions(
   value = myKeyStoreAsABuffer,
@@ -536,10 +493,6 @@ extension can also be loaded in a similar fashion than JKS key stores:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   pfxKeyCertOptions = PfxOptions(
@@ -553,10 +506,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/server-keystore.pfx")
 var pfxOptions = PfxOptions(
   value = myKeyStoreAsABuffer,
@@ -572,10 +521,6 @@ Another way of providing server private key and certificate separately using `.p
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   pemKeyCertOptions = PemKeyCertOptions(
@@ -589,10 +534,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/server-key.pem")
 var myCertAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/server-cert.pem")
 var pemOptions = PemKeyCertOptions(
@@ -620,11 +561,6 @@ The password for the trust store should also be provided:
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   clientAuth = ClientAuth.REQUIRED,
@@ -639,11 +575,6 @@ Alternatively you can read the trust store yourself as a buffer and provide that
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var myTrustStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/truststore.jks")
 var options = NetServerOptions(
   ssl = true,
@@ -660,11 +591,6 @@ extension can also be loaded in a similar fashion than JKS trust stores:
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   clientAuth = ClientAuth.REQUIRED,
@@ -679,11 +605,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var myTrustStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/truststore.pfx")
 var options = NetServerOptions(
   ssl = true,
@@ -699,11 +620,6 @@ Another way of providing server certificate authority using a list `.pem` files.
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   clientAuth = ClientAuth.REQUIRED,
@@ -717,11 +633,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.kotlin.core.net.*
-
 var myCaAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/server-ca.pfx")
 var options = NetServerOptions(
   ssl = true,
@@ -746,9 +657,6 @@ be sure who you are connecting to. Use this with caution. Default value is false
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   trustAll = true)
@@ -765,9 +673,6 @@ To enable host verification, set the algorithm to use on your client (only HTTPS
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   hostnameVerificationAlgorithm = "HTTPS")
@@ -786,10 +691,6 @@ in the client trust store, the connection attempt will not succeed.
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   trustStoreOptions = JksOptions(
@@ -803,10 +704,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var myTrustStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/truststore.jks")
 var options = NetClientOptions(
   ssl = true,
@@ -822,10 +719,6 @@ extension can also be loaded in a similar fashion than JKS trust stores:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   pfxTrustOptions = PfxOptions(
@@ -839,10 +732,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var myTrustStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/truststore.pfx")
 var options = NetClientOptions(
   ssl = true,
@@ -857,10 +746,6 @@ Another way of providing server certificate authority using a list `.pem` files.
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   pemTrustOptions = PemTrustOptions(
@@ -873,10 +758,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.kotlin.core.net.*
-
 var myTrustStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/ca-cert.pem")
 var options = NetClientOptions(
   ssl = true,
@@ -898,10 +779,6 @@ Again it's just a regular Java key store. The client keystore location is set by
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   keyStoreOptions = JksOptions(
@@ -915,10 +792,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/client-keystore.jks")
 var jksOptions = JksOptions(
   value = myKeyStoreAsABuffer,
@@ -935,10 +808,6 @@ extension can also be loaded in a similar fashion than JKS key stores:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   pfxKeyCertOptions = PfxOptions(
@@ -952,10 +821,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyStoreAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/client-keystore.pfx")
 var pfxOptions = PfxOptions(
   value = myKeyStoreAsABuffer,
@@ -971,10 +836,6 @@ Another way of providing server private key and certificate separately using `.p
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   pemKeyCertOptions = PemKeyCertOptions(
@@ -988,10 +849,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.kotlin.core.net.*
-
 var myKeyAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/client-key.pem")
 var myCertAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/client-cert.pem")
 var pemOptions = PemKeyCertOptions(
@@ -1014,9 +871,6 @@ the crl list to use:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   ssl = true,
   trustStoreOptions = trustOptions,
@@ -1029,9 +883,6 @@ Buffer configuration is also supported:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.kotlin.core.net.*
-
 var myCrlAsABuffer = vertx.fileSystem().readFileBlocking("/path/to/your/crl.pem")
 var options = NetClientOptions(
   ssl = true,
@@ -1048,9 +899,6 @@ configured with a suite of enabled ciphers:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   keyStoreOptions = keyStoreOptions,
@@ -1068,9 +916,6 @@ configured by explicitly adding enabled protocols:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var options = NetServerOptions(
   ssl = true,
   keyStoreOptions = keyStoreOptions,
@@ -1093,11 +938,6 @@ The engine options to use is
 
 [source,kotlin]
 ----
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.kotlin.core.net.*
-
 
 // Use JDK SSL engine
 var options = NetServerOptions(
@@ -1177,11 +1017,6 @@ Here's an example:
 [source,kotlin]
 
 ----
-import io.vertx.core.net.NetClientOptions
-import io.vertx.core.net.ProxyOptions
-import io.vertx.core.net.ProxyType
-import io.vertx.kotlin.core.net.*
-
 var options = NetClientOptions(
   proxyOptions = ProxyOptions(
     type = ProxyType.SOCKS5,

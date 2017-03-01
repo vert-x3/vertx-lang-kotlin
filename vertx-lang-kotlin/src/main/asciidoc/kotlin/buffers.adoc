@@ -18,8 +18,6 @@ Create a new empty buffer:
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer()
 
 ----
@@ -28,8 +26,6 @@ Create a buffer from a String. The String will be encoded in the buffer using UT
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer("some string")
 
 ----
@@ -38,8 +34,6 @@ Create a buffer from a String: The String will be encoded using the specified en
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer("some string", "UTF-16")
 
 ----
@@ -54,8 +48,6 @@ Note that buffers created this way *are empty*. It does not create a buffer fill
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer(10000)
 
 ----
@@ -75,8 +67,6 @@ The return value of the `appendXXX` methods is the buffer itself, so these can b
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer()
 
 buff.appendInt(123).appendString("hello\n")
@@ -95,8 +85,6 @@ The buffer will always expand as necessary to accommodate the data.
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer()
 
 buff.setInt(1000, 123)
@@ -111,8 +99,6 @@ The first argument to these methods is an index in the buffer from where to get 
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer()
 var i = 0
 while (i < buff.length()) {
@@ -133,8 +119,6 @@ In the following example, value 200 is set at specified position with just one b
 
 [source,kotlin]
 ----
-import io.vertx.core.buffer.Buffer
-
 var buff = Buffer.buffer(128)
 var pos = 15
 buff.setUnsignedByte(pos, 200)

@@ -52,8 +52,6 @@ If you're embedding Vert.x then you simply create an instance as follows:
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-
 var vertx = Vertx.vertx()
 
 ----
@@ -69,10 +67,6 @@ When creating a Vertx object you can also specify options if the defaults aren't
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.kotlin.core.*
-
 var vertx = Vertx.vertx(VertxOptions(
   workerPoolSize = 40))
 
@@ -97,7 +91,6 @@ A fluent API is where multiple methods calls can be chained together. For exampl
 
 [source,kotlin]
 ----
-
 request.response().putHeader("Content-Type", "text/plain").write("some text").end()
 
 ----
@@ -110,7 +103,6 @@ your code like this:
 
 [source,kotlin]
 ----
-
 var response = request.response()
 response.putHeader("Content-Type", "text/plain")
 response.write("some text")
@@ -136,7 +128,6 @@ would do:
 
 [source,kotlin]
 ----
-
 vertx.setPeriodic(1000, { id ->
   // This handler will get called every second
   println("timer fired!")
@@ -148,7 +139,6 @@ Or to receive an HTTP request:
 
 [source,kotlin]
 ----
-
 // Respond to each http request with "Hello World"
 server.requestHandler({ request ->
   // This handler will be called every time an HTTP request is received at the server
@@ -289,8 +279,6 @@ result handler to be called back asynchronous when the blocking code has been ex
 
 [source,kotlin]
 ----
-
-var someAPI = examples.CoreExamples.BlockingAPI()
 vertx.executeBlocking<Any>({ future ->
   // Call some blocking API that takes a significant amount of time to return
   var result = someAPI.blockingMethod("hello")
@@ -318,8 +306,6 @@ Additional pools can be created for different purposes:
 
 [source,kotlin]
 ----
-
-var someAPI = examples.CoreExamples.BlockingAPI()
 var executor = vertx.createSharedWorkerExecutor("my-worker-pool")
 executor.executeBlocking<Any>({ future ->
   // Call some blocking API that takes a significant amount of time to return
@@ -335,7 +321,6 @@ The worker executor must be closed when it's not necessary anymore:
 
 [source,kotlin]
 ----
-
 executor.close()
 
 ----
@@ -350,7 +335,6 @@ Worker executors can be configured when created:
 
 [source,kotlin]
 ----
-
 //
 // 10 threads max
 var poolSize = 10
@@ -377,9 +361,6 @@ _succeeded_ when all the futures are and _failed_ when at least one of the futur
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-import io.vertx.core.Future
-
 var httpServerFuture = Future.future<Any>()
 httpServer.listen(httpServerFuture.completer())
 
@@ -405,8 +386,6 @@ Alternatively, you can pass a list (potentially empty) of futures:
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-
 CompositeFuture.all(listOf(future1, future2, future3))
 
 ----
@@ -418,8 +397,6 @@ all the futures are failed:
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-
 CompositeFuture.any(future1, future2).setHandler({ ar ->
   if (ar.succeeded()) {
     // At least one is succeeded
@@ -434,8 +411,6 @@ A list of futures can be used also:
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-
 CompositeFuture.any(listOf(f1, f2, f3))
 
 ----
@@ -447,8 +422,6 @@ them is failed:
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-
 CompositeFuture.join(future1, future2, future3).setHandler({ ar ->
   if (ar.succeeded()) {
     // All succeeded
@@ -463,8 +436,6 @@ A list of futures can be used also:
 
 [source,kotlin]
 ----
-import io.vertx.core.CompositeFuture
-
 CompositeFuture.join(listOf(future1, future2, future3))
 
 ----
@@ -476,9 +447,6 @@ for chaining futures (so sequential composition).
 
 [source,kotlin]
 ----
-import io.vertx.core.Future
-import io.vertx.core.buffer.Buffer
-
 
 var fs = vertx.fileSystem()
 var startFuture = Future.future<Any>()
@@ -583,9 +551,6 @@ If you want to deploy a verticle as a worker verticle you do that with `link:../
 
 [source,kotlin]
 ----
-import io.vertx.core.DeploymentOptions
-import io.vertx.kotlin.core.*
-
 var options = DeploymentOptions(
   worker = true)
 vertx.deployVerticle("com.mycompany.MyOrderProcessorVerticle", options)
@@ -614,7 +579,6 @@ NOTE: Deploying Verticle *instances* is Java only.
 [source,java]
 ----
 
-
 var myVerticle = examples.CoreExamples.MyVerticle()
 vertx.deployVerticle(myVerticle)
 
@@ -634,7 +598,6 @@ Here's an example of deploying some different types of verticles:
 
 [source,kotlin]
 ----
-
 
 // Deploy a Java verticle - the name is the fully qualified class name of the verticle class
 vertx.deployVerticle("com.mycompany.MyOrderProcessorVerticle")
@@ -682,7 +645,6 @@ If you want to be notified when deployment is complete you can deploy specifying
 
 [source,kotlin]
 ----
-
 vertx.deployVerticle("com.mycompany.MyOrderProcessorVerticle", { res ->
   if (res.succeeded()) {
     println("Deployment id is: ${res.result()}")
@@ -705,7 +667,6 @@ Un-deployment is itself asynchronous so if you want to be notified when un-deplo
 
 [source,kotlin]
 ----
-
 vertx.undeploy(deploymentID, { res ->
   if (res.succeeded()) {
     println("Undeployed ok")
@@ -723,9 +684,6 @@ want to deploy:
 
 [source,kotlin]
 ----
-import io.vertx.core.DeploymentOptions
-import io.vertx.kotlin.core.*
-
 var options = DeploymentOptions(
   instances = 16)
 vertx.deployVerticle("com.mycompany.MyOrderProcessorVerticle", options)
@@ -767,9 +725,6 @@ Here's an example of using an isolation group to isolate a verticle deployment.
 
 [source,kotlin]
 ----
-import io.vertx.core.DeploymentOptions
-import io.vertx.kotlin.core.*
-
 var options = DeploymentOptions(
   isolationGroup = "mygroup")
 options.isolatedClasses = listOf("com.mycompany.myverticle.*", "com.mycompany.somepkg.SomeClass", "org.somelibrary.*")
@@ -853,7 +808,6 @@ To retrieve the context, use the `link:../../apidocs/io/vertx/core/Vertx.html#ge
 
 [source, kotlin]
 ----
-
 var context = vertx.getOrCreateContext()
 
 ----
@@ -863,8 +817,6 @@ context is created. You can test the _type_ of context you have retrieved:
 
 [source, kotlin]
 ----
-import io.vertx.core.Context
-
 var context = vertx.getOrCreateContext()
 if (context.isEventLoopContext()) {
   println("Context attached to Event Loop")
@@ -883,7 +835,6 @@ you submit a task that will be eventually run in the same context, but later:
 
 [source, kotlin]
 ----
-
 vertx.getOrCreateContext().runOnContext({ v ->
   println("This will be executed asynchronously in the same context")
 })
@@ -896,7 +847,6 @@ store and retrieve data shared in the context. For instance, it lets you pass da
 
 [source, kotlin]
 ----
-
 var context = vertx.getOrCreateContext()
 context.put("data", "hello")
 context.runOnContext({ v ->
@@ -924,7 +874,6 @@ To set a timer to fire once you use `link:../../apidocs/io/vertx/core/Vertx.html
 
 [source,kotlin]
 ----
-
 var timerID = vertx.setTimer(1000, { id ->
   println("And one second later this is printed")
 })
@@ -953,7 +902,6 @@ finished, you can set the next timer.
 
 [source,kotlin]
 ----
-
 var timerID = vertx.setPeriodic(1000, { id ->
   println("And every second this is printed")
 })
@@ -968,7 +916,6 @@ To cancel a periodic timer, call `link:../../apidocs/io/vertx/core/Vertx.html#ca
 
 [source,kotlin]
 ----
-
 vertx.cancelTimer(timerID)
 
 ----
@@ -987,9 +934,6 @@ A different worker pool can be specified in deployment options:
 
 [source,kotlin]
 ----
-import io.vertx.core.DeploymentOptions
-import io.vertx.kotlin.core.*
-
 vertx.deployVerticle("the-verticle", DeploymentOptions(
   workerPoolName = "the-specific-pool"))
 
@@ -1452,7 +1396,6 @@ which you then use for logging, e.g.
 [source,kotlin]
 ----
 
-
 // Note -these classes are Java only
 
 // You would normally maintain one static instance of Logger per Java class:
@@ -1481,12 +1424,6 @@ DNS servers can be also configured when creating a `link:../../apidocs/io/vertx/
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.core.dns.AddressResolverOptions
-import io.vertx.kotlin.core.*
-import io.vertx.kotlin.core.dns.*
-
 var vertx = Vertx.vertx(VertxOptions(
   addressResolverOptions = AddressResolverOptions(
     servers = listOf("192.168.0.1", "192.168.0.2:40000"))))
@@ -1500,12 +1437,6 @@ The resolver can be configured to use an alternative _hosts_ file:
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.core.dns.AddressResolverOptions
-import io.vertx.kotlin.core.*
-import io.vertx.kotlin.core.dns.*
-
 var vertx = Vertx.vertx(VertxOptions(
   addressResolverOptions = AddressResolverOptions(
     hostsPath = "/path/to/hosts")))
@@ -1517,12 +1448,6 @@ list can be provided:
 
 [source,kotlin]
 ----
-import io.vertx.core.Vertx
-import io.vertx.core.VertxOptions
-import io.vertx.core.dns.AddressResolverOptions
-import io.vertx.kotlin.core.*
-import io.vertx.kotlin.core.dns.*
-
 var vertx = Vertx.vertx(VertxOptions(
   addressResolverOptions = AddressResolverOptions(
     searchDomains = listOf("foo.com", "bar.com"))))

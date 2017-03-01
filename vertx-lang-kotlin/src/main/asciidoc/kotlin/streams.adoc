@@ -28,9 +28,6 @@ to the `NetSocket`:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
@@ -53,9 +50,6 @@ writing to it:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
@@ -75,9 +69,6 @@ really want to do is pause the `NetSocket` when the write queue is full:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
@@ -97,9 +88,6 @@ it when the write queue has processed its backlog:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.kotlin.core.net.*
-
 var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
@@ -127,10 +115,6 @@ You just feed it the `ReadStream` plus the `WriteStream` then start it:
 
 [source,kotlin]
 ----
-import io.vertx.core.net.NetServerOptions
-import io.vertx.core.streams.Pump
-import io.vertx.kotlin.core.net.*
-
 var server = vertx.createNetServer(NetServerOptions(
   port = 1234,
   host = "localhost"))
@@ -148,9 +132,8 @@ Let's now look at the methods on `ReadStream` and `WriteStream` in more detail:
 
 `ReadStream` is implemented by `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html[HttpClientResponse]`, `link:../../apidocs/io/vertx/core/datagram/DatagramSocket.html[DatagramSocket]`,
 `link:../../apidocs/io/vertx/core/http/HttpClientRequest.html[HttpClientRequest]`, `link:../../apidocs/io/vertx/core/http/HttpServerFileUpload.html[HttpServerFileUpload]`,
-`link:../../apidocs/io/vertx/core/http/HttpServerRequest.html[HttpServerRequest]`, `link:../../apidocs/io/vertx/core/http/HttpServerRequestStream.html[HttpServerRequestStream]`,
-`link:../../apidocs/io/vertx/core/eventbus/MessageConsumer.html[MessageConsumer]`, `link:../../apidocs/io/vertx/core/net/NetSocket.html[NetSocket]`, `link:../../apidocs/io/vertx/core/net/NetSocketStream.html[NetSocketStream]`,
-`link:../../apidocs/io/vertx/core/http/WebSocket.html[WebSocket]`, `link:../../apidocs/io/vertx/core/http/WebSocketStream.html[WebSocketStream]`, `link:../../apidocs/io/vertx/core/TimeoutStream.html[TimeoutStream]`,
+`link:../../apidocs/io/vertx/core/http/HttpServerRequest.html[HttpServerRequest]`, `link:../../apidocs/io/vertx/core/eventbus/MessageConsumer.html[MessageConsumer]`,
+`link:../../apidocs/io/vertx/core/net/NetSocket.html[NetSocket]`, `link:../../apidocs/io/vertx/core/http/WebSocket.html[WebSocket]`, `link:../../apidocs/io/vertx/core/TimeoutStream.html[TimeoutStream]`,
 `link:../../apidocs/io/vertx/core/file/AsyncFile.html[AsyncFile]`.
 
 Functions:
