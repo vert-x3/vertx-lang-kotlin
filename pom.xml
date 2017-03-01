@@ -22,7 +22,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.version>1.1.0-rc-91</kotlin.version>
+    <kotlin.version>1.1.0</kotlin.version>
     <junit.version>4.12</junit.version>
     <stack.version>3.4.0-SNAPSHOT</stack.version>
   </properties>
@@ -63,53 +63,4 @@
       <artifactId>vertx-core</artifactId>
     </dependency>
   </dependencies>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>jcenter</id>
-      <url>http://jcenter.bintray.com</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>devexperts-maven</id>
-      <url>https://dl.bintray.com/devexperts/Maven</url>
-    </pluginRepository>
-    <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>bintray-kotlin-dev</id>
-      <name>bintray-plugins</name>
-      <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
-    </pluginRepository>
-    <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>bintray-kotlin-eap-1.1</id>
-      <name>bintray-plugins</name>
-      <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
-    </pluginRepository>
-  </pluginRepositories>
-  <repositories>
-    <repository>
-      <id>jcenter</id>
-      <url>http://jcenter.bintray.com</url>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>bintray-kotlin-eap-1.1</id>
-      <name>bintray</name>
-      <url>http://dl.bintray.com/kotlin/kotlin-eap-1.1</url>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>bintray-kotlin-dev</id>
-      <name>bintray</name>
-      <url>http://dl.bintray.com/kotlin/kotlin-dev</url>
-    </repository>
-  </repositories>
 </project>
