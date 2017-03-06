@@ -417,21 +417,7 @@ name. When using network activity logging there are a few things to keep in mind
 - logging is not performed by Vert.x logging but by Netty
 - this is *not* a production feature
 
-Netty will try to locate the following logger implementations, in the following order:
-
-- Slf4j
-- Log4j
-- JDK
-
-The presense of the slf4j or log4j classes on the classpath is enough to pick up the logging implementation.
-
-The logger implementation can be forced to a specific implementation by setting Netty's internal logger implementation directly:
-
-[source,java]
-----
-// Force logging to Log4j
-InternalLoggerFactory.setDefaultFactory(Log4JLoggerFactory.INSTANCE);
-----
+You should read the <<netty-logging>> section.
 
 [[ssl]]
 === Configuring servers and clients to work with SSL/TLS
@@ -862,6 +848,72 @@ var client = vertx.createNetClient(options)
 ----
 
 Keep in mind that pem configuration, the private key is not crypted.
+
+==== Self-signed certificates for testing and development purposes
+
+CAUTION: Do not use this in production settings, and note that the generated keys are very insecure.
+
+It is very often the case that self-signed certificates are required, be it for unit / integration tests or for
+running a development version of an application.
+
+`link:../../apidocs/io/vertx/core/net/SelfSignedCertificate.html[SelfSignedCertificate]` can be used to provide self-signed PEM certificate helpers and
+give `link:../../apidocs/io/vertx/core/net/KeyCertOptions.html[KeyCertOptions]` and `link:../../apidocs/io/vertx/core/net/TrustOptions.html[TrustOptions]` configurations:
+
+[source,kotlin]
+----
+var certificate = SelfSignedCertificate.create()
+
+var serverOptions = NetServerOptions(
+  ssl = true,
+  keyCertOptions = certificate.keyCertOptions(),
+  trustOptions = certificate.trustOptions())
+
+var server = vertx.createNetServer(serverOptions).connectHandler({ socket ->
+  socket.write("Hello!").end()
+}).listen(1234, "localhost")
+
+var clientOptions = NetClientOptions(
+  ssl = true,
+  keyCertOptions = certificate.keyCertOptions(),
+  trustOptions = certificate.trustOptions())
+
+var client = vertx.createNetClient(clientOptions)
+client.connect(1234, "localhost", { ar ->
+  if (ar.succeeded()) {
+    ar.result().handler({ buffer ->
+      println(buffer)
+    })
+  } else {
+    System.err.println("Woops: ${ar.cause().getMessage()}")
+  }
+})
+
+----
+
+The client can also be configured to trust all certificates:
+
+[source,kotlin]
+----
+var clientOptions = NetClientOptions(
+  ssl = true,
+  trustAll = true)
+
+----
+
+Note that self-signed certificates also work for other TCP protocols like HTTPS:
+
+[source,kotlin]
+----
+var certificate = SelfSignedCertificate.create()
+
+vertx.createHttpServer(HttpServerOptions(
+  ssl = true,
+  keyCertOptions = certificate.keyCertOptions(),
+  trustOptions = certificate.trustOptions())).requestHandler({ req ->
+  req.response().end("Hello!")
+}).listen(8080)
+
+----
 
 ==== Revoking certificate authorities
 
