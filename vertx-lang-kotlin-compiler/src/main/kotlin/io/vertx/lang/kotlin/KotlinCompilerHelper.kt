@@ -1,7 +1,7 @@
 package io.vertx.lang.kotlin
 
-import com.intellij.openapi.*
-import com.intellij.openapi.util.*
+import org.jetbrains.kotlin.com.intellij.openapi.*
+import org.jetbrains.kotlin.com.intellij.openapi.util.*
 import org.jetbrains.kotlin.cli.common.*
 import org.jetbrains.kotlin.cli.common.messages.*
 import org.jetbrains.kotlin.cli.jvm.compiler.*
