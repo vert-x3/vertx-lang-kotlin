@@ -1,0 +1,155 @@
+= vertx-lang-kotlin-coroutine
+
+vertx-lang-kotlin-coroutine is a set of utilities that allow you to perform asynchronous operations and receive events in a
+synchronous way, but without blocking kernel threads.
+
+== Introduction
+
+One of the key advantages of Vert.x over many legacy application platforms is that it is almost entirely non-blocking
+(of kernel threads) - this allows it to handle a lot of concurrency (e.g. handle many connections, or messages) using
+a very small number of kernel threads, which allows it to scale very well.
+
+The non blocking nature of Vert.x leads to asynchronous APIs. Asynchronous APIs can take various forms including
+callback style, promises or Rx-style. Vert.x uses callback style in most places (although it also supports Rx).
+
+In some cases, programming using asynchronous APIs can be more challenging than using a direct synchronous style, in
+particular if you have several operations that you want to do in sequence. Also error propagation is often more complex
+when using asynchronous APIs.
+
+vertx-lang-kotlin-coroutine allows you to work with asynchronous APIs, but using a direct synchronous style that you're already
+familiar with.
+
+It does this by using `coroutines`. Coroutines are very lightweight threads that do not correspond to underlying kernel threads.
+When they are blocked they do not block a kernel thread.
+
+vertx-lang-kotlin-coroutine uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
+
+NOTE: vertx-lang-kotlin-coroutine currently only works with Kotlin.
+
+== CoroutineVerticle
+
+In order to use vertx-lang-kotlin-coroutine you must deploy your code as instances of `io.vertx.ext.coroutine.CoroutineVerticle`.
+You should override the `start()` and (optionally) the `stop()` methods of the verticle.
+
+All the method that working under coroutine should be wrapper by `runVertxCoroutine{}`.
+
+Once you've written your coroutine verticle(s) you deploy them in exactly the same way as any other verticle.
+
+You can also using it without extends `CoroutineVerticle`, but you have to invoke `attachVertxToCoroutine(vertx:Vertx)` before running
+all the coroutine with `runVertxCoroutine`
+
+== Getting one-shot async results
+
+Many async operations in Vert.x-land take a `Handler<AsyncResult<T>>` as the last argument. An example would
+executing a find using the Vert.x Mongo client or sending an event bus message and getting a reply.
+
+vertx-lang-kotlin-coroutine allows you to get the result of a one-shot asynchronous operation in a synchronous way.
+
+This is done by using the `asyncResult` method which return Deferred value, and you can execute `await()` to get result directly,
+the await result would not block kernel Thread.
+
+The method is executed specifying the asynchronous operation that you want to execute in the form of a `block`
+the block is passed the handler at run-time.
+
+Here's an example:
+
+[source,kotlin]
+----
+val eb = vertx.eventBus();
+
+// Send a message and get the reply synchronously
+
+runVertxCoroutine {
+  val reply = asyncResult<Message<String>>{ h -> eb.send("someaddress", "ping", h) }.await();
+
+  println("Received reply " + reply.body());
+}
+----
+
+In the above example the coroutine is blocked until the reply is returned but no kernel thread is blocked.
+
+== Getting one-shot events
+
+vertx-lang-kotlin-coroutine can be used to get one-shot events in a synchronous way, for example firings of timers, or the executing of
+an end handler. This is achieved using the asyncEvent.
+
+Here's an example:
+
+[source,kotlin]
+----
+runVertxCoroutine {
+  val tid = asyncEvent {h -> vertx.setTimer(1000, h) }.await()
+  println("Timer has now fired");
+}
+----
+
+== Streams of events
+
+In many places in Vert.x streams of events are provided by passing them to handlers.
+
+Examples include event bus message consumers and HTTP server requests on an HTTP server.
+
+vertx-lang-kotlin-coroutine allows you to receive events from such streams in a synchronous way.
+
+You can set it as a normal handler and then use the methods on `receive` to receive events synchronously.
+
+Here's an example using an event bus message consumer:
+
+[source,kotlin]
+----
+val eb = vertx.eventBus();
+
+runVertxCoroutine {
+  val adaptor = streamAdaptor<Message<Int>>()
+  vertx.eventBus().localConsumer<Int>("someAddress").handler(adaptor)
+
+  //send 10 message to consumer
+  for (i in 0..10) vertx.eventBus().send("someAddress", i)
+
+  //Receive 10 message from the consumer
+  for (i in 0..10) {
+    val message = adaptor.receive()
+    println("got message: ${message.body()}")
+  }
+}
+----
+
+== Using a `VertxCoroutine`
+As you have seen in the above example that all the AsyncMethod wrapped by a block `runVertxCoroutine`, which make sure
+all the `suspend` method could be assign a `coroutine` and do not block its parent Thread `VertxThread`. Sometimes you
+using it in Normal Handler.
+
+Here's an example:
+
+[source,kotlin]
+----
+vertx.createHttpServer().requestHandler { req ->
+  runVertxCoroutine {
+    val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }.await()
+    req.response().end("Hello, this is timerID $timerID")
+  }
+}.listen(8081)
+----
+
+== Convert Vertx's Future to Coroutine
+Vertx provide amazing methods of `Future` and `CompositeFuture` to deal with callback, we can also make it in a synchronous way.
+Just invoke `await` method with `Future` thank to Kotlin lang provide `Extension Functions`.
+[source,kotlin]
+----
+val httpServerFuture = Future.future<HttpServer>()
+vertx.createHttpServer().requestHandler({ _ -> }).listen(8000, httpServerFuture.completer())
+//we can get httpServer by await on future instance.
+val httpServer = httpServerFuture.await()
+
+//await composite future.
+val result = CompositeFuture.all(httpServerFuture, httpServerFuture).await()
+if (result.succeeded()) {
+  println("all have start up.")
+} else {
+  result.cause().printStackTrace()
+}
+----
+
+== Further examples
+There are a set of working examples demonstrating vertx-lang-kotlin-coroutine in action in the
+https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin-coroutine/src/main/kotlin/example[examples repository]
