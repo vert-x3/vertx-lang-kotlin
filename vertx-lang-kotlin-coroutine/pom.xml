@@ -128,4 +128,22 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>jcenter</id>
+      <activation>
+        <property>
+          <name>!skipJCenter</name>
+        </property>
+      </activation>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://jcenter.bintray.com</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
 </project>
