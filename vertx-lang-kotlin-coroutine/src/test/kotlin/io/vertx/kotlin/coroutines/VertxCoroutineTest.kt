@@ -14,7 +14,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.*
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 /**
  * Created by stream.
@@ -198,6 +203,46 @@ class VertxCoroutineTest {
     if (tid is Long) Assert.assertTrue(tid >= 0)
     else Assert.fail("can not cast tid type")
     async.complete()
+  }
+
+  @Test
+  fun testStreamToChannel(testContext: TestContext) {
+    val stream = TestStream<Int>()
+    val capacity = 3;
+    val expected = LinkedList<Int>()
+    for (i in 0 until capacity) {
+      expected.add(i);
+    }
+    val channel = toChannel(stream, capacity)
+    for (i in expected) {
+      assertFalse(stream.writeQueueFull())
+      stream.write(i)
+    }
+    assertTrue(stream.writeQueueFull());
+    val list = LinkedList<Int>()
+    runVertxCoroutine {
+      for (item in channel) {
+        list.add(item)
+        assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
+        if (list.size == expected.size) {
+          break
+        }
+      }
+    }
+    assertEquals(expected, list)
+    stream.write(-1)
+    stream.write(-2)
+    stream.end()
+    val ended = AtomicBoolean()
+    runVertxCoroutine {
+      var count = -1
+      for (item in channel) {
+        assertEquals(count--, item);
+      }
+      assertEquals(-3, count)
+      ended.set(true)
+    }
+    assertTrue(ended.get())
   }
 
   @Test
