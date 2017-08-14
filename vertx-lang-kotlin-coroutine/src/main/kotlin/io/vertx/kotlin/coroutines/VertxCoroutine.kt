@@ -48,9 +48,9 @@ fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block:
  * Invoke an asynchronous operation and obtain the result synchronous.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) = async(vertxCoroutineContext()) {
+suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
   try {
-    suspendCoroutine { cont: Continuation<T> ->
+    return suspendCoroutine { cont: Continuation<T> ->
       block(Handler { asyncResult ->
         if (asyncResult.succeeded()) cont.resume(asyncResult.result())
         else cont.resumeWithException(asyncResult.cause())

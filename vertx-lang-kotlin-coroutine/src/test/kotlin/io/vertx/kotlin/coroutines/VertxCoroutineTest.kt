@@ -71,7 +71,7 @@ class VertxCoroutineTest {
     val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
     server.requestHandler({ req ->
       runVertxCoroutine {
-        val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }.await()
+        val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
         Assert.assertEquals("oranges23", res)
         req.response().end()
       }
@@ -92,7 +92,7 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val th = Thread.currentThread()
     runVertxCoroutine {
-      val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }.await()
+      val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
       Assert.assertSame(Thread.currentThread(), th)
       async.complete()
@@ -102,7 +102,7 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }.await()
+    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
     Assert.assertEquals("wibble", res)
     async.complete()
   }
@@ -110,7 +110,7 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }.await()
+    val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
     Assert.assertEquals("oranges23", res)
     async.complete()
   }
@@ -118,7 +118,7 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }.await()
+    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
     Assert.assertEquals("wibble", res)
     async.complete()
   }
@@ -142,9 +142,9 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }.await()
+    val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
     Assert.assertNotNull(returned)
-    val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }.await()
+    val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
     Assert.assertEquals(res, "bananas100")
     async.complete()
   }
@@ -153,7 +153,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodThatFails(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     try {
-      asyncResult<String> { h -> ai.methodThatFails("oranges", h) }.await()
+      asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
       Assert.fail("Should throw exception")
     } catch (e: Exception) {
       Assert.assertTrue(e is VertxException)

@@ -49,10 +49,10 @@ class ExampleVerticle : CoroutineVerticle() {
       message.reply("pong")
     }
     //wait consumer to complete register synchronously
-    asyncResult<Void> { h -> consumer.completionHandler(h) }.await()
+    asyncResult<Void> { h -> consumer.completionHandler(h) }
 
     //send message and wait reply synchronously
-    val reply = asyncResult<Message<String>> { h -> vertx.eventBus().send("someAddressA", "ping", h) }.await()
+    val reply = asyncResult<Message<String>> { h -> vertx.eventBus().send("someAddressA", "ping", h) }
     println("Receive reply ${reply.body()}")
   }
 
