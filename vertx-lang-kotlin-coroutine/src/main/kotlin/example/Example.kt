@@ -24,15 +24,12 @@ fun example() {
 }
 
 class ExampleVerticle : CoroutineVerticle() {
-  override fun start() {
-    //make all the handler under coroutine.
-    runVertxCoroutine {
-      syncEventExample()
-      syncResultExample()
-      streamExample()
-      coroutineHandlerExample()
-      futureToAwait()
-    }
+  suspend override fun start() {
+    syncEventExample()
+    syncResultExample()
+    streamExample()
+    coroutineHandlerExample()
+    futureToAwait()
   }
 
   //asyncEvent
