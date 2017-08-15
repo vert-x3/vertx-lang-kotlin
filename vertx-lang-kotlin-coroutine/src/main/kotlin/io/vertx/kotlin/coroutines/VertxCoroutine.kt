@@ -1,8 +1,9 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
+import io.vertx.core.streams.ReadStream
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.channels.Channel
+import kotlinx.coroutines.experimental.channels.*
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
@@ -48,9 +49,9 @@ fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block:
  * Invoke an asynchronous operation and obtain the result synchronous.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) = async(vertxCoroutineContext()) {
+suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
   try {
-    suspendCoroutine { cont: Continuation<T> ->
+    return suspendCoroutine { cont: Continuation<T> ->
       block(Handler { asyncResult ->
         if (asyncResult.succeeded()) cont.resume(asyncResult.result())
         else cont.resumeWithException(asyncResult.cause())
@@ -142,6 +143,55 @@ fun runVertxCoroutine(block: suspend CoroutineScope.() -> Unit) {
     } catch (e: CancellationException) {
       //skip this exception for coroutine cancel
     }
+  }
+}
+
+fun <T> toChannel(stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+  val ret = ChannelReadStream(vertxCoroutineContext(), stream, capacity)
+  ret.subscribe()
+  return ret
+}
+
+private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
+                                   val stream : ReadStream<T>,
+                                   capacity : Int) : ArrayChannel<T>(capacity) {
+
+  @Volatile
+  private var size = 0;
+
+  fun subscribe() {
+    stream.endHandler { v ->
+      close()
+    }
+    stream.exceptionHandler { err ->
+      close(err)
+    }
+    stream.handler { event ->
+      launch(coroutineContext) {
+        send(event)
+      }
+    }
+  }
+
+  override fun offerInternal(element: T): Any {
+    val ret = super.offerInternal(element)
+    if (ret == OFFER_SUCCESS) {
+      size++;
+      if (isFull) {
+        stream.pause();
+      }
+    }
+    return ret
+  }
+
+  override fun pollInternal(): Any? {
+    val ret = super.pollInternal()
+    if (ret != POLL_FAILED && !(ret is Closed<*>)) {
+      if (--size < capacity / 2) {
+        stream.resume()
+      }
+    }
+    return ret
   }
 }
 

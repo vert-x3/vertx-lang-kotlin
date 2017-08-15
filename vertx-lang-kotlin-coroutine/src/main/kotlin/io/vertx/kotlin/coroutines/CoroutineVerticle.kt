@@ -1,6 +1,5 @@
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.AbstractVerticle
 import io.vertx.core.Future
 
 /**
@@ -38,10 +37,10 @@ abstract class CoroutineVerticle : AbstractVerticle() {
   /**
    * Override this method in your verticle
    */
-  override fun start() {}
+  open suspend fun start() {}
 
   /**
    * Override this method in your verticle
    */
-  override fun stop() {}
+  open suspend fun stop() {}
 }
