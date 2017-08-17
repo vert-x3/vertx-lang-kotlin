@@ -13,8 +13,13 @@ public class TestStream<T> implements ReadStream<T>, WriteStream<T> {
   private boolean ended;
   private Handler<T> handler;
   private Handler<Void> endHandler;
+  private Handler<Void> drainHandler;
 
   public TestStream() {
+  }
+
+  public boolean isEnded() {
+    return ended;
   }
 
   @Override
@@ -38,7 +43,12 @@ public class TestStream<T> implements ReadStream<T>, WriteStream<T> {
 
   @Override
   public TestStream<T> resume() {
-    paused = false;
+    if (paused) {
+      paused = false;
+      if (drainHandler != null) {
+        drainHandler.handle(null);
+      }
+    }
     return this;
   }
 
@@ -78,6 +88,7 @@ public class TestStream<T> implements ReadStream<T>, WriteStream<T> {
 
   @Override
   public TestStream<T> drainHandler(Handler<Void> handler) {
-    throw new UnsupportedOperationException();
+    drainHandler = handler;
+    return this;
   }
 }

@@ -2,6 +2,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
 import io.vertx.core.streams.ReadStream
+import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.*
 import java.util.concurrent.TimeUnit
@@ -192,6 +193,47 @@ private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
       }
     }
     return ret
+  }
+}
+
+fun <T> toChannel(stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+  val ret = ChannelWriteStream(vertxCoroutineContext(), stream, capacity)
+  ret.subscribe()
+  return ret
+}
+
+private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
+                                   val stream : WriteStream<T>,
+                                   capacity : Int) : ArrayChannel<T>(capacity) {
+
+  fun subscribe() {
+    launch(coroutineContext) {
+      while (true) {
+        val elt = receiveOrNull()
+        if (stream.writeQueueFull()) {
+          stream.drainHandler { v ->
+            if (dispatch(elt)) {
+              subscribe()
+            }
+          }
+          break
+        } else {
+          if (!dispatch(elt)) {
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  fun dispatch(elt : T?) : Boolean {
+    if (elt != null) {
+      stream.write(elt)
+      return true
+    } else {
+      stream.end()
+      return false
+    }
   }
 }
 
