@@ -5,6 +5,8 @@ import io.vertx.core.VertxException
 import io.vertx.core.eventbus.Message
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpServerOptions
+import io.vertx.core.streams.ReadStream
+import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
@@ -206,16 +208,17 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testStreamToChannel(testContext: TestContext) {
+  fun testReadStreamToChannel(testContext: TestContext) {
     val stream = TestStream<Int>()
     val capacity = 3;
     val expected = LinkedList<Int>()
     for (i in 0 until capacity) {
       expected.add(i);
     }
-    val channel = toChannel(stream, capacity)
+    val readStream : ReadStream<Int> = stream;
+    val channel = toChannel(readStream, capacity)
     for (i in expected) {
-      assertFalse(stream.writeQueueFull())
+      testContext.assertFalse(stream.writeQueueFull())
       stream.write(i)
     }
     assertTrue(stream.writeQueueFull());
@@ -223,7 +226,7 @@ class VertxCoroutineTest {
     runVertxCoroutine {
       for (item in channel) {
         list.add(item)
-        assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
+        testContext.assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
         if (list.size == expected.size) {
           break
         }
@@ -239,10 +242,53 @@ class VertxCoroutineTest {
       for (item in channel) {
         assertEquals(count--, item);
       }
-      assertEquals(-3, count)
+      testContext.assertEquals(-3, count)
       ended.set(true)
     }
-    assertTrue(ended.get())
+    testContext.assertTrue(ended.get())
+  }
+
+  @Test
+  fun testWriteStreamToChannel(testContext: TestContext) {
+    val stream = TestStream<Int>()
+    val capacity = 3;
+    val expected = LinkedList<Int>()
+    for (i in 0 until capacity) {
+      expected.add(i);
+    }
+    val writeStream : WriteStream<Int> = stream;
+    val channel = toChannel(writeStream, capacity)
+    val received = LinkedList<Int>()
+    stream.handler { elt -> received.add(elt) }
+    runVertxCoroutine {
+      for (elt in expected) {
+        channel.send(elt)
+        assertFalse(channel.isFull)
+      }
+    }
+    testContext.assertEquals(expected, received)
+    received.clear()
+    stream.pause()
+    val async = testContext.async()
+    runVertxCoroutine {
+      for (elt in expected) {
+        channel.send(elt)
+        testContext.assertFalse(channel.isFull)
+      }
+      channel.send(capacity) // Need an extra element for the inflight
+      testContext.assertTrue(channel.isFull)
+    }
+    testContext.assertEquals(emptyList<Int>(), received)
+    stream.resume()
+    testContext.assertEquals(listOf(0, 1, 2, 3), received)
+    runVertxCoroutine {
+      channel.send(4)
+    }
+    testContext.assertEquals(listOf(0, 1, 2, 3, 4), received)
+    testContext.assertFalse(stream.isEnded)
+    channel.close()
+    testContext.assertTrue(stream.isEnded)
+    async.complete()
   }
 
   @Test
