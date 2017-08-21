@@ -17,6 +17,7 @@
   <modules>
     <module>vertx-lang-kotlin</module>
     <module>vertx-lang-kotlin-compiler</module>
+		<module>vertx-lang-kotlin-coroutine</module>
   </modules>
 
   <properties>
