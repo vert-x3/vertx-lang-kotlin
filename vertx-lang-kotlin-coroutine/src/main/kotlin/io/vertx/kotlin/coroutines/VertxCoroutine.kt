@@ -161,7 +161,7 @@ private class ChannelReadStream<T>(val context: Context,
   private var size = 0;
 
   fun subscribe() {
-    stream.endHandler { v ->
+    stream.endHandler { _ ->
       close()
     }
     stream.exceptionHandler { err ->
@@ -215,7 +215,7 @@ private class ChannelWriteStream<T>(val context: Context,
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
-          stream.drainHandler { v ->
+          stream.drainHandler { _ ->
             if (dispatch(elt)) {
               subscribe()
             }
