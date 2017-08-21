@@ -10,7 +10,6 @@ import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.suspendCoroutine
 import java.util.concurrent.TimeoutException
-import kotlin.coroutines.experimental.ContinuationInterceptor
 
 /**
  * Created by stream.
@@ -20,11 +19,17 @@ import kotlin.coroutines.experimental.ContinuationInterceptor
  * Receive a single event from a handler synchronously.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) = async(vertxCoroutineContext()) {
-  try {
-    suspendCoroutine { cont: Continuation<T> -> block(Handler { event -> cont.resume(event) }) }
-  } catch (t: Throwable) {
-    throw VertxException(t)
+suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
+  return asyncResult { f ->
+    val fut = Future.future<T>().setHandler(f)
+    val adapter : Handler<T> = Handler { t ->
+      fut.tryComplete(t)
+    }
+    try {
+      block.invoke(adapter)
+    } catch(t: Throwable) {
+      fut.tryFail(t)
+    }
   }
 }
 
@@ -34,16 +39,16 @@ fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) = async(vertxCoroutineContext
  * @param timeout
  * @return object or null if timeout
  */
-fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<T?>) -> Unit) = async(vertxCoroutineContext()) {
-  withTimeout(timeout, unit) {
+suspend fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<T>) -> Unit) : T {
+  return asyncResult(timeout, unit) { f ->
+    val fut = Future.future<T>().setHandler(f)
+    val adapter : Handler<T> = Handler { t ->
+      fut.tryComplete(t)
+    }
     try {
-      suspendCancellableCoroutine { cont: CancellableContinuation<T?> -> block(Handler { event -> cont.resume(event) }) }
-    } catch (e: CancellationException) {
-      suspendCoroutine { cont: Continuation<T?> ->
-        block(Handler { cont.resume(null) })
-      }
-    } catch (t: Throwable) {
-      throw VertxException(t)
+      block.invoke(adapter)
+    } catch(t: Throwable) {
+      fut.tryFail(t)
     }
   }
 }
@@ -53,15 +58,11 @@ fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block:
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
 suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
-  try {
-    return suspendCoroutine { cont: Continuation<T> ->
-      block(Handler { asyncResult ->
-        if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-        else cont.resumeWithException(asyncResult.cause())
-      })
-    }
-  } catch (t: Throwable) {
-    throw VertxException(t)
+  return suspendCoroutine { cont: Continuation<T> ->
+    block(Handler { asyncResult ->
+      if (asyncResult.succeeded()) cont.resume(asyncResult.result())
+      else cont.resumeWithException(asyncResult.cause())
+    })
   }
 }
 
@@ -72,26 +73,20 @@ suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
  * @return object or null if timeout
  */
 suspend fun <T> asyncResult(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
-  try {
-    return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
-      val context = cont.context
-      val ctx : VertxCoroutineDispatcher = context[VertxCoroutineDispatcher] as VertxCoroutineDispatcher
-      val vertx = ctx.vertxContext.owner();
-      block(Handler { asyncResult ->
-        if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-        else cont.resumeWithException(asyncResult.cause())
-      })
-      val id = vertx.setTimer(unit.toMillis(timeout)) {
-        cont.cancel(TimeoutException())
-      }
-      cont.invokeOnCompletion {
-        vertx.cancelTimer(id)
-      }
+  return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
+    val context = cont.context
+    val ctx : VertxCoroutineDispatcher = context[VertxCoroutineDispatcher] as VertxCoroutineDispatcher
+    val vertx = ctx.vertxContext.owner();
+    block(Handler { asyncResult ->
+      if (asyncResult.succeeded()) cont.resume(asyncResult.result())
+      else cont.resumeWithException(asyncResult.cause())
+    })
+    val id = vertx.setTimer(unit.toMillis(timeout)) {
+      cont.cancel(TimeoutException())
     }
-  } catch (t: TimeoutException) {
-    throw t
-  } catch (t: Throwable) {
-    throw VertxException(t)
+    cont.invokeOnCompletion {
+      vertx.cancelTimer(id)
+    }
   }
 }
 

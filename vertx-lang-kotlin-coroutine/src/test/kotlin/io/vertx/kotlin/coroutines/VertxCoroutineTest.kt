@@ -65,7 +65,7 @@ class VertxCoroutineTest {
         cnt.incrementAndGet()
       }
       Assert.assertSame(Thread.currentThread(), th)
-      asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }.await()
+      asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }
       Assert.assertTrue(cnt.get() > 900)
       Assert.assertSame(Thread.currentThread(), th)
       periodicTimer.cancel()
@@ -165,11 +165,9 @@ class VertxCoroutineTest {
     val async = testContext.async()
     try {
       asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
-      Assert.fail("Should throw exception")
+      testContext.fail("Should throw exception")
     } catch (e: Exception) {
-      Assert.assertTrue(e is VertxException)
-      val ve = e as VertxException
-      Assert.assertEquals("oranges", ve.cause?.message)
+      testContext.assertEquals("oranges", e?.message)
       async.complete()
     }
   }
@@ -178,7 +176,7 @@ class VertxCoroutineTest {
   fun testReceiveEvent(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     val start = System.currentTimeMillis()
-    val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }.await()
+    val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }
     val end = System.currentTimeMillis()
     Assert.assertTrue(end - start >= 500)
     Assert.assertTrue(tid >= 0)
@@ -203,11 +201,37 @@ class VertxCoroutineTest {
   fun testReceiveEventNoTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     val start = System.currentTimeMillis()
-    val tid = asyncEvent<Long>(1000L) { h -> vertx.setTimer(500, h) }.await()
+    val tid = asyncEvent<Long>(1000L) { h -> vertx.setTimer(500, h) }
     val end = System.currentTimeMillis()
     Assert.assertTrue(end - start >= 500)
     if (tid is Long) Assert.assertTrue(tid >= 0)
     else Assert.fail("can not cast tid type")
+    async.complete()
+  }
+
+  @Test
+  fun testEventMethodFailure(testContext: TestContext) = runVertxCoroutine {
+    val async = testContext.async()
+    val cause = RuntimeException()
+    try {
+      asyncEvent<Any> { h -> throw cause }
+      testContext.fail()
+    } catch(e: Exception) {
+      testContext.assertEquals(cause, e)
+    }
+    async.complete()
+  }
+
+  @Test
+  fun testEventMethodFailureNoTimeout(testContext: TestContext) = runVertxCoroutine {
+    val async = testContext.async()
+    val cause = RuntimeException()
+    try {
+      asyncEvent<Any>(1000L) { h -> throw cause }
+      testContext.fail()
+    } catch(e: Exception) {
+      testContext.assertEquals(cause, e)
+    }
     async.complete()
   }
 

@@ -18,7 +18,7 @@ fun example() {
   //embed style with out extends CoroutineVerticle, working on Main method directly.
   attachVertxToCoroutine(vertx)
   runVertxCoroutine {
-    asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }.await()
+    asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }
     println("fired by embed vert.x")
   }
 }
@@ -34,7 +34,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   //asyncEvent
   private suspend fun syncEventExample() {
-    asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }.await()
+    asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }
     println("This would be fire in 2s.")
   }
 
@@ -89,7 +89,7 @@ class ExampleVerticle : CoroutineVerticle() {
   private fun coroutineHandlerExample() {
     vertx.createHttpServer().requestHandler { req ->
       runVertxCoroutine {
-        val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }.await()
+        val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }
         req.response().end("Hello, this is timerID $timerID")
       }
     }.listen(8081)
