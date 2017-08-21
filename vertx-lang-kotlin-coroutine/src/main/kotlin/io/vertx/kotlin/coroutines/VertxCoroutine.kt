@@ -67,7 +67,9 @@ suspend fun <T> Future<T>.await(): T = when {
  * An adaptor that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
  * to be received synchronously.
  */
-class ReceiveChannelHandler<T>() : ReceiveChannel<T>, Handler<T> {
+class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T>, Handler<T> {
+
+  constructor(vertx : Vertx) : this(vertx.getOrCreateContext())
 
   private val stream : ReadStream<T> = object: ReadStream<T> {
     override fun pause(): ReadStream<T> { return this }
@@ -80,7 +82,7 @@ class ReceiveChannelHandler<T>() : ReceiveChannel<T>, Handler<T> {
     }
   }
 
-  private val channel : ReceiveChannel<T> = toChannel(stream)
+  private val channel : ReceiveChannel<T> = toChannel(context, stream)
   private var handler : Handler<T>? = null;
 
   override val isClosedForReceive: Boolean
@@ -141,27 +143,17 @@ fun <T> Deferred<T>.asFuture(): Future<T> {
   return future
 }
 
-/**
- * Convert a standard handler to a handler which runs on a coroutine.
- * This is necessary if you want to do fiber blocking synchronous operation in your handler
- */
-fun runVertxCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  launch(vertxCoroutineContext()) {
-    try {
-      block()
-    } catch (e: CancellationException) {
-      //skip this exception for coroutine cancel
-    }
-  }
+fun <T> toChannel(vertx : Vertx, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), stream, capacity)
 }
 
-fun <T> toChannel(stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
-  val ret = ChannelReadStream(vertxCoroutineContext(), stream, capacity)
+fun <T> toChannel(context : Context, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+  val ret = ChannelReadStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
-private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
+private class ChannelReadStream<T>(val context: Context,
                                    val stream : ReadStream<T>,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
@@ -176,7 +168,7 @@ private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
       close(err)
     }
     stream.handler { event ->
-      launch(coroutineContext) {
+      context.runCoroutine {
         send(event)
       }
     }
@@ -204,18 +196,22 @@ private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
   }
 }
 
-fun <T> toChannel(stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
-  val ret = ChannelWriteStream(vertxCoroutineContext(), stream, capacity)
+fun <T> toChannel(vertx : Vertx, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+}
+
+fun <T> toChannel(context : Context, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+  val ret = ChannelWriteStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
-private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
+private class ChannelWriteStream<T>(val context: Context,
                                    val stream : WriteStream<T>,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
-    launch(coroutineContext) {
+    context.runCoroutine {
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
@@ -246,27 +242,55 @@ private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
 }
 
 private const val VERTX_COROUTINE_DISPATCHER = "__vertx-kotlin-coroutine:dispatcher"
-private var vertx: Vertx? = null
 
-//you can init vertx instance if you running Vert.x by embed style.
-fun attachVertxToCoroutine(v: Vertx) {
-  vertx = v
+/**
+ * Convert a standard handler to a handler which runs on a coroutine.
+ * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ */
+fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
+  launch(coroutineContext()) {
+    try {
+      block()
+    } catch (e: CancellationException) {
+      //skip this exception for coroutine cancel
+    }
+  }
+}
+
+fun Context.coroutineContext() : CoroutineContext {
+  require(isEventLoopContext, { "Not on the vertx eventLoop." })
+  var dispatcher = get<CoroutineDispatcher>(VERTX_COROUTINE_DISPATCHER)
+  if (dispatcher == null) {
+    dispatcher = VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
+    put(VERTX_COROUTINE_DISPATCHER, dispatcher)
+  }
+  return dispatcher
 }
 
 /**
- * Get Kotlin CoroutineContext, this coroutine should be one instance for per context.
- * @return CoroutineContext
+ * Remove the scheduler for the current context
  */
-fun vertxCoroutineContext(): CoroutineContext {
-  val vertxContext = vertx?.orCreateContext ?: Vertx.currentContext()
-  requireNotNull(vertxContext, { "Do not in the vertx context" })
-  require(vertxContext.isEventLoopContext, { "Not on the vertx eventLoop." })
-  var dispatcher = vertxContext.get<CoroutineDispatcher>(VERTX_COROUTINE_DISPATCHER)
-  if (dispatcher == null) {
-    dispatcher = VertxCoroutineDispatcher(vertxContext, Thread.currentThread()).asCoroutineDispatcher()
-    vertxContext.put(VERTX_COROUTINE_DISPATCHER, dispatcher)
-  }
-  return dispatcher
+fun Context.removeCoroutineContext() {
+  remove(VERTX_COROUTINE_DISPATCHER)
+}
+
+/**
+ * Remove the scheduler for the current context
+ */
+fun Vertx.removeCoroutineContext() {
+  getOrCreateContext().remove(VERTX_COROUTINE_DISPATCHER)
+}
+
+/**
+ * Convert a standard handler to a handler which runs on a coroutine.
+ * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ */
+fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
+  getOrCreateContext().runCoroutine(block)
+}
+
+fun Vertx.coroutineContext() : CoroutineContext {
+  return getOrCreateContext().coroutineContext()
 }
 
 private class VertxScheduledFuture(
@@ -374,12 +398,4 @@ private class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop:
   override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
-}
-
-/**
- * Remove the scheduler for the current context
- */
-fun removeVertxCoroutineContext() {
-  val vertxContext = vertx?.orCreateContext ?: Vertx.currentContext()
-  vertxContext?.remove(VERTX_COROUTINE_DISPATCHER)
 }

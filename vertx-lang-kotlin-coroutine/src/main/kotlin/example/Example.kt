@@ -15,9 +15,8 @@ fun example() {
   val vertx = Vertx.vertx()
   vertx.deployVerticle(ExampleVerticle())
 
-  //embed style with out extends CoroutineVerticle, working on Main method directly.
-  attachVertxToCoroutine(vertx)
-  runVertxCoroutine {
+  // embed style with outextends CoroutineVerticle, working on Main method directly.
+  vertx.runCoroutine {
     asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }
     println("fired by embed vert.x")
   }
@@ -55,7 +54,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   //streamAdaptor
   private suspend fun streamExample() {
-    val adaptor = ReceiveChannelHandler<Message<Int>>()
+    val adaptor = ReceiveChannelHandler<Message<Int>>(vertx.orCreateContext)
     vertx.eventBus().localConsumer<Int>("someAddress").handler(adaptor)
 
     //send 10 message to consumer
@@ -88,7 +87,7 @@ class ExampleVerticle : CoroutineVerticle() {
   //run coroutine in requestHandler
   private fun coroutineHandlerExample() {
     vertx.createHttpServer().requestHandler { req ->
-      runVertxCoroutine {
+      vertx.runCoroutine {
         val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }
         req.response().end("Hello, this is timerID $timerID")
       }
