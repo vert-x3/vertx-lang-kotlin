@@ -1,7 +1,7 @@
 package io.vertx.kotlin.coroutines
 
+import io.vertx.core.Context
 import io.vertx.core.Vertx
-import io.vertx.core.VertxException
 import io.vertx.core.eventbus.Message
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpServerOptions
@@ -10,14 +10,13 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import org.hamcrest.core.Is
+import kotlinx.coroutines.experimental.CancellationException
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
-import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
@@ -145,7 +144,8 @@ class VertxCoroutineTest {
     try {
       asyncResult<String>(500) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
       testContext.fail()
-    } catch(e: TimeoutException) {
+    } catch(e: CancellationException) {
+      testContext.assertTrue(Context.isOnEventLoopThread())
       async.complete()
     }
   }
@@ -188,11 +188,9 @@ class VertxCoroutineTest {
     val async = testContext.async()
     try {
       asyncEvent<Long>(250) { h -> vertx.setTimer(500, h) }
-    } catch (npe: NullPointerException) {
-      Assert.assertThat<NullPointerException>(npe, Is.isA<NullPointerException>(NullPointerException::class.java))
-    } catch (e: Exception) {
-      Assert.assertTrue(false)
-    } finally {
+      Assert.fail()
+    } catch (e: CancellationException) {
+      testContext.assertTrue(Context.isOnEventLoopThread())
       async.complete()
     }
   }
@@ -360,14 +358,7 @@ class VertxCoroutineTest {
       val received3 = adaptor3.receive(100)
       Assert.assertNull(received3)
 
-      // Try underlying channel
-      val channel = adaptor1.channel
-      Assert.assertNotNull(channel)
-      received1 = channel.receive()
-      Assert.assertEquals("wibble", received1.body())
-
       async.complete()
     }
   }
-
 }
