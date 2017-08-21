@@ -12,7 +12,6 @@ import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
-import kotlin.coroutines.experimental.suspendCoroutine
 
 /**
  * Created by stream.
@@ -24,26 +23,6 @@ import kotlin.coroutines.experimental.suspendCoroutine
  */
 suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
   return asyncResult { f ->
-    val fut = Future.future<T>().setHandler(f)
-    val adapter : Handler<T> = Handler { t ->
-      fut.tryComplete(t)
-    }
-    try {
-      block.invoke(adapter)
-    } catch(t: Throwable) {
-      fut.tryFail(t)
-    }
-  }
-}
-
-/**
- * Receive a single event from a handler synchronously  by specific timeout.
- * The coroutine will be blocked until the event occurs or timeout, this action do not block vertx's eventLoop.
- * @param timeout
- * @return object or null if timeout
- */
-suspend fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<T>) -> Unit) : T? {
-  return asyncResult(timeout, unit) { f ->
     val fut = Future.future<T>().setHandler(f)
     val adapter : Handler<T> = Handler { t ->
       fut.tryComplete(t)
@@ -70,18 +49,6 @@ suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
 }
 
 /**
- * Invoke an asynchronous operation and obtain the result synchronous by specific timeout.
- * The coroutine will be blocked until the event occurs or timeout, this action do not block vertx's eventLoop.
- * @param timeout
- * @return object or null if timeout
- */
-suspend fun <T> asyncResult(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<AsyncResult<T>>) -> Unit): T {
-  return withTimeout(timeout, unit) {
-    asyncResult(block)
-  }
-}
-
-/**
  * Awaits for completion of future without blocking eventLoop
  */
 suspend fun <T> Future<T>.await(): T = when {
@@ -99,9 +66,9 @@ suspend fun <T> Future<T>.await(): T = when {
  * Create an adaptor that converts a stream of events from a handler into a receiver which allows the events to be
  * received synchronously.
  */
-fun <T> streamAdaptor() : ReceiverAdaptor<T> = Foo<T>()
+fun <T> streamAdaptor() : ReceiveChannelHandler<T> = HandlerReceiveChannelImpl<T>()
 
-class Foo<T>() : ReceiverAdaptor<T>, ReadStream<T> {
+private class HandlerReceiveChannelImpl<T>() : ReceiveChannelHandler<T>, ReadStream<T> {
 
   val channel : ReceiveChannel<T> = toChannel(this)
   var handler : Handler<T>? = null;
@@ -144,22 +111,6 @@ class Foo<T>() : ReceiverAdaptor<T>, ReadStream<T> {
 
   override fun <R> registerSelectReceiveOrNull(select: SelectInstance<R>, block: suspend (T?) -> R) {
     return channel.registerSelectReceiveOrNull(select, block)
-  }
-
-  suspend override fun receive(timeout: Long, unit: TimeUnit): T {
-    val future: Future<T> = Future.future()
-    withTimeout(timeout, unit) {
-      try {
-        future.complete(channel.receive())
-      } catch (e: CancellationException) {
-        future.complete(null)
-      } catch (t: Throwable) {
-        future.fail(VertxException(t))
-      }
-    }
-    return future.result()
-
-//    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
   }
 
   override fun handle(event: T) {
@@ -294,14 +245,10 @@ private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
   }
 }
 
-interface ReceiverAdaptor<T> : ReceiveChannel<T>, Handler<T> {
-
-  /**
-   * Receive a object from channel with specific timeout.
-   * @param timeout
-   * @return object or null if timeout
-   */
-  suspend fun receive(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): T
+/**
+ * An Kotlin [ReceiveChannel] exposing an [Handler] interface that sends items in the channel.
+ */
+interface ReceiveChannelHandler<T> : ReceiveChannel<T>, Handler<T> {
 }
 
 private const val VERTX_COROUTINE_DISPATCHER = "__vertx-kotlin-coroutine:dispatcher"
@@ -328,7 +275,7 @@ fun vertxCoroutineContext(): CoroutineContext {
   return dispatcher
 }
 
-class VertxScheduledFuture(
+private class VertxScheduledFuture(
     val vertxContext: Context,
     val task : Runnable,
     val delay: Long,
@@ -386,7 +333,7 @@ class VertxScheduledFuture(
   }
 }
 
-class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
+private class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
 
   override fun execute(command: Runnable) {
     if (Thread.currentThread() !== eventLoop) {

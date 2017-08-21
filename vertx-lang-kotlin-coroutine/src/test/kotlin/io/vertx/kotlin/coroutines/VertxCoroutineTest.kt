@@ -11,6 +11,7 @@ import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.CancellationException
+import kotlinx.coroutines.experimental.withTimeout
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -133,7 +134,9 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String>(2000) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+    val res = withTimeout(2000) {
+      asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+    }
     testContext.assertEquals("wibble", res)
     async.complete()
   }
@@ -142,7 +145,10 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     try {
-      asyncResult<String>(500) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+      withTimeout(500) {
+        asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000)
+        }
+      }
       testContext.fail()
     } catch(e: CancellationException) {
       testContext.assertTrue(Context.isOnEventLoopThread())
@@ -187,7 +193,9 @@ class VertxCoroutineTest {
   fun testReceiveEventTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     try {
-      asyncEvent<Long>(250) { h -> vertx.setTimer(500, h) }
+      withTimeout(250) {
+        asyncEvent<Long> { h -> vertx.setTimer(500, h) }
+      }
       Assert.fail()
     } catch (e: CancellationException) {
       testContext.assertTrue(Context.isOnEventLoopThread())
@@ -199,7 +207,8 @@ class VertxCoroutineTest {
   fun testReceiveEventNoTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
     val start = System.currentTimeMillis()
-    val tid = asyncEvent<Long>(1000L) { h -> vertx.setTimer(500, h) }
+    val tid = withTimeout(1000L) {
+      asyncEvent<Long>() { h -> vertx.setTimer(500, h) }    }
     val end = System.currentTimeMillis()
     Assert.assertTrue(end - start >= 500)
     if (tid is Long) Assert.assertTrue(tid >= 0)
@@ -225,7 +234,9 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val cause = RuntimeException()
     try {
-      asyncEvent<Any>(1000L) { h -> throw cause }
+      withTimeout(1000L) {
+        asyncEvent<Any>() { h -> throw cause }
+      }
       testContext.fail()
     } catch(e: Exception) {
       testContext.assertEquals(cause, e)
@@ -347,7 +358,11 @@ class VertxCoroutineTest {
       Assert.assertTrue(end - start >= 100)
 
       // Try a receive with timeout
-      var received1 = adaptor1.receive(1000)
+      var received1: Message<String>? = null
+      try {
+        received1 = withTimeout(1000) { adaptor1.receive() }
+      } catch(e: CancellationException) {
+      }
 
       if (received1 is Message<*>) Assert.assertEquals("wibble", received1.body())
       else Assert.fail("received1 cast type failed.")
@@ -355,10 +370,12 @@ class VertxCoroutineTest {
       // And timing out
       val adaptor3 = streamAdaptor<Message<String>>()
       eb.consumer<String>(ADDRESS3).handler(adaptor3)
-      val received3 = adaptor3.receive(100)
-      Assert.assertNull(received3)
-
-      async.complete()
+      try {
+        withTimeout(100) { adaptor3.receive() }
+        testContext.fail()
+      } catch(e: CancellationException) {
+        async.complete()
+      }
     }
   }
 }
