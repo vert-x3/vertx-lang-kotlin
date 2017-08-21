@@ -17,6 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
+import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
@@ -133,17 +134,20 @@ class VertxCoroutineTest {
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String>(2000) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }.await()
-    Assert.assertEquals("wibble", res)
+    val res = asyncResult<String>(2000) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+    testContext.assertEquals("wibble", res)
     async.complete()
   }
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) = runVertxCoroutine {
     val async = testContext.async()
-    val res = asyncResult<String>(500) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }.await()
-    Assert.assertNull(res)
-    async.complete()
+    try {
+      asyncResult<String>(500) { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+      testContext.fail()
+    } catch(e: TimeoutException) {
+      async.complete()
+    }
   }
 
   @Test
@@ -152,7 +156,7 @@ class VertxCoroutineTest {
     val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
     Assert.assertNotNull(returned)
     val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
-    Assert.assertEquals(res, "bananas100")
+    testContext.assertEquals(res, "bananas100")
     async.complete()
   }
 

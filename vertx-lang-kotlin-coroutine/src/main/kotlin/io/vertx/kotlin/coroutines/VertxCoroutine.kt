@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
 import kotlin.coroutines.experimental.suspendCoroutine
+import java.util.concurrent.TimeoutException
+import kotlin.coroutines.experimental.ContinuationInterceptor
 
 /**
  * Created by stream.
@@ -69,20 +71,27 @@ suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
  * @param timeout
  * @return object or null if timeout
  */
-fun <T> asyncResult(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<AsyncResult<T?>>) -> Unit) = async(vertxCoroutineContext()) {
-  withTimeout(timeout, unit) {
-    try {
-      suspendCancellableCoroutine { cont: CancellableContinuation<T?> ->
-        block(Handler { asyncResult ->
-          if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-          else cont.resumeWithException(asyncResult.cause())
-        })
+suspend fun <T> asyncResult(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
+  try {
+    return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
+      val context = cont.context
+      val ctx : VertxCoroutineDispatcher = context[VertxCoroutineDispatcher] as VertxCoroutineDispatcher
+      val vertx = ctx.vertxContext.owner();
+      block(Handler { asyncResult ->
+        if (asyncResult.succeeded()) cont.resume(asyncResult.result())
+        else cont.resumeWithException(asyncResult.cause())
+      })
+      val id = vertx.setTimer(unit.toMillis(timeout)) {
+        cont.cancel(TimeoutException())
       }
-    } catch (e: CancellationException) {
-      suspendCoroutine { cont: Continuation<T?> -> block(Handler { cont.resume(null) }) }
-    } catch (t: Throwable) {
-      throw VertxException(t)
+      cont.invokeOnCompletion {
+        vertx.cancelTimer(id)
+      }
     }
+  } catch (t: TimeoutException) {
+    throw t
+  } catch (t: Throwable) {
+    throw VertxException(t)
   }
 }
 
@@ -290,15 +299,21 @@ fun vertxCoroutineContext(): CoroutineContext {
   val vertxContext = vertx?.orCreateContext ?: Vertx.currentContext()
   requireNotNull(vertxContext, { "Do not in the vertx context" })
   require(vertxContext.isEventLoopContext, { "Not on the vertx eventLoop." })
-  var vertxContextDispatcher = vertxContext.get<CoroutineContext>(VERTX_COROUTINE_DISPATCHER)
-  if (vertxContextDispatcher == null) {
-    vertxContextDispatcher = VertxContextDispatcher(vertxContext, Thread.currentThread())
-    vertxContext.put(VERTX_COROUTINE_DISPATCHER, vertxContextDispatcher)
+  var dispatcher = vertxContext.get<VertxCoroutineDispatcher>(VERTX_COROUTINE_DISPATCHER)
+  if (dispatcher == null) {
+    dispatcher = VertxCoroutineDispatcher(vertxContext, Thread.currentThread())
+    vertxContext.put(VERTX_COROUTINE_DISPATCHER, dispatcher)
   }
-  return vertxContextDispatcher
+  return dispatcher
 }
 
-private class VertxContextDispatcher(val vertxContext: Context, val eventLoop: Thread) : CoroutineDispatcher() {
+class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop: Thread) : CoroutineDispatcher() {
+
+  companion object Key : CoroutineContext.Key<VertxCoroutineDispatcher>
+
+  override val key: CoroutineContext.Key<*>
+    get() = Key
+
   override fun dispatch(context: CoroutineContext, block: Runnable) {
     if (Thread.currentThread() !== eventLoop) vertxContext.runOnContext { _ -> block.run() }
     else block.run()
