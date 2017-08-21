@@ -64,25 +64,24 @@ suspend fun <T> Future<T>.await(): T = when {
 }
 
 /**
- * Create an adaptor that converts a stream of events from a handler into a receiver which allows the events to be
- * received synchronously.
+ * An adaptor that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
+ * to be received synchronously.
  */
-fun <T> streamAdaptor() : ReceiveChannelHandler<T> = HandlerReceiveChannelImpl<T>()
+class ReceiveChannelHandler<T>() : ReceiveChannel<T>, Handler<T> {
 
-private class HandlerReceiveChannelImpl<T>() : ReceiveChannelHandler<T>, ReadStream<T> {
-
-  val channel : ReceiveChannel<T> = toChannel(this)
-  var handler : Handler<T>? = null;
-
-  override fun pause(): ReadStream<T> { return this }
-  override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> { return this }
-  override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> { return this }
-  override fun resume(): ReadStream<T> { return this }
-
-  override fun handler(h: Handler<T>?): ReadStream<T> {
-    handler = h
-    return this
+  private val stream : ReadStream<T> = object: ReadStream<T> {
+    override fun pause(): ReadStream<T> { return this }
+    override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> { return this }
+    override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> { return this }
+    override fun resume(): ReadStream<T> { return this }
+    override fun handler(h: Handler<T>?): ReadStream<T> {
+      handler = h
+      return this
+    }
   }
+
+  private val channel : ReceiveChannel<T> = toChannel(stream)
+  private var handler : Handler<T>? = null;
 
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
@@ -244,12 +243,6 @@ private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
       return false
     }
   }
-}
-
-/**
- * An Kotlin [ReceiveChannel] exposing an [Handler] interface that sends items in the channel.
- */
-interface ReceiveChannelHandler<T> : ReceiveChannel<T>, Handler<T> {
 }
 
 private const val VERTX_COROUTINE_DISPATCHER = "__vertx-kotlin-coroutine:dispatcher"

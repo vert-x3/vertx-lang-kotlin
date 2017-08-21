@@ -334,10 +334,10 @@ class VertxCoroutineTest {
     val eb = vertx.eventBus()
     // Create a couple of consumers on different addresses
     // The adaptor allows handler to be used as a Channel
-    val adaptor1 = streamAdaptor<Message<String>>()
+    val adaptor1 = ReceiveChannelHandler<Message<String>>()
     eb.consumer<String>(ADDRESS1).handler(adaptor1)
 
-    val adaptor2 = streamAdaptor<Message<String>>()
+    val adaptor2 = ReceiveChannelHandler<Message<String>>()
     eb.consumer<String>(ADDRESS2).handler(adaptor2)
 
     // Set up a periodic timer to send messages to these addresses
@@ -368,7 +368,7 @@ class VertxCoroutineTest {
       else Assert.fail("received1 cast type failed.")
 
       // And timing out
-      val adaptor3 = streamAdaptor<Message<String>>()
+      val adaptor3 = ReceiveChannelHandler<Message<String>>()
       eb.consumer<String>(ADDRESS3).handler(adaptor3)
       try {
         withTimeout(100) { adaptor3.receive() }

@@ -55,7 +55,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   //streamAdaptor
   private suspend fun streamExample() {
-    val adaptor = streamAdaptor<Message<Int>>()
+    val adaptor = ReceiveChannelHandler<Message<Int>>()
     vertx.eventBus().localConsumer<Int>("someAddress").handler(adaptor)
 
     //send 10 message to consumer
