@@ -35,7 +35,7 @@ class ExampleVerticle : CoroutineVerticle() {
     asyncResultExample()
     streamExample()
     handlerAndCoroutineExample()
-    futureToAwait()
+    awaitingFuture()
   }
 
   // tag::asyncEvent[]
@@ -66,7 +66,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   // tag::streamExample[]
   private suspend fun streamExample() {
-    val adapter = ReceiveChannelHandler<Message<Int>>(vertx.orCreateContext)
+    val adapter = vertx.receiveChannelHandler<Message<Int>>()
     vertx.eventBus().localConsumer<Int>("a.b.c").handler(adapter)
 
     // Send 15 messages
@@ -80,21 +80,23 @@ class ExampleVerticle : CoroutineVerticle() {
   }
   // end::streamExample[]
 
-  //Convert future to await
-  private suspend fun futureToAwait() {
+  private suspend fun awaitingFuture() {
+    // tag::awaitingFuture[]
     val httpServerFuture = Future.future<HttpServer>()
-    vertx.createHttpServer().requestHandler { _ -> }.listen(8000, httpServerFuture.completer())
-    //we can get httpServer by await on future instance.
-    val httpServer = httpServerFuture.await()
-    println("http port is ${httpServer.actualPort()}")
+    vertx.createHttpServer()
+      .requestHandler { req -> req.response().end("Hello!") }
+      .listen(8000, httpServerFuture)
 
-    //await composite future.
+    val httpServer = httpServerFuture.await()
+    println("HTTP server port: ${httpServer.actualPort()}")
+
     val result = CompositeFuture.all(httpServerFuture, httpServerFuture).await()
     if (result.succeeded()) {
-      println("all have start up.")
+      println("The server is now running!")
     } else {
       result.cause().printStackTrace()
     }
+    // end::awaitingFuture[]
   }
 
   // tag::handlerAndCoroutine[]

@@ -94,3 +94,12 @@ This is the case of the following method, and the solution is again to wrap such
 ----
 include::../../kotlin/example/Example.kt[tags=handlerAndCoroutine]
 ----
+
+== Awaiting the completion of Vert.x futures
+
+The `await` extension method on instances of Vert.x future objects suspend coroutines until they have completed, in which case the method returns the corresponding `AsyncResult<T>` object.
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=awaitingFuture]
+----
