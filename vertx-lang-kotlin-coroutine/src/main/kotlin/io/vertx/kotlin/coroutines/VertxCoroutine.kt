@@ -16,6 +16,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 /**
  * Created by stream.
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ * @author [Julien Ponge](https://julien.ponge.org/)
  */
 
 /**
