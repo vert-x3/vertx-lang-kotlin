@@ -256,7 +256,7 @@ fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
 }
 
 fun Context.coroutineContext() : CoroutineContext {
-  require(isEventLoopContext, { "Not on the vertx eventLoop." })
+  require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
   return VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
 }
 
