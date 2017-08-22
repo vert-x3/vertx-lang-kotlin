@@ -37,6 +37,17 @@
       <artifactId>vertx-unit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-rx-java2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-coroutines-rx2</artifactId>
+      <version>${kotlin.coroutines.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
