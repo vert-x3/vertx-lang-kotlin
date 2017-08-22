@@ -5,6 +5,7 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +24,11 @@ class CoroutineContextTest {
   fun before() {
     vertx = Vertx.vertx()
     ai = AsyncInterfaceImpl(vertx)
+  }
+
+  @After
+  fun after() {
+    vertx.close()
   }
 
   @Test
