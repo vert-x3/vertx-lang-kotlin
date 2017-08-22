@@ -76,8 +76,6 @@ suspend fun <T> Future<T>.await(): T = when {
   }
 }
 
-// TODO (@jponge) Provide an extension method on Vertx instances to facilitate the creation of ReceiveChannelHandler objects
-
 /**
  * An adapter that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
  * to be received synchronously.
