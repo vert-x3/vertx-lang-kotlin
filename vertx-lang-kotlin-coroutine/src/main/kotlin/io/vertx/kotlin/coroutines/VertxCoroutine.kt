@@ -1,47 +1,37 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
+import io.vertx.core.Future
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.channels.*
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.experimental.selects.SelectInstance
+import java.util.concurrent.*
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
-import kotlin.coroutines.experimental.suspendCoroutine
 
 /**
  * Created by stream.
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
 
 /**
  * Receive a single event from a handler synchronously.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) = async(vertxCoroutineContext()) {
-  try {
-    suspendCoroutine { cont: Continuation<T> -> block(Handler { event -> cont.resume(event) }) }
-  } catch (t: Throwable) {
-    throw VertxException(t)
-  }
-}
-
-/**
- * Receive a single event from a handler synchronously  by specific timeout.
- * The coroutine will be blocked until the event occurs or timeout, this action do not block vertx's eventLoop.
- * @param timeout
- * @return object or null if timeout
- */
-fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<T?>) -> Unit) = async(vertxCoroutineContext()) {
-  withTimeout(timeout, unit) {
+suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
+  return asyncResult { f ->
+    val fut = Future.future<T>().setHandler(f)
+    val adapter : Handler<T> = Handler { t ->
+      fut.tryComplete(t)
+    }
     try {
-      suspendCancellableCoroutine { cont: CancellableContinuation<T?> -> block(Handler { event -> cont.resume(event) }) }
-    } catch (e: CancellationException) {
-      suspendCoroutine { cont: Continuation<T?> ->
-        block(Handler { cont.resume(null) })
-      }
-    } catch (t: Throwable) {
-      throw VertxException(t)
+      block.invoke(adapter)
+    } catch(t: Throwable) {
+      fut.tryFail(t)
     }
   }
 }
@@ -51,38 +41,11 @@ fun <T> asyncEvent(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block:
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
 suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
-  try {
-    return suspendCoroutine { cont: Continuation<T> ->
-      block(Handler { asyncResult ->
-        if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-        else cont.resumeWithException(asyncResult.cause())
-      })
-    }
-  } catch (t: Throwable) {
-    throw VertxException(t)
-  }
-}
-
-/**
- * Invoke an asynchronous operation and obtain the result synchronous by specific timeout.
- * The coroutine will be blocked until the event occurs or timeout, this action do not block vertx's eventLoop.
- * @param timeout
- * @return object or null if timeout
- */
-fun <T> asyncResult(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS, block: (h: Handler<AsyncResult<T?>>) -> Unit) = async(vertxCoroutineContext()) {
-  withTimeout(timeout, unit) {
-    try {
-      suspendCancellableCoroutine { cont: CancellableContinuation<T?> ->
-        block(Handler { asyncResult ->
-          if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-          else cont.resumeWithException(asyncResult.cause())
-        })
-      }
-    } catch (e: CancellationException) {
-      suspendCoroutine { cont: Continuation<T?> -> block(Handler { cont.resume(null) }) }
-    } catch (t: Throwable) {
-      throw VertxException(t)
-    }
+  return suspendCancellableCoroutine { cont: Continuation<T> ->
+    block(Handler { asyncResult ->
+      if (asyncResult.succeeded()) cont.resume(asyncResult.result())
+      else cont.resumeWithException(asyncResult.cause())
+    })
   }
 }
 
@@ -101,17 +64,64 @@ suspend fun <T> Future<T>.await(): T = when {
 }
 
 /**
- * Create an adaptor that converts a stream of events from a handler into a receiver which allows the events to be
- * received synchronously.
+ * An adaptor that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
+ * to be received synchronously.
  */
-fun <T> streamAdaptor() = HandlerReceiverAdaptorImpl<T>(vertxCoroutineContext())
+class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T>, Handler<T> {
 
-/**
- * Like {@link #streamAdaptor()} but using the specified `Channel` instance. This is useful if you want to
- * fine-tune the behaviour of the adaptor.
- */
-fun <T> streamAdaptor(channel: Channel<T>) = HandlerReceiverAdaptorImpl(vertxCoroutineContext(), channel)
+  constructor(vertx : Vertx) : this(vertx.getOrCreateContext())
 
+  private val stream : ReadStream<T> = object: ReadStream<T> {
+    override fun pause(): ReadStream<T> { return this }
+    override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> { return this }
+    override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> { return this }
+    override fun resume(): ReadStream<T> { return this }
+    override fun handler(h: Handler<T>?): ReadStream<T> {
+      handler = h
+      return this
+    }
+  }
+
+  private val channel : ReceiveChannel<T> = toChannel(context, stream)
+  private var handler : Handler<T>? = null;
+
+  override val isClosedForReceive: Boolean
+    get() = channel.isClosedForReceive
+
+  override val isEmpty: Boolean
+    get() = channel.isEmpty
+
+  override fun iterator(): ChannelIterator<T> {
+    return channel.iterator()
+  }
+
+  override fun poll(): T? {
+    return channel.poll()
+  }
+
+  suspend override fun receive(): T {
+    return channel.receive()
+  }
+
+  suspend override fun receiveOrNull(): T? {
+    return channel.receiveOrNull()
+  }
+
+  override fun <R> registerSelectReceive(select: SelectInstance<R>, block: suspend (T) -> R) {
+    return channel.registerSelectReceive(select, block)
+  }
+
+  override fun <R> registerSelectReceiveOrNull(select: SelectInstance<R>, block: suspend (T?) -> R) {
+    return channel.registerSelectReceiveOrNull(select, block)
+  }
+
+  override fun handle(event: T) {
+    val h = handler
+    if (h != null) {
+      h.handle(event)
+    }
+  }
+}
 
 /**
  * Converts this deferred value to the instance of Future.
@@ -133,27 +143,17 @@ fun <T> Deferred<T>.asFuture(): Future<T> {
   return future
 }
 
-/**
- * Convert a standard handler to a handler which runs on a coroutine.
- * This is necessary if you want to do fiber blocking synchronous operation in your handler
- */
-fun runVertxCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  launch(vertxCoroutineContext()) {
-    try {
-      block()
-    } catch (e: CancellationException) {
-      //skip this exception for coroutine cancel
-    }
-  }
+fun <T> toChannel(vertx : Vertx, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), stream, capacity)
 }
 
-fun <T> toChannel(stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
-  val ret = ChannelReadStream(vertxCoroutineContext(), stream, capacity)
+fun <T> toChannel(context : Context, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+  val ret = ChannelReadStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
-private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
+private class ChannelReadStream<T>(val context: Context,
                                    val stream : ReadStream<T>,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
@@ -168,7 +168,7 @@ private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
       close(err)
     }
     stream.handler { event ->
-      launch(coroutineContext) {
+      context.runCoroutine {
         send(event)
       }
     }
@@ -196,18 +196,22 @@ private class ChannelReadStream<T>(val coroutineContext: CoroutineContext,
   }
 }
 
-fun <T> toChannel(stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
-  val ret = ChannelWriteStream(vertxCoroutineContext(), stream, capacity)
+fun <T> toChannel(vertx : Vertx, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+}
+
+fun <T> toChannel(context : Context, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+  val ret = ChannelWriteStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
-private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
+private class ChannelWriteStream<T>(val context: Context,
                                    val stream : WriteStream<T>,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
-    launch(coroutineContext) {
+    context.runCoroutine {
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
@@ -237,78 +241,161 @@ private class ChannelWriteStream<T>(val coroutineContext: CoroutineContext,
   }
 }
 
-interface ReceiverAdaptor<out T> {
-  /**
-   * Receive a object from channel.
-   */
-  suspend fun receive(): T
-
-  /**
-   * Receive a object from channel with specific timeout.
-   * @param timeout
-   * @return object or null if timeout
-   */
-  suspend fun receive(timeout: Long, unit: TimeUnit = TimeUnit.MILLISECONDS): T?
-}
-
-class HandlerReceiverAdaptorImpl<T>(val coroutineContext: CoroutineContext, val channel: Channel<T> = Channel()) : Handler<T>, ReceiverAdaptor<T> {
-
-  override fun handle(event: T) {
-    launch(coroutineContext) { channel.send(event) }
-  }
-
-  override suspend fun receive(): T = channel.receive()
-
-  override suspend fun receive(timeout: Long, unit: TimeUnit): T? {
-    val future: Future<T?> = Future.future()
-    withTimeout(timeout, unit) {
-      try {
-        future.complete(channel.receive())
-      } catch (e: CancellationException) {
-        future.complete(null)
-      } catch (t: Throwable) {
-        future.fail(VertxException(t))
-      }
-    }
-    return future.await()
-  }
-}
-
 private const val VERTX_COROUTINE_DISPATCHER = "__vertx-kotlin-coroutine:dispatcher"
-private var vertx: Vertx? = null
-
-//you can init vertx instance if you running Vert.x by embed style.
-fun attachVertxToCoroutine(v: Vertx) {
-  vertx = v
-}
 
 /**
- * Get Kotlin CoroutineContext, this coroutine should be one instance for per context.
- * @return CoroutineContext
+ * Convert a standard handler to a handler which runs on a coroutine.
+ * This is necessary if you want to do fiber blocking synchronous operation in your handler
  */
-fun vertxCoroutineContext(): CoroutineContext {
-  val vertxContext = vertx?.orCreateContext ?: Vertx.currentContext()
-  requireNotNull(vertxContext, { "Do not in the vertx context" })
-  require(vertxContext.isEventLoopContext, { "Not on the vertx eventLoop." })
-  var vertxContextDispatcher = vertxContext.get<CoroutineContext>(VERTX_COROUTINE_DISPATCHER)
-  if (vertxContextDispatcher == null) {
-    vertxContextDispatcher = VertxContextDispatcher(vertxContext, Thread.currentThread())
-    vertxContext.put(VERTX_COROUTINE_DISPATCHER, vertxContextDispatcher)
+fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
+  launch(coroutineContext()) {
+    try {
+      block()
+    } catch (e: CancellationException) {
+      //skip this exception for coroutine cancel
+    }
   }
-  return vertxContextDispatcher
 }
 
-private class VertxContextDispatcher(val vertxContext: Context, val eventLoop: Thread) : CoroutineDispatcher() {
-  override fun dispatch(context: CoroutineContext, block: Runnable) {
-    if (Thread.currentThread() !== eventLoop) vertxContext.runOnContext { _ -> block.run() }
-    else block.run()
+fun Context.coroutineContext() : CoroutineContext {
+  require(isEventLoopContext, { "Not on the vertx eventLoop." })
+  var dispatcher = get<CoroutineDispatcher>(VERTX_COROUTINE_DISPATCHER)
+  if (dispatcher == null) {
+    dispatcher = VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
+    put(VERTX_COROUTINE_DISPATCHER, dispatcher)
   }
+  return dispatcher
 }
 
 /**
  * Remove the scheduler for the current context
  */
-fun removeVertxCoroutineContext() {
-  val vertxContext = vertx?.orCreateContext ?: Vertx.currentContext()
-  vertxContext?.remove(VERTX_COROUTINE_DISPATCHER)
+fun Context.removeCoroutineContext() {
+  remove(VERTX_COROUTINE_DISPATCHER)
+}
+
+/**
+ * Remove the scheduler for the current context
+ */
+fun Vertx.removeCoroutineContext() {
+  getOrCreateContext().remove(VERTX_COROUTINE_DISPATCHER)
+}
+
+/**
+ * Convert a standard handler to a handler which runs on a coroutine.
+ * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ */
+fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
+  getOrCreateContext().runCoroutine(block)
+}
+
+fun Vertx.coroutineContext() : CoroutineContext {
+  return getOrCreateContext().coroutineContext()
+}
+
+private class VertxScheduledFuture(
+    val vertxContext: Context,
+    val task : Runnable,
+    val delay: Long,
+    val unit: TimeUnit,
+    val periodic : Boolean) : ScheduledFuture<Any>, Handler<Long> {
+
+  val done = AtomicInteger(0)
+  var id : Long? = null
+
+  fun schedule() {
+    val owner = vertxContext.owner()
+    if (periodic) {
+      id = owner.setTimer(unit.toMillis(delay), this)
+    } else {
+      id = owner.setPeriodic(unit.toMillis(delay), this)
+    }
+  }
+
+  override fun get(): Any? {
+    return null
+  }
+
+  override fun get(timeout: Long, unit: TimeUnit?): Any? {
+    return null
+  }
+
+  override fun isCancelled(): Boolean {
+    return done.get() == 1
+  }
+
+  override fun handle(event: Long?) {
+    if (done.compareAndSet(0, 2)) {
+      task.run()
+    }
+  }
+
+  override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
+    if (done.compareAndSet(0, 1)) {
+      return vertxContext.owner().cancelTimer(id!!)
+    } else {
+      return false;
+    }
+  }
+
+  override fun isDone(): Boolean {
+    return done.get() == 2
+  }
+
+  override fun getDelay(unit: TimeUnit?): Long {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun compareTo(other: Delayed?): Int {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+}
+
+private class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
+
+  override fun execute(command: Runnable) {
+    if (Thread.currentThread() !== eventLoop) {
+      vertxContext.runOnContext { command.run() }
+    } else {
+      command.run()
+    }
+  }
+
+  override fun schedule(command: Runnable, delay: Long, unit: TimeUnit): ScheduledFuture<*> {
+    val t = VertxScheduledFuture(vertxContext, command, delay, unit, false)
+    t.schedule()
+    return t
+  }
+
+  override fun scheduleAtFixedRate(command: Runnable, initialDelay: Long, period: Long, unit: TimeUnit?): ScheduledFuture<*> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun <V : Any?> schedule(callable: Callable<V>?, delay: Long, unit: TimeUnit?): ScheduledFuture<V> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun scheduleWithFixedDelay(command: Runnable?, initialDelay: Long, delay: Long, unit: TimeUnit?): ScheduledFuture<*> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isTerminated(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun shutdown() {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun shutdownNow(): MutableList<Runnable> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun isShutdown(): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
+
+  override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  }
 }

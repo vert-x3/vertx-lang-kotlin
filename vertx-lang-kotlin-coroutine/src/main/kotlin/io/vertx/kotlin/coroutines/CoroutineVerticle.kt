@@ -11,7 +11,7 @@ import io.vertx.core.Future
 abstract class CoroutineVerticle : AbstractVerticle() {
 
   override fun start(startFuture: Future<Void>?) {
-    runVertxCoroutine {
+    context.runCoroutine {
       try {
         start()
         startFuture?.complete()
@@ -22,14 +22,15 @@ abstract class CoroutineVerticle : AbstractVerticle() {
   }
 
   override fun stop(stopFuture: Future<Void>?) {
-    runVertxCoroutine {
+    context.runCoroutine {
       try {
         stop()
         stopFuture?.complete()
       } catch (t: Throwable) {
         stopFuture?.fail(t)
       } finally {
-        removeVertxCoroutineContext()
+        // Do that differently perhaps with a ref count ?
+        // removeVertxCoroutineContext()
       }
     }
   }
