@@ -1,6 +1,9 @@
 package io.vertx.kotlin.coroutines
 
+import io.vertx.core.Context
 import io.vertx.core.Future
+import io.vertx.core.Verticle
+import io.vertx.core.Vertx
 
 /**
  * A Verticle which run its start and stop methods in coroutine.
@@ -8,7 +11,17 @@ import io.vertx.core.Future
  *
  * Created by stream.
  */
-abstract class CoroutineVerticle : AbstractVerticle() {
+abstract class CoroutineVerticle : Verticle {
+
+  private lateinit var vertxInstance: Vertx
+  protected lateinit var context: Context
+
+  override fun init(vertx: Vertx, context: Context) {
+    this.vertxInstance = vertx
+    this.context = context
+  }
+
+  override fun getVertx(): Vertx = vertxInstance
 
   override fun start(startFuture: Future<Void>?) {
     context.runCoroutine {

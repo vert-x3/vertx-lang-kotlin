@@ -161,7 +161,7 @@ private class ChannelReadStream<T>(val context: Context,
   private var size = 0;
 
   fun subscribe() {
-    stream.endHandler { v ->
+    stream.endHandler { _ ->
       close()
     }
     stream.exceptionHandler { err ->
@@ -215,7 +215,7 @@ private class ChannelWriteStream<T>(val context: Context,
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
-          stream.drainHandler { v ->
+          stream.drainHandler { _ ->
             if (dispatch(elt)) {
               subscribe()
             }
@@ -241,8 +241,6 @@ private class ChannelWriteStream<T>(val context: Context,
   }
 }
 
-private const val VERTX_COROUTINE_DISPATCHER = "__vertx-kotlin-coroutine:dispatcher"
-
 /**
  * Convert a standard handler to a handler which runs on a coroutine.
  * This is necessary if you want to do fiber blocking synchronous operation in your handler
@@ -258,27 +256,8 @@ fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
 }
 
 fun Context.coroutineContext() : CoroutineContext {
-  require(isEventLoopContext, { "Not on the vertx eventLoop." })
-  var dispatcher = get<CoroutineDispatcher>(VERTX_COROUTINE_DISPATCHER)
-  if (dispatcher == null) {
-    dispatcher = VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
-    put(VERTX_COROUTINE_DISPATCHER, dispatcher)
-  }
-  return dispatcher
-}
-
-/**
- * Remove the scheduler for the current context
- */
-fun Context.removeCoroutineContext() {
-  remove(VERTX_COROUTINE_DISPATCHER)
-}
-
-/**
- * Remove the scheduler for the current context
- */
-fun Vertx.removeCoroutineContext() {
-  getOrCreateContext().remove(VERTX_COROUTINE_DISPATCHER)
+  require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
+  return VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
 }
 
 /**
