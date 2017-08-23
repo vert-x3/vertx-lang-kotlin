@@ -84,11 +84,9 @@ The `ReceiveChannelHandler` class allows receiving events through the (suspendab
 include::../../kotlin/example/Example.kt[tags=streamExample]
 ----
 
-== Handlers outside of suspendable code
+== Handlers
 
-It can be the case that handler code is being set up from outside of suspendable code.
-
-This is the case of the following method, and the solution is again to wrap such code in a `runCoroutine` call:
+Calling `runCoroutine` allows running Vert.x handlers on a coroutine, as in:
 
 [source,kotlin,indent=0]
 ----
