@@ -16,7 +16,21 @@ import kotlin.coroutines.experimental.CoroutineContext
 /**
  * Created by stream.
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ * @author [Julien Ponge](https://julien.ponge.org/)
  */
+
+/**
+ * Convert a standard handler to a handler which runs on a coroutine.
+ * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ */
+fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
+  getOrCreateContext().runCoroutine(block)
+}
+
+/**
+ * Create a `ReceiveChannelHandler` of some type `T`.
+ */
+fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannelHandler(this)
 
 /**
  * Receive a single event from a handler synchronously.
@@ -64,7 +78,7 @@ suspend fun <T> Future<T>.await(): T = when {
 }
 
 /**
- * An adaptor that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
+ * An adapter that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
  * to be received synchronously.
  */
 class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T>, Handler<T> {
@@ -72,10 +86,10 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
   constructor(vertx : Vertx) : this(vertx.getOrCreateContext())
 
   private val stream : ReadStream<T> = object: ReadStream<T> {
-    override fun pause(): ReadStream<T> { return this }
-    override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> { return this }
-    override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> { return this }
-    override fun resume(): ReadStream<T> { return this }
+    override fun pause(): ReadStream<T> = this
+    override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> = this
+    override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> = this
+    override fun resume(): ReadStream<T> = this
     override fun handler(h: Handler<T>?): ReadStream<T> {
       handler = h
       return this
@@ -83,7 +97,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
   }
 
   private val channel : ReceiveChannel<T> = toChannel(context, stream)
-  private var handler : Handler<T>? = null;
+  private var handler : Handler<T>? = null
 
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
@@ -258,18 +272,6 @@ fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
 fun Context.coroutineContext() : CoroutineContext {
   require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
   return VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
-}
-
-/**
- * Convert a standard handler to a handler which runs on a coroutine.
- * This is necessary if you want to do fiber blocking synchronous operation in your handler
- */
-fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  getOrCreateContext().runCoroutine(block)
-}
-
-fun Vertx.coroutineContext() : CoroutineContext {
-  return getOrCreateContext().coroutineContext()
 }
 
 private class VertxScheduledFuture(
