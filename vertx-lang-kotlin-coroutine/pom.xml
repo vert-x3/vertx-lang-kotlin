@@ -13,7 +13,7 @@
   <artifactId>vertx-lang-kotlin-coroutine</artifactId>
 
   <properties>
-    <kotlin.coroutines.version>0.17</kotlin.coroutines.version>
+    <kotlin.coroutines.version>0.18</kotlin.coroutines.version>
   </properties>
 
   <dependencies>

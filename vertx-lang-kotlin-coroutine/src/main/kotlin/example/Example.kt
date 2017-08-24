@@ -13,9 +13,7 @@ fun runCoroutineExample() {
   vertx.deployVerticle(ExampleVerticle())
 
   vertx.runCoroutine {
-    val timerId = asyncEvent<Long> { handler ->
-      vertx.setTimer(1000, handler)
-    }
+    val timerId = asyncEvent<Long> { vertx.setTimer(1000, it) }
     println("Event fired from timer with id ${timerId}")
   }
 }
@@ -40,7 +38,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   // tag::asyncEvent[]
   private suspend fun asyncEventExample() {
-    val id = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }
+    val id = asyncEvent<Long> { vertx.setTimer(2000L, it) }
     println("This should be fired in 2s by some time with id=$id")
   }
   // end::asyncEvent[]
@@ -54,11 +52,11 @@ class ExampleVerticle : CoroutineVerticle() {
     }
 
     // Wait until the consumer has properly registered
-    asyncResult<Void> { h -> consumer.completionHandler(h) }
+    asyncResult<Void> { consumer.completionHandler(it) }
 
     // Send a message and wait for a reply
-    val reply = asyncResult<Message<String>> { h ->
-      vertx.eventBus().send("a.b.c", "ping", h)
+    val reply = asyncResult<Message<String>> {
+      vertx.eventBus().send("a.b.c", "ping", it)
     }
     println("Reply received: ${reply.body()}")
   }
@@ -103,7 +101,7 @@ class ExampleVerticle : CoroutineVerticle() {
   private fun handlerAndCoroutineExample() {
     vertx.createHttpServer().requestHandler { req ->
       vertx.runCoroutine {
-        val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000, h) }
+        val timerID = asyncEvent<Long> { vertx.setTimer(2000, it) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
     }.listen(8081)
