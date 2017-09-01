@@ -29,23 +29,23 @@ class HttpParserTest {
     vertx.close(testContext.asyncAssertSuccess())
   }
 
-  suspend fun readChunk(parser : RecordParser) : Buffer {
-    return asyncEvent { parser.setOutput(it) }
-  }
-
-  class Request(val line : String, val body : Buffer? = null) {
+  class Request(val line : String, val headers : Map<String, String>,  val body : Buffer? = null) {
+    val s = line.split(" ")
+    val method = s[0];
+    val uri = s[1]
+    val version = s[2]
   }
 
   fun startServer(testContext: TestContext, handler: (Request) -> Unit) {
     val async = testContext.async()
     val server = vertx.createNetServer().connectHandler { so ->
-      val recordParser = RecordParser.newDelimited("\r\n")
-      so.handler(recordParser)
+      val recordParser = RecordParser.newDelimited("\r\n", so)
+      val channel = toChannel(vertx, recordParser)
       vertx.runCoroutine {
-        val line = readChunk(recordParser).toString()
-        val headers = MultiMap.caseInsensitiveMultiMap()
+        val line = channel.receive().toString()
+        val headers = HashMap<String, String>()
         while (true) {
-          val header = readChunk(recordParser).toString()
+          val header = channel.receive().toString()
           if (header.isEmpty()) {
             break
           }
@@ -58,22 +58,22 @@ class HttpParserTest {
         if (transferEncoding == "chunked") {
           val body = Buffer.buffer()
           while (true) {
-            val len = readChunk(recordParser).toString().toInt(16)
+            val len = channel.receive().toString().toInt(16)
             if (len == 0) {
               break
             }
             recordParser.fixedSizeMode(len + 2)
-            val chunk = readChunk(recordParser)
+            val chunk = channel.receive()
             body.appendBuffer(chunk, 0, chunk.length() - 2)
             recordParser.delimitedMode("\r\n")
           }
-          request = Request(line, body)
+          request = Request(line, headers, body)
         } else if (contentLength != null) {
           recordParser.fixedSizeMode(contentLength.toInt())
-          val body = readChunk(recordParser)
-          request = Request(line, body)
+          val body = channel.receive()
+          request = Request(line, headers, body)
         } else {
-          request = Request(line)
+          request = Request(line, headers)
         }
         handler(request)
         so.write("HTTP/1.1 200 OK\r\n\r\n")
@@ -87,7 +87,9 @@ class HttpParserTest {
   fun testGet(testContext: TestContext) {
     val async = testContext.async()
     startServer(testContext) { req ->
-      testContext.assertEquals("GET /foo HTTP/1.1", req.line)
+      testContext.assertEquals("GET", req.method)
+      testContext.assertEquals("/foo", req.uri)
+      testContext.assertEquals("HTTP/1.1", req.version)
       testContext.assertNull(req.body)
       async.complete()
     }
@@ -103,7 +105,9 @@ class HttpParserTest {
   fun testPut(testContext: TestContext) {
     val async = testContext.async()
     startServer(testContext) { req ->
-      testContext.assertEquals("PUT /foo HTTP/1.1", req.line)
+      testContext.assertEquals("PUT", req.method)
+      testContext.assertEquals("/foo", req.uri)
+      testContext.assertEquals("HTTP/1.1", req.version)
       testContext.assertEquals("abc123", req.body.toString())
       async.complete()
     }
@@ -119,7 +123,9 @@ class HttpParserTest {
   fun testPutChunked(testContext: TestContext) {
     val async = testContext.async()
     startServer(testContext) { req ->
-      testContext.assertEquals("PUT /foo HTTP/1.1", req.line)
+      testContext.assertEquals("PUT", req.method)
+      testContext.assertEquals("/foo", req.uri)
+      testContext.assertEquals("HTTP/1.1", req.version)
       testContext.assertEquals("abc123", req.body.toString())
       async.complete()
     }
