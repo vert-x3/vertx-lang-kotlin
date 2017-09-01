@@ -306,6 +306,7 @@ class VertxCoroutineTest {
     received.clear()
     stream.pause()
     val async = testContext.async()
+    var foo = false
     vertx.runCoroutine {
       for (elt in expected) {
         channel.send(elt)
@@ -313,14 +314,18 @@ class VertxCoroutineTest {
       }
       channel.send(capacity) // Need an extra element for the inflight
       testContext.assertTrue(channel.isFull)
+      channel.send(capacity + 1) // Shall be suspended until resume
+      foo = true
     }
+    testContext.assertFalse(foo)
     testContext.assertEquals(emptyList<Int>(), received)
     stream.resume()
-    testContext.assertEquals(listOf(0, 1, 2, 3), received)
-    vertx.runCoroutine {
-      channel.send(4)
-    }
+    testContext.assertTrue(foo)
     testContext.assertEquals(listOf(0, 1, 2, 3, 4), received)
+    vertx.runCoroutine {
+      channel.send(5)
+    }
+    testContext.assertEquals(listOf(0, 1, 2, 3, 4, 5), received)
     testContext.assertFalse(stream.isEnded)
     channel.close()
     testContext.assertTrue(stream.isEnded)
