@@ -101,3 +101,75 @@ The `await` extension method on instances of Vert.x future objects suspend corou
 ----
 include::../../kotlin/example/Example.kt[tags=awaitingFuture]
 ----
+
+== Channels
+
+Channels provide a way to transfer a stream of values, Vert.x `ReadStream` and `WriteStream` can be adapted
+to channels with the `toChannel` function.
+
+These adapters take care of managing the back-pressure and the stream termination
+
+* `ReadStream<T>` is adapted to a `ReceiveChannel<T>`
+* `WriteStream<T>` is adapted to a `SendChannel<T>`
+
+=== Receiving data
+
+Channel can be really useful when you need to handle a stream of correlated values:
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=channel0]
+----
+
+It can also be useful for parsing protocols. We will build a non blocking HTTP request parser to show
+the power of channels.
+
+We will rely on the http://vertx.io/docs/apidocs/io/vertx/core/parsetools/RecordParser.html[`RecordParser`]
+to slice the stream of buffer to a stream of buffer delimited by `\r\n`.
+
+Here is the initial version of the parser, that handles only the HTTP request-line
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=channel1]
+----
+
+Parsing the request-line is as simple as calling `receive` on the channel.
+
+The next step parses HTTP headers by receiving chunks until we get an empty one
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=channel2]
+----
+
+Finally we terminate the parser by handling optional request bodies
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=channel3]
+----
+
+=== Sending data
+
+Using a channel to send data is quite straightforward:
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=sendChannel]
+----
+
+Both `SendChannel#send` and `WriteStream#write` are non blocking operations, however unlike `SendChannel#send`
+can suspend the loop execution when the channel is full, the equivalent without a channel would look like
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=broadcastTemperature]
+----
+
+== RxJava integration
+
+The module `vertx-lang-kotlin-coroutine` does not have specific integration with RxJava however Kotlin coroutines
+provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutine`.
+
+You can read about it in the https://github.com/Kotlin/kotlinx.coroutines/blob/master/reactive/coroutines-guide-reactive.md[Guide to reactive streams with coroutines]

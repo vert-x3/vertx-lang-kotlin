@@ -1,11 +1,18 @@
 package example
 
-import io.vertx.core.CompositeFuture
-import io.vertx.core.Future
-import io.vertx.core.Vertx
+import io.vertx.core.*
+import io.vertx.core.buffer.Buffer
+import io.vertx.core.eventbus.EventBus
 import io.vertx.core.eventbus.Message
+import io.vertx.core.eventbus.MessageConsumer
+import io.vertx.core.eventbus.MessageProducer
+import io.vertx.core.http.HttpClient
 import io.vertx.core.http.HttpServer
+import io.vertx.core.http.WebSocket
+import io.vertx.core.parsetools.RecordParser
+import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.*
+import kotlinx.coroutines.experimental.channels.ReceiveChannel
 
 // tag::runCoroutineExample[]
 fun runCoroutineExample() {
@@ -109,4 +116,172 @@ class ExampleVerticle : CoroutineVerticle() {
     }.listen(8081)
   }
   // end::handlerAndCoroutine[]
+
+  private suspend fun channel0() {
+    // tag::channel0[]
+    val stream = vertx.eventBus().consumer<Double>("temperature")
+    val channel = toChannel(vertx, stream)
+
+    var min = Double.MAX_VALUE
+    var max = Double.MIN_VALUE
+
+    // Iterate until the stream is closed
+    // Non-blocking
+    for (msg in channel) {
+      val temperature = msg.body()
+      min = Math.min(min, temperature)
+      max = Math.max(max, temperature)
+    }
+
+    // The stream is now closed
+    // end::channel0[]
+  }
+
+  private fun channel1() {
+    // tag::channel1[]
+    val server = vertx.createNetServer().connectHandler { socket ->
+
+      // The record parser provides a stream of buffers delimited by \r\n
+      val stream = RecordParser.newDelimited("\r\n", socket)
+
+      // Convert the stream to a Kotlin channel
+      val channel = toChannel(vertx, stream)
+
+      // Run the coroutine
+      vertx.runCoroutine {
+
+        // Receive the request-line
+        // Non-blocking
+        val line = channel.receive().toString().split(" ")
+        val method = line[0]
+        val uri = line[1]
+
+        println("Received HTTP request ($method, $uri)")
+
+        // Still need to parse headers and body...
+      }
+    }
+    // end::channel1[]
+  }
+
+  private suspend fun channel2(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String) {
+    // tag::channel2[]
+    // Receive HTTP headers
+    val headers = HashMap<String, String>()
+    while (true) {
+
+      // Non-blocking
+      val header = channel.receive().toString()
+
+      // Done with parsing headers
+      if (header.isEmpty()) {
+        break
+      }
+
+      val pos = header.indexOf(':')
+      headers[header.substring(0, pos)] = header.substring(pos + 1).trim()
+    }
+
+    println("Received HTTP request ($method, $uri) with headers ${headers.keys}")
+    // end::channel2[]
+  }
+
+  private suspend fun channel3(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String, headers : Map<String, String>) {
+    // tag::channel3[]
+    // Receive the request body
+    val transferEncoding = headers["transfer-encoding"]
+    val contentLength = headers["content-length"]
+
+    val body : Buffer?
+    if (transferEncoding == "chunked") {
+
+      // Handle chunked encoding, e.g
+      // 5\r\n
+      // HELLO\r\n
+      // 0\r\n
+      // \r\n
+
+      body = Buffer.buffer()
+      while (true) {
+
+        // Parse length chunk
+        // Non-blocking
+        val len = channel.receive().toString().toInt(16)
+        if (len == 0) {
+          break
+        }
+
+        // The stream is flipped to parse a chunk of the exact size
+        stream.fixedSizeMode(len + 2)
+
+        // Receive the chunk and append it
+        // Non-blocking
+        val chunk = channel.receive()
+        body.appendBuffer(chunk, 0, chunk.length() - 2)
+
+        // The stream is flipped back to the \r\n delimiter to parse the next chunk
+        stream.delimitedMode("\r\n")
+      }
+    } else if (contentLength != null) {
+
+      // The stream is flipped to parse a body of the exact size
+      stream.fixedSizeMode(contentLength.toInt())
+
+      // Non-blocking
+      body = channel.receive()
+    } else {
+      body = null
+    }
+
+    println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size ${body?.length() ?: 0}")
+    // end::channel3[]
+  }
+
+  private fun readTemperatureSensor() : Double {
+    return 0.0
+  }
+
+  private suspend fun sendChannel() {
+    // tag::sendChannel[]
+    val stream = vertx.eventBus().publisher<Double>("temperature")
+    val channel = toChannel(vertx, stream)
+
+    while (true) {
+      val temperature = readTemperatureSensor()
+
+      // Broadcast the temperature
+      // Non-blocking but could be suspended
+      channel.send(temperature)
+
+      // Wait for one second
+      asyncEvent<Long> { vertx.setTimer(1000, it)  }
+    }
+    // end::sendChannel[]
+  }
+
+  val stream : MessageProducer<Double> = vertx.eventBus().publisher<Double>("temperature")
+
+  // tag::broadcastTemperature[]
+  fun broadcastTemperature() {
+
+    // Check we can write in the stream
+    if (stream.writeQueueFull()) {
+
+      // We can't write so we set a drain handler to be called when we can write again
+      stream.drainHandler { broadcastTemperature() }
+    } else {
+
+      // Read temperature
+      val temperature = readTemperatureSensor()
+
+      // Write it to the stream
+      stream.write(temperature)
+
+      // Wait for one second
+      vertx.setTimer(1000) {
+        broadcastTemperature()
+      }
+    }
+  }
+  // end::broadcastTemperature[]
 }
