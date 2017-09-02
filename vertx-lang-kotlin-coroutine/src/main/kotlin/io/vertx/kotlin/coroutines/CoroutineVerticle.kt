@@ -41,9 +41,6 @@ abstract class CoroutineVerticle : Verticle {
         stopFuture?.complete()
       } catch (t: Throwable) {
         stopFuture?.fail(t)
-      } finally {
-        // Do that differently perhaps with a ref count ?
-        // removeVertxCoroutineContext()
       }
     }
   }
