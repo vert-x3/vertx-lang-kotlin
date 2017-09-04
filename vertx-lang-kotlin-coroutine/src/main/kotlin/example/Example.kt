@@ -179,7 +179,7 @@ class ExampleVerticle : CoroutineVerticle() {
       }
 
       val pos = header.indexOf(':')
-      headers[header.substring(0, pos)] = header.substring(pos + 1).trim()
+      headers[header.substring(0, pos).toLowerCase()] = header.substring(pos + 1).trim()
     }
 
     println("Received HTTP request ($method, $uri) with headers ${headers.keys}")

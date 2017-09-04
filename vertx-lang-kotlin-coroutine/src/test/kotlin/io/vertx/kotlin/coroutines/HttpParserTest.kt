@@ -50,7 +50,7 @@ class HttpParserTest {
             break
           }
           val pos = header.indexOf(':')
-          headers[header.substring(0, pos)] = header.substring(pos + 1).trim()
+          headers[header.substring(0, pos).toLowerCase()] = header.substring(pos + 1).trim()
         }
         val transferEncoding = headers.get("transfer-encoding")
         val contentLength = headers.get("content-length")
