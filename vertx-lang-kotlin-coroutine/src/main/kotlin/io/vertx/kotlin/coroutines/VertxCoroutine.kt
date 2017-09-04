@@ -5,7 +5,6 @@ import io.vertx.core.Future
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.channels.*
 import kotlinx.coroutines.experimental.selects.SelectInstance
 import java.util.concurrent.*
@@ -14,7 +13,7 @@ import kotlin.coroutines.experimental.Continuation
 import kotlin.coroutines.experimental.CoroutineContext
 
 /**
- * Created by stream.
+ * @author <a href="mailto:stream1984@me.com">Stream.Liu</a>
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  * @author [Julien Ponge](https://julien.ponge.org/)
  */
@@ -24,7 +23,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * This is necessary if you want to do fiber blocking synchronous operation in your handler
  */
 fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  getOrCreateContext().runCoroutine(block)
+  orCreateContext.runCoroutine(block)
 }
 
 /**
@@ -36,15 +35,13 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * Receive a single event from a handler synchronously.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
-  return asyncResult { f ->
-    val fut = Future.future<T>().setHandler(f)
-    val adapter : Handler<T> = Handler { t ->
-      fut.tryComplete(t)
-    }
+suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit): T {
+  return asyncResult {
+    val fut = Future.future<T>().setHandler(it)
+    val adapter: Handler<T> = Handler { fut.tryComplete(it) }
     try {
       block.invoke(adapter)
-    } catch(t: Throwable) {
+    } catch (t: Throwable) {
       fut.tryFail(t)
     }
   }
@@ -54,7 +51,7 @@ suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
  * Invoke an asynchronous operation and obtain the result synchronous.
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
  */
-suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
+suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit): T {
   return suspendCancellableCoroutine { cont: Continuation<T> ->
     block(Handler { asyncResult ->
       if (asyncResult.succeeded()) cont.resume(asyncResult.result())
@@ -81,11 +78,11 @@ suspend fun <T> Future<T>.await(): T = when {
  * An adapter that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
  * to be received synchronously.
  */
-class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T>, Handler<T> {
+class ReceiveChannelHandler<T> constructor(context: Context) : ReceiveChannel<T>, Handler<T> {
 
-  constructor(vertx : Vertx) : this(vertx.getOrCreateContext())
+  constructor(vertx: Vertx) : this(vertx.orCreateContext)
 
-  private val stream : ReadStream<T> = object: ReadStream<T> {
+  private val stream: ReadStream<T> = object : ReadStream<T> {
     override fun pause(): ReadStream<T> = this
     override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> = this
     override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> = this
@@ -96,8 +93,8 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     }
   }
 
-  private val channel : ReceiveChannel<T> = toChannel(context, stream)
-  private var handler : Handler<T>? = null
+  private val channel: ReceiveChannel<T> = toChannel(context, stream)
+  private var handler: Handler<T>? = null
 
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
@@ -130,10 +127,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
   }
 
   override fun handle(event: T) {
-    val h = handler
-    if (h != null) {
-      h.handle(event)
-    }
+    handler?.handle(event)
   }
 }
 
@@ -157,33 +151,29 @@ fun <T> Deferred<T>.asFuture(): Future<T> {
   return future
 }
 
-fun <T> toChannel(vertx : Vertx, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
-  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+fun <T> toChannel(vertx: Vertx, stream: ReadStream<T>, capacity: Int = 256): ReceiveChannel<T> {
+  return toChannel(vertx.orCreateContext, stream, capacity)
 }
 
-fun <T> toChannel(context : Context, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
+fun <T> toChannel(context: Context, stream: ReadStream<T>, capacity: Int = 256): ReceiveChannel<T> {
   val ret = ChannelReadStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
 private class ChannelReadStream<T>(val context: Context,
-                                   val stream : ReadStream<T>,
-                                   capacity : Int) : ArrayChannel<T>(capacity) {
+                                   val stream: ReadStream<T>,
+                                   capacity: Int) : ArrayChannel<T>(capacity) {
 
   @Volatile
-  private var size = 0;
+  private var size = 0
 
   fun subscribe() {
-    stream.endHandler { _ ->
-      close()
-    }
-    stream.exceptionHandler { err ->
-      close(err)
-    }
-    stream.handler { event ->
+    stream.endHandler { close() }
+    stream.exceptionHandler { close(it) }
+    stream.handler {
       context.runCoroutine {
-        send(event)
+        send(it)
       }
     }
   }
@@ -191,9 +181,9 @@ private class ChannelReadStream<T>(val context: Context,
   override fun offerInternal(element: T): Any {
     val ret = super.offerInternal(element)
     if (ret == OFFER_SUCCESS) {
-      size++;
+      size++
       if (isFull) {
-        stream.pause();
+        stream.pause()
       }
     }
     return ret
@@ -201,7 +191,7 @@ private class ChannelReadStream<T>(val context: Context,
 
   override fun pollInternal(): Any? {
     val ret = super.pollInternal()
-    if (ret != POLL_FAILED && !(ret is Closed<*>)) {
+    if (ret != POLL_FAILED && ret !is Closed<*>) {
       if (--size < capacity / 2) {
         stream.resume()
       }
@@ -210,26 +200,26 @@ private class ChannelReadStream<T>(val context: Context,
   }
 }
 
-fun <T> toChannel(vertx : Vertx, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
-  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+fun <T> toChannel(vertx: Vertx, stream: WriteStream<T>, capacity: Int = 256): SendChannel<T> {
+  return toChannel(vertx.orCreateContext, stream, capacity)
 }
 
-fun <T> toChannel(context : Context, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
+fun <T> toChannel(context: Context, stream: WriteStream<T>, capacity: Int = 256): SendChannel<T> {
   val ret = ChannelWriteStream(context, stream, capacity)
   ret.subscribe()
   return ret
 }
 
 private class ChannelWriteStream<T>(val context: Context,
-                                   val stream : WriteStream<T>,
-                                   capacity : Int) : ArrayChannel<T>(capacity) {
+                                    val stream: WriteStream<T>,
+                                    capacity: Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
     context.runCoroutine {
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
-          stream.drainHandler { _ ->
+          stream.drainHandler {
             if (dispatch(elt)) {
               subscribe()
             }
@@ -237,20 +227,20 @@ private class ChannelWriteStream<T>(val context: Context,
           break
         } else {
           if (!dispatch(elt)) {
-            break;
+            break
           }
         }
       }
     }
   }
 
-  fun dispatch(elt : T?) : Boolean {
-    if (elt != null) {
+  fun dispatch(elt: T?): Boolean {
+    return if (elt != null) {
       stream.write(elt)
-      return true
+      true
     } else {
       stream.end()
-      return false
+      false
     }
   }
 }
@@ -263,33 +253,33 @@ fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
   launch(coroutineContext()) {
     try {
       block()
-    } catch (e: CancellationException) {
+    } catch (e: kotlinx.coroutines.experimental.CancellationException) {
       //skip this exception for coroutine cancel
     }
   }
 }
 
-fun Context.coroutineContext() : CoroutineContext {
+fun Context.coroutineContext(): CoroutineContext {
   require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
   return VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
 }
 
 private class VertxScheduledFuture(
-    val vertxContext: Context,
-    val task : Runnable,
-    val delay: Long,
-    val unit: TimeUnit,
-    val periodic : Boolean) : ScheduledFuture<Any>, Handler<Long> {
+  val vertxContext: Context,
+  val task: Runnable,
+  val delay: Long,
+  val unit: TimeUnit,
+  val periodic: Boolean) : ScheduledFuture<Any>, Handler<Long> {
 
   val done = AtomicInteger(0)
-  var id : Long? = null
+  var id: Long? = null
 
   fun schedule() {
     val owner = vertxContext.owner()
-    if (periodic) {
-      id = owner.setTimer(unit.toMillis(delay), this)
+    id = if (periodic) {
+      owner.setTimer(unit.toMillis(delay), this)
     } else {
-      id = owner.setPeriodic(unit.toMillis(delay), this)
+      owner.setPeriodic(unit.toMillis(delay), this)
     }
   }
 
@@ -312,10 +302,10 @@ private class VertxScheduledFuture(
   }
 
   override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
-    if (done.compareAndSet(0, 1)) {
-      return vertxContext.owner().cancelTimer(id!!)
+    return if (done.compareAndSet(0, 1)) {
+      vertxContext.owner().cancelTimer(id!!)
     } else {
-      return false;
+      false
     }
   }
 

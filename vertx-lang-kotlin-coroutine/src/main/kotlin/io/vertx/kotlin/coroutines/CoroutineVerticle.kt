@@ -9,7 +9,9 @@ import io.vertx.core.Vertx
  * A Verticle which run its start and stop methods in coroutine.
  * You should subclass this class instead of AbstractVerticle to create any verticles that use vertx-kotlin-coroutine.
  *
- * Created by stream.
+ * @author <a href="mailto:stream1984@me.com">Stream.Liu</a>
+ * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
+ * @author [Julien Ponge](https://julien.ponge.org/)
  */
 abstract class CoroutineVerticle : Verticle {
 

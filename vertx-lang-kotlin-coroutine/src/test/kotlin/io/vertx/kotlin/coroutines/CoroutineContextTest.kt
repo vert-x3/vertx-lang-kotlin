@@ -43,7 +43,7 @@ class CoroutineContextTest {
   @Test
   fun testEventLoopContext(testContext: TestContext) {
     val async = testContext.async()
-    val ctx = vertx.getOrCreateContext()
+    val ctx = vertx.orCreateContext
     ctx.runOnContext {
       vertx.runCoroutine {
         runTest(testContext)
@@ -55,7 +55,7 @@ class CoroutineContextTest {
   @Test
   fun testWorkerContext(testContext: TestContext) {
     val async = testContext.async()
-    vertx.deployVerticle(object: AbstractVerticle() {
+    vertx.deployVerticle(object : AbstractVerticle() {
       override fun start() {
         vertx.runCoroutine {
           runTest(testContext)
@@ -69,7 +69,7 @@ class CoroutineContextTest {
   @Test
   fun testMultithreadedWorkerContext(testContext: TestContext) {
     val async = testContext.async()
-    vertx.deployVerticle(object: AbstractVerticle() {
+    vertx.deployVerticle(object : AbstractVerticle() {
       override fun start() {
         vertx.runCoroutine {
           runTest(testContext)
@@ -82,9 +82,7 @@ class CoroutineContextTest {
 
   suspend fun runTest(testContext: TestContext) {
     val a = AtomicLong()
-    val id = asyncEvent<Long> { handler ->
-      a.set(vertx.setTimer(10, handler))
-    }
+    val id = asyncEvent<Long> { a.set(vertx.setTimer(10, it)) }
     testContext.assertEquals(id, a.get())
   }
 }

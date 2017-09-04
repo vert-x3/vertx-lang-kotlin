@@ -13,7 +13,7 @@
   <artifactId>vertx-lang-kotlin-coroutine</artifactId>
 
   <properties>
-    <kotlin.coroutines.version>0.16</kotlin.coroutines.version>
+    <kotlin.coroutines.version>0.18</kotlin.coroutines.version>
   </properties>
 
   <dependencies>
@@ -139,7 +139,6 @@
       </plugin>
     </plugins>
   </build>
-
   <profiles>
     <profile>
       <id>jcenter</id>
@@ -156,5 +155,4 @@
       </repositories>
     </profile>
   </profiles>
-
 </project>
