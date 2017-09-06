@@ -363,34 +363,34 @@ private class VertxCoroutineExecutor(val vertxContext: Context, val eventLoop: T
   }
 
   override fun scheduleAtFixedRate(command: Runnable, initialDelay: Long, period: Long, unit: TimeUnit?): ScheduledFuture<*> {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun <V : Any?> schedule(callable: Callable<V>?, delay: Long, unit: TimeUnit?): ScheduledFuture<V> {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun scheduleWithFixedDelay(command: Runnable?, initialDelay: Long, delay: Long, unit: TimeUnit?): ScheduledFuture<*> {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun isTerminated(): Boolean {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun shutdown() {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun shutdownNow(): MutableList<Runnable> {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun isShutdown(): Boolean {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 
   override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
-    TODO("should not be called")
+    throw UnsupportedOperationException("should not be called")
   }
 }
