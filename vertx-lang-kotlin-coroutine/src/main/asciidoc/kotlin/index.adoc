@@ -118,7 +118,7 @@ include::../../kotlin/example/Example.kt[tags=awaitingFuture]
 == Channels
 
 Channels provide a way to transfer a stream of values, Vert.x `ReadStream` and `WriteStream` can be adapted
-to channels with the `toChannel` function.
+to channels with the `toChannel` extensino method.
 
 These adapters take care of managing the back-pressure and the stream termination
 

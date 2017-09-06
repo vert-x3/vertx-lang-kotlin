@@ -334,7 +334,7 @@ class VertxCoroutineTest {
       expected.add(i);
     }
     val readStream : ReadStream<Int> = stream;
-    val channel = toChannel(vertx, readStream, capacity)
+    val channel = readStream.toChannel(vertx, capacity)
     for (i in expected) {
       testContext.assertFalse(stream.writeQueueFull())
       stream.write(i)
@@ -375,7 +375,7 @@ class VertxCoroutineTest {
       expected.add(i);
     }
     val writeStream : WriteStream<Int> = stream;
-    val channel = toChannel(vertx, writeStream, capacity)
+    val channel = writeStream.toChannel(vertx, capacity)
     val received = LinkedList<Int>()
     stream.handler { elt -> received.add(elt) }
     launch(vertx.dispatcher()) {

@@ -134,7 +134,7 @@ class ExampleVerticle : CoroutineVerticle() {
   private suspend fun channel0() {
     // tag::channel0[]
     val stream = vertx.eventBus().consumer<Double>("temperature")
-    val channel = toChannel(vertx, stream)
+    val channel = stream.toChannel(vertx)
 
     var min = Double.MAX_VALUE
     var max = Double.MIN_VALUE
@@ -159,7 +159,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val stream = RecordParser.newDelimited("\r\n", socket)
 
       // Convert the stream to a Kotlin channel
-      val channel = toChannel(vertx, stream)
+      val channel = stream.toChannel(vertx)
 
       // Run the coroutine
       launch(vertx.dispatcher()) {
@@ -258,7 +258,7 @@ class ExampleVerticle : CoroutineVerticle() {
   private suspend fun sendChannel() {
     // tag::sendChannel[]
     val stream = vertx.eventBus().publisher<Double>("temperature")
-    val channel = toChannel(vertx, stream)
+    val channel = stream.toChannel(vertx)
 
     while (true) {
       val temperature = readTemperatureSensor()

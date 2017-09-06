@@ -34,7 +34,7 @@ class EventBusTest {
   fun testUnregister(testContext: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
-    val channel = toChannel(vertx, consumer.bodyStream())
+    val channel = consumer.bodyStream().toChannel(vertx)
     val async = testContext.async()
     launch(vertx.dispatcher()) {
       val list = ArrayList<Int>()
@@ -56,7 +56,7 @@ class EventBusTest {
   fun testUnregister2(testCtx: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
-    val channel = toChannel(vertx, stream = consumer.bodyStream())
+    val channel = consumer.bodyStream().toChannel(vertx)
     val async = testCtx.async()
 
     launch(vertx.dispatcher()) {
@@ -84,7 +84,7 @@ class EventBusTest {
   fun testReply(testContext: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
-    val channel = toChannel(vertx, consumer.bodyStream())
+    val channel = consumer.bodyStream().toChannel(vertx)
     val async = testContext.async()
     bus.consumer<Int>("another-address") { msg ->
       val v = msg.body()

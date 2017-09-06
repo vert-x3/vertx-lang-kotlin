@@ -107,7 +107,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     }
   }
 
-  private val channel : ReceiveChannel<T> = toChannel(context, stream)
+  private val channel : ReceiveChannel<T> = stream.toChannel(context)
   private var handler : Handler<T>? = null
 
   override val isClosedForReceive: Boolean
@@ -168,12 +168,30 @@ fun <T> Deferred<T>.asFuture(): Future<T> {
   return future
 }
 
-fun <T> toChannel(vertx : Vertx, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
-  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+/**
+ * Adapts the current read stream to Kotlin [ReceiveChannel].
+ *
+ * The channel can be used to receive the read stream items, the stream is paused when the channel
+ * is full and resumed when the channel is half empty.
+ *
+ * @param vertx the related vertx instance
+ * @param capacity the channel buffering capacity
+ */
+fun <T> ReadStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : ReceiveChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
-fun <T> toChannel(context : Context, stream : ReadStream<T>, capacity : Int = 256) : ReceiveChannel<T> {
-  val ret = ChannelReadStream(context, stream, capacity)
+/**
+ * Adapts the current read stream to Kotlin [ReceiveChannel].
+ *
+ * The channel can be used to receive the read stream items, the stream is paused when the channel
+ * is full and resumed when the channel is half empty.
+ *
+ * @param context the vertx context
+ * @param capacity the channel buffering capacity
+ */
+fun <T> ReadStream<T>.toChannel(context : Context, capacity : Int = 256) : ReceiveChannel<T> {
+  val ret = ChannelReadStream(context, this, capacity)
   ret.subscribe()
   return ret
 }
@@ -221,12 +239,30 @@ private class ChannelReadStream<T>(val context: Context,
   }
 }
 
-fun <T> toChannel(vertx : Vertx, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
-  return toChannel(vertx.getOrCreateContext(), stream, capacity)
+/**
+ * Adapts the current write stream to Kotlin [SendChannel].
+ *
+ * The channel can be used to write items, the coroutine is suspended when the stream is full
+ * and resumed when the stream is drained.
+ *
+ * @param vertx the related vertx instance
+ * @param capacity the channel buffering capacity
+ */
+fun <T> WriteStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : SendChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
-fun <T> toChannel(context : Context, stream : WriteStream<T>, capacity : Int = 256) : SendChannel<T> {
-  val ret = ChannelWriteStream(context, stream, capacity)
+/**
+ * Adapts the current write stream to Kotlin [SendChannel].
+ *
+ * The channel can be used to write items, the coroutine is suspended when the stream is full
+ * and resumed when the stream is drained.
+ *
+ * @param context the vertx context
+ * @param capacity the channel buffering capacity
+ */
+fun <T> WriteStream<T>.toChannel(context : Context, capacity : Int = 256) : SendChannel<T> {
+  val ret = ChannelWriteStream(context, this, capacity)
   ret.subscribe()
   return ret
 }
