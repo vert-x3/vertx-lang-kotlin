@@ -107,140 +107,164 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
-    Assert.assertEquals("wibble", res)
-    async.complete()
-  }
-
-  @Test
-  fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
-    Assert.assertEquals("oranges23", res)
-    async.complete()
-  }
-
-  @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
-    Assert.assertEquals("wibble", res)
-    async.complete()
-  }
-
-  @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val res = withTimeout(2000) {
-      asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+  fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
+      Assert.assertEquals("wibble", res)
+      async.complete()
     }
-    testContext.assertEquals("wibble", res)
-    async.complete()
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    try {
-      withTimeout(500) {
-        asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000)
+  fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
+      Assert.assertEquals("oranges23", res)
+      async.complete()
+    }
+  }
+
+  @Test
+  fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
+      Assert.assertEquals("wibble", res)
+      async.complete()
+    }
+  }
+
+  @Test
+  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val res = withTimeout(2000) {
+        asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+      }
+      testContext.assertEquals("wibble", res)
+      async.complete()
+    }
+  }
+
+  @Test
+  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      try {
+        withTimeout(500) {
+          asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000)
+          }
         }
+        testContext.fail()
+      } catch(e: CancellationException) {
+        testContext.assertTrue(Context.isOnEventLoopThread())
+        async.complete()
       }
-      testContext.fail()
-    } catch(e: CancellationException) {
-      testContext.assertTrue(Context.isOnEventLoopThread())
+    }
+  }
+
+  @Test
+  fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
+      Assert.assertNotNull(returned)
+      val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
+      testContext.assertEquals(res, "bananas100")
       async.complete()
     }
   }
 
   @Test
-  fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
-    Assert.assertNotNull(returned)
-    val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
-    testContext.assertEquals(res, "bananas100")
-    async.complete()
+  fun testExecSyncMethodThatFails(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      try {
+        asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
+        testContext.fail("Should throw exception")
+      } catch (e: Exception) {
+        testContext.assertEquals("oranges", e?.message)
+        async.complete()
+      }
+    }
   }
 
   @Test
-  fun testExecSyncMethodThatFails(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    try {
-      asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
-      testContext.fail("Should throw exception")
-    } catch (e: Exception) {
-      testContext.assertEquals("oranges", e?.message)
+  fun testReceiveEvent(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val start = System.currentTimeMillis()
+      val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }
+      val end = System.currentTimeMillis()
+      Assert.assertTrue(end - start >= 500)
+      Assert.assertTrue(tid >= 0)
       async.complete()
     }
   }
 
   @Test
-  fun testReceiveEvent(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val start = System.currentTimeMillis()
-    val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }
-    val end = System.currentTimeMillis()
-    Assert.assertTrue(end - start >= 500)
-    Assert.assertTrue(tid >= 0)
-    async.complete()
+  fun testReceiveEventTimeout(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      try {
+        withTimeout(250) {
+          asyncEvent<Long> { h -> vertx.setTimer(500, h) }
+        }
+        Assert.fail()
+      } catch (e: CancellationException) {
+        testContext.assertTrue(Context.isOnEventLoopThread())
+        async.complete()
+      }
+    }
   }
 
   @Test
-  fun testReceiveEventTimeout(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    try {
-      withTimeout(250) {
-        asyncEvent<Long> { h -> vertx.setTimer(500, h) }
-      }
-      Assert.fail()
-    } catch (e: CancellationException) {
-      testContext.assertTrue(Context.isOnEventLoopThread())
+  fun testReceiveEventNoTimeout(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val start = System.currentTimeMillis()
+      val tid = withTimeout(1000L) {
+        asyncEvent<Long>() { h -> vertx.setTimer(500, h) }    }
+      val end = System.currentTimeMillis()
+      Assert.assertTrue(end - start >= 500)
+      if (tid is Long) Assert.assertTrue(tid >= 0)
+      else Assert.fail("can not cast tid type")
       async.complete()
     }
   }
 
   @Test
-  fun testReceiveEventNoTimeout(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val start = System.currentTimeMillis()
-    val tid = withTimeout(1000L) {
-      asyncEvent<Long>() { h -> vertx.setTimer(500, h) }    }
-    val end = System.currentTimeMillis()
-    Assert.assertTrue(end - start >= 500)
-    if (tid is Long) Assert.assertTrue(tid >= 0)
-    else Assert.fail("can not cast tid type")
-    async.complete()
-  }
-
-  @Test
-  fun testEventMethodFailure(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val cause = RuntimeException()
-    try {
-      asyncEvent<Any> { h -> throw cause }
-      testContext.fail()
-    } catch(e: Exception) {
-      testContext.assertEquals(cause, e)
-    }
-    async.complete()
-  }
-
-  @Test
-  fun testEventMethodFailureNoTimeout(testContext: TestContext) = vertx.runCoroutine {
-    val async = testContext.async()
-    val cause = RuntimeException()
-    try {
-      withTimeout(1000L) {
-        asyncEvent<Any>() { h -> throw cause }
+  fun testEventMethodFailure(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val cause = RuntimeException()
+      try {
+        asyncEvent<Any> { h -> throw cause }
+        testContext.fail()
+      } catch(e: Exception) {
+        testContext.assertEquals(cause, e)
       }
-      testContext.fail()
-    } catch(e: Exception) {
-      testContext.assertEquals(cause, e)
+      async.complete()
     }
-    async.complete()
+  }
+
+  @Test
+  fun testEventMethodFailureNoTimeout(testContext: TestContext) {
+    vertx.runCoroutine {
+      val async = testContext.async()
+      val cause = RuntimeException()
+      try {
+        withTimeout(1000L) {
+          asyncEvent<Any>() { h -> throw cause }
+        }
+        testContext.fail()
+      } catch(e: Exception) {
+        testContext.assertEquals(cause, e)
+      }
+      async.complete()
+    }
   }
 
   @Test
