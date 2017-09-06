@@ -59,13 +59,9 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  */
 suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
   return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
-    try {
-      block.invoke(Handler { t ->
-        cont.resume(t)
-      })
-    } catch(t: Throwable) {
-      cont.resumeWithException(t)
-    }
+    block.invoke(Handler { t ->
+      cont.resume(t)
+    })
   }
 }
 

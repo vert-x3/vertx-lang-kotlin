@@ -197,6 +197,20 @@ class VertxCoroutineTest {
   }
 
   @Test
+  fun testExecSyncMethodThatThrowsException(testContext: TestContext) {
+    vertx.launch {
+      val async = testContext.async()
+      try {
+        awaitResult<String> { h -> ai.methodThatThrowsException("oranges", h) }
+        testContext.fail("Should throw exception")
+      } catch (e: Exception) {
+        testContext.assertEquals("ouch", e?.message)
+        async.complete()
+      }
+    }
+  }
+
+  @Test
   fun testExecSyncMethodThatCompleteTwice(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async(2)

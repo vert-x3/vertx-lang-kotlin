@@ -1,6 +1,7 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
+import java.lang.RuntimeException
 
 /**
  * Created by stream.
@@ -27,6 +28,8 @@ interface AsyncInterface {
   fun methodWithParamsAndHandlerInterface(foo: String, bar: Long, resultHandler: Handler<AsyncResult<ReturnedInterface>>)
 
   fun methodThatFails(foo: String, resultHandler: Handler<AsyncResult<String>>)
+
+  fun methodThatThrowsException(foo: String, resultHandler: Handler<AsyncResult<String>>)
 
   fun methodWithNoParamsAndHandlerWithReturnTimeout(resultHandler: Handler<AsyncResult<String>>, timeout: Long): String
 }
@@ -67,6 +70,10 @@ class AsyncInterfaceImpl(private val vertx: Vertx) : AsyncInterface {
 
   override fun methodThatFails(foo: String, resultHandler: Handler<AsyncResult<String>>) {
     vertx.runOnContext { resultHandler.handle(Future.failedFuture<String>(VertxException(foo))) }
+  }
+
+  override fun methodThatThrowsException(foo: String, resultHandler: Handler<AsyncResult<String>>) {
+    throw RuntimeException("ouch")
   }
 
   override fun methodWithNoParamsAndHandlerWithReturnTimeout(resultHandler: Handler<AsyncResult<String>>, timeout: Long): String {
