@@ -34,7 +34,7 @@ class CoroutineContextTest {
   @Test
   fun testNoContext(testContext: TestContext) {
     val async = testContext.async()
-    vertx.runCoroutine {
+    vertx.launch {
       runTest(testContext)
       async.complete()
     }
@@ -45,7 +45,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     val ctx = vertx.getOrCreateContext()
     ctx.runOnContext {
-      vertx.runCoroutine {
+      vertx.launch {
         runTest(testContext)
         async.complete()
       }
@@ -57,7 +57,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        vertx.runCoroutine {
+        vertx.launch {
           runTest(testContext)
         }
       }
@@ -71,7 +71,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        vertx.runCoroutine {
+        vertx.launch {
           runTest(testContext)
         }
       }

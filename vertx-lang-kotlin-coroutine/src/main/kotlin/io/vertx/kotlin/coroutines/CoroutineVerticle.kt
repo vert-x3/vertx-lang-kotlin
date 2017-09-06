@@ -24,7 +24,7 @@ abstract class CoroutineVerticle : Verticle {
   override fun getVertx(): Vertx = vertxInstance
 
   override fun start(startFuture: Future<Void>?) {
-    context.runCoroutine {
+    context.launch {
       try {
         start()
         startFuture?.complete()
@@ -35,7 +35,7 @@ abstract class CoroutineVerticle : Verticle {
   }
 
   override fun stop(stopFuture: Future<Void>?) {
-    context.runCoroutine {
+    context.launch {
       try {
         stop()
         stopFuture?.complete()

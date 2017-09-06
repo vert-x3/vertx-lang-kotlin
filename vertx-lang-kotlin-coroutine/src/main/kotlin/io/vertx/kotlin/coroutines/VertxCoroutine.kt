@@ -20,11 +20,17 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 
 /**
- * Convert a standard handler to a handler which runs on a coroutine.
- * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ * Launches a new coroutine on the current Vert.x context and returns a reference to the
+ * coroutine as a [Job].
+ *
+ * Pretty much like [kotlinx.coroutines.experimental.launch] using the current Vert.x context as coroutine context.
+ *
+ * This is necessary if you want to do coroutine synchronous operation in your handler
+ *
+ * @param block the coroutine code
  */
-fun Vertx.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  getOrCreateContext().runCoroutine(block)
+fun Vertx.launch(block: suspend CoroutineScope.() -> Unit) : Job {
+  return getOrCreateContext().launch(block)
 }
 
 /**
@@ -182,7 +188,7 @@ private class ChannelReadStream<T>(val context: Context,
       close(err)
     }
     stream.handler { event ->
-      context.runCoroutine {
+      context.launch {
         send(event)
       }
     }
@@ -225,7 +231,7 @@ private class ChannelWriteStream<T>(val context: Context,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
-    context.runCoroutine {
+    context.launch {
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
@@ -256,11 +262,17 @@ private class ChannelWriteStream<T>(val context: Context,
 }
 
 /**
- * Convert a standard handler to a handler which runs on a coroutine.
- * This is necessary if you want to do fiber blocking synchronous operation in your handler
+ * Launches a new coroutine on the this Vert.x context and returns a reference to the
+ * coroutine as a [Job].
+ *
+ * Pretty much like [kotlinx.coroutines.experimental.Launch] using the this Vert.x context as coroutine context.
+ *
+ * This is necessary if you want to do coroutine synchronous operation in your handler
+ *
+ * @param block the coroutine code
  */
-fun Context.runCoroutine(block: suspend CoroutineScope.() -> Unit) {
-  launch(coroutineContext()) {
+fun Context.launch(block: suspend CoroutineScope.() -> Unit) : Job {
+  return launch(coroutineContext()) {
     try {
       block()
     } catch (e: CancellationException) {

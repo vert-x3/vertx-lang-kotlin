@@ -2,24 +2,19 @@ package example
 
 import io.vertx.core.*
 import io.vertx.core.buffer.Buffer
-import io.vertx.core.eventbus.EventBus
 import io.vertx.core.eventbus.Message
-import io.vertx.core.eventbus.MessageConsumer
 import io.vertx.core.eventbus.MessageProducer
-import io.vertx.core.http.HttpClient
 import io.vertx.core.http.HttpServer
-import io.vertx.core.http.WebSocket
 import io.vertx.core.parsetools.RecordParser
-import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.*
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 
-// tag::runCoroutineExample[]
-fun runCoroutineExample() {
+// tag::launchCoroutineExample[]
+fun launchCoroutineExample() {
   val vertx = Vertx.vertx()
   vertx.deployVerticle(ExampleVerticle())
 
-  vertx.runCoroutine {
+  vertx.launch {
     val timerId = asyncEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
@@ -109,7 +104,7 @@ class ExampleVerticle : CoroutineVerticle() {
   // tag::handlerAndCoroutine[]
   private fun handlerAndCoroutineExample() {
     vertx.createHttpServer().requestHandler { req ->
-      vertx.runCoroutine {
+      vertx.launch {
         val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
@@ -148,7 +143,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val channel = toChannel(vertx, stream)
 
       // Run the coroutine
-      vertx.runCoroutine {
+      vertx.launch {
 
         // Receive the request-line
         // Non-blocking

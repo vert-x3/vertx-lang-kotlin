@@ -11,6 +11,7 @@ import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.CancellationException
+import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.withTimeout
 import org.junit.Assert
 import org.junit.Before
@@ -55,8 +56,8 @@ class VertxCoroutineTest {
 
   @Test
   fun testSleep(testContext: TestContext) {
-    val async = testContext.async()
-    vertx.runCoroutine {
+    val async = testContext.async(2)
+    val job : Job = vertx.launch {
       val th = Thread.currentThread()
       val cnt = AtomicInteger()
       val periodicTimer = vertx.periodicStream(1L).handler {
@@ -68,7 +69,10 @@ class VertxCoroutineTest {
       Assert.assertTrue(cnt.get() > 900)
       Assert.assertSame(Thread.currentThread(), th)
       periodicTimer.cancel()
-      async.complete()
+      async.countDown()
+    }
+    job.invokeOnCompletion {
+      async.countDown()
     }
   }
 
@@ -77,7 +81,7 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
     server.requestHandler({ req ->
-      vertx.runCoroutine {
+      vertx.launch {
         val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
         Assert.assertEquals("oranges23", res)
         req.response().end()
@@ -98,7 +102,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithParamsAndHandlerNoReturn(testContext: TestContext) {
     val async = testContext.async()
     val th = Thread.currentThread()
-    vertx.runCoroutine {
+    vertx.launch {
       val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
       Assert.assertSame(Thread.currentThread(), th)
@@ -108,7 +112,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
       Assert.assertEquals("wibble", res)
@@ -118,7 +122,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
@@ -128,7 +132,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
       Assert.assertEquals("wibble", res)
@@ -138,7 +142,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val res = withTimeout(2000) {
         asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
@@ -150,7 +154,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       try {
         withTimeout(500) {
@@ -167,7 +171,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
       Assert.assertNotNull(returned)
@@ -179,7 +183,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodThatFails(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       try {
         asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
@@ -193,7 +197,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEvent(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }
@@ -206,7 +210,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEventTimeout(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       try {
         withTimeout(250) {
@@ -222,7 +226,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEventNoTimeout(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = withTimeout(1000L) {
@@ -237,7 +241,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testEventMethodFailure(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -252,7 +256,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testEventMethodFailureNoTimeout(testContext: TestContext) {
-    vertx.runCoroutine {
+    vertx.launch {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -283,7 +287,7 @@ class VertxCoroutineTest {
     }
     assertTrue(stream.writeQueueFull());
     val list = LinkedList<Int>()
-    vertx.runCoroutine {
+    vertx.launch {
       for (item in channel) {
         list.add(item)
         testContext.assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
@@ -297,7 +301,7 @@ class VertxCoroutineTest {
     stream.write(-2)
     stream.end()
     val ended = AtomicBoolean()
-    vertx.runCoroutine {
+    vertx.launch {
       var count = -1
       for (item in channel) {
         assertEquals(count--, item);
@@ -320,7 +324,7 @@ class VertxCoroutineTest {
     val channel = toChannel(vertx, writeStream, capacity)
     val received = LinkedList<Int>()
     stream.handler { elt -> received.add(elt) }
-    vertx.runCoroutine {
+    vertx.launch {
       for (elt in expected) {
         channel.send(elt)
         assertFalse(channel.isFull)
@@ -331,7 +335,7 @@ class VertxCoroutineTest {
     stream.pause()
     val async = testContext.async()
     var foo = false
-    vertx.runCoroutine {
+    vertx.launch {
       for (elt in expected) {
         channel.send(elt)
         testContext.assertFalse(channel.isFull)
@@ -346,7 +350,7 @@ class VertxCoroutineTest {
     stream.resume()
     testContext.assertTrue(foo)
     testContext.assertEquals(listOf(0, 1, 2, 3, 4), received)
-    vertx.runCoroutine {
+    vertx.launch {
       channel.send(5)
     }
     testContext.assertEquals(listOf(0, 1, 2, 3, 4, 5), received)
@@ -374,7 +378,7 @@ class VertxCoroutineTest {
       eb.send(ADDRESS1, "wibble")
       eb.send(ADDRESS2, "flibble")
     }
-    vertx.runCoroutine {
+    vertx.launch {
       for (i in 0..9) {
         val received1 = adaptor1.receive()
         Assert.assertEquals("wibble", received1.body())

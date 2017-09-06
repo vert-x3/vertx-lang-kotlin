@@ -1,6 +1,5 @@
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.MultiMap
 import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.parsetools.RecordParser
@@ -41,7 +40,7 @@ class HttpParserTest {
     val server = vertx.createNetServer().connectHandler { so ->
       val recordParser = RecordParser.newDelimited("\r\n", so)
       val channel = toChannel(vertx, recordParser)
-      vertx.runCoroutine {
+      vertx.launch {
         val line = channel.receive().toString()
         val headers = HashMap<String, String>()
         while (true) {

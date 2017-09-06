@@ -35,7 +35,7 @@ class EventBusTest {
     val consumer = bus.consumer<Int>("the-address")
     val channel = toChannel(vertx, consumer.bodyStream())
     val async = testContext.async()
-    vertx.runCoroutine {
+    vertx.launch {
       val list = ArrayList<Int>()
       for (msg in channel) {
         list += msg
@@ -67,7 +67,7 @@ class EventBusTest {
         msg.reply(null)
       }
     }
-    vertx.runCoroutine {
+    vertx.launch {
       var count = 0
       for (msg in channel) {
         val reply = asyncResult<Message<Int?>> {
@@ -94,7 +94,7 @@ class EventBusTest {
     bus.consumer<Int>("the-address") { msg ->
       msg.fail(5, "it-failed")
     }
-    vertx.runCoroutine {
+    vertx.launch {
       try {
         val reply = asyncResult<Message<Int?>> {
           bus.send("the-address", "the-body", it);
