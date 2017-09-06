@@ -82,7 +82,7 @@ class CoroutineContextTest {
 
   suspend fun runTest(testContext: TestContext) {
     val a = AtomicLong()
-    val id = asyncEvent<Long> { handler ->
+    val id = awaitEvent<Long> { handler ->
       a.set(vertx.setTimer(10, handler))
     }
     testContext.assertEquals(id, a.get())

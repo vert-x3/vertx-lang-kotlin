@@ -39,11 +39,26 @@ fun Vertx.launch(block: suspend CoroutineScope.() -> Unit) : Job {
 fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannelHandler(this)
 
 /**
- * Receive a single event from a handler synchronously.
+ * Run an asynchronous [block] and awaits the completion.
+ *
+ * The [block] is executed with a `Handler<T>` argument that shall be called once.
+ *
+ * When the handler is called, `awaitEvent` returns the value that the handler received.
+ *
+ * This future can be passed to Vert.x asynchronous method:
+ *
+ * ```
+ * val s = awaitEvent { handler ->
+ *   server.setTimer(1000, handler)
+ * }
+ * ```
+ *
  * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
+ *
+ * @param block the code to run
  */
-suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
-  return asyncResult { f ->
+suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
+  return awaitResult { f ->
     val fut = Future.future<T>().setHandler(f)
     val adapter : Handler<T> = Handler { t ->
       fut.tryComplete(t)
@@ -57,12 +72,29 @@ suspend fun <T> asyncEvent(block: (h: Handler<T>) -> Unit) : T {
 }
 
 /**
- * Invoke an asynchronous operation and obtain the result synchronous.
- * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
+ * Run an asynchronous [block] and awaits the result.
+ *
+ * The [block] is executed with a `Handler<AsyncResult<T>>` argument that can be completed or failed.
+ *
+ * - on completion `awaitResult` returns the value that completed the future
+ * - on failure `awaitResult` throws the exception that failed the future
+ *
+ * This handler can be passed to Vert.x asynchronous method:
+ *
+ * ```
+ * val s = awaitResult { fut ->
+ *   server.listen(8080, fut)
+ * }
+ * ```
+ *
+ * The coroutine will be blocked until the future is completed or failed, this action do not block vertx's eventLoop.
+ *
+ * @param block the code to run
  */
-suspend fun <T> asyncResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
+suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
   return suspendCancellableCoroutine { cont: Continuation<T> ->
-    block(Handler { asyncResult ->
+    block(Handler {
+      asyncResult ->
       if (asyncResult.succeeded()) cont.resume(asyncResult.result())
       else cont.resumeWithException(asyncResult.cause())
     })

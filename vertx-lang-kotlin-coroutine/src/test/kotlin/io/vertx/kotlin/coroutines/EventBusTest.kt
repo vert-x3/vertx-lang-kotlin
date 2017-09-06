@@ -70,7 +70,7 @@ class EventBusTest {
     vertx.launch {
       var count = 0
       for (msg in channel) {
-        val reply = asyncResult<Message<Int?>> {
+        val reply = awaitResult<Message<Int?>> {
           bus.send("another-address", msg, it);
         }
         val v = reply.body()
@@ -96,7 +96,7 @@ class EventBusTest {
     }
     vertx.launch {
       try {
-        val reply = asyncResult<Message<Int?>> {
+        val reply = awaitResult<Message<Int?>> {
           bus.send("the-address", "the-body", it);
         }
       } catch(e: Exception) {

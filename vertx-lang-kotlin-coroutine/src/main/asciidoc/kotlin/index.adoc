@@ -49,27 +49,38 @@ include::../../kotlin/example/Example.kt[tags=CoroutineVerticle]
 == Getting one-shot asynchronous results
 
 Many asynchronous operations in Vert.x take a `Handler<AsyncResult<T>>` as the last argument.
-An example would be executing an object retrieval using the Vert.x Mongo client, or sending an event bus message then awaiting for a reply.
+An example would be executing an object retrieval using the Vert.x Mongo client, or sending an event bus message then
+awaiting for a reply.
 
-This is done by using the `asyncResult` method which returns deferred value.
+This is done by using the `awaitResult` method which returns the value or throws an exception.
+
 The coroutine is being suspended until the event is being processed, and no kernel thread is being blocked.
 
-The method is executed by specifying the asynchronous operation that needs to be executed in the form of a block that is passed to the handler at run-time.
+The method is executed by specifying the asynchronous operation that needs to be executed in the form of a block that
+is passed to the handler at run-time.
 
 Here is an example:
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=asyncResult]
+include::../../kotlin/example/Example.kt[tags=awaitResult]
+----
+
+When the block produces a failure, the caller can handle it as an exception using the usual exception
+`try`/`catch` constructs:
+
+[source,kotlin,indent=0]
+----
+include::../../kotlin/example/Example.kt[tags=awaitResultFailure]
 ----
 
 == Getting one-shot events
 
-Processing a one-shot event (and not the next occurrences, if any) is done using the `asyncEvent` function:
+Processing a one-shot event (and not the next occurrences, if any) is done using the `awaitEvent` function:
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=asyncEvent]
+include::../../kotlin/example/Example.kt[tags=awaitEvent]
 ----
 
 == Streams of events

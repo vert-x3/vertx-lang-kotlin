@@ -4,6 +4,7 @@ import io.vertx.core.*
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageProducer
+import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.http.HttpServer
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.kotlin.coroutines.*
@@ -15,7 +16,7 @@ fun launchCoroutineExample() {
   vertx.deployVerticle(ExampleVerticle())
 
   vertx.launch {
-    val timerId = asyncEvent<Long> { handler ->
+    val timerId = awaitEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
     println("Event fired from timer with id ${timerId}")
@@ -33,38 +34,55 @@ class MyVerticle : CoroutineVerticle() {
 
 class ExampleVerticle : CoroutineVerticle() {
   suspend override fun start() {
-    asyncEventExample()
-    asyncResultExample()
+    awaitEventExample()
+    awaitResultExample()
     streamExample()
     handlerAndCoroutineExample()
     awaitingFuture()
   }
 
-  // tag::asyncEvent[]
-  private suspend fun asyncEventExample() {
-    val id = asyncEvent<Long> { h -> vertx.setTimer(2000L, h) }
+  // tag::awaitEvent[]
+  private suspend fun awaitEventExample() {
+    val id = awaitEvent<Long> { h -> vertx.setTimer(2000L, h) }
     println("This should be fired in 2s by some time with id=$id")
   }
-  // end::asyncEvent[]
+  // end::awaitEvent[]
 
-  // tag::asyncResult[]
-  private suspend fun asyncResultExample() {
+  // tag::awaitResult[]
+  private suspend fun awaitResultExample() {
     val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
     consumer.handler { message ->
       println("Consumer received: ${message.body()}")
       message.reply("pong")
     }
 
-    // Wait until the consumer has properly registered
-    asyncResult<Void> { h -> consumer.completionHandler(h) }
-
     // Send a message and wait for a reply
-    val reply = asyncResult<Message<String>> { h ->
+    val reply = awaitResult<Message<String>> { h ->
       vertx.eventBus().send("a.b.c", "ping", h)
     }
     println("Reply received: ${reply.body()}")
   }
-  // end::asyncResult[]
+  // end::awaitResult[]
+
+  // tag::awaitResultFailure[]
+  private suspend fun awaitResultFailureExample() {
+    val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
+    consumer.handler { message ->
+      // The consumer will get a failure
+      message.fail(0, "it failed!!!")
+    }
+
+    // Send a message and wait for a reply
+    try {
+      val reply: Message<String> = awaitResult<Message<String>> { h ->
+           vertx.eventBus().send("a.b.c", "ping", h)
+         }
+    } catch(e: ReplyException) {
+      // Handle specific reply exception here
+      println("Reply failure: ${e.message}")
+    }
+  }
+  // end::awaitResultFailure[]
 
   // tag::streamExample[]
   private suspend fun streamExample() {
@@ -105,7 +123,7 @@ class ExampleVerticle : CoroutineVerticle() {
   private fun handlerAndCoroutineExample() {
     vertx.createHttpServer().requestHandler { req ->
       vertx.launch {
-        val timerID = asyncEvent<Long> { h -> vertx.setTimer(2000, h) }
+        val timerID = awaitEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
     }.listen(8081)
@@ -249,7 +267,7 @@ class ExampleVerticle : CoroutineVerticle() {
       channel.send(temperature)
 
       // Wait for one second
-      asyncEvent<Long> { vertx.setTimer(1000, it)  }
+      awaitEvent<Long> { vertx.setTimer(1000, it)  }
     }
     // end::sendChannel[]
   }

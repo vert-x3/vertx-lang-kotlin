@@ -65,7 +65,7 @@ class VertxCoroutineTest {
         cnt.incrementAndGet()
       }
       Assert.assertSame(Thread.currentThread(), th)
-      asyncEvent<Long> { h -> vertx.setTimer(1000L, h) }
+      awaitEvent<Long> { h -> vertx.setTimer(1000L, h) }
       Assert.assertTrue(cnt.get() > 900)
       Assert.assertSame(Thread.currentThread(), th)
       periodicTimer.cancel()
@@ -82,7 +82,7 @@ class VertxCoroutineTest {
     val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
     server.requestHandler({ req ->
       vertx.launch {
-        val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
+        val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
         Assert.assertEquals("oranges23", res)
         req.response().end()
       }
@@ -103,7 +103,7 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val th = Thread.currentThread()
     vertx.launch {
-      val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
+      val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
       Assert.assertSame(Thread.currentThread(), th)
       async.complete()
@@ -114,7 +114,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async()
-      val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
+      val res = awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
       Assert.assertEquals("wibble", res)
       async.complete()
     }
@@ -124,7 +124,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async()
-      val res = asyncResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
+      val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
       async.complete()
     }
@@ -134,7 +134,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async()
-      val res = asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
+      val res = awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
       Assert.assertEquals("wibble", res)
       async.complete()
     }
@@ -145,7 +145,7 @@ class VertxCoroutineTest {
     vertx.launch {
       val async = testContext.async()
       val res = withTimeout(2000) {
-        asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
+        awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
       }
       testContext.assertEquals("wibble", res)
       async.complete()
@@ -158,7 +158,7 @@ class VertxCoroutineTest {
       val async = testContext.async()
       try {
         withTimeout(500) {
-          asyncResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000)
+          awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000)
           }
         }
         testContext.fail()
@@ -173,9 +173,9 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async()
-      val returned = asyncResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
+      val returned = awaitResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
       Assert.assertNotNull(returned)
-      val res = asyncResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
+      val res = awaitResult<String> { h -> returned.methodWithParamsAndHandlerNoReturn("bananas", 100, h) }
       testContext.assertEquals(res, "bananas100")
       async.complete()
     }
@@ -186,7 +186,7 @@ class VertxCoroutineTest {
     vertx.launch {
       val async = testContext.async()
       try {
-        asyncResult<String> { h -> ai.methodThatFails("oranges", h) }
+        awaitResult<String> { h -> ai.methodThatFails("oranges", h) }
         testContext.fail("Should throw exception")
       } catch (e: Exception) {
         testContext.assertEquals("oranges", e?.message)
@@ -200,7 +200,7 @@ class VertxCoroutineTest {
     vertx.launch {
       val async = testContext.async()
       val start = System.currentTimeMillis()
-      val tid = asyncEvent<Long> { h -> vertx.setTimer(500, h) }
+      val tid = awaitEvent<Long> { h -> vertx.setTimer(500, h) }
       val end = System.currentTimeMillis()
       Assert.assertTrue(end - start >= 500)
       Assert.assertTrue(tid >= 0)
@@ -214,7 +214,7 @@ class VertxCoroutineTest {
       val async = testContext.async()
       try {
         withTimeout(250) {
-          asyncEvent<Long> { h -> vertx.setTimer(500, h) }
+          awaitEvent<Long> { h -> vertx.setTimer(500, h) }
         }
         Assert.fail()
       } catch (e: CancellationException) {
@@ -230,7 +230,7 @@ class VertxCoroutineTest {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = withTimeout(1000L) {
-        asyncEvent<Long>() { h -> vertx.setTimer(500, h) }    }
+        awaitEvent<Long>() { h -> vertx.setTimer(500, h) }    }
       val end = System.currentTimeMillis()
       Assert.assertTrue(end - start >= 500)
       if (tid is Long) Assert.assertTrue(tid >= 0)
@@ -245,7 +245,7 @@ class VertxCoroutineTest {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
-        asyncEvent<Any> { h -> throw cause }
+        awaitEvent<Any> { h -> throw cause }
         testContext.fail()
       } catch(e: Exception) {
         testContext.assertEquals(cause, e)
@@ -261,7 +261,7 @@ class VertxCoroutineTest {
       val cause = RuntimeException()
       try {
         withTimeout(1000L) {
-          asyncEvent<Any>() { h -> throw cause }
+          awaitEvent<Any>() { h -> throw cause }
         }
         testContext.fail()
       } catch(e: Exception) {
