@@ -82,8 +82,8 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
  * This handler can be passed to Vert.x asynchronous method:
  *
  * ```
- * val s = awaitResult { fut ->
- *   server.listen(8080, fut)
+ * val s = awaitResult { handler ->
+ *   server.listen(8080, handler)
  * }
  * ```
  *
