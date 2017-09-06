@@ -4,6 +4,7 @@ import io.vertx.core.Context
 import io.vertx.core.Future
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx
+import kotlinx.coroutines.experimental.launch
 
 /**
  * A Verticle which run its start and stop methods in coroutine.
@@ -24,7 +25,7 @@ abstract class CoroutineVerticle : Verticle {
   override fun getVertx(): Vertx = vertxInstance
 
   override fun start(startFuture: Future<Void>?) {
-    context.launch {
+    launch(context.dispatcher()) {
       try {
         start()
         startFuture?.complete()
@@ -35,7 +36,7 @@ abstract class CoroutineVerticle : Verticle {
   }
 
   override fun stop(stopFuture: Future<Void>?) {
-    context.launch {
+    launch(context.dispatcher()) {
       try {
         stop()
         stopFuture?.complete()

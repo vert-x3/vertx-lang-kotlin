@@ -5,6 +5,7 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -40,7 +41,7 @@ class HttpParserTest {
     val server = vertx.createNetServer().connectHandler { so ->
       val recordParser = RecordParser.newDelimited("\r\n", so)
       val channel = toChannel(vertx, recordParser)
-      vertx.launch {
+      launch(vertx.dispatcher()) {
         val line = channel.receive().toString()
         val headers = HashMap<String, String>()
         while (true) {

@@ -9,13 +9,14 @@ import io.vertx.core.http.HttpServer
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.kotlin.coroutines.*
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.experimental.launch
 
 // tag::launchCoroutineExample[]
 fun launchCoroutineExample() {
   val vertx = Vertx.vertx()
   vertx.deployVerticle(ExampleVerticle())
 
-  vertx.launch {
+  launch(vertx.dispatcher()) {
     val timerId = awaitEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
@@ -122,7 +123,7 @@ class ExampleVerticle : CoroutineVerticle() {
   // tag::handlerAndCoroutine[]
   private fun handlerAndCoroutineExample() {
     vertx.createHttpServer().requestHandler { req ->
-      vertx.launch {
+      launch(context.dispatcher()) {
         val timerID = awaitEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
@@ -161,7 +162,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val channel = toChannel(vertx, stream)
 
       // Run the coroutine
-      vertx.launch {
+      launch(vertx.dispatcher()) {
 
         // Receive the request-line
         // Non-blocking

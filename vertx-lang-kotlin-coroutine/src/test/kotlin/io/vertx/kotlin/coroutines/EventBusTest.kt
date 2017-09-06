@@ -6,6 +6,7 @@ import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.eventbus.ReplyFailure
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -35,7 +36,7 @@ class EventBusTest {
     val consumer = bus.consumer<Int>("the-address")
     val channel = toChannel(vertx, consumer.bodyStream())
     val async = testContext.async()
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val list = ArrayList<Int>()
       for (msg in channel) {
         list += msg
@@ -58,7 +59,7 @@ class EventBusTest {
     val channel = toChannel(vertx, stream = consumer.bodyStream())
     val async = testCtx.async()
 
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val list = mutableListOf<Int>()
 
       println("Processing messages in channel...")
@@ -95,7 +96,7 @@ class EventBusTest {
         msg.reply(null)
       }
     }
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       var count = 0
       for (msg in channel) {
         val reply = awaitResult<Message<Int?>> {
@@ -122,7 +123,7 @@ class EventBusTest {
     bus.consumer<Int>("the-address") { msg ->
       msg.fail(5, "it-failed")
     }
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       try {
         val reply = awaitResult<Message<Int?>> {
           bus.send("the-address", "the-body", it);

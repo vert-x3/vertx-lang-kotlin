@@ -5,33 +5,16 @@ import io.vertx.core.Future
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.channels.*
 import kotlinx.coroutines.experimental.selects.SelectInstance
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.coroutines.experimental.Continuation
-import kotlin.coroutines.experimental.CoroutineContext
 
 /**
  * Created by stream.
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  * @author [Julien Ponge](https://julien.ponge.org/)
  */
-
-/**
- * Launches a new coroutine on the current Vert.x context and returns a reference to the
- * coroutine as a [Job].
- *
- * Pretty much like [kotlinx.coroutines.experimental.launch] using the current Vert.x context as coroutine context.
- *
- * This is necessary if you want to do coroutine synchronous operation in your handler
- *
- * @param block the coroutine code
- */
-fun Vertx.launch(block: suspend CoroutineScope.() -> Unit) : Job {
-  return getOrCreateContext().launch(block)
-}
 
 /**
  * Create a `ReceiveChannelHandler` of some type `T`.
@@ -210,7 +193,7 @@ private class ChannelReadStream<T>(val context: Context,
       close(err)
     }
     stream.handler { event ->
-      context.launch {
+      launch(context.dispatcher()) {
         send(event)
       }
     }
@@ -253,7 +236,7 @@ private class ChannelWriteStream<T>(val context: Context,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
-    context.launch {
+    launch(context.dispatcher()) {
       while (true) {
         val elt = receiveOrNull()
         if (stream.writeQueueFull()) {
@@ -284,28 +267,30 @@ private class ChannelWriteStream<T>(val context: Context,
 }
 
 /**
- * Launches a new coroutine on the this Vert.x context and returns a reference to the
- * coroutine as a [Job].
+ * Returns a coroutine dispatcher for the current Vert.x context.
  *
- * Pretty much like [kotlinx.coroutines.experimental.Launch] using the this Vert.x context as coroutine context.
+ * It uses the Vert.x context event loop.
  *
  * This is necessary if you want to do coroutine synchronous operation in your handler
  *
  * @param block the coroutine code
  */
-fun Context.launch(block: suspend CoroutineScope.() -> Unit) : Job {
-  return launch(coroutineContext()) {
-    try {
-      block()
-    } catch (e: CancellationException) {
-      //skip this exception for coroutine cancel
-    }
-  }
+fun Vertx.dispatcher() : CoroutineDispatcher {
+  return getOrCreateContext().dispatcher()
 }
 
-fun Context.coroutineContext() : CoroutineContext {
+/**
+ * Returns a coroutine dispatcher for this context.
+ *
+ * It uses the Vert.x context event loop.
+ *
+ * This is necessary if you want to do coroutine synchronous operation in your handler
+ *
+ * @param block the coroutine code
+ */
+fun Context.dispatcher() : CoroutineDispatcher {
   require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
-  return VertxCoroutineDispatcher(this, Thread.currentThread()).asCoroutineDispatcher()
+  return VertxCoroutineExecutor(this, Thread.currentThread()).asCoroutineDispatcher()
 }
 
 private class VertxScheduledFuture(
@@ -361,7 +346,7 @@ private class VertxScheduledFuture(
   }
 }
 
-private class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
+private class VertxCoroutineExecutor(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
 
   override fun execute(command: Runnable) {
     if (Thread.currentThread() !== eventLoop) {

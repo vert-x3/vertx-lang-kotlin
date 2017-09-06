@@ -13,6 +13,7 @@ import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withTimeout
 import org.junit.Assert
 import org.junit.Before
@@ -58,7 +59,7 @@ class VertxCoroutineTest {
   @Test
   fun testSleep(testContext: TestContext) {
     val async = testContext.async(2)
-    val job : Job = vertx.launch {
+    val job : Job = launch(vertx.dispatcher()) {
       val th = Thread.currentThread()
       val cnt = AtomicInteger()
       val periodicTimer = vertx.periodicStream(1L).handler {
@@ -82,7 +83,7 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
     server.requestHandler({ req ->
-      vertx.launch {
+      launch(vertx.dispatcher()) {
         val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
         Assert.assertEquals("oranges23", res)
         req.response().end()
@@ -103,7 +104,7 @@ class VertxCoroutineTest {
   fun testExecSyncMethodWithParamsAndHandlerNoReturn(testContext: TestContext) {
     val async = testContext.async()
     val th = Thread.currentThread()
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerNoReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
       Assert.assertSame(Thread.currentThread(), th)
@@ -113,7 +114,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerNoReturn(h) }
       Assert.assertEquals("wibble", res)
@@ -123,7 +124,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { h -> ai.methodWithParamsAndHandlerWithReturn("oranges", 23, h) }
       Assert.assertEquals("oranges23", res)
@@ -133,7 +134,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturn(h) }
       Assert.assertEquals("wibble", res)
@@ -143,7 +144,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = withTimeout(2000) {
         awaitResult<String> { h -> ai.methodWithNoParamsAndHandlerWithReturnTimeout(h, 1000) }
@@ -155,7 +156,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         withTimeout(500) {
@@ -172,7 +173,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val returned = awaitResult<ReturnedInterface> { h -> ai.methodWithParamsAndHandlerInterface("apples", 123, h) }
       Assert.assertNotNull(returned)
@@ -184,7 +185,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodThatFails(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         awaitResult<String> { h -> ai.methodThatFails("oranges", h) }
@@ -198,7 +199,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodThatThrowsException(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         awaitResult<String> { h -> ai.methodThatThrowsException("oranges", h) }
@@ -212,7 +213,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testExecSyncMethodThatCompleteTwice(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async(2)
       val v = awaitResult<String> { h ->
         vertx.runOnContext {
@@ -231,7 +232,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEvent(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = awaitEvent<Long> { h -> vertx.setTimer(500, h) }
@@ -244,7 +245,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEventTimeout(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         withTimeout(250) {
@@ -260,7 +261,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEventNoTimeout(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = withTimeout(1000L) {
@@ -275,7 +276,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testEventMethodFailure(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -290,7 +291,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testEventMethodFailureNoTimeout(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -307,7 +308,7 @@ class VertxCoroutineTest {
 
   @Test
   fun testReceiveEventTwice(testContext: TestContext) {
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       val async = testContext.async(2)
       val v = awaitEvent<String> { h ->
         vertx.runOnContext {
@@ -340,7 +341,7 @@ class VertxCoroutineTest {
     }
     assertTrue(stream.writeQueueFull());
     val list = LinkedList<Int>()
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       for (item in channel) {
         list.add(item)
         testContext.assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
@@ -354,7 +355,7 @@ class VertxCoroutineTest {
     stream.write(-2)
     stream.end()
     val ended = AtomicBoolean()
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       var count = -1
       for (item in channel) {
         assertEquals(count--, item);
@@ -377,7 +378,7 @@ class VertxCoroutineTest {
     val channel = toChannel(vertx, writeStream, capacity)
     val received = LinkedList<Int>()
     stream.handler { elt -> received.add(elt) }
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       for (elt in expected) {
         channel.send(elt)
         assertFalse(channel.isFull)
@@ -388,7 +389,7 @@ class VertxCoroutineTest {
     stream.pause()
     val async = testContext.async()
     var foo = false
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       for (elt in expected) {
         channel.send(elt)
         testContext.assertFalse(channel.isFull)
@@ -403,7 +404,7 @@ class VertxCoroutineTest {
     stream.resume()
     testContext.assertTrue(foo)
     testContext.assertEquals(listOf(0, 1, 2, 3, 4), received)
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       channel.send(5)
     }
     testContext.assertEquals(listOf(0, 1, 2, 3, 4, 5), received)
@@ -431,7 +432,7 @@ class VertxCoroutineTest {
       eb.send(ADDRESS1, "wibble")
       eb.send(ADDRESS2, "flibble")
     }
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       for (i in 0..9) {
         val received1 = adaptor1.receive()
         Assert.assertEquals("wibble", received1.body())

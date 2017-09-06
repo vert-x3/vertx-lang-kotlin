@@ -26,14 +26,16 @@ NOTE: `vertx-lang-kotlin-coroutine` currently only works with Kotlin.
 
 == Running a coroutine from a Vert.x context
 
-Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `launch` extension method allows running a block of code as a coroutine that can be suspended:
+Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `launch` method allows running a block of code as a coroutine that can be suspended:
 
 [source,kotlin,indent=0]
 ----
 include::../../kotlin/example/Example.kt[tags=launchCoroutineExample]
 ----
 
-The `asyncEvent` function suspends the execution of the coroutine until the timer fires and returns the value that was given to the handler.
+The `vertx.dispatcher()` returns a coroutine dispatcher that runs coroutines using the Vert.x event loop.
+
+The `awaitEvent` function suspends the execution of the coroutine until the timer fires and returns the value that was given to the handler.
 More details are given in the next sections on handlers, events and stream of events.
 
 == Extending CoroutineVerticle

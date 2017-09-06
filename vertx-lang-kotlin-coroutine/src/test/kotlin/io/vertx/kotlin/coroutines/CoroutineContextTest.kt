@@ -5,6 +5,7 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -34,7 +35,7 @@ class CoroutineContextTest {
   @Test
   fun testNoContext(testContext: TestContext) {
     val async = testContext.async()
-    vertx.launch {
+    launch(vertx.dispatcher()) {
       runTest(testContext)
       async.complete()
     }
@@ -45,7 +46,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     val ctx = vertx.getOrCreateContext()
     ctx.runOnContext {
-      vertx.launch {
+      launch(vertx.dispatcher()) {
         runTest(testContext)
         async.complete()
       }
@@ -57,7 +58,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        vertx.launch {
+        launch(vertx.dispatcher()) {
           runTest(testContext)
         }
       }
@@ -71,7 +72,7 @@ class CoroutineContextTest {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        vertx.launch {
+        launch(vertx.dispatcher()) {
           runTest(testContext)
         }
       }
