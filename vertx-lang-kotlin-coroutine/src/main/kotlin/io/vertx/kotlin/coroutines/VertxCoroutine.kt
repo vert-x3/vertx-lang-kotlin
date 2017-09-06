@@ -322,19 +322,14 @@ private class VertxScheduledFuture(
     val vertxContext: Context,
     val task : Runnable,
     val delay: Long,
-    val unit: TimeUnit,
-    val periodic : Boolean) : ScheduledFuture<Any>, Handler<Long> {
+    val unit: TimeUnit) : ScheduledFuture<Any>, Handler<Long> {
 
   val done = AtomicInteger(0)
   var id : Long? = null
 
   fun schedule() {
     val owner = vertxContext.owner()
-    if (periodic) {
-      id = owner.setTimer(unit.toMillis(delay), this)
-    } else {
-      id = owner.setPeriodic(unit.toMillis(delay), this)
-    }
+    id = owner.setTimer(unit.toMillis(delay), this)
   }
 
   override fun get(): Any? {
@@ -367,12 +362,12 @@ private class VertxScheduledFuture(
     return done.get() == 2
   }
 
-  override fun getDelay(unit: TimeUnit?): Long {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  override fun getDelay(u: TimeUnit): Long {
+    return u.convert(unit.toNanos(delay), TimeUnit.NANOSECONDS)
   }
 
-  override fun compareTo(other: Delayed?): Int {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+  override fun compareTo(other: Delayed): Int {
+    return getDelay(TimeUnit.NANOSECONDS).compareTo(other.getDelay(TimeUnit.NANOSECONDS))
   }
 }
 
@@ -387,40 +382,40 @@ private class VertxCoroutineDispatcher(val vertxContext: Context, val eventLoop:
   }
 
   override fun schedule(command: Runnable, delay: Long, unit: TimeUnit): ScheduledFuture<*> {
-    val t = VertxScheduledFuture(vertxContext, command, delay, unit, false)
+    val t = VertxScheduledFuture(vertxContext, command, delay, unit)
     t.schedule()
     return t
   }
 
   override fun scheduleAtFixedRate(command: Runnable, initialDelay: Long, period: Long, unit: TimeUnit?): ScheduledFuture<*> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun <V : Any?> schedule(callable: Callable<V>?, delay: Long, unit: TimeUnit?): ScheduledFuture<V> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun scheduleWithFixedDelay(command: Runnable?, initialDelay: Long, delay: Long, unit: TimeUnit?): ScheduledFuture<*> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun isTerminated(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun shutdown() {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun shutdownNow(): MutableList<Runnable> {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun isShutdown(): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 
   override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
-    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    TODO("should not be called")
   }
 }
