@@ -52,6 +52,34 @@ class EventBusTest {
   }
 
   @Test
+  fun testUnregister2(testCtx: TestContext) {
+    val bus = vertx.eventBus()
+    val consumer = bus.consumer<Int>("the-address")
+    val channel = toChannel(vertx, stream = consumer.bodyStream())
+    val async = testCtx.async()
+
+    vertx.launch {
+      val list = mutableListOf<Int>()
+
+      println("Processing messages in channel...")
+      for (msg in channel) list += msg
+      println("List: $list")
+      testCtx.assertEquals(listOf(0, 1, 2, 3, 4), list)
+    }
+    (0..4).forEachIndexed { index, _ ->
+      bus.send("the-address", index)
+    }
+    vertx.setTimer(50L) {
+      consumer.unregister()
+      println("Unregistered consumer.")
+    }
+    async.complete()
+    println(Thread.currentThread())
+    Thread.sleep(1000)
+    if (consumer.isRegistered) testCtx.fail("Consumer didn't get unregistered.")
+  }
+
+  @Test
   fun testReply(testContext: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")

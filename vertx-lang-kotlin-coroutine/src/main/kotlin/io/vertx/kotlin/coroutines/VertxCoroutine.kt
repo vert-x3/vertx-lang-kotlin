@@ -86,13 +86,9 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
  * @param block the code to run
  */
 suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
-  return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
-    block(Handler {
-      asyncResult ->
-      if (asyncResult.succeeded()) cont.resume(asyncResult.result())
-      else cont.resumeWithException(asyncResult.cause())
-    })
-  }
+  val asyncResult = awaitEvent(block)
+  if (asyncResult.succeeded()) return asyncResult.result()
+  else throw asyncResult.cause()
 }
 
 /**
