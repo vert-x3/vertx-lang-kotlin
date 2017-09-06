@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicReference
  */
 
 /**
- * Create a `ReceiveChannelHandler` of some type `T`.
+ * Create a [ReceiveChannelHandler] of some type `T`.
  */
 fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannelHandler(this)
 
