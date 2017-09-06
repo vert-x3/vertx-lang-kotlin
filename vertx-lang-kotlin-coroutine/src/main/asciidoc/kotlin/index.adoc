@@ -14,7 +14,7 @@ Asynchronous APIs can take various forms including callbacks, promises, fibers o
 Vert.x uses the callback style for the core APIs but it also supports other models like RxJava 1 and 2.
 
 In some cases, programming using asynchronous APIs can be more challenging than using a classic / sequential style of code, in
-particular with several operations need to be completion in sequence.
+particular with several operations need to be done in sequence.
 Also, error propagation is often more complex when using asynchronous APIs.
 
 `vertx-lang-kotlin-coroutine` uses _coroutines_.
