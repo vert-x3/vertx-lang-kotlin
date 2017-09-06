@@ -274,7 +274,7 @@ blocking APIs safely within a Vert.x application.
 As discussed before, you can't call blocking operations directly from an event loop, as that would prevent it
 from doing any other useful work. So how can you do this?
 
-It's done by calling `link:../../apidocs/io/vertx/core/Vertx.html#executeBlocking-io.vertx.core.Handler-boolean-io.vertx.core.Handler-[executeBlocking]` specifying both the blocking code to execute and a
+It's completion by calling `link:../../apidocs/io/vertx/core/Vertx.html#executeBlocking-io.vertx.core.Handler-boolean-io.vertx.core.Handler-[executeBlocking]` specifying both the blocking code to execute and a
 result handler to be called back asynchronous when the blocking code has been executed.
 
 [source,kotlin]
@@ -1342,7 +1342,7 @@ In Vert.x a cluster manager is used for various functions including:
 * Distributed Locks
 * Distributed Counters
 
-Cluster managers _do not_ handle the event bus inter-node transport, this is done directly by Vert.x with TCP connections.
+Cluster managers _do not_ handle the event bus inter-node transport, this is completion directly by Vert.x with TCP connections.
 
 The default cluster manager used in the Vert.x distributions is one that uses http://hazelcast.com[Hazelcast] but this
 can be easily replaced by a different implementation as Vert.x cluster managers are pluggable.

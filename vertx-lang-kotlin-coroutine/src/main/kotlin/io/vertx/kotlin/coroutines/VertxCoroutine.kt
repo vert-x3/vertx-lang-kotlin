@@ -8,7 +8,7 @@ import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.*
 import kotlinx.coroutines.experimental.selects.SelectInstance
 import java.util.concurrent.*
-import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 
 /**
  * Created by stream.
@@ -335,7 +335,10 @@ private class VertxScheduledFuture(
     val delay: Long,
     val unit: TimeUnit) : ScheduledFuture<Any>, Handler<Long> {
 
-  val done = AtomicInteger(0)
+  // pending : null (no completion)
+  // done : true
+  // cancelled : false
+  val completion = AtomicReference<Boolean?>()
   var id : Long? = null
 
   fun schedule() {
@@ -352,17 +355,17 @@ private class VertxScheduledFuture(
   }
 
   override fun isCancelled(): Boolean {
-    return done.get() == 1
+    return completion.get() == false
   }
 
   override fun handle(event: Long?) {
-    if (done.compareAndSet(0, 2)) {
+    if (completion.compareAndSet(null, true)) {
       task.run()
     }
   }
 
   override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
-    if (done.compareAndSet(0, 1)) {
+    if (completion.compareAndSet(null, false)) {
       return vertxContext.owner().cancelTimer(id!!)
     } else {
       return false;
@@ -370,7 +373,7 @@ private class VertxScheduledFuture(
   }
 
   override fun isDone(): Boolean {
-    return done.get() == 2
+    return completion.get() == true
   }
 
   override fun getDelay(u: TimeUnit): Long {

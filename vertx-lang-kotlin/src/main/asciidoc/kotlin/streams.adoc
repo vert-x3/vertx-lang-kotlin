@@ -96,7 +96,7 @@ server.connectHandler({ sock ->
     sock.write(buffer)
     if (sock.writeQueueFull()) {
       sock.pause()
-      sock.drainHandler({ done ->
+      sock.drainHandler({ completion ->
         sock.resume()
       })
     }

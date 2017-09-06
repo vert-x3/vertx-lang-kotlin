@@ -14,7 +14,7 @@ Asynchronous APIs can take various forms including callbacks, promises, fibers o
 Vert.x uses the callback style for the core APIs but it also supports other models like RxJava 1 and 2.
 
 In some cases, programming using asynchronous APIs can be more challenging than using a classic / sequential style of code, in
-particular with several operations need to be done in sequence.
+particular with several operations need to be completion in sequence.
 Also, error propagation is often more complex when using asynchronous APIs.
 
 `vertx-lang-kotlin-coroutine` uses _coroutines_.
@@ -54,7 +54,7 @@ Many asynchronous operations in Vert.x take a `Handler<AsyncResult<T>>` as the l
 An example would be executing an object retrieval using the Vert.x Mongo client, or sending an event bus message then
 awaiting for a reply.
 
-This is done by using the `awaitResult` method which returns the value or throws an exception.
+This is completion by using the `awaitResult` method which returns the value or throws an exception.
 
 The coroutine is being suspended until the event is being processed, and no kernel thread is being blocked.
 
@@ -78,7 +78,7 @@ include::../../kotlin/example/Example.kt[tags=awaitResultFailure]
 
 == Getting one-shot events
 
-Processing a one-shot event (and not the next occurrences, if any) is done using the `awaitEvent` function:
+Processing a one-shot event (and not the next occurrences, if any) is completion using the `awaitEvent` function:
 
 [source,kotlin,indent=0]
 ----
