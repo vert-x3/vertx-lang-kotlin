@@ -1,6 +1,7 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Context
+import io.vertx.core.Future
 import io.vertx.core.Vertx
 import io.vertx.core.eventbus.Message
 import io.vertx.core.http.HttpClientOptions
@@ -196,6 +197,25 @@ class VertxCoroutineTest {
   }
 
   @Test
+  fun testExecSyncMethodThatCompleteTwice(testContext: TestContext) {
+    vertx.launch {
+      val async = testContext.async(2)
+      val v = awaitResult<String> { h ->
+        vertx.runOnContext {
+          h.handle(Future.succeededFuture("one"))
+          try {
+            h.handle(Future.succeededFuture("two"))
+          } catch(ignore: IllegalStateException) {
+            async.countDown()
+          }
+        }
+      }
+      testContext.assertEquals("one", v)
+      async.countDown()
+    }
+  }
+
+  @Test
   fun testReceiveEvent(testContext: TestContext) {
     vertx.launch {
       val async = testContext.async()
@@ -268,6 +288,25 @@ class VertxCoroutineTest {
         testContext.assertEquals(cause, e)
       }
       async.complete()
+    }
+  }
+
+  @Test
+  fun testReceiveEventTwice(testContext: TestContext) {
+    vertx.launch {
+      val async = testContext.async(2)
+      val v = awaitEvent<String> { h ->
+        vertx.runOnContext {
+          h.handle("one")
+          try {
+            h.handle("two")
+          } catch(ignore: IllegalStateException) {
+            async.countDown()
+          }
+        }
+      }
+      testContext.assertEquals("one", v)
+      async.countDown()
     }
   }
 

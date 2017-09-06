@@ -58,15 +58,13 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * @param block the code to run
  */
 suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
-  return awaitResult { f ->
-    val fut = Future.future<T>().setHandler(f)
-    val adapter : Handler<T> = Handler { t ->
-      fut.tryComplete(t)
-    }
+  return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
     try {
-      block.invoke(adapter)
+      block.invoke(Handler { t ->
+        cont.resume(t)
+      })
     } catch(t: Throwable) {
-      fut.tryFail(t)
+      cont.resumeWithException(t)
     }
   }
 }
@@ -92,7 +90,7 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
  * @param block the code to run
  */
 suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
-  return suspendCancellableCoroutine { cont: Continuation<T> ->
+  return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
     block(Handler {
       asyncResult ->
       if (asyncResult.succeeded()) cont.resume(asyncResult.result())
