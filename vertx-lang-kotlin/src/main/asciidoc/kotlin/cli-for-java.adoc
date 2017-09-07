@@ -67,7 +67,7 @@ If one of your option has an `enum` as type, it computes the set of choices auto
 
 === Using annotations
 
-You can also define your CLI using annotations. Definition is completion using annotation on the class and on _setter_
+You can also define your CLI using annotations. Definition is done using annotation on the class and on _setter_
 methods:
 
 [source, java]

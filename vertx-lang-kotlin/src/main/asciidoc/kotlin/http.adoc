@@ -476,17 +476,17 @@ request with `link:../../apidocs/io/vertx/core/http/HttpServerRequest.html#respo
 
 You use the response object to write a response back to the HTTP client.
 
-==== Setting completion code and message
+==== Setting status code and message
 
-The default HTTP completion code for a response is `200`, representing `OK`.
+The default HTTP status code for a response is `200`, representing `OK`.
 
 Use `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#setStatusCode-int-[setStatusCode]` to set a different code.
 
-You can also specify a custom completion message with `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#setStatusMessage-java.lang.String-[setStatusMessage]`.
+You can also specify a custom status message with `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#setStatusMessage-java.lang.String-[setStatusMessage]`.
 
-If you don't specify a completion message, the default one corresponding to the completion code will be used.
+If you don't specify a status message, the default one corresponding to the status code will be used.
 
-NOTE: for HTTP/2 the completion won't be present in the response since the protocol won't transmit the message
+NOTE: for HTTP/2 the status won't be present in the response since the protocol won't transmit the message
 to the client
 
 ==== Writing HTTP responses
@@ -536,7 +536,7 @@ be too late otherwise. If you are using HTTP chunking you do not have to worry.
 
 Once you have finished with the HTTP response you should `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#end-java.lang.String-[end]` it.
 
-This can be completion in several ways:
+This can be done in several ways:
 
 With no arguments, the response is simply ended.
 
@@ -646,12 +646,12 @@ and pump it to the HTTP response.
 
 Or you could load it it one go using `link:../../apidocs/io/vertx/core/file/FileSystem.html#readFile-java.lang.String-io.vertx.core.Handler-[readFile]` and write it straight to the response.
 
-Alternatively, Vert.x provides a method which allows you to serve a file from disk or the filesystem to an HTTP response
+Alternatively, Vert.x provides a method which allows you to serve a file from disk or the filesystem to an HTTP response 
 in one operation.
 Where supported by the underlying operating system this may result in the OS directly transferring bytes from the
 file to the socket without being copied through user-space at all.
 
-This is completion by using `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#sendFile-java.lang.String-[sendFile]`, and is usually more efficient for large
+This is done by using `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#sendFile-java.lang.String-[sendFile]`, and is usually more efficient for large
 files, but may be slower for small files.
 
 Here's a very simple web server that serves files from the file system using sendFile:
@@ -680,7 +680,7 @@ directly from disk to socket it doesn't give us an opportunity to apply any encr
 
 WARNING: If you're going to write web servers directly using Vert.x be careful that users cannot exploit the
 path to access files outside the directory from which you want to serve them or the classpath It may be safer instead to use
-Vert.x Web.
+Vert.x Web. 
 
 When there is a need to serve just a segment of a file, say starting from a given byte, you can achieve this by doing:
 
@@ -774,7 +774,7 @@ response.writeCustomFrame(frameType, frameStatus, payload)
 
 ----
 
-These frames are sent immediately and are not subject to flow control - when such frame is sent there it may be completion
+These frames are sent immediately and are not subject to flow control - when such frame is sent there it may be done
 before other `DATA` frames.
 
 ==== Stream reset
@@ -880,16 +880,16 @@ compressions and send it back to the client.
 
 Be aware that compression may be able to reduce network traffic but is more CPU-intensive.
 
-To address this latter issue Vert.x allows you to tune the 'compression level' parameter that is native of the gzip/deflate compression algorithms.
+To address this latter issue Vert.x allows you to tune the 'compression level' parameter that is native of the gzip/deflate compression algorithms. 
 
-Compression level allows to configure gizp/deflate algorithms in terms of the compression ratio of the resulting data and the computational cost of the compress/decompress operation.
+Compression level allows to configure gizp/deflate algorithms in terms of the compression ratio of the resulting data and the computational cost of the compress/decompress operation. 
 
-The compression level is an integer value ranged from '1' to '9', where '1' means lower compression ratio but fastest algorithm and '9' means maximum compression ratio available but a slower algorithm.
+The compression level is an integer value ranged from '1' to '9', where '1' means lower compression ratio but fastest algorithm and '9' means maximum compression ratio available but a slower algorithm. 
 
-Using compression levels higher that 1-2 usually allows to save just some bytes in size - the gain is not linear, and depends on the specific data to be compressed
-- but it comports a non-trascurable cost in term of CPU cycles required to the server while generating the compressed response data
-( Note that at moment Vert.x doesn't support any form caching of compressed response data, even for static files, so the compression is completion on-the-fly
-at every request body generation ) and in the same way it affects client(s) while decoding (inflating) received responses, operation that becomes more CPU-intensive
+Using compression levels higher that 1-2 usually allows to save just some bytes in size - the gain is not linear, and depends on the specific data to be compressed 
+- but it comports a non-trascurable cost in term of CPU cycles required to the server while generating the compressed response data 
+( Note that at moment Vert.x doesn't support any form caching of compressed response data, even for static files, so the compression is done on-the-fly 
+at every request body generation ) and in the same way it affects client(s) while decoding (inflating) received responses, operation that becomes more CPU-intensive 
 the more the level increases.
 
 By default - if compression is enabled via `link:../../apidocs/io/vertx/core/http/HttpServerOptions.html#setCompressionSupported-boolean-[setCompressionSupported]` - Vert.x will use '6' as compression level,
@@ -989,7 +989,7 @@ var options = HttpClientOptions(
 // Can also set default port if you want...
 var client = vertx.createHttpClient(options)
 client.getNow("/some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 ----
@@ -1003,12 +1003,12 @@ var client = vertx.createHttpClient()
 
 // Specify both port and host name
 client.getNow(8080, "myserver.mycompany.com", "/some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 // This time use the default port 80 but specify the host name
 client.getNow("foo.othercompany.com", "/other-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 ----
@@ -1032,12 +1032,12 @@ var client = vertx.createHttpClient()
 
 // Send a GET request
 client.getNow("/some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 // Send a GET request
 client.headNow("/other-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 
@@ -1054,11 +1054,11 @@ the HTTP method at run-time:
 var client = vertx.createHttpClient()
 
 client.request(HttpMethod.GET, "some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).end()
 
 client.request(HttpMethod.POST, "foo-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).end("some-data")
 
 ----
@@ -1081,7 +1081,7 @@ m
 var client = vertx.createHttpClient()
 
 var request = client.post("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 // Now do stuff with the request
@@ -1089,19 +1089,19 @@ request.putHeader("content-length", "1000")
 request.putHeader("content-type", "text/plain")
 request.write(body)
 
-// Make sure the request is ended when you're completion with it
+// Make sure the request is ended when you're done with it
 request.end()
 
 // Or fluently:
 
 client.post("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).putHeader("content-length", "1000").putHeader("content-type", "text/plain").write(body).end()
 
 // Or event more simply:
 
 client.post("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).putHeader("content-type", "text/plain").end(body)
 
 
@@ -1270,7 +1270,7 @@ You can handle exceptions corresponding to a request by setting an exception han
 ----
 
 var request = client.post("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 request.exceptionHandler({ e ->
   println("Received exception: ${e.getMessage()}")
@@ -1311,7 +1311,7 @@ not provide a handler when the request is created and set it later on the reques
 
 var request = client.post("some-uri")
 request.handler({ response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 ----
@@ -1402,17 +1402,17 @@ request.exceptionHandler({ err ->
 You receive an instance of `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html[HttpClientResponse]` into the handler that you specify in of
 the request methods or by setting a handler directly on the `link:../../apidocs/io/vertx/core/http/HttpClientRequest.html[HttpClientRequest]` object.
 
-You can query the completion code and the completion message of the response with `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html#statusCode--[statusCode]`
+You can query the status code and the status message of the response with `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html#statusCode--[statusCode]`
 and `link:../../apidocs/io/vertx/core/http/HttpClientResponse.html#statusMessage--[statusMessage]`.
 
 [source,kotlin]
 ----
 
 client.getNow("some-uri", { response ->
-  // the completion code - e.g. 200 or 404
+  // the status code - e.g. 200 or 404
   println("Status code is ${response.statusCode()}")
 
-  // the completion message e.g. "OK" or "Not Found".
+  // the status message e.g. "OK" or "Not Found".
   println("Status message is ${response.statusMessage()}")
 })
 
@@ -1521,7 +1521,7 @@ Alternatively you can just parse the `Set-Cookie` headers yourself in the respon
 ==== 30x redirection handling
 
 The client can be configured to follow HTTP redirections: when the client receives an
-`301`, `302`, `303` or `307` completion code, it follows the redirection provided by the `Location` response header
+`301`, `302`, `303` or `307` status code, it follows the redirection provided by the `Location` response header
 and the response handler is passed the redirected response instead of the original response.
 
 Here's an example:
@@ -1530,15 +1530,15 @@ Here's an example:
 ----
 
 client.get("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).setFollowRedirects(true).end()
 
 ----
 
 The redirection policy is as follow
 
-* on a `301`, `302` or `303` completion code, follow the redirection with a `GET` method
-* on a `307` completion code, follow the redirection with the same HTTP method and the cached body
+* on a `301`, `302` or `303` status code, follow the redirection with a `GET` method
+* on a `307` status code, follow the redirection with the same HTTP method and the cached body
 
 WARNING: following redirections caches the request body
 
@@ -1551,7 +1551,7 @@ var client = vertx.createHttpClient(HttpClientOptions(
   maxRedirects = 32))
 
 client.get("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 }).setFollowRedirects(true).end()
 
 ----
@@ -1603,7 +1603,7 @@ Most of the original request settings will be propagated to the new request:
 According to the http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html[HTTP 1.1 specification] a client can set a
 header `Expect: 100-Continue` and send the request header before sending the rest of the request body.
 
-The server can then respond with an interim response completion `Status: 100 (Continue)` to signify to the client that
+The server can then respond with an interim response status `Status: 100 (Continue)` to signify to the client that
 it is ok to send the rest of the body.
 
 The idea here is it allows the server to authorise and accept/reject the request before large amounts of data are sent.
@@ -1624,7 +1624,7 @@ Here's an example:
 ----
 
 var request = client.put("some-uri", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 request.putHeader("Expect", "100-Continue")
@@ -1641,7 +1641,7 @@ request.continueHandler({ v ->
 On the server side a Vert.x http server can be configured to automatically send back 100 Continue interim responses
 when it receives an `Expect: 100-Continue` header.
 
-This is completion by setting the option `link:../../apidocs/io/vertx/core/http/HttpServerOptions.html#setHandle100ContinueAutomatically-boolean-[setHandle100ContinueAutomatically]`.
+This is done by setting the option `link:../../apidocs/io/vertx/core/http/HttpServerOptions.html#setHandle100ContinueAutomatically-boolean-[setHandle100ContinueAutomatically]`.
 
 If you'd prefer to decide whether to send back continue responses manually, then this property should be set to
 `false` (the default), then you can inspect the headers and call `link:../../apidocs/io/vertx/core/http/HttpServerResponse.html#writeContinue--[writeContinue]`
@@ -1669,7 +1669,7 @@ httpServer.requestHandler({ request ->
 
 ----
 
-You can also reject the request by sending back a failure completion code directly: in this case the body
+You can also reject the request by sending back a failure status code directly: in this case the body
 should either be ignored or the connection should be closed (100-Continue is a performance hint and
 cannot be a logical protocol constraint):
 
@@ -2150,7 +2150,7 @@ client.getNow(RequestOptions(
   port = 8080,
   uRI = "/",
   ssl = true), { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 ----
@@ -2415,7 +2415,7 @@ var client = vertx.createHttpClient(options)
 
 ----
 
-The DNS resolution is always completion on the proxy server, to achieve the functionality of a SOCKS4 client, it is necessary
+The DNS resolution is always done on the proxy server, to achieve the functionality of a SOCKS4 client, it is necessary
 to resolve the DNS address locally.
 
 ==== Handling of other protocols
@@ -2431,7 +2431,7 @@ var options = HttpClientOptions(
     type = ProxyType.HTTP))
 var client = vertx.createHttpClient(options)
 client.getAbs("ftp://ftp.gnu.org/gnu/", { response ->
-  println("Received response with completion code ${response.statusCode()}")
+  println("Received response with status code ${response.statusCode()}")
 })
 
 

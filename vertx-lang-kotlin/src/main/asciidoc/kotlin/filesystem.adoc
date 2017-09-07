@@ -231,7 +231,7 @@ vertx.fileSystem().open("target/classes/les_miserables.txt", OpenOptions(), { re
     var file = result.result()
     Pump.pump(file, output).start()
     file.endHandler({ r ->
-      println("Copy completion")
+      println("Copy done")
     })
   } else {
     System.err.println("Cannot open file ${result.cause()}")
