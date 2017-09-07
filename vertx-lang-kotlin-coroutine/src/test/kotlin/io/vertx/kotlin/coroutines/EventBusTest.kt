@@ -11,6 +11,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.*
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -36,8 +37,8 @@ class EventBusTest {
     val consumer = bus.consumer<Int>("the-address")
     val channel = consumer.bodyStream().toChannel(vertx)
     val async = testContext.async()
+    val list = Collections.synchronizedList(ArrayList<Int>())
     launch(vertx.dispatcher()) {
-      val list = ArrayList<Int>()
       for (msg in channel) {
         list += msg
       }
@@ -47,8 +48,11 @@ class EventBusTest {
     for (index in listOf(0, 1, 2, 3, 4)) {
       bus.send("the-address", index)
     }
-    vertx.setTimer(50) {
-      consumer.unregister()
+    vertx.setPeriodic(50) { id ->
+      if (list.size == 5) {
+        consumer.unregister()
+        vertx.cancelTimer(id)
+      }
     }
   }
 
