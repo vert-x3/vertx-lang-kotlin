@@ -10,7 +10,7 @@ import kotlinx.coroutines.experimental.launch
  * A Verticle which run its start and stop methods in coroutine.
  * You should subclass this class instead of AbstractVerticle to create any verticles that use vertx-kotlin-coroutine.
  *
- * Created by stream.
+ * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
 abstract class CoroutineVerticle : Verticle {
 

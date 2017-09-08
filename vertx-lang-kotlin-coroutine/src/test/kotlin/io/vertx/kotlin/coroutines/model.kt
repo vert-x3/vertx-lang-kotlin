@@ -4,7 +4,7 @@ import io.vertx.core.*
 import java.lang.RuntimeException
 
 /**
- * Created by stream.
+ * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
 
 interface ReturnedInterface {
