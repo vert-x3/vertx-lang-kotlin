@@ -6,6 +6,7 @@ import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.*
+import kotlinx.coroutines.experimental.selects.SelectClause1
 import kotlinx.coroutines.experimental.selects.SelectInstance
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
@@ -132,13 +133,11 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     return channel.receiveOrNull()
   }
 
-  override fun <R> registerSelectReceive(select: SelectInstance<R>, block: suspend (T) -> R) {
-    return channel.registerSelectReceive(select, block)
-  }
+  override val onReceive: SelectClause1<T>
+    get() = channel.onReceive
 
-  override fun <R> registerSelectReceiveOrNull(select: SelectInstance<R>, block: suspend (T?) -> R) {
-    return channel.registerSelectReceiveOrNull(select, block)
-  }
+  override val onReceiveOrNull: SelectClause1<T?>
+    get() = channel.onReceiveOrNull
 
   override fun handle(event: T) {
     val h = handler

@@ -12,10 +12,6 @@
 
   <artifactId>vertx-lang-kotlin-coroutine</artifactId>
 
-  <properties>
-    <kotlin.coroutines.version>0.16</kotlin.coroutines.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
@@ -139,22 +135,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>jcenter</id>
-      <activation>
-        <property>
-          <name>!skipJCenter</name>
-        </property>
-      </activation>
-      <repositories>
-        <repository>
-          <id>central</id>
-          <url>http://jcenter.bintray.com</url>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
-
 </project>
