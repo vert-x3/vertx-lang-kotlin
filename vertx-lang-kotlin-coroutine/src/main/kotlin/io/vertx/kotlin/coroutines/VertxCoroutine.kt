@@ -11,7 +11,7 @@ import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
 
 /**
- * Created by stream.
+ * @author <a href="http://www.streamis.me">Stream Liu</a>
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  * @author [Julien Ponge](https://julien.ponge.org/)
  */

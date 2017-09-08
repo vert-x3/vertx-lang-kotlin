@@ -28,7 +28,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 /**
- * Created by stream.
+ * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
 @RunWith(VertxUnitRunner::class)
 class VertxCoroutineTest {
