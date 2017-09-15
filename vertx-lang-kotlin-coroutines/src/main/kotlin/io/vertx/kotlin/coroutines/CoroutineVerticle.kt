@@ -4,6 +4,7 @@ import io.vertx.core.Context
 import io.vertx.core.Future
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx
+import io.vertx.core.json.JsonObject
 import kotlinx.coroutines.experimental.launch
 
 /**
@@ -47,12 +48,39 @@ abstract class CoroutineVerticle : Verticle {
   }
 
   /**
-   * Override this method in your verticle
+   * Get the deployment ID of the verticle deployment
+   * @return the deployment ID
    */
-  open suspend fun start() {}
+  protected val deploymentID: String by lazy {
+    context.deploymentID()
+  }
+
+  /**
+   * Get the configuration of the verticle.
+   *
+   *
+   * This can be specified when the verticle is deployed.
+   * @return the configuration
+   */
+  protected val config : JsonObject by lazy {
+    context.config()
+  }
+
+  /**
+   * Get the arguments used when deploying the Vert.x process.
+   * @return the list of arguments
+   */
+  protected val processArgs : List<String> by lazy {
+    context.processArgs()
+  }
 
   /**
    * Override this method in your verticle
    */
-  open suspend fun stop() {}
+  protected open suspend fun start() {}
+
+  /**
+   * Override this method in your verticle
+   */
+  protected open suspend fun stop() {}
 }
