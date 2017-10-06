@@ -296,7 +296,9 @@ class VertxCoroutineTest {
       val cause = RuntimeException()
       try {
         withTimeout(1000L) {
-          awaitEvent<Any>() { h -> throw cause }
+          awaitEvent<Any>() {
+            h -> throw cause
+          }
         }
         testContext.fail()
       } catch(e: Exception) {
