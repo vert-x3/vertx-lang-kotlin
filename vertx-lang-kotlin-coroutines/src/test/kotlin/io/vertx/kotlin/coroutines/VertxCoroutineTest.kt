@@ -466,4 +466,37 @@ class VertxCoroutineTest {
       }
     }
   }
+
+  @Test
+  fun testAwaitFutureSucceed(testContext: TestContext) {
+    val async = testContext.async()
+    val fut = Future.future<String>()
+    launch(vertx.dispatcher()) {
+      val s = fut.await()
+      testContext.assertEquals("the-string", s)
+      async.complete()
+    }
+    vertx.runOnContext {
+      fut.complete("the-string")
+    }
+  }
+
+  @Test
+  fun testAwaitFutureFailure(testContext: TestContext) {
+    val async = testContext.async()
+    val fut = Future.future<String>()
+    val cause = RuntimeException()
+    launch(vertx.dispatcher()) {
+      try {
+        fut.await()
+        testContext.fail()
+      } catch(e: Exception) {
+        testContext.assertEquals(cause, e)
+        async.complete()
+      }
+    }
+    vertx.runOnContext {
+      fut.fail(cause)
+    }
+  }
 }
