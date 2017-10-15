@@ -1,4 +1,4 @@
-package example
+package examples
 
 import io.vertx.core.*
 import io.vertx.core.buffer.Buffer

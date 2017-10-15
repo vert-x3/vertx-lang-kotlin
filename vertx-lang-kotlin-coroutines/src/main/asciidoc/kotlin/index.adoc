@@ -30,7 +30,7 @@ Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `launch` method
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=launchCoroutineExample]
+include::../../kotlin/examples/Example.kt[tags=launchCoroutineExample]
 ----
 
 The `vertx.dispatcher()` returns a coroutine dispatcher that runs coroutines using the Vert.x event loop.
@@ -45,7 +45,7 @@ You should override the `start()` and (optionally) the `stop()` methods of the v
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=CoroutineVerticle]
+include::../../kotlin/examples/Example.kt[tags=CoroutineVerticle]
 ----
 
 == Getting one-shot asynchronous results
@@ -65,7 +65,7 @@ Here is an example:
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=awaitResult]
+include::../../kotlin/examples/Example.kt[tags=awaitResult]
 ----
 
 When the block produces a failure, the caller can handle it as an exception using the usual exception
@@ -73,7 +73,7 @@ When the block produces a failure, the caller can handle it as an exception usin
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=awaitResultFailure]
+include::../../kotlin/examples/Example.kt[tags=awaitResultFailure]
 ----
 
 == Getting one-shot events
@@ -82,7 +82,7 @@ Processing a one-shot event (and not the next occurrences, if any) is completion
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=awaitEvent]
+include::../../kotlin/examples/Example.kt[tags=awaitEvent]
 ----
 
 == Streams of events
@@ -94,7 +94,7 @@ The `ReceiveChannelHandler` class allows receiving events through the (suspendab
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=streamExample]
+include::../../kotlin/examples/Example.kt[tags=streamExample]
 ----
 
 == Handlers
@@ -103,7 +103,7 @@ Calling `launch` allows running Vert.x handlers on a coroutine, as in:
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=handlerAndCoroutine]
+include::../../kotlin/examples/Example.kt[tags=handlerAndCoroutine]
 ----
 
 == Awaiting the completion of Vert.x futures
@@ -112,7 +112,7 @@ The `await` extension method on instances of Vert.x future objects suspend corou
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=awaitingFuture]
+include::../../kotlin/examples/Example.kt[tags=awaitingFuture]
 ----
 
 == Channels
@@ -131,7 +131,7 @@ Channel can be really useful when you need to handle a stream of correlated valu
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=channel0]
+include::../../kotlin/examples/Example.kt[tags=channel0]
 ----
 
 It can also be useful for parsing protocols. We will build a non blocking HTTP request parser to show
@@ -144,7 +144,7 @@ Here is the initial version of the parser, that handles only the HTTP request-li
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=channel1]
+include::../../kotlin/examples/Example.kt[tags=channel1]
 ----
 
 Parsing the request-line is as simple as calling `receive` on the channel.
@@ -153,14 +153,14 @@ The next step parses HTTP headers by receiving chunks until we get an empty one
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=channel2]
+include::../../kotlin/examples/Example.kt[tags=channel2]
 ----
 
 Finally we terminate the parser by handling optional request bodies
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=channel3]
+include::../../kotlin/examples/Example.kt[tags=channel3]
 ----
 
 === Sending data
@@ -169,7 +169,7 @@ Using a channel to send data is quite straightforward:
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=sendChannel]
+include::../../kotlin/examples/Example.kt[tags=sendChannel]
 ----
 
 Both `SendChannel#send` and `WriteStream#write` are non blocking operations, however unlike `SendChannel#send`
@@ -177,7 +177,7 @@ can suspend the loop execution when the channel is full, the equivalent without 
 
 [source,kotlin,indent=0]
 ----
-include::../../kotlin/example/Example.kt[tags=broadcastTemperature]
+include::../../kotlin/examples/Example.kt[tags=broadcastTemperature]
 ----
 
 == RxJava integration
