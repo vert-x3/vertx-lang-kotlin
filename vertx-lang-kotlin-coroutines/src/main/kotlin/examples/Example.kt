@@ -11,8 +11,8 @@ import io.vertx.kotlin.coroutines.*
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.launch
 
-// tag::launchCoroutineExample[]
 fun launchCoroutineExample() {
+  // tag::launchCoroutineExample[]
   val vertx = Vertx.vertx()
   vertx.deployVerticle(ExampleVerticle())
 
@@ -22,8 +22,8 @@ fun launchCoroutineExample() {
     }
     println("Event fired from timer with id ${timerId}")
   }
+  // end::runCoroutineExample[]
 }
-// end::runCoroutineExample[]
 
 // tag::CoroutineVerticle[]
 class MyVerticle : CoroutineVerticle() {
@@ -43,14 +43,14 @@ class ExampleVerticle : CoroutineVerticle() {
   }
 
   // tag::awaitEvent[]
-  private suspend fun awaitEventExample() {
+  suspend fun awaitEventExample() {
     val id = awaitEvent<Long> { h -> vertx.setTimer(2000L, h) }
     println("This should be fired in 2s by some time with id=$id")
   }
   // end::awaitEvent[]
 
   // tag::awaitResult[]
-  private suspend fun awaitResultExample() {
+  suspend fun awaitResultExample() {
     val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
     consumer.handler { message ->
       println("Consumer received: ${message.body()}")
@@ -66,7 +66,7 @@ class ExampleVerticle : CoroutineVerticle() {
   // end::awaitResult[]
 
   // tag::awaitResultFailure[]
-  private suspend fun awaitResultFailureExample() {
+  suspend fun awaitResultFailureExample() {
     val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
     consumer.handler { message ->
       // The consumer will get a failure
@@ -86,7 +86,7 @@ class ExampleVerticle : CoroutineVerticle() {
   // end::awaitResultFailure[]
 
   // tag::streamExample[]
-  private suspend fun streamExample() {
+  suspend fun streamExample() {
     val adapter = vertx.receiveChannelHandler<Message<Int>>()
     vertx.eventBus().localConsumer<Int>("a.b.c").handler(adapter)
 
@@ -101,8 +101,8 @@ class ExampleVerticle : CoroutineVerticle() {
   }
   // end::streamExample[]
 
-  private suspend fun awaitingFuture() {
-    // tag::awaitingFuture[]
+  // tag::awaitingFuture[]
+  suspend fun awaitingFuture() {
     val httpServerFuture = Future.future<HttpServer>()
     vertx.createHttpServer()
       .requestHandler { req -> req.response().end("Hello!") }
@@ -117,22 +117,22 @@ class ExampleVerticle : CoroutineVerticle() {
     } else {
       result.cause().printStackTrace()
     }
-    // end::awaitingFuture[]
   }
+  // end::awaitingFuture[]
 
-  // tag::handlerAndCoroutine[]
-  private fun handlerAndCoroutineExample() {
+  fun handlerAndCoroutineExample() {
+    // tag::handlerAndCoroutine[]
     vertx.createHttpServer().requestHandler { req ->
       launch(context.dispatcher()) {
         val timerID = awaitEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
     }.listen(8081)
+    // end::handlerAndCoroutine[]
   }
-  // end::handlerAndCoroutine[]
 
-  private suspend fun channel0() {
-    // tag::channel0[]
+  // tag::channel0[]
+  suspend fun handleTemperatureStream() {
     val stream = vertx.eventBus().consumer<Double>("temperature")
     val channel = stream.toChannel(vertx)
 
@@ -148,8 +148,8 @@ class ExampleVerticle : CoroutineVerticle() {
     }
 
     // The stream is now closed
-    // end::channel0[]
   }
+  // end::channel0[]
 
   private fun channel1() {
     // tag::channel1[]
@@ -178,7 +178,7 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::channel1[]
   }
 
-  private suspend fun channel2(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String) {
+  suspend fun channel2(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String) {
     // tag::channel2[]
     // Receive HTTP headers
     val headers = HashMap<String, String>()
@@ -200,7 +200,7 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::channel2[]
   }
 
-  private suspend fun channel3(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String, headers : Map<String, String>) {
+  suspend fun channel3(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String, headers : Map<String, String>) {
     // tag::channel3[]
     // Receive the request body
     val transferEncoding = headers["transfer-encoding"]
@@ -255,8 +255,8 @@ class ExampleVerticle : CoroutineVerticle() {
     return 0.0
   }
 
-  private suspend fun sendChannel() {
-    // tag::sendChannel[]
+  // tag::sendChannel[]
+  suspend fun sendChannel() {
     val stream = vertx.eventBus().publisher<Double>("temperature")
     val channel = stream.toChannel(vertx)
 
@@ -270,14 +270,13 @@ class ExampleVerticle : CoroutineVerticle() {
       // Wait for one second
       awaitEvent<Long> { vertx.setTimer(1000, it)  }
     }
-    // end::sendChannel[]
   }
+  // end::sendChannel[]
 
   val stream : MessageProducer<Double> = vertx.eventBus().publisher<Double>("temperature")
 
-  // tag::broadcastTemperature[]
   fun broadcastTemperature() {
-
+    // tag::broadcastTemperature[]
     // Check we can write in the stream
     if (stream.writeQueueFull()) {
 
@@ -296,6 +295,6 @@ class ExampleVerticle : CoroutineVerticle() {
         broadcastTemperature()
       }
     }
+    // end::broadcastTemperature[]
   }
-  // end::broadcastTemperature[]
 }
