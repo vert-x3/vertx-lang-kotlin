@@ -22,7 +22,7 @@ Coroutines are very lightweight threads that do not correspond to underlying ker
 
 `vertx-lang-kotlin-coroutine` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
 
-NOTE: `vertx-lang-kotlin-coroutine` currently only works with Kotlin.
+NOTE: `vertx-lang-kotlin-coroutine` currently only works with Kotlin and is an https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] feature of Kotlin 1.1
 
 == Running a coroutine from a Vert.x context
 
