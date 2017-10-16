@@ -39,7 +39,7 @@ object KotlinCompilerHelper {
 
     configuration.put(CommonConfigurationKeys.LANGUAGE_VERSION_SETTINGS, LanguageVersionSettingsImpl.DEFAULT)
 
-    configuration.put(JVMConfigurationKeys.JVM_TARGET, JvmTarget.JVM_1_6)
+    configuration.put(JVMConfigurationKeys.JVM_TARGET, JvmTarget.JVM_1_8)
     configuration.put(JVMConfigurationKeys.RETAIN_OUTPUT_IN_MEMORY, true)
     configuration.put(JVMConfigurationKeys.SKIP_RUNTIME_VERSION_CHECK, true)
     configuration.put(CommonConfigurationKeys.MODULE_NAME, JvmAbi.DEFAULT_MODULE_NAME)
