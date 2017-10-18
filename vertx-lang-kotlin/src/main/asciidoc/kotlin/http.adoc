@@ -884,6 +884,15 @@ includes the supported compressions. Commonly used are deflate and gzip. Both ar
 If such a header is found the server will automatically compress the body of the response with one of the supported
 compressions and send it back to the client.
 
+Whenever the response needs to be sent without compression you can set the header `content-encoding` to `identity`:
+
+[source,kotlin]
+----
+// Disable compression and send an image
+request.response().putHeader(io.vertx.core.http.HttpHeaders.CONTENT_ENCODING, io.vertx.core.http.HttpHeaders.IDENTITY).sendFile("/path/to/image.jpg")
+
+----
+
 Be aware that compression may be able to reduce network traffic but is more CPU-intensive.
 
 To address this latter issue Vert.x allows you to tune the 'compression level' parameter that is native of the gzip/deflate compression algorithms.
