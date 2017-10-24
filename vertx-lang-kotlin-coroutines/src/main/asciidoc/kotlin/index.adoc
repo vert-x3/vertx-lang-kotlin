@@ -48,7 +48,7 @@ More details are given in the next sections on handlers, events and stream of ev
 
 == Extending CoroutineVerticle
 
-You can deploy your code as instances of `io.vertx.ext.coroutine.CoroutineVerticle`, a specialized type of verticle for Kotlin coroutines.
+You can deploy your code as instances of `io.vertx.kotlin.coroutines.CoroutineVerticle`, a specialized type of verticle for Kotlin coroutines.
 You should override the `start()` and (optionally) the `stop()` methods of the verticle:
 
 [source,kotlin,indent=0]
