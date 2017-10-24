@@ -1,6 +1,6 @@
-= vertx-lang-kotlin-coroutine
+= vertx-lang-kotlin-coroutines
 
-The `vertx-lang-kotlin-coroutine` integrates Kotlin _coroutines_ for performing asynchronous operations and processing events.
+The `vertx-lang-kotlin-coroutines` integrates Kotlin _coroutines_ for performing asynchronous operations and processing events.
 This results in using a programming model that looks like sequential code, yet it does not block kernel threads.
 
 == Introduction
@@ -17,12 +17,12 @@ In some cases, programming using asynchronous APIs can be more challenging than 
 particular with several operations need to be done in sequence.
 Also, error propagation is often more complex when using asynchronous APIs.
 
-`vertx-lang-kotlin-coroutine` uses _coroutines_.
+`vertx-lang-kotlin-coroutines` uses _coroutines_.
 Coroutines are very lightweight threads that do not correspond to underlying kernel threads, so that when a _coroutine_ needs to _"block_" it gets _suspended_ and frees its current kernel thread so that another coroutine can process events.
 
-`vertx-lang-kotlin-coroutine` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
+`vertx-lang-kotlin-coroutines` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
 
-NOTE: `vertx-lang-kotlin-coroutine` currently only works with Kotlin and is an https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] feature of Kotlin 1.1
+NOTE: `vertx-lang-kotlin-coroutines` currently only works with Kotlin and is an https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] feature of Kotlin 1.1
 
 == Running a coroutine from a Vert.x context
 
@@ -386,7 +386,7 @@ if (stream.writeQueueFull()) {
 
 == RxJava integration
 
-The module `vertx-lang-kotlin-coroutine` does not have specific integration with RxJava however Kotlin coroutines
-provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutine`.
+The module `vertx-lang-kotlin-coroutines` does not have specific integration with RxJava however Kotlin coroutines
+provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutines`.
 
 You can read about it in the https://github.com/Kotlin/kotlinx.coroutines/blob/master/reactive/coroutines-guide-reactive.md[Guide to reactive streams with coroutines]
