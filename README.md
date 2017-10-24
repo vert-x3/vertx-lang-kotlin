@@ -15,5 +15,5 @@ This project provide a set of utilities that allow you to perform asynchronous o
 synchronous way, but without blocking event loop threads.
 
 For more information, please look into [doc](vertx-lang-kotlin-coroutines/src/main/asciidoc/kotlin/index.adoc) or
-[example](vertx-lang-kotlin-coroutines/src/main/kotlin/example/Example.kt).
+[example](vertx-lang-kotlin-coroutines/src/main/kotlin/examples/Example.kt).
 
