@@ -384,7 +384,58 @@ if (stream.writeQueueFull()) {
 }
 ----
 
-== RxJava integration
+== Delay, cancellation and timeouts
+
+Vertx dispatcher fully supports coroutine `delay` function via Vert.x timers:
+
+[source,kotlin,indent=0]
+----
+launch(vertx.dispatcher()) {
+  // Set a one second Vertx timer
+  delay(1000)
+}
+----
+
+Timers support cancellation
+
+[source,kotlin,indent=0]
+----
+val job = launch(vertx.dispatcher()) {
+  // Set a one second Vertx timer
+  while (true) {
+    delay(1000)
+    // Do something periodically
+  }
+}
+
+// Sometimes later
+job.cancel()
+----
+
+cancellation is https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#cancellation-is-cooperative[cooperative]
+
+You can also schedule timeout with the `withTimeout` function
+
+[source,kotlin,indent=0]
+----
+launch(vertx.dispatcher()) {
+  try {
+    val id = withTimeout<String>(1000) {
+      return awaitEvent<String> { anAsyncMethod(it) }
+    }
+  } catch (e: TimeoutCancellationException) {
+    // Cancelled
+  }
+}
+----
+
+== Coroutine interoperability
+
+Vertx integration has been designed to be fully interroperable with Kotlin coroutines
+
+* `kotlinx.coroutines.experimental.sync.Mutex` are executed on the event loop thread
+
+== RxJava interoperability
 
 The module `vertx-lang-kotlin-coroutines` does not have specific integration with RxJava however Kotlin coroutines
 provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutines`.
