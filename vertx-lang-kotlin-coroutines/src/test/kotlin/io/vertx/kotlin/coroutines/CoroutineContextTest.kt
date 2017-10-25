@@ -1,6 +1,7 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.AbstractVerticle
+import io.vertx.core.Context
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
@@ -82,10 +83,14 @@ class CoroutineContextTest {
   }
 
   suspend fun runTest(testContext: TestContext) {
+    testContext.assertTrue(Context.isOnVertxThread())
+    val ctx = Vertx.currentContext()
     val a = AtomicLong()
     val id = awaitEvent<Long> { handler ->
       a.set(vertx.setTimer(10, handler))
     }
     testContext.assertEquals(id, a.get())
+    testContext.assertTrue(Context.isOnEventLoopThread())
+    testContext.assertEquals(ctx, Vertx.currentContext())
   }
 }

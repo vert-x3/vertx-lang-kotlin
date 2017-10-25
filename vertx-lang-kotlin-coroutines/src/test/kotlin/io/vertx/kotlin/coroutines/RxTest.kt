@@ -5,6 +5,7 @@ import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.reactivex.core.Vertx
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.reactive.open
+import kotlinx.coroutines.experimental.reactive.openSubscription
 import kotlinx.coroutines.experimental.rx2.await
 import org.junit.After
 import org.junit.Before
@@ -33,18 +34,20 @@ class RxTest {
   fun testFlowable(testContext: TestContext) {
     val async = testContext.async()
     val source = vertx.eventBus().consumer<Long>("the-address").toFlowable()
+    val latch = testContext.async()
     launch(vertx.delegate.dispatcher()) {
-      source.open().use { channel ->
-        var cnt = 0
-        for (x in channel) {
-          testContext.assertEquals(x.body(), cnt)
-          if (++cnt >= 3) {
-            break
-          }
+      val channel = source.openSubscription()
+      latch.complete()
+      var cnt = 0
+      for (x in channel) {
+        testContext.assertEquals(x.body(), cnt)
+        if (++cnt >= 3) {
+          break
         }
-        async.complete()
       }
+      async.complete()
     }
+    latch.await(10000)
     for (i in 0..4) {
       vertx.eventBus().send("the-address", i)
     }

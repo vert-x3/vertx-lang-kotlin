@@ -329,7 +329,7 @@ fun Vertx.dispatcher() : CoroutineDispatcher {
  */
 fun Context.dispatcher() : CoroutineDispatcher {
   require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
-  return VertxCoroutineExecutor(this, Thread.currentThread()).asCoroutineDispatcher()
+  return VertxCoroutineExecutor(this).asCoroutineDispatcher()
 }
 
 private class VertxScheduledFuture(
@@ -388,10 +388,10 @@ private class VertxScheduledFuture(
   }
 }
 
-private class VertxCoroutineExecutor(val vertxContext: Context, val eventLoop: Thread) : AbstractExecutorService(), ScheduledExecutorService {
+private class VertxCoroutineExecutor(val vertxContext: Context) : AbstractExecutorService(), ScheduledExecutorService {
 
   override fun execute(command: Runnable) {
-    if (Thread.currentThread() !== eventLoop) {
+    if (Vertx.currentContext() != vertxContext) {
       vertxContext.runOnContext { command.run() }
     } else {
       command.run()
