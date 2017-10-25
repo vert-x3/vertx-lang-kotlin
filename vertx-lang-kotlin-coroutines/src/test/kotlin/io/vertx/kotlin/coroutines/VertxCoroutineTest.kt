@@ -11,10 +11,7 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.experimental.CancellationException
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.withTimeout
+import kotlinx.coroutines.experimental.*
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule

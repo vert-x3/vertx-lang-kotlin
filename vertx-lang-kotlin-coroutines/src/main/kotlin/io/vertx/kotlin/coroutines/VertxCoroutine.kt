@@ -7,7 +7,6 @@ import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.channels.*
 import kotlinx.coroutines.experimental.selects.SelectClause1
-import kotlinx.coroutines.experimental.selects.SelectInstance
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
 
@@ -149,26 +148,6 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
       h.handle(event)
     }
   }
-}
-
-/**
- * Converts this deferred value to the instance of Future.
- * The deferred value is cancelled when the resulting future is cancelled or otherwise completed.
- */
-fun <T> Deferred<T>.asFuture(): Future<T> {
-  val future = Future.future<T>()
-  future.setHandler({ asyncResult ->
-    //if fail, we cancel this job
-    if (asyncResult.failed()) cancel(asyncResult.cause())
-  })
-  invokeOnCompletion {
-    try {
-      future.complete(getCompleted())
-    } catch (t: Throwable) {
-      future.fail(VertxException(t))
-    }
-  }
-  return future
 }
 
 /**
