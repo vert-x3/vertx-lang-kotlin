@@ -6,10 +6,7 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.experimental.Unconfined
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
 import org.junit.After
@@ -19,6 +16,9 @@ import org.junit.runner.RunWith
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.AtomicReference
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -176,5 +176,42 @@ class CoroutineContextTest {
     job.cancel()
     testContext.assertTrue(count.get() > 5)
     testContext.assertTrue(interrupted.get())
+  }
+
+  @Test
+  fun testAsyncBuilder(testContext: TestContext) {
+    val async = async<Long>(vertx.dispatcher()) {
+      assertTrue(Context.isOnEventLoopThread())
+      val thread1 = Thread.currentThread()
+      val thread2 = AtomicReference<Thread>()
+      awaitEvent<Long> {
+        thread2.set(Thread.currentThread())
+        vertx.setTimer(100, it)
+      }
+      assertEquals(thread1, Thread.currentThread())
+      assertEquals(thread2.get(), Thread.currentThread())
+      5
+    }
+    while (!async.isCompleted) {
+      Thread.sleep(10)
+    }
+    assertEquals(5, async.getCompleted())
+  }
+
+  @Test
+  fun testRunBlockingBuilder(testContext: TestContext) {
+    val async = runBlocking<Long>(vertx.dispatcher()) {
+      assertTrue(Context.isOnEventLoopThread())
+      val thread1 = Thread.currentThread()
+      val thread2 = AtomicReference<Thread>()
+      awaitEvent<Long> {
+        thread2.set(Thread.currentThread())
+        vertx.setTimer(100, it)
+      }
+      assertEquals(thread1, Thread.currentThread())
+      assertEquals(thread2.get(), Thread.currentThread())
+      5
+    }
+    assertEquals(5, async)
   }
 }
