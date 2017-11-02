@@ -6,10 +6,13 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import junit.framework.Assert.assertSame
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
 import org.junit.After
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -213,5 +216,33 @@ class CoroutineContextTest {
       5
     }
     assertEquals(5, async)
+  }
+
+  @Test
+  fun testRunBlockingBuilderError() {
+    val expected = Exception()
+    var caught: Exception? = null
+    try {
+      runBlocking<Long>(vertx.dispatcher()) {
+        throw expected
+      }
+    } catch (e: Exception) {
+      caught = e
+    }
+    assertEquals(expected, caught)
+  }
+
+  @Test
+  fun testRunBlockingBuilderFailure() {
+    var caught: AssertionError? = null
+    try {
+      runBlocking(vertx.dispatcher()) {
+        assertFalse("it was true", true)
+      }
+    } catch (e: AssertionError) {
+      caught = e
+    }
+    assertNotNull(caught)
+    assertEquals("it was true", caught!!.message)
   }
 }
