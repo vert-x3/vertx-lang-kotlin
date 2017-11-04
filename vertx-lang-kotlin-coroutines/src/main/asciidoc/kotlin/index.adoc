@@ -128,6 +128,20 @@ suspend fun awaitEventExample() {
 }
 ----
 
+== Getting one-shot worker results
+
+Processing a blocking computation is done using the `awaitBlocking` function:
+
+[source,kotlin,indent=0]
+----
+suspend fun awaitBlockingExample() {
+  val s = awaitBlocking<String> {
+    Thread.sleep(1000)
+    "some-string"
+  }
+}
+----
+
 == Streams of events
 
 In many places in Vert.x APIs, streams of events are processed through handlers.

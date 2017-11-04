@@ -79,6 +79,36 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
 }
 
 /**
+ * Run an asynchronous [block] on a worker threads and awaits the result.
+ *
+ * The [block] is executed and should return an object or throw an exception.
+ *
+ * - when an object is returned, it is returned from the `awaitBlocking` call
+ * - when an exception is thrown, it is thrown from the `awaitBlocking` call
+ *
+ * ```
+ * val s = awaitBlocking {
+ *   Thread.sleep(1000)
+ *   "some-string"
+ * }
+ * ```
+ *
+ * The coroutine will be suspend until the block is executed, this action do not block vertx's eventLoop.
+ *
+ * @param block the code to run
+ */
+suspend fun <T> awaitBlocking(block: () -> T) : T {
+  return awaitResult<T> { handler ->
+    val ctx = Vertx.currentContext()
+    ctx.executeBlocking<T>({ fut ->
+      fut.complete(block())
+    }, { ar ->
+      handler.handle(ar)
+    })
+  }
+}
+
+/**
  * Awaits for completion of future without blocking eventLoop
  */
 suspend fun <T> Future<T>.await(): T = when {

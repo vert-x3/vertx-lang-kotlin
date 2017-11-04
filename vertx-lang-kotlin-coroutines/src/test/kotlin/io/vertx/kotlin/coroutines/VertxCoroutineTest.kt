@@ -496,4 +496,45 @@ class VertxCoroutineTest {
       fut.fail(cause)
     }
   }
+
+  @Test
+  fun testAwaitBlocking(testContext: TestContext) {
+    val async = testContext.async()
+    val isOnWorkerThread = AtomicBoolean()
+    launch(vertx.dispatcher()) {
+      val ctx = Vertx.currentContext()
+      val thread = Thread.currentThread()
+      val result = awaitBlocking<String> {
+        isOnWorkerThread.set(Context.isOnWorkerThread())
+        "the-string"
+      }
+      testContext.assertEquals(thread, Thread.currentThread())
+      testContext.assertEquals(ctx, Vertx.currentContext())
+      testContext.assertEquals("the-string", result)
+      testContext.assertTrue(isOnWorkerThread.get())
+      async.complete()
+    }
+  }
+
+  @Test
+  fun testAwaitBlockingFailure(testContext: TestContext) {
+    val async = testContext.async()
+    launch(vertx.dispatcher()) {
+      val cause = Exception()
+      val ctx = Vertx.currentContext()
+      val thread = Thread.currentThread()
+      var failure : Throwable? = null
+      try {
+        awaitBlocking<String> {
+          throw cause
+        }
+      } catch (e: Exception) {
+        failure = e
+      }
+      testContext.assertEquals(thread, Thread.currentThread())
+      testContext.assertEquals(ctx, Vertx.currentContext())
+      testContext.assertEquals(cause, failure)
+      async.complete()
+    }
+  }
 }
