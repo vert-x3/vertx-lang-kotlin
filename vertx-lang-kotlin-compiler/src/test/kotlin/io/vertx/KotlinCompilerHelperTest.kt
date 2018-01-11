@@ -1,7 +1,7 @@
 package io.vertx.lang.kotlin.test
 
 import io.vertx.lang.kotlin.*
-import org.junit.*
+import org.junit.Test
 import java.io.*
 import kotlin.test.*
 

@@ -7,7 +7,7 @@ import io.vertx.core.streams.*
 import io.vertx.kotlin.core.json.*
 import io.vertx.kotlin.core.streams.*
 import io.vertx.kotlin.core.buffer.*
-import org.junit.*
+import org.junit.Test
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.*

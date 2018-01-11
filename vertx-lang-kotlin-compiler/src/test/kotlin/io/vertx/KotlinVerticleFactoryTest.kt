@@ -1,9 +1,9 @@
 package io.vertx
 
 import io.vertx.core.*
-import org.junit.*
+import org.junit.Test
+import org.junit.After
 import java.util.concurrent.*
-import java.util.concurrent.atomic.AtomicReference
 import kotlin.test.*
 
 class KotlinVerticleFactoryTest {
