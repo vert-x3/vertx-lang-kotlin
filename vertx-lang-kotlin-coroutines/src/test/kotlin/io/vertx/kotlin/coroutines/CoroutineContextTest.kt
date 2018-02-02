@@ -125,7 +125,7 @@ class CoroutineContextTest {
       a.set(vertx.setTimer(10, handler))
     }
     testContext.assertEquals(id, a.get())
-    testContext.assertTrue(Context.isOnEventLoopThread())
+    testContext.assertTrue(Context.isOnEventLoopThread(), "Expected event loop thread instead of ${Thread.currentThread()}")
     testContext.assertEquals(ctx, Vertx.currentContext())
   }
 
