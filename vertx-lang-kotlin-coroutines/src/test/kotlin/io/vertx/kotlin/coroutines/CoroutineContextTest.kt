@@ -6,7 +6,6 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import junit.framework.Assert.assertSame
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
@@ -160,7 +159,7 @@ class CoroutineContextTest {
   @Test
   fun testPeriodic(testContext: TestContext) {
     val count = AtomicInteger()
-    val interrupted = AtomicBoolean()
+    val interrupted = testContext.async()
     val job = launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       try {
@@ -169,16 +168,16 @@ class CoroutineContextTest {
           count.incrementAndGet()
           delay(10)
         }
-      } catch (e: Exception) {
+      } catch (e: JobCancellationException) {
         testContext.assertEquals(ctx, Vertx.currentContext())
-        interrupted.set(true)
+        interrupted.countDown()
         throw e;
       }
     }
     Thread.sleep(100)
     job.cancel()
     testContext.assertTrue(count.get() > 5)
-    testContext.assertTrue(interrupted.get())
+    interrupted.awaitSuccess(2000)
   }
 
   @Test
