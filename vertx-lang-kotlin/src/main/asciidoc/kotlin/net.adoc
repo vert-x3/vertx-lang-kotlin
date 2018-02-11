@@ -974,12 +974,7 @@ configured by explicitly adding enabled protocols:
 
 [source,kotlin]
 ----
-var options = NetServerOptions(
-  ssl = true,
-  keyStoreOptions = keyStoreOptions,
-  enabledSecureTransportProtocols = listOf("TLSv1.1", "TLSv1.2"))
-var server = vertx.createNetServer(options)
-
+Code not translatable
 ----
 
 Protocol versions can be specified on the `link:../../apidocs/io/vertx/core/net/NetServerOptions.html[NetServerOptions]` or `link:../../apidocs/io/vertx/core/net/NetClientOptions.html[NetClientOptions]` configuration.
