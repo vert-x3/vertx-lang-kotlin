@@ -14,6 +14,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>vertx-lang-kotlin-codegen</module>
     <module>vertx-lang-kotlin</module>
     <module>vertx-lang-kotlin-coroutines</module>
   </modules>

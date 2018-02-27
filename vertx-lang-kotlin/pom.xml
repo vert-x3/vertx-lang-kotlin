@@ -3,83 +3,149 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>vertx-lang-kotlin-parent</artifactId>
+    <artifactId>vertx-lang-base-stack</artifactId>
     <groupId>io.vertx</groupId>
     <version>3.6.0-SNAPSHOT</version>
+    <relativePath></relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>vertx-lang-kotlin</artifactId>
+  <version>3.6.0-SNAPSHOT</version>
 
   <dependencies>
 
     <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <classifier>tck-sources</classifier>
-      <scope>test</scope>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <version>1.2.20</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <classifier>tck</classifier>
+      <artifactId>vertx-lang-kotlin-codegen</artifactId>
+      <version>3.6.0-SNAPSHOT</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-core</artifactId>
-      <type>test-jar</type>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit</artifactId>
+      <version>1.2.20</version>
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-docgen</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-codetrans</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <scope>provided</scope>
-      <classifier>sources</classifier>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-core</artifactId>
-      <scope>provided</scope>
-      <classifier>sources</classifier>
-    </dependency>
   </dependencies>
 
   <build>
+
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+
     <plugins>
       <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.0.2</version>
+        <executions>
+          <!-- Unpack sources to target/sources -->
+          <execution>
+            <id>unpack-java</id>
+          </execution>
+          <execution>
+            <id>unpack-asciidoc</id>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <version>3.1.0</version>
         <executions>
           <execution>
-            <id>compile</id>
+            <id>generate-sources</id>
+          </execution>
+          <execution>
+            <id>generate-doc</id>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+          </dependency>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.7</version>
+          </dependency>
+          <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>1.5.2</version>
+          </dependency>
+          <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.8.2</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.8.2</version>
+          </dependency>
+          <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>assemble-docs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <attach>true</attach>
+              <descriptors>
+                <descriptor>src/main/assembly/docs.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <version>1.2.20</version>
+        <configuration>
+          <jvmTarget>1.8</jvmTarget>
+        </configuration>
+        <executions>
+          <execution>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
             <goals>
               <goal>compile</goal>
             </goals>
-            <phase>compile</phase>
-            <configuration>
-              <sourceDirs>
-                <sourceDir>src/main/java</sourceDir>
-                <sourceDir>target/generated-sources/kotlin</sourceDir>
-              </sourceDirs>
-            </configuration>
           </execution>
           <execution>
             <id>>test-compile</id>
@@ -90,127 +156,15 @@
             <configuration>
               <sourceDirs>
                 <sourceDir>src/test/kotlin</sourceDir>
-                <sourceDir>target/generated-test-sources/kotlin</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
         </executions>
       </plugin>
+    </plugins>
 
-      <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <!-- Unpack vertx-core source code to target/sources/vertx-core -->
-          <execution>
-            <id>unpack-vertx-core</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <includeGroupIds>io.vertx</includeGroupIds>
-              <includeArtifactIds>vertx-core</includeArtifactIds>
-              <includeTypes>jar</includeTypes>
-              <includeClassifiers>sources</includeClassifiers>
-              <includes>io/vertx/core/**/*.java,examples/**/*.java</includes>
-              <excludes>**/impl/**/*.java,**/logging/**/*.java</excludes>
-              <outputDirectory>${project.build.directory}/sources/vertx-core</outputDirectory>
-            </configuration>
-          </execution>
-          <!-- Unpack codegen source code to sources/test/java -->
-          <execution>
-            <id>unpack-tck</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <includeGroupIds>io.vertx</includeGroupIds>
-              <includeArtifactIds>vertx-codegen</includeArtifactIds>
-              <includeTypes>jar</includeTypes>
-              <includeClassifiers>tck-sources</includeClassifiers>
-              <outputDirectory>${project.build.directory}/sources/vertx-codegen</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.bsc.maven</groupId>
-        <artifactId>maven-processor-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <systemProperties>
-            <java.util.logging.SimpleFormatter.format>%4$s: %3$s - %5$s %6$s%n</java.util.logging.SimpleFormatter.format>
-          </systemProperties>
-        </configuration>
-        <executions>
-          <!-- Run the annotation processor on vertx-core and generate the Kotlin API -->
-          <execution>
-            <id>generate-api</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>generate-sources</phase>
-            <configuration>
-              <processors>
-                <processor>io.vertx.codegen.CodeGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <codegen.output>${project.build.directory}/generated-sources</codegen.output>
-                <codegen.generators>Kotlin</codegen.generators>
-              </optionMap>
-              <sourceDirectory>${project.build.directory}/sources/vertx-core</sourceDirectory>
-            </configuration>
-          </execution>
-          <!-- We have to run the annotation processor again to process docs -->
-          <execution>
-            <id>docgen-docs</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>prepare-package</phase>
-            <configuration>
-              <processors>
-                <processor>io.vertx.docgen.DocGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <docgen.output>${asciidoc.dir}/kotlin</docgen.output>
-                <maven.groupId>${project.groupId}</maven.groupId>
-                <maven.artifactId>${project.artifactId}</maven.artifactId>
-                <maven.version>${project.version}</maven.version>
-              </optionMap>
-              <sourceDirectory>${project.build.directory}/sources/vertx-core</sourceDirectory>
-            </configuration>
-          </execution>
-          <!-- Run the annotation processor on vertx-codegen TCK and generate the Kotlin API -->
-          <execution>
-            <id>generate-tck</id>
-            <goals>
-              <goal>process-test</goal>
-            </goals>
-            <phase>generate-test-sources</phase>
-            <configuration>
-              <processors>
-                <processor>io.vertx.codegen.CodeGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <codegen.output>${project.build.directory}/generated-test-sources</codegen.output>
-                <codegen.generators>Kotlin</codegen.generators>
-              </optionMap>
-              <sourceDirectory>${project.build.directory}/sources/vertx-codegen</sourceDirectory>
-              <defaultOutputDirectory>${project.build.directory}/generated-test-sources/apt</defaultOutputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+    <!--
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -232,29 +186,12 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>assemble-docs</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <attach>true</attach>
-              <descriptors>
-                <descriptor>src/main/assembly/docs.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
+    -->
   </build>
 
   <profiles>
-    <!-- Use -Pdocs -->
+    <!--
     <profile>
       <id>docs</id>
       <build>
@@ -289,6 +226,7 @@
         </plugins>
       </build>
     </profile>
+    -->
   </profiles>
 
 </project>
