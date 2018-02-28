@@ -9,11 +9,11 @@ http://kotlinlang.org[Kotlin] language support for vert.x3
 
 === Extending Vert.x for Kotlin
 
-Kotlin extensions are placed in this https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin/src/main/java/io/vertx/kotlin[directory]
+Kotlin extensions are developed in this link:vertx-lang-kotlin/src/main/java/io/vertx/kotlin[directory].
 
 For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, etc...
 
-Extensions must be tested and documented.
+Extensions needs to be tested and link:vertx-lang-kotlin/src/main/asciidoc/index.adoc[documented].
 
 === Bumping Kotlin version
 
