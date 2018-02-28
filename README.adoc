@@ -1,0 +1,20 @@
+= Vert.x for Kotlin
+
+http://kotlinlang.org[Kotlin] language support for vert.x3
+
+* http://vertx.io/docs[Documentation]
+* http://vertx.io/docs/vertx-lang-kotlin-coroutines/kotlin/[Coroutines]
+
+== Contributing
+
+=== Extending Vert.x for Kotlin
+
+Kotlin extensions are placed in this https://github.com/vert-x3/vertx-lang-kotlin/tree/master/vertx-lang-kotlin/src/main/java/io/vertx/kotlin[directory]
+
+For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, etc...
+
+Extensions must be tested and documented.
+
+=== Bumping Kotlin version
+
+Kotlin evolves fast, so just change the project versions, test it, and shot a PR.
