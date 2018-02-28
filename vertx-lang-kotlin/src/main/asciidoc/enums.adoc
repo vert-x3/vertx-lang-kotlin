@@ -221,6 +221,36 @@ ID 14, bad timestamp
 +++
 |===
 
+[[ExecStatus]]
+== ExecStatus
+
+++++
+ The status of an execution.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[READY]]`READY`|
++++
+The job is ready, it can be running or terminated.
++++
+|[[RUNNING]]`RUNNING`|
++++
+The job is running, it can be stopped or terminated.
++++
+|[[STOPPED]]`STOPPED`|
++++
+The job is stopped, it can be running or terminated.
++++
+|[[TERMINATED]]`TERMINATED`|
++++
+The job is terminated.
++++
+|===
+
 [[FailoverOptions]]
 == FailoverOptions
 

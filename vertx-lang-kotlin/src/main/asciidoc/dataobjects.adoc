@@ -2665,6 +2665,272 @@ Set the websocket subprotocols supported by the server.
 +++
 |===
 
+[[HttpTermOptions]]
+== HttpTermOptions
+
+++++
+ The web term configuration options.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[acceptBacklog]]`acceptBacklog`|`Number (int)`|
++++
+Set the accept back log
++++
+|[[acceptUnmaskedFrames]]`acceptUnmaskedFrames`|`Boolean`|
++++
+Set true when the server accepts unmasked frame.
+ As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting true
+ It's set to false as default.
++++
+|[[alpnVersions]]`alpnVersions`|`Array of link:enums.html#HttpVersion[HttpVersion]`|
++++
+Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
++++
+|[[authOptions]]`authOptions`|`link:dataobjects.html#AuthOptions[AuthOptions]`|
++++
+
++++
+|[[charset]]`charset`|`String`|
++++
+Set the charset used for encoding / decoding text data from/to SockJS
++++
+|[[clientAuth]]`clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|
++++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`clientAuthRequired`|`Boolean`|
++++
+Set whether client auth is required
++++
+|[[compressionLevel]]`compressionLevel`|`Number (int)`|
++++
+This method allows to set the compression level to be used in http1.x/2 response bodies
+ when compression support is turned on (@see setCompressionSupported) and the client advertises
+ to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header
+
+ default value is : 6 (Netty legacy)
+
+ The compression level determines how much the data is compressed on a scale from 1 to 9,
+ where '9' is trying to achieve the maximum compression ratio while '1' instead is giving
+ priority to speed instead of compression ratio using some algorithm optimizations and skipping
+ pedantic loops that usually gives just little improvements
+
+ While one can think that best value is always the maximum compression ratio,
+ there's a trade-off to consider: the most compressed level requires the most
+ computational work to compress/decompress data, e.g. more dictionary lookups and loops.
+
+ E.g. you have it set fairly high on a high-volume website, you may experience performance degradation
+ and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side
+ while decompressing - setting an higher compression level can result in an overall higher page load time
+ especially nowadays when many clients are handled mobile devices with a low CPU profile.
+
+ see also: http://www.gzip.org/algorithm.txt
++++
+|[[compressionSupported]]`compressionSupported`|`Boolean`|
++++
+Set whether the server should support gzip/deflate compression
+ (serving compressed responses to clients advertising support for them with Accept-Encoding header)
++++
+|[[crlPaths]]`crlPaths`|`Array of String`|
++++
+Add a CRL path
++++
+|[[crlValues]]`crlValues`|`Array of Buffer`|
++++
+Add a CRL value
++++
+|[[decoderInitialBufferSize]]`decoderInitialBufferSize`|`Number (int)`|
++++
+Set the initial buffer size for the HTTP decoder
++++
+|[[decompressionSupported]]`decompressionSupported`|`Boolean`|
++++
+Set whether the server supports decompression
++++
+|[[enabledCipherSuites]]`enabledCipherSuites`|`Array of String`|
++++
+Add an enabled cipher suite, appended to the ordered suites.
++++
+|[[enabledSecureTransportProtocols]]`enabledSecureTransportProtocols`|`Array of String`|
++++
+Sets the list of enabled SSL/TLS protocols.
++++
+|[[handle100ContinueAutomatically]]`handle100ContinueAutomatically`|`Boolean`|
++++
+Set whether 100 Continue should be handled automatically
++++
+|[[host]]`host`|`String`|
++++
+Set the host
++++
+|[[http2ConnectionWindowSize]]`http2ConnectionWindowSize`|`Number (int)`|
++++
+Set the default HTTP/2 connection window size. It overrides the initial window
+ size set by , so the connection window size
+ is greater than for its streams, in order the data throughput.
+ <p/>
+ A value of <code>-1</code> reuses the initial window size setting.
++++
+|[[idleTimeout]]`idleTimeout`|`Number (int)`|
++++
+Set the idle timeout, in seconds. zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
++++
+|[[initialSettings]]`initialSettings`|`link:dataobjects.html#Http2Settings[Http2Settings]`|
++++
+Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
++++
+|[[intputrc]]`intputrc`|`String`|
++++
+The path of the <i>inputrc</i> config.
++++
+|[[jdkSslEngineOptions]]`jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keyStoreOptions]]`keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|
++++
+Set the key/cert options in jks format, aka Java keystore.
++++
+|[[logActivity]]`logActivity`|`Boolean`|
++++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
++++
+|[[maxChunkSize]]`maxChunkSize`|`Number (int)`|
++++
+Set the maximum HTTP chunk size
++++
+|[[maxHeaderSize]]`maxHeaderSize`|`Number (int)`|
++++
+Set the maximum length of all headers for HTTP/1.x .
++++
+|[[maxInitialLineLength]]`maxInitialLineLength`|`Number (int)`|
++++
+Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
++++
+|[[maxWebsocketFrameSize]]`maxWebsocketFrameSize`|`Number (int)`|
++++
+Set the maximum websocket frames size
++++
+|[[maxWebsocketMessageSize]]`maxWebsocketMessageSize`|`Number (int)`|
++++
+Set the maximum websocket message size
++++
+|[[openSslEngineOptions]]`openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
+|[[pemKeyCertOptions]]`pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|
++++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|
++++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|
++++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|
++++
+Set the trust options in pfx format
++++
+|[[port]]`port`|`Number (int)`|
++++
+Set the port
++++
+|[[receiveBufferSize]]`receiveBufferSize`|`Number (int)`|
++++
+Set the TCP receive buffer size
++++
+|[[reuseAddress]]`reuseAddress`|`Boolean`|
++++
+Set the value of reuse address
++++
+|[[reusePort]]`reusePort`|`Boolean`|
++++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`sendBufferSize`|`Number (int)`|
++++
+Set the TCP send buffer size
++++
+|[[shellHtmlResource]]`shellHtmlResource`|`Buffer`|
++++
+Set <code>shell.html</code> resource to use.
++++
+|[[sni]]`sni`|`Boolean`|
++++
+Set whether the server supports Server Name Indiciation
++++
+|[[soLinger]]`soLinger`|`Number (int)`|
++++
+Set whether SO_linger keep alive is enabled
++++
+|[[sockJSHandlerOptions]]`sockJSHandlerOptions`|`link:dataobjects.html#SockJSHandlerOptions[SockJSHandlerOptions]`|
++++
+The SockJS handler options.
++++
+|[[sockJSPath]]`sockJSPath`|`String`|
++++
+Configure the SockJS path, the default value is <code>/term/*</code>.
++++
+|[[ssl]]`ssl`|`Boolean`|
++++
+Set whether SSL/TLS is enabled
++++
+|[[tcpCork]]`tcpCork`|`Boolean`|
++++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`tcpFastOpen`|`Boolean`|
++++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`tcpKeepAlive`|`Boolean`|
++++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`tcpNoDelay`|`Boolean`|
++++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`tcpQuickAck`|`Boolean`|
++++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[termJsResource]]`termJsResource`|`Buffer`|
++++
+Set <code>term.js</code> resource to use.
++++
+|[[trafficClass]]`trafficClass`|`Number (int)`|
++++
+Set the value of traffic class
++++
+|[[trustStoreOptions]]`trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|
++++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`useAlpn`|`Boolean`|
++++
+Set the ALPN usage.
++++
+|[[usePooledBuffers]]`usePooledBuffers`|`Boolean`|
++++
+Set whether Netty pooled buffers are enabled
++++
+|[[vertsShellJsResource]]`vertsShellJsResource`|`Buffer`|
++++
+Set <code>vertxshell.js</code> resource to use.
++++
+|[[websocketSubProtocols]]`websocketSubProtocols`|`String`|
++++
+Set the websocket subprotocols supported by the server.
++++
+|===
+
 [[IndexOptions]]
 == IndexOptions
 
@@ -5999,6 +6265,52 @@ Get the rows - each row represented as a JsonObject where the keys are the colum
 |[[transactionIsolation]]`transactionIsolation`|`link:enums.html#TransactionIsolation[TransactionIsolation]`|-
 |===
 
+[[SSHTermOptions]]
+== SSHTermOptions
+
+++++
+ The SSH term configuration options.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authOptions]]`authOptions`|`link:dataobjects.html#AuthOptions[AuthOptions]`|
++++
+
++++
+|[[defaultCharset]]`defaultCharset`|`String`|
++++
+Set the default charset to use when the client does not specifies one.
++++
+|[[host]]`host`|`String`|
++++
+Set the host
++++
+|[[intputrc]]`intputrc`|`String`|
++++
+The path of the <i>inputrc</i> config.
++++
+|[[keyPairOptions]]`keyPairOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|
++++
+Set the key pair options in jks format, aka Java keystore.
++++
+|[[pemKeyPairOptions]]`pemKeyPairOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|
++++
+Set the key pair store options in pem format.
++++
+|[[pfxKeyPairOptions]]`pfxKeyPairOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|
++++
+Set the key pair options in pfx format.
++++
+|[[port]]`port`|`Number (int)`|
++++
+Set the port
++++
+|===
+
 [[ScanOptions]]
 == ScanOptions
 
@@ -6367,6 +6679,68 @@ Set the TTL interval. When TTL interval expires without being renewed, the sessi
 |[[nx]]`nx`|`Boolean`|-
 |[[px]]`px`|`Number (long)`|-
 |[[xx]]`xx`|`Boolean`|-
+|===
+
+[[ShellServerOptions]]
+== ShellServerOptions
+
+++++
+ The configurations options for the shell server.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[reaperInterval]]`reaperInterval`|`Number (long)`|
++++
+Set the repear interval, i.e the period at which session eviction is performed.
++++
+|[[sessionTimeout]]`sessionTimeout`|`Number (long)`|
++++
+Set the session timeout.
++++
+|[[welcomeMessage]]`welcomeMessage`|`String`|
++++
+Set the shell welcome message, i.e the message displayed in the user console when he connects to the shell.
++++
+|===
+
+[[ShellServiceOptions]]
+== ShellServiceOptions
+
+++++
+ The configurations options for the shell service, the shell connectors can be configured
+ with ,  and .
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[httpOptions]]`httpOptions`|`link:dataobjects.html#HttpTermOptions[HttpTermOptions]`|-
+|[[reaperInterval]]`reaperInterval`|`Number (long)`|
++++
+Set the repear interval, i.e the period at which session eviction is performed.
++++
+|[[sessionTimeout]]`sessionTimeout`|`Number (long)`|
++++
+Set the session timeout.
++++
+|[[sshOptions]]`sshOptions`|`link:dataobjects.html#SSHTermOptions[SSHTermOptions]`|
++++
+Set the SSH options, if the option is null, SSH will not be started.
++++
+|[[telnetOptions]]`telnetOptions`|`link:dataobjects.html#TelnetTermOptions[TelnetTermOptions]`|
++++
+Set the Telnet options, if the option is null, Telnet will not be started.
++++
+|[[welcomeMessage]]`welcomeMessage`|`String`|
++++
+Set the shell welcome message, i.e the message displayed in the user console when he connects to the shell.
++++
 |===
 
 [[ShiroAuthOptions]]
@@ -6950,6 +7324,171 @@ Set the value of reuse port.
 |[[sendBufferSize]]`sendBufferSize`|`Number (int)`|
 +++
 Set the TCP send buffer size
++++
+|[[soLinger]]`soLinger`|`Number (int)`|
++++
+Set whether SO_linger keep alive is enabled
++++
+|[[ssl]]`ssl`|`Boolean`|
++++
+Set whether SSL/TLS is enabled
++++
+|[[tcpCork]]`tcpCork`|`Boolean`|
++++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`tcpFastOpen`|`Boolean`|
++++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`tcpKeepAlive`|`Boolean`|
++++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`tcpNoDelay`|`Boolean`|
++++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`tcpQuickAck`|`Boolean`|
++++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[trafficClass]]`trafficClass`|`Number (int)`|
++++
+Set the value of traffic class
++++
+|[[trustStoreOptions]]`trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|
++++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`useAlpn`|`Boolean`|
++++
+Set the ALPN usage.
++++
+|[[usePooledBuffers]]`usePooledBuffers`|`Boolean`|
++++
+Set whether Netty pooled buffers are enabled
++++
+|===
+
+[[TelnetTermOptions]]
+== TelnetTermOptions
+
+++++
+ Telnet terminal options configuration, extends link.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[acceptBacklog]]`acceptBacklog`|`Number (int)`|
++++
+Set the accept back log
++++
+|[[charset]]`charset`|`String`|
++++
+Set the charset to use when binary mode is active, see link and link.
++++
+|[[clientAuth]]`clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|
++++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`clientAuthRequired`|`Boolean`|
++++
+Set whether client auth is required
++++
+|[[crlPaths]]`crlPaths`|`Array of String`|
++++
+Add a CRL path
++++
+|[[crlValues]]`crlValues`|`Array of Buffer`|
++++
+Add a CRL value
++++
+|[[enabledCipherSuites]]`enabledCipherSuites`|`Array of String`|
++++
+Add an enabled cipher suite, appended to the ordered suites.
++++
+|[[enabledSecureTransportProtocols]]`enabledSecureTransportProtocols`|`Array of String`|
++++
+Sets the list of enabled SSL/TLS protocols.
++++
+|[[host]]`host`|`String`|
++++
+Set the host
++++
+|[[idleTimeout]]`idleTimeout`|`Number (int)`|
++++
+Set the idle timeout, in seconds. zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
++++
+|[[inBinary]]`inBinary`|`Boolean`|
++++
+Set the telnet connection to negociate binary data format when receiving from the client, the default value is true. This
+ allows to send data in 8 bit format and thus charset like UTF-8.
++++
+|[[intputrc]]`intputrc`|`String`|
++++
+The path of the <i>inputrc</i> config.
++++
+|[[jdkSslEngineOptions]]`jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keyStoreOptions]]`keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|
++++
+Set the key/cert options in jks format, aka Java keystore.
++++
+|[[logActivity]]`logActivity`|`Boolean`|
++++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
++++
+|[[openSslEngineOptions]]`openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
+|[[outBinary]]`outBinary`|`Boolean`|
++++
+Set the telnet connection to negociate binary data format when sending to the client, the default value is true. This
+ allows to send data in 8 bit format and thus charset like UTF-8.
++++
+|[[pemKeyCertOptions]]`pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|
++++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|
++++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|
++++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|
++++
+Set the trust options in pfx format
++++
+|[[port]]`port`|`Number (int)`|
++++
+Set the port
++++
+|[[receiveBufferSize]]`receiveBufferSize`|`Number (int)`|
++++
+Set the TCP receive buffer size
++++
+|[[reuseAddress]]`reuseAddress`|`Boolean`|
++++
+Set the value of reuse address
++++
+|[[reusePort]]`reusePort`|`Boolean`|
++++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`sendBufferSize`|`Number (int)`|
++++
+Set the TCP send buffer size
++++
+|[[sni]]`sni`|`Boolean`|
++++
+Set whether the server supports Server Name Indiciation
 +++
 |[[soLinger]]`soLinger`|`Number (int)`|
 +++
