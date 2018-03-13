@@ -6,7 +6,7 @@
   <fileSets>
     <fileSet>
       <directory>${project.build.directory}/asciidoc</directory>
-      <outputDirectory>./kotlin/</outputDirectory>
+      <outputDirectory>./</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>${project.build.directory}/kdoc</directory>
