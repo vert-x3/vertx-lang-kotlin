@@ -1,12 +1,11 @@
-package io.vertx.kotlin.ext.web.handler.sockjs
+package io.vertx.kotlin.ext.bridge
 
-import io.vertx.ext.web.handler.sockjs.PermittedOptions
+import io.vertx.ext.bridge.PermittedOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.PermittedOptions] objects.
+ * A function providing a DSL for building [io.vertx.ext.bridge.PermittedOptions] objects.
  *
- * Specify a match to allow for inbound and outbound traffic using the
- * [io.vertx.ext.web.handler.sockjs.BridgeOptions].
+ * Represents a match to allow for inbound and outbound traffic.
  *
  * @param address  The exact address the message is being sent to. If you want to allow messages based on an exact address you use this field.
  * @param addressRegex  A regular expression that will be matched against the address. If you want to allow messages based on a regular expression you use this field. If the [io.vertx.ext.bridge.PermittedOptions] value is specified this will be ignored.
@@ -14,13 +13,13 @@ import io.vertx.ext.web.handler.sockjs.PermittedOptions
  * @param requiredAuthority  Declare a specific authority that user must have in order to allow messages
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.PermittedOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.bridge.PermittedOptions original] using Vert.x codegen.
  */
 fun PermittedOptions(
   address: String? = null,
   addressRegex: String? = null,
   match: io.vertx.core.json.JsonObject? = null,
-  requiredAuthority: String? = null): PermittedOptions = io.vertx.ext.web.handler.sockjs.PermittedOptions().apply {
+  requiredAuthority: String? = null): PermittedOptions = io.vertx.ext.bridge.PermittedOptions().apply {
 
   if (address != null) {
     this.setAddress(address)

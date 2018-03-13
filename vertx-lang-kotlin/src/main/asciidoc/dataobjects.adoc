@@ -432,6 +432,28 @@ Specifying a maximum duration for the blocking request. This is limited to 10 mi
 == BridgeOptions
 
 ++++
+ Specify the event bus bridge options.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[inboundPermitteds]]`inboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|
++++
+Sets the list of inbound permitted options.
++++
+|[[outboundPermitteds]]`outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|
++++
+Sets the list of outbound permitted options.
++++
+|===
+
+[[BridgeOptions]]
+== BridgeOptions
+
+++++
  Options for configuring the event bus bridge.
 ++++
 '''
@@ -462,8 +484,14 @@ Specifying a maximum duration for the blocking request. This is limited to 10 mi
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[inboundPermitteds]]`inboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|-
-|[[outboundPermitteds]]`outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|-
+|[[inboundPermitteds]]`inboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|
++++
+Sets the list of inbound permitted options.
++++
+|[[outboundPermitteds]]`outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|
++++
+Sets the list of outbound permitted options.
++++
 |[[pointToPoint]]`pointToPoint`|`Boolean`|-
 |===
 
@@ -2046,6 +2074,24 @@ Set the additional debug data
 +++
 Set the last stream id.
 +++
+|===
+
+[[HtpasswdAuthOptions]]
+== HtpasswdAuthOptions
+
+++++
+ Options configuring htpasswd authentication.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[enabledCryptPwd]]`enabledCryptPwd`|`Boolean`|-
+|[[enabledPlainTextPwd]]`enabledPlainTextPwd`|`Boolean`|-
+|[[htpasswdFile]]`htpasswdFile`|`String`|-
+|[[usersAuthorizedForEverything]]`usersAuthorizedForEverything`|`Boolean`|-
 |===
 
 [[Http2PushMapping]]
@@ -5405,10 +5451,60 @@ Add a certificate value
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[address]]`address`|`String`|-
-|[[addressRegex]]`addressRegex`|`String`|-
-|[[match]]`match`|`Json object`|-
-|[[requiredAuthority]]`requiredAuthority`|`String`|-
+|[[address]]`address`|`String`|
++++
+The exact address the message is being sent to. If you want to allow messages based on
+ an exact address you use this field.
++++
+|[[addressRegex]]`addressRegex`|`String`|
++++
+A regular expression that will be matched against the address. If you want to allow messages
+ based on a regular expression you use this field. If the link value is specified
+ this will be ignored.
++++
+|[[match]]`match`|`Json object`|
++++
+This allows you to allow messages based on their structure. Any fields in the match must exist in the
+ message with the same values for them to be allowed. This currently only works with JSON messages.
++++
+|[[requiredAuthority]]`requiredAuthority`|`String`|
++++
+Declare a specific authority that user must have in order to allow messages
++++
+|===
+
+[[PermittedOptions]]
+== PermittedOptions
+
+++++
+ Represents a match to allow for inbound and outbound traffic.
+++++
+'''
+
+[cols=">25%,^25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[address]]`address`|`String`|
++++
+The exact address the message is being sent to. If you want to allow messages based on
+ an exact address you use this field.
++++
+|[[addressRegex]]`addressRegex`|`String`|
++++
+A regular expression that will be matched against the address. If you want to allow messages
+ based on a regular expression you use this field. If the link value is specified
+ this will be ignored.
++++
+|[[match]]`match`|`Json object`|
++++
+This allows you to allow messages based on their structure. Any fields in the match must exist in the
+ message with the same values for them to be allowed. This currently only works with JSON messages.
++++
+|[[requiredAuthority]]`requiredAuthority`|`String`|
++++
+Declare a specific authority that user must have in order to allow messages
++++
 |===
 
 [[PfxOptions]]

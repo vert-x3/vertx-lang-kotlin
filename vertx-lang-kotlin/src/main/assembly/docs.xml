@@ -2,14 +2,23 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1 http://maven.apache.org/xsd/assembly-1.1.1.xsd">
   <id>docs</id>
-  <formats>
-    <format>zip</format>
-  </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <fileSets>
     <fileSet>
-      <directory>${project.build.directory}/bilto</directory>
-      <outputDirectory>/</outputDirectory>
+      <directory>${asciidoc.dir}</directory>
+      <outputDirectory>./kotlin/</outputDirectory>
+      <excludes>
+        <exclude>**/*.ad</exclude>
+        <exclude>**/*.adoc</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/asciidoc</directory>
+      <outputDirectory>./kotlin/</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/kdoc</directory>
+      <outputDirectory>./kdoc/</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>

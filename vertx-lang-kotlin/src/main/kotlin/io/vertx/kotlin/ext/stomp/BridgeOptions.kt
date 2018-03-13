@@ -8,8 +8,8 @@ import io.vertx.ext.bridge.PermittedOptions
  *
  * Specify the event bus bridge options.
  *
- * @param inboundPermitteds 
- * @param outboundPermitteds 
+ * @param inboundPermitteds  Sets the list of inbound permitted options.
+ * @param outboundPermitteds  Sets the list of outbound permitted options.
  * @param pointToPoint 
  *
  * <p/>
