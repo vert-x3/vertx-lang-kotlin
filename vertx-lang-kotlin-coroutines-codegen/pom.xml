@@ -39,6 +39,11 @@
       <optional>true</optional>
     </dependency>
 
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-lang-kotlin-coroutines</artifactId>
+      <version>${stack.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>io.vertx</groupId>
