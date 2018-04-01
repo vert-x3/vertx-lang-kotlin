@@ -1,0 +1,13 @@
+@includeNamed{'/vertx-java/template/common-lib.templ'}
+
+@declare{'suspendingMethod'}
+suspend fun @{interfaceName}.@{methodName}(@{paramString}): @{returnType} = awaitResult {\n
+  this.@{methodName}(it)\n
+}\n
+@end{}
+
+import io.vertx.kotlin.coroutines.awaitResult
+
+@foreach{method:methods}@if{method.kind == METHOD_FUTURE}
+\n@includeNamed{'suspendingMethod'; interfaceName=type.raw.name; methodName=method.name; paramString=""; returnType="Unit"}
+@end{}@end{}
