@@ -1,15 +1,111 @@
 @includeNamed{'/vertx-java/template/common-lib.templ'}
 @code{skipFile=true}
-@declare{'suspendingMethod'}
-suspend fun @{interfaceName}.@{methodName}(@{paramString}): @{returnType} = awaitResult {\n
-  this.@{methodName}(it)\n
-}\n
+
+@code{
+
+  def fixTypeParams(typeString) {
+    /* I cannot fix things "the right way" with a `ApiTypeInfo` */
+    typeString
+      .replace("java.util.", "")
+      .replace("java.lang.Integer", "Int")
+      .replace("java.lang.Character", "Char")
+      .replace("java.lang.", "");
+  }
+
+  /*copied from dataobject.templ */
+  def mapKotlinType(type) {
+    if (type.name == 'void' || type.name == 'java.lang.Void') {
+      ret = 'Unit';
+    } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
+      ret = 'Any';
+    } else if (type.name == 'Throwable' || type.name == 'java.lang.Throwable') {
+      ret = 'Throwable';
+    } else if (type.kind == CLASS_STRING) {
+      ret = 'String';
+    } else /*if (type.kind == CLASS_PRIMITIVE || type.kind == CLASS_BOXED_PRIMITIVE) {*/
+      if (type.name == 'byte' || type.name == 'java.lang.Byte') {
+        ret = 'Byte';
+      } else if (type.name == 'short' || type.name == 'java.lang.Short') {
+        ret = 'Short';
+      } else if (type.name == 'int' || type.name == 'java.lang.Integer') {
+        ret = 'Int';
+      } else if (type.name == 'long' || type.name == 'java.lang.Long') {
+        ret = 'Long';
+      } else if (type.name == 'float' || type.name == 'java.lang.Float') {
+        ret = 'Float';
+      } else if (type.name == 'double' || type.name == 'java.lang.Double') {
+        ret = 'Double';
+      } else if (type.name == 'boolean' || type.name == 'java.lang.Boolean') {
+        ret = 'Boolean';
+      } else if (type.name == 'char' || type.name == 'java.lang.Character') {
+        ret = 'Char';
+      /*}*/
+    /*} else if (type.kind == CLASS_DATA_OBJECT) {
+      ret = type.raw.name
+    } else if (type.kind == CLASS_ENUM) {
+      ret = type.simpleName;
+    } else if (type.kind == CLASS_JSON_OBJECT || type.kind == CLASS_JSON_ARRAY) {
+      ret = type.name
+    */} else {
+      ret = fixTypeParams(type.name)
+    }
+    return ret
+  }
+
+  def mapToNameTypePair(params) {
+    /* projection using in does not work because of scoping*/
+    ret = [];
+    for (param : params) {
+      ret = ret + [param.name + ": " + mapKotlinType(param.type)];
+    }
+    return ret;
+  }
+
+  def paramsToString(params) {
+    return String.join(", ", mapToNameTypePair(params));
+  }
+
+  def typeParamsToString(typeParams) {
+    if (typeParams.isEmpty()) {
+      return "";
+    } else {
+      return "<" + String.join(", ", (name in typeParams)) + "> ";
+    }
+  }
+
+  def returnTypeAndBody(handler, body) {
+    var handlerType = handler.type;
+    assert handlerType.kind == CLASS_HANDLER;
+    var typeParam = handlerType.getArgs()[0];
+    assert typeParam.kind == CLASS_ASYNC_RESULT;
+    var returnType = typeParam.getArgs()[0];
+
+    if (returnType.kind == CLASS_VOID) {
+      return " {\n  awaitResult<Void?>" + body + "\n}"
+    } else {
+      return ": " + mapKotlinType(returnType) + "? {\n  return awaitResult" + body + "\n}"; 
+    };
+  }
+
+  def genCoroutineMethod(interfaceName, method) {
+    var params = method.params;
+    var realParams = params.subList(0, params.size() - 1);
+    var paramsInWrappedFunctionCall = (name in realParams) + ["it"];
+    return "suspend fun " + typeParamsToString(method.typeParams) + interfaceName + "." + method.name + 
+      "(" + paramsToString(realParams) + ")" + returnTypeAndBody(params[params.size() -1],
+        "{ this." + method.name + "(" + String.join(", ", paramsInWrappedFunctionCall) + ") }"
+      );
+  }
+
+}
+
+package @{type.raw.translatePackageName("kotlin")}\n\n
+import io.vertx.kotlin.coroutines.awaitResult\n
+
+@foreach{method:methods}
+  @if{method.kind == METHOD_FUTURE}
+    @code{skipFile=false}
+    \n@{genCoroutineMethod(type.raw.name, method)}\n
+  @end{}
 @end{}
-
-import io.vertx.kotlin.coroutines.awaitResult
-
-@foreach{method:methods}@if{method.kind == METHOD_FUTURE}
-@code{skipFile=false}
-\n@includeNamed{'suspendingMethod'; interfaceName=type.raw.name; methodName=method.name; paramString=""; returnType="Unit"}
-@end{}@end{}
 
