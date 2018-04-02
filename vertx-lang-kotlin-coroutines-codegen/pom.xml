@@ -94,6 +94,9 @@
                 <sourceDir>src/test/kotlin</sourceDir>
                 <sourceDir>target/generated-test-sources/kotlin</sourceDir>
               </sourceDirs>
+              <args>
+                <arg>-Xcoroutines=enable</arg>
+              </args>
             </configuration>
           </execution>
         </executions>
