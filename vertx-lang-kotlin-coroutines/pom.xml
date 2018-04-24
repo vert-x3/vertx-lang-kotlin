@@ -31,6 +31,11 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-unit</artifactId>
+      <!--
+        it's a bit nasty but we need it for testing and avoid a chicken egg dependency
+        fix it by rewriting coroutine tests with something else than vertx-unit or just live with that
+      -->
+      <version>3.5.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
