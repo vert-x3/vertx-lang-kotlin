@@ -1,4 +1,4 @@
-package io.vertx.lang.kotlin.test
+package io.vertx.lang.kotlin.coroutines
 
 import io.vertx.codegen.testmodel.CollectionTCKImpl
 import io.vertx.codegen.testmodel.NullableTCKImpl
@@ -14,7 +14,7 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class DummyTest {
+class CoroutineCodeGenTest {
   @Test
   fun testVoid() = runBlocking {
     TestInterfaceImpl().methodWithHandlerAsyncResultVoid(sendFailure = false)
