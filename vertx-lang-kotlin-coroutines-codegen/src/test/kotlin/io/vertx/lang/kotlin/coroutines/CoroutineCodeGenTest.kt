@@ -1,15 +1,9 @@
 package io.vertx.lang.kotlin.coroutines
 
-import io.vertx.codegen.testmodel.CollectionTCKImpl
-import io.vertx.codegen.testmodel.NullableTCKImpl
-import io.vertx.codegen.testmodel.RefedInterface2Impl
-import io.vertx.codegen.testmodel.TestInterfaceImpl
+import io.vertx.codegen.testmodel.*
 import io.vertx.core.VertxException
 import io.vertx.core.json.JsonObject
-import io.vertx.kotlin.codegen.testmodel.methodWithHandlerAsyncResultNullJsonObject
-import io.vertx.kotlin.codegen.testmodel.methodWithHandlerAsyncResultSetAbstractVertxGen
-import io.vertx.kotlin.codegen.testmodel.methodWithHandlerAsyncResultVoid
-import io.vertx.kotlin.codegen.testmodel.methodWithNullableCharHandlerAsyncResult
+import io.vertx.kotlin.codegen.testmodel.*
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -27,10 +21,12 @@ class CoroutineCodeGenTest {
 
   @Test
   fun testNoAnnotationNull() = runBlocking {
+    // As the method is not annotated with @Nullable,
+    // the generated type is without a "?".
+    // Users can cast it back to nullable.
     val nullJsonObject = TestInterfaceImpl().methodWithHandlerAsyncResultNullJsonObject()
     assertEquals(null, nullJsonObject as JsonObject?)
   }
-
 
   @Test
   fun testNullable() = runBlocking {
@@ -41,7 +37,7 @@ class CoroutineCodeGenTest {
 
   @Test
   fun testCollection() = runBlocking {
-    // as RefedInterface2Impl does not have a nice hashcode, set equality fails
+    // Because RefedInterface2Impl does not have a nice hashcode, set equality fails.
     assertEquals(
       setOf(
         RefedInterface2Impl().setString("abstractfoo"),
@@ -51,4 +47,46 @@ class CoroutineCodeGenTest {
     )
   }
 
+  @Test
+  fun testParameterized() = runBlocking {
+    GenericsTCKImpl().let {
+      assertEquals(
+        it.methodWithByteParameterizedReturn().value,
+        it.methodWithHandlerAsyncResultByteParameterized().value
+      )
+    }
+  }
+
+  @Test
+  fun testCreateFromClass() = runBlocking {
+    GenericsTCKImpl().let {
+      assertEquals(
+        it.methodWithJsonObjectParameterizedReturn().value,
+        it.methodWithClassTypeHandlerAsyncResult(JsonObject::class.java)
+      )
+    }
+  }
+
+
+  @Test
+  fun testGenerics() = runBlocking {
+    assertEquals(
+      Hello("world"),
+      NullableTCKImpl().methodWithNullableTypeVariableHandlerAsyncResult(
+        notNull = true,
+        value = Hello("world")
+      )
+    )
+
+
+    assertEquals(
+      null,
+      NullableTCKImpl().methodWithNullableTypeVariableHandlerAsyncResult(
+        notNull = false,
+        value = Hello("world")
+      ) as Hello? // because the annotation is missing
+    )
+  }
+
+  data class Hello(val world: String)
 }
