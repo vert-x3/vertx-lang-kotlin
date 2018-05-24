@@ -3,16 +3,37 @@
 
 @code{
 
-  def fixTypeParams(typeString) {
-    /* I cannot fix things "the right way" with a `ApiTypeInfo` */
-    typeString
-      .replace("java.util.", "")
-      .replace("java.lang.Integer", "Int")
-      .replace("java.lang.Character", "Char")
-      .replace("java.lang.", "");
+  def fixMappedCollectionTypes(name) {
+    if(name == 'java.util.Iterator') {
+      return 'MutableIterator';
+    } else if(name == 'java.util.Iterable') {
+      return 'MutableIterable';
+    } else if(name == 'java.util.Collection') {
+      return 'MutableCollection';
+    } else if(name == 'java.util.Set') {
+      return 'MutableSet';
+    } else if(name == 'java.util.List') {
+      return 'MutableList';
+    } else if(name == 'java.util.ListIterator') {
+      return 'MutableListIterator';
+    } else if(name == 'java.util.Map') {
+      return 'MutableMap';
+    } else if(name == 'java.util.Map.Entry') {
+      return 'MutableMap.MutableEntry';
+    } else {
+      return name;
+    }
   }
 
-  /*copied from dataobject.templ */
+  def fixParameterizedType(type) {
+    var args = type.args;
+    var mappedArg = [];
+    for (arg : args) {
+      mappedArg = mappedArg + [mapKotlinType(arg)];
+    }
+    return fixMappedCollectionTypes(type.raw.name) + typeParamsToString(mappedArg);
+  }
+
   def mapKotlinType(type) {
     if (type.name == 'void' || type.name == 'java.lang.Void') {
       ret = 'Unit';
@@ -22,7 +43,7 @@
       ret = 'Throwable';
     } else if (type.kind == CLASS_STRING) {
       ret = 'String';
-    } else /*if (type.kind == CLASS_PRIMITIVE || type.kind == CLASS_BOXED_PRIMITIVE) {*/
+    } else if (type.kind == CLASS_PRIMITIVE || type.kind == CLASS_BOXED_PRIMITIVE) {
       if (type.name == 'byte' || type.name == 'java.lang.Byte') {
         ret = 'Byte';
       } else if (type.name == 'short' || type.name == 'java.lang.Short') {
@@ -39,15 +60,11 @@
         ret = 'Boolean';
       } else if (type.name == 'char' || type.name == 'java.lang.Character') {
         ret = 'Char';
-      /*}*/
-    /*} else if (type.kind == CLASS_DATA_OBJECT) {
-      ret = type.raw.name
-    } else if (type.kind == CLASS_ENUM) {
-      ret = type.simpleName;
-    } else if (type.kind == CLASS_JSON_OBJECT || type.kind == CLASS_JSON_ARRAY) {
+      }
+    } else if (type.getClass == io.vertx.codegen.type.ParameterizedTypeInfo) {
+      ret = fixParameterizedType(type);
+    } else {
       ret = type.name
-    */} else {
-      ret = fixTypeParams(type.name)
     }
     return ret
   }
@@ -69,7 +86,7 @@
     if (typeParams.isEmpty()) {
       return "";
     } else {
-      return "<" + String.join(", ", (name in typeParams)) + "> ";
+      return "<" + String.join(", ", typeParams) + ">";
     }
   }
 
@@ -83,7 +100,8 @@
     if (returnType.kind == CLASS_VOID) {
       return " {\n  awaitResult<Void?>" + body + "\n}"
     } else {
-      return ": " + mapKotlinType(returnType) + "? {\n  return awaitResult" + body + "\n}"; 
+      return ": " + mapKotlinType(returnType) + (returnType.isNullable ? "?" : "") +
+       " {\n  return awaitResult" + body + "\n}";
     };
   }
 
@@ -91,7 +109,7 @@
     var params = method.params;
     var realParams = params.subList(0, params.size() - 1);
     var paramsInWrappedFunctionCall = (name in realParams) + ["it"];
-    return "suspend fun " + typeParamsToString(method.typeParams) + interfaceName + "." + method.name + 
+    return "suspend fun" + typeParamsToString((name in method.typeParams)) + " " + interfaceName + "." + method.name +
       "(" + paramsToString(realParams) + ")" + returnTypeAndBody(params[params.size() -1],
         "{ this." + method.name + "(" + String.join(", ", paramsInWrappedFunctionCall) + ") }"
       );
