@@ -83,11 +83,7 @@
   }
 
   def typeParamsToString(typeParams) {
-    if (typeParams.isEmpty()) {
-      return "";
-    } else {
-      return "<" + String.join(", ", typeParams) + ">";
-    }
+    return "<" + String.join(", ", typeParams) + ">";
   }
 
   def returnTypeAndBody(handler, body) {
@@ -98,10 +94,10 @@
     var returnType = typeParam.getArgs()[0];
 
     if (returnType.kind == CLASS_VOID) {
-      return " {\n  awaitResult<Void?>" + body + "\n}"
+      return " {\n  awaitResult<Void?> " + body + "\n}"
     } else {
       return ": " + mapKotlinType(returnType) + (returnType.isNullable ? "?" : "") +
-       " {\n  return awaitResult" + body + "\n}";
+       " {\n  return awaitResult " + body + "\n}";
     };
   }
 
@@ -109,7 +105,8 @@
     var params = method.params;
     var realParams = params.subList(0, params.size() - 1);
     var paramsInWrappedFunctionCall = (name in realParams) + ["it"];
-    return "suspend fun" + typeParamsToString((name in method.typeParams)) + " " + interfaceName + "." + method.name +
+    var typeParamsString = method.typeParams.isEmpty() ? "" : (typeParamsToString((name in method.typeParams)) + " ");
+    return "suspend fun " + typeParamsString + interfaceName + "." + method.name +
       "(" + paramsToString(realParams) + ")" + returnTypeAndBody(params[params.size() -1],
         "{ this." + method.name + "(" + String.join(", ", paramsInWrappedFunctionCall) + ") }"
       );
@@ -121,9 +118,12 @@ package @{type.raw.translatePackageName("kotlin")}\n\n
 import io.vertx.kotlin.coroutines.awaitResult\n
 
 @foreach{method:methods}
-  @if{method.kind == METHOD_FUTURE}
-    @code{skipFile=false}
-    \n@{genCoroutineMethod(type.raw.name, method)}\n
-  @end{}
+
+@if{method.kind == METHOD_FUTURE}
+
+@code{skipFile=false}
+\n@{genCoroutineMethod(type.raw.name, method)}\n
+
 @end{}
 
+@end{}
