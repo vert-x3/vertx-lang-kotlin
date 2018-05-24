@@ -26,12 +26,8 @@
   }
 
   def fixParameterizedType(type) {
-    var args = type.args;
-    var mappedArg = [];
-    for (arg : args) {
-      mappedArg = mappedArg + [mapKotlinType(arg)];
-    }
-    return fixMappedCollectionTypes(type.raw.name) + typeParamsToString(mappedArg);
+    var mappedArgs = (mapKotlinType($) in type.args);
+    return fixMappedCollectionTypes(type.raw.name) + typeParamsToString(mappedArgs);
   }
 
   def mapKotlinType(type) {
@@ -70,12 +66,7 @@
   }
 
   def mapToNameTypePair(params) {
-    /* projection using in does not work because of scoping*/
-    ret = [];
-    for (param : params) {
-      ret = ret + [param.name + ": " + mapKotlinType(param.type)];
-    }
-    return ret;
+    return ($.name + ": " + mapKotlinType($.type) in params);
   }
 
   def paramsToString(params) {
