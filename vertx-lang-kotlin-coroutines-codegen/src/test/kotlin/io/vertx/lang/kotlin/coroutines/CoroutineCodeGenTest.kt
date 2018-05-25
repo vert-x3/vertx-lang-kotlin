@@ -6,7 +6,7 @@ import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.codegen.testmodel.*
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
-import kotlin.test.assertEquals
+import kotlin.test.*
 
 class CoroutineCodeGenTest {
   @Test
@@ -67,7 +67,6 @@ class CoroutineCodeGenTest {
     }
   }
 
-
   @Test
   fun testGenerics() = runBlocking {
     assertEquals(
@@ -78,13 +77,22 @@ class CoroutineCodeGenTest {
       )
     )
 
-
     assertEquals(
       null,
       NullableTCKImpl().methodWithNullableTypeVariableHandlerAsyncResult(
         notNull = false,
         value = Hello("world")
       ) as Hello? // because the annotation is missing
+    )
+  }
+
+  @Test
+  fun testNullableTypeParam() = runBlocking {
+    assertTrue(
+      NullableTCKImpl()
+        .methodWithMapNullableBooleanHandlerAsyncResult().any { (_, value) ->
+          value == null
+        }
     )
   }
 

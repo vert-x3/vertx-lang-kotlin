@@ -32,7 +32,7 @@
 
   def mapKotlinType(type) {
     if (type.name == 'void' || type.name == 'java.lang.Void') {
-      ret = 'Unit';
+      return 'Unit';
     } else if (type.name == 'Object' || type.name == 'java.lang.Object') {
       ret = 'Any';
     } else if (type.name == 'Throwable' || type.name == 'java.lang.Throwable') {
@@ -60,13 +60,13 @@
     } else if (type.getClass == io.vertx.codegen.type.ParameterizedTypeInfo) {
       ret = fixParameterizedType(type);
     } else {
-      ret = type.name
+      ret = type.name;
     }
-    return ret
+    return ret + (type.isNullable ? "?" : "");
   }
 
   def mapToNameTypePair(params) {
-    return ($.name + ": " + mapKotlinType($.type) in params);
+    return ($.name + ": " + mapKotlinType($.type) + (isNullable ? "?" : "") in params);
   }
 
   def paramsToString(params) {
@@ -75,6 +75,11 @@
 
   def typeParamsToString(typeParams) {
     return "<" + String.join(", ", typeParams) + ">";
+  }
+
+
+  def typeParamsDef(typeParams) {
+    return "<" + String.join(", ", ($ + " : Any" in typeParams)) + ">";
   }
 
   def returnTypeAndBody(handler, body) {
@@ -87,8 +92,7 @@
     if (returnType.kind == CLASS_VOID) {
       return " {\n  awaitResult<Void?> " + body + "\n}"
     } else {
-      return ": " + mapKotlinType(returnType) + (returnType.isNullable ? "?" : "") +
-       " {\n  return awaitResult " + body + "\n}";
+      return ": " + mapKotlinType(returnType) + " {\n  return awaitResult " + body + "\n}";
     };
   }
 
@@ -96,7 +100,7 @@
     var params = method.params;
     var realParams = params.subList(0, params.size() - 1);
     var paramsInWrappedFunctionCall = (name in realParams) + ["it"];
-    var typeParamsString = method.typeParams.isEmpty() ? "" : (typeParamsToString((name in method.typeParams)) + " ");
+    var typeParamsString = method.typeParams.isEmpty() ? "" : (typeParamsDef((name in method.typeParams)) + " ");
     return "suspend fun " + typeParamsString + interfaceName + "." + method.name +
       "(" + paramsToString(realParams) + ")" + returnTypeAndBody(params[params.size() -1],
         "{ this." + method.name + "(" + String.join(", ", paramsInWrappedFunctionCall) + ") }"
