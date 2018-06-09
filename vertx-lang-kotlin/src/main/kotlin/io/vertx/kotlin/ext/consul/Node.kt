@@ -5,6 +5,7 @@ import io.vertx.ext.consul.Node
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.Node] objects.
  *
+
  *
  * @param address  Set node address
  * @param lanAddress  Set node lan address

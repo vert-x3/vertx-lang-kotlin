@@ -7,6 +7,7 @@ import io.vertx.kafka.client.producer.RecordMetadata
  *
  * Metadata related to a Kafka record
  *
+ *
  * @param checksum  Set the checksum (CRC32) of the record.
  * @param offset  Set the offset of the record in the topic/partition.
  * @param partition  Set the partition the record was sent to

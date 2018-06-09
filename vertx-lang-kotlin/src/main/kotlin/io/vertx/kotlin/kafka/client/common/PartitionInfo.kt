@@ -8,6 +8,7 @@ import io.vertx.kafka.client.common.Node
  *
  * Information about a specific Kafka topic partition
  *
+ *
  * @param inSyncReplicas  Set the subset of the replicas that are in sync
  * @param leader  Set the node id of the node currently acting as a leader
  * @param partition  Set the partition id

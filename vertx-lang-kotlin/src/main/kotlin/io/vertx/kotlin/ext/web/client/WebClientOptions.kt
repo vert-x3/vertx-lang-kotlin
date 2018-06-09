@@ -14,6 +14,7 @@ import io.vertx.core.net.ProxyOptions
 /**
  * A function providing a DSL for building [io.vertx.ext.web.client.WebClientOptions] objects.
  *
+
  *
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiation. When the list is empty, the client provides a best effort list according to [io.vertx.ext.web.client.WebClientOptions]: <ul>   <li>: [ "h2", "http/1.1" ]</li>   <li>otherwise: [[io.vertx.core.http.HttpClientOptions]]</li> </ul>
  * @param connectTimeout  Set the connect timeout

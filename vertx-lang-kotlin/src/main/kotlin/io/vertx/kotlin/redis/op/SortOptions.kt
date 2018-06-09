@@ -5,6 +5,7 @@ import io.vertx.redis.op.SortOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.SortOptions] objects.
  *
+
  *
  * @param by 
  * @param gets 

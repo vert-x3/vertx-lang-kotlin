@@ -7,6 +7,7 @@ import io.vertx.kafka.client.consumer.OffsetAndMetadata
  *
  * Provide additional metadata when an offset is committed
  *
+ *
  * @param metadata  Set additional metadata for the offset committed
  * @param offset  Set the offset to commit
  *

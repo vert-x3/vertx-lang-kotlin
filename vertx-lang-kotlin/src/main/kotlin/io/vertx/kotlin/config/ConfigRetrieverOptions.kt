@@ -6,6 +6,7 @@ import io.vertx.config.ConfigStoreOptions
 /**
  * A function providing a DSL for building [io.vertx.config.ConfigRetrieverOptions] objects.
  *
+
  *
  * @param includeDefaultStores 
  * @param scanPeriod 

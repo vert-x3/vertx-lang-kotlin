@@ -7,6 +7,7 @@ import io.vertx.kafka.client.consumer.OffsetAndTimestamp
  *
  * Represent information related to a Offset with timestamp information
  *
+ *
  * @param offset  Set the offset
  * @param timestamp  Set the timestamp
  *

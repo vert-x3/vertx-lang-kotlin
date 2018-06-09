@@ -8,6 +8,7 @@ import io.vertx.mqtt.MqttAuth
  * MQTT authentication information
  *
  *
+ *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttAuth original] using Vert.x codegen.
  */

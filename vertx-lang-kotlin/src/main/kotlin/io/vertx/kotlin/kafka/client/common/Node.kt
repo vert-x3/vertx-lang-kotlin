@@ -7,6 +7,7 @@ import io.vertx.kafka.client.common.Node
  *
  * Information about a Kafka cluster node
  *
+ *
  * @param hasRack  Set if this node has a defined rack
  * @param host  Set the host name for this node
  * @param id  Set the node id of this node

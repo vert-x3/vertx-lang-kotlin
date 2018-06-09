@@ -6,6 +6,7 @@ import io.vertx.redis.op.KillFilter.Type
 /**
  * A function providing a DSL for building [io.vertx.redis.op.KillFilter] objects.
  *
+
  *
  * @param addr  Set ADDR filter
  * @param id  Set ID filter
