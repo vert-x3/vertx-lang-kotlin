@@ -6,31 +6,31 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun <T> MessageConsumer<T>.exceptionHandlerAwait() : Throwable? {
+suspend fun <T> MessageConsumer<T>.exceptionHandlerAwait() : Throwable {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun <T> MessageConsumer<T>.handlerAwait() : Message<T>? {
+suspend fun <T> MessageConsumer<T>.handlerAwait() : Message<T> {
     return awaitEvent{
         this.handler(it)
     }
 }
 
-suspend fun <T> MessageConsumer<T>.endHandlerAwait() : Void? {
+suspend fun <T> MessageConsumer<T>.endHandlerAwait() : Void {
     return awaitEvent{
         this.endHandler(it)
     }
 }
 
-suspend fun <T> MessageConsumer<T>.completionHandlerAwait() : Void? {
+suspend fun <T> MessageConsumer<T>.completionHandlerAwait() : Void {
     return awaitResult{
         this.completionHandler(it)
     }
 }
 
-suspend fun <T> MessageConsumer<T>.unregisterAwait() : Void? {
+suspend fun <T> MessageConsumer<T>.unregisterAwait() : Void {
     return awaitResult{
         this.unregister(it)
     }

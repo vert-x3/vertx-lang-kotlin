@@ -6,31 +6,31 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun SQLRowStream.exceptionHandlerAwait() : Throwable? {
+suspend fun SQLRowStream.exceptionHandlerAwait() : Throwable {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun SQLRowStream.handlerAwait() : JsonArray? {
+suspend fun SQLRowStream.handlerAwait() : JsonArray {
     return awaitEvent{
         this.handler(it)
     }
 }
 
-suspend fun SQLRowStream.endHandlerAwait() : Void? {
+suspend fun SQLRowStream.endHandlerAwait() : Void {
     return awaitEvent{
         this.endHandler(it)
     }
 }
 
-suspend fun SQLRowStream.resultSetClosedHandlerAwait() : Void? {
+suspend fun SQLRowStream.resultSetClosedHandlerAwait() : Void {
     return awaitEvent{
         this.resultSetClosedHandler(it)
     }
 }
 
-suspend fun SQLRowStream.closeAwait() : Void? {
+suspend fun SQLRowStream.closeAwait() : Void {
     return awaitResult{
         this.close(it)
     }

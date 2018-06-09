@@ -8,37 +8,37 @@ import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 import java.util.function.Function
 
-suspend fun CircuitBreaker.openHandlerAwait() : Void? {
+suspend fun CircuitBreaker.openHandlerAwait() : Void {
     return awaitEvent{
         this.openHandler(it)
     }
 }
 
-suspend fun CircuitBreaker.halfOpenHandlerAwait() : Void? {
+suspend fun CircuitBreaker.halfOpenHandlerAwait() : Void {
     return awaitEvent{
         this.halfOpenHandler(it)
     }
 }
 
-suspend fun CircuitBreaker.closeHandlerAwait() : Void? {
+suspend fun CircuitBreaker.closeHandlerAwait() : Void {
     return awaitEvent{
         this.closeHandler(it)
     }
 }
 
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable, T>) : T? {
+suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable, T>) : T {
     return awaitResult{
         this.executeCommandWithFallback(command, fallback, it)
     }
 }
 
-suspend fun <T> CircuitBreaker.executeCommandAwait(command : Handler<Future<T>>) : T? {
+suspend fun <T> CircuitBreaker.executeCommandAwait(command : Handler<Future<T>>) : T {
     return awaitResult{
         this.executeCommand(command, it)
     }
 }
 
-suspend fun <T> CircuitBreaker.executeAndReportAwait(resultFuture : Future<T>) : Future<T>? {
+suspend fun <T> CircuitBreaker.executeAndReportAwait(resultFuture : Future<T>) : Future<T> {
     return awaitEvent{
         this.executeAndReport(resultFuture, it)
     }

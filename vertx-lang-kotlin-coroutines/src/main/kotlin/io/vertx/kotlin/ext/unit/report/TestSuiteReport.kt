@@ -5,19 +5,19 @@ import io.vertx.ext.unit.report.TestSuiteReport
 import io.vertx.kotlin.coroutines.awaitEvent
 import java.lang.Void
 
-suspend fun TestSuiteReport.exceptionHandlerAwait() : Throwable? {
+suspend fun TestSuiteReport.exceptionHandlerAwait() : Throwable {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun TestSuiteReport.handlerAwait() : TestCaseReport? {
+suspend fun TestSuiteReport.handlerAwait() : TestCaseReport {
     return awaitEvent{
         this.handler(it)
     }
 }
 
-suspend fun TestSuiteReport.endHandlerAwait() : Void? {
+suspend fun TestSuiteReport.endHandlerAwait() : Void {
     return awaitEvent{
         this.endHandler(it)
     }

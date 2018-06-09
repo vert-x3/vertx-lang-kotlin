@@ -7,13 +7,13 @@ import io.vertx.ext.web.handler.OAuth2AuthHandler
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun OAuth2AuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject? {
+suspend fun OAuth2AuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject {
     return awaitResult{
         this.parseCredentials(context, it)
     }
 }
 
-suspend fun OAuth2AuthHandler.authorizeAwait(user : User) : Void? {
+suspend fun OAuth2AuthHandler.authorizeAwait(user : User) : Void {
     return awaitResult{
         this.authorize(user, it)
     }
