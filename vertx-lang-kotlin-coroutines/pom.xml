@@ -136,6 +136,17 @@
         <version>${kotlin.version}</version>
         <executions>
           <execution>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
             <id>compile</id>
             <phase>compile</phase>
             <goals>
