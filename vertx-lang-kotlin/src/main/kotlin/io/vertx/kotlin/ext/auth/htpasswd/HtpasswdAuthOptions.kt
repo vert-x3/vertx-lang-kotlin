@@ -8,20 +8,20 @@ import io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions
  * Options configuring htpasswd authentication.
  *
  * @param htpasswdFile 
- * @param usersAuthorizedForEverything 
+ * @param plainTextEnabled 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions original] using Vert.x codegen.
  */
 fun HtpasswdAuthOptions(
   htpasswdFile: String? = null,
-  usersAuthorizedForEverything: Boolean? = null): HtpasswdAuthOptions = io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions().apply {
+  plainTextEnabled: Boolean? = null): HtpasswdAuthOptions = io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions().apply {
 
   if (htpasswdFile != null) {
     this.setHtpasswdFile(htpasswdFile)
   }
-  if (usersAuthorizedForEverything != null) {
-    this.setUsersAuthorizedForEverything(usersAuthorizedForEverything)
+  if (plainTextEnabled != null) {
+    this.setPlainTextEnabled(plainTextEnabled)
   }
 }
 

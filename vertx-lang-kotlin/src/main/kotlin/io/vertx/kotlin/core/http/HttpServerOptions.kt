@@ -37,7 +37,7 @@ import io.vertx.core.net.PfxOptions
  * @param jdkSslEngineOptions 
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
- * @param maxChunkSize  Set the maximum HTTP chunk size
+ * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxWebsocketFrameSize  Set the maximum websocket frames size

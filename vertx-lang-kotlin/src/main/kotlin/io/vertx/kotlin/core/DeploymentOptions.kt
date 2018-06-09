@@ -1,6 +1,7 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.core.DeploymentOptions] objects.
@@ -14,7 +15,8 @@ import io.vertx.core.DeploymentOptions
  * @param instances  Set the number of instances that should be deployed.
  * @param isolatedClasses  Set the isolated class names.
  * @param isolationGroup  Set the isolation group that will be used when deploying the verticle(s)
- * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in ns.
+ * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is 
+ * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code>
  * @param multiThreaded  Set whether the verticle(s) should be deployed as a multi-threaded worker verticle
  * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
  * @param workerPoolName  Set the worker pool name to use for this verticle. When no name is set, the Vert.x worker pool will be used, when a name is set, the verticle will use a named worker pool.
@@ -31,6 +33,7 @@ fun DeploymentOptions(
   isolatedClasses: Iterable<String>? = null,
   isolationGroup: String? = null,
   maxWorkerExecuteTime: Long? = null,
+  maxWorkerExecuteTimeUnit: TimeUnit? = null,
   multiThreaded: Boolean? = null,
   worker: Boolean? = null,
   workerPoolName: String? = null,
@@ -56,6 +59,9 @@ fun DeploymentOptions(
   }
   if (maxWorkerExecuteTime != null) {
     this.setMaxWorkerExecuteTime(maxWorkerExecuteTime)
+  }
+  if (maxWorkerExecuteTimeUnit != null) {
+    this.setMaxWorkerExecuteTimeUnit(maxWorkerExecuteTimeUnit)
   }
   if (multiThreaded != null) {
     this.setMultiThreaded(multiThreaded)

@@ -36,6 +36,7 @@ import io.vertx.ext.jwt.JWTOptions
  * @param headers  Set custom headers to be sent with every request to the provider
  * @param http2ClearTextUpgrade  Set to <code>true</code> when an <i>h2c</i> connection is established using an HTTP/1.1 upgrade request, and <code>false</code> when an <i>h2c</i> connection is established directly (with prior knowledge).
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by , so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
+ * @param http2KeepAliveTimeout  Set the keep alive timeout for HTTP/2 connections, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
  * @param http2MaxPoolSize  Set the maximum pool size for HTTP/2 connections
  * @param http2MultiplexingLimit  Set a client limit of the number concurrent streams for each HTTP/2 connection, this limits the number of streams the client can create for a connection. The effective number of streams for a connection is the min of this value and the server's initial settings. <p/> Setting the value to <code>-1</code> means to use the value sent by the server's initial settings. <code>-1</code> is the default value.
  * @param idleTimeout  Set the idle timeout, in seconds. zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout.
@@ -46,6 +47,7 @@ import io.vertx.ext.jwt.JWTOptions
  * @param jwtOptions 
  * @param jwtToken 
  * @param keepAlive  Set whether keep alive is enabled on the client
+ * @param keepAliveTimeout  Set the keep alive timeout for HTTP/1.x, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -66,6 +68,7 @@ import io.vertx.ext.jwt.JWTOptions
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param pipelining  Set whether pipe-lining is enabled on the client
  * @param pipeliningLimit  Set the limit of pending requests a pipe-lined HTTP/1 connection can send.
+ * @param poolCleanerPeriod  Set the connection pool cleaner period in milli seconds, a non positive value disables expiration checks and connections will remain in the pool until they are closed.
  * @param protocolVersion  Set the protocol version.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param pubSecKeys  The provider PubSec key options
@@ -119,6 +122,7 @@ fun OAuth2ClientOptions(
   headers: io.vertx.core.json.JsonObject? = null,
   http2ClearTextUpgrade: Boolean? = null,
   http2ConnectionWindowSize: Int? = null,
+  http2KeepAliveTimeout: Int? = null,
   http2MaxPoolSize: Int? = null,
   http2MultiplexingLimit: Int? = null,
   idleTimeout: Int? = null,
@@ -129,6 +133,7 @@ fun OAuth2ClientOptions(
   jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
   jwtToken: Boolean? = null,
   keepAlive: Boolean? = null,
+  keepAliveTimeout: Int? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -149,6 +154,7 @@ fun OAuth2ClientOptions(
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   pipelining: Boolean? = null,
   pipeliningLimit: Int? = null,
+  poolCleanerPeriod: Int? = null,
   protocolVersion: HttpVersion? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
@@ -240,6 +246,9 @@ fun OAuth2ClientOptions(
   if (http2ConnectionWindowSize != null) {
     this.setHttp2ConnectionWindowSize(http2ConnectionWindowSize)
   }
+  if (http2KeepAliveTimeout != null) {
+    this.setHttp2KeepAliveTimeout(http2KeepAliveTimeout)
+  }
   if (http2MaxPoolSize != null) {
     this.setHttp2MaxPoolSize(http2MaxPoolSize)
   }
@@ -269,6 +278,9 @@ fun OAuth2ClientOptions(
   }
   if (keepAlive != null) {
     this.setKeepAlive(keepAlive)
+  }
+  if (keepAliveTimeout != null) {
+    this.setKeepAliveTimeout(keepAliveTimeout)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -329,6 +341,9 @@ fun OAuth2ClientOptions(
   }
   if (pipeliningLimit != null) {
     this.setPipeliningLimit(pipeliningLimit)
+  }
+  if (poolCleanerPeriod != null) {
+    this.setPoolCleanerPeriod(poolCleanerPeriod)
   }
   if (protocolVersion != null) {
     this.setProtocolVersion(protocolVersion)
