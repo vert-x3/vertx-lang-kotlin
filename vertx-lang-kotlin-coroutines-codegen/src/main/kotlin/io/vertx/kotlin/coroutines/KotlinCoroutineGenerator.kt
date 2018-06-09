@@ -5,7 +5,6 @@ import io.vertx.codegen.type.ClassKind
 import io.vertx.codegen.type.ParameterizedTypeInfo
 import io.vertx.codegen.type.PrimitiveTypeInfo
 import io.vertx.codegen.type.TypeInfo
-import io.vertx.core.Future
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.*
@@ -16,35 +15,45 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
     this.kinds = setOf(ClassModel::class.java)
   }
 
+  //
+  private val keyWords = setOf("object", "fun", "in", "typealias", "var", "val")
+
   override fun relativeFilename(model: ClassModel): String? {
     if (model.methods.filter(this::filterMethod).none()) {
       return null
     }
-    return "kotlin/${model.module.translateQualifiedName(model.fqn, "kotlin").replace(".", "/")}.kt"
+    val s =  "kotlin/${model.module.translateQualifiedName(model.fqn, "kotlin").replace(".", "/")}.kt"
+    return s
   }
 
   override fun render(model: ClassModel, index: Int, size: Int, session: MutableMap<String, Any>): String {
     val stringBuffer = StringWriter()
     val writer = PrintWriter(stringBuffer)
-    writer.print("package ${model.module.translatePackageName("kotlin")}\n")
-    writer.print("\n")
     val type = model.type
-    writer.print("import ${type.packageName}.${type.simpleName}\n")
+    writer.print("package ${type.raw.translatePackageName("kotlin")}\n")
+    writer.print("\n")
     generateImport(model, writer)
     writer.print("\n")
 
     model.methods.asSequence().filter(this::filterMethod).forEach { method ->
       //      writer.print("// ${method.kind}\n")
       writer.print("suspend fun ")
-      if (method.typeParams.isNotEmpty()) {
-        writer.print(method.typeParams.joinToString(",", "<", ">") {it.name})
+      if (method.typeParams.isNotEmpty() || type.params.isNotEmpty()) {
+        writer.print((method.typeParams.asSequence() + type.params.asSequence()).joinToString(",", "<", ">") { it.name } + " ")
       }
-      writer.print("${type.simpleName}.${method.name}Await(${method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") { "${it.name} : ${kotlinType(it.type)}" }})")
+      if (!method.isStaticMethod) {
+        writer.print(type.simpleName)
+        if (type.params.isNotEmpty()) {
+          writer.print(type.params.joinToString(",", "<", ">") { it.name })
+        }
+        writer.print(".")
+      }
+      writer.print("${method.name}Await(${method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") { "${it.name} : ${kotlinType(it.type)}" }})")
       val lastParam = method.params.last()
       @Suppress("CAST_NEVER_SUCCEEDS")
       val handlerArg = (lastParam.type as ParameterizedTypeInfo).args[0]
-      val returnType : TypeInfo
-      val awaitCallMethod : String
+      val returnType: TypeInfo
+      val awaitCallMethod: String
       if (method.kind == MethodKind.HANDLER) {
         returnType = handlerArg
         awaitCallMethod = "awaitEvent"
@@ -54,13 +63,19 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
       }
       writer.print(" : ")
       writer.print(kotlinType(returnType))
-      writer.print("? {\n")
+      writer.print(" {\n")
 
       writer.print("    return $awaitCallMethod{\n")
 
-      writer.print("        this.${method.name}(")
+      writer.print("        ")
+      if (method.isStaticMethod) {
+        writer.print(type.simpleName)
+      } else {
+        writer.print("this")
+      }
+      writer.print(".${keyWordConverter(method.name)}(")
 
-      writer.print(method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") {it.name})
+      writer.print(method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") { it.name })
 
       if (method.params.size > 1) {
         writer.print(", ")
@@ -68,8 +83,6 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
       writer.print("it)\n")
 
       writer.print("    }\n")
-//      val returnType = method.returnType
-
       writer.print("}\n")
       writer.print("\n")
     }
@@ -79,6 +92,8 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
 
   private fun generateImport(model: ClassModel, writer: PrintWriter) {
     val imports = TreeSet<String>()
+    val type = model.type
+    imports.add("${type.packageName}.${type.simpleName}")
     model.methods.asSequence().filter(this::filterMethod).forEach {
       val params = it.params
       if (params.size > 0) {
@@ -87,7 +102,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
         }
         val param = params[params.size - 1]
         @Suppress("CAST_NEVER_SUCCEEDS")
-        //it must be Handler or Handler<AsyncResult>
+          //it must be Handler or Handler<AsyncResult>
         val arg = (param.type as ParameterizedTypeInfo).args[0]
         if (arg.kind == ClassKind.ASYNC_RESULT) {
           addImport(model.type, imports, (arg as ParameterizedTypeInfo).args[0])
@@ -100,7 +115,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
       }
       if (it.kind == MethodKind.HANDLER) {
         imports.add("io.vertx.kotlin.coroutines.awaitEvent")
-      } else if(it.kind == MethodKind.FUTURE){
+      } else if (it.kind == MethodKind.FUTURE) {
         imports.add("io.vertx.kotlin.coroutines.awaitResult")
       }
     }
@@ -113,7 +128,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
     if (type.isVariable || type.kind.basic) {
       return
     }
-    if (!type.kind.collection && type.kind != ClassKind.THROWABLE) {
+    if (!type.kind.collection && type.kind != ClassKind.THROWABLE && type != currentType && type.simpleName != "Object") {
       imports.add("${type.raw.packageName}.${type.raw.simpleName}")
     }
     if (type is ParameterizedTypeInfo) {
@@ -131,6 +146,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
         "Character" -> "Char"
         else -> type.simpleName
       }
+      type.simpleName == "Object" -> "Any"
       else -> {
         if (type is ParameterizedTypeInfo) {
           type.raw.simpleName + type.args.joinToString(", ", "<", ">") { kotlinType(it) }
@@ -138,6 +154,17 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
           type.simpleName
         }
       }
+    }
+  }
+
+  /**
+   * The method name that is legal in java but not legal in kotlin needs to be processed
+   */
+  private fun keyWordConverter(word: String): String {
+    return if (keyWords.contains(word)) {
+      "`$word`"
+    } else {
+      word
     }
   }
 
