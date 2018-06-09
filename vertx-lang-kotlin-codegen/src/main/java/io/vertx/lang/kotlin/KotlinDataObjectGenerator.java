@@ -5,7 +5,6 @@ import io.vertx.codegen.Generator;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
 import io.vertx.codegen.doc.Doc;
-import io.vertx.codegen.generators.helper.CodeGenHelper;
 import io.vertx.codegen.type.ClassKind;
 import io.vertx.codegen.type.ClassTypeInfo;
 import io.vertx.codegen.type.TypeInfo;
@@ -67,12 +66,14 @@ public class KotlinDataObjectGenerator extends Generator<DataObjectModel> {
       writer.print("/**\n");
       writer.print(" * A function providing a DSL for building [" + model.getType().getName() + "] objects.\n");
       writer.print(" *\n");
-      writer.print(CodeGenHelper.renderDocToHtml(" *", doc, KotlinCodeGenHelper::renderLinkToHtml));
+      doc.toHtml(" *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
+      writer.print("\n");
       writer.print(" *\n");
       model.getPropertyMap().values().stream().filter(filterProperties()).forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
         if (p.getDoc() != null) {
-          writer.print(KotlinCodeGenHelper.renderTokensKotlinDoc("", p.getDoc().getTokens(), ""));
+          String docInfo = p.getDoc().toHtml("", KotlinCodeGenHelper::renderLinkToHtml, "").replace("/*", "/<star>");
+          writer.print(docInfo);
         }
         writer.print("\n");
       });

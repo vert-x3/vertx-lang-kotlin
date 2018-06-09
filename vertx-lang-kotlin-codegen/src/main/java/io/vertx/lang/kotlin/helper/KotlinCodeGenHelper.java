@@ -1,14 +1,10 @@
 package io.vertx.lang.kotlin.helper;
 
 import io.vertx.codegen.doc.Tag;
-import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.type.ClassKind;
 import io.vertx.codegen.type.ClassTypeInfo;
 
 import javax.lang.model.element.Element;
-import java.util.List;
-
-import static io.vertx.codegen.generators.helper.CodeGenHelper.renderTokensToHtml;
 
 public class KotlinCodeGenHelper {
   public static String renderLinkToHtml(Tag.Link link) {
@@ -30,9 +26,5 @@ public class KotlinCodeGenHelper {
       }
     }
     return "[" + rawType.getName() + "]";
-  }
-
-  public static String renderTokensKotlinDoc(String margin, List<Token> tokens, String lineSep) {
-    return renderTokensToHtml(margin, tokens, KotlinCodeGenHelper::renderLinkToHtml, lineSep).replace("/*", "/<star>");
   }
 }
