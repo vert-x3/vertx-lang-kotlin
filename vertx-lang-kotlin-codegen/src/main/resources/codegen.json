@@ -1,8 +1,8 @@
 {
-  "name": "Kotlin",
+  "name": "Kotlin11",
   "generators": [
     {
-      "kind": "dataObject",
+      "kind": "//dataObject",
       "fileName": "if(concrete) {'kotlin/' + module.translateQualifiedName(fqn, 'kotlin').replace('.', '/') + '.kt'} else null",
       "templateFileName": "vertx-kotlin/template/dataobject.templ"
     }
