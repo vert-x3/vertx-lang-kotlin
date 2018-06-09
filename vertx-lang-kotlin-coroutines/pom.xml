@@ -85,7 +85,7 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
 
     <plugins>
@@ -204,6 +204,22 @@
               <descriptors>
                 <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
               </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-clean</id>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>${project.basedir}/src/main/kotlin</directory>
+                </fileset>
+              </filesets>
             </configuration>
           </execution>
         </executions>
