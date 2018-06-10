@@ -35,8 +35,6 @@ public class KotlinDataObjectGenerator extends Generator<DataObjectModel> {
   public String render(DataObjectModel model, int index, int size, Map<String, Object> session) {
     StringWriter buffer = new StringWriter();
     PrintWriter writer = new PrintWriter(buffer);
-//    String simpleName = model.getType().getSimpleName();
-
     writer.print("package " + model.getType().translatePackageName("kotlin") + "\n");
     writer.print("\n");
     generateImport(model, writer);
@@ -67,7 +65,6 @@ public class KotlinDataObjectGenerator extends Generator<DataObjectModel> {
       writer.print(" * A function providing a DSL for building [" + model.getType().getName() + "] objects.\n");
       writer.print(" *\n");
       doc.toHtml(" *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
-      writer.print("\n");
       writer.print(" *\n");
       model.getPropertyMap().values().stream().filter(filterProperties()).forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
