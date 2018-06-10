@@ -5,7 +5,6 @@ import io.vertx.redis.op.ScanOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.ScanOptions] objects.
  *
-
  *
  * @param count 
  * @param match 

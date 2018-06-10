@@ -32,7 +32,6 @@ import io.vertx.core.net.ProxyOptions
  * will perform the authentication handshake and database selection, however if you don't do this and call [io.vertx.redis.RedisClient]
  * yourself in case of connection failure the client will not be able to perform the correct authentication handshake.
  *
- *
  * @param address  Set the eventbus address prefix for `PUB/SUB`. * @param address address prefix.
  * @param auth  Set the password for authentication at connection time.
  * @param binary  Set the messages to/from redis as binary, default `false`. * @param binary use binary messages

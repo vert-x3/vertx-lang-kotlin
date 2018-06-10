@@ -5,7 +5,6 @@ import io.vertx.redis.op.LimitOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.LimitOptions] objects.
  *
-
  *
  *
  * <p/>

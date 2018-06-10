@@ -5,7 +5,6 @@ import io.vertx.redis.op.GeoRadiusOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.GeoRadiusOptions] objects.
  *
-
  *
  * @param count  Set the radius options limit the result count.
  * @param withCoord  Set the radius options to be coordinate based.

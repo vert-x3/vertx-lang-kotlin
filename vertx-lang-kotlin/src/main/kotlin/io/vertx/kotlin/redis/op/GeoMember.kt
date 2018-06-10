@@ -5,7 +5,6 @@ import io.vertx.redis.op.GeoMember
 /**
  * A function providing a DSL for building [io.vertx.redis.op.GeoMember] objects.
  *
-
  *
  * @param latitude  Set Latitude as per EPSG:900913 / EPSG:3785 / OSGEO:41001
  * @param longitude  Set Longitude as per EPSG:900913 / EPSG:3785 / OSGEO:41001

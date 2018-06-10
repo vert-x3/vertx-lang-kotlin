@@ -16,7 +16,7 @@ import io.vertx.ext.consul.CheckStatus
  * @param interval  Set checking interval
  * @param name  Set check name. This is mandatory field
  * @param notes  Set check notes
- * @param script  Set path to checking script. Also you should set checking interval
+ * @param scriptArgs  Set scriptArgs. Also you should set checking interval
  * @param serviceId  Set the service ID to associate the registered check with an existing service provided by the agent.
  * @param status  Set the check status to specify the initial state of the health check.
  * @param tcp  Set TCP address to check. Also you should set checking interval
@@ -35,7 +35,7 @@ fun CheckOptions(
   interval: String? = null,
   name: String? = null,
   notes: String? = null,
-  script: String? = null,
+  scriptArgs: Iterable<String>? = null,
   serviceId: String? = null,
   status: CheckStatus? = null,
   tcp: String? = null,
@@ -66,8 +66,8 @@ fun CheckOptions(
   if (notes != null) {
     this.setNotes(notes)
   }
-  if (script != null) {
-    this.setScript(script)
+  if (scriptArgs != null) {
+    this.setScriptArgs(scriptArgs.toList())
   }
   if (serviceId != null) {
     this.setServiceId(serviceId)

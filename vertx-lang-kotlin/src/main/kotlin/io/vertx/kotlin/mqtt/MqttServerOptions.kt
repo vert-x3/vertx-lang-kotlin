@@ -14,7 +14,6 @@ import io.vertx.core.net.PfxOptions
  *
  * Represents options used by the MQTT server
  *
- *
  * @param acceptBacklog  Set the accept back log
  * @param autoClientId  Set if clientid should be auto-generated when it's "zero-bytes"
  * @param clientAuth  Set whether client auth is required

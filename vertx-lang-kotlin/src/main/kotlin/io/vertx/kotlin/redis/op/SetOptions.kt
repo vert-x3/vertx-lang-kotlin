@@ -5,7 +5,6 @@ import io.vertx.redis.op.SetOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.SetOptions] objects.
  *
-
  *
  * @param ex 
  * @param nx 

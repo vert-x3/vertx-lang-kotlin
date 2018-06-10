@@ -15,8 +15,6 @@ public class KotlinCodeGenHelper {
         return "[" + rawType.getName() + "]";
       } else {
         if (rawType.getKind() == ClassKind.API) {
-          Element elt = link.getTargetElement();
-          String eltKind = elt.getKind().name();
           String ret = "[" + rawType.getName() + "]";
           if (label.length() > 0) {
             ret += "[" + label + "]" + ret;

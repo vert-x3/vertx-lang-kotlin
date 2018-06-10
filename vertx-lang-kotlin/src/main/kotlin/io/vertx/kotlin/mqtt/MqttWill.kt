@@ -8,7 +8,6 @@ import io.vertx.mqtt.MqttWill
  * Will information from the remote MQTT client
  *
  *
- *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttWill original] using Vert.x codegen.
  */

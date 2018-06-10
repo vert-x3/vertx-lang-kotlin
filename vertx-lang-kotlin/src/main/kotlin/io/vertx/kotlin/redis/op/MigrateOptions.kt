@@ -5,7 +5,6 @@ import io.vertx.redis.op.MigrateOptions
 /**
  * A function providing a DSL for building [io.vertx.redis.op.MigrateOptions] objects.
  *
-
  *
  *
  * <p/>

@@ -7,7 +7,6 @@ import io.vertx.kafka.client.common.TopicPartition
  *
  * Represent information related to a partition for a topic
  *
- *
  * @param partition  Set the partition number
  * @param topic  Set the topic name
  *
