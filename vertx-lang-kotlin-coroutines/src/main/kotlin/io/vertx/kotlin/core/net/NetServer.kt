@@ -6,37 +6,37 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun NetServer.listenAwait() : NetServer {
+suspend fun NetServer.listenAwait() : NetServer? {
     return awaitResult{
         this.listen(it)
     }
 }
 
-suspend fun NetServer.listenAwait(port : Int, host : String) : NetServer {
+suspend fun NetServer.listenAwait(port : Int, host : String) : NetServer? {
     return awaitResult{
         this.listen(port, host, it)
     }
 }
 
-suspend fun NetServer.listenAwait(port : Int) : NetServer {
+suspend fun NetServer.listenAwait(port : Int) : NetServer? {
     return awaitResult{
         this.listen(port, it)
     }
 }
 
-suspend fun NetServer.listenAwait(localAddress : SocketAddress) : NetServer {
+suspend fun NetServer.listenAwait(localAddress : SocketAddress) : NetServer? {
     return awaitResult{
         this.listen(localAddress, it)
     }
 }
 
-suspend fun NetServer.exceptionHandlerAwait() : Throwable {
+suspend fun NetServer.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun NetServer.closeAwait() : Void {
+suspend fun NetServer.closeAwait() : Void? {
     return awaitResult{
         this.close(it)
     }

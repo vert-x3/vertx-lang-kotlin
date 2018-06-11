@@ -7,13 +7,13 @@ import io.vertx.ext.web.handler.RedirectAuthHandler
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun RedirectAuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject {
+suspend fun RedirectAuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject? {
     return awaitResult{
         this.parseCredentials(context, it)
     }
 }
 
-suspend fun RedirectAuthHandler.authorizeAwait(user : User) : Void {
+suspend fun RedirectAuthHandler.authorizeAwait(user : User) : Void? {
     return awaitResult{
         this.authorize(user, it)
     }

@@ -10,73 +10,73 @@ import io.vertx.mqtt.messages.MqttSubscribeMessage
 import io.vertx.mqtt.messages.MqttUnsubscribeMessage
 import java.lang.Void
 
-suspend fun MqttEndpoint.disconnectHandlerAwait() : Void {
+suspend fun MqttEndpoint.disconnectHandlerAwait() : Void? {
     return awaitEvent{
         this.disconnectHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.subscribeHandlerAwait() : MqttSubscribeMessage {
+suspend fun MqttEndpoint.subscribeHandlerAwait() : MqttSubscribeMessage? {
     return awaitEvent{
         this.subscribeHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.unsubscribeHandlerAwait() : MqttUnsubscribeMessage {
+suspend fun MqttEndpoint.unsubscribeHandlerAwait() : MqttUnsubscribeMessage? {
     return awaitEvent{
         this.unsubscribeHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishHandlerAwait() : MqttPublishMessage {
+suspend fun MqttEndpoint.publishHandlerAwait() : MqttPublishMessage? {
     return awaitEvent{
         this.publishHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishAcknowledgeHandlerAwait() : Int {
+suspend fun MqttEndpoint.publishAcknowledgeHandlerAwait() : Int? {
     return awaitEvent{
         this.publishAcknowledgeHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishReceivedHandlerAwait() : Int {
+suspend fun MqttEndpoint.publishReceivedHandlerAwait() : Int? {
     return awaitEvent{
         this.publishReceivedHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishReleaseHandlerAwait() : Int {
+suspend fun MqttEndpoint.publishReleaseHandlerAwait() : Int? {
     return awaitEvent{
         this.publishReleaseHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishCompletionHandlerAwait() : Int {
+suspend fun MqttEndpoint.publishCompletionHandlerAwait() : Int? {
     return awaitEvent{
         this.publishCompletionHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.pingHandlerAwait() : Void {
+suspend fun MqttEndpoint.pingHandlerAwait() : Void? {
     return awaitEvent{
         this.pingHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.closeHandlerAwait() : Void {
+suspend fun MqttEndpoint.closeHandlerAwait() : Void? {
     return awaitEvent{
         this.closeHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.exceptionHandlerAwait() : Throwable {
+suspend fun MqttEndpoint.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun MqttEndpoint.publishAwait(topic : String, payload : Buffer, qosLevel : MqttQoS, isDup : Boolean, isRetain : Boolean) : Int {
+suspend fun MqttEndpoint.publishAwait(topic : String, payload : Buffer, qosLevel : MqttQoS, isDup : Boolean, isRetain : Boolean) : Int? {
     return awaitResult{
         this.publish(topic, payload, qosLevel, isDup, isRetain, it)
     }

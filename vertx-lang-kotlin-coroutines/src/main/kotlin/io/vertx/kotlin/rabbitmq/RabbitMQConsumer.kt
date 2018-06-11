@@ -6,25 +6,25 @@ import io.vertx.rabbitmq.RabbitMQConsumer
 import io.vertx.rabbitmq.RabbitMQMessage
 import java.lang.Void
 
-suspend fun RabbitMQConsumer.exceptionHandlerAwait() : Throwable {
+suspend fun RabbitMQConsumer.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun RabbitMQConsumer.handlerAwait() : RabbitMQMessage {
+suspend fun RabbitMQConsumer.handlerAwait() : RabbitMQMessage? {
     return awaitEvent{
         this.handler(it)
     }
 }
 
-suspend fun RabbitMQConsumer.endHandlerAwait() : Void {
+suspend fun RabbitMQConsumer.endHandlerAwait() : Void? {
     return awaitEvent{
         this.endHandler(it)
     }
 }
 
-suspend fun RabbitMQConsumer.cancelAwait() : Void {
+suspend fun RabbitMQConsumer.cancelAwait() : Void? {
     return awaitResult{
         this.cancel(it)
     }

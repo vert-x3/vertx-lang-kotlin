@@ -9,49 +9,49 @@ import io.vertx.servicediscovery.ServiceDiscovery
 import io.vertx.servicediscovery.types.HttpEndpoint
 import java.util.function.Function
 
-suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : HttpClient {
+suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : HttpClient? {
     return awaitResult{
         HttpEndpoint.getClient(discovery, filter, it)
     }
 }
 
-suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : WebClient {
+suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : WebClient? {
     return awaitResult{
         HttpEndpoint.getWebClient(discovery, filter, it)
     }
 }
 
-suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : HttpClient {
+suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : HttpClient? {
     return awaitResult{
         HttpEndpoint.getClient(discovery, filter, conf, it)
     }
 }
 
-suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : WebClient {
+suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : WebClient? {
     return awaitResult{
         HttpEndpoint.getWebClient(discovery, filter, conf, it)
     }
 }
 
-suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>) : HttpClient {
+suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>) : HttpClient? {
     return awaitResult{
         HttpEndpoint.getClient(discovery, filter, it)
     }
 }
 
-suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>) : WebClient {
+suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>) : WebClient? {
     return awaitResult{
         HttpEndpoint.getWebClient(discovery, filter, it)
     }
 }
 
-suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>, conf : JsonObject) : HttpClient {
+suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>, conf : JsonObject) : HttpClient? {
     return awaitResult{
         HttpEndpoint.getClient(discovery, filter, conf, it)
     }
 }
 
-suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>, conf : JsonObject) : WebClient {
+suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record, Boolean>, conf : JsonObject) : WebClient? {
     return awaitResult{
         HttpEndpoint.getWebClient(discovery, filter, conf, it)
     }

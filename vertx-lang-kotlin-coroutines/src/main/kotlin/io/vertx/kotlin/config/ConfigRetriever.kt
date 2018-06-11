@@ -6,13 +6,13 @@ import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun ConfigRetriever.getConfigAwait() : JsonObject {
+suspend fun ConfigRetriever.getConfigAwait() : JsonObject? {
     return awaitResult{
         this.getConfig(it)
     }
 }
 
-suspend fun ConfigRetriever.listenAwait() : ConfigChange {
+suspend fun ConfigRetriever.listenAwait() : ConfigChange? {
     return awaitEvent{
         this.listen(it)
     }

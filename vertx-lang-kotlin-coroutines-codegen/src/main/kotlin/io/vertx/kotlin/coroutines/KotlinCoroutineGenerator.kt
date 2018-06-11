@@ -15,15 +15,13 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
     this.kinds = setOf(ClassModel::class.java)
   }
 
-  //
   private val keyWords = setOf("object", "fun", "in", "typealias", "var", "val")
 
   override fun relativeFilename(model: ClassModel): String? {
     if (model.methods.filter(this::filterMethod).none()) {
       return null
     }
-    val s =  "kotlin/${model.module.translateQualifiedName(model.fqn, "kotlin").replace(".", "/")}.kt"
-    return s
+    return "kotlin/${model.module.translateQualifiedName(model.fqn, "kotlin").replace(".", "/")}.kt"
   }
 
   override fun render(model: ClassModel, index: Int, size: Int, session: MutableMap<String, Any>): String {
@@ -48,7 +46,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
         }
         writer.print(".")
       }
-      writer.print("${method.name}Await(${method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") { "${it.name} : ${kotlinType(it.type)}" }})")
+      writer.print("${method.name}Await(${method.params.asSequence().take(method.params.size - 1).joinToString(", ") { "${it.name} : ${kotlinType(it.type)}" }})")
       val lastParam = method.params.last()
       @Suppress("CAST_NEVER_SUCCEEDS")
       val handlerArg = (lastParam.type as ParameterizedTypeInfo).args[0]
@@ -63,7 +61,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
       }
       writer.print(" : ")
       writer.print(kotlinType(returnType))
-      writer.print(" {\n")
+      writer.print("? {\n")
 
       writer.print("    return $awaitCallMethod{\n")
 
@@ -75,7 +73,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
       }
       writer.print(".${keyWordConverter(method.name)}(")
 
-      writer.print(method.params.filterIndexed { index, _ -> index < method.params.size - 1 }.joinToString(", ") { it.name })
+      writer.print(method.params.asSequence().take(method.params.size - 1).joinToString(", ") { it.name })
 
       if (method.params.size > 1) {
         writer.print(", ")

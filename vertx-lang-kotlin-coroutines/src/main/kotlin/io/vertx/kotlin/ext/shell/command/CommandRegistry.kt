@@ -5,19 +5,19 @@ import io.vertx.ext.shell.command.CommandRegistry
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command {
+suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command? {
     return awaitResult{
         this.registerCommand(command, it)
     }
 }
 
-suspend fun CommandRegistry.registerCommandsAwait(commands : List<Command>) : List<Command> {
+suspend fun CommandRegistry.registerCommandsAwait(commands : List<Command>) : List<Command>? {
     return awaitResult{
         this.registerCommands(commands, it)
     }
 }
 
-suspend fun CommandRegistry.unregisterCommandAwait(commandName : String) : Void {
+suspend fun CommandRegistry.unregisterCommandAwait(commandName : String) : Void? {
     return awaitResult{
         this.unregisterCommand(commandName, it)
     }

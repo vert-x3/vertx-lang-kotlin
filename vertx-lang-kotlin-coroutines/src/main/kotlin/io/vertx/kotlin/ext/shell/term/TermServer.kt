@@ -6,19 +6,19 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import java.lang.Void
 
-suspend fun TermServer.termHandlerAwait() : Term {
+suspend fun TermServer.termHandlerAwait() : Term? {
     return awaitEvent{
         this.termHandler(it)
     }
 }
 
-suspend fun TermServer.listenAwait() : TermServer {
+suspend fun TermServer.listenAwait() : TermServer? {
     return awaitResult{
         this.listen(it)
     }
 }
 
-suspend fun TermServer.closeAwait() : Void {
+suspend fun TermServer.closeAwait() : Void? {
     return awaitResult{
         this.close(it)
     }

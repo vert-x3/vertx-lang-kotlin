@@ -5,19 +5,19 @@ import io.vertx.core.http.HttpServerFileUpload
 import io.vertx.kotlin.coroutines.awaitEvent
 import java.lang.Void
 
-suspend fun HttpServerFileUpload.exceptionHandlerAwait() : Throwable {
+suspend fun HttpServerFileUpload.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
         this.exceptionHandler(it)
     }
 }
 
-suspend fun HttpServerFileUpload.handlerAwait() : Buffer {
+suspend fun HttpServerFileUpload.handlerAwait() : Buffer? {
     return awaitEvent{
         this.handler(it)
     }
 }
 
-suspend fun HttpServerFileUpload.endHandlerAwait() : Void {
+suspend fun HttpServerFileUpload.endHandlerAwait() : Void? {
     return awaitEvent{
         this.endHandler(it)
     }
