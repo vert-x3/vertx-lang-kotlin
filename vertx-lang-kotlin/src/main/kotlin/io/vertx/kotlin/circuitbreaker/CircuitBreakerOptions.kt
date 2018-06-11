@@ -7,6 +7,7 @@ import io.vertx.circuitbreaker.CircuitBreakerOptions
  *
  * Circuit breaker configuration options. All time are given in milliseconds.
  *
+ * @param failuresRollingWindow  Sets the rolling window used for metrics.
  * @param fallbackOnFailure  Sets whether or not the fallback is executed on failure, even when the circuit is closed.
  * @param maxFailures  Sets the maximum number of failures before opening the circuit.
  * @param maxRetries  Configures the number of times the circuit breaker tries to redo the operation before failing.
@@ -21,6 +22,7 @@ import io.vertx.circuitbreaker.CircuitBreakerOptions
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreakerOptions original] using Vert.x codegen.
  */
 fun CircuitBreakerOptions(
+  failuresRollingWindow: Long? = null,
   fallbackOnFailure: Boolean? = null,
   maxFailures: Int? = null,
   maxRetries: Int? = null,
@@ -31,6 +33,9 @@ fun CircuitBreakerOptions(
   resetTimeout: Long? = null,
   timeout: Long? = null): CircuitBreakerOptions = io.vertx.circuitbreaker.CircuitBreakerOptions().apply {
 
+  if (failuresRollingWindow != null) {
+    this.setFailuresRollingWindow(failuresRollingWindow)
+  }
   if (fallbackOnFailure != null) {
     this.setFallbackOnFailure(fallbackOnFailure)
   }
