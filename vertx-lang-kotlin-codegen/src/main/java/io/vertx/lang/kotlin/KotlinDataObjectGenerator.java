@@ -21,7 +21,7 @@ import static io.vertx.codegen.type.ClassKind.*;
 public class KotlinDataObjectGenerator extends Generator<DataObjectModel> {
   KotlinDataObjectGenerator() {
     this.name = "Kotlin";
-    this.kinds = Collections.singleton(DataObjectModel.class);
+    this.kinds = Collections.singleton("dataObject");
   }
 
   @Override
