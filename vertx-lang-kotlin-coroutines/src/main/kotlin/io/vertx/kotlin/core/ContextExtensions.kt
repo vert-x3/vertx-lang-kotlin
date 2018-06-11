@@ -7,6 +7,10 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Any
 import kotlin.Boolean
 
-suspend fun <T : Any> Context.executeBlocking(blockingCodeHandler: Handler<Future<T>>, ordered: Boolean): T = awaitResult { this.executeBlocking(blockingCodeHandler, ordered, it) }
+suspend fun <T : Any> Context.executeBlocking(blockingCodeHandler: Handler<Future<T>>, ordered: Boolean): T {
+  return awaitResult { this.executeBlocking(blockingCodeHandler, ordered, it) }
+}
 
-suspend fun <T : Any> Context.executeBlocking(blockingCodeHandler: Handler<Future<T>>): T = awaitResult { this.executeBlocking(blockingCodeHandler, it) }
+suspend fun <T : Any> Context.executeBlocking(blockingCodeHandler: Handler<Future<T>>): T {
+  return awaitResult { this.executeBlocking(blockingCodeHandler, it) }
+}

@@ -8,18 +8,18 @@ import kotlin.String
 import kotlin.collections.MutableMap
 
 suspend fun AdminUtils.createTopic(
-    topicName: String,
-    partitionCount: Int,
-    replicationFactor: Int
+  topicName: String,
+  partitionCount: Int,
+  replicationFactor: Int
 ) {
   awaitResult<Void?> { this.createTopic(topicName, partitionCount, replicationFactor, it) }
 }
 
 suspend fun AdminUtils.createTopic(
-    topicName: String,
-    partitionCount: Int,
-    replicationFactor: Int,
-    topicConfig: MutableMap<String, String>
+  topicName: String,
+  partitionCount: Int,
+  replicationFactor: Int,
+  topicConfig: MutableMap<String, String>
 ) {
   awaitResult<Void?> { this.createTopic(topicName, partitionCount, replicationFactor, topicConfig, it) }
 }
@@ -28,7 +28,9 @@ suspend fun AdminUtils.deleteTopic(topicName: String) {
   awaitResult<Void?> { this.deleteTopic(topicName, it) }
 }
 
-suspend fun AdminUtils.topicExists(topicName: String): Boolean = awaitResult { this.topicExists(topicName, it) }
+suspend fun AdminUtils.topicExists(topicName: String): Boolean {
+  return awaitResult { this.topicExists(topicName, it) }
+}
 
 suspend fun AdminUtils.changeTopicConfig(topicName: String, topicConfig: MutableMap<String, String>) {
   awaitResult<Void?> { this.changeTopicConfig(topicName, topicConfig, it) }

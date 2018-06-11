@@ -9,4 +9,6 @@ suspend fun HttpConnection.updateSettings(settings: Http2Settings) {
   awaitResult<Void?> { this.updateSettings(settings, it) }
 }
 
-suspend fun HttpConnection.ping(data: Buffer): Buffer = awaitResult { this.ping(data, it) }
+suspend fun HttpConnection.ping(data: Buffer): Buffer {
+  return awaitResult { this.ping(data, it) }
+}

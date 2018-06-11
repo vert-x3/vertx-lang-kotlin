@@ -15,11 +15,13 @@ suspend fun AsyncFile.write(buffer: Buffer, position: Long) {
 }
 
 suspend fun AsyncFile.read(
-    buffer: Buffer,
-    offset: Int,
-    position: Long,
-    length: Int
-): Buffer = awaitResult { this.read(buffer, offset, position, length, it) }
+  buffer: Buffer,
+  offset: Int,
+  position: Long,
+  length: Int
+): Buffer {
+  return awaitResult { this.read(buffer, offset, position, length, it) }
+}
 
 suspend fun AsyncFile.flush() {
   awaitResult<Void?> { this.flush(it) }

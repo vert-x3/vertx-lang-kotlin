@@ -103,9 +103,10 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
 
       addParameters(realParams.map(::parameter))
       if (returnType == UNIT) {
-        addStatement("awaitResult<Void?> { %L.%N(%L) }", receiver, method.name, paramsInWrappedFunctionCall)
+        // this weird space and the 1 space indent below are workaround to KotlinPoet's indent rules
+        addStatement(" awaitResult<Void?> { %L.%N(%L) }", receiver, method.name, paramsInWrappedFunctionCall)
       } else {
-        addStatement("return awaitResult { %L.%N(%L) }", receiver, method.name, paramsInWrappedFunctionCall)
+        addStatement(" return awaitResult { %L.%N(%L) }", receiver, method.name, paramsInWrappedFunctionCall)
         returns(returnType)
       }
 
@@ -133,7 +134,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
 
     val packageName = qualifiedName(model).dropLast(model.ifaceSimpleName.length + 1)
     val fileSpec = FileSpec.builder(packageName, "").apply {
-      indent("  ")
+      indent(" ")
       addStaticImport("io.vertx.kotlin.coroutines", "awaitResult")
       addStaticImport(model.ifacePackageName, model.ifaceSimpleName)
       extnensionFunctions.forEach { addFunction(it) }

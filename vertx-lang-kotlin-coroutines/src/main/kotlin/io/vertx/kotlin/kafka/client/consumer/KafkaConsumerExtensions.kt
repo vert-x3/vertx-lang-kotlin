@@ -28,13 +28,17 @@ suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.assign(topicPartitions: Mutab
   awaitResult<Void?> { this.assign(topicPartitions, it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.assignment(): MutableSet<TopicPartition> = awaitResult { this.assignment(it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.assignment(): MutableSet<TopicPartition> {
+  return awaitResult { this.assignment(it) }
+}
 
 suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.unsubscribe() {
   awaitResult<Void?> { this.unsubscribe(it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.subscription(): MutableSet<String> = awaitResult { this.subscription(it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.subscription(): MutableSet<String> {
+  return awaitResult { this.subscription(it) }
+}
 
 suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.pause(topicPartition: TopicPartition) {
   awaitResult<Void?> { this.pause(topicPartition, it) }
@@ -44,7 +48,9 @@ suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.pause(topicPartitions: Mutabl
   awaitResult<Void?> { this.pause(topicPartitions, it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.paused(): MutableSet<TopicPartition> = awaitResult { this.paused(it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.paused(): MutableSet<TopicPartition> {
+  return awaitResult { this.paused(it) }
+}
 
 suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.resume(topicPartition: TopicPartition) {
   awaitResult<Void?> { this.resume(topicPartition, it) }
@@ -78,18 +84,30 @@ suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.commit() {
   awaitResult<Void?> { this.commit(it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.committed(topicPartition: TopicPartition): OffsetAndMetadata = awaitResult { this.committed(topicPartition, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.committed(topicPartition: TopicPartition): OffsetAndMetadata {
+  return awaitResult { this.committed(topicPartition, it) }
+}
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.partitionsFor(topic: String): MutableList<PartitionInfo> = awaitResult { this.partitionsFor(topic, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.partitionsFor(topic: String): MutableList<PartitionInfo> {
+  return awaitResult { this.partitionsFor(topic, it) }
+}
 
 suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.close() {
   awaitResult<Void?> { this.close(it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.position(partition: TopicPartition): Long = awaitResult { this.position(partition, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.position(partition: TopicPartition): Long {
+  return awaitResult { this.position(partition, it) }
+}
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.offsetsForTimes(topicPartition: TopicPartition, timestamp: Long): OffsetAndTimestamp = awaitResult { this.offsetsForTimes(topicPartition, timestamp, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.offsetsForTimes(topicPartition: TopicPartition, timestamp: Long): OffsetAndTimestamp {
+  return awaitResult { this.offsetsForTimes(topicPartition, timestamp, it) }
+}
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.beginningOffsets(topicPartition: TopicPartition): Long = awaitResult { this.beginningOffsets(topicPartition, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.beginningOffsets(topicPartition: TopicPartition): Long {
+  return awaitResult { this.beginningOffsets(topicPartition, it) }
+}
 
-suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.endOffsets(topicPartition: TopicPartition): Long = awaitResult { this.endOffsets(topicPartition, it) }
+suspend fun <K : Any, V : Any> KafkaConsumer<K, V>.endOffsets(topicPartition: TopicPartition): Long {
+  return awaitResult { this.endOffsets(topicPartition, it) }
+}

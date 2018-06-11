@@ -11,35 +11,51 @@ import java.util.function.Function
 import kotlin.Boolean
 
 object HttpEndpointExtensions {
-  suspend fun getClient(discovery: ServiceDiscovery, filter: JsonObject): HttpClient = awaitResult { HttpEndpoint.getClient(discovery, filter, it) }
+ suspend fun getClient(discovery: ServiceDiscovery, filter: JsonObject): HttpClient {
+   return awaitResult { HttpEndpoint.getClient(discovery, filter, it) }
+ }
 
-  suspend fun getWebClient(discovery: ServiceDiscovery, filter: JsonObject): WebClient = awaitResult { HttpEndpoint.getWebClient(discovery, filter, it) }
+ suspend fun getWebClient(discovery: ServiceDiscovery, filter: JsonObject): WebClient {
+   return awaitResult { HttpEndpoint.getWebClient(discovery, filter, it) }
+ }
 
-  suspend fun getClient(
-      discovery: ServiceDiscovery,
-      filter: JsonObject,
-      conf: JsonObject
-  ): HttpClient = awaitResult { HttpEndpoint.getClient(discovery, filter, conf, it) }
+ suspend fun getClient(
+   discovery: ServiceDiscovery,
+   filter: JsonObject,
+   conf: JsonObject
+ ): HttpClient {
+   return awaitResult { HttpEndpoint.getClient(discovery, filter, conf, it) }
+ }
 
-  suspend fun getWebClient(
-      discovery: ServiceDiscovery,
-      filter: JsonObject,
-      conf: JsonObject
-  ): WebClient = awaitResult { HttpEndpoint.getWebClient(discovery, filter, conf, it) }
+ suspend fun getWebClient(
+   discovery: ServiceDiscovery,
+   filter: JsonObject,
+   conf: JsonObject
+ ): WebClient {
+   return awaitResult { HttpEndpoint.getWebClient(discovery, filter, conf, it) }
+ }
 
-  suspend fun getClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): HttpClient = awaitResult { HttpEndpoint.getClient(discovery, filter, it) }
+ suspend fun getClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): HttpClient {
+   return awaitResult { HttpEndpoint.getClient(discovery, filter, it) }
+ }
 
-  suspend fun getWebClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): WebClient = awaitResult { HttpEndpoint.getWebClient(discovery, filter, it) }
+ suspend fun getWebClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): WebClient {
+   return awaitResult { HttpEndpoint.getWebClient(discovery, filter, it) }
+ }
 
-  suspend fun getClient(
-      discovery: ServiceDiscovery,
-      filter: Function<Record, Boolean>,
-      conf: JsonObject
-  ): HttpClient = awaitResult { HttpEndpoint.getClient(discovery, filter, conf, it) }
+ suspend fun getClient(
+   discovery: ServiceDiscovery,
+   filter: Function<Record, Boolean>,
+   conf: JsonObject
+ ): HttpClient {
+   return awaitResult { HttpEndpoint.getClient(discovery, filter, conf, it) }
+ }
 
-  suspend fun getWebClient(
-      discovery: ServiceDiscovery,
-      filter: Function<Record, Boolean>,
-      conf: JsonObject
-  ): WebClient = awaitResult { HttpEndpoint.getWebClient(discovery, filter, conf, it) }
+ suspend fun getWebClient(
+   discovery: ServiceDiscovery,
+   filter: Function<Record, Boolean>,
+   conf: JsonObject
+ ): WebClient {
+   return awaitResult { HttpEndpoint.getWebClient(discovery, filter, conf, it) }
+ }
 }

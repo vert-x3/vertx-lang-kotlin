@@ -28,13 +28,19 @@ suspend fun AccessToken.introspect(tokenType: String) {
   awaitResult<Void?> { this.introspect(tokenType, it) }
 }
 
-suspend fun AccessToken.userInfo(): JsonObject = awaitResult { this.userInfo(it) }
+suspend fun AccessToken.userInfo(): JsonObject {
+  return awaitResult { this.userInfo(it) }
+}
 
-suspend fun AccessToken.fetch(resource: String): OAuth2Response = awaitResult { this.fetch(resource, it) }
+suspend fun AccessToken.fetch(resource: String): OAuth2Response {
+  return awaitResult { this.fetch(resource, it) }
+}
 
 suspend fun AccessToken.fetch(
-    method: HttpMethod,
-    resource: String,
-    headers: JsonObject,
-    payload: Buffer
-): OAuth2Response = awaitResult { this.fetch(method, resource, headers, payload, it) }
+  method: HttpMethod,
+  resource: String,
+  headers: JsonObject,
+  payload: Buffer
+): OAuth2Response {
+  return awaitResult { this.fetch(method, resource, headers, payload, it) }
+}

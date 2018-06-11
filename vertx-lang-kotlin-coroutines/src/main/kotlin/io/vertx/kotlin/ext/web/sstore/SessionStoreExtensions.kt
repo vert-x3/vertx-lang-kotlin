@@ -6,7 +6,9 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Int
 import kotlin.String
 
-suspend fun SessionStore.get(id: String): Session? = awaitResult { this.get(id, it) }
+suspend fun SessionStore.get(id: String): Session? {
+  return awaitResult { this.get(id, it) }
+}
 
 suspend fun SessionStore.delete(id: String) {
   awaitResult<Void?> { this.delete(id, it) }
@@ -20,4 +22,6 @@ suspend fun SessionStore.clear() {
   awaitResult<Void?> { this.clear(it) }
 }
 
-suspend fun SessionStore.size(): Int = awaitResult { this.size(it) }
+suspend fun SessionStore.size(): Int {
+  return awaitResult { this.size(it) }
+}

@@ -10,16 +10,30 @@ import io.vertx.ext.web.multipart.MultipartForm
 import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Any
 
-suspend fun <T : Any> HttpRequest<T>.sendStream(body: ReadStream<Buffer>): HttpResponse<T> = awaitResult { this.sendStream(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendStream(body: ReadStream<Buffer>): HttpResponse<T> {
+  return awaitResult { this.sendStream(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.sendBuffer(body: Buffer): HttpResponse<T> = awaitResult { this.sendBuffer(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendBuffer(body: Buffer): HttpResponse<T> {
+  return awaitResult { this.sendBuffer(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.sendJsonObject(body: JsonObject): HttpResponse<T> = awaitResult { this.sendJsonObject(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendJsonObject(body: JsonObject): HttpResponse<T> {
+  return awaitResult { this.sendJsonObject(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.sendJson(body: Any): HttpResponse<T> = awaitResult { this.sendJson(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendJson(body: Any): HttpResponse<T> {
+  return awaitResult { this.sendJson(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.sendForm(body: MultiMap): HttpResponse<T> = awaitResult { this.sendForm(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendForm(body: MultiMap): HttpResponse<T> {
+  return awaitResult { this.sendForm(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.sendMultipartForm(body: MultipartForm): HttpResponse<T> = awaitResult { this.sendMultipartForm(body, it) }
+suspend fun <T : Any> HttpRequest<T>.sendMultipartForm(body: MultipartForm): HttpResponse<T> {
+  return awaitResult { this.sendMultipartForm(body, it) }
+}
 
-suspend fun <T : Any> HttpRequest<T>.send(): HttpResponse<T> = awaitResult { this.send(it) }
+suspend fun <T : Any> HttpRequest<T>.send(): HttpResponse<T> {
+  return awaitResult { this.send(it) }
+}

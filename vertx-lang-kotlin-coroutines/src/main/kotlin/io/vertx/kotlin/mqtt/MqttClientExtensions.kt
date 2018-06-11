@@ -10,28 +10,40 @@ import kotlin.Int
 import kotlin.String
 import kotlin.collections.MutableMap
 
-suspend fun MqttClient.connect(port: Int, host: String): MqttConnAckMessage = awaitResult { this.connect(port, host, it) }
+suspend fun MqttClient.connect(port: Int, host: String): MqttConnAckMessage {
+  return awaitResult { this.connect(port, host, it) }
+}
 
 suspend fun MqttClient.connect(
-    port: Int,
-    host: String,
-    serverName: String
-): MqttConnAckMessage = awaitResult { this.connect(port, host, serverName, it) }
+  port: Int,
+  host: String,
+  serverName: String
+): MqttConnAckMessage {
+  return awaitResult { this.connect(port, host, serverName, it) }
+}
 
 suspend fun MqttClient.disconnect() {
   awaitResult<Void?> { this.disconnect(it) }
 }
 
 suspend fun MqttClient.publish(
-    topic: String,
-    payload: Buffer,
-    qosLevel: MqttQoS,
-    isDup: Boolean,
-    isRetain: Boolean
-): Int = awaitResult { this.publish(topic, payload, qosLevel, isDup, isRetain, it) }
+  topic: String,
+  payload: Buffer,
+  qosLevel: MqttQoS,
+  isDup: Boolean,
+  isRetain: Boolean
+): Int {
+  return awaitResult { this.publish(topic, payload, qosLevel, isDup, isRetain, it) }
+}
 
-suspend fun MqttClient.subscribe(topic: String, qos: Int): Int = awaitResult { this.subscribe(topic, qos, it) }
+suspend fun MqttClient.subscribe(topic: String, qos: Int): Int {
+  return awaitResult { this.subscribe(topic, qos, it) }
+}
 
-suspend fun MqttClient.subscribe(topics: MutableMap<String, Int>): Int = awaitResult { this.subscribe(topics, it) }
+suspend fun MqttClient.subscribe(topics: MutableMap<String, Int>): Int {
+  return awaitResult { this.subscribe(topics, it) }
+}
 
-suspend fun MqttClient.unsubscribe(topic: String): Int = awaitResult { this.unsubscribe(topic, it) }
+suspend fun MqttClient.unsubscribe(topic: String): Int {
+  return awaitResult { this.unsubscribe(topic, it) }
+}

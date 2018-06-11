@@ -5,4 +5,6 @@ import io.vertx.ext.auth.AuthProvider
 import io.vertx.ext.auth.User
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun AuthProvider.authenticate(authInfo: JsonObject): User = awaitResult { this.authenticate(authInfo, it) }
+suspend fun AuthProvider.authenticate(authInfo: JsonObject): User {
+  return awaitResult { this.authenticate(authInfo, it) }
+}

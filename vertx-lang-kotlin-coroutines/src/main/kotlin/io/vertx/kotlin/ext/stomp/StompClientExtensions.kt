@@ -7,14 +7,22 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Int
 import kotlin.String
 
-suspend fun StompClient.connect(port: Int, host: String): StompClientConnection = awaitResult { this.connect(port, host, it) }
+suspend fun StompClient.connect(port: Int, host: String): StompClientConnection {
+  return awaitResult { this.connect(port, host, it) }
+}
 
-suspend fun StompClient.connect(net: NetClient): StompClientConnection = awaitResult { this.connect(net, it) }
+suspend fun StompClient.connect(net: NetClient): StompClientConnection {
+  return awaitResult { this.connect(net, it) }
+}
 
 suspend fun StompClient.connect(
-    port: Int,
-    host: String,
-    net: NetClient
-): StompClientConnection = awaitResult { this.connect(port, host, net, it) }
+  port: Int,
+  host: String,
+  net: NetClient
+): StompClientConnection {
+  return awaitResult { this.connect(port, host, net, it) }
+}
 
-suspend fun StompClient.connect(): StompClientConnection = awaitResult { this.connect(it) }
+suspend fun StompClient.connect(): StompClientConnection {
+  return awaitResult { this.connect(it) }
+}

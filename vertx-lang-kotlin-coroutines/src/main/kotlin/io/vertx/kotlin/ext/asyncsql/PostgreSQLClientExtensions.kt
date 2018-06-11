@@ -5,6 +5,10 @@ import io.vertx.ext.asyncsql.PostgreSQLClient
 import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.String
 
-suspend fun PostgreSQLClient.querySingle(sql: String): JsonArray = awaitResult { this.querySingle(sql, it) }
+suspend fun PostgreSQLClient.querySingle(sql: String): JsonArray {
+  return awaitResult { this.querySingle(sql, it) }
+}
 
-suspend fun PostgreSQLClient.querySingleWithParams(sql: String, arguments: JsonArray): JsonArray = awaitResult { this.querySingleWithParams(sql, arguments, it) }
+suspend fun PostgreSQLClient.querySingleWithParams(sql: String, arguments: JsonArray): JsonArray {
+  return awaitResult { this.querySingleWithParams(sql, arguments, it) }
+}

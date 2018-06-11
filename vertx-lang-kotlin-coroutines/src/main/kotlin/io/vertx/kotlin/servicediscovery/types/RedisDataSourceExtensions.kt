@@ -10,19 +10,27 @@ import java.util.function.Function
 import kotlin.Boolean
 
 object RedisDataSourceExtensions {
-  suspend fun getRedisClient(discovery: ServiceDiscovery, filter: JsonObject): RedisClient = awaitResult { RedisDataSource.getRedisClient(discovery, filter, it) }
+ suspend fun getRedisClient(discovery: ServiceDiscovery, filter: JsonObject): RedisClient {
+   return awaitResult { RedisDataSource.getRedisClient(discovery, filter, it) }
+ }
 
-  suspend fun getRedisClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): RedisClient = awaitResult { RedisDataSource.getRedisClient(discovery, filter, it) }
+ suspend fun getRedisClient(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): RedisClient {
+   return awaitResult { RedisDataSource.getRedisClient(discovery, filter, it) }
+ }
 
-  suspend fun getRedisClient(
-      discovery: ServiceDiscovery,
-      filter: JsonObject,
-      consumerConfiguration: JsonObject
-  ): RedisClient = awaitResult { RedisDataSource.getRedisClient(discovery, filter, consumerConfiguration, it) }
+ suspend fun getRedisClient(
+   discovery: ServiceDiscovery,
+   filter: JsonObject,
+   consumerConfiguration: JsonObject
+ ): RedisClient {
+   return awaitResult { RedisDataSource.getRedisClient(discovery, filter, consumerConfiguration, it) }
+ }
 
-  suspend fun getRedisClient(
-      discovery: ServiceDiscovery,
-      filter: Function<Record, Boolean>,
-      consumerConfiguration: JsonObject
-  ): RedisClient = awaitResult { RedisDataSource.getRedisClient(discovery, filter, consumerConfiguration, it) }
+ suspend fun getRedisClient(
+   discovery: ServiceDiscovery,
+   filter: Function<Record, Boolean>,
+   consumerConfiguration: JsonObject
+ ): RedisClient {
+   return awaitResult { RedisDataSource.getRedisClient(discovery, filter, consumerConfiguration, it) }
+ }
 }

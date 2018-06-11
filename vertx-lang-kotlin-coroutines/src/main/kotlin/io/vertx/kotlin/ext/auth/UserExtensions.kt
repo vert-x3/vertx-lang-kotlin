@@ -6,7 +6,11 @@ import kotlin.Boolean
 import kotlin.Deprecated
 import kotlin.String
 
-suspend fun User.isAuthorized(authority: String): Boolean = awaitResult { this.isAuthorized(authority, it) }
+suspend fun User.isAuthorized(authority: String): Boolean {
+  return awaitResult { this.isAuthorized(authority, it) }
+}
 
 @Deprecated("")
-suspend fun User.isAuthorised(authority: String): Boolean = awaitResult { this.isAuthorised(authority, it) }
+suspend fun User.isAuthorised(authority: String): Boolean {
+  return awaitResult { this.isAuthorised(authority, it) }
+}

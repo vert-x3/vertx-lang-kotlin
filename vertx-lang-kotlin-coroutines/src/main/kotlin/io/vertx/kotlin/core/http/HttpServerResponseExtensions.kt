@@ -16,18 +16,22 @@ suspend fun HttpServerResponse.sendFile(filename: String, offset: Long) {
 }
 
 suspend fun HttpServerResponse.sendFile(
-    filename: String,
-    offset: Long,
-    length: Long
+  filename: String,
+  offset: Long,
+  length: Long
 ) {
   awaitResult<Void?> { this.sendFile(filename, offset, length, it) }
 }
 
-suspend fun HttpServerResponse.push(method: HttpMethod, path: String): HttpServerResponse = awaitResult { this.push(method, path, it) }
+suspend fun HttpServerResponse.push(method: HttpMethod, path: String): HttpServerResponse {
+  return awaitResult { this.push(method, path, it) }
+}
 
 suspend fun HttpServerResponse.push(
-    method: HttpMethod,
-    host: String,
-    path: String,
-    headers: MultiMap
-): HttpServerResponse = awaitResult { this.push(method, host, path, headers, it) }
+  method: HttpMethod,
+  host: String,
+  path: String,
+  headers: MultiMap
+): HttpServerResponse {
+  return awaitResult { this.push(method, host, path, headers, it) }
+}

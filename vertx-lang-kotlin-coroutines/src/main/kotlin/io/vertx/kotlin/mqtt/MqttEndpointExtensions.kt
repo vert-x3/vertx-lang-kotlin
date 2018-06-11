@@ -9,9 +9,11 @@ import kotlin.Int
 import kotlin.String
 
 suspend fun MqttEndpoint.publish(
-    topic: String,
-    payload: Buffer,
-    qosLevel: MqttQoS,
-    isDup: Boolean,
-    isRetain: Boolean
-): Int = awaitResult { this.publish(topic, payload, qosLevel, isDup, isRetain, it) }
+  topic: String,
+  payload: Buffer,
+  qosLevel: MqttQoS,
+  isDup: Boolean,
+  isRetain: Boolean
+): Int {
+  return awaitResult { this.publish(topic, payload, qosLevel, isDup, isRetain, it) }
+}

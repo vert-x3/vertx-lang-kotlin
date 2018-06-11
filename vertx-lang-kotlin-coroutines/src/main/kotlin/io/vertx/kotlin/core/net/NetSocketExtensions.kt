@@ -14,9 +14,9 @@ suspend fun NetSocket.sendFile(filename: String, offset: Long) {
 }
 
 suspend fun NetSocket.sendFile(
-    filename: String,
-    offset: Long,
-    length: Long
+  filename: String,
+  offset: Long,
+  length: Long
 ) {
   awaitResult<Void?> { this.sendFile(filename, offset, length, it) }
 }

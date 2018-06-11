@@ -6,8 +6,10 @@ import kotlin.String
 import kotlin.collections.MutableList
 
 suspend fun MongoAuth.insertUser(
-    username: String,
-    password: String,
-    roles: MutableList<String>,
-    permissions: MutableList<String>
-): String = awaitResult { this.insertUser(username, password, roles, permissions, it) }
+  username: String,
+  password: String,
+  roles: MutableList<String>,
+  permissions: MutableList<String>
+): String {
+  return awaitResult { this.insertUser(username, password, roles, permissions, it) }
+}

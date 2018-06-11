@@ -8,10 +8,14 @@ import kotlin.Deprecated
 import kotlin.String
 
 @Deprecated("")
-suspend fun TemplateEngine.render(context: RoutingContext, templateFileName: String): Buffer = awaitResult { this.render(context, templateFileName, it) }
+suspend fun TemplateEngine.render(context: RoutingContext, templateFileName: String): Buffer {
+  return awaitResult { this.render(context, templateFileName, it) }
+}
 
 suspend fun TemplateEngine.render(
-    context: RoutingContext,
-    templateDirectory: String,
-    templateFileName: String
-): Buffer = awaitResult { this.render(context, templateDirectory, templateFileName, it) }
+  context: RoutingContext,
+  templateDirectory: String,
+  templateFileName: String
+): Buffer {
+  return awaitResult { this.render(context, templateDirectory, templateFileName, it) }
+}

@@ -18,17 +18,17 @@ suspend fun FileSystem.copy(from: String, to: String) {
 }
 
 suspend fun FileSystem.copy(
-    from: String,
-    to: String,
-    options: CopyOptions
+  from: String,
+  to: String,
+  options: CopyOptions
 ) {
   awaitResult<Void?> { this.copy(from, to, options, it) }
 }
 
 suspend fun FileSystem.copyRecursive(
-    from: String,
-    to: String,
-    recursive: Boolean
+  from: String,
+  to: String,
+  recursive: Boolean
 ) {
   awaitResult<Void?> { this.copyRecursive(from, to, recursive, it) }
 }
@@ -38,9 +38,9 @@ suspend fun FileSystem.move(from: String, to: String) {
 }
 
 suspend fun FileSystem.move(
-    from: String,
-    to: String,
-    options: CopyOptions
+  from: String,
+  to: String,
+  options: CopyOptions
 ) {
   awaitResult<Void?> { this.move(from, to, options, it) }
 }
@@ -54,24 +54,28 @@ suspend fun FileSystem.chmod(path: String, perms: String) {
 }
 
 suspend fun FileSystem.chmodRecursive(
-    path: String,
-    perms: String,
-    dirPerms: String
+  path: String,
+  perms: String,
+  dirPerms: String
 ) {
   awaitResult<Void?> { this.chmodRecursive(path, perms, dirPerms, it) }
 }
 
 suspend fun FileSystem.chown(
-    path: String,
-    user: String?,
-    group: String?
+  path: String,
+  user: String?,
+  group: String?
 ) {
   awaitResult<Void?> { this.chown(path, user, group, it) }
 }
 
-suspend fun FileSystem.props(path: String): FileProps = awaitResult { this.props(path, it) }
+suspend fun FileSystem.props(path: String): FileProps {
+  return awaitResult { this.props(path, it) }
+}
 
-suspend fun FileSystem.lprops(path: String): FileProps = awaitResult { this.lprops(path, it) }
+suspend fun FileSystem.lprops(path: String): FileProps {
+  return awaitResult { this.lprops(path, it) }
+}
 
 suspend fun FileSystem.link(link: String, existing: String) {
   awaitResult<Void?> { this.link(link, existing, it) }
@@ -85,7 +89,9 @@ suspend fun FileSystem.unlink(link: String) {
   awaitResult<Void?> { this.unlink(link, it) }
 }
 
-suspend fun FileSystem.readSymlink(link: String): String = awaitResult { this.readSymlink(link, it) }
+suspend fun FileSystem.readSymlink(link: String): String {
+  return awaitResult { this.readSymlink(link, it) }
+}
 
 suspend fun FileSystem.delete(path: String) {
   awaitResult<Void?> { this.delete(path, it) }
@@ -111,17 +117,25 @@ suspend fun FileSystem.mkdirs(path: String, perms: String) {
   awaitResult<Void?> { this.mkdirs(path, perms, it) }
 }
 
-suspend fun FileSystem.readDir(path: String): MutableList<String> = awaitResult { this.readDir(path, it) }
+suspend fun FileSystem.readDir(path: String): MutableList<String> {
+  return awaitResult { this.readDir(path, it) }
+}
 
-suspend fun FileSystem.readDir(path: String, filter: String): MutableList<String> = awaitResult { this.readDir(path, filter, it) }
+suspend fun FileSystem.readDir(path: String, filter: String): MutableList<String> {
+  return awaitResult { this.readDir(path, filter, it) }
+}
 
-suspend fun FileSystem.readFile(path: String): Buffer = awaitResult { this.readFile(path, it) }
+suspend fun FileSystem.readFile(path: String): Buffer {
+  return awaitResult { this.readFile(path, it) }
+}
 
 suspend fun FileSystem.writeFile(path: String, data: Buffer) {
   awaitResult<Void?> { this.writeFile(path, data, it) }
 }
 
-suspend fun FileSystem.open(path: String, options: OpenOptions): AsyncFile = awaitResult { this.open(path, options, it) }
+suspend fun FileSystem.open(path: String, options: OpenOptions): AsyncFile {
+  return awaitResult { this.open(path, options, it) }
+}
 
 suspend fun FileSystem.createFile(path: String) {
   awaitResult<Void?> { this.createFile(path, it) }
@@ -131,6 +145,10 @@ suspend fun FileSystem.createFile(path: String, perms: String) {
   awaitResult<Void?> { this.createFile(path, perms, it) }
 }
 
-suspend fun FileSystem.exists(path: String): Boolean = awaitResult { this.exists(path, it) }
+suspend fun FileSystem.exists(path: String): Boolean {
+  return awaitResult { this.exists(path, it) }
+}
 
-suspend fun FileSystem.fsProps(path: String): FileSystemProps = awaitResult { this.fsProps(path, it) }
+suspend fun FileSystem.fsProps(path: String): FileSystemProps {
+  return awaitResult { this.fsProps(path, it) }
+}

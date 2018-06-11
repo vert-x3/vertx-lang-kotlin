@@ -11,7 +11,11 @@ import kotlin.Any
 import kotlin.Boolean
 
 object MessageSourceExtensions {
-  suspend fun <T : Any> getConsumer(discovery: ServiceDiscovery, filter: JsonObject): MessageConsumer<T> = awaitResult { MessageSource.getConsumer(discovery, filter, it) }
+ suspend fun <T : Any> getConsumer(discovery: ServiceDiscovery, filter: JsonObject): MessageConsumer<T> {
+   return awaitResult { MessageSource.getConsumer(discovery, filter, it) }
+ }
 
-  suspend fun <T : Any> getConsumer(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): MessageConsumer<T> = awaitResult { MessageSource.getConsumer(discovery, filter, it) }
+ suspend fun <T : Any> getConsumer(discovery: ServiceDiscovery, filter: Function<Record, Boolean>): MessageConsumer<T> {
+   return awaitResult { MessageSource.getConsumer(discovery, filter, it) }
+ }
 }

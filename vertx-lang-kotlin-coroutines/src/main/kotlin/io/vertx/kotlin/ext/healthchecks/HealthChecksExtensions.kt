@@ -5,4 +5,6 @@ import io.vertx.ext.healthchecks.HealthChecks
 import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.String
 
-suspend fun HealthChecks.invoke(name: String): JsonObject = awaitResult { this.invoke(name, it) }
+suspend fun HealthChecks.invoke(name: String): JsonObject {
+  return awaitResult { this.invoke(name, it) }
+}
