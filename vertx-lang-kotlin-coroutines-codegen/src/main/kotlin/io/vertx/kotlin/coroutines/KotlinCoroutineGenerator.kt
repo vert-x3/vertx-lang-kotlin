@@ -12,7 +12,7 @@ import java.util.*
 class KotlinCoroutineGenerator : Generator<ClassModel>() {
   init {
     this.name = "KotlinCoroutine"
-    this.kinds = setOf(ClassModel::class.java)
+    this.kinds = setOf("class")
   }
 
   private val keyWords = setOf("object", "fun", "in", "typealias", "var", "val")
