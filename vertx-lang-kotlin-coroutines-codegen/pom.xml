@@ -58,6 +58,12 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.squareup</groupId>
+      <artifactId>kotlinpoet</artifactId>
+      <version>0.7.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -76,6 +82,7 @@
             <configuration>
               <sourceDirs>
                 <sourceDir>src/main/java</sourceDir>
+                <sourceDir>src/main/kotlin</sourceDir>
                 <sourceDir>target/generated-sources/kotlin</sourceDir>
               </sourceDirs>
               <args>
