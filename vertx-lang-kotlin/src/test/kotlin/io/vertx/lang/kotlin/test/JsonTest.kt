@@ -8,6 +8,7 @@ import io.vertx.kotlin.core.json.*
 import io.vertx.kotlin.core.streams.*
 import io.vertx.kotlin.core.buffer.*
 import org.junit.Test
+import java.time.Instant
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.*
@@ -17,15 +18,15 @@ class JsonTest {
   fun smoke() {
     val result = json {
       obj(
-          "a" to array(1, 2, 3),
-          "obj" to obj("b1" to 1, "b2" to "2"),
-          "imperative-loop" to obj {
-            for (i in 1..3) {
-              put("k_$i", i)
-            }
-          },
-          "map" to obj((1..3).map { "k_$it" to it }),
-          "d" to "d"
+        "a" to array(1, 2, 3),
+        "obj" to obj("b1" to 1, "b2" to "2"),
+        "imperative-loop" to obj {
+          for (i in 1..3) {
+            put("k_$i", i)
+          }
+        },
+        "map" to obj((1..3).map { "k_$it" to it }),
+        "d" to "d"
       )
     }
 
@@ -47,14 +48,14 @@ class JsonTest {
   fun testArrays() {
     val result = json {
       array(
-          array(1, 2, 3),
-          array(listOf(4, 5, 6)),
-          array(setOf(7)),
-          array {
-            for (i in 8..10) {
-              add(i)
-            }
+        array(1, 2, 3),
+        array(listOf(4, 5, 6)),
+        array(setOf(7)),
+        array {
+          for (i in 8..10) {
+            add(i)
           }
+        }
       )
     }
 
@@ -87,7 +88,7 @@ class JsonTest {
       obj("k" to "v")
     }
     assertEquals("{\"k\":\"v\"}", b.toString(Charsets.UTF_8))
-    val c = Buffer.buffer().appendJson{ User("Julien", "Viet") }
+    val c = Buffer.buffer().appendJson { User("Julien", "Viet") }
     assertEquals("{\"firstName\":\"Julien\",\"lastName\":\"Viet\"}", c.toString(Charsets.UTF_8))
     val d = Buffer.buffer().appendJson(true, { User("Julien", "Viet") })
     assertEquals("{\n  \"firstName\" : \"Julien\",\n  \"lastName\" : \"Viet\"\n}", d.toString(Charsets.UTF_8))
@@ -147,7 +148,7 @@ class JsonTest {
   fun testInferenceObj() {
     val arr = json {
       array(obj(
-          "foo" to "foo_value"
+        "foo" to "foo_value"
       ))
     }
 
@@ -167,4 +168,38 @@ class JsonTest {
     assertEquals(1, subArray.getInteger(0))
   }
 
+  @Test
+  fun testInstantProcessing() {
+    val expected = Instant.now()
+    val json = JsonObject("time" to expected)
+
+    val actual = json.getInstant("time")
+
+    assertEquals(expected, actual)
+  }
+
+  @Test
+  fun testByteArrayProcessing() {
+    val expected = ByteArray(3)
+    expected.set(0, 0)
+    expected.set(1, 1)
+    expected.set(2, 2)
+    val json = JsonObject("bytes" to expected)
+
+    val actual = json.getBinary("bytes")
+
+    assertEquals(expected[0], actual[0])
+    assertEquals(expected[1], actual[1])
+    assertEquals(expected[2], actual[2])
+  }
+
+  @Test
+  fun testNormalProcessing() {
+    val expected = "A Value"
+    val json = JsonObject("key" to expected)
+
+    val actual = json.getString("key")
+
+    assertEquals(expected, actual)
+  }
 }
