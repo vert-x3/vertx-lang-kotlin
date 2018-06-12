@@ -8,6 +8,6 @@ suspend fun <T : Any> MessageConsumer<T>.completionHandler() {
   awaitResult<Void?> { this.completionHandler(it) }
 }
 
-suspend fun <T : Any> MessageConsumer<T>.unregister() {
+suspend fun <T : Any> MessageConsumer<T>.unregisterSuspending() {
   awaitResult<Void?> { this.unregister(it) }
 }

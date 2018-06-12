@@ -21,7 +21,7 @@ suspend fun SQLClient.getConnection(): SQLConnection {
   return awaitResult { this.getConnection(it) }
 }
 
-suspend fun SQLClient.close() {
+suspend fun SQLClient.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 

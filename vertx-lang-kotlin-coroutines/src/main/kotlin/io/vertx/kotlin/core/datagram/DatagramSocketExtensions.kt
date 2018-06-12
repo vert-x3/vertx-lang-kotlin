@@ -31,7 +31,7 @@ suspend fun DatagramSocket.send(
   return awaitResult { this.send(str, enc, port, host, it) }
 }
 
-suspend fun DatagramSocket.close() {
+suspend fun DatagramSocket.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 

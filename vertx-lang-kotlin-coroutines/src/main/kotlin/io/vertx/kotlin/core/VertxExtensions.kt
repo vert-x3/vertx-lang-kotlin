@@ -10,19 +10,19 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 
-suspend fun Vertx.close() {
+suspend fun Vertx.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 
-suspend fun Vertx.deployVerticle(name: String): String {
+suspend fun Vertx.deployVerticleSuspending(name: String): String {
   return awaitResult { this.deployVerticle(name, it) }
 }
 
-suspend fun Vertx.deployVerticle(name: String, options: DeploymentOptions): String {
+suspend fun Vertx.deployVerticleSuspending(name: String, options: DeploymentOptions): String {
   return awaitResult { this.deployVerticle(name, options, it) }
 }
 
-suspend fun Vertx.undeploy(deploymentID: String) {
+suspend fun Vertx.undeploySuspending(deploymentID: String) {
   awaitResult<Void?> { this.undeploy(deploymentID, it) }
 }
 

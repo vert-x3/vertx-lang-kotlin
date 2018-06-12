@@ -6,14 +6,14 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.String
 import kotlin.collections.MutableList
 
-suspend fun CommandRegistry.registerCommand(command: Command): Command {
+suspend fun CommandRegistry.registerCommandSuspending(command: Command): Command {
   return awaitResult { this.registerCommand(command, it) }
 }
 
-suspend fun CommandRegistry.registerCommands(commands: MutableList<Command>): MutableList<Command> {
+suspend fun CommandRegistry.registerCommandsSuspending(commands: MutableList<Command>): MutableList<Command> {
   return awaitResult { this.registerCommands(commands, it) }
 }
 
-suspend fun CommandRegistry.unregisterCommand(commandName: String) {
+suspend fun CommandRegistry.unregisterCommandSuspending(commandName: String) {
   awaitResult<Void?> { this.unregisterCommand(commandName, it) }
 }

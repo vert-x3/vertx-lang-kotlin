@@ -3,6 +3,6 @@ package io.vertx.kotlin.rabbitmq
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.rabbitmq.RabbitMQConsumer
 
-suspend fun RabbitMQConsumer.cancel() {
+suspend fun RabbitMQConsumer.cancelSuspending() {
   awaitResult<Void?> { this.cancel(it) }
 }

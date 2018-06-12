@@ -6,7 +6,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Int
 import kotlin.Long
 
-suspend fun AsyncFile.close() {
+suspend fun AsyncFile.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 
@@ -23,6 +23,6 @@ suspend fun AsyncFile.read(
   return awaitResult { this.read(buffer, offset, position, length, it) }
 }
 
-suspend fun AsyncFile.flush() {
+suspend fun AsyncFile.flushSuspending() {
   awaitResult<Void?> { this.flush(it) }
 }

@@ -7,15 +7,15 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Long
 import kotlin.String
 
-suspend fun HttpServerResponse.sendFile(filename: String) {
+suspend fun HttpServerResponse.sendFileSuspending(filename: String) {
   awaitResult<Void?> { this.sendFile(filename, it) }
 }
 
-suspend fun HttpServerResponse.sendFile(filename: String, offset: Long) {
+suspend fun HttpServerResponse.sendFileSuspending(filename: String, offset: Long) {
   awaitResult<Void?> { this.sendFile(filename, offset, it) }
 }
 
-suspend fun HttpServerResponse.sendFile(
+suspend fun HttpServerResponse.sendFileSuspending(
   filename: String,
   offset: Long,
   length: Long

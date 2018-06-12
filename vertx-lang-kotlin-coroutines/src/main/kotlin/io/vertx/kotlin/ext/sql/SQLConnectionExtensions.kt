@@ -64,7 +64,7 @@ suspend fun SQLConnection.callWithParams(
   return awaitResult { this.callWithParams(sql, params, outputs, it) }
 }
 
-suspend fun SQLConnection.close() {
+suspend fun SQLConnection.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 

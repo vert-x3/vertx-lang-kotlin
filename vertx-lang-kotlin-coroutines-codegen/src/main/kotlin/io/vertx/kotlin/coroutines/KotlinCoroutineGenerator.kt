@@ -82,9 +82,12 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
     val returnType = kotlinType(asyncResult.getArg(0))
 
     val realParams = method.params.dropLast(1)
+    val isShadowed = !isStatic && checkShadowed(model, realParams, method.name)
+    val newName = method.name + if (isShadowed) "Suspending" else ""
+
     val paramsInWrappedFunctionCall = (realParams.map { it.name } + "it").joinToString(", ")
 
-    return FunSpec.builder(method.name).apply {
+    return FunSpec.builder(newName).apply {
       addModifiers(KModifier.SUSPEND)
       if (method.isDeprecated) addAnnotation(emptyDeprecated)
 
@@ -148,4 +151,8 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
 
   private fun MethodInfo.isFutureMethod() = this.kind == MethodKind.FUTURE
   private fun qualifiedName(model: ClassModel) = model.module.translateQualifiedName(model.fqn, "kotlin")
+
+  private fun checkShadowed(model: ClassModel, params: List<ParamInfo>, name: String): Boolean = model.methods.any {
+    it.name == name && it.params.map { it.type } == params.map { it.type }
+  }
 }

@@ -5,18 +5,18 @@ import io.vertx.kotlin.coroutines.awaitResult
 import kotlin.Int
 import kotlin.String
 
-suspend fun StompServer.listen(): StompServer {
+suspend fun StompServer.listenSuspending(): StompServer {
   return awaitResult { this.listen(it) }
 }
 
-suspend fun StompServer.listen(port: Int): StompServer {
+suspend fun StompServer.listenSuspending(port: Int): StompServer {
   return awaitResult { this.listen(port, it) }
 }
 
-suspend fun StompServer.listen(port: Int, host: String): StompServer {
+suspend fun StompServer.listenSuspending(port: Int, host: String): StompServer {
   return awaitResult { this.listen(port, host, it) }
 }
 
-suspend fun StompServer.close() {
+suspend fun StompServer.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }

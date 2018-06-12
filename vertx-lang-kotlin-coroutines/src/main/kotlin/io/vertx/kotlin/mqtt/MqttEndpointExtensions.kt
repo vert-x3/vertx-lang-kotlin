@@ -8,7 +8,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 
-suspend fun MqttEndpoint.publish(
+suspend fun MqttEndpoint.publishSuspending(
   topic: String,
   payload: Buffer,
   qosLevel: MqttQoS,

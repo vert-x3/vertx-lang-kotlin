@@ -22,11 +22,11 @@ suspend fun MqttClient.connect(
   return awaitResult { this.connect(port, host, serverName, it) }
 }
 
-suspend fun MqttClient.disconnect() {
+suspend fun MqttClient.disconnectSuspending() {
   awaitResult<Void?> { this.disconnect(it) }
 }
 
-suspend fun MqttClient.publish(
+suspend fun MqttClient.publishSuspending(
   topic: String,
   payload: Buffer,
   qosLevel: MqttQoS,
@@ -36,14 +36,14 @@ suspend fun MqttClient.publish(
   return awaitResult { this.publish(topic, payload, qosLevel, isDup, isRetain, it) }
 }
 
-suspend fun MqttClient.subscribe(topic: String, qos: Int): Int {
+suspend fun MqttClient.subscribeSuspending(topic: String, qos: Int): Int {
   return awaitResult { this.subscribe(topic, qos, it) }
 }
 
-suspend fun MqttClient.subscribe(topics: MutableMap<String, Int>): Int {
+suspend fun MqttClient.subscribeSuspending(topics: MutableMap<String, Int>): Int {
   return awaitResult { this.subscribe(topics, it) }
 }
 
-suspend fun MqttClient.unsubscribe(topic: String): Int {
+suspend fun MqttClient.unsubscribeSuspending(topic: String): Int {
   return awaitResult { this.unsubscribe(topic, it) }
 }

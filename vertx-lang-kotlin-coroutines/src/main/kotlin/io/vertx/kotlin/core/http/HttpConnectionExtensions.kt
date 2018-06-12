@@ -5,7 +5,7 @@ import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpConnection
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun HttpConnection.updateSettings(settings: Http2Settings) {
+suspend fun HttpConnection.updateSettingsSuspending(settings: Http2Settings) {
   awaitResult<Void?> { this.updateSettings(settings, it) }
 }
 

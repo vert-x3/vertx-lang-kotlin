@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.collections.MutableList
 
-suspend fun <K : Any, V : Any> KafkaProducer<K, V>.write(record: KafkaProducerRecord<K, V>): RecordMetadata {
+suspend fun <K : Any, V : Any> KafkaProducer<K, V>.writeSuspending(record: KafkaProducerRecord<K, V>): RecordMetadata {
   return awaitResult { this.write(record, it) }
 }
 
@@ -18,7 +18,7 @@ suspend fun <K : Any, V : Any> KafkaProducer<K, V>.partitionsFor(topic: String):
   return awaitResult { this.partitionsFor(topic, it) }
 }
 
-suspend fun <K : Any, V : Any> KafkaProducer<K, V>.close() {
+suspend fun <K : Any, V : Any> KafkaProducer<K, V>.closeSuspending() {
   awaitResult<Void?> { this.close(it) }
 }
 
