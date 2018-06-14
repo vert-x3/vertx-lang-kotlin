@@ -8,6 +8,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 
+/**
+ *  Sends the PUBLISH message to the remote MQTT server
+ * @param topic    topic on which the message is published
+ * @param payload  message payload
+ * @param qosLevel QoS level
+ * @param isDup    if the message is a duplicate
+ * @param isRetain if the message needs to be retained
+ * @return current MQTT client instance
+ */
 suspend fun MqttEndpoint.publishSuspending(
   topic: String,
   payload: Buffer,

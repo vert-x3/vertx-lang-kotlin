@@ -77,6 +77,8 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
   ): FunSpec? {
     if (!method.isFutureMethod()) return null
 
+    val ifaceSimpleName = model.ifaceSimpleName
+
     val handler = method.params.last()
     val asyncResult = (handler.type as ParameterizedTypeInfo).getArg(0) as ParameterizedTypeInfo
     val returnType = kotlinType(asyncResult.getArg(0))
@@ -88,6 +90,16 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
     val paramsInWrappedFunctionCall = (realParams.map { it.name } + "it").joinToString(", ")
 
     return FunSpec.builder(newName).apply {
+      val originalDoc = method.doc
+      originalDoc?.firstSentence?.let { addKdoc(it.value.replaceLinkAndCode(ifaceSimpleName)) }
+      originalDoc?.body?.let { addKdoc("\n${it.value.replaceLinkAndCode(ifaceSimpleName)}\n") }
+      (originalDoc?.blockTags ?: emptyList()).filterNot { tag ->
+        tag.name == "param" && tag.value.startsWith(handler.name)
+      }.forEach { tag ->
+        addKdoc("\n@${tag.name} ")
+        addKdoc(tag.value.replaceLinkAndCode(ifaceSimpleName))
+      }
+
       addModifiers(KModifier.SUSPEND)
       if (method.isDeprecated) addAnnotation(emptyDeprecated)
 
@@ -99,7 +111,7 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
         ParameterizedTypeInfo(model.type, false, typeParams)
       }
 
-      val receiver = if (isStatic) model.ifaceSimpleName else {
+      val receiver = if (isStatic) ifaceSimpleName else {
         receiver(kotlinType(interfaceWithParam))
         "this"
       }
@@ -155,4 +167,20 @@ class KotlinCoroutineGenerator : Generator<ClassModel>() {
   private fun checkShadowed(model: ClassModel, params: List<ParamInfo>, name: String): Boolean = model.methods.any {
     it.name == name && it.params.map { it.type } == params.map { it.type }
   }
+
+  private fun String.replaceLinkAndCode(ifaceName: String): String {
+    return this
+      .replace(Regex("\\{@link (.*?)}")) { match -> "[${match.groupValues[1].formatMethod(ifaceName)}]" }
+      .replace(Regex("\\{@code (.*?)}")) { match -> "`${match.groupValues[1]}`" }
+  }
+
+  private fun String.formatMethod(ifaceName: String): String {
+    val pos = this.indexOf('#')
+    return if (pos == -1) this else {
+      (if (pos == 0) ifaceName + this else this)
+        .replaceFirst('#', '.')
+        .replace(Regex("\\(.*?\\)"), "") // because KDoc cannot refer to a single overloaded method
+    }
+  }
+
 }
