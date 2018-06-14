@@ -82,17 +82,27 @@ Here is an example:
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitResultExample() {
+// Send a message and wait for a reply
+val reply = awaitResult<Message<String>> { h ->
+  vertx.eventBus().send("a.b.c", "ping", h)
+}
+----
+
+By importing and using the generated suspending methods, which wraps the original method with `awaitResult`, it is even simpler.
+The extension methods have the same name as the original method, or have a "Suspending" suffix if that name is shadowed.
+
+[source,kotlin,indent=0]
+----
+import io.vertx.kotlin.core.eventbus.sendSuspending
+
+suspend fun suspendingMethodExample() {
   val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
   consumer.handler { message ->
     println("Consumer received: ${message.body()}")
     message.reply("pong")
   }
 
-  // Send a message and wait for a reply
-  val reply = awaitResult<Message<String>> { h ->
-    vertx.eventBus().send("a.b.c", "ping", h)
-  }
+  val reply: Message<String> = vertx.eventBus().sendSuspending("a.b.c", "ping") // `sendSuspending` calls `send` for you
   println("Reply received: ${reply.body()}")
 }
 ----
@@ -102,7 +112,7 @@ When the block produces a failure, the caller can handle it as an exception usin
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitResultFailureExample() {
+suspend fun suspendingMethodFailureExample() {
   val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
   consumer.handler { message ->
     // The consumer will get a failure
@@ -111,9 +121,7 @@ suspend fun awaitResultFailureExample() {
 
   // Send a message and wait for a reply
   try {
-    val reply: Message<String> = awaitResult<Message<String>> { h ->
-         vertx.eventBus().send("a.b.c", "ping", h)
-       }
+    val reply: Message<String> = vertx.eventBus().sendSuspending("a.b.c", "ping")
   } catch(e: ReplyException) {
     // Handle specific reply exception here
     println("Reply failure: ${e.message}")

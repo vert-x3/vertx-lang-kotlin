@@ -5,12 +5,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>vertx-lang-kotlin-parent</artifactId>
+    <artifactId>vertx-base-stack</artifactId>
     <groupId>io.vertx</groupId>
     <version>3.6.0-SNAPSHOT</version>
+    <relativePath></relativePath>
   </parent>
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
+
+  <properties>
+    <kotlin.version>1.2.41</kotlin.version>
+    <asciidoc.path>/kotlin</asciidoc.path>
+    <kotlin.coroutines.version>0.21.2</kotlin.coroutines.version>
+    <stack.version>3.6.0-SNAPSHOT</stack.version>
+    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -34,6 +43,17 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit</artifactId>
+      <version>${kotlin.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-unit</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-rx-java2</artifactId>
       <scope>test</scope>
@@ -51,6 +71,11 @@
       <version>${kotlin.coroutines.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-lang-kotlin-coroutine-codegen</artifactId>
+      <version>3.6.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -58,6 +83,31 @@
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
 
     <plugins>
+
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-sources</id>
+          </execution>
+          <execution>
+            <id>unpack-asciidoc</id>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+          </execution>
+          <execution>
+            <id>generate-doc</id>
+          </execution>
+        </executions>
+      </plugin>
 
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -110,18 +160,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <phase>prepare-package</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
@@ -149,6 +187,18 @@
                 <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
               </descriptors>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <phase>package</phase>
           </execution>
         </executions>
       </plugin>
