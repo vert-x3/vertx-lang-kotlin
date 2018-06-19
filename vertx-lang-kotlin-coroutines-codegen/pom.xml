@@ -45,49 +45,10 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <phase>compile</phase>
-            <configuration>
-              <experimentalCoroutines>enable</experimentalCoroutines>
-              <sourceDirs>
-                <sourceDir>src/main/kotlin</sourceDir>
-                <sourceDir>target/generated-sources/kotlin</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>>test-compile</id>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-            <phase>test-compile</phase>
-            <configuration>
-              <sourceDirs>
-                <sourceDir>src/test/kotlin</sourceDir>
-                <sourceDir>target/generated-test-sources/kotlin</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
