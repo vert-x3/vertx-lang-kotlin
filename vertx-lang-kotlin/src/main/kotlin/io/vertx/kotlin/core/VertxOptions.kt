@@ -4,6 +4,7 @@ import io.vertx.core.VertxOptions
 import io.vertx.core.dns.AddressResolverOptions
 import io.vertx.core.eventbus.EventBusOptions
 import io.vertx.core.metrics.MetricsOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.core.VertxOptions] objects.
@@ -11,7 +12,8 @@ import io.vertx.core.metrics.MetricsOptions
  * Instances of this class are used to configure [io.vertx.core.Vertx] instances.
  *
  * @param addressResolverOptions  Sets the address resolver configuration to configure resolving DNS servers, cache TTL, etc...
- * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in ms.
+ * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
+ * @param blockedThreadCheckIntervalUnit  Set the time unit of <code>blockedThreadCheckInterval</code>.
  * @param clusterHost  Set the hostname to be used for clustering.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
  * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
@@ -25,12 +27,15 @@ import io.vertx.core.metrics.MetricsOptions
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
  * @param internalBlockingPoolSize  Set the value of internal blocking pool size
- * @param maxEventLoopExecuteTime  Sets the value of max event loop execute time, in ns.
- * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in ns.
+ * @param maxEventLoopExecuteTime  Sets the value of max event loop execute time, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions]is 
+ * @param maxEventLoopExecuteTimeUnit  Set the time unit of <code>maxEventLoopExecuteTime</code>.
+ * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
+ * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code>.
  * @param metricsOptions  Set the metrics options
  * @param preferNativeTransport  Set wether to prefer the native transport to the JDK transport.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
- * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace.
+ * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace. in [io.vertx.core.VertxOptions]. The default value of [io.vertx.core.VertxOptions] is 
+ * @param warningExceptionTimeUnit  Set the time unit of <code>warningExceptionTime</code>.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.
  *
  * <p/>
@@ -39,6 +44,7 @@ import io.vertx.core.metrics.MetricsOptions
 fun VertxOptions(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
   blockedThreadCheckInterval: Long? = null,
+  blockedThreadCheckIntervalUnit: TimeUnit? = null,
   clusterHost: String? = null,
   clusterPingInterval: Long? = null,
   clusterPingReplyInterval: Long? = null,
@@ -53,11 +59,14 @@ fun VertxOptions(
   haGroup: String? = null,
   internalBlockingPoolSize: Int? = null,
   maxEventLoopExecuteTime: Long? = null,
+  maxEventLoopExecuteTimeUnit: TimeUnit? = null,
   maxWorkerExecuteTime: Long? = null,
+  maxWorkerExecuteTimeUnit: TimeUnit? = null,
   metricsOptions: io.vertx.core.metrics.MetricsOptions? = null,
   preferNativeTransport: Boolean? = null,
   quorumSize: Int? = null,
   warningExceptionTime: Long? = null,
+  warningExceptionTimeUnit: TimeUnit? = null,
   workerPoolSize: Int? = null): VertxOptions = io.vertx.core.VertxOptions().apply {
 
   if (addressResolverOptions != null) {
@@ -65,6 +74,9 @@ fun VertxOptions(
   }
   if (blockedThreadCheckInterval != null) {
     this.setBlockedThreadCheckInterval(blockedThreadCheckInterval)
+  }
+  if (blockedThreadCheckIntervalUnit != null) {
+    this.setBlockedThreadCheckIntervalUnit(blockedThreadCheckIntervalUnit)
   }
   if (clusterHost != null) {
     this.setClusterHost(clusterHost)
@@ -108,8 +120,14 @@ fun VertxOptions(
   if (maxEventLoopExecuteTime != null) {
     this.setMaxEventLoopExecuteTime(maxEventLoopExecuteTime)
   }
+  if (maxEventLoopExecuteTimeUnit != null) {
+    this.setMaxEventLoopExecuteTimeUnit(maxEventLoopExecuteTimeUnit)
+  }
   if (maxWorkerExecuteTime != null) {
     this.setMaxWorkerExecuteTime(maxWorkerExecuteTime)
+  }
+  if (maxWorkerExecuteTimeUnit != null) {
+    this.setMaxWorkerExecuteTimeUnit(maxWorkerExecuteTimeUnit)
   }
   if (metricsOptions != null) {
     this.setMetricsOptions(metricsOptions)
@@ -122,6 +140,9 @@ fun VertxOptions(
   }
   if (warningExceptionTime != null) {
     this.setWarningExceptionTime(warningExceptionTime)
+  }
+  if (warningExceptionTimeUnit != null) {
+    this.setWarningExceptionTimeUnit(warningExceptionTimeUnit)
   }
   if (workerPoolSize != null) {
     this.setWorkerPoolSize(workerPoolSize)
