@@ -4,7 +4,6 @@ import io.vertx.core.net.NetServer
 import io.vertx.core.net.SocketAddress
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun NetServer.listenAwait() : NetServer? {
     return awaitResult{

@@ -4,7 +4,6 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.mqtt.MqttEndpoint
 import io.vertx.mqtt.MqttServer
-import java.lang.Void
 
 suspend fun MqttServer.listenAwait(port : Int, host : String) : MqttServer? {
     return awaitResult{

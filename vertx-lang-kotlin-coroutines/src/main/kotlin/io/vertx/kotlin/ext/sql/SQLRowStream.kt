@@ -4,7 +4,6 @@ import io.vertx.core.json.JsonArray
 import io.vertx.ext.sql.SQLRowStream
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun SQLRowStream.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

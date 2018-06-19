@@ -7,7 +7,6 @@ import io.vertx.ext.sql.SQLRowStream
 import io.vertx.ext.sql.TransactionIsolation
 import io.vertx.ext.sql.UpdateResult
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun SQLConnection.querySingleAwait(sql : String) : JsonArray? {
     return awaitResult{

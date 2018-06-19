@@ -6,7 +6,6 @@ import io.vertx.core.json.JsonObject
 import io.vertx.ext.auth.oauth2.AccessToken
 import io.vertx.ext.auth.oauth2.OAuth2Response
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun AccessToken.refreshAwait() : Void? {
     return awaitResult{

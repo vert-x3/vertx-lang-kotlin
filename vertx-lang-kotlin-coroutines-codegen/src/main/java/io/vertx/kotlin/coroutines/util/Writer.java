@@ -9,6 +9,7 @@ public class Writer {
   private PrintWriter writer = new PrintWriter(stringWriter);
   private int indent;
   private boolean first;
+  private int space4tab = 4;
 
   public Writer print() {
 
@@ -49,15 +50,15 @@ public class Writer {
   }
 
   public Writer indent() {
-    indent += 2;
+    indent += space4tab;
     return this;
   }
 
   public Writer unindent() {
-    if (indent < 2) {
+    if (indent < space4tab) {
       throw new IllegalStateException();
     }
-    indent -= 2;
+    indent -= space4tab;
     return this;
   }
 

@@ -2,7 +2,6 @@ package io.vertx.kotlin.core.streams
 
 import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun <T> ReadStream<T>.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

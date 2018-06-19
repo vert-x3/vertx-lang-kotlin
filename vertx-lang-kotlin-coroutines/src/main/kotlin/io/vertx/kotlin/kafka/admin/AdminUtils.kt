@@ -2,7 +2,6 @@ package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.AdminUtils
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun AdminUtils.createTopicAwait(topicName : String, partitionCount : Int, replicationFactor : Int) : Void? {
     return awaitResult{
@@ -10,7 +9,7 @@ suspend fun AdminUtils.createTopicAwait(topicName : String, partitionCount : Int
     }
 }
 
-suspend fun AdminUtils.createTopicAwait(topicName : String, partitionCount : Int, replicationFactor : Int, topicConfig : Map<String, String>) : Void? {
+suspend fun AdminUtils.createTopicAwait(topicName : String, partitionCount : Int, replicationFactor : Int, topicConfig : Map<String,String>) : Void? {
     return awaitResult{
         this.createTopic(topicName, partitionCount, replicationFactor, topicConfig, it)
     }
@@ -28,7 +27,7 @@ suspend fun AdminUtils.topicExistsAwait(topicName : String) : Boolean? {
     }
 }
 
-suspend fun AdminUtils.changeTopicConfigAwait(topicName : String, topicConfig : Map<String, String>) : Void? {
+suspend fun AdminUtils.changeTopicConfigAwait(topicName : String, topicConfig : Map<String,String>) : Void? {
     return awaitResult{
         this.changeTopicConfig(topicName, topicConfig, it)
     }

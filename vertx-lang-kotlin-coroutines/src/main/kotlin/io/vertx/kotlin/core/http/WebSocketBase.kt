@@ -4,7 +4,6 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.WebSocketBase
 import io.vertx.core.http.WebSocketFrame
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun WebSocketBase.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

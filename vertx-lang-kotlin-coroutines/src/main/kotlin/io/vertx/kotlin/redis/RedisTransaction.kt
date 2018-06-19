@@ -23,7 +23,6 @@ import io.vertx.redis.op.ScanOptions
 import io.vertx.redis.op.SetOptions
 import io.vertx.redis.op.SlotCmd
 import io.vertx.redis.op.SortOptions
-import java.lang.Void
 
 suspend fun RedisTransaction.closeAwait() : Void? {
     return awaitResult{
@@ -1201,7 +1200,7 @@ suspend fun RedisTransaction.zaddAwait(key : String, score : Double, member : St
     }
 }
 
-suspend fun RedisTransaction.zaddManyAwait(key : String, members : Map<String, Double>) : String? {
+suspend fun RedisTransaction.zaddManyAwait(key : String, members : Map<String,Double>) : String? {
     return awaitResult{
         this.zaddMany(key, members, it)
     }
@@ -1231,7 +1230,7 @@ suspend fun RedisTransaction.zinterstoreAwait(destkey : String, sets : List<Stri
     }
 }
 
-suspend fun RedisTransaction.zinterstoreWeighedAwait(destkey : String, sets : Map<String, Double>, options : AggregateOptions) : String? {
+suspend fun RedisTransaction.zinterstoreWeighedAwait(destkey : String, sets : Map<String,Double>, options : AggregateOptions) : String? {
     return awaitResult{
         this.zinterstoreWeighed(destkey, sets, options, it)
     }
@@ -1339,7 +1338,7 @@ suspend fun RedisTransaction.zunionstoreAwait(destkey : String, sets : List<Stri
     }
 }
 
-suspend fun RedisTransaction.zunionstoreWeighedAwait(key : String, sets : Map<String, Double>, options : AggregateOptions) : String? {
+suspend fun RedisTransaction.zunionstoreWeighedAwait(key : String, sets : Map<String,Double>, options : AggregateOptions) : String? {
     return awaitResult{
         this.zunionstoreWeighed(key, sets, options, it)
     }

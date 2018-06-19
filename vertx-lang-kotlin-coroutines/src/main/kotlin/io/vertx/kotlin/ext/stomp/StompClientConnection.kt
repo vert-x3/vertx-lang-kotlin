@@ -5,7 +5,7 @@ import io.vertx.ext.stomp.Frame
 import io.vertx.ext.stomp.StompClientConnection
 import io.vertx.kotlin.coroutines.awaitEvent
 
-suspend fun StompClientConnection.sendAwait(headers : Map<String, String>, body : Buffer) : Frame? {
+suspend fun StompClientConnection.sendAwait(headers : Map<String,String>, body : Buffer) : Frame? {
     return awaitEvent{
         this.send(headers, body, it)
     }
@@ -23,7 +23,7 @@ suspend fun StompClientConnection.sendAwait(frame : Frame) : Frame? {
     }
 }
 
-suspend fun StompClientConnection.sendAwait(destination : String, headers : Map<String, String>, body : Buffer) : Frame? {
+suspend fun StompClientConnection.sendAwait(destination : String, headers : Map<String,String>, body : Buffer) : Frame? {
     return awaitEvent{
         this.send(destination, headers, body, it)
     }
@@ -35,7 +35,7 @@ suspend fun StompClientConnection.unsubscribeAwait(destination : String) : Frame
     }
 }
 
-suspend fun StompClientConnection.unsubscribeAwait(destination : String, headers : Map<String, String>) : Frame? {
+suspend fun StompClientConnection.unsubscribeAwait(destination : String, headers : Map<String,String>) : Frame? {
     return awaitEvent{
         this.unsubscribe(destination, headers, it)
     }
@@ -71,7 +71,7 @@ suspend fun StompClientConnection.beginTXAwait(id : String) : Frame? {
     }
 }
 
-suspend fun StompClientConnection.beginTXAwait(id : String, headers : Map<String, String>) : Frame? {
+suspend fun StompClientConnection.beginTXAwait(id : String, headers : Map<String,String>) : Frame? {
     return awaitEvent{
         this.beginTX(id, headers, it)
     }
@@ -83,7 +83,7 @@ suspend fun StompClientConnection.commitAwait(id : String) : Frame? {
     }
 }
 
-suspend fun StompClientConnection.commitAwait(id : String, headers : Map<String, String>) : Frame? {
+suspend fun StompClientConnection.commitAwait(id : String, headers : Map<String,String>) : Frame? {
     return awaitEvent{
         this.commit(id, headers, it)
     }
@@ -95,7 +95,7 @@ suspend fun StompClientConnection.abortAwait(id : String) : Frame? {
     }
 }
 
-suspend fun StompClientConnection.abortAwait(id : String, headers : Map<String, String>) : Frame? {
+suspend fun StompClientConnection.abortAwait(id : String, headers : Map<String,String>) : Frame? {
     return awaitEvent{
         this.abort(id, headers, it)
     }

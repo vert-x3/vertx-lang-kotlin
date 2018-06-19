@@ -2,7 +2,6 @@ package io.vertx.kotlin.core
 
 import io.vertx.core.TimeoutStream
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun TimeoutStream.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

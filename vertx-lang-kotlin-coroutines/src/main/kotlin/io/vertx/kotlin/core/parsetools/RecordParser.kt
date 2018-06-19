@@ -3,7 +3,6 @@ package io.vertx.kotlin.core.parsetools
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun RecordParser.setOutputAwait() : Buffer? {
     return awaitEvent{

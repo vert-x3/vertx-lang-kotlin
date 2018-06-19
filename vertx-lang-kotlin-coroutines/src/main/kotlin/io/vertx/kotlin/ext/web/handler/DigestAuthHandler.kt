@@ -5,7 +5,6 @@ import io.vertx.ext.auth.User
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.DigestAuthHandler
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun DigestAuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject? {
     return awaitResult{

@@ -8,7 +8,6 @@ import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.rabbitmq.QueueOptions
 import io.vertx.rabbitmq.RabbitMQClient
 import io.vertx.rabbitmq.RabbitMQConsumer
-import java.lang.Void
 
 suspend fun RabbitMQClient.basicAckAwait(deliveryTag : Long, multiple : Boolean) : JsonObject? {
     return awaitResult{

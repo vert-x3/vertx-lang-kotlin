@@ -6,7 +6,6 @@ import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpConnection
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun HttpConnection.goAwayHandlerAwait() : GoAway? {
     return awaitEvent{

@@ -9,7 +9,6 @@ import io.vertx.kafka.client.consumer.OffsetAndMetadata
 import io.vertx.kafka.client.consumer.OffsetAndTimestamp
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun <K,V> KafkaConsumer<K,V>.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
@@ -17,7 +16,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.exceptionHandlerAwait() : Throwable? {
     }
 }
 
-suspend fun <K,V> KafkaConsumer<K,V>.handlerAwait() : KafkaConsumerRecord<K, V>? {
+suspend fun <K,V> KafkaConsumer<K,V>.handlerAwait() : KafkaConsumerRecord<K,V>? {
     return awaitEvent{
         this.handler(it)
     }
@@ -161,7 +160,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.partitionsForAwait(topic : String) : List<P
     }
 }
 
-suspend fun <K,V> KafkaConsumer<K,V>.batchHandlerAwait() : KafkaConsumerRecords<K, V>? {
+suspend fun <K,V> KafkaConsumer<K,V>.batchHandlerAwait() : KafkaConsumerRecords<K,V>? {
     return awaitEvent{
         this.batchHandler(it)
     }
@@ -194,6 +193,12 @@ suspend fun <K,V> KafkaConsumer<K,V>.beginningOffsetsAwait(topicPartition : Topi
 suspend fun <K,V> KafkaConsumer<K,V>.endOffsetsAwait(topicPartition : TopicPartition) : Long? {
     return awaitResult{
         this.endOffsets(topicPartition, it)
+    }
+}
+
+suspend fun <K,V> KafkaConsumer<K,V>.pollAwait(timeout : Long) : KafkaConsumerRecords<K,V>? {
+    return awaitResult{
+        this.poll(timeout, it)
     }
 }
 

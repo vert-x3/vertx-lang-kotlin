@@ -6,13 +6,13 @@ import io.vertx.core.shareddata.Lock
 import io.vertx.core.shareddata.SharedData
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun <K,V> SharedData.getClusterWideMapAwait(name : String) : AsyncMap<K, V>? {
+suspend fun <K,V> SharedData.getClusterWideMapAwait(name : String) : AsyncMap<K,V>? {
     return awaitResult{
         this.getClusterWideMap(name, it)
     }
 }
 
-suspend fun <K,V> SharedData.getAsyncMapAwait(name : String) : AsyncMap<K, V>? {
+suspend fun <K,V> SharedData.getAsyncMapAwait(name : String) : AsyncMap<K,V>? {
     return awaitResult{
         this.getAsyncMap(name, it)
     }

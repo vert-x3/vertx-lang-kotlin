@@ -3,7 +3,6 @@ package io.vertx.kotlin.core.parsetools
 import io.vertx.core.parsetools.JsonEvent
 import io.vertx.core.parsetools.JsonParser
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun JsonParser.endHandlerAwait() : Void? {
     return awaitEvent{

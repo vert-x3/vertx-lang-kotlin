@@ -3,7 +3,6 @@ package io.vertx.kotlin.ext.web.handler.sockjs
 import io.vertx.core.buffer.Buffer
 import io.vertx.ext.web.handler.sockjs.SockJSSocket
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun SockJSSocket.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

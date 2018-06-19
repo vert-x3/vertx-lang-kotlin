@@ -4,7 +4,6 @@ import io.vertx.core.json.JsonObject
 import io.vertx.ext.auth.oauth2.AccessToken
 import io.vertx.ext.auth.oauth2.OAuth2Auth
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun OAuth2Auth.getTokenAwait(params : JsonObject) : AccessToken? {
     return awaitResult{

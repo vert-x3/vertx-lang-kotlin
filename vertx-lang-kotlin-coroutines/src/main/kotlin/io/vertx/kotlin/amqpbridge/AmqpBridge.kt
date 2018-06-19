@@ -3,7 +3,6 @@ package io.vertx.kotlin.amqpbridge
 import io.vertx.amqpbridge.AmqpBridge
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun AmqpBridge.startAwait(hostname : String, port : Int, username : String, password : String) : AmqpBridge? {
     return awaitResult{

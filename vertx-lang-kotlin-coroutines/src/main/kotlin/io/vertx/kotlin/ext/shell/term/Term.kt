@@ -4,7 +4,6 @@ import io.vertx.core.Handler
 import io.vertx.ext.shell.cli.Completion
 import io.vertx.ext.shell.term.Term
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun Term.resizehandlerAwait() : Void? {
     return awaitEvent{

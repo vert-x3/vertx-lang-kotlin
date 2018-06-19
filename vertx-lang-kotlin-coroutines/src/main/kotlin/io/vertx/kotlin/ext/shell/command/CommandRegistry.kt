@@ -3,7 +3,6 @@ package io.vertx.kotlin.ext.shell.command
 import io.vertx.ext.shell.command.Command
 import io.vertx.ext.shell.command.CommandRegistry
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command? {
     return awaitResult{

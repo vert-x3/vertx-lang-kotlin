@@ -4,7 +4,6 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun ServerWebSocket.textMessageHandlerAwait() : String? {
     return awaitEvent{

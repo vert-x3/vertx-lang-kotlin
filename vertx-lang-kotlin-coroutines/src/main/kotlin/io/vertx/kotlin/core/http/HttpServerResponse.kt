@@ -5,7 +5,6 @@ import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun HttpServerResponse.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

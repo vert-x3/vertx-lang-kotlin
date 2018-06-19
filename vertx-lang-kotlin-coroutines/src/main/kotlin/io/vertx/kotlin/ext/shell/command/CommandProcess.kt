@@ -2,7 +2,6 @@ package io.vertx.kotlin.ext.shell.command
 
 import io.vertx.ext.shell.command.CommandProcess
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun CommandProcess.stdinHandlerAwait() : String? {
     return awaitEvent{

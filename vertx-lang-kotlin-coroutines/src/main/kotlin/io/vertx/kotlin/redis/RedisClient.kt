@@ -28,7 +28,6 @@ import io.vertx.redis.op.ScriptDebugOptions
 import io.vertx.redis.op.SetOptions
 import io.vertx.redis.op.SlotCmd
 import io.vertx.redis.op.SortOptions
-import java.lang.Void
 
 suspend fun RedisClient.closeAwait() : Void? {
     return awaitResult{
@@ -1176,7 +1175,7 @@ suspend fun RedisClient.zaddAwait(key : String, score : Double, member : String)
     }
 }
 
-suspend fun RedisClient.zaddManyAwait(key : String, members : Map<String, Double>) : Long? {
+suspend fun RedisClient.zaddManyAwait(key : String, members : Map<String,Double>) : Long? {
     return awaitResult{
         this.zaddMany(key, members, it)
     }
@@ -1206,7 +1205,7 @@ suspend fun RedisClient.zinterstoreAwait(destkey : String, sets : List<String>, 
     }
 }
 
-suspend fun RedisClient.zinterstoreWeighedAwait(destkey : String, sets : Map<String, Double>, options : AggregateOptions) : Long? {
+suspend fun RedisClient.zinterstoreWeighedAwait(destkey : String, sets : Map<String,Double>, options : AggregateOptions) : Long? {
     return awaitResult{
         this.zinterstoreWeighed(destkey, sets, options, it)
     }
@@ -1314,7 +1313,7 @@ suspend fun RedisClient.zunionstoreAwait(destkey : String, sets : List<String>, 
     }
 }
 
-suspend fun RedisClient.zunionstoreWeighedAwait(key : String, sets : Map<String, Double>, options : AggregateOptions) : Long? {
+suspend fun RedisClient.zunionstoreWeighedAwait(key : String, sets : Map<String,Double>, options : AggregateOptions) : Long? {
     return awaitResult{
         this.zunionstoreWeighed(key, sets, options, it)
     }

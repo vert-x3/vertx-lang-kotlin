@@ -8,7 +8,6 @@ import io.vertx.core.file.FileSystem
 import io.vertx.core.file.FileSystemProps
 import io.vertx.core.file.OpenOptions
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun FileSystem.copyAwait(from : String, to : String) : Void? {
     return awaitResult{

@@ -5,7 +5,6 @@ import io.vertx.core.datagram.DatagramPacket
 import io.vertx.core.datagram.DatagramSocket
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun DatagramSocket.sendAwait(packet : Buffer, port : Int, host : String) : DatagramSocket? {
     return awaitResult{

@@ -5,7 +5,6 @@ import io.vertx.core.Future
 import io.vertx.core.Handler
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun Context.runOnContextAwait() : Void? {
     return awaitEvent{

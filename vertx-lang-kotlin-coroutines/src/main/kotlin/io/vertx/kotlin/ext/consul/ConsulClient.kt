@@ -15,6 +15,7 @@ import io.vertx.ext.consul.Event
 import io.vertx.ext.consul.EventList
 import io.vertx.ext.consul.EventListOptions
 import io.vertx.ext.consul.EventOptions
+import io.vertx.ext.consul.HealthState
 import io.vertx.ext.consul.KeyValue
 import io.vertx.ext.consul.KeyValueList
 import io.vertx.ext.consul.KeyValueOptions
@@ -35,7 +36,6 @@ import io.vertx.ext.consul.SessionOptions
 import io.vertx.ext.consul.TxnRequest
 import io.vertx.ext.consul.TxnResponse
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun ConsulClient.agentInfoAwait() : JsonObject? {
     return awaitResult{
@@ -247,15 +247,15 @@ suspend fun ConsulClient.healthChecksWithOptionsAwait(service : String, options 
     }
 }
 
-suspend fun ConsulClient.healthStateAwait(checkStatus : CheckStatus) : CheckList? {
+suspend fun ConsulClient.healthStateAwait(healthState : HealthState) : CheckList? {
     return awaitResult{
-        this.healthState(checkStatus, it)
+        this.healthState(healthState, it)
     }
 }
 
-suspend fun ConsulClient.healthStateWithOptionsAwait(checkStatus : CheckStatus, options : CheckQueryOptions) : CheckList? {
+suspend fun ConsulClient.healthStateWithOptionsAwait(healthState : HealthState, options : CheckQueryOptions) : CheckList? {
     return awaitResult{
-        this.healthStateWithOptions(checkStatus, options, it)
+        this.healthStateWithOptions(healthState, options, it)
     }
 }
 

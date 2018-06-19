@@ -8,7 +8,6 @@ import io.vertx.mqtt.MqttEndpoint
 import io.vertx.mqtt.messages.MqttPublishMessage
 import io.vertx.mqtt.messages.MqttSubscribeMessage
 import io.vertx.mqtt.messages.MqttUnsubscribeMessage
-import java.lang.Void
 
 suspend fun MqttEndpoint.disconnectHandlerAwait() : Void? {
     return awaitEvent{

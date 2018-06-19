@@ -8,7 +8,6 @@ import io.vertx.mqtt.MqttClient
 import io.vertx.mqtt.messages.MqttConnAckMessage
 import io.vertx.mqtt.messages.MqttPublishMessage
 import io.vertx.mqtt.messages.MqttSubAckMessage
-import java.lang.Void
 
 suspend fun MqttClient.connectAwait(port : Int, host : String) : MqttConnAckMessage? {
     return awaitResult{
@@ -58,7 +57,7 @@ suspend fun MqttClient.subscribeAwait(topic : String, qos : Int) : Int? {
     }
 }
 
-suspend fun MqttClient.subscribeAwait(topics : Map<String, Int>) : Int? {
+suspend fun MqttClient.subscribeAwait(topics : Map<String,Int>) : Int? {
     return awaitResult{
         this.subscribe(topics, it)
     }

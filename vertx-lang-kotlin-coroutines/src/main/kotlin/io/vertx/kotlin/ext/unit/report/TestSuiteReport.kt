@@ -3,7 +3,6 @@ package io.vertx.kotlin.ext.unit.report
 import io.vertx.ext.unit.report.TestCaseReport
 import io.vertx.ext.unit.report.TestSuiteReport
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun TestSuiteReport.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

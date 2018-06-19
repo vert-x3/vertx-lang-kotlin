@@ -2,7 +2,6 @@ package io.vertx.kotlin.core.shareddata
 
 import io.vertx.core.shareddata.AsyncMap
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun <K,V> AsyncMap<K,V>.getAwait(k : K) : V? {
     return awaitResult{

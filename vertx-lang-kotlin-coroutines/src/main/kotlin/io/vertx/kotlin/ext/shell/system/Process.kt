@@ -2,7 +2,6 @@ package io.vertx.kotlin.ext.shell.system
 
 import io.vertx.ext.shell.system.Process
 import io.vertx.kotlin.coroutines.awaitEvent
-import java.lang.Void
 
 suspend fun Process.terminatedHandlerAwait() : Int? {
     return awaitEvent{

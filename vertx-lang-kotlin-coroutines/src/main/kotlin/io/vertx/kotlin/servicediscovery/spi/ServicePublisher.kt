@@ -3,7 +3,6 @@ package io.vertx.kotlin.servicediscovery.spi
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.servicediscovery.Record
 import io.vertx.servicediscovery.spi.ServicePublisher
-import java.lang.Void
 
 suspend fun ServicePublisher.publishAwait(record : Record) : Record? {
     return awaitResult{

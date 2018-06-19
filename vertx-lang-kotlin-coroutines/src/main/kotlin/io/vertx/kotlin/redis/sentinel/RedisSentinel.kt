@@ -3,7 +3,6 @@ package io.vertx.kotlin.redis.sentinel
 import io.vertx.core.json.JsonArray
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.redis.sentinel.RedisSentinel
-import java.lang.Void
 
 suspend fun RedisSentinel.closeAwait() : Void? {
     return awaitResult{

@@ -13,7 +13,6 @@ import io.vertx.ext.mongo.MongoClientUpdateResult
 import io.vertx.ext.mongo.UpdateOptions
 import io.vertx.ext.mongo.WriteOption
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun MongoClient.saveAwait(collection : String, document : JsonObject) : String? {
     return awaitResult{

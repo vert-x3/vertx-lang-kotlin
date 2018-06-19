@@ -4,7 +4,6 @@ import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.rabbitmq.RabbitMQConsumer
 import io.vertx.rabbitmq.RabbitMQMessage
-import java.lang.Void
 
 suspend fun RabbitMQConsumer.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

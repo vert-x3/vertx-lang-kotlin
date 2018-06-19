@@ -4,7 +4,6 @@ import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageConsumer
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun <T> MessageConsumer<T>.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{

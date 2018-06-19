@@ -4,7 +4,6 @@ import io.vertx.ext.stomp.ServerFrame
 import io.vertx.ext.stomp.StompServer
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun StompServer.listenAwait() : StompServer? {
     return awaitResult{

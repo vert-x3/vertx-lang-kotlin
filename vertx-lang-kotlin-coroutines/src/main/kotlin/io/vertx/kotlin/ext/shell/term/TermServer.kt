@@ -4,7 +4,6 @@ import io.vertx.ext.shell.term.Term
 import io.vertx.ext.shell.term.TermServer
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun TermServer.termHandlerAwait() : Term? {
     return awaitEvent{

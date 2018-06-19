@@ -6,7 +6,6 @@ import io.vertx.kafka.client.producer.KafkaProducerRecord
 import io.vertx.kafka.client.producer.RecordMetadata
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun <K,V> KafkaProducer<K,V>.exceptionHandlerAwait() : Throwable? {
     return awaitEvent{
@@ -20,7 +19,7 @@ suspend fun <K,V> KafkaProducer<K,V>.drainHandlerAwait() : Void? {
     }
 }
 
-suspend fun <K,V> KafkaProducer<K,V>.writeAwait(record : KafkaProducerRecord<K, V>) : RecordMetadata? {
+suspend fun <K,V> KafkaProducer<K,V>.writeAwait(record : KafkaProducerRecord<K,V>) : RecordMetadata? {
     return awaitResult{
         this.write(record, it)
     }

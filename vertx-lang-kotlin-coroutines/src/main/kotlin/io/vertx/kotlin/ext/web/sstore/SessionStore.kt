@@ -3,7 +3,6 @@ package io.vertx.kotlin.ext.web.sstore
 import io.vertx.ext.web.Session
 import io.vertx.ext.web.sstore.SessionStore
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun SessionStore.getAwait(id : String) : Session? {
     return awaitResult{

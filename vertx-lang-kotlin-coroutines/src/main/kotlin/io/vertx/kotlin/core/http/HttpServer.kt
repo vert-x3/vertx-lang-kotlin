@@ -7,7 +7,6 @@ import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.net.SocketAddress
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 
 suspend fun HttpServer.requestHandlerAwait() : HttpServerRequest? {
     return awaitEvent{

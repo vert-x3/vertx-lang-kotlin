@@ -5,7 +5,6 @@ import io.vertx.core.Future
 import io.vertx.core.Handler
 import io.vertx.kotlin.coroutines.awaitEvent
 import io.vertx.kotlin.coroutines.awaitResult
-import java.lang.Void
 import java.util.function.Function
 
 suspend fun CircuitBreaker.openHandlerAwait() : Void? {
@@ -26,7 +25,7 @@ suspend fun CircuitBreaker.closeHandlerAwait() : Void? {
     }
 }
 
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable, T>) : T? {
+suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable,T>) : T? {
     return awaitResult{
         this.executeCommandWithFallback(command, fallback, it)
     }
