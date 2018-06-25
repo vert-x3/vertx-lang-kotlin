@@ -8,6 +8,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.mqtt.MqttClientOptions] objects.
@@ -25,6 +26,7 @@ import io.vertx.core.net.ProxyOptions
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
  * @param idleTimeout  Do the same thing as [io.vertx.mqtt.MqttClientOptions]. Use it instead.
+ * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keepAliveTimeSeconds  Set the keep alive timeout in seconds
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
@@ -80,6 +82,7 @@ fun MqttClientOptions(
   enabledSecureTransportProtocols: Iterable<String>? = null,
   hostnameVerificationAlgorithm: String? = null,
   idleTimeout: Int? = null,
+  idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAliveTimeSeconds: Int? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
@@ -158,6 +161,9 @@ fun MqttClientOptions(
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
+  }
+  if (idleTimeoutUnit != null) {
+    this.setIdleTimeoutUnit(idleTimeoutUnit)
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)

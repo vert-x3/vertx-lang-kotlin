@@ -8,6 +8,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.redis.RedisOptions] objects.
@@ -45,7 +46,8 @@ import io.vertx.core.net.ProxyOptions
  * @param encoding  Set the user defined character encoding, e.g.: `iso-8859-1`. * @param encoding the user character encoding
  * @param host  Set the host name where the Redis server is listening. * @param host host name
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, in seconds. zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout.
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
+ * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
@@ -98,6 +100,7 @@ fun RedisOptions(
   host: String? = null,
   hostnameVerificationAlgorithm: String? = null,
   idleTimeout: Int? = null,
+  idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
@@ -179,6 +182,9 @@ fun RedisOptions(
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
+  }
+  if (idleTimeoutUnit != null) {
+    this.setIdleTimeoutUnit(idleTimeoutUnit)
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)

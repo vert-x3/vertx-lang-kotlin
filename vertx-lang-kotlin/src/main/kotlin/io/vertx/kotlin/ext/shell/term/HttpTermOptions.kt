@@ -12,6 +12,7 @@ import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.ext.auth.AuthOptions
 import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.ext.shell.term.HttpTermOptions] objects.
@@ -35,7 +36,8 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
  * @param handle100ContinueAutomatically  Set whether 100 Continue should be handled automatically
  * @param host  Set the host
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by , so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
- * @param idleTimeout  Set the idle timeout, in seconds. zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout.
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
+ * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
  * @param jdkSslEngineOptions 
@@ -97,6 +99,7 @@ fun HttpTermOptions(
   host: String? = null,
   http2ConnectionWindowSize: Int? = null,
   idleTimeout: Int? = null,
+  idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   intputrc: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
@@ -195,6 +198,9 @@ fun HttpTermOptions(
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
+  }
+  if (idleTimeoutUnit != null) {
+    this.setIdleTimeoutUnit(idleTimeoutUnit)
   }
   if (initialSettings != null) {
     this.setInitialSettings(initialSettings)
