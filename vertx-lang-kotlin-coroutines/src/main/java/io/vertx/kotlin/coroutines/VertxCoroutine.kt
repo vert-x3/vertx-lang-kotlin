@@ -235,7 +235,8 @@ private class ChannelReadStream<T>(val context: Context,
 
   override fun offerInternal(element: T): Any {
     val ret = super.offerInternal(element)
-    if (ret == OFFER_SUCCESS) {
+    // Not great - fix this
+    if (ret.toString().equals("OFFER_SUCCESS")) {
       size++;
       if (isFull) {
         stream.pause();
@@ -246,7 +247,8 @@ private class ChannelReadStream<T>(val context: Context,
 
   override fun pollInternal(): Any? {
     val ret = super.pollInternal()
-    if (ret != POLL_FAILED && !(ret is Closed<*>)) {
+    // Not great - fix this
+    if (!ret.toString().equals("POLL_FAILED") && !(ret is Closed<*>)) {
       if (--size < capacity / 2) {
         stream.resume()
       }
