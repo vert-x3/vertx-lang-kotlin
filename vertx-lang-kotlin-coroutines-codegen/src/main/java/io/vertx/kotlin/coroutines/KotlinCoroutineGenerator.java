@@ -57,7 +57,7 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
     return writer.toString();
   }
 
-  private void generateMethod(ClassTypeInfo type, MethodInfo method, Writer writer, boolean hasStatic){
+  private void generateMethod(ClassTypeInfo type, MethodInfo method, Writer writer, boolean hasStatic) {
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream.concat(method.getTypeParams().stream(), type.getParams().stream()).map(TypeParamInfo::getName).collect(Collectors.joining(",", "<", ">"));

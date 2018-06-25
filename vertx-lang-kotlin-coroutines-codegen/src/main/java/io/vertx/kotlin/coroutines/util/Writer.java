@@ -15,6 +15,7 @@ public class Writer {
 
     return this;
   }
+
   public Writer println() {
     return print('\n');
   }
@@ -24,6 +25,7 @@ public class Writer {
     println();
     return this;
   }
+
   public Writer print(CharSequence csq) {
     print(csq, 0, csq.length());
     return this;
