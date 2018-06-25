@@ -12,14 +12,6 @@
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
 
-  <properties>
-    <kotlin.version>1.2.41</kotlin.version>
-    <asciidoc.path>/kotlin</asciidoc.path>
-    <kotlin.coroutines.version>0.21.2</kotlin.coroutines.version>
-    <stack.version>3.6.0-SNAPSHOT</stack.version>
-    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.jetbrains.kotlinx</groupId>
