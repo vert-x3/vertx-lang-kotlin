@@ -12,16 +12,24 @@
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
 
+  <properties>
+    <kotlin.version>1.2.41</kotlin.version>
+    <asciidoc.path>/kotlin</asciidoc.path>
+    <kotlin.coroutines.version>0.21.2</kotlin.coroutines.version>
+    <stack.version>3.6.0-SNAPSHOT</stack.version>
+    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
+  </properties>
+
   <dependencies>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlinx</groupId>
       <artifactId>kotlinx-coroutines-core</artifactId>
       <version>${kotlin.coroutines.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-codegen</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -54,7 +62,7 @@
   </dependencies>
 
   <build>
-    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
 
     <plugins>
@@ -78,7 +86,21 @@
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
         <version>${kotlin.version}</version>
+        <configuration>
+          <experimentalCoroutines>enable</experimentalCoroutines>
+        </configuration>
         <executions>
+          <execution>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
           <execution>
             <id>compile</id>
             <phase>compile</phase>
@@ -110,18 +132,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <phase>prepare-package</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
@@ -148,6 +158,22 @@
               <descriptors>
                 <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
               </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-clean</id>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>${project.basedir}/src/main/kotlin</directory>
+                </fileset>
+              </filesets>
             </configuration>
           </execution>
         </executions>

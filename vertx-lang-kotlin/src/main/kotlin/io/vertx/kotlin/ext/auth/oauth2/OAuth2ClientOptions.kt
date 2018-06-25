@@ -12,6 +12,7 @@ import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
 import io.vertx.ext.auth.PubSecKeyOptions
 import io.vertx.ext.jwt.JWTOptions
+import java.util.concurrent.TimeUnit
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.oauth2.OAuth2ClientOptions] objects.
@@ -39,7 +40,8 @@ import io.vertx.ext.jwt.JWTOptions
  * @param http2KeepAliveTimeout  Set the keep alive timeout for HTTP/2 connections, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
  * @param http2MaxPoolSize  Set the maximum pool size for HTTP/2 connections
  * @param http2MultiplexingLimit  Set a client limit of the number concurrent streams for each HTTP/2 connection, this limits the number of streams the client can create for a connection. The effective number of streams for a connection is the min of this value and the server's initial settings. <p/> Setting the value to <code>-1</code> means to use the value sent by the server's initial settings. <code>-1</code> is the default value.
- * @param idleTimeout  Set the idle timeout, in seconds. zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout.
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpClientOptions]
+ * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediately sent by to the server when the client connects.
  * @param introspectionPath  Set the provider token introspection resource path
  * @param jdkSslEngineOptions 
@@ -126,6 +128,7 @@ fun OAuth2ClientOptions(
   http2MaxPoolSize: Int? = null,
   http2MultiplexingLimit: Int? = null,
   idleTimeout: Int? = null,
+  idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   introspectionPath: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
@@ -257,6 +260,9 @@ fun OAuth2ClientOptions(
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
+  }
+  if (idleTimeoutUnit != null) {
+    this.setIdleTimeoutUnit(idleTimeoutUnit)
   }
   if (initialSettings != null) {
     this.setInitialSettings(initialSettings)
