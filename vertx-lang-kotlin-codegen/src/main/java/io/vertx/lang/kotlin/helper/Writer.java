@@ -5,15 +5,15 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class Writer {
+
   private StringWriter stringWriter = new StringWriter();
   private PrintWriter writer = new PrintWriter(stringWriter);
   private int indent;
   private boolean first;
   private int space4tab = 4;
 
-  public Writer print() {
-
-    return this;
+  public PrintWriter printWriter() {
+    return writer;
   }
 
   public Writer println() {

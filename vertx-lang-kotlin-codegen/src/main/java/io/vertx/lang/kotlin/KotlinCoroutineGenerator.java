@@ -1,9 +1,14 @@
 package io.vertx.lang.kotlin;
 
 import io.vertx.codegen.*;
+import io.vertx.codegen.doc.Doc;
+import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.type.*;
+import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 import io.vertx.lang.kotlin.helper.Writer;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,7 +42,7 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
     List<MethodInfo> methods = methodGroupMap.get(false);
     if (methods != null) {
       methods.forEach(method -> {
-        generateMethod(type, method, writer, hasStatic);
+        generateMethod(model, type, method, writer, hasStatic);
       });
     }
 
@@ -49,7 +54,7 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
 
       writer.indent();
       methods.forEach(method -> {
-        generateMethod(type, method, writer, hasStatic);
+        generateMethod(model, type, method, writer, hasStatic);
       });
       writer.unindent();
       writer.println("}");
@@ -57,7 +62,37 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
     return writer.toString();
   }
 
-  private void generateMethod(ClassTypeInfo type, MethodInfo method, Writer writer, boolean hasStatic) {
+  private void generateDoc(ClassModel model, MethodInfo method, PrintWriter writer) {
+    Doc doc = method.getDoc();
+    if (doc != null) {
+      writer.print("/**\n");
+      Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
+      writer.print(" *\n");
+      method.getParams().forEach(p -> {
+        writer.print(" * @param " + p.getName() + " ");
+        if (p.getDescription() != null) {
+          String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
+          writer.print(docInfo);
+        }
+        writer.print("\n");
+      });
+      if (!method.getReturnType().isVoid()) {
+        writer.print(" * @return");
+        if (method.getReturnDescription() != null) {
+          String docInfo = Token.toHtml(method.getReturnDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
+          writer.print(docInfo);
+        }
+      }
+      writer.print(" *\n");
+      writer.print(" * <p/>\n");
+      writer.print(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.\n");
+      writer.print(" */\n");
+    }
+  }
+
+
+  private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, Writer writer, boolean hasStatic) {
+    generateDoc(model, method, writer.printWriter());
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
