@@ -6,11 +6,12 @@ import java.io.StringWriter;
 
 public class Writer {
 
+  private static final int INDENT_SIZE = 2;
+
   private StringWriter stringWriter = new StringWriter();
   private PrintWriter writer = new PrintWriter(stringWriter);
   private int indent;
   private boolean first;
-  private int space4tab = 4;
 
   public PrintWriter printWriter() {
     return writer;
@@ -52,15 +53,15 @@ public class Writer {
   }
 
   public Writer indent() {
-    indent += space4tab;
+    indent += INDENT_SIZE;
     return this;
   }
 
   public Writer unindent() {
-    if (indent < space4tab) {
+    if (indent < INDENT_SIZE) {
       throw new IllegalStateException();
     }
-    indent -= space4tab;
+    indent -= INDENT_SIZE;
     return this;
   }
 
