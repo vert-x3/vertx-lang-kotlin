@@ -183,6 +183,27 @@
               <sourceDirectory>${project.build.directory}/sources/vertx-core</sourceDirectory>
             </configuration>
           </execution>
+          <!-- We have to run the annotation processor again to process docoverride -->
+          <execution>
+            <id>docgen-docoverride</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <processors>
+                <processor>io.vertx.docgen.DocGenProcessor</processor>
+              </processors>
+              <optionMap>
+                <codegen.output>${project.basedir}/src/main</codegen.output>
+                <docgen.output>${asciidoc.dir}/kotlin</docgen.output>
+                <maven.groupId>${project.groupId}</maven.groupId>
+                <maven.artifactId>${project.artifactId}</maven.artifactId>
+                <maven.version>${project.version}</maven.version>
+              </optionMap>
+              <sourceDirectory>${project.basedir}/src/main/docoverride</sourceDirectory>
+            </configuration>
+          </execution>
           <!-- Run the annotation processor on vertx-codegen TCK and generate the Kotlin API -->
           <execution>
             <id>generate-tck</id>
