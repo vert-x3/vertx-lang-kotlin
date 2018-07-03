@@ -14,32 +14,8 @@
  *  You may elect to redistribute this code under either of these licenses.
  */
 /**
- * ==== Setting headers on messages
- *
- * Messages sent over the event bus can also contain headers. This can be specified by providing a `headers` object
- * inside the {@link io.vertx.core.eventbus.DeliveryOptions} object when sending or publishing:
- *
- * [source,javascript]
- * ----
- * var options = {
- *  headers: {
- *    "some-header" : "some-value"
- *  }
- * }
- * vertx.eventBus().send("news.uk.sport", "Yay! Someone kicked a ball", options);
- * ----
- *
- * On the other side, the consumer can retrieve the message header as follows:
- *
- * [source, javascript]
- * ----
- * vertx.eventBus().consumer("news.uk.sport", function(e) {
- *  console.log(e.headers().get("some-header"));
- * });
- * ----
- *
  */
-@Document(fileName = "override/eventbus_headers.adoc")
+@Document(fileName = "override/eventbus.adoc")
 package docoverride.eventbus.headers;
 
 import io.vertx.docgen.Document;
