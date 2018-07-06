@@ -5,14 +5,9 @@ import io.vertx.codegen.testmodel.NullableTCKImpl
 import io.vertx.codegen.testmodel.TestInterface
 import io.vertx.codegen.testmodel.TestInterfaceImpl
 import io.vertx.kotlin.codegen.testmodel.methodWithHandlerAsyncResultStringAwait
-import io.vertx.kotlin.codegen.testmodel.methodWithHandlerDataObjectAwait
-import io.vertx.kotlin.codegen.testmodel.methodWithHandlerUserTypesAwait
-import io.vertx.kotlin.codegen.testmodel.methodWithNullableStringHandlerAwait
-import junit.framework.Assert.assertNull
 import junit.framework.Assert.fail
 import kotlinx.coroutines.experimental.Unconfined
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -40,34 +35,10 @@ class CoroutinesTCKTest {
     }
   }
 
-  @Test
-  fun testAsyncResultNullableSuccess() {
-    val s = coroutinesTest { nullableTck.methodWithNullableStringHandlerAwait(true) }
-    assertEquals("the_string_value", s)
-    val t = coroutinesTest { nullableTck.methodWithNullableStringHandlerAwait(false) }
-    assertNull("the_string_value", t)
-  }
-
-  @Test
-  fun testAsync() {
-    val s = coroutinesTest { tck.methodWithHandlerDataObjectAwait() }
-    assertEquals("foo", s.foo)
-  }
-
-  @Test
-  fun testAsyncNullable() {
-    val s = coroutinesTest { nullableTck.methodWithNullableStringHandlerAwait(true) }
-    assertEquals("the_string_value", s)
-    val t = coroutinesTest { nullableTck.methodWithNullableStringHandlerAwait(false) }
-    assertNull(t)
-  }
-
   fun <T> coroutinesTest(block: suspend () -> T) : T {
     val deferred = async<T>(Unconfined) {
       block()
     }
     return deferred.getCompleted()
   }
-
-
 }

@@ -31,7 +31,11 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
   public String render(ClassModel model, int index, int size, Map<String, Object> session) {
     Writer writer = new Writer();
     ClassTypeInfo type = model.getType();
-    Map<Boolean, List<MethodInfo>> methodGroupMap = model.getMethods().stream().filter(this::generateFilter).collect(Collectors.groupingBy(MethodInfo::isStaticMethod));
+    Map<Boolean, List<MethodInfo>> methodGroupMap = model
+      .getMethods()
+      .stream()
+      .filter(this::generateFilter)
+      .collect(Collectors.groupingBy(MethodInfo::isStaticMethod));
     boolean hasStatic = methodGroupMap.containsKey(true);
 
     writer.println("package " + type.getRaw().translatePackageName("kotlin"));
@@ -270,8 +274,7 @@ public class KotlinCoroutineGenerator extends Generator<ClassModel> {
     MethodKind methodKind = it.getKind();
     return
       !it.isDeprecated() &&
-      (it.isFluent() || it.getReturnType().isVoid()) &&
-      (methodKind == MethodKind.HANDLER || methodKind == MethodKind.FUTURE);
+      (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
   }
 
   /**
