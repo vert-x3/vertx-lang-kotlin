@@ -8,6 +8,7 @@ import io.vertx.kotlin.core.json.*
 import io.vertx.kotlin.core.streams.*
 import io.vertx.kotlin.core.buffer.*
 import org.junit.Test
+import java.time.Instant
 import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.*
@@ -32,7 +33,40 @@ class JsonTest {
     assertTrue { result is JsonObject }
     assertEquals("""{"a":[1,2,3],"obj":{"b1":1,"b2":"2"},"imperative-loop":{"k_1":1,"k_2":2,"k_3":3},"map":{"k_1":1,"k_2":2,"k_3":3},"d":"d"}""", result.toString())
   }
+  @Test
+  fun testInstantProcessing() {
+    val expected = Instant.now()
+    val json = JsonObject("time" to expected)
 
+    val actual = json.getInstant("time")
+
+    assertEquals(expected, actual)
+  }
+
+  @Test
+  fun testByteArrayProcessing() {
+    val expected = ByteArray(3)
+    expected.set(0, 0)
+    expected.set(1, 1)
+    expected.set(2, 2)
+    val json = JsonObject("bytes" to expected)
+
+    val actual = json.getBinary("bytes")
+
+    assertEquals(expected[0], actual[0])
+    assertEquals(expected[1], actual[1])
+    assertEquals(expected[2], actual[2])
+  }
+
+  @Test
+  fun testNormalProcessing() {
+    val expected = "A Value"
+    val json = JsonObject("key" to expected)
+
+    val actual = json.getString("key")
+
+    assertEquals(expected, actual)
+  }
   @Test
   fun testMapToObj() {
     val result = json {

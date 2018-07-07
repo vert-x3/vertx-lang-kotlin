@@ -1,12 +1,27 @@
 package io.vertx.kotlin.core.json
 
 import io.vertx.core.json.*
+import java.time.Instant
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 object Json
 
 // JsonObject creation
+fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject {
+  val processedCases = fields.map {
+    when {
+    // @See io.vertx.core.json.JsonObject.put(java.lang.String, java.time.Instant)
+      it.second is Instant -> return@map (Pair(it.first, DateTimeFormatter.ISO_INSTANT.format(it.second as Instant)))
+    // @See   io.vertx.core.json.JsonObject.put(java.lang.String, byte[])
+      it.second is ByteArray -> return@map(Pair(it.first, Base64.getEncoder().encodeToString(it.second as ByteArray)))
+      else -> return@map it
+    }
 
-fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject = JsonObject(linkedMapOf(*fields))
+  }.toTypedArray()
+
+  return JsonObject(linkedMapOf(*processedCases))
+}
 fun Json.obj(vararg fields: Pair<String, Any?>): JsonObject = JsonObject(*fields)
 fun Json.obj(fields: Iterable<Pair<String, Any?>>): JsonObject = JsonObject(*fields.toList().toTypedArray())
 fun Json.obj(fields: Map<String, Any?>): JsonObject = JsonObject(fields)
