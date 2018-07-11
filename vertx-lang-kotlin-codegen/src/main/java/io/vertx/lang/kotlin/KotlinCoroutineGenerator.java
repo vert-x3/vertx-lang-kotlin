@@ -7,24 +7,26 @@ import io.vertx.codegen.type.*;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 import io.vertx.lang.kotlin.helper.Writer;
 
+import javax.annotation.processing.ProcessingEnvironment;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class KotlinCoroutineGenerator extends Generator<ClassModel> {
+public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
+
   private static final Set<String> keyWords = new HashSet<>(Arrays.asList("object", "fun", "in", "typealias", "var", "val"));
 
   public KotlinCoroutineGenerator() {
+    super("codegen.kotlin.coroutines");
     this.name = "KotlinCoroutines";
     this.kinds = Collections.singleton("class");
   }
 
   @Override
-  public String relativeFilename(ClassModel model) {
-    boolean noneMatch = model.getMethods().stream().noneMatch(this::generateFilter);
-    return noneMatch ? null : "kotlin/" + model.getModule().translateQualifiedName(model.getFqn(), "kotlin").replace(".", "/") + ".kt";
+  public String filename(ClassModel model) {
+    return enabled && model.getMethods().stream().anyMatch(this::generateFilter) ?
+      generated + model.getModule().translateQualifiedName(model.getFqn(), "kotlin").replace(".", "/") + ".kt" : null;
   }
 
   @Override

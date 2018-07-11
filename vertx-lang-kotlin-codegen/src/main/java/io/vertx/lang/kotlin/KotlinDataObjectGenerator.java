@@ -1,7 +1,6 @@
 package io.vertx.lang.kotlin;
 
 import io.vertx.codegen.DataObjectModel;
-import io.vertx.codegen.Generator;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
 import io.vertx.codegen.doc.Doc;
@@ -19,16 +18,18 @@ import java.util.stream.Collectors;
 
 import static io.vertx.codegen.type.ClassKind.*;
 
-public class KotlinDataObjectGenerator extends Generator<DataObjectModel> {
+public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectModel> {
+
   KotlinDataObjectGenerator() {
+    super("codegen.kotlin.dataobject");
     this.name = "Kotlin";
     this.kinds = Collections.singleton("dataObject");
   }
 
   @Override
-  public String relativeFilename(DataObjectModel model) {
-    return model.isConcrete() ?
-      "kotlin/" + model.getModule().translateQualifiedName(model.getFqn(), "kotlin").replace(".", "/") + ".kt"
+  public String filename(DataObjectModel model) {
+    return enabled && model.isConcrete() ?
+      generated + model.getModule().translateQualifiedName(model.getFqn(), "kotlin").replace(".", "/") + ".kt"
       : null;
   }
 
