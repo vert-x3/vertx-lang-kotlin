@@ -72,15 +72,35 @@
             </configuration>
           </execution>
           <execution>
+            <id>test-kapt</id>
+            <goals>
+              <goal>test-kapt</goal>
+            </goals>
+            <configuration>
+              <annotationProcessors>
+                <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+              </annotationProcessors>
+              <annotationProcessorArgs>
+                <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
+              </annotationProcessorArgs>
+              <sourceDirs>
+                <sourceDir>src/test/kotlin</sourceDir>
+                <sourceDir>${project.build.directory}/sources/vertx-codegen</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
             <id>>test-compile</id>
             <goals>
               <goal>test-compile</goal>
             </goals>
             <phase>test-compile</phase>
             <configuration>
+              <experimentalCoroutines>enable</experimentalCoroutines>
               <sourceDirs>
                 <sourceDir>src/test/kotlin</sourceDir>
-                <sourceDir>target/generated-test-sources/kotlin</sourceDir>
+                <!-- We need this because test-kapt does not store the generated Kotlin source at the right location -->
+                <sourceDir>${project.build.directory}/generated-sources/kaptKotlin</sourceDir>
               </sourceDirs>
             </configuration>
           </execution>
@@ -106,48 +126,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.bsc.maven</groupId>
-        <artifactId>maven-processor-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <systemProperties>
-            <java.util.logging.SimpleFormatter.format>%4$s: %3$s - %5$s %6$s%n</java.util.logging.SimpleFormatter.format>
-          </systemProperties>
-        </configuration>
-        <executions>
-          <!-- Run the annotation processor on vertx-codegen TCK and generate the Kotlin API -->
-          <execution>
-            <id>generate-tck</id>
-            <goals>
-              <goal>process-test</goal>
-            </goals>
-            <phase>generate-test-sources</phase>
-            <configuration>
-              <processors>
-                <processor>io.vertx.codegen.CodeGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <codegen.output>${project.build.directory}/generated-test-sources</codegen.output>
-                <codegen.generators>Kotlin,KotlinCoroutines</codegen.generators>
-              </optionMap>
-              <sourceDirectory>${project.build.directory}/sources/vertx-codegen</sourceDirectory>
-              <additionalSourceDirectories>
-                <additionalSourceDirectory>${project.basedir}/src/test/java</additionalSourceDirectory>
-              </additionalSourceDirectories>
-              <defaultOutputDirectory>${project.build.directory}/generated-test-sources/apt</defaultOutputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
 
     </plugins>
