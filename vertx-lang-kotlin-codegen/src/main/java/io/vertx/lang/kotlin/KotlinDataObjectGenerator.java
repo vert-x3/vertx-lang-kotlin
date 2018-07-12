@@ -88,6 +88,9 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   }
 
   private void generateFun(DataObjectModel model, PrintWriter writer) {
+
+    boolean isKotlin = model.getAnnotations().stream().anyMatch(ann -> ann.getName().equals("kotlin.Metadata"));
+
     ClassTypeInfo type = model.getType();
     writer.print("fun " + type.getRaw().getSimpleName() + "(\n");
     String paramsInfo = model.getPropertyMap().values().stream().filter(filterProperties()).map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null").collect(Collectors.joining(",\n"));
@@ -111,14 +114,14 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
         writer.print("  if (" + propertyName + " != null) {\n");
 //        writer.print("  ");
         if (p.getSetterMethod() != null) {
-          writer.print("    this." + p.getSetterMethod() + "(");
+          writer.print("    this." + (isKotlin ? (p.getName() + " = ") : (p.getSetterMethod() + "(")));
           writer.print(propertyName);
           if (propertyKind.isList()) {
             writer.print(".toList()");
           } else if (propertyKind.isSet()) {
             writer.print(".toSet()");
           }
-          writer.print(")\n");
+          writer.print((isKotlin ? "" : ")") + "\n");
         } else {
           writer.print("    for (item in " + propertyName);
           writer.print(") {\n");
