@@ -14,6 +14,7 @@ import io.vertx.kotlin.codegen.testmodel.DataObjectWithMapAdders;
 import io.vertx.kotlin.codegen.testmodel.TestDataObject;
 import io.vertx.kotlin.codegen.testmodel.DataObjectWithBuffer;
 import io.vertx.kotlin.codegen.testmodel.DataObjectWithNestedBuffer;
+import java.time.Instant
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -39,6 +40,7 @@ class DataObjectTCKTest {
         boxedFloatValue = 2.2f,
         boxedDoubleValue = 2.22,
         stringValue = "wibble",
+        instantValue = Instant.parse("1984-05-27T00:05:00Z"),
         jsonObjectValue = JsonObject().put("foo", "eek").put("bar", "wibble"),
         jsonArrayValue = JsonArray().add("eek").add("wibble"),
         enumValue = TestEnum.TIM,
@@ -61,6 +63,7 @@ class DataObjectTCKTest {
         floatValues = listOf(1.1f, 2.2f, 3.3f),
         doubleValues = listOf(1.11, 2.22, 3.33),
         stringValues = listOf("stringValues1", "stringValues2", "stringValues3"),
+        instantValues = listOf(Instant.parse("1984-05-27T00:05:00Z"), Instant.parse("2018-07-05T08:23:21Z")),
         jsonObjectValues = listOf(JsonObject().put("foo", "eek"), JsonObject().put("foo", "wibble")),
         jsonArrayValues = listOf(JsonArray().add("foo"), JsonArray().add("bar")),
         dataObjectValues = listOf(TestDataObject(foo = "1", bar = 1, wibble = 1.1), TestDataObject(foo = "2", bar = 2, wibble = 2.2)),
@@ -79,6 +82,7 @@ class DataObjectTCKTest {
         floatValues = mapOf("1" to 1.1f, "2" to 2.2f),
         doubleValues = mapOf("1" to 1.11, "2" to 2.22),
         stringValues = mapOf("1" to "stringValues1", "2" to "stringValues2"),
+        instantValues = mapOf("1" to Instant.parse("1984-05-27T00:05:00Z"), "2" to Instant.parse("2018-07-05T08:23:21Z")),
         jsonObjectValues = mapOf("1" to JsonObject().put("foo", "eek"), "2" to JsonObject().put("foo", "wibble")),
         jsonArrayValues = mapOf("1" to JsonArray().add("foo"), "2" to JsonArray().add("bar")),
         dataObjectValues = mapOf("1" to TestDataObject(foo = "1", bar = 1, wibble = 1.1), "2" to TestDataObject(foo = "2", bar = 2, wibble = 2.2)),
@@ -106,6 +110,7 @@ class DataObjectTCKTest {
         floatValues = listOf(1.1f, 2.2f, 3.3f),
         doubleValues = listOf(1.11, 2.22, 3.33),
         stringValues = listOf("stringValues1", "stringValues2", "stringValues3"),
+        instantValues = listOf(Instant.parse("1984-05-27T00:05:00Z"), Instant.parse("2018-07-05T08:23:21Z")),
         jsonObjectValues = listOf(JsonObject().put("foo", "eek"), JsonObject().put("foo", "wibble")),
         jsonArrayValues = listOf(JsonArray().add("foo"), JsonArray().add("bar")),
         dataObjectValues = listOf(TestDataObject(foo = "1", bar = 1, wibble = 1.1), TestDataObject(foo = "2", bar = 2, wibble = 2.2)),
@@ -124,6 +129,7 @@ class DataObjectTCKTest {
         floatValues = mapOf("1" to 1.1f, "2" to 2.2f),
         doubleValues = mapOf("1" to 1.11, "2" to 2.22),
         stringValues = mapOf("1" to "stringValues1", "2" to "stringValues2"),
+        instantValues = mapOf("1" to Instant.parse("1984-05-27T00:05:00Z"), "2" to Instant.parse("2018-07-05T08:23:21Z")),
         jsonObjectValues = mapOf("1" to JsonObject().put("foo", "eek"), "2" to JsonObject().put("foo", "wibble")),
         jsonArrayValues = mapOf("1" to JsonArray().add("foo"), "2" to JsonArray().add("bar")),
         dataObjectValues = mapOf("1" to TestDataObject(foo = "1", bar = 1, wibble = 1.1), "2" to TestDataObject(foo = "2", bar = 2, wibble = 2.2)),
