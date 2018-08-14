@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicReference
 fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannelHandler(this)
 
 /**
- * Run an asynchronous [block] and awaits the completion.
+ * Runs an asynchronous [block] and awaits its completion.
  *
  * The [block] is executed with a `Handler<T>` argument that shall be called once.
  *
@@ -36,7 +36,7 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * }
  * ```
  *
- * The coroutine will be blocked until the event occurs, this action do not block vertx's eventLoop.
+ * The coroutine will be blocked until the event occurs, this action does not block vertx's event loop.
  *
  * @param block the code to run
  */
@@ -53,7 +53,7 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
 }
 
 /**
- * Run an asynchronous [block] and awaits the result.
+ * Runs an asynchronous [block] and awaits the result.
  *
  * The [block] is executed with a `Handler<AsyncResult<T>>` argument that can be completed or failed.
  *
@@ -68,7 +68,7 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
  * }
  * ```
  *
- * The coroutine will be blocked until the future is completed or failed, this action do not block vertx's eventLoop.
+ * The coroutine will be blocked until the future is completed or failed, this action does not block vertx's event loop.
  *
  * @param block the code to run
  */
@@ -79,7 +79,7 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
 }
 
 /**
- * Run an asynchronous [block] on a worker threads and awaits the result.
+ * Runs an asynchronous [block] on a worker thread and awaits the result.
  *
  * The [block] is executed and should return an object or throw an exception.
  *
@@ -93,7 +93,7 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
  * }
  * ```
  *
- * The coroutine will be suspend until the block is executed, this action do not block vertx's eventLoop.
+ * The coroutine will suspend until the block is executed, this action does not block vertx's event loop.
  *
  * @param block the code to run
  */
@@ -109,7 +109,7 @@ suspend fun <T> awaitBlocking(block: () -> T) : T {
 }
 
 /**
- * Awaits for completion of future without blocking eventLoop
+ * Awaits the completion of a future without blocking the event loop.
  */
 suspend fun <T> Future<T>.await(): T = when {
   succeeded() -> result()
@@ -325,7 +325,7 @@ private class ChannelWriteStream<T>(val context: Context,
  *
  * It uses the Vert.x context event loop.
  *
- * This is necessary if you want to do coroutine synchronous operation in your handler
+ * This is necessary if you want to execute coroutine synchronous operations in your handler
  *
  * @param block the coroutine code
  */
@@ -338,7 +338,7 @@ fun Vertx.dispatcher() : CoroutineDispatcher {
  *
  * It uses the Vert.x context event loop.
  *
- * This is necessary if you want to do coroutine synchronous operation in your handler
+ * This is necessary if you want to execute coroutine synchronous operations in your handler
  *
  * @param block the coroutine code
  */
