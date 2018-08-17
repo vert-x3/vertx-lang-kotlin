@@ -4,11 +4,12 @@ import io.vertx.codegen.*;
 import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.type.*;
+import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
-import io.vertx.lang.kotlin.helper.Writer;
 
-import javax.annotation.processing.ProcessingEnvironment;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,7 +32,8 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
   @Override
   public String render(ClassModel model, int index, int size, Map<String, Object> session) {
-    Writer writer = new Writer();
+    StringWriter buffer = new StringWriter();
+    CodeWriter writer = new CodeWriter(buffer);
     ClassTypeInfo type = model.getType();
     Map<Boolean, List<MethodInfo>> methodGroupMap = model
       .getMethods()
@@ -65,7 +67,11 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       writer.unindent();
       writer.println("}");
     }
-    return writer.toString();
+    return buffer.toString();
+  }
+
+  private void generateDoc(ClassModel model, MethodInfo method, Writer writer) {
+    generateDoc(model, method, new PrintWriter(writer));
   }
 
   private void generateDoc(ClassModel model, MethodInfo method, PrintWriter writer) {
@@ -97,8 +103,8 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   }
 
 
-  private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, Writer writer, boolean hasStatic) {
-    generateDoc(model, method, writer.printWriter());
+  private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, CodeWriter writer, boolean hasStatic) {
+    generateDoc(model, method, writer.delegate());
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
@@ -194,7 +200,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     return hasStatic ? simpleName + "VertxAlias" : simpleName;
   }
 
-  private void generateImport(ClassModel model, Writer writer, Map<Boolean, List<MethodInfo>> methodGroupMap, boolean hasStatic) {
+  private void generateImport(ClassModel model, CodeWriter writer, Map<Boolean, List<MethodInfo>> methodGroupMap, boolean hasStatic) {
     Set<String> imports = new TreeSet<>();
     ClassTypeInfo type = model.getType();
     String simpleName = type.getSimpleName();
