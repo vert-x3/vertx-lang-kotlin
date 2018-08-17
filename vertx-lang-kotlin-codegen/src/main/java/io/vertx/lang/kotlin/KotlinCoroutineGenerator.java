@@ -104,7 +104,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
 
   private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, CodeWriter writer, boolean hasStatic) {
-    generateDoc(model, method, writer.delegate());
+    generateDoc(model, method, writer.writer());
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
