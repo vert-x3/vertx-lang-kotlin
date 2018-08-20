@@ -34,6 +34,11 @@ public class TestStream<T> implements ReadStream<T>, WriteStream<T> {
   }
 
   @Override
+  public ReadStream<T> fetch(long amount) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public TestStream<T> pause() {
     if (!ended) {
       paused = true;

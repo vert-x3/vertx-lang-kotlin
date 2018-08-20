@@ -135,6 +135,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> = this
     override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> = this
     override fun resume(): ReadStream<T> = this
+    override fun fetch(amount: Long): ReadStream<T> = this
     override fun handler(h: Handler<T>?): ReadStream<T> {
       handler = h
       return this
