@@ -35,7 +35,6 @@ object KotlinCompilerHelper {
     val printingMessageCollector = PrintingMessageCollector(System.err, MessageRenderer.WITHOUT_PATHS, false)
     configuration.put(CLIConfigurationKeys.MESSAGE_COLLECTOR_KEY, printingMessageCollector)
     configuration.put(CLIConfigurationKeys.ALLOW_KOTLIN_PACKAGE, false)
-    configuration.put(CLIConfigurationKeys.REPORT_PERF, false)
 
     configuration.put(CommonConfigurationKeys.LANGUAGE_VERSION_SETTINGS, LanguageVersionSettingsImpl.DEFAULT)
 
