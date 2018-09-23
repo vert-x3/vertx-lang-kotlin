@@ -98,7 +98,7 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
  * @param block the code to run
  */
 suspend fun <T> awaitBlocking(block: () -> T) : T {
-  return awaitResult<T> { handler ->
+  return awaitResult { handler ->
     val ctx = Vertx.currentContext()
     ctx.executeBlocking<T>({ fut ->
       fut.complete(block())
@@ -159,11 +159,11 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     return channel.poll()
   }
 
-  suspend override fun receive(): T {
+  override suspend fun receive(): T {
     return channel.receive()
   }
 
-  suspend override fun receiveOrNull(): T? {
+  override suspend fun receiveOrNull(): T? {
     return channel.receiveOrNull()
   }
 
@@ -174,10 +174,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     get() = channel.onReceiveOrNull
 
   override fun handle(event: T) {
-    val h = handler
-    if (h != null) {
-      h.handle(event)
-    }
+    handler?.handle(event)
   }
 
   override fun cancel(cause: Throwable?): Boolean {
@@ -218,7 +215,7 @@ private class ChannelReadStream<T>(val context: Context,
                                    capacity : Int) : ArrayChannel<T>(capacity) {
 
   @Volatile
-  private var size = 0;
+  private var size = 0
 
   fun subscribe() {
     stream.endHandler { _ ->
@@ -237,10 +234,10 @@ private class ChannelReadStream<T>(val context: Context,
   override fun offerInternal(element: T): Any {
     val ret = super.offerInternal(element)
     // Not great - fix this
-    if (ret.toString().equals("OFFER_SUCCESS")) {
-      size++;
+    if (ret.toString() == "OFFER_SUCCESS") {
+      size++
       if (isFull) {
-        stream.pause();
+        stream.pause()
       }
     }
     return ret
@@ -249,7 +246,7 @@ private class ChannelReadStream<T>(val context: Context,
   override fun pollInternal(): Any? {
     val ret = super.pollInternal()
     // Not great - fix this
-    if (!ret.toString().equals("POLL_FAILED") && !(ret is Closed<*>)) {
+    if (ret.toString() != "POLL_FAILED" && ret !is Closed<*>) {
       if (--size < capacity / 2) {
         stream.resume()
       }
@@ -303,7 +300,7 @@ private class ChannelWriteStream<T>(val context: Context,
           break
         } else {
           if (!dispatch(elt)) {
-            break;
+            break
           }
         }
       }
@@ -311,12 +308,12 @@ private class ChannelWriteStream<T>(val context: Context,
   }
 
   fun dispatch(elt : T?) : Boolean {
-    if (elt != null) {
+    return if (elt != null) {
       stream.write(elt)
-      return true
+      true
     } else {
       stream.end()
-      return false
+      false
     }
   }
 }
@@ -327,8 +324,6 @@ private class ChannelWriteStream<T>(val context: Context,
  * It uses the Vert.x context event loop.
  *
  * This is necessary if you want to execute coroutine synchronous operations in your handler
- *
- * @param block the coroutine code
  */
 fun Vertx.dispatcher() : CoroutineDispatcher {
   return getOrCreateContext().dispatcher()
@@ -340,11 +335,9 @@ fun Vertx.dispatcher() : CoroutineDispatcher {
  * It uses the Vert.x context event loop.
  *
  * This is necessary if you want to execute coroutine synchronous operations in your handler
- *
- * @param block the coroutine code
  */
 fun Context.dispatcher() : CoroutineDispatcher {
-  require(!isMultiThreadedWorkerContext, { "Must not be a multithreaded worker verticle." })
+  require(!isMultiThreadedWorkerContext) { "Must not be a multithreaded worker verticle." }
   return VertxCoroutineExecutor(this).asCoroutineDispatcher()
 }
 
@@ -384,10 +377,10 @@ private class VertxScheduledFuture(
   }
 
   override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
-    if (completion.compareAndSet(null, false)) {
-      return vertxContext.owner().cancelTimer(id!!)
+    return if (completion.compareAndSet(null, false)) {
+      vertxContext.owner().cancelTimer(id!!)
     } else {
-      return false;
+      false
     }
   }
 
