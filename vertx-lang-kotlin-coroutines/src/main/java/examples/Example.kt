@@ -20,21 +20,21 @@ fun launchCoroutineExample() {
     val timerId = awaitEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
-    println("Event fired from timer with id ${timerId}")
+    println("Event fired from timer with id $timerId")
   }
   // end::runCoroutineExample[]
 }
 
 // tag::CoroutineVerticle[]
 class MyVerticle : CoroutineVerticle() {
-  suspend override fun start() {
+  override suspend fun start() {
     // ...
   }
 }
 // end::CoroutineVerticle[]
 
 class ExampleVerticle : CoroutineVerticle() {
-  suspend override fun start() {
+  override suspend fun start() {
     awaitEventExample()
     awaitResultExample()
     streamExample()
@@ -75,7 +75,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
     // Send a message and wait for a reply
     try {
-      val reply: Message<String> = awaitResult<Message<String>> { h ->
+      val reply = awaitResult<Message<String>> { h ->
            vertx.eventBus().send("a.b.c", "ping", h)
          }
     } catch(e: ReplyException) {
