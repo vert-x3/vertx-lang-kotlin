@@ -77,33 +77,16 @@
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${kotlin.version}</version>
         <configuration>
           <experimentalCoroutines>enable</experimentalCoroutines>
         </configuration>
         <executions>
-          <execution>
-            <configuration>
-              <sourceDirs>
-                <sourceDir>${basedir}/src/main/kotlin</sourceDir>
-                <sourceDir>${basedir}/src/main/java</sourceDir>
-              </sourceDirs>
-            </configuration>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
           <execution>
             <id>compile</id>
             <phase>compile</phase>
             <goals>
               <goal>compile</goal>
             </goals>
-            <configuration>
-              <args>
-                <arg>-Xcoroutines=enable</arg>
-              </args>
-            </configuration>
           </execution>
           <execution>
             <id>test-compile</id>

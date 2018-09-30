@@ -1,13 +1,30 @@
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.*
+import io.vertx.core.AsyncResult
+import io.vertx.core.Context
 import io.vertx.core.Future
+import io.vertx.core.Handler
+import io.vertx.core.Vertx
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
-import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.channels.*
+import kotlinx.coroutines.experimental.CancellableContinuation
+import kotlinx.coroutines.experimental.CoroutineDispatcher
+import kotlinx.coroutines.experimental.Runnable
+import kotlinx.coroutines.experimental.asCoroutineDispatcher
+import kotlinx.coroutines.experimental.channels.ArrayChannel
+import kotlinx.coroutines.experimental.channels.ChannelIterator
+import kotlinx.coroutines.experimental.channels.Closed
+import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.experimental.channels.SendChannel
+import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.selects.SelectClause1
-import java.util.concurrent.*
+import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import java.util.concurrent.AbstractExecutorService
+import java.util.concurrent.Callable
+import java.util.concurrent.Delayed
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 /**
@@ -40,13 +57,13 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  *
  * @param block the code to run
  */
-suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
+suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit): T {
   return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
     try {
       block.invoke(Handler { t ->
         cont.resume(t)
       })
-    } catch(e: Exception) {
+    } catch (e: Exception) {
       cont.resumeWithException(e)
     }
   }
@@ -72,7 +89,7 @@ suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit) : T {
  *
  * @param block the code to run
  */
-suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
+suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit): T {
   val asyncResult = awaitEvent(block)
   if (asyncResult.succeeded()) return asyncResult.result()
   else throw asyncResult.cause()
@@ -97,7 +114,7 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit) : T {
  *
  * @param block the code to run
  */
-suspend fun <T> awaitBlocking(block: () -> T) : T {
+suspend fun <T> awaitBlocking(block: () -> T): T {
   return awaitResult { handler ->
     val ctx = Vertx.currentContext()
     ctx.executeBlocking<T>({ fut ->
@@ -126,11 +143,11 @@ suspend fun <T> Future<T>.await(): T = when {
  * An adapter that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
  * to be received synchronously.
  */
-class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T>, Handler<T> {
+class ReceiveChannelHandler<T> constructor(context: Context) : ReceiveChannel<T>, Handler<T> {
 
-  constructor(vertx : Vertx) : this(vertx.getOrCreateContext())
+  constructor(vertx: Vertx) : this(vertx.getOrCreateContext())
 
-  private val stream : ReadStream<T> = object: ReadStream<T> {
+  private val stream: ReadStream<T> = object : ReadStream<T> {
     override fun pause(): ReadStream<T> = this
     override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> = this
     override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> = this
@@ -142,8 +159,8 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
     }
   }
 
-  private val channel : ReceiveChannel<T> = stream.toChannel(context)
-  private var handler : Handler<T>? = null
+  private val channel: ReceiveChannel<T> = stream.toChannel(context)
+  private var handler: Handler<T>? = null
 
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
@@ -191,7 +208,7 @@ class ReceiveChannelHandler<T> constructor(context : Context) : ReceiveChannel<T
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-fun <T> ReadStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : ReceiveChannel<T> {
+fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = 256): ReceiveChannel<T> {
   return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
@@ -204,15 +221,15 @@ fun <T> ReadStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : ReceiveCh
  * @param context the vertx context
  * @param capacity the channel buffering capacity
  */
-fun <T> ReadStream<T>.toChannel(context : Context, capacity : Int = 256) : ReceiveChannel<T> {
+fun <T> ReadStream<T>.toChannel(context: Context, capacity: Int = 256): ReceiveChannel<T> {
   val ret = ChannelReadStream(context, this, capacity)
   ret.subscribe()
   return ret
 }
 
 private class ChannelReadStream<T>(val context: Context,
-                                   val stream : ReadStream<T>,
-                                   capacity : Int) : ArrayChannel<T>(capacity) {
+                                   val stream: ReadStream<T>,
+                                   capacity: Int) : ArrayChannel<T>(capacity) {
 
   @Volatile
   private var size = 0
@@ -264,7 +281,7 @@ private class ChannelReadStream<T>(val context: Context,
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-fun <T> WriteStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : SendChannel<T> {
+fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = 256): SendChannel<T> {
   return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
@@ -277,15 +294,15 @@ fun <T> WriteStream<T>.toChannel(vertx : Vertx, capacity : Int = 256) : SendChan
  * @param context the vertx context
  * @param capacity the channel buffering capacity
  */
-fun <T> WriteStream<T>.toChannel(context : Context, capacity : Int = 256) : SendChannel<T> {
+fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = 256): SendChannel<T> {
   val ret = ChannelWriteStream(context, this, capacity)
   ret.subscribe()
   return ret
 }
 
 private class ChannelWriteStream<T>(val context: Context,
-                                   val stream : WriteStream<T>,
-                                   capacity : Int) : ArrayChannel<T>(capacity) {
+                                    val stream: WriteStream<T>,
+                                    capacity: Int) : ArrayChannel<T>(capacity) {
 
   fun subscribe() {
     launch(context.dispatcher()) {
@@ -307,7 +324,7 @@ private class ChannelWriteStream<T>(val context: Context,
     }
   }
 
-  fun dispatch(elt : T?) : Boolean {
+  fun dispatch(elt: T?): Boolean {
     return if (elt != null) {
       stream.write(elt)
       true
@@ -325,7 +342,7 @@ private class ChannelWriteStream<T>(val context: Context,
  *
  * This is necessary if you want to execute coroutine synchronous operations in your handler
  */
-fun Vertx.dispatcher() : CoroutineDispatcher {
+fun Vertx.dispatcher(): CoroutineDispatcher {
   return getOrCreateContext().dispatcher()
 }
 
@@ -336,22 +353,22 @@ fun Vertx.dispatcher() : CoroutineDispatcher {
  *
  * This is necessary if you want to execute coroutine synchronous operations in your handler
  */
-fun Context.dispatcher() : CoroutineDispatcher {
+fun Context.dispatcher(): CoroutineDispatcher {
   require(!isMultiThreadedWorkerContext) { "Must not be a multithreaded worker verticle." }
   return VertxCoroutineExecutor(this).asCoroutineDispatcher()
 }
 
 private class VertxScheduledFuture(
-    val vertxContext: Context,
-    val task : Runnable,
-    val delay: Long,
-    val unit: TimeUnit) : ScheduledFuture<Any>, Handler<Long> {
+  val vertxContext: Context,
+  val task: Runnable,
+  val delay: Long,
+  val unit: TimeUnit) : ScheduledFuture<Any>, Handler<Long> {
 
   // pending : null (no completion)
   // done : true
   // cancelled : false
   val completion = AtomicReference<Boolean?>()
-  var id : Long? = null
+  var id: Long? = null
 
   fun schedule() {
     val owner = vertxContext.owner()

@@ -1,13 +1,14 @@
 package io.vertx.lang.kotlin
 
-import org.jetbrains.kotlin.com.intellij.openapi.*
-import org.jetbrains.kotlin.com.intellij.openapi.util.*
 import org.jetbrains.kotlin.cli.common.*
+import org.jetbrains.kotlin.cli.common.config.*
 import org.jetbrains.kotlin.cli.common.messages.*
 import org.jetbrains.kotlin.cli.jvm.compiler.*
 import org.jetbrains.kotlin.cli.jvm.config.*
 import org.jetbrains.kotlin.codegen.*
 import org.jetbrains.kotlin.codegen.state.*
+import org.jetbrains.kotlin.com.intellij.openapi.*
+import org.jetbrains.kotlin.com.intellij.openapi.util.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.load.java.*
@@ -57,9 +58,9 @@ object KotlinCompilerHelper {
         ).distinct().filter { Files.exists(it) }
 
     for (item in classPath) {
-      configuration.add(JVMConfigurationKeys.CONTENT_ROOTS, JvmClasspathRoot(item.toFile()))
+      configuration.add(CLIConfigurationKeys.CONTENT_ROOTS, JvmClasspathRoot(item.toFile()))
     }
-    configuration.add(JVMConfigurationKeys.CONTENT_ROOTS, KotlinSourceRoot(Paths.get(url.toURI()).toString()))
+    configuration.add(CLIConfigurationKeys.CONTENT_ROOTS, KotlinSourceRoot(Paths.get(url.toURI()).toString(), false))
 
     val collected = HashMap<String, ClassDescriptor>()
 
