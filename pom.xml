@@ -20,8 +20,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.version>1.2.51</kotlin.version>
-    <kotlin.coroutines.version>0.23.4</kotlin.coroutines.version>
+    <kotlin.version>1.2.71</kotlin.version>
+    <kotlin.coroutines.version>0.24.0</kotlin.coroutines.version>
     <junit.version>4.12</junit.version>
     <stack.version>3.6.0-SNAPSHOT</stack.version>
   </properties>
