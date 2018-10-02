@@ -1,5 +1,7 @@
 = Vert.x for Kotlin
 
+image:https://travis-ci.org/vert-x3/vertx-lang-kotlin.svg?branch=master["Build Status",link="https://travis-ci.org/vert-x3/vertx-lang-kotlin"]
+
 http://kotlinlang.org[Kotlin] language support for vert.x3
 
 * http://vertx.io/docs[Documentation]
