@@ -16,6 +16,7 @@
   <modules>
     <module>vertx-lang-kotlin-codegen</module>
     <module>vertx-lang-kotlin-coroutines</module>
+    <module>vertx-lang-kotlin</module>
   </modules>
 
   <properties>
@@ -88,6 +89,7 @@
         <module>vertx-lang-kotlin-codegen</module>
         <module>vertx-lang-kotlin-compiler</module>
         <module>vertx-lang-kotlin-coroutines</module>
+        <module>vertx-lang-kotlin</module>
       </modules>
     </profile>
   </profiles>

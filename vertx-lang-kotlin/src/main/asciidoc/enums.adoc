@@ -1,0 +1,856 @@
+= Enums
+
+[[AggregateOptions]]
+== AggregateOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|-
+|[[SUM]]`SUM`|-
+|[[MIN]]`MIN`|-
+|[[MAX]]`MAX`|-
+|===
+
+[[BitFieldOverflowOptions]]
+== BitFieldOverflowOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[WRAP]]`WRAP`|-
+|[[SAT]]`SAT`|-
+|[[FAIL]]`FAIL`|-
+|===
+
+[[BitOperation]]
+== BitOperation
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[AND]]`AND`|-
+|[[OR]]`OR`|-
+|[[XOR]]`XOR`|-
+|[[NOT]]`NOT`|-
+|===
+
+[[BridgeEventType]]
+== BridgeEventType
+
+++++
+ Bridge Event Types.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SOCKET_CREATED]]`SOCKET_CREATED`|+++
+This event will occur when a new SockJS socket is created.
++++
+|[[SOCKET_CLOSED]]`SOCKET_CLOSED`|+++
+This event will occur when a SockJS socket is closed.
++++
+|[[SOCKET_IDLE]]`SOCKET_IDLE`|+++
+This event will occur when SockJS socket is on idle for longer period of time than configured.
++++
+|[[SOCKET_PING]]`SOCKET_PING`|+++
+This event will occur when the last ping timestamp is updated for the SockJS socket.
++++
+|[[SEND]]`SEND`|+++
+This event will occur when a message is attempted to be sent from the client to the server.
++++
+|[[PUBLISH]]`PUBLISH`|+++
+This event will occur when a message is attempted to be published from the client to the server.
++++
+|[[RECEIVE]]`RECEIVE`|+++
+This event will occur when a message is attempted to be delivered from the server to the client.
++++
+|[[REGISTER]]`REGISTER`|+++
+This event will occur when a client attempts to register a handler.
++++
+|[[UNREGISTER]]`UNREGISTER`|+++
+This event will occur when a client attempts to unregister a handler.
++++
+|===
+
+[[ClientAuth]]
+== ClientAuth
+
+++++
+ Configures the engine to require/request client authentication.
+ <p/>
+ Created by manishk on 10/2/2015.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|+++
+No client authentication is requested or required.
++++
+|[[REQUEST]]`REQUEST`|+++
+Accept authentication if presented by client. If this option is set and the client chooses
+ not to provide authentication information about itself, the negotiations will continue.
++++
+|[[REQUIRED]]`REQUIRED`|+++
+Require client to present authentication, if not presented then negotiations will be declined.
++++
+|===
+
+[[ClientReplyOptions]]
+== ClientReplyOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[ON]]`ON`|-
+|[[OFF]]`OFF`|-
+|[[SKIP]]`SKIP`|-
+|===
+
+[[DnsResponseCode]]
+== DnsResponseCode
+
+++++
+ Represents the possible response codes a server may send after receiving a
+ query. A response code of 0 indicates no error.
+
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NOERROR]]`NOERROR`|+++
+ID 0, no error
++++
+|[[FORMERROR]]`FORMERROR`|+++
+ID 1, format error
++++
+|[[SERVFAIL]]`SERVFAIL`|+++
+ID 2, server failure
++++
+|[[NXDOMAIN]]`NXDOMAIN`|+++
+ID 3, name error
++++
+|[[NOTIMPL]]`NOTIMPL`|+++
+ID 4, not implemented
++++
+|[[REFUSED]]`REFUSED`|+++
+ID 5, operation refused
++++
+|[[YXDOMAIN]]`YXDOMAIN`|+++
+ID 6, domain name should not exist
++++
+|[[YXRRSET]]`YXRRSET`|+++
+ID 7, resource record set should not exist
++++
+|[[NXRRSET]]`NXRRSET`|+++
+ID 8, rrset does not exist
++++
+|[[NOTAUTH]]`NOTAUTH`|+++
+ID 9, not authoritative for zone
++++
+|[[NOTZONE]]`NOTZONE`|+++
+ID 10, name not in zone
++++
+|[[BADVERS]]`BADVERS`|+++
+ID 11, bad extension mechanism for version
++++
+|[[BADSIG]]`BADSIG`|+++
+ID 12, bad signature
++++
+|[[BADKEY]]`BADKEY`|+++
+ID 13, bad key
++++
+|[[BADTIME]]`BADTIME`|+++
+ID 14, bad timestamp
++++
+|===
+
+[[ExecStatus]]
+== ExecStatus
+
+++++
+ The status of an execution.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[READY]]`READY`|+++
+The job is ready, it can be running or terminated.
++++
+|[[RUNNING]]`RUNNING`|+++
+The job is running, it can be stopped or terminated.
++++
+|[[STOPPED]]`STOPPED`|+++
+The job is stopped, it can be running or terminated.
++++
+|[[TERMINATED]]`TERMINATED`|+++
+The job is terminated.
++++
+|===
+
+[[FailoverOptions]]
+== FailoverOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[FORCE]]`FORCE`|-
+|[[TAKEOVER]]`TAKEOVER`|-
+|===
+
+[[FetchDirection]]
+== FetchDirection
+
+++++
+ Represents the fetch direction hint
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[FORWARD]]`FORWARD`|-
+|[[REVERSE]]`REVERSE`|-
+|[[UNKNOWN]]`UNKNOWN`|-
+|===
+
+[[GeoUnit]]
+== GeoUnit
+
+++++
+ GeoUnit represents a geo spatial unit it covers both the metric and imperial systems.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[m]]`m`|+++
+Meter
++++
+|[[km]]`km`|+++
+Kilometer
++++
+|[[mi]]`mi`|+++
+Mile
++++
+|[[ft]]`ft`|+++
+Feet
++++
+|===
+
+[[HashAlgorithm]]
+== HashAlgorithm
+
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SHA512]]`SHA512`|+++
+The default algorithm for backward compatible systems.
+
+ Should not be used for new projects as OWASP recommends stronger hashing algorithms.
++++
+|[[PBKDF2]]`PBKDF2`|+++
+Stronger hashing algorithm, recommended by OWASP as of 2018.
++++
+|===
+
+[[HashSaltStyle]]
+== HashSaltStyle
+
+++++
+ Password hash salt configuration.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NO_SALT]]`NO_SALT`|+++
+Password hashes are not salted
++++
+|[[COLUMN]]`COLUMN`|+++
+Salt is in a separate column for each user in the database
++++
+|[[EXTERNAL]]`EXTERNAL`|+++
+Salt is NOT stored in the database, but defined as external value like application preferences or so
++++
+|===
+
+[[HttpMethod]]
+== HttpMethod
+
+++++
+ Represents an HTTP method
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[OPTIONS]]`OPTIONS`|-
+|[[GET]]`GET`|-
+|[[HEAD]]`HEAD`|-
+|[[POST]]`POST`|-
+|[[PUT]]`PUT`|-
+|[[DELETE]]`DELETE`|-
+|[[TRACE]]`TRACE`|-
+|[[CONNECT]]`CONNECT`|-
+|[[PATCH]]`PATCH`|-
+|[[OTHER]]`OTHER`|-
+|===
+
+[[HttpVersion]]
+== HttpVersion
+
+++++
+ Represents the version of the HTTP protocol.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[HTTP_1_0]]`HTTP_1_0`|-
+|[[HTTP_1_1]]`HTTP_1_1`|-
+|[[HTTP_2]]`HTTP_2`|-
+|===
+
+[[InsertOptions]]
+== InsertOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[BEFORE]]`BEFORE`|-
+|[[AFTER]]`AFTER`|-
+|===
+
+[[JsonEventType]]
+== JsonEventType
+
+++++
+ The possibles types of link emitted by the link.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[START_OBJECT]]`START_OBJECT`|+++
+Signals the start of a JSON object.
++++
+|[[END_OBJECT]]`END_OBJECT`|+++
+Signals the end of a JSON object.
++++
+|[[START_ARRAY]]`START_ARRAY`|+++
+Signals the start of a JSON array.
++++
+|[[END_ARRAY]]`END_ARRAY`|+++
+Signals the end of a JSON array.
++++
+|[[VALUE]]`VALUE`|+++
+Signals a JSON value.
++++
+|===
+
+[[Label]]
+== Label
+
+++++
+ List of labels used in various Vert.x metrics. Labels that may not have bounded values are disabled by default.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[LOCAL]]`LOCAL`|+++
+Local address in client-host or host-client connections (used in net, http and datagram domains)
++++
+|[[REMOTE]]`REMOTE`|+++
+Remote address in client-host or host-client connections (used in net and http domains)
++++
+|[[HTTP_PATH]]`HTTP_PATH`|+++
+Path of the URI for client or server requests (used in http domain)
++++
+|[[HTTP_METHOD]]`HTTP_METHOD`|+++
+Method (GET, POST, PUT, etc.) of an HTTP requests (used in http domain)
++++
+|[[HTTP_CODE]]`HTTP_CODE`|+++
+HTTP response code (used in http domain)
++++
+|[[CLASS_NAME]]`CLASS_NAME`|+++
+Class name. When used in error counters (in net, http, datagram and eventbus domains) it relates to an exception that occurred.
+ When used in verticle domain, it relates to the verticle class name.
++++
+|[[EB_ADDRESS]]`EB_ADDRESS`|+++
+Event bus address
++++
+|[[EB_SIDE]]`EB_SIDE`|+++
+Event bus side of the metric, it can be either "local" or "remote"
++++
+|[[EB_FAILURE]]`EB_FAILURE`|+++
+Event bus failure name from a ReplyFailure object
++++
+|[[POOL_TYPE]]`POOL_TYPE`|+++
+Pool type, such as "worker" or "datasource" (used in pools domain)
++++
+|[[POOL_NAME]]`POOL_NAME`|+++
+Pool name (used in pools domain)
++++
+|===
+
+[[LoggerFormat]]
+== LoggerFormat
+
+++++
+ The possible out of the box formats.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[DEFAULT]]`DEFAULT`|+++
+<i>remote-client</i> - - [<i>timestamp</i>] "<i>method</i> <i>uri</i> <i>version</i>" <i>status</i> <i>content-length</i> "<i>referrer</i>" "<i>user-agent</i>"
++++
+|[[SHORT]]`SHORT`|+++
+<i>remote-client</i> - <i>method</i> <i>uri</i> <i>version</i> <i>status</i> <i>content-length</i> <i>duration</i> ms
++++
+|[[TINY]]`TINY`|+++
+<i>method</i> <i>uri</i> <i>status</i> - <i>content-length</i> <i>duration</i>
++++
+|===
+
+[[MatchType]]
+== MatchType
+
+++++
+ The type of match.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[EQUALS]]`EQUALS`|-
+|[[REGEX]]`REGEX`|-
+|===
+
+[[MetricsDomain]]
+== MetricsDomain
+
+++++
+ Metric domains with their associated prefixes.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NET_SERVER]]`NET_SERVER`|+++
+Net server metrics.
++++
+|[[NET_CLIENT]]`NET_CLIENT`|+++
+Net client metrics.
++++
+|[[HTTP_SERVER]]`HTTP_SERVER`|+++
+Http server metrics.
++++
+|[[HTTP_CLIENT]]`HTTP_CLIENT`|+++
+Http client metrics.
++++
+|[[DATAGRAM_SOCKET]]`DATAGRAM_SOCKET`|+++
+Datagram socket metrics.
++++
+|[[EVENT_BUS]]`EVENT_BUS`|+++
+Event bus metrics.
++++
+|[[NAMED_POOLS]]`NAMED_POOLS`|+++
+Named pools metrics.
++++
+|[[VERTICLES]]`VERTICLES`|+++
+Verticle metrics.
++++
+|===
+
+[[OAuth2FlowType]]
+== OAuth2FlowType
+
+++++
+ OAuth2 Flows
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[AUTH_CODE]]`AUTH_CODE`|-
+|[[CLIENT]]`CLIENT`|-
+|[[PASSWORD]]`PASSWORD`|-
+|[[AUTH_JWT]]`AUTH_JWT`|+++
+RFC7523
++++
+|===
+
+[[ObjectCmd]]
+== ObjectCmd
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[REFCOUNT]]`REFCOUNT`|-
+|[[ENCODING]]`ENCODING`|-
+|[[IDLETIME]]`IDLETIME`|-
+|===
+
+[[ProxyType]]
+== ProxyType
+
+++++
+ The type of a TCP proxy server.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[HTTP]]`HTTP`|+++
+HTTP CONNECT ssl proxy
++++
+|[[SOCKS4]]`SOCKS4`|+++
+SOCKS4/4a tcp proxy
++++
+|[[SOCKS5]]`SOCKS5`|+++
+SOCSK5 tcp proxy
++++
+|===
+
+[[RangeOptions]]
+== RangeOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|-
+|[[WITHSCORES]]`WITHSCORES`|-
+|===
+
+[[ReplyFailure]]
+== ReplyFailure
+
+++++
+ Represents the type of reply failure
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[TIMEOUT]]`TIMEOUT`|+++
+The message send failed because no reply was received before the timeout time.
++++
+|[[NO_HANDLERS]]`NO_HANDLERS`|+++
+The message send failed because no handlers were available to handle the message.
++++
+|[[RECIPIENT_FAILURE]]`RECIPIENT_FAILURE`|+++
+The message send failed because the recipient actively sent back a failure (rejected the message)
++++
+|===
+
+[[ResetOptions]]
+== ResetOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[HARD]]`HARD`|-
+|[[SOFT]]`SOFT`|-
+|===
+
+[[ResultSetConcurrency]]
+== ResultSetConcurrency
+
+++++
+ Represents the resultset concurrency hint
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[READ_ONLY]]`READ_ONLY`|-
+|[[UPDATABLE]]`UPDATABLE`|-
+|===
+
+[[ResultSetType]]
+== ResultSetType
+
+++++
+ Represents the resultset type hint
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[FORWARD_ONLY]]`FORWARD_ONLY`|-
+|[[SCROLL_INSENSITIVE]]`SCROLL_INSENSITIVE`|-
+|[[SCROLL_SENSITIVE]]`SCROLL_SENSITIVE`|-
+|===
+
+[[ScriptDebugOptions]]
+== ScriptDebugOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[YES]]`YES`|-
+|[[SYNC]]`SYNC`|-
+|[[NO]]`NO`|-
+|===
+
+[[ShiroAuthRealmType]]
+== ShiroAuthRealmType
+
+++++
+ The type of the Shiro auth realm
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[PROPERTIES]]`PROPERTIES`|+++
+The realm is a Shiro properties auth provider
++++
+|[[LDAP]]`LDAP`|+++
+The realm is a Shiro LDAP auth provider
++++
+|===
+
+[[ShutdownOptions]]
+== ShutdownOptions
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|-
+|[[SAVE]]`SAVE`|-
+|[[NOSAVE]]`NOSAVE`|-
+|===
+
+[[SlotCmd]]
+== SlotCmd
+
+++++
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[IMPORTING]]`IMPORTING`|-
+|[[MIGRATING]]`MIGRATING`|-
+|[[STABLE]]`STABLE`|-
+|[[NODE]]`NODE`|-
+|===
+
+[[Status]]
+== Status
+
+++++
+ Service publication status.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[UP]]`UP`|+++
+The service is published and is accessible.
++++
+|[[DOWN]]`DOWN`|+++
+The service has been withdrawn, it is not accessible anymore.
++++
+|[[OUT_OF_SERVICE]]`OUT_OF_SERVICE`|+++
+The service is still published, but not accessible (maintenance).
++++
+|[[UNKNOWN]]`UNKNOWN`|+++
+Unknown status.
++++
+|===
+
+[[TransactionIsolation]]
+== TransactionIsolation
+
+++++
+ Represents a Transaction Isolation Level
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[READ_UNCOMMITTED]]`READ_UNCOMMITTED`|+++
+Implements dirty read, or isolation level 0 locking, which means that no shared locks are issued and no exclusive
+ locks are honored. When this option is set, it is possible to read uncommitted or dirty data; values in the data
+ can be changed and rows can appear or disappear in the data set before the end of the transaction. This is the
+ least restrictive of the four isolation levels.
++++
+|[[READ_COMMITTED]]`READ_COMMITTED`|+++
+Specifies that shared locks are held while the data is being read to avoid dirty reads, but the data can be changed
+ before the end of the transaction, resulting in nonrepeatable reads or phantom data.
++++
+|[[REPEATABLE_READ]]`REPEATABLE_READ`|+++
+Locks are placed on all data that is used in a query, preventing other users from updating the data, but new
+ phantom rows can be inserted into the data set by another user and are included in later reads in the current
+ transaction. Because concurrency is lower than the default isolation level, use this option only when necessary.
++++
+|[[SERIALIZABLE]]`SERIALIZABLE`|+++
+Places a range lock on the data set, preventing other users from updating or inserting rows into the data set until
+ the transaction is complete. This is the most restrictive of the four isolation levels. Because concurrency is
+ lower, use this option only when necessary.
++++
+|[[NONE]]`NONE`|+++
+For engines that support it, none isolation means that each statement would essentially be its own transaction.
++++
+|===
+
+[[Transport]]
+== Transport
+
+++++
+ The available SockJS transports
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[WEBSOCKET]]`WEBSOCKET`|+++
+<a href="http://www.rfc-editor.org/rfc/rfc6455.txt">rfc 6455</a>
++++
+|[[EVENT_SOURCE]]`EVENT_SOURCE`|+++
+<a href="http://dev.w3.org/html5/eventsource/">Event source</a>
++++
+|[[HTML_FILE]]`HTML_FILE`|+++
+<a href="http://cometdaily.com/2007/11/18/ie-activexhtmlfile-transport-part-ii/">HtmlFile</a>.
++++
+|[[JSON_P]]`JSON_P`|+++
+Slow and old fashioned <a hred="https://developer.mozilla.org/en/DOM/window.postMessage">JSONP polling</a>.
+ This transport will show "busy indicator" (aka: "spinning wheel") when sending data.
++++
+|[[XHR]]`XHR`|+++
+Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHttpRequest#Cross-domain_requests">cross domain XHR</a>
++++
+|===
+
+[[WebsocketVersion]]
+== WebsocketVersion
+
+++++
+ Represents the WebSocket version
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[V00]]`V00`|-
+|[[V07]]`V07`|-
+|[[V08]]`V08`|-
+|[[V13]]`V13`|-
+|===
+
