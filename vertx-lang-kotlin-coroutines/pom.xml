@@ -61,6 +61,8 @@
 
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <!-- version needed because of OpenJDK 11 : remove when parent pom is upgraded -->
+        <version>3.0.1</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>

@@ -695,7 +695,7 @@
       <plugin>
         <groupId>org.jetbrains.dokka</groupId>
         <artifactId>dokka-maven-plugin</artifactId>
-        <version>0.9.15</version>
+        <version>0.9.17</version>
         <configuration>
           <moduleName>vertx</moduleName>
           <sourceDirectories>
