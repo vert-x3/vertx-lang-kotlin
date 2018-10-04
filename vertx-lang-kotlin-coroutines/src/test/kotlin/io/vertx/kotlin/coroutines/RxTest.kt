@@ -4,7 +4,6 @@ import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.reactivex.core.Vertx
 import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.reactive.open
 import kotlinx.coroutines.experimental.reactive.openSubscription
 import kotlinx.coroutines.experimental.rx2.await
 import org.junit.After
