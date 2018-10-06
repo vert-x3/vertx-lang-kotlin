@@ -6,7 +6,13 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.CancellationException
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import kotlinx.coroutines.experimental.sync.Mutex
 import kotlinx.coroutines.experimental.sync.withLock
 import org.junit.After
@@ -43,20 +49,20 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testNoContext(testContext: TestContext) {
+  fun `test without context`(testContext: TestContext) {
     val async = testContext.async()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       runTest(testContext)
       async.complete()
     }
   }
 
   @Test
-  fun testEventLoopContext(testContext: TestContext) {
+  fun `test in EventLoop context`(testContext: TestContext) {
     val async = testContext.async()
     val ctx = vertx.getOrCreateContext()
     ctx.runOnContext {
-      launch(vertx.dispatcher()) {
+      GlobalScope.launch(vertx.dispatcher()) {
         runTest(testContext)
         async.complete()
       }
@@ -64,11 +70,11 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testWorkerContext(testContext: TestContext) {
+  fun `test in Worker context`(testContext: TestContext) {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        launch(vertx.dispatcher()) {
+        GlobalScope.launch(vertx.dispatcher()) {
           runTest(testContext)
         }
       }
@@ -78,11 +84,11 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testMultithreadedWorkerContext(testContext: TestContext) {
+  fun `test in MultithreadedWorker context`(testContext: TestContext) {
     val async = testContext.async()
     vertx.deployVerticle(object: AbstractVerticle() {
       override fun start() {
-        launch(vertx.dispatcher()) {
+        GlobalScope.launch(vertx.dispatcher()) {
           runTest(testContext)
         }
       }
@@ -92,10 +98,10 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testUnconfined(testContext: TestContext) {
+  fun `test using Unconfined dispatcher`(testContext: TestContext) {
     val async = testContext.async()
     val current = Thread.currentThread()
-    launch(Unconfined) {
+    GlobalScope.launch(Dispatchers.Unconfined) {
       testContext.assertEquals(current, Thread.currentThread())
       awaitEvent<Long> { vertx.setTimer(10, it) }
       testContext.assertTrue(Context.isOnEventLoopThread())
@@ -104,9 +110,9 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testJoin(testContext: TestContext) {
+  fun `test join`(testContext: TestContext) {
     val done = AtomicBoolean()
-    val job = launch(vertx.dispatcher()) {
+    val job = GlobalScope.launch(vertx.dispatcher()) {
       awaitEvent<Long> { vertx.setTimer(500, it) }
       done.set(true)
     }
@@ -129,13 +135,13 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testMutex(testContext: TestContext) {
+  fun `test mutex`(testContext: TestContext) {
     val mutex = Mutex()
     val dispatcher = vertx.dispatcher()
     val times = 10
     val latch = testContext.async(times)
     for (i in 0..times) {
-      launch(dispatcher) {
+      GlobalScope.launch(dispatcher) {
         mutex.withLock {
           testContext.assertTrue(Context.isOnVertxThread())
           latch.countDown()
@@ -146,9 +152,9 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testDelay(testContext: TestContext) {
+  fun `test delay`(testContext: TestContext) {
     val latch = testContext.async()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       delay(100)
       testContext.assertEquals(ctx, Vertx.currentContext())
@@ -157,10 +163,10 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testPeriodic(testContext: TestContext) {
+  fun `test periodic`(testContext: TestContext) {
     val count = AtomicInteger()
     val interrupted = testContext.async()
-    val job = launch(vertx.dispatcher()) {
+    val job = GlobalScope.launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       try {
         testContext.assertEquals(ctx, Vertx.currentContext())
@@ -168,10 +174,10 @@ class CoroutineContextTest {
           count.incrementAndGet()
           delay(10)
         }
-      } catch (e: JobCancellationException) {
+      } catch (e: CancellationException) {
         testContext.assertEquals(ctx, Vertx.currentContext())
         interrupted.countDown()
-        throw e;
+        throw e
       }
     }
     Thread.sleep(100)
@@ -181,8 +187,8 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testAsyncBuilder(testContext: TestContext) {
-    val async = async<Long>(vertx.dispatcher()) {
+  fun `test async builder`() {
+    val async = GlobalScope.async<Long>(vertx.dispatcher()) {
       assertTrue(Context.isOnEventLoopThread())
       val thread1 = Thread.currentThread()
       val thread2 = AtomicReference<Thread>()
@@ -201,7 +207,7 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testRunBlockingBuilder(testContext: TestContext) {
+  fun `test runBlocking builder`() {
     val async = runBlocking<Long>(vertx.dispatcher()) {
       assertTrue(Context.isOnEventLoopThread())
       val thread1 = Thread.currentThread()
@@ -218,7 +224,7 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testRunBlockingBuilderError() {
+  fun `test error in runBlocking builder`() {
     val expected = Exception()
     var caught: Exception? = null
     try {
@@ -232,7 +238,7 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun testRunBlockingBuilderFailure() {
+  fun `test failure in runBlocking builder`() {
     var caught: AssertionError? = null
     try {
       runBlocking(vertx.dispatcher()) {

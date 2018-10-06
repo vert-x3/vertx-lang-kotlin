@@ -6,12 +6,14 @@ import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.eventbus.ReplyFailure
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
+import java.util.ArrayList
+import java.util.Collections
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -32,13 +34,13 @@ class EventBusTest {
   }
 
   @Test
-  fun testUnregister(testContext: TestContext) {
+  fun `test unregister`(testContext: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
     val channel = consumer.bodyStream().toChannel(vertx)
     val async = testContext.async()
     val list = Collections.synchronizedList(ArrayList<Int>())
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       for (msg in channel) {
         list += msg
       }
@@ -57,13 +59,13 @@ class EventBusTest {
   }
 
   @Test
-  fun testUnregister2(testCtx: TestContext) {
+  fun `test unregister 2`(testCtx: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
     val channel = consumer.bodyStream().toChannel(vertx)
     val async = testCtx.async()
 
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val list = mutableListOf<Int>()
 
       println("Processing messages in channel...")
@@ -85,7 +87,7 @@ class EventBusTest {
   }
 
   @Test
-  fun testReply(testContext: TestContext) {
+  fun `test reply`(testContext: TestContext) {
     val bus = vertx.eventBus()
     val consumer = bus.consumer<Int>("the-address")
     val channel = consumer.bodyStream().toChannel(vertx)
@@ -100,11 +102,11 @@ class EventBusTest {
         msg.reply(null)
       }
     }
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       var count = 0
       for (msg in channel) {
         val reply = awaitResult<Message<Int?>> {
-          bus.send("another-address", msg, it);
+          bus.send("another-address", msg, it)
         }
         val v = reply.body()
         if (v == null) {
@@ -121,20 +123,20 @@ class EventBusTest {
   }
 
   @Test
-  fun testReplyFailure(testContext: TestContext) {
+  fun `test failure in reply`(testContext: TestContext) {
     val bus = vertx.eventBus()
     val async = testContext.async()
     bus.consumer<Int>("the-address") { msg ->
       msg.fail(5, "it-failed")
     }
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       try {
-        val reply = awaitResult<Message<Int?>> {
-          bus.send("the-address", "the-body", it);
+        awaitResult<Message<Int?>> {
+          bus.send("the-address", "the-body", it)
         }
-      } catch(e: Exception) {
+      } catch (e: Exception) {
         testContext.assertTrue(e is ReplyException)
-        val err : ReplyException = e as ReplyException
+        val err: ReplyException = e as ReplyException
         testContext.assertEquals(5, err.failureCode())
         testContext.assertEquals(ReplyFailure.RECIPIENT_FAILURE, err.failureType())
         testContext.assertEquals("it-failed", err.message)
