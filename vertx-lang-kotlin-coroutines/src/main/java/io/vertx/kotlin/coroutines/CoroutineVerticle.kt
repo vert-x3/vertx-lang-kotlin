@@ -19,8 +19,8 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
   private lateinit var vertxInstance: Vertx
   protected lateinit var context: Context
-  override val coroutineContext: CoroutineContext
-    get() = context.dispatcher()
+
+  override val coroutineContext: CoroutineContext by lazy { context.dispatcher() }
 
   override fun init(vertx: Vertx, context: Context) {
     this.vertxInstance = vertx
