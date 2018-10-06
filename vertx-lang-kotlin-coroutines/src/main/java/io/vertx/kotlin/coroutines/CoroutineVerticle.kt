@@ -5,7 +5,9 @@ import io.vertx.core.Future
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx
 import io.vertx.core.json.JsonObject
+import kotlinx.coroutines.experimental.CoroutineScope
 import kotlinx.coroutines.experimental.launch
+import kotlin.coroutines.experimental.CoroutineContext
 
 /**
  * A Verticle which run its start and stop methods in coroutine.
@@ -13,10 +15,12 @@ import kotlinx.coroutines.experimental.launch
  *
  * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
-abstract class CoroutineVerticle : Verticle {
+abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
   private lateinit var vertxInstance: Vertx
   protected lateinit var context: Context
+  override val coroutineContext: CoroutineContext
+    get() = context.dispatcher()
 
   override fun init(vertx: Vertx, context: Context) {
     this.vertxInstance = vertx
@@ -26,7 +30,7 @@ abstract class CoroutineVerticle : Verticle {
   override fun getVertx(): Vertx = vertxInstance
 
   override fun start(startFuture: Future<Void>?) {
-    launch(context.dispatcher()) {
+    launch {
       try {
         start()
         startFuture?.complete()
@@ -37,7 +41,7 @@ abstract class CoroutineVerticle : Verticle {
   }
 
   override fun stop(stopFuture: Future<Void>?) {
-    launch(context.dispatcher()) {
+    launch {
       try {
         stop()
         stopFuture?.complete()
@@ -62,7 +66,7 @@ abstract class CoroutineVerticle : Verticle {
    * This can be specified when the verticle is deployed.
    * @return the configuration
    */
-  protected val config : JsonObject by lazy {
+  protected val config: JsonObject by lazy {
     context.config()
   }
 
@@ -70,7 +74,7 @@ abstract class CoroutineVerticle : Verticle {
    * Get the arguments used when deploying the Vert.x process.
    * @return the list of arguments
    */
-  protected val processArgs : List<String> by lazy {
+  protected val processArgs: List<String> by lazy {
     context.processArgs()
   }
 

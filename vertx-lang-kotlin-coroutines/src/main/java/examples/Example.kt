@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED")
+
 package examples
 
 import io.vertx.core.CompositeFuture
@@ -20,6 +22,7 @@ import io.vertx.kotlin.coroutines.receiveChannelHandler
 import io.vertx.kotlin.coroutines.toChannel
 import kotlinx.coroutines.experimental.TimeoutCancellationException
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.experimental.coroutineScope
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withTimeout
@@ -27,9 +30,10 @@ import kotlinx.coroutines.experimental.withTimeout
 fun launchCoroutineExample() {
   // tag::launchCoroutine[]
   val vertx = Vertx.vertx()
-  vertx.deployVerticle(ExampleVerticle())
+  val exampleVerticle = ExampleVerticle()
+  vertx.deployVerticle(exampleVerticle)
 
-  launch(vertx.dispatcher()) {
+  exampleVerticle.launch {
     val timerId = awaitEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
@@ -43,16 +47,23 @@ class MyVerticle : CoroutineVerticle() {
   override suspend fun start() {
     // ...
   }
+
+  override suspend fun stop() {
+    // ...
+  }
 }
 // end::CoroutineVerticle[]
 
 class ExampleVerticle : CoroutineVerticle() {
+
   override suspend fun start() {
-    awaitEventExample()
-    awaitResultExample()
-    streamExample()
-    handlerAndCoroutineExample()
-    awaitingFuture()
+    coroutineScope {
+      awaitEventExample()
+      awaitResultExample()
+      streamExample()
+      handlerAndCoroutineExample()
+      awaitingFuture()
+    }
   }
 
   // tag::awaitEvent[]
@@ -88,7 +99,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
     // Send a message and wait for a reply
     try {
-      val reply = awaitResult<Message<String>> { h ->
+      awaitResult<Message<String>> { h ->
         vertx.eventBus().send("a.b.c", "ping", h)
       }
     } catch (e: ReplyException) {
@@ -145,7 +156,7 @@ class ExampleVerticle : CoroutineVerticle() {
   fun handlerAndCoroutineExample() {
     // tag::handlerAndCoroutine[]
     vertx.createHttpServer().requestHandler { req ->
-      launch(context.dispatcher()) {
+      launch {
         val timerID = awaitEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
@@ -175,7 +186,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   private fun channel1() {
     // tag::channel1[]
-    val server = vertx.createNetServer().connectHandler { socket ->
+    vertx.createNetServer().connectHandler { socket ->
 
       // The record parser provides a stream of buffers delimited by \r\n
       val stream = RecordParser.newDelimited("\r\n", socket)
@@ -184,7 +195,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val channel = stream.toChannel(vertx)
 
       // Run the coroutine
-      launch(vertx.dispatcher()) {
+      launch {
 
         // Receive the request-line
         // Non-blocking
