@@ -1,18 +1,31 @@
 package examples
 
-import io.vertx.core.*
+import io.vertx.core.CompositeFuture
+import io.vertx.core.Future
+import io.vertx.core.Handler
+import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageProducer
 import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.http.HttpServer
 import io.vertx.core.parsetools.RecordParser
-import io.vertx.kotlin.coroutines.*
+import io.vertx.kotlin.coroutines.CoroutineVerticle
+import io.vertx.kotlin.coroutines.await
+import io.vertx.kotlin.coroutines.awaitBlocking
+import io.vertx.kotlin.coroutines.awaitEvent
+import io.vertx.kotlin.coroutines.awaitResult
+import io.vertx.kotlin.coroutines.dispatcher
+import io.vertx.kotlin.coroutines.receiveChannelHandler
+import io.vertx.kotlin.coroutines.toChannel
+import kotlinx.coroutines.experimental.TimeoutCancellationException
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.withTimeout
 
 fun launchCoroutineExample() {
-  // tag::launchCoroutineExample[]
+  // tag::launchCoroutine[]
   val vertx = Vertx.vertx()
   vertx.deployVerticle(ExampleVerticle())
 
@@ -22,7 +35,7 @@ fun launchCoroutineExample() {
     }
     println("Event fired from timer with id $timerId")
   }
-  // end::runCoroutineExample[]
+  // end::launchCoroutine[]
 }
 
 // tag::CoroutineVerticle[]
@@ -76,14 +89,23 @@ class ExampleVerticle : CoroutineVerticle() {
     // Send a message and wait for a reply
     try {
       val reply = awaitResult<Message<String>> { h ->
-           vertx.eventBus().send("a.b.c", "ping", h)
-         }
-    } catch(e: ReplyException) {
+        vertx.eventBus().send("a.b.c", "ping", h)
+      }
+    } catch (e: ReplyException) {
       // Handle specific reply exception here
       println("Reply failure: ${e.message}")
     }
   }
   // end::awaitResultFailure[]
+
+  // tag::awaitBlocking[]
+  suspend fun awaitBlockingExample() {
+    awaitBlocking {
+      Thread.sleep(1000)
+      "some-string"
+    }
+  }
+  // end::awaitBlocking[]
 
   // tag::streamExample[]
   suspend fun streamExample() {
@@ -178,7 +200,7 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::channel1[]
   }
 
-  suspend fun channel2(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String) {
+  suspend fun channel2(stream: RecordParser, channel: ReceiveChannel<Buffer>, method: String, uri: String) {
     // tag::channel2[]
     // Receive HTTP headers
     val headers = HashMap<String, String>()
@@ -200,13 +222,13 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::channel2[]
   }
 
-  suspend fun channel3(stream : RecordParser, channel : ReceiveChannel<Buffer>, method: String, uri: String, headers : Map<String, String>) {
+  suspend fun channel3(stream: RecordParser, channel: ReceiveChannel<Buffer>, method: String, uri: String, headers: Map<String, String>) {
     // tag::channel3[]
     // Receive the request body
     val transferEncoding = headers["transfer-encoding"]
     val contentLength = headers["content-length"]
 
-    val body : Buffer?
+    val body: Buffer?
     if (transferEncoding == "chunked") {
 
       // Handle chunked encoding, e.g
@@ -247,11 +269,12 @@ class ExampleVerticle : CoroutineVerticle() {
       body = null
     }
 
-    println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size ${body?.length() ?: 0}")
+    println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size ${body?.length()
+      ?: 0}")
     // end::channel3[]
   }
 
-  private fun readTemperatureSensor() : Double {
+  private fun readTemperatureSensor(): Double {
     return 0.0
   }
 
@@ -268,12 +291,12 @@ class ExampleVerticle : CoroutineVerticle() {
       channel.send(temperature)
 
       // Wait for one second
-      awaitEvent<Long> { vertx.setTimer(1000, it)  }
+      awaitEvent<Long> { vertx.setTimer(1000, it) }
     }
   }
   // end::sendChannel[]
 
-  val stream : MessageProducer<Double> = vertx.eventBus().publisher<Double>("temperature")
+  val stream: MessageProducer<Double> = vertx.eventBus().publisher<Double>("temperature")
 
   fun broadcastTemperature() {
     // tag::broadcastTemperature[]
@@ -296,5 +319,47 @@ class ExampleVerticle : CoroutineVerticle() {
       }
     }
     // end::broadcastTemperature[]
+  }
+
+  fun delayExample() {
+    // tag::delay[]
+    launch(vertx.dispatcher()) {
+      // Set a one second Vertx timer
+      delay(1000)
+    }
+    // end::delay[]
+  }
+
+  fun cancellationExample() {
+    // tag::cancellation[]
+    val job = launch(vertx.dispatcher()) {
+      // Set a one second Vertx timer
+      while (true) {
+        delay(1000)
+        // Do something periodically
+      }
+    }
+
+    // Sometimes later
+    job.cancel()
+    // end::cancellation[]
+  }
+
+  fun withTimeoutExample() {
+    // tag::withTimeout[]
+    launch(vertx.dispatcher()) {
+      try {
+        val id = withTimeout<String>(1000) {
+          awaitEvent { anAsyncMethod(it) }
+        }
+      } catch (e: TimeoutCancellationException) {
+        // Cancelled
+      }
+    }
+    // end::withTimeout[]
+  }
+
+  fun anAsyncMethod(handler: Handler<String>) {
+    TODO()
   }
 }
