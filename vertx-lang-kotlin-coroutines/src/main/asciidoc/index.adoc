@@ -33,15 +33,7 @@ as a coroutine that can be suspended:
 
 [source,kotlin,indent=0]
 ----
-val vertx = Vertx.vertx()
-vertx.deployVerticle(ExampleVerticle())
-
-launch(vertx.dispatcher()) {
-  val timerId = awaitEvent<Long> { handler ->
-    vertx.setTimer(1000, handler)
-  }
-  println("Event fired from timer with id ${timerId}")
-}
+include::Example.kt[tags=launchCoroutine]
 ----
 
 The `vertx.dispatcher()` returns a coroutine dispatcher that execute coroutines using the Vert.x event loop.
@@ -58,11 +50,7 @@ for Kotlin coroutines. You should override the `start()` and (optionally) the `s
 
 [source,kotlin,indent=0]
 ----
-class MyVerticle : CoroutineVerticle() {
-  suspend override fun start() {
-    // ...
-  }
-}
+include::Example.kt[tags=CoroutineVerticle]
 ----
 
 == Getting one-shot asynchronous results
@@ -82,19 +70,7 @@ Here is an example:
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitResultExample() {
-  val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
-  consumer.handler { message ->
-    println("Consumer received: ${message.body()}")
-    message.reply("pong")
-  }
-
-  // Send a message and wait for a reply
-  val reply = awaitResult<Message<String>> { h ->
-    vertx.eventBus().send("a.b.c", "ping", h)
-  }
-  println("Reply received: ${reply.body()}")
-}
+include::Example.kt[tags=awaitResult]
 ----
 
 When the block produces a failure, the caller can handle it as an exception using the usual exception
@@ -102,23 +78,7 @@ When the block produces a failure, the caller can handle it as an exception usin
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitResultFailureExample() {
-  val consumer = vertx.eventBus().localConsumer<String>("a.b.c")
-  consumer.handler { message ->
-    // The consumer will get a failure
-    message.fail(0, "it failed!!!")
-  }
-
-  // Send a message and wait for a reply
-  try {
-    val reply: Message<String> = awaitResult<Message<String>> { h ->
-         vertx.eventBus().send("a.b.c", "ping", h)
-       }
-  } catch(e: ReplyException) {
-    // Handle specific reply exception here
-    println("Reply failure: ${e.message}")
-  }
-}
+include::Example.kt[tags=awaitResultFailure]
 ----
 
 == Getting one-shot events
@@ -127,10 +87,7 @@ Processing a one-shot event (and not the next occurrences, if any) is achieved u
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitEventExample() {
-  val id = awaitEvent<Long> { h -> vertx.setTimer(2000L, h) }
-  println("This should be fired in 2s by some time with id=$id")
-}
+include::Example.kt[tags=awaitEvent]
 ----
 
 == Getting one-shot worker results
@@ -139,12 +96,7 @@ Processing a blocking computation is achieved using the `awaitBlocking` function
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitBlockingExample() {
-  val s = awaitBlocking<String> {
-    Thread.sleep(1000)
-    "some-string"
-  }
-}
+include::Example.kt[tags=awaitBlocking]
 ----
 
 == Streams of events
@@ -156,19 +108,7 @@ The `ReceiveChannelHandler` class allows receiving events through the (suspendab
 
 [source,kotlin,indent=0]
 ----
-suspend fun streamExample() {
-  val adapter = vertx.receiveChannelHandler<Message<Int>>()
-  vertx.eventBus().localConsumer<Int>("a.b.c").handler(adapter)
-
-  // Send 15 messages
-  for (i in 0..15) vertx.eventBus().send("a.b.c", i)
-
-  // Receive the first 10 messages
-  for (i in 0..10) {
-    val message = adapter.receive()
-    println("Received: ${message.body()}")
-  }
-}
+include::Example.kt[tags=streamExample]
 ----
 
 == Awaiting the completion of Vert.x futures
@@ -178,22 +118,7 @@ which case the method returns the corresponding `AsyncResult<T>` object.
 
 [source,kotlin,indent=0]
 ----
-suspend fun awaitingFuture() {
-  val httpServerFuture = Future.future<HttpServer>()
-  vertx.createHttpServer()
-    .requestHandler { req -> req.response().end("Hello!") }
-    .listen(8000, httpServerFuture)
-
-  val httpServer = httpServerFuture.await()
-  println("HTTP server port: ${httpServer.actualPort()}")
-
-  val result = CompositeFuture.all(httpServerFuture, httpServerFuture).await()
-  if (result.succeeded()) {
-    println("The server is now running!")
-  } else {
-    result.cause().printStackTrace()
-  }
-}
+include::Example.kt[tags=awaitingFuture]
 ----
 
 == Channels
@@ -217,23 +142,7 @@ Channel can be really useful when you need to handle a stream of correlated valu
 
 [source,kotlin,indent=0]
 ----
-suspend fun handleTemperatureStream() {
-  val stream = vertx.eventBus().consumer<Double>("temperature")
-  val channel = stream.toChannel(vertx)
-
-  var min = Double.MAX_VALUE
-  var max = Double.MIN_VALUE
-
-  // Iterate until the stream is closed
-  // Non-blocking
-  for (msg in channel) {
-    val temperature = msg.body()
-    min = Math.min(min, temperature)
-    max = Math.max(max, temperature)
-  }
-
-  // The stream is now closed
-}
+include::Example.kt[tags=channel0]
 ----
 
 It can also be useful for parsing protocols. We will build a non blocking HTTP request parser to show
@@ -246,28 +155,7 @@ Here is the initial version of the parser, that handles only the HTTP request-li
 
 [source,kotlin,indent=0]
 ----
-val server = vertx.createNetServer().connectHandler { socket ->
-
-  // The record parser provides a stream of buffers delimited by \r\n
-  val stream = RecordParser.newDelimited("\r\n", socket)
-
-  // Convert the stream to a Kotlin channel
-  val channel = stream.toChannel(vertx)
-
-  // Run the coroutine
-  launch(vertx.dispatcher()) {
-
-    // Receive the request-line
-    // Non-blocking
-    val line = channel.receive().toString().split(" ")
-    val method = line[0]
-    val uri = line[1]
-
-    println("Received HTTP request ($method, $uri)")
-
-    // Still need to parse headers and body...
-  }
-}
+include::Example.kt[tags=channel1]
 ----
 
 Parsing the request-line is as simple as calling `receive` on the channel.
@@ -276,75 +164,14 @@ The next step parses HTTP headers by receiving chunks until we get an empty one
 
 [source,kotlin,indent=0]
 ----
-// Receive HTTP headers
-val headers = HashMap<String, String>()
-while (true) {
-
-  // Non-blocking
-  val header = channel.receive().toString()
-
-  // Done with parsing headers
-  if (header.isEmpty()) {
-    break
-  }
-
-  val pos = header.indexOf(':')
-  headers[header.substring(0, pos).toLowerCase()] = header.substring(pos + 1).trim()
-}
-
-println("Received HTTP request ($method, $uri) with headers ${headers.keys}")
+include::Example.kt[tags=channel2]
 ----
 
 Finally we terminate the parser by handling optional request bodies
 
 [source,kotlin,indent=0]
 ----
-// Receive the request body
-val transferEncoding = headers["transfer-encoding"]
-val contentLength = headers["content-length"]
-
-val body : Buffer?
-if (transferEncoding == "chunked") {
-
-  // Handle chunked encoding, e.g
-  // 5\r\n
-  // HELLO\r\n
-  // 0\r\n
-  // \r\n
-
-  body = Buffer.buffer()
-  while (true) {
-
-    // Parse length chunk
-    // Non-blocking
-    val len = channel.receive().toString().toInt(16)
-    if (len == 0) {
-      break
-    }
-
-    // The stream is flipped to parse a chunk of the exact size
-    stream.fixedSizeMode(len + 2)
-
-    // Receive the chunk and append it
-    // Non-blocking
-    val chunk = channel.receive()
-    body.appendBuffer(chunk, 0, chunk.length() - 2)
-
-    // The stream is flipped back to the \r\n delimiter to parse the next chunk
-    stream.delimitedMode("\r\n")
-  }
-} else if (contentLength != null) {
-
-  // The stream is flipped to parse a body of the exact size
-  stream.fixedSizeMode(contentLength.toInt())
-
-  // Non-blocking
-  body = channel.receive()
-} else {
-  body = null
-}
-
-println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size ${body?.length() ?: 0}")
+include::Example.kt[tags=channel3]
 ----
 
 === Sending data
@@ -375,24 +202,7 @@ can suspend the execution when the channel is full, the equivalent without a cha
 
 [source,kotlin,indent=0]
 ----
-// Check we can write in the stream
-if (stream.writeQueueFull()) {
-
-  // We can't write so we set a drain handler to be called when we can write again
-  stream.drainHandler { broadcastTemperature() }
-} else {
-
-  // Read temperature
-  val temperature = readTemperatureSensor()
-
-  // Write it to the stream
-  stream.write(temperature)
-
-  // Wait for one second
-  vertx.setTimer(1000) {
-    broadcastTemperature()
-  }
-}
+include::Example.kt[tags=sendChannel]
 ----
 
 == Delay, cancellation and timeouts
@@ -401,26 +211,14 @@ Vertx dispatcher fully supports coroutine `delay` function via Vert.x timers:
 
 [source,kotlin,indent=0]
 ----
-launch(vertx.dispatcher()) {
-  // Set a one second Vertx timer
-  delay(1000)
-}
+include::Example.kt[tags=delay]
 ----
 
 Timers support cancellation
 
 [source,kotlin,indent=0]
 ----
-val job = launch(vertx.dispatcher()) {
-  // Set a one second Vertx timer
-  while (true) {
-    delay(1000)
-    // Do something periodically
-  }
-}
-
-// Sometimes later
-job.cancel()
+include::Example.kt[tags=cancellation]
 ----
 
 cancellation is https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#cancellation-is-cooperative[cooperative]
@@ -429,15 +227,7 @@ You can also schedule timeout with the `withTimeout` function
 
 [source,kotlin,indent=0]
 ----
-launch(vertx.dispatcher()) {
-  try {
-    val id = withTimeout<String>(1000) {
-      return awaitEvent<String> { anAsyncMethod(it) }
-    }
-  } catch (e: TimeoutCancellationException) {
-    // Cancelled
-  }
-}
+include::Example.kt[tags=withTimeout]
 ----
 
 == Coroutine builders

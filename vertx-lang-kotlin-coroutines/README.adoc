@@ -1,0 +1,9 @@
+= Kotlin coroutines for Vert.x
+
+== Previewing documentation
+
+```
+> mvn generate-sources asciidoctor:process-asciidoc
+```
+
+Docs are generated in `target/html`
