@@ -10,6 +10,11 @@
     <version>3.6.0-SNAPSHOT</version>
   </parent>
 
+  <properties>
+    <!-- Files are copied there as it contains the examples -->
+    <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>
+  </properties>
+
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
 
   <dependencies>
@@ -154,6 +159,43 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-asciidoc</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/asciidoc/kotlin</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/src/main/asciidoc</directory>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/src/main/java/examples</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Run it to preview docs : mvn asciidoctor:process-asciidoc -->
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <configuration>
+          <attributes>
+            <toc>left</toc>
+          </attributes>
+          <sourceDirectory>${project.build.directory}/asciidoc</sourceDirectory>
+          <outputDirectory>${project.build.directory}/html</outputDirectory>
+        </configuration>
       </plugin>
     </plugins>
   </build>
