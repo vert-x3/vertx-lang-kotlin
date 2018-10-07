@@ -1,7 +1,5 @@
 = vertx-lang-kotlin-coroutines
 
-:sourcedir: ../../java/examples
-
 The `vertx-lang-kotlin-coroutines` integrates Kotlin _coroutines_ for performing asynchronous operations and processing events.
 This results in using a programming model that looks like sequential code, yet it does not block kernel threads.
 
@@ -35,7 +33,7 @@ as a coroutine that can be suspended:
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=launchCoroutine]
+include::Example.kt[tags=launchCoroutine]
 ----
 
 The `vertx.dispatcher()` returns a coroutine dispatcher that execute coroutines using the Vert.x event loop.
@@ -52,7 +50,7 @@ for Kotlin coroutines. You should override the `start()` and (optionally) the `s
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=CoroutineVerticle]
+include::Example.kt[tags=CoroutineVerticle]
 ----
 
 == Getting one-shot asynchronous results
@@ -72,7 +70,7 @@ Here is an example:
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=awaitResult]
+include::Example.kt[tags=awaitResult]
 ----
 
 When the block produces a failure, the caller can handle it as an exception using the usual exception
@@ -80,7 +78,7 @@ When the block produces a failure, the caller can handle it as an exception usin
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=awaitResultFailure]
+include::Example.kt[tags=awaitResultFailure]
 ----
 
 == Getting one-shot events
@@ -89,7 +87,7 @@ Processing a one-shot event (and not the next occurrences, if any) is achieved u
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=awaitEvent]
+include::Example.kt[tags=awaitEvent]
 ----
 
 == Getting one-shot worker results
@@ -98,7 +96,7 @@ Processing a blocking computation is achieved using the `awaitBlocking` function
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=awaitBlocking]
+include::Example.kt[tags=awaitBlocking]
 ----
 
 == Streams of events
@@ -110,7 +108,7 @@ The `ReceiveChannelHandler` class allows receiving events through the (suspendab
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=streamExample]
+include::Example.kt[tags=streamExample]
 ----
 
 == Awaiting the completion of Vert.x futures
@@ -120,7 +118,7 @@ which case the method returns the corresponding `AsyncResult<T>` object.
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=awaitingFuture]
+include::Example.kt[tags=awaitingFuture]
 ----
 
 == Channels
@@ -144,7 +142,7 @@ Channel can be really useful when you need to handle a stream of correlated valu
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=channel0]
+include::Example.kt[tags=channel0]
 ----
 
 It can also be useful for parsing protocols. We will build a non blocking HTTP request parser to show
@@ -157,7 +155,7 @@ Here is the initial version of the parser, that handles only the HTTP request-li
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=channel1]
+include::Example.kt[tags=channel1]
 ----
 
 Parsing the request-line is as simple as calling `receive` on the channel.
@@ -166,14 +164,14 @@ The next step parses HTTP headers by receiving chunks until we get an empty one
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=channel2]
+include::Example.kt[tags=channel2]
 ----
 
 Finally we terminate the parser by handling optional request bodies
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=channel3]
+include::Example.kt[tags=channel3]
 ----
 
 === Sending data
@@ -204,7 +202,7 @@ can suspend the execution when the channel is full, the equivalent without a cha
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=sendChannel]
+include::Example.kt[tags=sendChannel]
 ----
 
 == Delay, cancellation and timeouts
@@ -213,14 +211,14 @@ Vertx dispatcher fully supports coroutine `delay` function via Vert.x timers:
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=delay]
+include::Example.kt[tags=delay]
 ----
 
 Timers support cancellation
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=cancellation]
+include::Example.kt[tags=cancellation]
 ----
 
 cancellation is https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#cancellation-is-cooperative[cooperative]
@@ -229,7 +227,7 @@ You can also schedule timeout with the `withTimeout` function
 
 [source,kotlin,indent=0]
 ----
-include::{sourcedir}/Example.kt[tags=withTimeout]
+include::Example.kt[tags=withTimeout]
 ----
 
 == Coroutine builders
