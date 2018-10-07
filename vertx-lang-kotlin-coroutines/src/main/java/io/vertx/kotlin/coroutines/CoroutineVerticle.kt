@@ -10,10 +10,13 @@ import kotlinx.coroutines.experimental.launch
 import kotlin.coroutines.experimental.CoroutineContext
 
 /**
- * A Verticle which run its start and stop methods in coroutine.
- * You should subclass this class instead of AbstractVerticle to create any verticles that use vertx-kotlin-coroutine.
+ * A Verticle which run its start and stop methods in coroutine. By default, all child coroutines will have the
+ * verticle's [CoroutineScope] as the parent scope.
+ * You should subclass this class instead of AbstractVerticle to create any verticles that use
+ * vertx-kotlin-coroutine.
  *
  * @author <a href="http://www.streamis.me">Stream Liu</a>
+ * @author [Guido Pio Mariotti](https://github.com/gmariotti)
  */
 abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
