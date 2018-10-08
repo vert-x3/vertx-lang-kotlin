@@ -14,7 +14,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>vertx-lang-kotlin-codegen</module>
+    <module>vertx-lang-kotlin-gen</module>
     <module>vertx-lang-kotlin-coroutines</module>
     <module>vertx-lang-kotlin</module>
   </modules>
@@ -87,7 +87,7 @@
         <jdk>1.8</jdk>
       </activation>
       <modules>
-        <module>vertx-lang-kotlin-codegen</module>
+        <module>vertx-lang-kotlin-gen</module>
         <module>vertx-lang-kotlin-compiler</module>
         <module>vertx-lang-kotlin-coroutines</module>
         <module>vertx-lang-kotlin</module>

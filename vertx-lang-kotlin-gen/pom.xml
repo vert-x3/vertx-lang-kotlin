@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>vertx-lang-kotlin-codegen</artifactId>
+  <artifactId>vertx-lang-kotlin-gen</artifactId>
 
   <dependencies>
 
