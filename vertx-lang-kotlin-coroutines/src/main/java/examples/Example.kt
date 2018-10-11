@@ -20,6 +20,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.kotlin.coroutines.dispatcher
 import io.vertx.kotlin.coroutines.receiveChannelHandler
 import io.vertx.kotlin.coroutines.toChannel
+import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.TimeoutCancellationException
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.coroutineScope
@@ -30,10 +31,8 @@ import kotlinx.coroutines.experimental.withTimeout
 fun launchCoroutineExample() {
   // tag::launchCoroutine[]
   val vertx = Vertx.vertx()
-  val exampleVerticle = ExampleVerticle()
-  vertx.deployVerticle(exampleVerticle)
 
-  exampleVerticle.launch {
+  GlobalScope.launch(vertx.dispatcher()) {
     val timerId = awaitEvent<Long> { handler ->
       vertx.setTimer(1000, handler)
     }
@@ -58,20 +57,13 @@ class ExampleVerticle : CoroutineVerticle() {
 
   override suspend fun start() {
     coroutineScope {
-      awaitEventExample()
       awaitResultExample()
+      awaitEventExample()
       streamExample()
       handlerAndCoroutineExample()
       awaitingFuture()
     }
   }
-
-  // tag::awaitEvent[]
-  suspend fun awaitEventExample() {
-    val id = awaitEvent<Long> { h -> vertx.setTimer(2000L, h) }
-    println("This should be fired in 2s by some time with id=$id")
-  }
-  // end::awaitEvent[]
 
   // tag::awaitResult[]
   suspend fun awaitResultExample() {
@@ -108,6 +100,13 @@ class ExampleVerticle : CoroutineVerticle() {
     }
   }
   // end::awaitResultFailure[]
+
+  // tag::awaitEvent[]
+  suspend fun awaitEventExample() {
+    val id = awaitEvent<Long> { h -> vertx.setTimer(2000L, h) }
+    println("This should be fired in 2s by some time with id=$id")
+  }
+  // end::awaitEvent[]
 
   // tag::awaitBlocking[]
   suspend fun awaitBlockingExample() {
@@ -280,8 +279,8 @@ class ExampleVerticle : CoroutineVerticle() {
       body = null
     }
 
-    println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size ${body?.length()
-      ?: 0}")
+    val bodySize = body?.length() ?: 0
+    println("Received HTTP request ($method, $uri) with headers ${headers.keys} and body with size $bodySize")
     // end::channel3[]
   }
 
