@@ -194,12 +194,12 @@ class ReceiveChannelHandler<T> constructor(context: Context) : ReceiveChannel<T>
     handler?.handle(event)
   }
 
-  override fun cancel(): Boolean {
-    TODO("not implemented")
+  override fun cancel(cause: Throwable?): Boolean {
+    return channel.cancel(cause)
   }
 
-  override fun cancel(cause: Throwable?): Boolean {
-    TODO("not implemented")
+  override fun cancel(): Boolean {
+    return this.cancel(null)
   }
 }
 

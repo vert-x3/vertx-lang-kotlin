@@ -24,12 +24,13 @@ its current kernel thread so that another coroutine can process events.
 
 `vertx-lang-kotlin-coroutines` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
 
-NOTE: `vertx-lang-kotlin-coroutines` currently only works with Kotlin and is an https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] feature of Kotlin 1.1
+NOTE: `vertx-lang-kotlin-coroutines` currently only works with Kotlin and will be out of the https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] status
+in Kotlin 1.3
 
 == Running a coroutine from a Vert.x context
 
-Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `launch` (a coroutine builder) method allows running a block of code
-as a coroutine that can be suspended:
+Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `GlobalScope.launch` method allows to run a block of code as a
+coroutine in the "Global" application scope (bounded on the lifetime of the application):
 
 [source,kotlin,indent=0]
 ----
@@ -46,12 +47,17 @@ More details are given in the next sections on handlers, events and stream of ev
 == Extending CoroutineVerticle
 
 You can deploy your code as instances of `io.vertx.kotlin.coroutines.CoroutineVerticle`, a specialized type of verticle
-for Kotlin coroutines. You should override the `start()` and (optionally) the `stop()` methods of the verticle:
+for Kotlin coroutines. The `CoroutineVerticle` class implements the `kotlinx.coroutines.experimental.CoroutineScope` interface,
+making all coroutines builder methods bounded by default to the verticle context. You should override the suspending `start()`
+and (optionally) the suspending `stop()` methods of the verticle:
 
 [source,kotlin,indent=0]
 ----
 include::Example.kt[tags=CoroutineVerticle]
 ----
+
+All code examples below assume to be run inside a `CoroutineVerticle` implementation, but you can replace all `<builder> { .. }`
+calls with `GlobalScope.<builder> { .. }` to use the application scope instead.
 
 == Getting one-shot asynchronous results
 
@@ -180,21 +186,7 @@ Using a channel to send data is quite straightforward:
 
 [source,kotlin,indent=0]
 ----
-suspend fun sendChannel() {
-  val stream = vertx.eventBus().publisher<Double>("temperature")
-  val channel = stream.toChannel(vertx)
-
-  while (true) {
-    val temperature = readTemperatureSensor()
-
-    // Broadcast the temperature
-    // Non-blocking but could be suspended
-    channel.send(temperature)
-
-    // Wait for one second
-    awaitEvent<Long> { vertx.setTimer(1000, it)  }
-  }
-}
+include::Example.kt[tags=sendChannel]
 ----
 
 Both `SendChannel#send` and `WriteStream#write` are non blocking operations, however unlike `SendChannel#send`
@@ -232,12 +224,12 @@ include::Example.kt[tags=withTimeout]
 
 == Coroutine builders
 
-Vert.x works will all coroutine builders: `launch`, `async` and `runBlocking` . The `runBlocking` builder
-must not be used from a Vert.x event loop thread.
+Vert.x works will all coroutine builders, as long as an instance of `CoroutineScope` is available: `launch`, `async` and `runBlocking`.
+The `runBlocking` builder must not be used from a Vert.x event loop thread.
 
 == Coroutine interoperability
 
-Vertx integration has been designed to be fully interroperable with Kotlin coroutines
+Vertx integration has been designed to be fully interoperable with Kotlin coroutines
 
 * `kotlinx.coroutines.experimental.sync.Mutex` are executed on the event loop thread when using the vertx dispatcher
 

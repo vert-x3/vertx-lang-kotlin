@@ -12,20 +12,23 @@ import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.CancellationException
+import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withTimeout
-import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
+import java.util.LinkedList
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.test.assertEquals
 import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
@@ -53,27 +56,27 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testContext(testContext: TestContext) {
+  fun `test context`(testContext: TestContext) {
     val async = testContext.async()
     val ctx = vertx.getOrCreateContext()
-    Assert.assertTrue(ctx.isEventLoopContext)
+    assertTrue(ctx.isEventLoopContext)
     async.complete()
   }
 
   @Test
-  fun testSleep(testContext: TestContext) {
+  fun `test sleep`(testContext: TestContext) {
     val async = testContext.async(2)
-    val job: Job = launch(vertx.dispatcher()) {
+    val job: Job = GlobalScope.launch(vertx.dispatcher()) {
       val th = Thread.currentThread()
       val cnt = AtomicInteger()
       val periodicTimer = vertx.periodicStream(1L).handler {
-        Assert.assertSame(Thread.currentThread(), th)
+        assertSame(Thread.currentThread(), th)
         cnt.incrementAndGet()
       }
-      Assert.assertSame(Thread.currentThread(), th)
+      assertSame(Thread.currentThread(), th)
       awaitEvent<Long> { h -> vertx.setTimer(1000L, h) }
-      Assert.assertTrue(cnt.get() > 900)
-      Assert.assertSame(Thread.currentThread(), th)
+      assertTrue(cnt.get() > 900)
+      assertSame(Thread.currentThread(), th)
       periodicTimer.cancel()
       async.countDown()
     }
@@ -83,21 +86,21 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testFiberHandler(testContext: TestContext) {
+  fun `test fiber Handler`(testContext: TestContext) {
     val async = testContext.async()
     val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
     server.requestHandler { req ->
-      launch(vertx.dispatcher()) {
+      GlobalScope.launch(vertx.dispatcher()) {
         val res = awaitResult<String> { ai.methodWithParamsAndHandlerNoReturn("oranges", 23, it) }
-        Assert.assertEquals("oranges23", res)
+        assertEquals("oranges23", res)
         req.response().end()
       }
     }
     server.listen { res ->
-      Assert.assertTrue(res.succeeded())
+      assertTrue(res.succeeded())
       val client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
       client.getNow("/somepath") { resp ->
-        Assert.assertTrue(resp.statusCode() == 200)
+        assertTrue(resp.statusCode() == 200)
         client.close()
         server.close { async.complete() }
       }
@@ -105,50 +108,50 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodWithParamsAndHandlerNoReturn(testContext: TestContext) {
+  fun `test synchronous execution of methodWithParamsAndHandlerNoReturn`(testContext: TestContext) {
     val async = testContext.async()
     val th = Thread.currentThread()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val res = awaitResult<String> { ai.methodWithParamsAndHandlerNoReturn("oranges", 23, it) }
-      Assert.assertEquals("oranges23", res)
-      Assert.assertSame(Thread.currentThread(), th)
+      assertEquals("oranges23", res)
+      assertSame(Thread.currentThread(), th)
       async.complete()
     }
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerNoReturn(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithNoParamsAndHandlerNoReturn`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { ai.methodWithNoParamsAndHandlerNoReturn(it) }
-      Assert.assertEquals("wibble", res)
+      assertEquals("wibble", res)
       async.complete()
     }
   }
 
   @Test
-  fun testExecSyncMethodWithParamsAndHandlerWithReturn(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithParamsAndHandlerWithReturn`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { ai.methodWithParamsAndHandlerWithReturn("oranges", 23, it) }
-      Assert.assertEquals("oranges23", res)
+      assertEquals("oranges23", res)
       async.complete()
     }
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturn(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithNoParamsAndHandlerWithReturn`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = awaitResult<String> { ai.methodWithNoParamsAndHandlerWithReturn(it) }
-      Assert.assertEquals("wibble", res)
+      assertEquals("wibble", res)
       async.complete()
     }
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnNoTimeout(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithNoParamsAndHandlerWithReturnNoTimeout`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val res = withTimeout(2000) {
         awaitResult<String> { ai.methodWithNoParamsAndHandlerWithReturnTimeout(it, 1000) }
@@ -159,8 +162,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodWithNoParamsAndHandlerWithReturnTimeout(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithNoParamsAndHandlerWithReturnTimeout`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         withTimeout(500) {
@@ -175,11 +178,11 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodWithParamsAndHandlerInterface(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodWithParamsAndHandlerInterface`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val returned = awaitResult<ReturnedInterface> { ai.methodWithParamsAndHandlerInterface("apples", 123, it) }
-      Assert.assertNotNull(returned)
+      assertNotNull(returned)
       val res = awaitResult<String> { returned.methodWithParamsAndHandlerNoReturn("bananas", 100, it) }
       testContext.assertEquals(res, "bananas100")
       async.complete()
@@ -187,8 +190,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodThatFails(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodThatFails`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         awaitResult<String> { ai.methodThatFails("oranges", it) }
@@ -201,8 +204,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodThatThrowsException(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodThatThrowsException`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         awaitResult<String> { ai.methodThatThrowsException("oranges", it) }
@@ -215,8 +218,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testExecSyncMethodThatCompleteTwice(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test synchronous execution of methodThatCompleteTwice`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async(2)
       val v = awaitResult<String> { h ->
         vertx.runOnContext {
@@ -234,27 +237,27 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testReceiveEvent(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test receive event`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = awaitEvent<Long> { vertx.setTimer(500, it) }
       val end = System.currentTimeMillis()
-      Assert.assertTrue(end - start >= 500)
-      Assert.assertTrue(tid >= 0)
+      assertTrue(end - start >= 500)
+      assertTrue(tid >= 0)
       async.complete()
     }
   }
 
   @Test
-  fun testReceiveEventTimeout(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test timeout receive event`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       try {
         withTimeout(250) {
           awaitEvent<Long> { vertx.setTimer(500, it) }
         }
-        Assert.fail()
+        fail()
       } catch (e: CancellationException) {
         testContext.assertTrue(Context.isOnEventLoopThread())
         async.complete()
@@ -263,23 +266,23 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testReceiveEventNoTimeout(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test no timeout receive event`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val start = System.currentTimeMillis()
       val tid = withTimeout(1000L) {
         awaitEvent<Long> { vertx.setTimer(500, it) }
       }
       val end = System.currentTimeMillis()
-      Assert.assertTrue(end - start >= 500)
-      Assert.assertTrue(tid >= 0)
+      assertTrue(end - start >= 500)
+      assertTrue(tid >= 0)
       async.complete()
     }
   }
 
   @Test
-  fun testEventMethodFailure(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test failure event method`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -293,8 +296,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testEventMethodFailureNoTimeout(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test timeout failure event method`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async()
       val cause = RuntimeException()
       try {
@@ -310,8 +313,8 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testReceiveEventTwice(testContext: TestContext) {
-    launch(vertx.dispatcher()) {
+  fun `test receive event twice`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val async = testContext.async(2)
       val v = awaitEvent<String> { h ->
         vertx.runOnContext {
@@ -329,7 +332,7 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testReadStreamToChannel(testContext: TestContext) {
+  fun `test readStream to channel`(testContext: TestContext) {
     val stream = TestStream<Int>()
     val capacity = 3
     val expected = LinkedList<Int>()
@@ -344,7 +347,7 @@ class VertxCoroutineTest {
     }
     assertTrue(stream.writeQueueFull())
     val list = LinkedList<Int>()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       for (item in channel) {
         list.add(item)
         testContext.assertEquals((capacity - list.size) >= capacity / 2, stream.writeQueueFull())
@@ -358,7 +361,7 @@ class VertxCoroutineTest {
     stream.write(-2)
     stream.end()
     val ended = AtomicBoolean()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       var count = -1
       for (item in channel) {
         assertEquals(count--, item)
@@ -370,7 +373,7 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testWriteStreamToChannel(testContext: TestContext) {
+  fun `test writeStream to channel`(testContext: TestContext) {
     val stream = TestStream<Int>()
     val capacity = 3
     val expected = LinkedList<Int>()
@@ -381,7 +384,7 @@ class VertxCoroutineTest {
     val channel = writeStream.toChannel(vertx, capacity)
     val received = LinkedList<Int>()
     stream.handler { elt -> received.add(elt) }
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       for (elt in expected) {
         channel.send(elt)
         assertFalse(channel.isFull)
@@ -392,7 +395,7 @@ class VertxCoroutineTest {
     stream.pause()
     val async = testContext.async()
     var foo = false
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       for (elt in expected) {
         channel.send(elt)
         testContext.assertFalse(channel.isFull)
@@ -407,7 +410,7 @@ class VertxCoroutineTest {
     stream.resume()
     testContext.assertTrue(foo)
     testContext.assertEquals(listOf(0, 1, 2, 3, 4), received)
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       channel.send(5)
     }
     testContext.assertEquals(listOf(0, 1, 2, 3, 4, 5), received)
@@ -418,7 +421,7 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testHandlerAdaptor(testContext: TestContext) {
+  fun `test handler adaptor`(testContext: TestContext) {
     val async = testContext.async()
     val eb = vertx.eventBus()
     // Create a couple of consumers on different addresses
@@ -435,16 +438,16 @@ class VertxCoroutineTest {
       eb.send(ADDRESS1, "wibble")
       eb.send(ADDRESS2, "flibble")
     }
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       for (i in 0..9) {
         val received1 = adaptor1.receive()
-        Assert.assertEquals("wibble", received1.body())
+        assertEquals("wibble", received1.body())
         val received2 = adaptor2.receive()
-        Assert.assertEquals("flibble", received2.body())
+        assertEquals("flibble", received2.body())
       }
 
       val end = System.currentTimeMillis()
-      Assert.assertTrue(end - start >= 100)
+      assertTrue(end - start >= 100)
 
       // Try a receive with timeout
       var received1: Message<String>? = null
@@ -453,8 +456,8 @@ class VertxCoroutineTest {
       } catch (e: CancellationException) {
       }
 
-      if (received1 is Message<*>) Assert.assertEquals("wibble", received1.body())
-      else Assert.fail("received1 cast type failed.")
+      if (received1 is Message<*>) assertEquals("wibble", received1.body())
+      else fail("received1 cast type failed.")
 
       // And timing out
       val adaptor3 = vertx.receiveChannelHandler<Message<String>>()
@@ -469,10 +472,10 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testAwaitFutureSucceed(testContext: TestContext) {
+  fun `test await of succeeded future`(testContext: TestContext) {
     val async = testContext.async()
     val fut = Future.future<String>()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val s = fut.await()
       testContext.assertEquals("the-string", s)
       async.complete()
@@ -483,11 +486,11 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testAwaitFutureFailure(testContext: TestContext) {
+  fun `test await of failed future`(testContext: TestContext) {
     val async = testContext.async()
     val fut = Future.future<String>()
     val cause = RuntimeException()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       try {
         fut.await()
         testContext.fail()
@@ -502,10 +505,10 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testAwaitBlocking(testContext: TestContext) {
+  fun `test awaitBlocking`(testContext: TestContext) {
     val async = testContext.async()
     val isOnWorkerThread = AtomicBoolean()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       val thread = Thread.currentThread()
       val result = awaitBlocking {
@@ -521,9 +524,9 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun testAwaitBlockingFailure(testContext: TestContext) {
+  fun `test failure of awaitBlocking`(testContext: TestContext) {
     val async = testContext.async()
-    launch(vertx.dispatcher()) {
+    GlobalScope.launch(vertx.dispatcher()) {
       val cause = Exception()
       val ctx = Vertx.currentContext()
       val thread = Thread.currentThread()
