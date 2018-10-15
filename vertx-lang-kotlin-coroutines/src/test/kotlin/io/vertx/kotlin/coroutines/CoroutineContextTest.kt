@@ -1,6 +1,5 @@
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.AbstractVerticle
 import io.vertx.core.Context
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
@@ -72,10 +71,10 @@ class CoroutineContextTest {
   @Test
   fun `test in Worker context`(testContext: TestContext) {
     val async = testContext.async()
-    vertx.deployVerticle(object: AbstractVerticle() {
-      override fun start() {
-        GlobalScope.launch(vertx.dispatcher()) {
-          runTest(testContext)
+    vertx.deployVerticle(object : CoroutineVerticle() {
+      override suspend fun start() {
+        launch {
+          runTest(testContext, isOnEventLoop = false)
         }
       }
     }, DeploymentOptions().setWorker(true), testContext.asyncAssertSuccess {
@@ -86,10 +85,10 @@ class CoroutineContextTest {
   @Test
   fun `test in MultithreadedWorker context`(testContext: TestContext) {
     val async = testContext.async()
-    vertx.deployVerticle(object: AbstractVerticle() {
-      override fun start() {
-        GlobalScope.launch(vertx.dispatcher()) {
-          runTest(testContext)
+    vertx.deployVerticle(object : CoroutineVerticle() {
+      override suspend fun start() {
+        launch {
+          runTest(testContext, isOnEventLoop = false)
         }
       }
     }, DeploymentOptions().setWorker(true).setMultiThreaded(true), testContext.asyncAssertFailure {
@@ -122,7 +121,7 @@ class CoroutineContextTest {
     }
   }
 
-  suspend fun runTest(testContext: TestContext) {
+  suspend fun runTest(testContext: TestContext, isOnEventLoop: Boolean = true) {
     testContext.assertTrue(Context.isOnVertxThread())
     val ctx = Vertx.currentContext()
     val a = AtomicLong()
@@ -130,7 +129,8 @@ class CoroutineContextTest {
       a.set(vertx.setTimer(10, handler))
     }
     testContext.assertEquals(id, a.get())
-    testContext.assertTrue(Context.isOnEventLoopThread(), "Expected event loop thread instead of ${Thread.currentThread()}")
+    if (isOnEventLoop) testContext.assertTrue(Context.isOnEventLoopThread(), "Expected event loop thread instead of ${Thread.currentThread()}")
+    else testContext.assertFalse(Context.isOnEventLoopThread(), "Expected non event loop thread")
     testContext.assertEquals(ctx, Vertx.currentContext())
   }
 
