@@ -21,7 +21,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.coroutines.version>0.30.0</kotlin.coroutines.version>
+    <kotlin.coroutines.version>0.30.2</kotlin.coroutines.version>
     <!-- latest version compatible with coroutines lib -->
     <kotlin.version>1.2.70</kotlin.version>
     <junit.version>4.12</junit.version>
