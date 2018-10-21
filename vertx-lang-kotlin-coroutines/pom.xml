@@ -13,6 +13,7 @@
   <properties>
     <!-- Files are copied there as it contains the examples -->
     <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>
+    <atomicfu.version>0.11.9</atomicfu.version>
   </properties>
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
@@ -22,6 +23,12 @@
       <groupId>org.jetbrains.kotlinx</groupId>
       <artifactId>kotlinx-coroutines-core</artifactId>
       <version>${kotlin.coroutines.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>atomicfu</artifactId>
+      <version>${atomicfu.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -81,6 +88,7 @@
         </executions>
       </plugin>
 
+      <!-- compile Kotlin files to staging directory -->
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
@@ -94,6 +102,11 @@
             <goals>
               <goal>compile</goal>
             </goals>
+            <configuration>
+              <output>${project.build.directory}/classes-pre-atomicfu</output>
+              <!-- "VH" to use Java 9 VarHandle, "BOTH" to produce multi-version code -->
+              <variant>FU</variant>
+            </configuration>
           </execution>
           <execution>
             <id>test-compile</id>
@@ -101,6 +114,23 @@
             <goals>
               <goal>test-compile</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- transform classes with AtomicFU plugin -->
+      <plugin>
+        <groupId>org.jetbrains.kotlinx</groupId>
+        <artifactId>atomicfu-maven-plugin</artifactId>
+        <version>${atomicfu.version}</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+            <configuration>
+              <input>${project.build.directory}/classes-pre-atomicfu</input>
+            </configuration>
           </execution>
         </executions>
       </plugin>
