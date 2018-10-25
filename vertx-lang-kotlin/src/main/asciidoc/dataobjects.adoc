@@ -3316,10 +3316,10 @@ Set whether metrics will be enabled on the Vert.x instance.
 == MicrometerMetricsOptions
 
 ++++
- Vert.x micrometer configuration.<br/>
+ Vert.x micrometer configuration.
+ <p>
  It is required to set either <code>influxDbOptions</code>, <code>prometheusOptions</code> or <code>jmxMetricsOptions</code>
- (or, programmatically, <code>micrometerRegistry</code>)
- in order to actually report metrics.
+ (or, programmatically, <code>micrometerRegistry</code>) in order to actually report metrics.
 ++++
 '''
 
@@ -3340,6 +3340,9 @@ Set InfluxDB options.
 |[[jmxMetricsOptions]]`@jmxMetricsOptions`|`link:dataobjects.html#VertxJmxMetricsOptions[VertxJmxMetricsOptions]`|+++
 Set JMX metrics options.
  Setting a registry backend option is mandatory in order to effectively report metrics.
++++
+|[[jvmMetricsEnabled]]`@jvmMetricsEnabled`|`Boolean`|+++
+Whether JVM metrics should be collected. Defaults to <code>false</code>.
 +++
 |[[labelMatches]]`@labelMatches`|`Array of link:dataobjects.html#Match[Match]`|+++
 Set a list of rules for label matching.

@@ -11,15 +11,16 @@ import io.vertx.micrometer.VertxPrometheusOptions
 /**
  * A function providing a DSL for building [io.vertx.micrometer.MicrometerMetricsOptions] objects.
  *
- * Vert.x micrometer configuration.<br/>
+ * Vert.x micrometer configuration.
+ * <p>
  * It is required to set either <code>influxDbOptions</code>, <code>prometheusOptions</code> or <code>jmxMetricsOptions</code>
- * (or, programmatically, <code>micrometerRegistry</code>)
- * in order to actually report metrics.
+ * (or, programmatically, <code>micrometerRegistry</code>) in order to actually report metrics.
  *
  * @param disabledMetricsCategories  Sets metrics types that are disabled.
  * @param enabled  Set whether metrics will be enabled on the Vert.x instance. Metrics are not enabled by default.
  * @param influxDbOptions  Set InfluxDB options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param jmxMetricsOptions  Set JMX metrics options. Setting a registry backend option is mandatory in order to effectively report metrics.
+ * @param jvmMetricsEnabled  Whether JVM metrics should be collected. Defaults to <code>false</code>.
  * @param labelMatches  Set a list of rules for label matching.
  * @param labelMatchs  Add a rule for label matching.
  * @param labels  Sets enabled labels. These labels can be fine-tuned later on using Micrometer's Meter filters (see http://micrometer.io/docs/concepts#_meter_filters)
@@ -34,6 +35,7 @@ fun MicrometerMetricsOptions(
   enabled: Boolean? = null,
   influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,
   jmxMetricsOptions: io.vertx.micrometer.VertxJmxMetricsOptions? = null,
+  jvmMetricsEnabled: Boolean? = null,
   labelMatches: Iterable<io.vertx.micrometer.Match>? = null,
   labelMatchs: Iterable<io.vertx.micrometer.Match>? = null,
   labels: Iterable<Label>? = null,
@@ -51,6 +53,9 @@ fun MicrometerMetricsOptions(
   }
   if (jmxMetricsOptions != null) {
     this.setJmxMetricsOptions(jmxMetricsOptions)
+  }
+  if (jvmMetricsEnabled != null) {
+    this.setJvmMetricsEnabled(jvmMetricsEnabled)
   }
   if (labelMatches != null) {
     this.setLabelMatches(labelMatches.toList())
