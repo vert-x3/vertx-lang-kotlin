@@ -68,6 +68,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-cassandra-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-jdbc-client</artifactId>
       <optional>true</optional>
     </dependency>
@@ -396,6 +401,7 @@
             vertx-sql-common,
             vertx-mongo-client,
             vertx-mongo-service,
+            vertx-cassandra-client,
             vertx-jdbc-client,
             vertx-auth-common,
             vertx-auth-jdbc,

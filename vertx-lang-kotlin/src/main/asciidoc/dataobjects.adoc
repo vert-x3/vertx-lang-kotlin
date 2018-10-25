@@ -482,6 +482,26 @@ Set the write option
 +++
 |===
 
+[[CassandraClientOptions]]
+== CassandraClientOptions
+
+++++
+ Eclipse Vert.x Cassandra client options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[contactPoints]]`@contactPoints`|`Array of String`|+++
+Set a list of hosts, where some of cluster nodes is located.
++++
+|[[port]]`@port`|`Number (int)`|+++
+Set which port should be used for all the hosts to connect to a cassandra service.
++++
+|===
+
 [[Check]]
 == Check
 
