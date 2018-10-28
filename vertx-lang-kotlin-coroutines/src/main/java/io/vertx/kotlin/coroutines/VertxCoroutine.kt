@@ -5,10 +5,19 @@ import io.vertx.core.Context
 import io.vertx.core.Future
 import io.vertx.core.Handler
 import io.vertx.core.Vertx
+import io.vertx.core.streams.ReadStream
+import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.experimental.CancellableContinuation
 import kotlinx.coroutines.experimental.CoroutineDispatcher
 import kotlinx.coroutines.experimental.Runnable
 import kotlinx.coroutines.experimental.asCoroutineDispatcher
+import kotlinx.coroutines.experimental.channels.ArrayChannel
+import kotlinx.coroutines.experimental.channels.ChannelIterator
+import kotlinx.coroutines.experimental.channels.Closed
+import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.experimental.channels.SendChannel
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.selects.SelectClause1
 import kotlinx.coroutines.experimental.suspendCancellableCoroutine
 import java.util.concurrent.AbstractExecutorService
 import java.util.concurrent.Callable
@@ -23,6 +32,11 @@ import java.util.concurrent.atomic.AtomicReference
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  * @author [Julien Ponge](https://julien.ponge.org/)
  */
+
+/**
+ * Create a [ReceiveChannelHandler] of some type `T`.
+ */
+fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannelHandler(this)
 
 /**
  * Runs an asynchronous [block] and awaits its completion.
@@ -121,6 +135,206 @@ suspend fun <T> Future<T>.await(): T = when {
     setHandler { asyncResult ->
       if (asyncResult.succeeded()) cont.resume(asyncResult.result() as T)
       else cont.resumeWithException(asyncResult.cause())
+    }
+  }
+}
+
+/**
+ * An adapter that converts a stream of events from the [Handler] into a [ReceiveChannel] which allows the events
+ * to be received synchronously.
+ */
+class ReceiveChannelHandler<T> constructor(context: Context) : ReceiveChannel<T>, Handler<T> {
+
+  constructor(vertx: Vertx) : this(vertx.getOrCreateContext())
+
+  private val stream: ReadStream<T> = object : ReadStream<T> {
+    override fun pause(): ReadStream<T> = this
+    override fun exceptionHandler(handler: Handler<Throwable>?): ReadStream<T> = this
+    override fun endHandler(endHandler: Handler<Void>?): ReadStream<T> = this
+    override fun resume(): ReadStream<T> = this
+    override fun fetch(amount: Long): ReadStream<T> = this
+    override fun handler(h: Handler<T>?): ReadStream<T> {
+      handler = h
+      return this
+    }
+  }
+
+  private val channel: ReceiveChannel<T> = stream.toChannel(context)
+  private var handler: Handler<T>? = null
+
+  override val isClosedForReceive: Boolean
+    get() = channel.isClosedForReceive
+
+  override val isEmpty: Boolean
+    get() = channel.isEmpty
+
+  override fun iterator(): ChannelIterator<T> {
+    return channel.iterator()
+  }
+
+  override fun poll(): T? {
+    return channel.poll()
+  }
+
+  override suspend fun receive(): T {
+    return channel.receive()
+  }
+
+  override suspend fun receiveOrNull(): T? {
+    return channel.receiveOrNull()
+  }
+
+  override val onReceive: SelectClause1<T>
+    get() = channel.onReceive
+
+  override val onReceiveOrNull: SelectClause1<T?>
+    get() = channel.onReceiveOrNull
+
+  override fun handle(event: T) {
+    handler?.handle(event)
+  }
+
+  override fun cancel(cause: Throwable?): Boolean {
+    return channel.cancel(cause)
+  }
+
+  override fun cancel(): Boolean {
+    return this.cancel(null)
+  }
+}
+
+/**
+ * Adapts the current read stream to Kotlin [ReceiveChannel].
+ *
+ * The channel can be used to receive the read stream items, the stream is paused when the channel
+ * is full and resumed when the channel is half empty.
+ *
+ * @param vertx the related vertx instance
+ * @param capacity the channel buffering capacity
+ */
+fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = 256): ReceiveChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), capacity)
+}
+
+/**
+ * Adapts the current read stream to Kotlin [ReceiveChannel].
+ *
+ * The channel can be used to receive the read stream items, the stream is paused when the channel
+ * is full and resumed when the channel is half empty.
+ *
+ * @param context the vertx context
+ * @param capacity the channel buffering capacity
+ */
+fun <T> ReadStream<T>.toChannel(context: Context, capacity: Int = 256): ReceiveChannel<T> {
+  val ret = ChannelReadStream(context, this, capacity)
+  ret.subscribe()
+  return ret
+}
+
+private class ChannelReadStream<T>(val context: Context,
+                                   val stream: ReadStream<T>,
+                                   capacity: Int) : ArrayChannel<T>(capacity) {
+
+  @Volatile
+  private var size = 0
+
+  fun subscribe() {
+    stream.endHandler { _ ->
+      close()
+    }
+    stream.exceptionHandler { err ->
+      close(err)
+    }
+    stream.handler { event ->
+      launch(context.dispatcher()) {
+        send(event)
+      }
+    }
+  }
+
+  override fun offerInternal(element: T): Any {
+    val ret = super.offerInternal(element)
+    // Not great - fix this
+    if (ret.toString() == "OFFER_SUCCESS") {
+      size++
+      if (isFull) {
+        stream.pause()
+      }
+    }
+    return ret
+  }
+
+  override fun pollInternal(): Any? {
+    val ret = super.pollInternal()
+    // Not great - fix this
+    if (ret.toString() != "POLL_FAILED" && ret !is Closed<*>) {
+      if (--size < capacity / 2) {
+        stream.resume()
+      }
+    }
+    return ret
+  }
+}
+
+/**
+ * Adapts the current write stream to Kotlin [SendChannel].
+ *
+ * The channel can be used to write items, the coroutine is suspended when the stream is full
+ * and resumed when the stream is drained.
+ *
+ * @param vertx the related vertx instance
+ * @param capacity the channel buffering capacity
+ */
+fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = 256): SendChannel<T> {
+  return toChannel(vertx.getOrCreateContext(), capacity)
+}
+
+/**
+ * Adapts the current write stream to Kotlin [SendChannel].
+ *
+ * The channel can be used to write items, the coroutine is suspended when the stream is full
+ * and resumed when the stream is drained.
+ *
+ * @param context the vertx context
+ * @param capacity the channel buffering capacity
+ */
+fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = 256): SendChannel<T> {
+  val ret = ChannelWriteStream(context, this, capacity)
+  ret.subscribe()
+  return ret
+}
+
+private class ChannelWriteStream<T>(val context: Context,
+                                    val stream: WriteStream<T>,
+                                    capacity: Int) : ArrayChannel<T>(capacity) {
+
+  fun subscribe() {
+    launch(context.dispatcher()) {
+      while (true) {
+        val elt = receiveOrNull()
+        if (stream.writeQueueFull()) {
+          stream.drainHandler { _ ->
+            if (dispatch(elt)) {
+              subscribe()
+            }
+          }
+          break
+        } else {
+          if (!dispatch(elt)) {
+            break
+          }
+        }
+      }
+    }
+  }
+
+  fun dispatch(elt: T?): Boolean {
+    return if (elt != null) {
+      stream.write(elt)
+      true
+    } else {
+      stream.end()
+      false
     }
   }
 }
