@@ -1,5 +1,6 @@
 package io.vertx.lang.kotlin.test
 
+import com.fasterxml.jackson.core.util.DefaultIndenter
 import io.vertx.core.*
 import io.vertx.core.buffer.*
 import io.vertx.core.json.*
@@ -90,8 +91,10 @@ class JsonTest {
     assertEquals("{\"k\":\"v\"}", b.toString(Charsets.UTF_8))
     val c = Buffer.buffer().appendJson { User("Julien", "Viet") }
     assertEquals("{\"firstName\":\"Julien\",\"lastName\":\"Viet\"}", c.toString(Charsets.UTF_8))
+    //
+    val line = DefaultIndenter.SYS_LF
     val d = Buffer.buffer().appendJson(true, { User("Julien", "Viet") })
-    assertEquals("{\n  \"firstName\" : \"Julien\",\n  \"lastName\" : \"Viet\"\n}", d.toString(Charsets.UTF_8))
+    assertEquals("{$line  \"firstName\" : \"Julien\",$line  \"lastName\" : \"Viet\"$line}", d.toString(Charsets.UTF_8))
   }
 
   class User(val firstName: String, val lastName: String) {
