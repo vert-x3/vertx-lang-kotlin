@@ -21,9 +21,13 @@ public class KotlinGeneratorBase<M extends Model> extends Generator<M> {
     super.load(processingEnv);
     generated = processingEnv.getOptions().get("kapt.kotlin.generated");
     if (generated != null) {
+      generated = new File(generated).getAbsolutePath();
       generated = generated.replace(File.separatorChar, '/');
       if (!generated.endsWith("/")) {
         generated += "/";
+      }
+      if (!generated.startsWith("/")) {
+        generated = "/" + generated;
       }
     } else {
       generated = "kotlin/";
