@@ -37,10 +37,10 @@ class HttpParserTest {
     val version = s[2]
   }
 
-  fun startServer(testContext: TestContext, handler: (Request) -> Unit) {
+  private fun startServer(testContext: TestContext, handler: (Request) -> Unit) {
     val async = testContext.async()
-    val server = vertx.createNetServer().connectHandler { so ->
-      val recordParser = RecordParser.newDelimited("\r\n", so)
+    val server = vertx.createNetServer().connectHandler { socket ->
+      val recordParser = RecordParser.newDelimited("\r\n", socket)
       val channel = recordParser.toChannel(vertx)
       GlobalScope.launch(vertx.dispatcher()) {
         val line = channel.receive().toString()
@@ -78,7 +78,7 @@ class HttpParserTest {
           else -> Request(line)
         }
         handler(request)
-        so.write("HTTP/1.1 200 OK\r\n\r\n")
+        socket.write("HTTP/1.1 200 OK\r\n\r\n")
       }
     }
     server.listen(8080, testContext.asyncAssertSuccess { async.complete() })
