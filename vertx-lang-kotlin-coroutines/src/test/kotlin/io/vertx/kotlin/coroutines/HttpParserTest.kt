@@ -6,6 +6,7 @@ import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.channels.produce
 import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
@@ -41,8 +42,36 @@ class HttpParserTest {
     val async = testContext.async()
     val server = vertx.createNetServer().connectHandler { socket ->
       val recordParser = RecordParser.newDelimited("\r\n", socket)
-      val channel = recordParser.toChannel(vertx, 0)
-      GlobalScope.launch(vertx.dispatcher()) {
+      recordParser.pause()
+      val dispatcher = vertx.dispatcher()
+      GlobalScope.launch(dispatcher) {
+
+        // val channel = recordParser.toChannel(vertx, 0)
+        val channel = produce<Buffer> {
+          recordParser.exceptionHandler {
+            launch {
+              close(it)
+            }
+          }
+          recordParser.endHandler {
+            launch {
+              close()
+            }
+          }
+          recordParser.handler {
+            try {
+              launch {
+                send(it)
+                recordParser.fetch(1)
+              }
+            } catch (e: Throwable) {
+              e.printStackTrace()
+            }
+          }
+          recordParser.fetch(1)
+        }
+
+
         println("[${Thread.currentThread().hashCode()}] Receive line")
         val line = channel.receive().toString()
         println("[${Thread.currentThread().hashCode()}] Received $line")
