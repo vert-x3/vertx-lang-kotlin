@@ -81,8 +81,7 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
 /**
  * Adapts the current read stream to Kotlin [ReceiveChannel].
  *
- * The channel can be used to receive the read stream items, the stream is paused when the channel
- * is full and resumed when the channel is half empty.
+ * The adapter will fetch at most max channel capacity from the stream and pause it when the channel is full.
  *
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
@@ -94,8 +93,7 @@ fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY):
 /**
  * Adapts the current read stream to Kotlin [ReceiveChannel].
  *
- * The channel can be used to receive the read stream items, the stream is paused when the channel
- * is full and resumed when the channel is half empty.
+ * The adapter will fetch at most max channel capacity from the stream and pause it when the channel is full.
  *
  * @param context the vertx context
  * @param capacity the channel buffering capacity
