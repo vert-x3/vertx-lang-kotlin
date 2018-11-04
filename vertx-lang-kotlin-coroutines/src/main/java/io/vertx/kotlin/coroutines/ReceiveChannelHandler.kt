@@ -150,25 +150,18 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
   }
 
   override suspend fun receive(): T {
-    val ret = channel.receive()
     stream.fetch(1)
-    return ret
+    return channel.receive()
   }
 
   override suspend fun receiveOrNull(): T? {
-    val ret = channel.receiveOrNull()
-    ret?.let {
-      stream.fetch(1)
-    }
-    return ret
+    stream.fetch(1)
+    return channel.receiveOrNull()
   }
 
   override fun poll(): T? {
-    val ret = channel.poll()
-    ret?.let {
-      stream.fetch(1)
-    }
-    return ret
+    stream.fetch(1)
+    return channel.poll()
   }
 
   override fun iterator(): ChannelIterator<T> {
@@ -179,9 +172,8 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
       }
 
       override suspend fun next(): T {
-        val ret = iterator.next()
         stream.fetch(1)
-        return ret
+        return iterator.next()
       }
     }
   }
