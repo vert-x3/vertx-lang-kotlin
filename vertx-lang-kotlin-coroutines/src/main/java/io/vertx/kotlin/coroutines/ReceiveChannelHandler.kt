@@ -30,7 +30,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   constructor(vertx: Vertx) : this(vertx.getOrCreateContext())
 
   override val coroutineContext: CoroutineContext = context.dispatcher()
-  private val channel: Channel<T> = Channel(MAX_CAPACITY)
+  private val channel: Channel<T> = Channel(DEFAULT_CAPACITY)
 
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
@@ -87,7 +87,7 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = MAX_CAPACITY): ReceiveChannel<T> {
+fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY): ReceiveChannel<T> {
   return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
@@ -100,7 +100,9 @@ fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = MAX_CAPACITY): Rec
  * @param context the vertx context
  * @param capacity the channel buffering capacity
  */
-fun <T> ReadStream<T>.toChannel(context: Context, capacity: Int = MAX_CAPACITY): ReceiveChannel<T> {
+fun <T> ReadStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): ReceiveChannel<T> {
+  this.pause()
+  this.fetch(capacity.toLong())
   val ret = ChannelReadStream(
     stream = this,
     channel = Channel(capacity),
@@ -189,7 +191,7 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = MAX_CAPACITY): SendChannel<T> {
+fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
   return toChannel(vertx.getOrCreateContext(), capacity)
 }
 
@@ -202,7 +204,7 @@ fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = MAX_CAPACITY): Se
  * @param context the vertx context
  * @param capacity the channel buffering capacity
  */
-fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = MAX_CAPACITY): SendChannel<T> {
+fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
   val ret = ChannelWriteStream(
     stream = this,
     channel = Channel(capacity),
@@ -259,4 +261,4 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
   }
 }
 
-private const val MAX_CAPACITY = 256
+private const val DEFAULT_CAPACITY = 16
