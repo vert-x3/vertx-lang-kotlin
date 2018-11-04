@@ -7,7 +7,6 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import io.vertx.test.fakestream.FakeStream
 import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
@@ -46,7 +45,7 @@ class ReceiveChannelHandlerTest {
 
   @Test
   fun `test readStream to channel`(testContext: TestContext) {
-    val stream = FakeStream<Int>()
+    val stream = TestStream<Int>()
     val capacity = 3
     val expected = List(capacity) { it }
     val channel = (stream as ReadStream<Int>).toChannel(vertx, capacity)
@@ -89,7 +88,7 @@ class ReceiveChannelHandlerTest {
 
   @Test
   fun `test writeStream to channel`(testContext: TestContext) {
-    val stream = FakeStream<Int>()
+    val stream = TestStream<Int>()
     val capacity = 3
     val expected = List(capacity) { it }
     val channel = (stream as WriteStream<Int>).toChannel(vertx, capacity)
