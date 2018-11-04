@@ -114,10 +114,6 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
                                    val channel: Channel<T>,
                                    context: Context) : Channel<T> by channel, CoroutineScope {
 
-  init {
-    stream.pause()
-  }
-
   override val coroutineContext: CoroutineContext = context.dispatcher()
 
   fun subscribe() {
@@ -154,8 +150,9 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
   }
 
   override suspend fun receive(): T {
+    val ret = channel.receive()
     stream.fetch(1)
-    return channel.receive()
+    return ret
   }
 
   override suspend fun receiveOrNull(): T? {
