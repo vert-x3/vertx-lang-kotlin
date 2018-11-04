@@ -41,12 +41,16 @@ class HttpParserTest {
     val async = testContext.async()
     val server = vertx.createNetServer().connectHandler { socket ->
       val recordParser = RecordParser.newDelimited("\r\n", socket)
-      val channel = recordParser.toChannel(vertx)
+      val channel = recordParser.toChannel(vertx, 0)
       GlobalScope.launch(vertx.dispatcher()) {
+        println("[${Thread.currentThread().hashCode()}] Receive line")
         val line = channel.receive().toString()
+        println("[${Thread.currentThread().hashCode()}] Received $line")
         val headers = HashMap<String, String>()
         while (true) {
+          println("[${Thread.currentThread().hashCode()}] Receive header")
           val header = channel.receive().toString()
+          println("[${Thread.currentThread().hashCode()}] Received $header")
           if (header.isEmpty()) {
             break
           }

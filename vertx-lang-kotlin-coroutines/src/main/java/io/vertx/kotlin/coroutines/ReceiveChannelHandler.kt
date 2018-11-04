@@ -131,6 +131,7 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
   }
 
   override suspend fun send(element: T) {
+    println("[${Thread.currentThread().hashCode()}] Send to channel $element")
     channel.send(element)
     pauseStreamIfFull()
   }
