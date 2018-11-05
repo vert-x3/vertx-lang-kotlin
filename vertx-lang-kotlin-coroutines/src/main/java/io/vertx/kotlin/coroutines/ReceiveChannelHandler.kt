@@ -130,38 +130,22 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
     }
   }
 
-  override suspend fun send(element: T) {
-    channel.send(element)
-    pauseStreamIfFull()
-  }
-
-  override fun offer(element: T): Boolean {
-    val isOffered = channel.offer(element)
-    if (isOffered) {
-      pauseStreamIfFull()
-    }
-    return isOffered
-  }
-
-  private fun pauseStreamIfFull() {
-    if (isFull) {
-      stream.pause()
-    }
-  }
-
   override suspend fun receive(): T {
+    val ret = channel.receive()
     stream.fetch(1)
-    return channel.receive()
+    return ret
   }
 
   override suspend fun receiveOrNull(): T? {
-    stream.fetch(1)
-    return channel.receiveOrNull()
+    val ret = channel.receiveOrNull()
+    ret?.let { stream.fetch(1) }
+    return ret
   }
 
   override fun poll(): T? {
-    stream.fetch(1)
-    return channel.poll()
+    val ret = channel.poll()
+    ret?.let { stream.fetch(1) }
+    return ret
   }
 
   override fun iterator(): ChannelIterator<T> {
@@ -172,8 +156,9 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
       }
 
       override suspend fun next(): T {
+        val ret = iterator.next()
         stream.fetch(1)
-        return iterator.next()
+        return ret
       }
     }
   }
