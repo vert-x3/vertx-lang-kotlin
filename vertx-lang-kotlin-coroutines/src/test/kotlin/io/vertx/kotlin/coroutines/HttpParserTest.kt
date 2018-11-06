@@ -6,6 +6,7 @@ import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.launch
 import org.junit.After
 import org.junit.Before
@@ -37,12 +38,12 @@ class HttpParserTest {
     val version = s[2]
   }
 
-  fun startServer(testContext: TestContext, handler: (Request) -> Unit) {
+  private fun startServer(testContext: TestContext, handler: (Request) -> Unit) {
     val async = testContext.async()
-    val server = vertx.createNetServer().connectHandler { so ->
-      val recordParser = RecordParser.newDelimited("\r\n", so)
-      val channel = recordParser.toChannel(vertx)
+    val server = vertx.createNetServer().connectHandler { socket ->
+      val recordParser = RecordParser.newDelimited("\r\n", socket)
       GlobalScope.launch(vertx.dispatcher()) {
+        val channel = recordParser.toChannel(vertx)
         val line = channel.receive().toString()
         val headers = HashMap<String, String>()
         while (true) {
@@ -56,33 +57,41 @@ class HttpParserTest {
         val transferEncoding = headers["transfer-encoding"]
         val contentLength = headers["content-length"]
         val request = when {
-          transferEncoding == "chunked" -> {
-            val body = Buffer.buffer()
-            while (true) {
-              val len = channel.receive().toString().toInt(16)
-              if (len == 0) {
-                break
-              }
-              recordParser.fixedSizeMode(len + 2)
-              val chunk = channel.receive()
-              body.appendBuffer(chunk, 0, chunk.length() - 2)
-              recordParser.delimitedMode("\r\n")
-            }
-            Request(line, body)
-          }
-          contentLength != null -> {
-            recordParser.fixedSizeMode(contentLength.toInt())
-            val body = channel.receive()
-            Request(line, body)
-          }
+          transferEncoding == "chunked" -> recordParser.handleChunkedCase(channel, line)
+          contentLength != null -> recordParser.handleFixedBody(channel, line, contentLength.toInt())
           else -> Request(line)
         }
         handler(request)
-        so.write("HTTP/1.1 200 OK\r\n\r\n")
+        socket.write("HTTP/1.1 200 OK\r\n\r\n")
       }
     }
     server.listen(8080, testContext.asyncAssertSuccess { async.complete() })
     async.awaitSuccess(20000)
+  }
+
+  private suspend fun RecordParser.handleChunkedCase(channel: ReceiveChannel<Buffer>, line: String): Request {
+    val body = Buffer.buffer()
+    while (true) {
+      val len = channel.receive().toString().toInt(16)
+      if (len == 0) {
+        break
+      }
+      this.fixedSizeMode(len + 2)
+      val chunk = channel.receive()
+      body.appendBuffer(chunk, 0, chunk.length() - 2)
+      this.delimitedMode("\r\n")
+    }
+    return Request(line, body)
+  }
+
+  private suspend fun RecordParser.handleFixedBody(
+    channel: ReceiveChannel<Buffer>,
+    line: String,
+    contentLength: Int
+  ): Request {
+    this.fixedSizeMode(contentLength)
+    val body = channel.receive()
+    return Request(line, body)
   }
 
   @Test
