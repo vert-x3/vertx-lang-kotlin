@@ -9,6 +9,7 @@ import io.vertx.ext.consul.Service
  *
  * @param address  Set service address
  * @param id  Set ID of service
+ * @param meta  Specifies arbitrary KV metadata linked to the service instance.
  * @param name  Set service name
  * @param node  Set node name
  * @param nodeAddress  Set node address
@@ -21,6 +22,7 @@ import io.vertx.ext.consul.Service
 fun Service(
   address: String? = null,
   id: String? = null,
+  meta: Map<String, String>? = null,
   name: String? = null,
   node: String? = null,
   nodeAddress: String? = null,
@@ -32,6 +34,9 @@ fun Service(
   }
   if (id != null) {
     this.setId(id)
+  }
+  if (meta != null) {
+    this.setMeta(meta)
   }
   if (name != null) {
     this.setName(name)

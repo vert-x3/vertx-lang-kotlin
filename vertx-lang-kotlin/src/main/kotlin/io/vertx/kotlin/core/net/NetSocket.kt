@@ -1,7 +1,23 @@
 package io.vertx.kotlin.core.net
 
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.net.NetSocket
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Like  but with an <code>handler</code> called when the message has been written
+ * or failed to be written.
+ *
+ * @param message 
+ * @param handler 
+ * @return *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetSocket original] using Vert.x codegen.
+ */
+suspend fun NetSocket.writeAwait(message : Buffer) : Unit {
+  return awaitResult{
+    this.write(message, { ar -> it.handle(ar.mapEmpty()) })}
+}
 
 /**
  * Same as [io.vertx.core.net.NetSocket] but also takes a handler that will be called when the send has completed or

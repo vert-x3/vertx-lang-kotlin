@@ -95,8 +95,8 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
- * @param tryUsePerFrameWebsocketCompression  Set option to offer Deflate Frame websocket compression
- * @param tryUsePerMessageWebsocketCompression  Set option to offer Permessage Deflate websocket compression
+ * @param tryUsePerFrameWebsocketCompression  Set option to offer per frame WebSocket compression.
+ * @param tryUsePerMessageWebsocketCompression  Set option to offer per message WebSocket compression.
  * @param useAlpn  Set the ALPN usage.
  * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
  * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
@@ -105,9 +105,9 @@ import java.util.concurrent.TimeUnit
  * @param userInfoPath  Set the provider userInfo resource path
  * @param validateIssuer 
  * @param verifyHost  Set whether hostname verification is enabled
- * @param websocketCompressionAllowClientNoContext  Set the websocket compression allow client no context option
- * @param websocketCompressionLevel  Set websocket compression level
- * @param websocketCompressionRequestServerNoContext  Set the websocket compression server no context option
+ * @param websocketCompressionAllowClientNoContext  Set the WebSocket compression allow client no context option.
+ * @param websocketCompressionLevel  Set WebSocket compression level
+ * @param websocketCompressionRequestServerNoContext  Set the WebSocket compression server no context option
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2ClientOptions original] using Vert.x codegen.

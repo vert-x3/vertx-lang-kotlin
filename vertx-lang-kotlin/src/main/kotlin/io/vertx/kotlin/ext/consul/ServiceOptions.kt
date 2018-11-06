@@ -11,6 +11,7 @@ import io.vertx.ext.consul.CheckOptions
  * @param address  Set service address
  * @param checkOptions  Set check options of service
  * @param id  Set the ID of session
+ * @param meta  Specifies arbitrary KV metadata linked to the service instance.
  * @param name  Set service name
  * @param port  Set service port
  * @param tags  Set list of tags associated with service
@@ -22,6 +23,7 @@ fun ServiceOptions(
   address: String? = null,
   checkOptions: io.vertx.ext.consul.CheckOptions? = null,
   id: String? = null,
+  meta: Map<String, String>? = null,
   name: String? = null,
   port: Int? = null,
   tags: Iterable<String>? = null): ServiceOptions = io.vertx.ext.consul.ServiceOptions().apply {
@@ -34,6 +36,9 @@ fun ServiceOptions(
   }
   if (id != null) {
     this.setId(id)
+  }
+  if (meta != null) {
+    this.setMeta(meta)
   }
   if (name != null) {
     this.setName(name)

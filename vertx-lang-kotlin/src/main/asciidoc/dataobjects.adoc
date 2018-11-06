@@ -1115,10 +1115,10 @@ Set the trust options in jks format, aka Java truststore
 Set whether compression is enabled
 +++
 |[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
-Set option to offer Deflate Frame websocket compression
+Set option to offer per frame WebSocket compression.
 +++
 |[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
-Set option to offer Permessage Deflate websocket compression
+Set option to offer per message WebSocket compression.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
@@ -1136,13 +1136,13 @@ Sets whether the Web Client should send a user agent header. Defaults to true.
 Set whether hostname verification is enabled
 +++
 |[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
-Set the websocket compression allow client no context option
+Set the WebSocket compression allow client no context option.
 +++
 |[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set websocket compression level
+Set WebSocket compression level
 +++
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
-Set the websocket compression server no context option
+Set the WebSocket compression server no context option
 +++
 |===
 
@@ -2150,10 +2150,10 @@ Set the trust options in jks format, aka Java truststore
 Set whether compression is enabled
 +++
 |[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
-Set option to offer Deflate Frame websocket compression
+Set option to offer per frame WebSocket compression.
 +++
 |[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
-Set option to offer Permessage Deflate websocket compression
+Set option to offer per message WebSocket compression.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
@@ -2165,13 +2165,13 @@ Set whether Netty pooled buffers are enabled
 Set whether hostname verification is enabled
 +++
 |[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
-Set the websocket compression allow client no context option
+Set the WebSocket compression allow client no context option.
 +++
 |[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set websocket compression level
+Set WebSocket compression level
 +++
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
-Set the websocket compression server no context option
+Set the WebSocket compression server no context option
 +++
 |===
 
@@ -4494,10 +4494,10 @@ Set the trust options in jks format, aka Java truststore
 Set whether compression is enabled
 +++
 |[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
-Set option to offer Deflate Frame websocket compression
+Set option to offer per frame WebSocket compression.
 +++
 |[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
-Set option to offer Permessage Deflate websocket compression
+Set option to offer per message WebSocket compression.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
@@ -4522,13 +4522,13 @@ Set the provider userInfo resource path
 Set whether hostname verification is enabled
 +++
 |[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
-Set the websocket compression allow client no context option
+Set the WebSocket compression allow client no context option.
 +++
 |[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set websocket compression level
+Set WebSocket compression level
 +++
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
-Set the websocket compression server no context option
+Set the WebSocket compression server no context option
 +++
 |===
 
@@ -5716,6 +5716,9 @@ Set service address
 |[[id]]`@id`|`String`|+++
 Set ID of service
 +++
+|[[meta]]`@meta`|`String`|+++
+Specifies arbitrary KV metadata linked to the service instance.
++++
 |[[name]]`@name`|`String`|+++
 Set service name
 +++
@@ -5849,6 +5852,9 @@ Set check options of service
 +++
 |[[id]]`@id`|`String`|+++
 Set the ID of session
++++
+|[[meta]]`@meta`|`String`|+++
+Specifies arbitrary KV metadata linked to the service instance.
 +++
 |[[name]]`@name`|`String`|+++
 Set service name
@@ -7354,10 +7360,10 @@ Set the trust options in jks format, aka Java truststore
 Set whether compression is enabled
 +++
 |[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
-Set option to offer Deflate Frame websocket compression
+Set option to offer per frame WebSocket compression.
 +++
 |[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
-Set option to offer Permessage Deflate websocket compression
+Set option to offer per message WebSocket compression.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
@@ -7375,13 +7381,13 @@ Sets whether the Web Client should send a user agent header. Defaults to true.
 Set whether hostname verification is enabled
 +++
 |[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
-Set the websocket compression allow client no context option
+Set the WebSocket compression allow client no context option.
 +++
 |[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set websocket compression level
+Set WebSocket compression level
 +++
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
-Set the websocket compression server no context option
+Set the WebSocket compression server no context option
 +++
 |===
 
