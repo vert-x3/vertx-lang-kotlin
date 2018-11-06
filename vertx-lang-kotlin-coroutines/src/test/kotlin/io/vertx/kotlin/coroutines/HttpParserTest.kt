@@ -43,7 +43,7 @@ class HttpParserTest {
     val server = vertx.createNetServer().connectHandler { socket ->
       val recordParser = RecordParser.newDelimited("\r\n", socket)
       GlobalScope.launch(vertx.dispatcher()) {
-        val channel = recordParser.toChannel(vertx, 1)
+        val channel = recordParser.toChannel(vertx)
         val line = channel.receive().toString()
         val headers = HashMap<String, String>()
         while (true) {

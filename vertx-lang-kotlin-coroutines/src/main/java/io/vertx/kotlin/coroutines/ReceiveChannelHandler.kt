@@ -100,13 +100,13 @@ fun <T> ReadStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY):
  */
 fun <T> ReadStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): ReceiveChannel<T> {
   this.pause()
-  this.fetch(capacity.toLong())
   val ret = ChannelReadStream(
     stream = this,
-    channel = Channel(capacity),
+    channel = Channel(capacity - 1),
     context = context
   )
   ret.subscribe()
+  this.fetch(1)
   return ret
 }
 
@@ -115,7 +115,6 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
                                    context: Context) : Channel<T> by channel, CoroutineScope {
 
   override val coroutineContext: CoroutineContext = context.dispatcher()
-
   fun subscribe() {
     stream.endHandler {
       close()
@@ -126,43 +125,10 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
     stream.handler { event ->
       launch {
         send(event)
-      }
-    }
-  }
-
-  override suspend fun receive(): T {
-    val ret = channel.receive()
-    stream.fetch(1)
-    return ret
-  }
-
-  override suspend fun receiveOrNull(): T? {
-    val ret = channel.receiveOrNull()
-    ret?.let { stream.fetch(1) }
-    return ret
-  }
-
-  override fun poll(): T? {
-    val ret = channel.poll()
-    ret?.let { stream.fetch(1) }
-    return ret
-  }
-
-  override fun iterator(): ChannelIterator<T> {
-    return object : ChannelIterator<T> {
-      private val iterator = channel.iterator()
-      override suspend fun hasNext(): Boolean {
-        return iterator.hasNext()
-      }
-
-      override suspend fun next(): T {
-        val ret = iterator.next()
         stream.fetch(1)
-        return ret
       }
     }
   }
-
 }
 
 /**

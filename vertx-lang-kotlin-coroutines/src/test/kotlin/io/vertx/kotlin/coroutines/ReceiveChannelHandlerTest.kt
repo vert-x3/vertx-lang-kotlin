@@ -7,6 +7,7 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import io.vertx.test.fakestream.FakeStream
 import kotlinx.coroutines.experimental.CancellationException
 import kotlinx.coroutines.experimental.GlobalScope
 import kotlinx.coroutines.experimental.launch
@@ -45,26 +46,28 @@ class ReceiveChannelHandlerTest {
 
   @Test
   fun `test readStream to channel`(testContext: TestContext) {
-    val stream = TestStream<Int>()
+    val stream = FakeStream<Int>()
     val capacity = 3
-    val expected = List(capacity) { it }
+    val expected = List(capacity ) { it }
     val channel = (stream as ReadStream<Int>).toChannel(vertx, capacity)
 
-    expected.forEach {
-      testContext.assertFalse(stream.writeQueueFull())
-      stream.write(it)
+    runBlocking {
+      launch {
+        expected.forEach {
+          testContext.assertFalse(stream.isPaused())
+          stream.write(it)
+        }
+      }
     }
-    Assert.assertTrue(stream.writeQueueFull())
+
+    Assert.assertTrue(stream.isPaused())
     val list = mutableListOf<Int>()
     runBlocking {
       for (item in channel) {
         list.add(item)
-        val isQueueFull = (capacity - list.size) >= capacity / 2
         testContext.assertEquals(
-          isQueueFull,
-          stream.writeQueueFull(),
-          "Excepted stream to ${if (!isQueueFull) "not " else ""}have queue full, list=$list"
-        )
+          1L,
+          stream.demand())
         if (list.size == expected.size) {
           break
         }
