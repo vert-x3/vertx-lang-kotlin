@@ -5,9 +5,10 @@ import io.vertx.codegen.testmodel.NullableTCKImpl
 import io.vertx.codegen.testmodel.TestInterface
 import io.vertx.codegen.testmodel.TestInterfaceImpl
 import io.vertx.kotlin.codegen.testmodel.methodWithHandlerAsyncResultStringAwait
-import junit.framework.Assert.fail
-import kotlinx.coroutines.experimental.Unconfined
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import org.junit.Assert.fail
 import org.junit.Test
 import kotlin.test.assertEquals
 
@@ -16,8 +17,8 @@ import kotlin.test.assertEquals
  */
 class CoroutinesTCKTest {
 
-  val tck: TestInterface = TestInterfaceImpl();
-  val nullableTck: NullableTCK = NullableTCKImpl();
+  val tck: TestInterface = TestInterfaceImpl()
+  val nullableTck: NullableTCK = NullableTCKImpl()
 
   @Test
   fun testAsyncResultSuccess() {
@@ -36,7 +37,7 @@ class CoroutinesTCKTest {
   }
 
   fun <T> coroutinesTest(block: suspend () -> T) : T {
-    val deferred = async<T>(Unconfined) {
+    val deferred = GlobalScope.async(Dispatchers.Unconfined) {
       block()
     }
     return deferred.getCompleted()

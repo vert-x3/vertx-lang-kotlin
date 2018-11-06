@@ -5,14 +5,16 @@ import io.vertx.core.Handler
 import io.vertx.core.Vertx
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.channels.Channel
-import kotlinx.coroutines.experimental.channels.ChannelIterator
-import kotlinx.coroutines.experimental.channels.ReceiveChannel
-import kotlinx.coroutines.experimental.channels.SendChannel
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.selects.SelectClause1
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ChannelIterator
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.SendChannel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.SelectClause1
+import kotlin.coroutines.CoroutineContext
 
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
@@ -32,9 +34,11 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   override val coroutineContext: CoroutineContext = context.dispatcher()
   private val channel: Channel<T> = Channel(DEFAULT_CAPACITY)
 
+  @ExperimentalCoroutinesApi
   override val isClosedForReceive: Boolean
     get() = channel.isClosedForReceive
 
+  @ExperimentalCoroutinesApi
   override val isEmpty: Boolean
     get() = channel.isEmpty
 
@@ -50,6 +54,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.receive()
   }
 
+  @ObsoleteCoroutinesApi
   override suspend fun receiveOrNull(): T? {
     return channel.receiveOrNull()
   }
@@ -57,6 +62,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   override val onReceive: SelectClause1<T>
     get() = channel.onReceive
 
+  @ExperimentalCoroutinesApi
   override val onReceiveOrNull: SelectClause1<T?>
     get() = channel.onReceiveOrNull
 
@@ -64,12 +70,13 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     launch { channel.send(event) }
   }
 
+  @ObsoleteCoroutinesApi
   override fun cancel(cause: Throwable?): Boolean {
     return channel.cancel(cause)
   }
 
-  override fun cancel(): Boolean {
-    return this.cancel(null)
+  override fun cancel(): Unit {
+    return channel.cancel()
   }
 }
 
@@ -93,10 +100,7 @@ fun <T> ReadStream<T>.toChannel(vertx: Vertx): ReceiveChannel<T> {
 /**
  * Adapts the current read stream to Kotlin [ReceiveChannel].
  *
- * The adapter will fetch at most max channel capacity from the stream and pause it when the channel is full.
- *
  * @param context the vertx context
- * @param capacity the channel buffering capacity
  */
 fun <T> ReadStream<T>.toChannel(context: Context): ReceiveChannel<T> {
   this.pause()
@@ -140,6 +144,7 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
+@ExperimentalCoroutinesApi
 fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
   return toChannel(vertx.getOrCreateContext(), capacity)
 }
@@ -153,6 +158,7 @@ fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY)
  * @param context the vertx context
  * @param capacity the channel buffering capacity
  */
+@ExperimentalCoroutinesApi
 fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
   val ret = ChannelWriteStream(
     stream = this,
@@ -169,6 +175,7 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
 
   override val coroutineContext: CoroutineContext = context.dispatcher()
 
+  @ExperimentalCoroutinesApi
   fun subscribe() {
     stream.exceptionHandler {
       channel.close(it)
