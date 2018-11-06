@@ -3,10 +3,10 @@ package io.vertx.kotlin.coroutines
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.reactivex.core.Vertx
-import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.reactive.openSubscription
-import kotlinx.coroutines.experimental.rx2.await
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.reactive.openSubscription
+import kotlinx.coroutines.rx2.await
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
