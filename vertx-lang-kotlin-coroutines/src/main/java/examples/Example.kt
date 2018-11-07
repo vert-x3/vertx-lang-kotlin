@@ -11,6 +11,8 @@ import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageProducer
 import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.http.HttpServer
+import io.vertx.core.net.NetClient
+import io.vertx.core.net.NetSocket
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
@@ -62,6 +64,7 @@ class ExampleVerticle : CoroutineVerticle() {
       streamExample()
       handlerAndCoroutineExample()
       awaitingFuture()
+      generatedSuspendingExtensionMethod()
     }
   }
 
@@ -151,6 +154,22 @@ class ExampleVerticle : CoroutineVerticle() {
     }
   }
   // end::awaitingFuture[]
+
+  // tag::generatedSuspendingExtensionMethod[]
+  suspend fun generatedSuspendingExtensionMethod() {
+    // Suspending extension method
+    // This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
+    suspend fun NetClient.connectAwait(port : Int, host : String) : NetSocket {
+      return awaitResult{
+        this.connect(port, host, it)
+      }
+    }
+
+    // Use the extension instead of wrapping with awaitResult
+    val client = vertx.createNetClient();
+    val socket = client.connectAwait(1234, "localhost");
+  }
+  // end::generatedSuspendingExtensionMethod[]
 
   fun handlerAndCoroutineExample() {
     // tag::handlerAndCoroutine[]
