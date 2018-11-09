@@ -99,6 +99,32 @@ Set the list of DNS server addresses, an address is the IP  of the dns server, f
 +++
 |===
 
+[[AggregateOptions]]
+== AggregateOptions
+
+++++
+ Options used to configure aggregate operations.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[allowDiskUse]]`@allowDiskUse`|`Boolean`|+++
+Set the flag if writing to temporary files is enabled.
++++
+|[[batchSize]]`@batchSize`|`Number (int)`|+++
+Set the batch size for methods loading found data in batches.
++++
+|[[maxAwaitTime]]`@maxAwaitTime`|`Number (long)`|+++
+The maximum amount of time for the server to wait on new documents to satisfy a $changeStream aggregation.
++++
+|[[maxTime]]`@maxTime`|`Number (long)`|+++
+Set the time limit in milliseconds for processing operations on a cursor.
++++
+|===
+
 [[AmqpBridgeOptions]]
 == AmqpBridgeOptions
 
