@@ -1393,7 +1393,16 @@ Sets the value of max worker execute time, in link.
 Set the time unit of <code>maxWorkerExecuteTime</code>
 +++
 |[[multiThreaded]]`@multiThreaded`|`Boolean`|+++
-Set whether the verticle(s) should be deployed as a multi-threaded worker verticle
+Set whether the verticle(s) should be deployed as a multi-threaded worker verticle.
+ <p>
+ <strong>WARNING</strong>: Multi-threaded worker verticles are a deprecated feature.
+ <p>
+ Most applications will have no need for them. Because of the concurrency in these verticles you have to be
+ very careful to keep the verticle in a consistent state using standard Java techniques for multi-threaded
+ programming.
+ <p>
+ You can read the documentation that explains how you can replace this feature by the usage of custom worker
+ pools or <code>executeBlocking</code> calls.
 +++
 |[[worker]]`@worker`|`Boolean`|+++
 Set whether the verticle(s) should be deployed as a worker verticle
@@ -3554,6 +3563,12 @@ Get the document id that's upserted
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[password]]`@password`|`String`|+++
+
++++
+|[[username]]`@username`|`String`|+++
+
++++
 |===
 
 [[MqttClientOptions]]
@@ -3870,7 +3885,16 @@ Set whether Netty pooled buffers are enabled
 |[[willFlag]]`@willFlag`|`Boolean`|+++
 
 +++
+|[[willMessage]]`@willMessage`|`String`|+++
+
++++
+|[[willQos]]`@willQos`|`Number (int)`|+++
+
++++
 |[[willRetain]]`@willRetain`|`Boolean`|+++
+
++++
+|[[willTopic]]`@willTopic`|`String`|+++
 
 +++
 |===
@@ -7160,6 +7184,10 @@ HTTP server options for the embedded server
 +++
 |[[enabled]]`@enabled`|`Boolean`|+++
 Set true to enable Prometheus reporting
++++
+|[[publishQuantiles]]`@publishQuantiles`|`Boolean`|+++
+Set true to publish histogram stats, necessary to compute quantiles.
+ Note that it generates many new timeseries for stats, which is why it is deactivated by default.
 +++
 |[[startEmbeddedServer]]`@startEmbeddedServer`|`Boolean`|+++
 When true, an embedded server will init to expose metrics with Prometheus format.

@@ -10,7 +10,7 @@
 
   <artifactId>vertx-lang-kotlin-parent</artifactId>
 
-  <version>3.6.0.CR1</version>
+  <version>3.6.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -25,7 +25,7 @@
     <!-- latest version compatible with coroutines lib -->
     <kotlin.version>1.3.0</kotlin.version>
     <junit.version>4.12</junit.version>
-    <stack.version>3.6.0.CR1</stack.version>
+    <stack.version>3.6.0-SNAPSHOT</stack.version>
   </properties>
 
   <dependencyManagement>

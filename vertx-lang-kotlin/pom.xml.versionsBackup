@@ -5,13 +5,13 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>3.6.0.CR1</version>
+    <version>3.6.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>vertx-lang-kotlin</artifactId>
-  <version>3.6.0.CR1</version>
+  <version>3.6.0-SNAPSHOT</version>
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
@@ -347,13 +347,13 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-gen</artifactId>
-      <version>3.6.0.CR1</version>
+      <version>3.6.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
-      <version>3.6.0.CR1</version>
+      <version>3.6.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -755,23 +755,6 @@
       </plugin>
 
       <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <!-- version needed because of OpenJDK 11 : remove when parent pom is upgraded -->
-        <version>3.0.1</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <source>${project.basedir}/src/main/java</source>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <!-- Package docs -->
@@ -807,21 +790,6 @@
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
                 <descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-          <!-- Make Nexus happy -->
-          <execution>
-            <id>assemble-javadocs</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <attach>true</attach>
-              <descriptors>
-                <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
