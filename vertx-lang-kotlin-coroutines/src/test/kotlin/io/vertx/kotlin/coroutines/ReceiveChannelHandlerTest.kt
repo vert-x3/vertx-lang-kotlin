@@ -45,22 +45,22 @@ class ReceiveChannelHandlerTest {
   }
 
   @Test
-  fun `test readStream to channel`(testContext: TestContext) {
+  fun `test toChannel extension on ReadStream using channel iterator`(testContext: TestContext) {
     val stream = FakeStream<Int>()
     val numItems = 3
-    val expected = List(numItems ) { it }
+    val expected = List(numItems) { it }
     val channel = (stream as ReadStream<Int>).toChannel(vertx)
 
     runBlocking {
       launch {
         expected.forEach {
-          testContext.assertEquals(it > 0, stream.isPaused())
+          testContext.assertEquals(it > 0, stream.isPaused)
           stream.write(it)
         }
       }
     }
 
-    Assert.assertTrue(stream.isPaused())
+    Assert.assertTrue(stream.isPaused)
     val list = mutableListOf<Int>()
     runBlocking {
       for (item in channel) {
@@ -91,7 +91,52 @@ class ReceiveChannelHandlerTest {
   }
 
   @Test
-  fun `test writeStream to channel`(testContext: TestContext) {
+  fun `test toChannel extension on ReadStream using channel receive`(testContext: TestContext) {
+    val stream = FakeStream<Int>()
+    val numItems = 3
+    val expected = List(numItems) { it }
+    val channel = (stream as ReadStream<Int>).toChannel(vertx)
+
+    runBlocking {
+      launch {
+        expected.forEach {
+          testContext.assertEquals(it > 0, stream.isPaused)
+          stream.write(it)
+        }
+      }
+    }
+
+    Assert.assertTrue(stream.isPaused)
+    val list = mutableListOf<Int>()
+    runBlocking {
+      expected.forEach {
+        val item = channel.receive()
+        list.add(item)
+        val demand = stream.demand()
+        testContext.assertEquals(
+          if (item == 2) 1L else 0L,
+          demand
+        )
+      }
+      testContext.assertEquals(list.size, expected.size)
+    }
+    Assert.assertEquals(expected, list)
+    stream.write(-1)
+    stream.write(-2)
+    runBlocking {
+      var count = -1
+      while (!channel.isEmpty) {
+        val item = channel.receive()
+        Assert.assertEquals(count--, item)
+      }
+      testContext.assertEquals(-3, count)
+    }
+    stream.end()
+    testContext.assertTrue(channel.isClosedForReceive)
+  }
+
+  @Test
+  fun `test toChannel extension on WriteStream`(testContext: TestContext) {
     val stream = TestStream<Int>()
     val capacity = 3
     val expected = List(capacity) { it }
@@ -157,13 +202,13 @@ class ReceiveChannelHandlerTest {
     GlobalScope.launch(vertx.dispatcher()) {
       for (i in 0..9) {
         val received1 = adaptor1.receive()
-        Assert.assertEquals("wibble", received1.body())
+        testContext.assertEquals("wibble", received1.body())
         val received2 = adaptor2.receive()
-        Assert.assertEquals("flibble", received2.body())
+        testContext.assertEquals("flibble", received2.body())
       }
 
       val end = System.currentTimeMillis()
-      Assert.assertTrue(end - start >= 100)
+      testContext.assertTrue(end - start >= 100)
 
       // Try a receive with timeout
       var received1: Message<String>? = null
@@ -173,7 +218,7 @@ class ReceiveChannelHandlerTest {
       }
 
       if (received1 is Message<*>) Assert.assertEquals("wibble", received1.body())
-      else Assert.fail("received1 cast type failed.")
+      else testContext.fail("received1 cast type failed.")
 
       // And timing out
       val adaptor3 = vertx.receiveChannelHandler<Message<String>>()
