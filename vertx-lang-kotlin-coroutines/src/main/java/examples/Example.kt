@@ -352,7 +352,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun delayExample() {
     // tag::delay[]
-    launch(vertx.dispatcher()) {
+    launch {
       // Set a one second Vertx timer
       delay(1000)
     }
@@ -361,7 +361,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun cancellationExample() {
     // tag::cancellation[]
-    val job = launch(vertx.dispatcher()) {
+    val job = launch {
       // Set a one second Vertx timer
       while (true) {
         delay(1000)
@@ -376,7 +376,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun withTimeoutExample() {
     // tag::withTimeout[]
-    launch(vertx.dispatcher()) {
+    launch {
       try {
         val id = withTimeout<String>(1000) {
           awaitEvent { anAsyncMethod(it) }
