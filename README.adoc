@@ -1,11 +1,16 @@
 = Vert.x for Kotlin
 
 image:https://travis-ci.org/vert-x3/vertx-lang-kotlin.svg?branch=master["Build Status",link="https://travis-ci.org/vert-x3/vertx-lang-kotlin"]
+image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
+image:https://img.shields.io/badge/kotlin-1.3.0-blue.svg["Kotlin version badge",link="https://kotlinlang.org/docs/reference/whatsnew13.html"]
+image:https://img.shields.io/badge/kotlinx.coroutines-1.0.1-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
 
-http://kotlinlang.org[Kotlin] language support for vert.x3
+This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x 3].
 
-* http://vertx.io/docs[Documentation]
-* http://vertx.io/docs/vertx-lang-kotlin-coroutines/kotlin/[Coroutines]
+The following modules are available in this project:
+
+* `vertx-lang-kotlin` contains extension functions for the majority of Vert.x libraries.
+* `vertx-lang-kotlin-coroutines` contains coroutines support for https://vertx.io/docs/vertx-lang-kotlin-coroutines/kotlin/[Vert.x].
 
 == Contributing
 
@@ -18,5 +23,11 @@ For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, 
 Extensions needs to be tested and link:vertx-lang-kotlin/src/main/asciidoc/index.adoc[documented].
 
 === Bumping Kotlin version
+
+There are a couple of rules to follow before increasing the project versions:
+
+* If changing one between `kotlin` and `kotlinx.coroutines` version, make sure that all transitive dependencies, like
+`kotlin-stdlib`, still match between the two versions.
+* If changing the `kotlin` version, open a PR also on https://github.com/vert-x3/vertx-codetrans[vertx-codetrans]
 
 Kotlin evolves fast, so just change the project versions, test it, and shot a PR.

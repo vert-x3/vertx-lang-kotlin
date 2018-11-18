@@ -244,12 +244,16 @@ include::Example.kt[tags=withTimeout]
 
 == Coroutine builders
 
-Vert.x works will all coroutine builders, as long as an instance of `CoroutineScope` is available: `launch`, `async` and `runBlocking`.
-The `runBlocking` builder must not be used from a Vert.x event loop thread.
+Vert.x works will all coroutine builders, as long as an instance of `CoroutineScope` is available: `launch`, `async`,
+`produce', ... . A couple of important things to remember:
+
+- The `runBlocking` doesn't need a `CoroutineScope` and must not be used from a Vert.x event loop thread.
+- To avoid memory leaks, always use `coroutineScope {..}` to define a child scope. In this way, if a coroutine fails
+inside the scope, all the others, defined inside that scope, will be cancelled too.
 
 == Coroutine interoperability
 
-Vertx integration has been designed to be fully interoperable with Kotlin coroutines
+Vert.x integration has been designed to be fully interoperable with Kotlin coroutines
 
 * `kotlinx.coroutines.experimental.sync.Mutex` are executed on the event loop thread when using the vertx dispatcher
 
