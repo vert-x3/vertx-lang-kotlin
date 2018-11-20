@@ -13,37 +13,41 @@ open class KotlinVerticleFactory : VerticleFactory {
 
   override fun createVerticle(verticleName: String, classLoader: ClassLoader): Verticle {
     val resourceName = VerticleFactory.removePrefix(verticleName)
-
-    var url = classLoader.getResource(resourceName)
-    if (url == null) {
-      var f = File(resourceName)
-      if (!f.isAbsolute) {
-        f = File(System.getProperty("user.dir"), resourceName)
+    if (resourceName.endsWith(".kt")) {
+      var url = classLoader.getResource(resourceName)
+      if (url == null) {
+        var f = File(resourceName)
+        if (!f.isAbsolute) {
+          f = File(System.getProperty("user.dir"), resourceName)
+        }
+        if (f.exists() && f.isFile) {
+          url = f.toURI().toURL()
+        }
       }
-      if (f.exists() && f.isFile) {
-        url = f.toURI().toURL()
+      if (url == null) {
+        throw IllegalStateException("Cannot find verticle script: $verticleName on classpath")
       }
-    }
-    if (url == null) {
-      throw IllegalStateException("Cannot find verticle script: $verticleName on classpath")
-    }
 
-    val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, prefix() == "kts", url) { _, it ->
-      it.kind == ClassKind.CLASS
-          && it.modality != Modality.ABSTRACT
-          && it.modality != Modality.SEALED
-          &&
-          (it.defaultType.constructor.supertypes.any { it.isVerticleType() }
-              || it.defaultType.supertypes().any { it.isVerticleType() }
-              || it is ScriptDescriptor
-              )
-          && it.effectiveVisibility().publicApi
-    }
+      val verticleClasses = KotlinCompilerHelper.compileKotlinScript(classLoader, prefix() == "kts", url) { _, it ->
+        it.kind == ClassKind.CLASS
+            && it.modality != Modality.ABSTRACT
+            && it.modality != Modality.SEALED
+            &&
+            (it.defaultType.constructor.supertypes.any { it.isVerticleType() }
+                || it.defaultType.supertypes().any { it.isVerticleType() }
+                || it is ScriptDescriptor
+                )
+            && it.effectiveVisibility().publicApi
+      }
 
-    return when (verticleClasses.size) {
-      0 -> throw IllegalStateException("No verticle classes found in the file")
-      1 -> toVerticle(verticleClasses.toList().single())
-      else -> CompositeVerticle(verticleClasses.map { it -> toVerticle(it.toPair()) })
+      return when (verticleClasses.size) {
+        0 -> throw IllegalStateException("No verticle classes found in the file")
+        1 -> toVerticle(verticleClasses.toList().single())
+        else -> CompositeVerticle(verticleClasses.map { it -> toVerticle(it.toPair()) })
+      }
+    } else {
+      val clazz = classLoader.loadClass(resourceName)
+      return clazz.newInstance() as Verticle
     }
   }
 
