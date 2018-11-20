@@ -42,7 +42,7 @@ class JsonTest {
     }
 
     assertTrue { result is JsonObject }
-    assertEquals("{\"k\":\"v\"}", result.toString())
+    assertEquals("""{"k":"v"}""", result.toString())
   }
 
   @Test
@@ -88,13 +88,13 @@ class JsonTest {
     val b = Buffer.buffer().appendJson {
       obj("k" to "v")
     }
-    assertEquals("{\"k\":\"v\"}", b.toString(Charsets.UTF_8))
+    assertEquals("""{"k":"v"}""", b.toString(Charsets.UTF_8))
     val c = Buffer.buffer().appendJson { User("Julien", "Viet") }
-    assertEquals("{\"firstName\":\"Julien\",\"lastName\":\"Viet\"}", c.toString(Charsets.UTF_8))
+    assertEquals("""{"firstName":"Julien","lastName":"Viet"}""", c.toString(Charsets.UTF_8))
     //
     val line = DefaultIndenter.SYS_LF
     val d = Buffer.buffer().appendJson(true, { User("Julien", "Viet") })
-    assertEquals("{$line  \"firstName\" : \"Julien\",$line  \"lastName\" : \"Viet\"$line}", d.toString(Charsets.UTF_8))
+    assertEquals("""{$line  "firstName" : "Julien",$line  "lastName" : "Viet"$line}""", d.toString(Charsets.UTF_8))
   }
 
   class User(val firstName: String, val lastName: String) {
@@ -135,7 +135,7 @@ class JsonTest {
       obj("k" to "v")
     }
     assertEquals(1, received.size)
-    assertEquals("{\"k\":\"v\"}", received.single().toString(Charsets.UTF_8))
+    assertEquals("""{"k":"v"}""", received.single().toString(Charsets.UTF_8))
     assertFalse(ended.get())
 
     received.clear()
@@ -143,7 +143,7 @@ class JsonTest {
       obj("k" to "v")
     }
     assertEquals(1, received.size)
-    assertEquals("{\"k\":\"v\"}", received.single().toString(Charsets.UTF_8))
+    assertEquals("""{"k":"v"}""", received.single().toString(Charsets.UTF_8))
     assertTrue(ended.get())
   }
 
