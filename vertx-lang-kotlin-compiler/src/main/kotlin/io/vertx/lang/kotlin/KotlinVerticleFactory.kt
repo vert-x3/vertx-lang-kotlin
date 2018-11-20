@@ -13,7 +13,7 @@ open class KotlinVerticleFactory : VerticleFactory {
 
   override fun createVerticle(verticleName: String, classLoader: ClassLoader): Verticle {
     val resourceName = VerticleFactory.removePrefix(verticleName)
-    if (resourceName.endsWith(".kt")) {
+    if (resourceName.endsWith(".kt") || resourceName.endsWith(".kts")) {
       var url = classLoader.getResource(resourceName)
       if (url == null) {
         var f = File(resourceName)
