@@ -3,6 +3,8 @@ package io.vertx.lang.kotlin;
 import io.vertx.codegen.DataObjectModel;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
+import io.vertx.codegen.annotations.DataObject;
+import io.vertx.codegen.annotations.ModuleGen;
 import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.type.ClassKind;
@@ -12,6 +14,7 @@ import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -24,6 +27,11 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     super("codegen.kotlin.dataobject");
     this.name = "Kotlin";
     this.kinds = Collections.singleton("dataObject");
+  }
+
+  @Override
+  public Collection<Class<? extends Annotation>> annotations() {
+    return Arrays.asList(DataObject.class, ModuleGen.class);
   }
 
   @Override
