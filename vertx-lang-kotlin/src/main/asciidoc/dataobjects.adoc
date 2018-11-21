@@ -6526,6 +6526,29 @@ Sets the websocket path. Only frames received on this path would be considered a
 +++
 |===
 
+[[StreamPriority]]
+== StreamPriority
+
+++++
+ This class represents HTTP/2 stream priority defined in RFC 7540 clause 5.3
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[dependency]]`@dependency`|`Number (int)`|+++
+Set the priority dependency value.
++++
+|[[exclusive]]`@exclusive`|`Boolean`|+++
+Set the priority exclusive value.
++++
+|[[weight]]`@weight`|`Number (short)`|+++
+Set the priority weight.
++++
+|===
+
 [[TCPSSLOptions]]
 == TCPSSLOptions
 
