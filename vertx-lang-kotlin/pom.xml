@@ -269,51 +269,6 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-git</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-hocon</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-kubernetes-configmap</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-redis</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-spring-config-server</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-zookeeper</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-yaml</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-vault</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-config-consul</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-amqp-bridge</artifactId>
       <optional>true</optional>
     </dependency>
@@ -456,15 +411,6 @@
             vertx-service-discovery-bridge-zookeeper,
             vertx-service-discovery-bridge-docker-links,
             vertx-config,
-            vertx-config-git,
-            vertx-config-hocon,
-            vertx-config-kubernetes-configmap,
-            vertx-config-redis,
-            vertx-config-spring-config-server,
-            vertx-config-zookeeper,
-            vertx-config-yaml,
-            vertx-config-vault,
-            vertx-config-consul,
             vertx-amqp-bridge,
             vertx-kafka-client,
             vertx-mqtt,
