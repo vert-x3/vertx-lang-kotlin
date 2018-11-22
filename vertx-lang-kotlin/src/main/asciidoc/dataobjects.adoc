@@ -6885,29 +6885,6 @@ Configure the execution to use an event loop when there is no one existing.
 +++
 |===
 
-[[TokenRequest]]
-== TokenRequest
-
-++++
- The token request structure.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[displayName]]`@displayName`|`String`|-
-|[[id]]`@id`|`String`|-
-|[[meta]]`@meta`|`String`|-
-|[[noDefaultPolicy]]`@noDefaultPolicy`|`Boolean`|-
-|[[noParent]]`@noParent`|`Boolean`|-
-|[[numUses]]`@numUses`|`Number (long)`|-
-|[[policies]]`@policies`|`Array of String`|-
-|[[role]]`@role`|`String`|-
-|[[ttl]]`@ttl`|`String`|-
-|===
-
 [[TopicPartition]]
 == TopicPartition
 
