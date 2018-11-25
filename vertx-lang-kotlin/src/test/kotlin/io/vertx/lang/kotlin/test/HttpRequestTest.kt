@@ -2,6 +2,7 @@ package io.vertx.lang.kotlin.test
 
 import io.vertx.core.http.HttpTestBase
 import io.vertx.ext.web.client.WebClient
+import io.vertx.ext.web.codec.BodyCodec
 import io.vertx.kotlin.core.http.HttpClientOptions
 import io.vertx.kotlin.core.http.HttpServerOptions
 import io.vertx.kotlin.core.json.JsonObject
@@ -25,7 +26,7 @@ class HttpRequestTest : HttpTestBase() {
   }
 
   @Test
-  fun testResponseBodyAsAsJsonMapped() {
+  fun `test response body mapped to a different json object`() {
     val expected = JsonObject("cheese" to "Goat Cheese", "wine" to "Condrieu")
     server.requestHandler { req -> req.response().end(expected.encode()) }
     startServer()
@@ -33,6 +34,23 @@ class HttpRequestTest : HttpTestBase() {
     webClient
       .get(DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/somepath")
       .like<WineAndCheese>()
+      .send(onSuccess { resp ->
+        assertEquals(200, resp.statusCode())
+        assertEquals(WineAndCheese().setCheese("Goat Cheese").setWine("Condrieu"), resp.body())
+        testComplete()
+      })
+    await()
+  }
+
+  @Test
+  fun `test response body mapped to a different json object with explicit codec`() {
+    val expected = JsonObject("cheese" to "Goat Cheese", "wine" to "Condrieu")
+    server.requestHandler { req -> req.response().end(expected.encode()) }
+    startServer()
+
+    webClient
+      .get(DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/somepath")
+      .like<WineAndCheese> { BodyCodec.json(it) }
       .send(onSuccess { resp ->
         assertEquals(200, resp.statusCode())
         assertEquals(WineAndCheese().setCheese("Goat Cheese").setWine("Condrieu"), resp.body())
