@@ -115,17 +115,17 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : (Futu
 }
 
 object Vertx {
-/**
- * Creates a clustered instance using the specified options.
- * <p>
- * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
- *
- * @param options the options to use
- * @param resultHandler the result handler that will receive the result
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
- */
+  /**
+   * Creates a clustered instance using the specified options.
+   * <p>
+   * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
+   *
+   * @param options the options to use
+   * @param resultHandler the result handler that will receive the result
+   *
+   * <p/>
+   * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+   */
   suspend fun clusteredVertxAwait(options : VertxOptions) : VertxVertxAlias {
     return awaitResult{
       VertxVertxAlias.clusteredVertx(options, it)
