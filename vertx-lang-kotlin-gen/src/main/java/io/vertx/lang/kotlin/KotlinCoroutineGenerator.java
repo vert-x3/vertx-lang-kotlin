@@ -9,9 +9,7 @@ import io.vertx.codegen.type.*;
 import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 
-import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -78,23 +76,19 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     return buffer.toString();
   }
 
-  private void generateDoc(ClassModel model, MethodInfo method, Writer writer) {
-    generateDoc(model, method, new PrintWriter(writer));
-  }
-
-  private void generateDoc(ClassModel model, MethodInfo method, PrintWriter writer) {
+  private void generateDoc(ClassModel model, MethodInfo method, CodeWriter writer) {
     Doc doc = method.getDoc();
     if (doc != null) {
-      writer.print("/**\n");
+      writer.println("/**");
       Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
-      writer.print(" *\n");
+      writer.println(" *");
       method.getParams().forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
         if (p.getDescription() != null) {
           String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
           writer.print(docInfo);
         }
-        writer.print("\n");
+        writer.println();
       });
       if (!method.getReturnType().isVoid()) {
         writer.print(" * @return");
@@ -103,16 +97,16 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
           writer.print(docInfo);
         }
       }
-      writer.print(" *\n");
-      writer.print(" * <p/>\n");
-      writer.print(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.\n");
-      writer.print(" */\n");
+      writer.println(" *");
+      writer.println(" * <p/>");
+      writer.println(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.");
+      writer.println(" */");
     }
   }
 
 
   private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, CodeWriter writer, boolean hasStatic) {
-    generateDoc(model, method, writer.writer());
+    generateDoc(model, method, writer);
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
@@ -164,7 +158,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     if (lastParam.isNullableCallback()) {
       writer.print("?");
     }
-    writer.print(" {\n");
+    writer.println(" {");
 
     writer.indent();
     writer.print("return ");
@@ -199,16 +193,16 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
         return kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION;
       });
       if (hasLambdaParam) {
-        writer.print("it::handle)\n");
+        writer.println("it::handle)");
       } else {
-        writer.print("it)\n");
+        writer.println("it)");
       }
     }
     writer.unindent();
-    writer.print("}\n");
+    writer.println("}");
     writer.unindent();
-    writer.print("}\n");
-    writer.print("\n");
+    writer.println("}");
+    writer.println();
   }
 
   private String vertxSimpleNameWrapper(String simpleName, boolean hasStatic) {
