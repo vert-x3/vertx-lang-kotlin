@@ -16,9 +16,9 @@ import java.util.function.Function
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable,T>) : T {
+suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : (Future<T>) -> Unit, fallback : (Throwable) -> T) : T {
   return awaitResult{
-    this.executeCommandWithFallback(command, fallback, it)
+    this.executeCommandWithFallback(command, fallback, it::handle)
   }
 }
 
@@ -31,9 +31,9 @@ suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandAwait(command : Handler<Future<T>>) : T {
+suspend fun <T> CircuitBreaker.executeCommandAwait(command : (Future<T>) -> Unit) : T {
   return awaitResult{
-    this.executeCommand(command, it)
+    this.executeCommand(command, it::handle)
   }
 }
 

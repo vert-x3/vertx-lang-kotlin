@@ -37,9 +37,9 @@ object MessageSource {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.MessageSource original] using Vert.x codegen.
  */
-  suspend fun <T> getConsumerAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>) : MessageConsumer<T> {
+  suspend fun <T> getConsumerAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : MessageConsumer<T> {
     return awaitResult{
-      MessageSourceVertxAlias.getConsumer(discovery, filter, it)
+      MessageSourceVertxAlias.getConsumer(discovery, filter, it::handle)
     }
   }
 

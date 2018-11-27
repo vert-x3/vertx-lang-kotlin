@@ -80,9 +80,9 @@ suspend fun ServiceDiscovery.getRecordAwait(filter : JsonObject) : Record? {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.ServiceDiscovery original] using Vert.x codegen.
  */
-suspend fun ServiceDiscovery.getRecordAwait(filter : Function<Record,Boolean>) : Record? {
+suspend fun ServiceDiscovery.getRecordAwait(filter : (Record) -> Boolean) : Record? {
   return awaitResult{
-    this.getRecord(filter, it)
+    this.getRecord(filter, it::handle)
   }
 }
 
@@ -102,9 +102,9 @@ suspend fun ServiceDiscovery.getRecordAwait(filter : Function<Record,Boolean>) :
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.ServiceDiscovery original] using Vert.x codegen.
  */
-suspend fun ServiceDiscovery.getRecordAwait(filter : Function<Record,Boolean>, includeOutOfService : Boolean) : Record? {
+suspend fun ServiceDiscovery.getRecordAwait(filter : (Record) -> Boolean, includeOutOfService : Boolean) : Record? {
   return awaitResult{
-    this.getRecord(filter, includeOutOfService, it)
+    this.getRecord(filter, includeOutOfService, it::handle)
   }
 }
 
@@ -139,9 +139,9 @@ suspend fun ServiceDiscovery.getRecordsAwait(filter : JsonObject) : List<Record>
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.ServiceDiscovery original] using Vert.x codegen.
  */
-suspend fun ServiceDiscovery.getRecordsAwait(filter : Function<Record,Boolean>) : List<Record> {
+suspend fun ServiceDiscovery.getRecordsAwait(filter : (Record) -> Boolean) : List<Record> {
   return awaitResult{
-    this.getRecords(filter, it)
+    this.getRecords(filter, it::handle)
   }
 }
 
@@ -162,9 +162,9 @@ suspend fun ServiceDiscovery.getRecordsAwait(filter : Function<Record,Boolean>) 
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.ServiceDiscovery original] using Vert.x codegen.
  */
-suspend fun ServiceDiscovery.getRecordsAwait(filter : Function<Record,Boolean>, includeOutOfService : Boolean) : List<Record> {
+suspend fun ServiceDiscovery.getRecordsAwait(filter : (Record) -> Boolean, includeOutOfService : Boolean) : List<Record> {
   return awaitResult{
-    this.getRecords(filter, includeOutOfService, it)
+    this.getRecords(filter, includeOutOfService, it::handle)
   }
 }
 

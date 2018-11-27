@@ -93,9 +93,9 @@ object HttpEndpoint {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
  */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>) : HttpClient {
+  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : HttpClient {
     return awaitResult{
-      HttpEndpointVertxAlias.getClient(discovery, filter, it)
+      HttpEndpointVertxAlias.getClient(discovery, filter, it::handle)
     }
   }
 
@@ -110,9 +110,9 @@ object HttpEndpoint {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
  */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>) : WebClient {
+  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : WebClient {
     return awaitResult{
-      HttpEndpointVertxAlias.getWebClient(discovery, filter, it)
+      HttpEndpointVertxAlias.getWebClient(discovery, filter, it::handle)
     }
   }
 
@@ -129,9 +129,9 @@ object HttpEndpoint {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
  */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>, conf : JsonObject) : HttpClient {
+  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean, conf : JsonObject) : HttpClient {
     return awaitResult{
-      HttpEndpointVertxAlias.getClient(discovery, filter, conf, it)
+      HttpEndpointVertxAlias.getClient(discovery, filter, conf, it::handle)
     }
   }
 
@@ -148,9 +148,9 @@ object HttpEndpoint {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
  */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>, conf : JsonObject) : WebClient {
+  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean, conf : JsonObject) : WebClient {
     return awaitResult{
-      HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it)
+      HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it::handle)
     }
   }
 

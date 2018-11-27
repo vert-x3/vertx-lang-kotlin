@@ -38,9 +38,9 @@ object MongoDataSource {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.MongoDataSource original] using Vert.x codegen.
  */
-  suspend fun getMongoClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>) : MongoClient {
+  suspend fun getMongoClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : MongoClient {
     return awaitResult{
-      MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it)
+      MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it::handle)
     }
   }
 

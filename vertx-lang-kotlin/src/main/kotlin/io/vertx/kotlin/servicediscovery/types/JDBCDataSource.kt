@@ -37,9 +37,9 @@ object JDBCDataSource {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.
  */
-  suspend fun getJDBCClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>) : JDBCClient {
+  suspend fun getJDBCClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : JDBCClient {
     return awaitResult{
-      JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, it)
+      JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, it::handle)
     }
   }
 
@@ -73,9 +73,9 @@ object JDBCDataSource {
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.
  */
-  suspend fun getJDBCClientAwait(discovery : ServiceDiscovery, filter : Function<Record,Boolean>, consumerConfiguration : JsonObject) : JDBCClient {
+  suspend fun getJDBCClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean, consumerConfiguration : JsonObject) : JDBCClient {
     return awaitResult{
-      JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, consumerConfiguration, it)
+      JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, consumerConfiguration, it::handle)
     }
   }
 

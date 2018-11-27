@@ -24,9 +24,9 @@ import io.vertx.kotlin.coroutines.awaitResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Context original] using Vert.x codegen.
  */
-suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>, ordered : Boolean) : T? {
+suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : (Future<T>) -> Unit, ordered : Boolean) : T? {
   return awaitResult{
-    this.executeBlocking(blockingCodeHandler, ordered, it)
+    this.executeBlocking(blockingCodeHandler, ordered, it::handle)
   }
 }
 
@@ -39,9 +39,9 @@ suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : Handler<Futur
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Context original] using Vert.x codegen.
  */
-suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>) : T? {
+suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : (Future<T>) -> Unit) : T? {
   return awaitResult{
-    this.executeBlocking(blockingCodeHandler, it)
+    this.executeBlocking(blockingCodeHandler, it::handle)
   }
 }
 
