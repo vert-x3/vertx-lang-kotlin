@@ -161,7 +161,6 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     }
 
 
-
     if (lastParam.isNullableCallback()) {
       writer.print("?");
     }
@@ -195,7 +194,15 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
         writer.print("{ ar -> it.handle(ar.mapEmpty()) })");
       }
     } else {
-      writer.print("it)\n");
+      boolean hasLambdaParam = params.stream().limit(params.size() - 1).anyMatch(p -> {
+        ClassKind kind = p.getType().getKind();
+        return kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION;
+      });
+      if (hasLambdaParam) {
+        writer.print("it::handle)\n");
+      } else {
+        writer.print("it)\n");
+      }
     }
     writer.unindent();
     writer.print("}\n");
@@ -258,6 +265,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   }
 
   private String kotlinType(TypeInfo type) {
+    ClassKind kind = type.getKind();
     if (type instanceof VoidTypeInfo) {
       return "Unit";
     } else if (type instanceof PrimitiveTypeInfo) {
@@ -277,8 +285,13 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       return "Any";
     } else {
       if (type instanceof ParameterizedTypeInfo) {
-        List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
-        return type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
+        if (kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION) {
+          List<String> args = ((ParameterizedTypeInfo) type).getArgs().stream().map(this::kotlinType).collect(Collectors.toList());
+          return "(" + args.get(0) + ") -> " + (args.size() == 1 ? "Unit" : args.get(1));
+        } else {
+          List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
+          return type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
+        }
       } else {
         return type.getSimpleName();
       }
@@ -290,7 +303,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     MethodKind methodKind = it.getKind();
     return
       !it.isDeprecated() &&
-      (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
+        (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
   }
 
   /**
