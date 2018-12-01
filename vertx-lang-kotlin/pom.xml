@@ -383,7 +383,6 @@
             vertx-service-discovery-bridge-zookeeper,
             vertx-service-discovery-bridge-docker-links,
             vertx-config,
-            vertx-amqp-bridge,
             vertx-kafka-client,
             vertx-mqtt,
             vertx-rabbitmq-client,
