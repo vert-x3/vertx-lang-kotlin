@@ -88,7 +88,9 @@ class VertxCoroutineTest {
     server.listen { res ->
       assertTrue(res.succeeded())
       val client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
-      client.getNow("/somepath") { resp ->
+      client.getNow("/somepath") { ar ->
+        assertTrue(ar.succeeded())
+        val resp = ar.result()
         assertTrue(resp.statusCode() == 200)
         client.close()
         server.close { async.complete() }
