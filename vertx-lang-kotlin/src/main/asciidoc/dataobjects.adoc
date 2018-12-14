@@ -867,6 +867,7 @@ Sets the previous configuration.
 == ConfigRetrieverOptions
 
 ++++
+ Options to configure the <code>ConfigRetriever</code>.
 ++++
 '''
 
@@ -874,9 +875,15 @@ Sets the previous configuration.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[includeDefaultStores]]`@includeDefaultStores`|`Boolean`|-
-|[[scanPeriod]]`@scanPeriod`|`Number (long)`|-
-|[[stores]]`@stores`|`Array of link:dataobjects.html#ConfigStoreOptions[ConfigStoreOptions]`|-
+|[[includeDefaultStores]]`@includeDefaultStores`|`Boolean`|+++
+Enables or disables the inclusion of the default stored in the configuration.
++++
+|[[scanPeriod]]`@scanPeriod`|`Number (long)`|+++
+Configures the scan period, in ms. This is the time amount between two checks of the configuration updates.
++++
+|[[stores]]`@stores`|`Array of link:dataobjects.html#ConfigStoreOptions[ConfigStoreOptions]`|+++
+Sets the configuration stores.
++++
 |===
 
 [[ConfigStoreOptions]]
@@ -5699,6 +5706,7 @@ Get the rows - each row represented as a JsonObject where the keys are the colum
 ^|Name | Type ^| Description
 |[[mountNotImplementedHandler]]`@mountNotImplementedHandler`|`Boolean`|+++
 Automatic mount handlers that return HTTP 501 status code for operations where you didn't specify an handler.
+ You can change the "not implemented handler" with link
 +++
 |[[mountResponseContentTypeHandler]]`@mountResponseContentTypeHandler`|`Boolean`|+++
 If true, when required, the factory will mount a link
