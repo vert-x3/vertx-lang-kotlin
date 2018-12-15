@@ -146,7 +146,6 @@ fun Vertx.dispatcher(): CoroutineDispatcher {
  * This is necessary if you want to execute coroutine synchronous operations in your handler
  */
 fun Context.dispatcher(): CoroutineDispatcher {
-  require(!isMultiThreadedWorkerContext) { "Must not be a multithreaded worker verticle." }
   return VertxCoroutineExecutor(this).asCoroutineDispatcher()
 }
 
