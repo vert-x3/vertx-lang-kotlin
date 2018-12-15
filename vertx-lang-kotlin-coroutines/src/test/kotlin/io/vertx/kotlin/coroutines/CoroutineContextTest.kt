@@ -83,20 +83,6 @@ class CoroutineContextTest {
   }
 
   @Test
-  fun `test in MultithreadedWorker context`(testContext: TestContext) {
-    val async = testContext.async()
-    vertx.deployVerticle(object : CoroutineVerticle() {
-      override suspend fun start() {
-        launch {
-          runTest(testContext, isOnEventLoop = false)
-        }
-      }
-    }, DeploymentOptions().setWorker(true).setMultiThreaded(true), testContext.asyncAssertFailure {
-      async.complete()
-    })
-  }
-
-  @Test
   fun `test using Unconfined dispatcher`(testContext: TestContext) {
     val async = testContext.async()
     val current = Thread.currentThread()
