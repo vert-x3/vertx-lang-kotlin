@@ -6,7 +6,7 @@ import io.vertx.ext.web.codec.BodyCodec
 import io.vertx.kotlin.core.http.HttpClientOptions
 import io.vertx.kotlin.core.http.HttpServerOptions
 import io.vertx.kotlin.core.json.JsonObject
-import io.vertx.kotlin.core.web.like
+import io.vertx.kotlin.ext.web.client.mapTo
 import io.vertx.lang.kotlin.test.jackson.WineAndCheese
 import org.junit.Before
 import org.junit.Test
@@ -33,7 +33,7 @@ class HttpRequestTest : HttpTestBase() {
 
     webClient
       .get(DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/somepath")
-      .like<WineAndCheese>()
+      .mapTo<WineAndCheese>()
       .send(onSuccess { resp ->
         assertEquals(200, resp.statusCode())
         assertEquals(WineAndCheese().setCheese("Goat Cheese").setWine("Condrieu"), resp.body())
@@ -50,7 +50,7 @@ class HttpRequestTest : HttpTestBase() {
 
     webClient
       .get(DEFAULT_HTTP_PORT, DEFAULT_HTTP_HOST, "/somepath")
-      .like<WineAndCheese> { BodyCodec.json(it) }
+      .mapTo<WineAndCheese> { BodyCodec.json(it) }
       .send(onSuccess { resp ->
         assertEquals(200, resp.statusCode())
         assertEquals(WineAndCheese().setCheese("Goat Cheese").setWine("Condrieu"), resp.body())

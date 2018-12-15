@@ -1,4 +1,4 @@
-package io.vertx.kotlin.core.web
+package io.vertx.kotlin.ext.web.client
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.ext.web.client.HttpRequest
@@ -12,5 +12,6 @@ import io.vertx.ext.web.codec.BodyCodec
  * @param codec what to use to decode [U]. By default, [BodyCodec.json] is used.
  * @return a reference to the [HttpRequest] with type [U].
  */
-inline fun <reified U> HttpRequest<Buffer>.like(codec: (Class<U>) -> BodyCodec<U> = { BodyCodec.json(it) }): HttpRequest<U> =
-  `as`(codec(U::class.java))
+inline fun <reified U> HttpRequest<Buffer>.mapTo(
+  codec: (Class<U>) -> BodyCodec<U> = { BodyCodec.json(it) }
+): HttpRequest<U> = `as`(codec(U::class.java))
