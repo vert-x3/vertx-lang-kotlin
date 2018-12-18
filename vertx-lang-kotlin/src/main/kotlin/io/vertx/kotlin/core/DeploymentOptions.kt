@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit
  * @param isolationGroup  Set the isolation group that will be used when deploying the verticle(s)
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is 
  * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code>
- * @param multiThreaded  Set whether the verticle(s) should be deployed as a multi-threaded worker verticle. <p> <strong>WARNING</strong>: Multi-threaded worker verticles are a deprecated feature. <p> Most applications will have no need for them. Because of the concurrency in these verticles you have to be very careful to keep the verticle in a consistent state using standard Java techniques for multi-threaded programming. <p> You can read the documentation that explains how you can replace this feature by the usage of custom worker pools or <code>executeBlocking</code> calls.
  * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
  * @param workerPoolName  Set the worker pool name to use for this verticle. When no name is set, the Vert.x worker pool will be used, when a name is set, the verticle will use a named worker pool.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.
@@ -34,7 +33,6 @@ fun DeploymentOptions(
   isolationGroup: String? = null,
   maxWorkerExecuteTime: Long? = null,
   maxWorkerExecuteTimeUnit: TimeUnit? = null,
-  multiThreaded: Boolean? = null,
   worker: Boolean? = null,
   workerPoolName: String? = null,
   workerPoolSize: Int? = null): DeploymentOptions = io.vertx.core.DeploymentOptions().apply {
@@ -62,9 +60,6 @@ fun DeploymentOptions(
   }
   if (maxWorkerExecuteTimeUnit != null) {
     this.setMaxWorkerExecuteTimeUnit(maxWorkerExecuteTimeUnit)
-  }
-  if (multiThreaded != null) {
-    this.setMultiThreaded(multiThreaded)
   }
   if (worker != null) {
     this.setWorker(worker)

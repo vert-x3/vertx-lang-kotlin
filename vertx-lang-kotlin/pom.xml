@@ -5,13 +5,13 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>3.6.0-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>vertx-lang-kotlin</artifactId>
-  <version>3.6.0-SNAPSHOT</version>
+  <version>4.0.0-SNAPSHOT</version>
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
@@ -59,11 +59,6 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-mongo-client</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-mongo-service</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -204,17 +199,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-mail-service</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-consul-client</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-consul-service</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -269,22 +254,12 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-amqp-bridge</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-kafka-client</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-mqtt</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-mysql-postgresql-client</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -307,6 +282,11 @@
       <artifactId>vertx-micrometer-metrics</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-tcp-eventbus-bridge</artifactId>
+      <optional>true</optional>
+    </dependency>
 
     <!-- Extra dependencies -->
     <dependency>
@@ -317,13 +297,13 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-gen</artifactId>
-      <version>3.6.0-SNAPSHOT</version>
+      <version>4.0.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
-      <version>3.6.0-SNAPSHOT</version>
+      <version>4.0.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -370,7 +350,6 @@
             vertx-bridge-common,
             vertx-sql-common,
             vertx-mongo-client,
-            vertx-mongo-service,
             vertx-cassandra-client,
             vertx-jdbc-client,
             vertx-auth-common,
@@ -398,9 +377,7 @@
             vertx-redis-client,
             vertx-stomp,
             vertx-mail-client,
-            vertx-mail-service,
             vertx-consul-client,
-            vertx-consul-service,
             vertx-service-discovery,
             vertx-service-discovery-backend-consul,
             vertx-service-discovery-backend-redis,
@@ -411,14 +388,13 @@
             vertx-service-discovery-bridge-zookeeper,
             vertx-service-discovery-bridge-docker-links,
             vertx-config,
-            vertx-amqp-bridge,
             vertx-kafka-client,
             vertx-mqtt,
-            vertx-mysql-postgresql-client,
             vertx-rabbitmq-client,
             vertx-health-check,
             vertx-shell,
-            vertx-micrometer-metrics
+            vertx-micrometer-metrics,
+            vertx-tcp-eventbus-bridge
           </includeArtifactIds>
           <classifier>sources</classifier>
           <includeTypes>jar</includeTypes>
