@@ -11,7 +11,6 @@ object OpenAPI3RouterFactory {
    *
    * @param vertx 
    * @param url location of your spec. It can be an absolute path, a local path or remote url (with HTTP protocol)
-   * @param handler When specification is loaded, this handler will be called with AsyncResult<OpenAPI3RouterFactory>
    *
    * <p/>
    * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory original] using Vert.x codegen.
@@ -28,7 +27,6 @@ object OpenAPI3RouterFactory {
    * @param vertx 
    * @param url location of your spec. It can be an absolute path, a local path or remote url (with HTTP protocol)
    * @param auth list of authorization values needed to access the remote url. Each item should be json representation of an 
-   * @param handler When specification is loaded, this handler will be called with AsyncResult<OpenAPI3RouterFactory>
    *
    * <p/>
    * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory original] using Vert.x codegen.

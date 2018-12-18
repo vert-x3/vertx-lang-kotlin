@@ -14,7 +14,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * from the result set is returned.
  *
  * @param sql the statement to execute
- * @param handler the result handler
  * @returnself *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -32,7 +31,6 @@ suspend fun SQLClient.querySingleAwait(sql : String) : JsonArray? {
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @param handler the result handler
  * @returnself *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -47,7 +45,6 @@ suspend fun SQLClient.querySingleWithParamsAwait(sql : String, arguments : JsonA
  * Returns a connection that can be used to perform SQL operations on. It's important to remember
  * to close the connection when you are done, so it is returned to the pool.
  *
- * @param handler the handler which is called when the <code>JdbcConnection</code> object is ready for use.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -62,7 +59,6 @@ suspend fun SQLClient.getConnectionAwait() : SQLConnection {
  * Close the client and release all resources.
  * Call the handler when close is complete.
  *
- * @param handler the handler that will be called when close is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -77,7 +73,6 @@ suspend fun SQLClient.closeAwait() : Unit {
  * statement and returns it back after the execution.
  *
  * @param sql the statement to execute
- * @param handler the result handler
  * @returnself *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -92,7 +87,6 @@ suspend fun SQLClient.queryAwait(sql : String) : ResultSet {
  * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -108,7 +102,6 @@ suspend fun SQLClient.queryStreamAwait(sql : String) : SQLRowStream {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
- * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -125,7 +118,6 @@ suspend fun SQLClient.queryStreamWithParamsAwait(sql : String, params : JsonArra
  *
  * @param sql the statement to execute
  * @param arguments the arguments to the statement
- * @param handler the result handler
  * @returnself *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -141,7 +133,6 @@ suspend fun SQLClient.queryWithParamsAwait(sql : String, arguments : JsonArray) 
  * statement.
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
- * @param handler the handler which is called once the operation completes.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -158,7 +149,6 @@ suspend fun SQLClient.updateAwait(sql : String) : UpdateResult {
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
- * @param handler the handler which is called once the operation completes.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -173,7 +163,6 @@ suspend fun SQLClient.updateWithParamsAwait(sql : String, params : JsonArray) : 
  * Calls the given SQL <code>PROCEDURE</code> which returns the result from the procedure.
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
- * @param handler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
@@ -198,7 +187,6 @@ suspend fun SQLClient.callAwait(sql : String) : ResultSet {
  * @param sql the SQL to execute. For example <code>{call getEmpName (?, ?)}</code>.
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
- * @param handler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.

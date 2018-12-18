@@ -11,7 +11,6 @@ import java.util.function.Function
  *
  * @param command the operation
  * @param fallback the fallback
- * @param handler the completion handler receiving either the operation result or the fallback result. The parameter is an  because if the fallback is not called, the error is passed to the handler.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.
@@ -26,7 +25,6 @@ suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : (Future
  * Same as [io.vertx.circuitbreaker.CircuitBreaker] but using the circuit breaker default fallback.
  *
  * @param command the operation
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.

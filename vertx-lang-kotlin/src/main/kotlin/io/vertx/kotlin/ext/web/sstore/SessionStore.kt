@@ -8,7 +8,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Get the session with the specified ID.
  *
  * @param cookieValue the unique ID of the session
- * @param resultHandler will be called with a result holding the session, or a failure
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
@@ -23,7 +22,6 @@ suspend fun SessionStore.getAwait(cookieValue : String) : Session? {
  * Delete the session with the specified ID.
  *
  * @param id the session id
- * @param resultHandler will be called with a success or a failure
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
@@ -37,7 +35,6 @@ suspend fun SessionStore.deleteAwait(id : String) : Unit {
  * Add a session with the specified ID.
  *
  * @param session the session
- * @param resultHandler will be called with a success or a failure
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
@@ -50,7 +47,6 @@ suspend fun SessionStore.putAwait(session : Session) : Unit {
 /**
  * Remove all sessions from the store.
  *
- * @param resultHandler will be called with a success or a failure
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
@@ -65,7 +61,6 @@ suspend fun SessionStore.clearAwait() : Unit {
  * <p>
  * Beware of the result which is just an estimate, in particular with distributed session stores.
  *
- * @param resultHandler will be called with the number, or a failure
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.

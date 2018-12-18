@@ -12,7 +12,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param user the given user to assert on
  * @param authority the authority to lookup
- * @param handler the result handler.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2RBAC original] using Vert.x codegen.

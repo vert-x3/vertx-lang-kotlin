@@ -16,7 +16,6 @@ object OpenIDConnectAuth {
    *
    * @param vertx the vertx instance
    * @param config the initial config, it should contain a site url
-   * @param handler the instantiated Oauth2 provider instance handler
    *
    * <p/>
    * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.providers.OpenIDConnectAuth original] using Vert.x codegen.

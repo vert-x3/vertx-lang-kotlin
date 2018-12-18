@@ -8,7 +8,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Close the file. The actual close happens asynchronously.
  * The handler will be called when the close is complete, or an error occurs.
  *
- * @param handler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.AsyncFile original] using Vert.x codegen.
@@ -31,7 +30,6 @@ suspend fun AsyncFile.closeAwait() : Unit {
  *
  * @param buffer the buffer to write
  * @param position the position in the file to write it at
- * @param handler the handler to call when the write is complete
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.AsyncFile original] using Vert.x codegen.
@@ -55,7 +53,6 @@ suspend fun AsyncFile.writeAwait(buffer : Buffer, position : Long) : Unit {
  * @param offset the offset into the buffer where the data will be read
  * @param position the position in the file where to start reading
  * @param length the number of bytes to read
- * @param handler the handler to call when the write is complete
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.AsyncFile original] using Vert.x codegen.
@@ -69,7 +66,6 @@ suspend fun AsyncFile.readAwait(buffer : Buffer, offset : Int, position : Long, 
 /**
  * Same as [io.vertx.core.file.AsyncFile] but the handler will be called when the flush is complete or if an error occurs
  *
- * @param handler 
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.AsyncFile original] using Vert.x codegen.
