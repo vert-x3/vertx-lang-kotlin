@@ -82,7 +82,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       writer.println("/**");
       Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
       writer.println(" *");
-      method.getParams().forEach(p -> {
+      method.getParams().stream().limit(method.getParams().size() - 1).forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
         if (p.getDescription() != null) {
           String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
