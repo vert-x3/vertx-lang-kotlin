@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Coordinate
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.CoordinateList original] using Vert.x codegen.
  */
-fun CoordinateList(
+fun coordinateListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Coordinate>? = null): CoordinateList = io.vertx.ext.consul.CoordinateList().apply {
 

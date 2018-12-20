@@ -13,7 +13,7 @@ import io.vertx.core.metrics.MetricsOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.metrics.MetricsOptions original] using Vert.x codegen.
  */
-fun MetricsOptions(
+fun metricsOptionsOf(
   enabled: Boolean? = null): MetricsOptions = io.vertx.core.metrics.MetricsOptions().apply {
 
   if (enabled != null) {

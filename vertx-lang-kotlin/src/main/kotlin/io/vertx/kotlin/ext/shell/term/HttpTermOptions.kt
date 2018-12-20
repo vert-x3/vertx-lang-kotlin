@@ -85,7 +85,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.HttpTermOptions original] using Vert.x codegen.
  */
-fun HttpTermOptions(
+fun httpTermOptionsOf(
   acceptBacklog: Int? = null,
   acceptUnmaskedFrames: Boolean? = null,
   alpnVersions: Iterable<HttpVersion>? = null,

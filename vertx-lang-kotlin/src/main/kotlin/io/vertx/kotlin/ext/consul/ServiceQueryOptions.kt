@@ -15,7 +15,7 @@ import io.vertx.ext.consul.BlockingQueryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceQueryOptions original] using Vert.x codegen.
  */
-fun ServiceQueryOptions(
+fun serviceQueryOptionsOf(
   blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null,
   near: String? = null,
   tag: String? = null): ServiceQueryOptions = io.vertx.ext.consul.ServiceQueryOptions().apply {

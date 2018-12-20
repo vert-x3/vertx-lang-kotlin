@@ -22,7 +22,7 @@ import io.vertx.ext.auth.AuthOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.SSHTermOptions original] using Vert.x codegen.
  */
-fun SSHTermOptions(
+fun sSHTermOptionsOf(
   defaultCharset: String? = null,
   host: String? = null,
   intputrc: String? = null,

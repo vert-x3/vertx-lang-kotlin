@@ -94,7 +94,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClientOptions original] using Vert.x codegen.
  */
-fun ConsulClientOptions(
+fun consulClientOptionsOf(
   aclToken: String? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   connectTimeout: Int? = null,

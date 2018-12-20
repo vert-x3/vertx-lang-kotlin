@@ -13,7 +13,7 @@ import io.vertx.ext.consul.TxnError
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnError original] using Vert.x codegen.
  */
-fun TxnError(
+fun txnErrorOf(
   opIndex: Int? = null,
   what: String? = null): TxnError = io.vertx.ext.consul.TxnError().apply {
 

@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Node
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.NodeList original] using Vert.x codegen.
  */
-fun NodeList(
+fun nodeListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Node>? = null): NodeList = io.vertx.ext.consul.NodeList().apply {
 

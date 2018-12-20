@@ -14,7 +14,7 @@ import io.vertx.core.http.GoAway
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.GoAway original] using Vert.x codegen.
  */
-fun GoAway(
+fun goAwayOf(
   debugData: io.vertx.core.buffer.Buffer? = null,
   errorCode: Long? = null,
   lastStreamId: Int? = null): GoAway = io.vertx.core.http.GoAway().apply {

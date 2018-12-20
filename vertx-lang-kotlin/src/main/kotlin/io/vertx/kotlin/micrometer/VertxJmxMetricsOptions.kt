@@ -14,7 +14,7 @@ import io.vertx.micrometer.VertxJmxMetricsOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.VertxJmxMetricsOptions original] using Vert.x codegen.
  */
-fun VertxJmxMetricsOptions(
+fun vertxJmxMetricsOptionsOf(
   domain: String? = null,
   enabled: Boolean? = null,
   step: Int? = null): VertxJmxMetricsOptions = io.vertx.micrometer.VertxJmxMetricsOptions().apply {

@@ -13,7 +13,7 @@ import io.vertx.ext.consul.PreparedQueryExecuteOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.PreparedQueryExecuteOptions original] using Vert.x codegen.
  */
-fun PreparedQueryExecuteOptions(
+fun preparedQueryExecuteOptionsOf(
   limit: Int? = null,
   near: String? = null): PreparedQueryExecuteOptions = io.vertx.ext.consul.PreparedQueryExecuteOptions().apply {
 

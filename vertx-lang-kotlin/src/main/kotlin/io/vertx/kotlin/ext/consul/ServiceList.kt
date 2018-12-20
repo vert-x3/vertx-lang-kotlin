@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Service
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceList original] using Vert.x codegen.
  */
-fun ServiceList(
+fun serviceListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Service>? = null): ServiceList = io.vertx.ext.consul.ServiceList().apply {
 

@@ -17,7 +17,7 @@ import io.vertx.ext.mongo.BulkOperation.BulkOperationType
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.BulkOperation original] using Vert.x codegen.
  */
-fun BulkOperation(
+fun bulkOperationOf(
   document: io.vertx.core.json.JsonObject? = null,
   filter: io.vertx.core.json.JsonObject? = null,
   multi: Boolean? = null,

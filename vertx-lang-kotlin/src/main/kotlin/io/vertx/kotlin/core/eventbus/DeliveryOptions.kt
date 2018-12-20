@@ -18,7 +18,7 @@ import io.vertx.core.eventbus.DeliveryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.DeliveryOptions original] using Vert.x codegen.
  */
-fun DeliveryOptions(
+fun deliveryOptionsOf(
   codecName: String? = null,
   headers: Map<String, String>? = null,
   localOnly: Boolean? = null,

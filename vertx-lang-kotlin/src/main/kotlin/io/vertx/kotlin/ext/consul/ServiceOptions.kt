@@ -19,7 +19,7 @@ import io.vertx.ext.consul.CheckOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceOptions original] using Vert.x codegen.
  */
-fun ServiceOptions(
+fun serviceOptionsOf(
   address: String? = null,
   checkOptions: io.vertx.ext.consul.CheckOptions? = null,
   id: String? = null,

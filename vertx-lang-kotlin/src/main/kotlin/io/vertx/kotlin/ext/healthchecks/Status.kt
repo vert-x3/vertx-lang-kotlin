@@ -15,7 +15,7 @@ import io.vertx.ext.healthchecks.Status
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.healthchecks.Status original] using Vert.x codegen.
  */
-fun Status(
+fun statusOf(
   data: io.vertx.core.json.JsonObject? = null,
   ok: Boolean? = null,
   procedureInError: Boolean? = null): Status = io.vertx.ext.healthchecks.Status().apply {

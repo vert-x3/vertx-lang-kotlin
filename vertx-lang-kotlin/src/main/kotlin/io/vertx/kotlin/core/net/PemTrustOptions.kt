@@ -41,7 +41,7 @@ import io.vertx.core.net.PemTrustOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.PemTrustOptions original] using Vert.x codegen.
  */
-fun PemTrustOptions(
+fun pemTrustOptionsOf(
   certPaths: Iterable<String>? = null,
   certValues: Iterable<io.vertx.core.buffer.Buffer>? = null): PemTrustOptions = io.vertx.core.net.PemTrustOptions().apply {
 

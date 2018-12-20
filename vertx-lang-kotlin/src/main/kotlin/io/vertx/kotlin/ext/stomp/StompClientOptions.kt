@@ -68,7 +68,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClientOptions original] using Vert.x codegen.
  */
-fun StompClientOptions(
+fun stompClientOptionsOf(
   acceptedVersions: Iterable<String>? = null,
   autoComputeContentLength: Boolean? = null,
   bypassHostHeader: Boolean? = null,

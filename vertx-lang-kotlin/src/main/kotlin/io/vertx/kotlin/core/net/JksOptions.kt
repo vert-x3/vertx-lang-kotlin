@@ -32,7 +32,7 @@ import io.vertx.core.net.JksOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.JksOptions original] using Vert.x codegen.
  */
-fun JksOptions(
+fun jksOptionsOf(
   password: String? = null,
   path: String? = null,
   value: io.vertx.core.buffer.Buffer? = null): JksOptions = io.vertx.core.net.JksOptions().apply {

@@ -19,7 +19,7 @@ import io.vertx.ext.consul.Event
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Event original] using Vert.x codegen.
  */
-fun Event(
+fun eventOf(
   id: String? = null,
   lTime: Int? = null,
   name: String? = null,

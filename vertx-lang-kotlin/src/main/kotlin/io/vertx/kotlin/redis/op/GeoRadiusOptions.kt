@@ -14,7 +14,7 @@ import io.vertx.redis.op.GeoRadiusOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.GeoRadiusOptions original] using Vert.x codegen.
  */
-fun GeoRadiusOptions(
+fun geoRadiusOptionsOf(
   count: Long? = null,
   withCoord: Boolean? = null,
   withDist: Boolean? = null,

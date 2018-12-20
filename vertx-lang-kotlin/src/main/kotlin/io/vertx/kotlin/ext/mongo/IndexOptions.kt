@@ -11,7 +11,7 @@ import io.vertx.ext.mongo.IndexOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.IndexOptions original] using Vert.x codegen.
  */
-fun IndexOptions(
+fun indexOptionsOf(
 ): IndexOptions = io.vertx.ext.mongo.IndexOptions().apply {
 
 }

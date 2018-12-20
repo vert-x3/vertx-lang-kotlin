@@ -14,7 +14,7 @@ import io.vertx.ext.consul.BlockingQueryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.EventListOptions original] using Vert.x codegen.
  */
-fun EventListOptions(
+fun eventListOptionsOf(
   blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null,
   name: String? = null): EventListOptions = io.vertx.ext.consul.EventListOptions().apply {
 

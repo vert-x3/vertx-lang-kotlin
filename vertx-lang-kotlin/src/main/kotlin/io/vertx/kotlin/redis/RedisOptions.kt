@@ -85,7 +85,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisOptions original] using Vert.x codegen.
  */
-fun RedisOptions(
+fun redisOptionsOf(
   address: String? = null,
   auth: String? = null,
   binary: Boolean? = null,

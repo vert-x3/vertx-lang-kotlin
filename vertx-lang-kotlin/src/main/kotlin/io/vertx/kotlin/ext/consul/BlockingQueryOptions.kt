@@ -13,7 +13,7 @@ import io.vertx.ext.consul.BlockingQueryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.BlockingQueryOptions original] using Vert.x codegen.
  */
-fun BlockingQueryOptions(
+fun blockingQueryOptionsOf(
   index: Long? = null,
   wait: String? = null): BlockingQueryOptions = io.vertx.ext.consul.BlockingQueryOptions().apply {
 

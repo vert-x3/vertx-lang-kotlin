@@ -2,7 +2,7 @@ package io.vertx.kotlin.redis.op
 
 import io.vertx.redis.op.BitFieldSetCommand
 
-fun BitFieldSetCommand(
+fun bitFieldSetCommandOf(
   offset: Long? = null,
   type: String? = null,
   value: Long? = null): BitFieldSetCommand = io.vertx.redis.op.BitFieldSetCommand().apply {

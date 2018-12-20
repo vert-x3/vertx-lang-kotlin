@@ -80,7 +80,7 @@ import io.vertx.core.net.PemKeyCertOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.PemKeyCertOptions original] using Vert.x codegen.
  */
-fun PemKeyCertOptions(
+fun pemKeyCertOptionsOf(
   certPath: String? = null,
   certPaths: Iterable<String>? = null,
   certValue: io.vertx.core.buffer.Buffer? = null,

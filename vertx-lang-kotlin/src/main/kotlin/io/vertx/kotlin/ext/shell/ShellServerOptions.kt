@@ -14,7 +14,7 @@ import io.vertx.ext.shell.ShellServerOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellServerOptions original] using Vert.x codegen.
  */
-fun ShellServerOptions(
+fun shellServerOptionsOf(
   reaperInterval: Long? = null,
   sessionTimeout: Long? = null,
   welcomeMessage: String? = null): ShellServerOptions = io.vertx.ext.shell.ShellServerOptions().apply {

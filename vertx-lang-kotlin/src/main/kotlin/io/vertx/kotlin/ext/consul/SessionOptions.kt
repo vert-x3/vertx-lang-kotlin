@@ -18,7 +18,7 @@ import io.vertx.ext.consul.SessionBehavior
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.SessionOptions original] using Vert.x codegen.
  */
-fun SessionOptions(
+fun sessionOptionsOf(
   behavior: SessionBehavior? = null,
   checks: Iterable<String>? = null,
   lockDelay: Long? = null,

@@ -11,7 +11,7 @@ import io.vertx.mqtt.MqttAuth
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttAuth original] using Vert.x codegen.
  */
-fun MqttAuth(
+fun mqttAuthOf(
 ): MqttAuth = io.vertx.mqtt.MqttAuth(io.vertx.core.json.JsonObject()).apply {
 
 }

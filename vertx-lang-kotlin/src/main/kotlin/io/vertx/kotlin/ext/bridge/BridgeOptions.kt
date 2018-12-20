@@ -14,7 +14,7 @@ import io.vertx.ext.bridge.PermittedOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.bridge.BridgeOptions original] using Vert.x codegen.
  */
-fun BridgeOptions(
+fun bridgeOptionsOf(
   inboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null): BridgeOptions = io.vertx.ext.bridge.BridgeOptions().apply {
 

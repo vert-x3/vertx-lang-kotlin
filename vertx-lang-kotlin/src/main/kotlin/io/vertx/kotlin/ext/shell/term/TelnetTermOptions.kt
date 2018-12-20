@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TelnetTermOptions original] using Vert.x codegen.
  */
-fun TelnetTermOptions(
+fun telnetTermOptionsOf(
   acceptBacklog: Int? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,

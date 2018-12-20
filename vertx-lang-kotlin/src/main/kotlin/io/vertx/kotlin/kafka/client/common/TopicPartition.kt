@@ -13,7 +13,7 @@ import io.vertx.kafka.client.common.TopicPartition
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.common.TopicPartition original] using Vert.x codegen.
  */
-fun TopicPartition(
+fun topicPartitionOf(
   partition: Int? = null,
   topic: String? = null): TopicPartition = io.vertx.kafka.client.common.TopicPartition().apply {
 

@@ -26,7 +26,7 @@ import io.vertx.rabbitmq.RabbitMQOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQOptions original] using Vert.x codegen.
  */
-fun RabbitMQOptions(
+fun rabbitMQOptionsOf(
   automaticRecoveryEnabled: Boolean? = null,
   connectionRetries: Int? = null,
   connectionRetryDelay: Long? = null,

@@ -19,7 +19,7 @@ import io.vertx.servicediscovery.Status
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.Record original] using Vert.x codegen.
  */
-fun Record(
+fun recordOf(
   location: io.vertx.core.json.JsonObject? = null,
   metadata: io.vertx.core.json.JsonObject? = null,
   name: String? = null,

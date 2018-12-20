@@ -13,7 +13,7 @@ import io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions original] using Vert.x codegen.
  */
-fun HtpasswdAuthOptions(
+fun htpasswdAuthOptionsOf(
   htpasswdFile: String? = null,
   plainTextEnabled: Boolean? = null): HtpasswdAuthOptions = io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions().apply {
 

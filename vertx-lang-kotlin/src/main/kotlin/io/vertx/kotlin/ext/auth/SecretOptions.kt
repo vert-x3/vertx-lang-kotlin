@@ -13,7 +13,7 @@ import io.vertx.ext.auth.SecretOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.SecretOptions original] using Vert.x codegen.
  */
-fun SecretOptions(
+fun secretOptionsOf(
   secret: String? = null,
   type: String? = null): SecretOptions = io.vertx.ext.auth.SecretOptions().apply {
 

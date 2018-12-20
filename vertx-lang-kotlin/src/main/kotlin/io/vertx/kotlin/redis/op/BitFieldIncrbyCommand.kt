@@ -2,7 +2,7 @@ package io.vertx.kotlin.redis.op
 
 import io.vertx.redis.op.BitFieldIncrbyCommand
 
-fun BitFieldIncrbyCommand(
+fun bitFieldIncrbyCommandOf(
   increment: Long? = null,
   offset: Long? = null,
   type: String? = null): BitFieldIncrbyCommand = io.vertx.redis.op.BitFieldIncrbyCommand().apply {

@@ -21,7 +21,7 @@ import io.vertx.ext.shell.term.TelnetTermOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellServiceOptions original] using Vert.x codegen.
  */
-fun ShellServiceOptions(
+fun shellServiceOptionsOf(
   httpOptions: io.vertx.ext.shell.term.HttpTermOptions? = null,
   reaperInterval: Long? = null,
   sessionTimeout: Long? = null,

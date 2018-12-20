@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Coordinate
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.DcCoordinates original] using Vert.x codegen.
  */
-fun DcCoordinates(
+fun dcCoordinatesOf(
   datacenter: String? = null,
   servers: Iterable<io.vertx.ext.consul.Coordinate>? = null): DcCoordinates = io.vertx.ext.consul.DcCoordinates().apply {
 

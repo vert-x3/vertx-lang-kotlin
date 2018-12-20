@@ -15,7 +15,7 @@ import io.vertx.core.file.CopyOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.CopyOptions original] using Vert.x codegen.
  */
-fun CopyOptions(
+fun copyOptionsOf(
   atomicMove: Boolean? = null,
   copyAttributes: Boolean? = null,
   nofollowLinks: Boolean? = null,

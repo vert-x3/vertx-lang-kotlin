@@ -16,7 +16,7 @@ import io.vertx.ext.mongo.FindOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.FindOptions original] using Vert.x codegen.
  */
-fun FindOptions(
+fun findOptionsOf(
   batchSize: Int? = null,
   fields: io.vertx.core.json.JsonObject? = null,
   limit: Int? = null,

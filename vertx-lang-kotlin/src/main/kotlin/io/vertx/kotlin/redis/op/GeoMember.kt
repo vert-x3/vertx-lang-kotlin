@@ -13,7 +13,7 @@ import io.vertx.redis.op.GeoMember
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.GeoMember original] using Vert.x codegen.
  */
-fun GeoMember(
+fun geoMemberOf(
   latitude: Double? = null,
   longitude: Double? = null,
   member: String? = null): GeoMember = io.vertx.redis.op.GeoMember().apply {

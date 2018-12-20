@@ -14,7 +14,7 @@ import io.vertx.ext.auth.jwt.JWTKeyStoreOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jwt.JWTKeyStoreOptions original] using Vert.x codegen.
  */
-fun JWTKeyStoreOptions(
+fun jWTKeyStoreOptionsOf(
   password: String? = null,
   path: String? = null,
   type: String? = null): JWTKeyStoreOptions = io.vertx.ext.auth.jwt.JWTKeyStoreOptions().apply {

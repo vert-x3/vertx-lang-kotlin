@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Node
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Node original] using Vert.x codegen.
  */
-fun Node(
+fun nodeOf(
   address: String? = null,
   lanAddress: String? = null,
   name: String? = null,

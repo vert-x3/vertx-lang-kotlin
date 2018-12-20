@@ -17,7 +17,7 @@ import io.vertx.ext.consul.Service
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceEntry original] using Vert.x codegen.
  */
-fun ServiceEntry(
+fun serviceEntryOf(
   checks: Iterable<io.vertx.ext.consul.Check>? = null,
   node: io.vertx.ext.consul.Node? = null,
   service: io.vertx.ext.consul.Service? = null): ServiceEntry = io.vertx.ext.consul.ServiceEntry().apply {

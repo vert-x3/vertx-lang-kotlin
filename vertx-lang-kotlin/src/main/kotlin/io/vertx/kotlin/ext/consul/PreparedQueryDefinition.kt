@@ -24,7 +24,7 @@ import io.vertx.ext.consul.PreparedQueryDefinition
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.PreparedQueryDefinition original] using Vert.x codegen.
  */
-fun PreparedQueryDefinition(
+fun preparedQueryDefinitionOf(
   dcs: Iterable<String>? = null,
   dnsTtl: String? = null,
   id: String? = null,

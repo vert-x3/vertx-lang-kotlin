@@ -13,7 +13,7 @@ import io.vertx.redis.op.RangeLimitOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.RangeLimitOptions original] using Vert.x codegen.
  */
-fun RangeLimitOptions(
+fun rangeLimitOptionsOf(
   count: Long? = null,
   offset: Long? = null,
   withscores: Boolean? = null): RangeLimitOptions = io.vertx.redis.op.RangeLimitOptions().apply {

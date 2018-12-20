@@ -14,7 +14,7 @@ import io.vertx.rabbitmq.QueueOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.QueueOptions original] using Vert.x codegen.
  */
-fun QueueOptions(
+fun queueOptionsOf(
   autoAck: Boolean? = null,
   keepMostRecent: Boolean? = null,
   maxInternalQueueSize: Int? = null): QueueOptions = io.vertx.rabbitmq.QueueOptions().apply {

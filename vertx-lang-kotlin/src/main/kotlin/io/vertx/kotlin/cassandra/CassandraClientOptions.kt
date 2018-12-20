@@ -13,7 +13,7 @@ import io.vertx.cassandra.CassandraClientOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClientOptions original] using Vert.x codegen.
  */
-fun CassandraClientOptions(
+fun cassandraClientOptionsOf(
   contactPoints: Iterable<String>? = null,
   port: Int? = null): CassandraClientOptions = io.vertx.cassandra.CassandraClientOptions().apply {
 

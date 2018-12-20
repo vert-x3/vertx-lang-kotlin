@@ -11,7 +11,7 @@ import io.vertx.ext.consul.TxnRequest
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnRequest original] using Vert.x codegen.
  */
-fun TxnRequest(
+fun txnRequestOf(
 ): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
 
 }

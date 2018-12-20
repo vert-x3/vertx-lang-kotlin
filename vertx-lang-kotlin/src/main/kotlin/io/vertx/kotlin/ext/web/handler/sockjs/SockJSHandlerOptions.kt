@@ -17,7 +17,7 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions original] using Vert.x codegen.
  */
-fun SockJSHandlerOptions(
+fun sockJSHandlerOptionsOf(
   disabledTransports: Iterable<String>? = null,
   heartbeatInterval: Long? = null,
   insertJSESSIONID: Boolean? = null,

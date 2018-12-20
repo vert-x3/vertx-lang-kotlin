@@ -14,7 +14,7 @@ import io.vertx.ext.mongo.WriteOption
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.BulkWriteOptions original] using Vert.x codegen.
  */
-fun BulkWriteOptions(
+fun bulkWriteOptionsOf(
   ordered: Boolean? = null,
   writeOption: WriteOption? = null): BulkWriteOptions = io.vertx.ext.mongo.BulkWriteOptions().apply {
 

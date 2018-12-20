@@ -20,7 +20,7 @@ import io.vertx.ext.consul.CheckStatus
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Check original] using Vert.x codegen.
  */
-fun Check(
+fun checkOf(
   id: String? = null,
   name: String? = null,
   nodeName: String? = null,

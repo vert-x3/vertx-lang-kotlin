@@ -2,7 +2,7 @@ package io.vertx.kotlin.ext.web
 
 import io.vertx.ext.web.Http2PushMapping
 
-fun Http2PushMapping(
+fun http2PushMappingOf(
   extensionTarget: String? = null,
   filePath: String? = null,
   noPush: Boolean? = null): Http2PushMapping = io.vertx.ext.web.Http2PushMapping().apply {

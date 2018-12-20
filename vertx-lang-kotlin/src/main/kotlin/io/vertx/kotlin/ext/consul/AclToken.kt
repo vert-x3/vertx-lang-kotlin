@@ -16,7 +16,7 @@ import io.vertx.ext.consul.AclTokenType
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.AclToken original] using Vert.x codegen.
  */
-fun AclToken(
+fun aclTokenOf(
   id: String? = null,
   name: String? = null,
   rules: String? = null,

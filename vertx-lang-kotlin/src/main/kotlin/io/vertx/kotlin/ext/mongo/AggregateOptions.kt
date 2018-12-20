@@ -15,7 +15,7 @@ import io.vertx.ext.mongo.AggregateOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.AggregateOptions original] using Vert.x codegen.
  */
-fun AggregateOptions(
+fun aggregateOptionsOf(
   allowDiskUse: Boolean? = null,
   batchSize: Int? = null,
   maxAwaitTime: Long? = null,

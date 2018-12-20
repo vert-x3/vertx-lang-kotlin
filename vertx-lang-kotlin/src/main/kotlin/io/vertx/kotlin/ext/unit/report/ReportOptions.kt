@@ -13,7 +13,7 @@ import io.vertx.ext.unit.report.ReportOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.unit.report.ReportOptions original] using Vert.x codegen.
  */
-fun ReportOptions(
+fun reportOptionsOf(
   format: String? = null,
   to: String? = null): ReportOptions = io.vertx.ext.unit.report.ReportOptions().apply {
 

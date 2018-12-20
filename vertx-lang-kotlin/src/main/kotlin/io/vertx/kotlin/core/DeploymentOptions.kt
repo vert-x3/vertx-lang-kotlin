@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.DeploymentOptions original] using Vert.x codegen.
  */
-fun DeploymentOptions(
+fun deploymentOptionsOf(
   config: io.vertx.core.json.JsonObject? = null,
   extraClasspath: Iterable<String>? = null,
   ha: Boolean? = null,

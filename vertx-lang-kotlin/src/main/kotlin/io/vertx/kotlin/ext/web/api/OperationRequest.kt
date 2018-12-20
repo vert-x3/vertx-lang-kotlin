@@ -2,7 +2,7 @@ package io.vertx.kotlin.ext.web.api
 
 import io.vertx.ext.web.api.OperationRequest
 
-fun OperationRequest(
+fun operationRequestOf(
   extra: io.vertx.core.json.JsonObject? = null,
   headers: io.vertx.core.MultiMap? = null,
   params: io.vertx.core.json.JsonObject? = null,

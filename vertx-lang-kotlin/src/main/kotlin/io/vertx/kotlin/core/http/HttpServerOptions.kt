@@ -76,7 +76,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerOptions original] using Vert.x codegen.
  */
-fun HttpServerOptions(
+fun httpServerOptionsOf(
   acceptBacklog: Int? = null,
   acceptUnmaskedFrames: Boolean? = null,
   alpnVersions: Iterable<HttpVersion>? = null,

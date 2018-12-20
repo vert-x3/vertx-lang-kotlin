@@ -13,7 +13,7 @@ import io.vertx.ext.consul.TxnError
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnResponse original] using Vert.x codegen.
  */
-fun TxnResponse(
+fun txnResponseOf(
   errors: Iterable<io.vertx.ext.consul.TxnError>? = null): TxnResponse = io.vertx.ext.consul.TxnResponse().apply {
 
   if (errors != null) {

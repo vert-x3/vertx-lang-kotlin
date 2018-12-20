@@ -11,7 +11,7 @@ import io.vertx.ext.mongo.MongoClientBulkWriteResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClientBulkWriteResult original] using Vert.x codegen.
  */
-fun MongoClientBulkWriteResult(
+fun mongoClientBulkWriteResultOf(
 ): MongoClientBulkWriteResult = io.vertx.ext.mongo.MongoClientBulkWriteResult().apply {
 
 }

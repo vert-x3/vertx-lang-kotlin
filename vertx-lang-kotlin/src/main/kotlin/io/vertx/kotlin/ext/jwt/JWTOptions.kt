@@ -2,7 +2,7 @@ package io.vertx.kotlin.ext.jwt
 
 import io.vertx.ext.jwt.JWTOptions
 
-fun JWTOptions(
+fun jWTOptionsOf(
   algorithm: String? = null,
   audience: Iterable<String>? = null,
   audiences: Iterable<String>? = null,

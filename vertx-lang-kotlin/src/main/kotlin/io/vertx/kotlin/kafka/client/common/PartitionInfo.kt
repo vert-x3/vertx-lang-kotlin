@@ -17,7 +17,7 @@ import io.vertx.kafka.client.common.Node
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.common.PartitionInfo original] using Vert.x codegen.
  */
-fun PartitionInfo(
+fun partitionInfoOf(
   inSyncReplicas: Iterable<io.vertx.kafka.client.common.Node>? = null,
   leader: io.vertx.kafka.client.common.Node? = null,
   partition: Int? = null,

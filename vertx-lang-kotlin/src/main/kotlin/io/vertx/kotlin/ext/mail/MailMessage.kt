@@ -24,7 +24,7 @@ import io.vertx.ext.mail.MailAttachment
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailMessage original] using Vert.x codegen.
  */
-fun MailMessage(
+fun mailMessageOf(
   attachment: Iterable<io.vertx.ext.mail.MailAttachment>? = null,
   bcc: Iterable<String>? = null,
   bounceAddress: String? = null,

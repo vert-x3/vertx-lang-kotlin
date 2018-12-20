@@ -17,7 +17,7 @@ import io.vertx.core.http.HttpServerOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.VertxPrometheusOptions original] using Vert.x codegen.
  */
-fun VertxPrometheusOptions(
+fun vertxPrometheusOptionsOf(
   embeddedServerEndpoint: String? = null,
   embeddedServerOptions: io.vertx.core.http.HttpServerOptions? = null,
   enabled: Boolean? = null,

@@ -17,7 +17,7 @@ import io.vertx.servicediscovery.types.HttpLocation
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpLocation original] using Vert.x codegen.
  */
-fun HttpLocation(
+fun httpLocationOf(
   endpoint: String? = null,
   host: String? = null,
   port: Int? = null,

@@ -23,7 +23,7 @@ import io.vertx.ext.auth.mongo.HashSaltStyle
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.mongo.MongoAuthOptions original] using Vert.x codegen.
  */
-fun MongoAuthOptions(
+fun mongoAuthOptionsOf(
   collectionName: String? = null,
   config: io.vertx.core.json.JsonObject? = null,
   datasourceName: String? = null,

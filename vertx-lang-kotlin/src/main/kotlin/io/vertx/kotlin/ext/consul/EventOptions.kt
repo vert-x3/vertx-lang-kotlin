@@ -15,7 +15,7 @@ import io.vertx.ext.consul.EventOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.EventOptions original] using Vert.x codegen.
  */
-fun EventOptions(
+fun eventOptionsOf(
   node: String? = null,
   payload: String? = null,
   service: String? = null,

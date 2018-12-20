@@ -17,7 +17,7 @@ import io.vertx.ext.consul.Session
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Session original] using Vert.x codegen.
  */
-fun Session(
+fun sessionOf(
   checks: Iterable<String>? = null,
   createIndex: Long? = null,
   id: String? = null,

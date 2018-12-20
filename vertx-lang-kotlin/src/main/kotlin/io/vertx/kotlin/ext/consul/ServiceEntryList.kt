@@ -14,7 +14,7 @@ import io.vertx.ext.consul.ServiceEntry
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceEntryList original] using Vert.x codegen.
  */
-fun ServiceEntryList(
+fun serviceEntryListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.ServiceEntry>? = null): ServiceEntryList = io.vertx.ext.consul.ServiceEntryList().apply {
 

@@ -16,7 +16,7 @@ import io.vertx.ext.consul.Coordinate
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Coordinate original] using Vert.x codegen.
  */
-fun Coordinate(
+fun coordinateOf(
   adj: Float? = null,
   err: Float? = null,
   height: Float? = null,

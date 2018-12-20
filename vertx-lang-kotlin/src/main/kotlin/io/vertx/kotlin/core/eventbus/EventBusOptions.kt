@@ -61,7 +61,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
  */
-fun EventBusOptions(
+fun eventBusOptionsOf(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
   clusterPingInterval: Long? = null,

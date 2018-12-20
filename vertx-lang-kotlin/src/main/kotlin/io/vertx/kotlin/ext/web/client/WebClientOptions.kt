@@ -90,7 +90,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.WebClientOptions original] using Vert.x codegen.
  */
-fun WebClientOptions(
+fun webClientOptionsOf(
   alpnVersions: Iterable<HttpVersion>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,

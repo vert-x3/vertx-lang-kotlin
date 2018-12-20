@@ -15,7 +15,7 @@ import io.vertx.redis.op.KillFilter.Type
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.KillFilter original] using Vert.x codegen.
  */
-fun KillFilter(
+fun killFilterOf(
   addr: String? = null,
   id: String? = null,
   skipme: Boolean? = null,

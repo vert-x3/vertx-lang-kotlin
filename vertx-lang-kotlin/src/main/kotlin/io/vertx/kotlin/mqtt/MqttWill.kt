@@ -11,7 +11,7 @@ import io.vertx.mqtt.MqttWill
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttWill original] using Vert.x codegen.
  */
-fun MqttWill(
+fun mqttWillOf(
 ): MqttWill = io.vertx.mqtt.MqttWill(io.vertx.core.json.JsonObject()).apply {
 
 }

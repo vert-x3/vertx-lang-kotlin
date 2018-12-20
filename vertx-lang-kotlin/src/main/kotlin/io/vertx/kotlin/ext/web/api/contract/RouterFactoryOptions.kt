@@ -15,7 +15,7 @@ import io.vertx.ext.web.api.contract.RouterFactoryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.contract.RouterFactoryOptions original] using Vert.x codegen.
  */
-fun RouterFactoryOptions(
+fun routerFactoryOptionsOf(
   mountNotImplementedHandler: Boolean? = null,
   mountResponseContentTypeHandler: Boolean? = null,
   mountValidationFailureHandler: Boolean? = null,

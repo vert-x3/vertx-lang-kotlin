@@ -25,7 +25,7 @@ import io.vertx.core.dns.AddressResolverOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.dns.AddressResolverOptions original] using Vert.x codegen.
  */
-fun AddressResolverOptions(
+fun addressResolverOptionsOf(
   cacheMaxTimeToLive: Int? = null,
   cacheMinTimeToLive: Int? = null,
   cacheNegativeTimeToLive: Int? = null,

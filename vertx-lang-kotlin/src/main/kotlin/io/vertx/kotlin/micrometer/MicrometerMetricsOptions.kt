@@ -30,7 +30,7 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.MicrometerMetricsOptions original] using Vert.x codegen.
  */
-fun MicrometerMetricsOptions(
+fun micrometerMetricsOptionsOf(
   disabledMetricsCategories: Iterable<MetricsDomain>? = null,
   enabled: Boolean? = null,
   influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,

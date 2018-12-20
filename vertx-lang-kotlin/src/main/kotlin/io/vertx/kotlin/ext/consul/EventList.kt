@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Event
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.EventList original] using Vert.x codegen.
  */
-fun EventList(
+fun eventListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Event>? = null): EventList = io.vertx.ext.consul.EventList().apply {
 

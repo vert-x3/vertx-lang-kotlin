@@ -16,7 +16,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.PubSecKeyOptions original] using Vert.x codegen.
  */
-fun PubSecKeyOptions(
+fun pubSecKeyOptionsOf(
   algorithm: String? = null,
   certificate: Boolean? = null,
   publicKey: String? = null,

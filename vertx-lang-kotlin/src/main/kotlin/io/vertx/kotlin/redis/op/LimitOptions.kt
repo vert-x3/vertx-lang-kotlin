@@ -12,7 +12,7 @@ import io.vertx.redis.op.LimitOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.LimitOptions original] using Vert.x codegen.
  */
-fun LimitOptions(
+fun limitOptionsOf(
   count: Long? = null,
   offset: Long? = null): LimitOptions = io.vertx.redis.op.LimitOptions().apply {
 

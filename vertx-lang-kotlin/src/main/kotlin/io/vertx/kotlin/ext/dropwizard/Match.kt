@@ -15,7 +15,7 @@ import io.vertx.ext.dropwizard.MatchType
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.dropwizard.Match original] using Vert.x codegen.
  */
-fun Match(
+fun matchOf(
   alias: String? = null,
   type: MatchType? = null,
   value: String? = null): Match = io.vertx.ext.dropwizard.Match().apply {

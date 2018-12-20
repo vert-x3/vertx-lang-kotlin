@@ -17,7 +17,7 @@ import io.vertx.ext.consul.MaintenanceOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.MaintenanceOptions original] using Vert.x codegen.
  */
-fun MaintenanceOptions(
+fun maintenanceOptionsOf(
   enable: Boolean? = null,
   id: String? = null,
   reason: String? = null): MaintenanceOptions = io.vertx.ext.consul.MaintenanceOptions().apply {

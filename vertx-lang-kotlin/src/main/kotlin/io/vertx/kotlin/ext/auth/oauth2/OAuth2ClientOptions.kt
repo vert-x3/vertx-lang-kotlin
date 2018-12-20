@@ -112,7 +112,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2ClientOptions original] using Vert.x codegen.
  */
-fun OAuth2ClientOptions(
+fun oAuth2ClientOptionsOf(
   alpnVersions: Iterable<HttpVersion>? = null,
   authorizationPath: String? = null,
   clientID: String? = null,

@@ -26,7 +26,7 @@ import io.vertx.core.cli.Option
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.cli.Option original] using Vert.x codegen.
  */
-fun Option(
+fun optionOf(
   argName: String? = null,
   choices: Iterable<String>? = null,
   defaultValue: String? = null,

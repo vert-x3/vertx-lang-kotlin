@@ -17,7 +17,7 @@ import io.vertx.ext.unit.report.ReportOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.unit.report.ReportingOptions original] using Vert.x codegen.
  */
-fun ReportingOptions(
+fun reportingOptionsOf(
   reporters: Iterable<io.vertx.ext.unit.report.ReportOptions>? = null): ReportingOptions = io.vertx.ext.unit.report.ReportingOptions().apply {
 
   if (reporters != null) {

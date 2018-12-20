@@ -22,7 +22,7 @@ import io.vertx.ext.stomp.Frame.Command
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.Frame original] using Vert.x codegen.
  */
-fun Frame(
+fun frameOf(
   body: io.vertx.core.buffer.Buffer? = null,
   command: Command? = null,
   destination: String? = null,

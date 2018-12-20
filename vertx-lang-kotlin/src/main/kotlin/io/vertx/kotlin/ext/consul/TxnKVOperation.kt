@@ -18,7 +18,7 @@ import io.vertx.ext.consul.TxnKVVerb
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnKVOperation original] using Vert.x codegen.
  */
-fun TxnKVOperation(
+fun txnKVOperationOf(
   flags: Long? = null,
   index: Long? = null,
   key: String? = null,

@@ -2,7 +2,7 @@ package io.vertx.kotlin.ext.web.api
 
 import io.vertx.ext.web.api.OperationResponse
 
-fun OperationResponse(
+fun operationResponseOf(
   headers: io.vertx.core.MultiMap? = null,
   payload: io.vertx.core.buffer.Buffer? = null,
   statusCode: Int? = null,

@@ -18,7 +18,7 @@ import io.vertx.micrometer.MetricsDomain
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.Match original] using Vert.x codegen.
  */
-fun Match(
+fun matchOf(
   alias: String? = null,
   domain: MetricsDomain? = null,
   label: String? = null,

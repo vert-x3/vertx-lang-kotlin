@@ -5,7 +5,7 @@ import io.vertx.redis.op.BitFieldGetCommand
 import io.vertx.redis.op.BitFieldIncrbyCommand
 import io.vertx.redis.op.BitFieldSetCommand
 
-fun BitFieldOptions(
+fun bitFieldOptionsOf(
   get: io.vertx.redis.op.BitFieldGetCommand? = null,
   incrby: io.vertx.redis.op.BitFieldIncrbyCommand? = null,
   set: io.vertx.redis.op.BitFieldSetCommand? = null): BitFieldOptions = io.vertx.redis.op.BitFieldOptions().apply {

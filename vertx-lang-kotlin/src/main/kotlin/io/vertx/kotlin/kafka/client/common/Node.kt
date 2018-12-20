@@ -18,7 +18,7 @@ import io.vertx.kafka.client.common.Node
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.common.Node original] using Vert.x codegen.
  */
-fun Node(
+fun nodeOf(
   hasRack: Boolean? = null,
   host: String? = null,
   id: Int? = null,

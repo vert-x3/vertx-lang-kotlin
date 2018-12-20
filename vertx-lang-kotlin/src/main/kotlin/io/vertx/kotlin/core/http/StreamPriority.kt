@@ -14,7 +14,7 @@ import io.vertx.core.http.StreamPriority
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.StreamPriority original] using Vert.x codegen.
  */
-fun StreamPriority(
+fun streamPriorityOf(
   dependency: Int? = null,
   exclusive: Boolean? = null,
   weight: Short? = null): StreamPriority = io.vertx.core.http.StreamPriority().apply {

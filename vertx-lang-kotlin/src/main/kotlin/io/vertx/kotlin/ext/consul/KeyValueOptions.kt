@@ -15,7 +15,7 @@ import io.vertx.ext.consul.KeyValueOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.KeyValueOptions original] using Vert.x codegen.
  */
-fun KeyValueOptions(
+fun keyValueOptionsOf(
   acquireSession: String? = null,
   casIndex: Long? = null,
   flags: Long? = null,

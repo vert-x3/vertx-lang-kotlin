@@ -16,7 +16,7 @@ import io.vertx.servicediscovery.ServiceDiscoveryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.ServiceDiscoveryOptions original] using Vert.x codegen.
  */
-fun ServiceDiscoveryOptions(
+fun serviceDiscoveryOptionsOf(
   announceAddress: String? = null,
   autoRegistrationOfImporters: Boolean? = null,
   backendConfiguration: io.vertx.core.json.JsonObject? = null,

@@ -16,7 +16,7 @@ import io.vertx.ext.mongo.WriteOption
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.UpdateOptions original] using Vert.x codegen.
  */
-fun UpdateOptions(
+fun updateOptionsOf(
   multi: Boolean? = null,
   returningNewDocument: Boolean? = null,
   upsert: Boolean? = null,

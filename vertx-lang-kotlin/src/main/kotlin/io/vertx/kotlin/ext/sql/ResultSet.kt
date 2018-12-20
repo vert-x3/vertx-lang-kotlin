@@ -18,7 +18,7 @@ import io.vertx.ext.sql.ResultSet
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.ResultSet original] using Vert.x codegen.
  */
-fun ResultSet(
+fun resultSetOf(
   columnNames: Iterable<String>? = null,
   next: io.vertx.ext.sql.ResultSet? = null,
   output: io.vertx.core.json.JsonArray? = null,

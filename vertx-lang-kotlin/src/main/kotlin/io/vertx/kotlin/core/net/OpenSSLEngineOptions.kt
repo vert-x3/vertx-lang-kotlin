@@ -12,7 +12,7 @@ import io.vertx.core.net.OpenSSLEngineOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.OpenSSLEngineOptions original] using Vert.x codegen.
  */
-fun OpenSSLEngineOptions(
+fun openSSLEngineOptionsOf(
   sessionCacheEnabled: Boolean? = null): OpenSSLEngineOptions = io.vertx.core.net.OpenSSLEngineOptions().apply {
 
   if (sessionCacheEnabled != null) {

@@ -30,7 +30,7 @@ import io.vertx.ext.mail.StartTLSOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailConfig original] using Vert.x codegen.
  */
-fun MailConfig(
+fun mailConfigOf(
   allowRcptErrors: Boolean? = null,
   authMethods: String? = null,
   disableEsmtp: Boolean? = null,

@@ -11,7 +11,7 @@ import io.vertx.ext.mongo.MongoClientUpdateResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClientUpdateResult original] using Vert.x codegen.
  */
-fun MongoClientUpdateResult(
+fun mongoClientUpdateResultOf(
 ): MongoClientUpdateResult = io.vertx.ext.mongo.MongoClientUpdateResult().apply {
 
 }

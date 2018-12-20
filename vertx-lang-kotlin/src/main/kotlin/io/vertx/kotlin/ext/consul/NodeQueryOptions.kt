@@ -14,7 +14,7 @@ import io.vertx.ext.consul.BlockingQueryOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.NodeQueryOptions original] using Vert.x codegen.
  */
-fun NodeQueryOptions(
+fun nodeQueryOptionsOf(
   blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null,
   near: String? = null): NodeQueryOptions = io.vertx.ext.consul.NodeQueryOptions().apply {
 

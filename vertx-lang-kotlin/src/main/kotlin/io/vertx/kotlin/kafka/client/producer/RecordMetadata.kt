@@ -16,7 +16,7 @@ import io.vertx.kafka.client.producer.RecordMetadata
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.producer.RecordMetadata original] using Vert.x codegen.
  */
-fun RecordMetadata(
+fun recordMetadataOf(
   checksum: Long? = null,
   offset: Long? = null,
   partition: Int? = null,

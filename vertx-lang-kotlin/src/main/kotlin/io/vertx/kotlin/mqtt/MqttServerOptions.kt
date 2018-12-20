@@ -57,7 +57,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
  */
-fun MqttServerOptions(
+fun mqttServerOptionsOf(
   acceptBacklog: Int? = null,
   autoClientId: Boolean? = null,
   clientAuth: ClientAuth? = null,

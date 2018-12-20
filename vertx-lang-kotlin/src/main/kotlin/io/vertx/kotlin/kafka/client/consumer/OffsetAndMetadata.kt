@@ -13,7 +13,7 @@ import io.vertx.kafka.client.consumer.OffsetAndMetadata
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.OffsetAndMetadata original] using Vert.x codegen.
  */
-fun OffsetAndMetadata(
+fun offsetAndMetadataOf(
   metadata: String? = null,
   offset: Long? = null): OffsetAndMetadata = io.vertx.kafka.client.consumer.OffsetAndMetadata().apply {
 

@@ -15,7 +15,7 @@ import io.vertx.ext.bridge.PermittedOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.bridge.PermittedOptions original] using Vert.x codegen.
  */
-fun PermittedOptions(
+fun permittedOptionsOf(
   address: String? = null,
   addressRegex: String? = null,
   match: io.vertx.core.json.JsonObject? = null,

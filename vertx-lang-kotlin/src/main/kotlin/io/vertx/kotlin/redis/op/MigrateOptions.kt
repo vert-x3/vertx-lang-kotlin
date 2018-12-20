@@ -12,7 +12,7 @@ import io.vertx.redis.op.MigrateOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.MigrateOptions original] using Vert.x codegen.
  */
-fun MigrateOptions(
+fun migrateOptionsOf(
   copy: Boolean? = null,
   replace: Boolean? = null): MigrateOptions = io.vertx.redis.op.MigrateOptions().apply {
 

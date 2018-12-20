@@ -28,7 +28,7 @@ import io.vertx.ext.unit.report.ReportOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.unit.TestOptions original] using Vert.x codegen.
  */
-fun TestOptions(
+fun testOptionsOf(
   reporters: Iterable<io.vertx.ext.unit.report.ReportOptions>? = null,
   timeout: Long? = null,
   useEventLoop: Boolean? = null): TestOptions = io.vertx.ext.unit.TestOptions().apply {

@@ -14,7 +14,7 @@ import io.vertx.ext.auth.KeyStoreOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.KeyStoreOptions original] using Vert.x codegen.
  */
-fun KeyStoreOptions(
+fun keyStoreOptionsOf(
   password: String? = null,
   path: String? = null,
   type: String? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {

@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Check
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.CheckList original] using Vert.x codegen.
  */
-fun CheckList(
+fun checkListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Check>? = null): CheckList = io.vertx.ext.consul.CheckList().apply {
 

@@ -11,7 +11,7 @@ import io.vertx.ext.mongo.MongoClientDeleteResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClientDeleteResult original] using Vert.x codegen.
  */
-fun MongoClientDeleteResult(
+fun mongoClientDeleteResultOf(
 ): MongoClientDeleteResult = io.vertx.ext.mongo.MongoClientDeleteResult().apply {
 
 }

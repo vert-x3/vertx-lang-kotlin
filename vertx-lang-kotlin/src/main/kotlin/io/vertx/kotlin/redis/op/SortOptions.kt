@@ -15,7 +15,7 @@ import io.vertx.redis.op.SortOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.SortOptions original] using Vert.x codegen.
  */
-fun SortOptions(
+fun sortOptionsOf(
   alpha: Boolean? = null,
   by: String? = null,
   descending: Boolean? = null,

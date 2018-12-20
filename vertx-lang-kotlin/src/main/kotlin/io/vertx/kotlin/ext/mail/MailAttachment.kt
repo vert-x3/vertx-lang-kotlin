@@ -18,7 +18,7 @@ import io.vertx.ext.mail.MailAttachment
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailAttachment original] using Vert.x codegen.
  */
-fun MailAttachment(
+fun mailAttachmentOf(
   contentId: String? = null,
   contentType: String? = null,
   data: io.vertx.core.buffer.Buffer? = null,

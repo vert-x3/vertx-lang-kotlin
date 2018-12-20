@@ -22,7 +22,7 @@ import io.vertx.core.file.OpenOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.OpenOptions original] using Vert.x codegen.
  */
-fun OpenOptions(
+fun openOptionsOf(
   append: Boolean? = null,
   create: Boolean? = null,
   createNew: Boolean? = null,

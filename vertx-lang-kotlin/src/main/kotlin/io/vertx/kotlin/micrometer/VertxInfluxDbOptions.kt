@@ -23,7 +23,7 @@ import io.vertx.micrometer.VertxInfluxDbOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.VertxInfluxDbOptions original] using Vert.x codegen.
  */
-fun VertxInfluxDbOptions(
+fun vertxInfluxDbOptionsOf(
   batchSize: Int? = null,
   compressed: Boolean? = null,
   connectTimeout: Int? = null,

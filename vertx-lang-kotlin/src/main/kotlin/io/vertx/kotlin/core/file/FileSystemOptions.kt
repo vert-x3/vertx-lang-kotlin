@@ -14,7 +14,7 @@ import io.vertx.core.file.FileSystemOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystemOptions original] using Vert.x codegen.
  */
-fun FileSystemOptions(
+fun fileSystemOptionsOf(
   classPathResolvingEnabled: Boolean? = null,
   fileCachingEnabled: Boolean? = null): FileSystemOptions = io.vertx.core.file.FileSystemOptions().apply {
 

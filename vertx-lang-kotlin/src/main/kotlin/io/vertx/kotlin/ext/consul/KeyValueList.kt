@@ -14,7 +14,7 @@ import io.vertx.ext.consul.KeyValue
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.KeyValueList original] using Vert.x codegen.
  */
-fun KeyValueList(
+fun keyValueListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.KeyValue>? = null): KeyValueList = io.vertx.ext.consul.KeyValueList().apply {
 

@@ -19,7 +19,7 @@ import io.vertx.core.cli.Argument
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.cli.Argument original] using Vert.x codegen.
  */
-fun Argument(
+fun argumentOf(
   argName: String? = null,
   defaultValue: String? = null,
   description: String? = null,

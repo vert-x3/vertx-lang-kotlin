@@ -13,7 +13,7 @@ import io.vertx.kafka.client.consumer.OffsetAndTimestamp
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.OffsetAndTimestamp original] using Vert.x codegen.
  */
-fun OffsetAndTimestamp(
+fun offsetAndTimestampOf(
   offset: Long? = null,
   timestamp: Long? = null): OffsetAndTimestamp = io.vertx.kafka.client.consumer.OffsetAndTimestamp().apply {
 

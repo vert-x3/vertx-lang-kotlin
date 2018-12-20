@@ -43,7 +43,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.VertxOptions original] using Vert.x codegen.
  */
-fun VertxOptions(
+fun vertxOptionsOf(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
   blockedThreadCheckInterval: Long? = null,
   blockedThreadCheckIntervalUnit: TimeUnit? = null,

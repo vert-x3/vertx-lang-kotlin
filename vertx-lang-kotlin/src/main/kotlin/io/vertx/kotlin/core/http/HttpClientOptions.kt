@@ -88,7 +88,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClientOptions original] using Vert.x codegen.
  */
-fun HttpClientOptions(
+fun httpClientOptionsOf(
   alpnVersions: Iterable<HttpVersion>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,

@@ -11,7 +11,7 @@ import io.vertx.core.net.JdkSSLEngineOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.JdkSSLEngineOptions original] using Vert.x codegen.
  */
-fun JdkSSLEngineOptions(
+fun jdkSSLEngineOptionsOf(
 ): JdkSSLEngineOptions = io.vertx.core.net.JdkSSLEngineOptions().apply {
 
 }

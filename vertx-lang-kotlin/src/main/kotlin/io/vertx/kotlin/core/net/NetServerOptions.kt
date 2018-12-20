@@ -54,7 +54,7 @@ import java.util.concurrent.TimeUnit
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServerOptions original] using Vert.x codegen.
  */
-fun NetServerOptions(
+fun netServerOptionsOf(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
   clientAuthRequired: Boolean? = null,

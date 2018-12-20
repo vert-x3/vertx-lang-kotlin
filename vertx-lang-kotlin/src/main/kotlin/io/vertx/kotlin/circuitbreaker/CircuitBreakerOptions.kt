@@ -21,7 +21,7 @@ import io.vertx.circuitbreaker.CircuitBreakerOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreakerOptions original] using Vert.x codegen.
  */
-fun CircuitBreakerOptions(
+fun circuitBreakerOptionsOf(
   failuresRollingWindow: Long? = null,
   fallbackOnFailure: Boolean? = null,
   maxFailures: Int? = null,

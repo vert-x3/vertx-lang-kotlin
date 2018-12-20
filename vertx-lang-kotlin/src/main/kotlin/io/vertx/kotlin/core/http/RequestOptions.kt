@@ -15,7 +15,7 @@ import io.vertx.core.http.RequestOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.RequestOptions original] using Vert.x codegen.
  */
-fun RequestOptions(
+fun requestOptionsOf(
   host: String? = null,
   port: Int? = null,
   ssl: Boolean? = null,

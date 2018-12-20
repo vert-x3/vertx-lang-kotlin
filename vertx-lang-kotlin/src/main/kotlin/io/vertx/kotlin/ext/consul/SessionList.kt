@@ -14,7 +14,7 @@ import io.vertx.ext.consul.Session
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.SessionList original] using Vert.x codegen.
  */
-fun SessionList(
+fun sessionListOf(
   index: Long? = null,
   list: Iterable<io.vertx.ext.consul.Session>? = null): SessionList = io.vertx.ext.consul.SessionList().apply {
 

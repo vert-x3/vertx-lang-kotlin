@@ -100,8 +100,15 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     boolean isKotlin = model.getAnnotations().stream().anyMatch(ann -> ann.getName().equals("kotlin.Metadata"));
 
     ClassTypeInfo type = model.getType();
-    writer.println("fun " + type.getRaw().getSimpleName() + "(");
-    String paramsInfo = model.getPropertyMap().values().stream().filter(filterProperties()).map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null").collect(Collectors.joining(",\n"));
+    String functionName = type.getRaw().getSimpleName();
+    functionName = Character.toLowerCase(functionName.charAt(0)) + functionName.substring(1) + "Of";
+    writer.println("fun " + functionName + "(");
+    String paramsInfo = model.getPropertyMap()
+      .values()
+      .stream()
+      .filter(filterProperties())
+      .map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null")
+      .collect(Collectors.joining(",\n"));
     writer.print(paramsInfo);
     writer.print("): ");
     writer.print(model.getType().getSimpleName());

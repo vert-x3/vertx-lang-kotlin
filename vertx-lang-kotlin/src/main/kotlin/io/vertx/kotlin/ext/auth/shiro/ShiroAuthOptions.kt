@@ -14,7 +14,7 @@ import io.vertx.ext.auth.shiro.ShiroAuthRealmType
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.shiro.ShiroAuthOptions original] using Vert.x codegen.
  */
-fun ShiroAuthOptions(
+fun shiroAuthOptionsOf(
   config: io.vertx.core.json.JsonObject? = null,
   type: ShiroAuthRealmType? = null): ShiroAuthOptions = io.vertx.ext.auth.shiro.ShiroAuthOptions().apply {
 

@@ -18,7 +18,7 @@ import io.vertx.ext.consul.KeyValue
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.KeyValue original] using Vert.x codegen.
  */
-fun KeyValue(
+fun keyValueOf(
   createIndex: Long? = null,
   flags: Long? = null,
   key: String? = null,

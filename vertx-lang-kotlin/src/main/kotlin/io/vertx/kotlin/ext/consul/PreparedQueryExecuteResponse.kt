@@ -17,7 +17,7 @@ import io.vertx.ext.consul.ServiceEntry
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.PreparedQueryExecuteResponse original] using Vert.x codegen.
  */
-fun PreparedQueryExecuteResponse(
+fun preparedQueryExecuteResponseOf(
   dc: String? = null,
   dnsTtl: String? = null,
   failovers: Int? = null,

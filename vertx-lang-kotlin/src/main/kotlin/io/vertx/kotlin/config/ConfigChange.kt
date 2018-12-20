@@ -13,7 +13,7 @@ import io.vertx.config.ConfigChange
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.config.ConfigChange original] using Vert.x codegen.
  */
-fun ConfigChange(
+fun configChangeOf(
   newConfiguration: io.vertx.core.json.JsonObject? = null,
   previousConfiguration: io.vertx.core.json.JsonObject? = null): ConfigChange = io.vertx.config.ConfigChange().apply {
 

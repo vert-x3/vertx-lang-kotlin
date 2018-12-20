@@ -22,7 +22,7 @@ import io.vertx.ext.dropwizard.Match
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.dropwizard.DropwizardMetricsOptions original] using Vert.x codegen.
  */
-fun DropwizardMetricsOptions(
+fun dropwizardMetricsOptionsOf(
   baseName: String? = null,
   configPath: String? = null,
   enabled: Boolean? = null,

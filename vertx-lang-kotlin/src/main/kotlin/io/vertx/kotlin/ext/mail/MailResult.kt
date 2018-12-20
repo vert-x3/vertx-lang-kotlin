@@ -13,7 +13,7 @@ import io.vertx.ext.mail.MailResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailResult original] using Vert.x codegen.
  */
-fun MailResult(
+fun mailResultOf(
   messageID: String? = null,
   recipients: Iterable<String>? = null): MailResult = io.vertx.ext.mail.MailResult().apply {
 

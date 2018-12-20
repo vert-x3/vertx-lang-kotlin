@@ -20,7 +20,7 @@ import io.vertx.core.http.Http2Settings
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.Http2Settings original] using Vert.x codegen.
  */
-fun Http2Settings(
+fun http2SettingsOf(
   headerTableSize: Long? = null,
   initialWindowSize: Int? = null,
   maxConcurrentStreams: Long? = null,

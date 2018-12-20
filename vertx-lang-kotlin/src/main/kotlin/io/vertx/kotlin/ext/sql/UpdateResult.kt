@@ -16,7 +16,7 @@ import io.vertx.ext.sql.UpdateResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.UpdateResult original] using Vert.x codegen.
  */
-fun UpdateResult(
+fun updateResultOf(
   keys: io.vertx.core.json.JsonArray? = null,
   updated: Int? = null): UpdateResult = io.vertx.ext.sql.UpdateResult().apply {
 

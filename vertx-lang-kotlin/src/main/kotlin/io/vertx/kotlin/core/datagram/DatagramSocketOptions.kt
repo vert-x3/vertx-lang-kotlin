@@ -22,7 +22,7 @@ import io.vertx.core.datagram.DatagramSocketOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.datagram.DatagramSocketOptions original] using Vert.x codegen.
  */
-fun DatagramSocketOptions(
+fun datagramSocketOptionsOf(
   broadcast: Boolean? = null,
   ipV6: Boolean? = null,
   logActivity: Boolean? = null,

@@ -19,7 +19,7 @@ import io.vertx.ext.consul.Service
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Service original] using Vert.x codegen.
  */
-fun Service(
+fun serviceOf(
   address: String? = null,
   id: String? = null,
   meta: Map<String, String>? = null,

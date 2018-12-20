@@ -26,7 +26,7 @@ import io.vertx.ext.consul.CheckStatus
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.CheckOptions original] using Vert.x codegen.
  */
-fun CheckOptions(
+fun checkOptionsOf(
   deregisterAfter: String? = null,
   grpc: String? = null,
   grpcTls: Boolean? = null,

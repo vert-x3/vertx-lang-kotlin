@@ -12,7 +12,7 @@ import io.vertx.redis.op.ScanOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.ScanOptions original] using Vert.x codegen.
  */
-fun ScanOptions(
+fun scanOptionsOf(
   count: Int? = null,
   match: String? = null): ScanOptions = io.vertx.redis.op.ScanOptions().apply {
 

@@ -20,7 +20,7 @@ import io.vertx.ext.bridge.PermittedOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.BridgeOptions original] using Vert.x codegen.
  */
-fun BridgeOptions(
+fun bridgeOptionsOf(
   inboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   inboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   maxAddressLength: Int? = null,

@@ -14,7 +14,7 @@ import io.vertx.redis.op.SetOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.op.SetOptions original] using Vert.x codegen.
  */
-fun SetOptions(
+fun setOptionsOf(
   ex: Long? = null,
   nx: Boolean? = null,
   px: Long? = null,

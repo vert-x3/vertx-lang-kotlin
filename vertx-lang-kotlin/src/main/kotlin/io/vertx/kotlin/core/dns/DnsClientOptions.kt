@@ -16,7 +16,7 @@ import io.vertx.core.dns.DnsClientOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.dns.DnsClientOptions original] using Vert.x codegen.
  */
-fun DnsClientOptions(
+fun dnsClientOptionsOf(
   host: String? = null,
   logActivity: Boolean? = null,
   port: Int? = null,

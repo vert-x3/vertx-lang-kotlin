@@ -18,7 +18,7 @@ import io.vertx.config.ConfigStoreOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.config.ConfigStoreOptions original] using Vert.x codegen.
  */
-fun ConfigStoreOptions(
+fun configStoreOptionsOf(
   config: io.vertx.core.json.JsonObject? = null,
   format: String? = null,
   optional: Boolean? = null,

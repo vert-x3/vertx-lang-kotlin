@@ -17,7 +17,7 @@ import io.vertx.core.net.ProxyType
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.ProxyOptions original] using Vert.x codegen.
  */
-fun ProxyOptions(
+fun proxyOptionsOf(
   host: String? = null,
   password: String? = null,
   port: Int? = null,

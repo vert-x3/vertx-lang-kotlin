@@ -32,7 +32,7 @@ import io.vertx.core.net.PfxOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.PfxOptions original] using Vert.x codegen.
  */
-fun PfxOptions(
+fun pfxOptionsOf(
   password: String? = null,
   path: String? = null,
   value: io.vertx.core.buffer.Buffer? = null): PfxOptions = io.vertx.core.net.PfxOptions().apply {
