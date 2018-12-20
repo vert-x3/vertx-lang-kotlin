@@ -10,7 +10,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * written to the wire.
  *
  * @param filename path to the file to serve
- * @param resultHandler handler that will be called on completion
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -26,7 +25,6 @@ suspend fun HttpServerResponse.sendFileAwait(filename : String) : Unit {
  *
  * @param filename path to the file to serve
  * @param offset the offset to serve from
- * @param resultHandler handler that will be called on completion
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -43,7 +41,6 @@ suspend fun HttpServerResponse.sendFileAwait(filename : String, offset : Long) :
  * @param filename path to the file to serve
  * @param offset the offset to serve from
  * @param length the length to serve to
- * @param resultHandler handler that will be called on completion
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -59,7 +56,6 @@ suspend fun HttpServerResponse.sendFileAwait(filename : String, offset : Long, l
  * @param method 
  * @param host 
  * @param path 
- * @param handler 
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -76,7 +72,6 @@ suspend fun HttpServerResponse.pushAwait(method : HttpMethod, host : String, pat
  * @param method 
  * @param path 
  * @param headers 
- * @param handler 
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -92,7 +87,6 @@ suspend fun HttpServerResponse.pushAwait(method : HttpMethod, path : String, hea
  *
  * @param method 
  * @param path 
- * @param handler 
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.
@@ -118,7 +112,6 @@ suspend fun HttpServerResponse.pushAwait(method : HttpMethod, path : String) : H
  * @param host the host of the promised request
  * @param path the path of the promised request
  * @param headers the headers of the promised request
- * @param handler the handler notified when the response can be written
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerResponse original] using Vert.x codegen.

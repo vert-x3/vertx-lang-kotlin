@@ -9,9 +9,7 @@ import io.vertx.codegen.type.*;
 import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 
-import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -78,23 +76,19 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     return buffer.toString();
   }
 
-  private void generateDoc(ClassModel model, MethodInfo method, Writer writer) {
-    generateDoc(model, method, new PrintWriter(writer));
-  }
-
-  private void generateDoc(ClassModel model, MethodInfo method, PrintWriter writer) {
+  private void generateDoc(ClassModel model, MethodInfo method, CodeWriter writer) {
     Doc doc = method.getDoc();
     if (doc != null) {
-      writer.print("/**\n");
+      writer.println("/**");
       Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
-      writer.print(" *\n");
-      method.getParams().forEach(p -> {
+      writer.println(" *");
+      method.getParams().stream().limit(method.getParams().size() - 1).forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
         if (p.getDescription() != null) {
           String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
           writer.print(docInfo);
         }
-        writer.print("\n");
+        writer.println();
       });
       if (!method.getReturnType().isVoid()) {
         writer.print(" * @return");
@@ -103,16 +97,16 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
           writer.print(docInfo);
         }
       }
-      writer.print(" *\n");
-      writer.print(" * <p/>\n");
-      writer.print(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.\n");
-      writer.print(" */\n");
+      writer.println(" *");
+      writer.println(" * <p/>");
+      writer.println(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.");
+      writer.println(" */");
     }
   }
 
 
   private void generateMethod(ClassModel model, ClassTypeInfo type, MethodInfo method, CodeWriter writer, boolean hasStatic) {
-    generateDoc(model, method, writer.writer());
+    generateDoc(model, method, writer);
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
@@ -161,11 +155,10 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     }
 
 
-
     if (lastParam.isNullableCallback()) {
       writer.print("?");
     }
-    writer.print(" {\n");
+    writer.println(" {");
 
     writer.indent();
     writer.print("return ");
@@ -195,13 +188,21 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
         writer.print("{ ar -> it.handle(ar.mapEmpty()) })");
       }
     } else {
-      writer.print("it)\n");
+      boolean hasLambdaParam = params.stream().limit(params.size() - 1).anyMatch(p -> {
+        ClassKind kind = p.getType().getKind();
+        return kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION;
+      });
+      if (hasLambdaParam) {
+        writer.println("it::handle)");
+      } else {
+        writer.println("it)");
+      }
     }
     writer.unindent();
-    writer.print("}\n");
+    writer.println("}");
     writer.unindent();
-    writer.print("}\n");
-    writer.print("\n");
+    writer.println("}");
+    writer.println();
   }
 
   private String vertxSimpleNameWrapper(String simpleName, boolean hasStatic) {
@@ -258,6 +259,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   }
 
   private String kotlinType(TypeInfo type) {
+    ClassKind kind = type.getKind();
     if (type instanceof VoidTypeInfo) {
       return "Unit";
     } else if (type instanceof PrimitiveTypeInfo) {
@@ -277,8 +279,13 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       return "Any";
     } else {
       if (type instanceof ParameterizedTypeInfo) {
-        List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
-        return type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
+        if (kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION) {
+          List<String> args = ((ParameterizedTypeInfo) type).getArgs().stream().map(this::kotlinType).collect(Collectors.toList());
+          return "(" + args.get(0) + ") -> " + (args.size() == 1 ? "Unit" : args.get(1));
+        } else {
+          List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
+          return type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
+        }
       } else {
         return type.getSimpleName();
       }
@@ -290,7 +297,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     MethodKind methodKind = it.getKind();
     return
       !it.isDeprecated() &&
-      (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
+        (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
   }
 
   /**

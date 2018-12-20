@@ -12,7 +12,6 @@ import io.vertx.rabbitmq.RabbitMQConsumer
  *
  * @param deliveryTag 
  * @param multiple 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -29,7 +28,6 @@ suspend fun RabbitMQClient.basicAckAwait(deliveryTag : Long, multiple : Boolean)
  * @param deliveryTag 
  * @param multiple 
  * @param requeue 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -45,7 +43,6 @@ suspend fun RabbitMQClient.basicNackAwait(deliveryTag : Long, multiple : Boolean
  *
  * @param queue 
  * @param autoAck 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -59,7 +56,6 @@ suspend fun RabbitMQClient.basicGetAwait(queue : String, autoAck : Boolean) : Js
 /**
  *
  * @param queue 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -75,7 +71,6 @@ suspend fun RabbitMQClient.basicConsumerAwait(queue : String) : RabbitMQConsumer
  *
  * @param queue the name of a queue
  * @param options options for queue
- * @param resultHandler a handler through which you can find out the operation status; if the operation succeeds you can begin to receive messages through an instance of [io.vertx.rabbitmq.RabbitMQConsumer]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -93,7 +88,6 @@ suspend fun RabbitMQClient.basicConsumerAwait(queue : String, options : QueueOpt
  * @param exchange 
  * @param routingKey 
  * @param message 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -107,7 +101,6 @@ suspend fun RabbitMQClient.basicPublishAwait(exchange : String, routingKey : Str
  * Enables publisher acknowledgements on this channel. Can be called once during client initialisation. Calls to basicPublish()
  * will have to be confirmed.
  *
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -122,7 +115,6 @@ suspend fun RabbitMQClient.confirmSelectAwait() : Unit {
  * This will incur slight performance loss at the expense of higher write consistency.
  * If desired, multiple calls to basicPublish() can be batched before confirming.
  *
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -136,7 +128,6 @@ suspend fun RabbitMQClient.waitForConfirmsAwait() : Unit {
  * Wait until all messages published since the last call have been either ack'd or nack'd by the broker; or until timeout elapses. If the timeout expires a TimeoutException is thrown.
  *
  * @param timeout 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -151,7 +142,6 @@ suspend fun RabbitMQClient.waitForConfirmsAwait(timeout : Long) : Unit {
  * for this channel.
  *
  * @param prefetchCount maximum number of messages that the server will deliver, 0 if unlimited
- * @param resultHandler handler called when operation is done with a result of the operation
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -167,7 +157,6 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchCount : Int) : Unit {
  *
  * @param prefetchCount maximum number of messages that the server will deliver, 0 if unlimited
  * @param global true if the settings should be applied to the entire channel rather than each consumer
- * @param resultHandler handler called when operation is done with a result of the operation
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -187,7 +176,6 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchCount : Int, global : Boolean) 
  * @param prefetchSize maximum amount of content (measured in octets) that the server will deliver, 0 if unlimited
  * @param prefetchCount maximum number of messages that the server will deliver, 0 if unlimited
  * @param global true if the settings should be applied to the entire channel rather than each consumer
- * @param resultHandler handler called when operation is done with a result of the operation
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -204,7 +192,6 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchSize : Int, prefetchCount : Int
  * @param type 
  * @param durable 
  * @param autoDelete 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -222,7 +209,6 @@ suspend fun RabbitMQClient.exchangeDeclareAwait(exchange : String, type : String
  * @param durable 
  * @param autoDelete 
  * @param config 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -236,7 +222,6 @@ suspend fun RabbitMQClient.exchangeDeclareAwait(exchange : String, type : String
  * Delete an exchange, without regard for whether it is in use or not.
  *
  * @param exchange 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -252,7 +237,6 @@ suspend fun RabbitMQClient.exchangeDeleteAwait(exchange : String) : Unit {
  * @param destination 
  * @param source 
  * @param routingKey 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -268,7 +252,6 @@ suspend fun RabbitMQClient.exchangeBindAwait(destination : String, source : Stri
  * @param destination 
  * @param source 
  * @param routingKey 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -281,7 +264,6 @@ suspend fun RabbitMQClient.exchangeUnbindAwait(destination : String, source : St
 /**
  * Actively declare a server-named exclusive, autodelete, non-durable queue.
  *
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -299,7 +281,6 @@ suspend fun RabbitMQClient.queueDeclareAutoAwait() : JsonObject {
  * @param durable 
  * @param exclusive 
  * @param autoDelete 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -318,7 +299,6 @@ suspend fun RabbitMQClient.queueDeclareAwait(queue : String, durable : Boolean, 
  * @param exclusive 
  * @param autoDelete 
  * @param config 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -333,7 +313,6 @@ suspend fun RabbitMQClient.queueDeclareAwait(queue : String, durable : Boolean, 
  * Delete a queue, without regard for whether it is in use or has messages on it
  *
  * @param queue 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -350,7 +329,6 @@ suspend fun RabbitMQClient.queueDeleteAwait(queue : String) : JsonObject {
  * @param queue 
  * @param ifUnused 
  * @param ifEmpty 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -367,7 +345,6 @@ suspend fun RabbitMQClient.queueDeleteIfAwait(queue : String, ifUnused : Boolean
  * @param queue 
  * @param exchange 
  * @param routingKey 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -381,7 +358,6 @@ suspend fun RabbitMQClient.queueBindAwait(queue : String, exchange : String, rou
  * Returns the number of messages in a queue ready to be delivered.
  *
  * @param queue 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -395,7 +371,6 @@ suspend fun RabbitMQClient.messageCountAwait(queue : String) : Long {
 /**
  * Start the rabbitMQ client. Create the connection and the chanel.
  *
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.
@@ -408,7 +383,6 @@ suspend fun RabbitMQClient.startAwait() : Unit {
 /**
  * Stop the rabbitMQ client. Close the connection and its chanel.
  *
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQClient original] using Vert.x codegen.

@@ -21,7 +21,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param collection the collection
  * @param document the document
- * @param resultHandler result handler will be provided with the id if document didn't already have one
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -40,7 +39,6 @@ suspend fun MongoClient.saveAwait(collection : String, document : JsonObject) : 
  * @param collection the collection
  * @param document the document
  * @param writeOption the write option to use
- * @param resultHandler result handler will be provided with the id if document didn't already have one
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -58,7 +56,6 @@ suspend fun MongoClient.saveWithOptionsAwait(collection : String, document : Jso
  *
  * @param collection the collection
  * @param document the document
- * @param resultHandler result handler will be provided with the id if document didn't already have one
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -77,7 +74,6 @@ suspend fun MongoClient.insertAwait(collection : String, document : JsonObject) 
  * @param collection the collection
  * @param document the document
  * @param writeOption the write option to use
- * @param resultHandler result handler will be provided with the id if document didn't already have one
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -94,7 +90,6 @@ suspend fun MongoClient.insertWithOptionsAwait(collection : String, document : J
  * @param collection the collection
  * @param query query used to match the documents
  * @param update used to describe how the documents will be updated
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -112,7 +107,6 @@ suspend fun MongoClient.updateCollectionAwait(collection : String, query : JsonO
  * @param query query used to match the documents
  * @param update used to describe how the documents will be updated
  * @param options options to configure the update
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -129,7 +123,6 @@ suspend fun MongoClient.updateCollectionWithOptionsAwait(collection : String, qu
  * @param collection the collection
  * @param query query used to match the documents
  * @param replace all matching documents will be replaced with this
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -147,7 +140,6 @@ suspend fun MongoClient.replaceDocumentsAwait(collection : String, query : JsonO
  * @param query query used to match the documents
  * @param replace all matching documents will be replaced with this
  * @param options options to configure the replace
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -163,7 +155,6 @@ suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection : String, qu
  *
  * @param collection the collection
  * @param operations the operations to execute
- * @param resultHandler will be called with a [io.vertx.ext.mongo.MongoClientBulkWriteResult] when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -181,7 +172,6 @@ suspend fun MongoClient.bulkWriteAwait(collection : String, operations : List<Bu
  * @param collection the collection
  * @param operations the operations to execute
  * @param bulkWriteOptions the write options
- * @param resultHandler will be called with a [io.vertx.ext.mongo.MongoClientBulkWriteResult] when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -197,7 +187,6 @@ suspend fun MongoClient.bulkWriteWithOptionsAwait(collection : String, operation
  *
  * @param collection the collection
  * @param query query used to match documents
- * @param resultHandler will be provided with list of documents
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -214,7 +203,6 @@ suspend fun MongoClient.findAwait(collection : String, query : JsonObject) : Lis
  * @param collection the collection
  * @param query query used to match documents
  * @param options options to configure the find
- * @param resultHandler will be provided with list of documents
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -233,7 +221,6 @@ suspend fun MongoClient.findWithOptionsAwait(collection : String, query : JsonOb
  * @param collection the collection
  * @param query the query used to match the document
  * @param fields the fields
- * @param resultHandler will be provided with the document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -252,7 +239,6 @@ suspend fun MongoClient.findOneAwait(collection : String, query : JsonObject, fi
  * @param collection the collection
  * @param query the query used to match the document
  * @param update used to describe how the documents will be updated
- * @param resultHandler will be provided with the document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -273,7 +259,6 @@ suspend fun MongoClient.findOneAndUpdateAwait(collection : String, query : JsonO
  * @param update used to describe how the documents will be updated
  * @param findOptions options to configure the find
  * @param updateOptions options to configure the update
- * @param resultHandler will be provided with the document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -292,7 +277,6 @@ suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection : String, qu
  * @param collection the collection
  * @param query the query used to match the document
  * @param replace the replacement document
- * @param resultHandler will be provided with the document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -313,7 +297,6 @@ suspend fun MongoClient.findOneAndReplaceAwait(collection : String, query : Json
  * @param replace the replacement document
  * @param findOptions options to configure the find
  * @param updateOptions options to configure the update
- * @param resultHandler will be provided with the document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -331,7 +314,6 @@ suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection : String, q
  *
  * @param collection the collection
  * @param query the query used to match the document
- * @param resultHandler will be provided with the deleted document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -350,7 +332,6 @@ suspend fun MongoClient.findOneAndDeleteAwait(collection : String, query : JsonO
  * @param collection the collection
  * @param query the query used to match the document
  * @param findOptions options to configure the find
- * @param resultHandler will be provided with the deleted document, if any
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -366,7 +347,6 @@ suspend fun MongoClient.findOneAndDeleteWithOptionsAwait(collection : String, qu
  *
  * @param collection the collection
  * @param query query used to match documents
- * @param resultHandler will be provided with the number of matching documents
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -382,7 +362,6 @@ suspend fun MongoClient.countAwait(collection : String, query : JsonObject) : Lo
  *
  * @param collection the collection
  * @param query query used to match documents
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -399,7 +378,6 @@ suspend fun MongoClient.removeDocumentsAwait(collection : String, query : JsonOb
  * @param collection the collection
  * @param query query used to match documents
  * @param writeOption the write option to use
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -415,7 +393,6 @@ suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection : String, que
  *
  * @param collection the collection
  * @param query query used to match document
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -432,7 +409,6 @@ suspend fun MongoClient.removeDocumentAwait(collection : String, query : JsonObj
  * @param collection the collection
  * @param query query used to match document
  * @param writeOption the write option to use
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -447,7 +423,6 @@ suspend fun MongoClient.removeDocumentWithOptionsAwait(collection : String, quer
  * Create a new collection
  *
  * @param collectionName the name of the collection
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -460,7 +435,6 @@ suspend fun MongoClient.createCollectionAwait(collectionName : String) : Unit {
 /**
  * Get a list of all collections in the database.
  *
- * @param resultHandler will be called with a list of collections.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -475,7 +449,6 @@ suspend fun MongoClient.getCollectionsAwait() : List<String> {
  * Drop a collection
  *
  * @param collection the collection
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -490,7 +463,6 @@ suspend fun MongoClient.dropCollectionAwait(collection : String) : Unit {
  *
  * @param collection the collection
  * @param key A document that contains the field and value pairs where the field is the index key and the value describes the type of index for that field. For an ascending index on a field, specify a value of 1; for descending index, specify a value of -1.
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -506,7 +478,6 @@ suspend fun MongoClient.createIndexAwait(collection : String, key : JsonObject) 
  * @param collection the collection
  * @param key A document that contains the field and value pairs where the field is the index key and the value describes the type of index for that field. For an ascending index on a field, specify a value of 1; for descending index, specify a value of -1.
  * @param options the options for the index
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -520,7 +491,6 @@ suspend fun MongoClient.createIndexWithOptionsAwait(collection : String, key : J
  * Get all the indexes in this collection.
  *
  * @param collection the collection
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -536,7 +506,6 @@ suspend fun MongoClient.listIndexesAwait(collection : String) : JsonArray {
  *
  * @param collection the collection
  * @param indexName the name of the index to remove
- * @param resultHandler will be called when complete
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -551,7 +520,6 @@ suspend fun MongoClient.dropIndexAwait(collection : String, indexName : String) 
  *
  * @param commandName the name of the command
  * @param command the command
- * @param resultHandler will be called with the result.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -569,7 +537,6 @@ suspend fun MongoClient.runCommandAwait(commandName : String, command : JsonObje
  * @param collection the collection
  * @param fieldName the field name
  * @param resultClassname 
- * @param resultHandler will be provided with array of values.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
@@ -588,7 +555,6 @@ suspend fun MongoClient.distinctAwait(collection : String, fieldName : String, r
  * @param fieldName the field name
  * @param resultClassname 
  * @param query the query
- * @param resultHandler will be provided with array of values.
  * @return *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.

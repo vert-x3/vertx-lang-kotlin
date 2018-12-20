@@ -11,7 +11,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param address the address to send it to
  * @param message the message, may be <code>null</code>
- * @param replyHandler reply handler will be called when any reply from the recipient is received, may be <code>null</code>
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBus original] using Vert.x codegen.
@@ -29,7 +28,6 @@ suspend fun <T> EventBus.sendAwait(address : String, message : Any) : Message<T>
  * @param address the address to send it to
  * @param message the message, may be <code>null</code>
  * @param options delivery options
- * @param replyHandler reply handler will be called when any reply from the recipient is received, may be <code>null</code>
  * @returna reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBus original] using Vert.x codegen.
