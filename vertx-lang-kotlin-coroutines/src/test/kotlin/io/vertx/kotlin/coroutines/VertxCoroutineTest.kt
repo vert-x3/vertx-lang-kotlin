@@ -280,7 +280,7 @@ class VertxCoroutineTest {
         awaitEvent<Any> { throw cause }
         testContext.fail()
       } catch (e: Exception) {
-        testContext.assertEquals(cause, e)
+        testContext.assertEquals(cause, e.cause)
       }
       async.complete()
     }
@@ -297,7 +297,7 @@ class VertxCoroutineTest {
         }
         testContext.fail()
       } catch (e: Exception) {
-        testContext.assertEquals(cause, e)
+        testContext.assertEquals(cause, e.cause)
       }
       async.complete()
     }
@@ -346,7 +346,7 @@ class VertxCoroutineTest {
         fut.await()
         testContext.fail()
       } catch (e: Exception) {
-        testContext.assertEquals(cause, e)
+        testContext.assertEquals(cause, e.cause)
         async.complete()
       }
     }

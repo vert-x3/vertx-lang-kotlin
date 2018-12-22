@@ -2,8 +2,8 @@
 
 image:https://travis-ci.org/vert-x3/vertx-lang-kotlin.svg?branch=master["Build Status",link="https://travis-ci.org/vert-x3/vertx-lang-kotlin"]
 image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
-image:https://img.shields.io/badge/kotlin-1.3.0-blue.svg["Kotlin version badge",link="https://kotlinlang.org/docs/reference/whatsnew13.html"]
-image:https://img.shields.io/badge/kotlinx.coroutines-1.0.1-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
+image:https://img.shields.io/badge/kotlin-1.3.11-blue.svg["Kotlin version badge",link="https://kotlinlang.org/docs/reference/whatsnew13.html"]
+image:https://img.shields.io/badge/kotlinx.coroutines-1.1.0-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
 
 This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x 3].
 

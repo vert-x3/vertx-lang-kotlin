@@ -90,9 +90,6 @@
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <configuration>
-          <experimentalCoroutines>enable</experimentalCoroutines>
-        </configuration>
         <executions>
           <execution>
             <id>compile</id>
