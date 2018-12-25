@@ -640,7 +640,6 @@
         <executions>
           <execution>
             <configuration>
-              <experimentalCoroutines>enable</experimentalCoroutines>
               <sourceDirs>
                 <sourceDir>${basedir}/src/main/kotlin</sourceDir>
                 <sourceDir>${basedir}/src/main/java</sourceDir>
@@ -657,7 +656,6 @@
             </goals>
             <phase>test-compile</phase>
             <configuration>
-              <experimentalCoroutines>enable</experimentalCoroutines>
               <sourceDirs>
                 <sourceDir>src/test/kotlin</sourceDir>
               </sourceDirs>
