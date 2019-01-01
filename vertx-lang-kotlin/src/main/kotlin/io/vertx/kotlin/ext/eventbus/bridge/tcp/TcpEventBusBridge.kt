@@ -1,4 +1,4 @@
-package io.vertx.ext.kotlin.eventbus.bridge.tcp
+package io.vertx.kotlin.ext.eventbus.bridge.tcp
 
 import io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge
 import io.vertx.kotlin.coroutines.awaitResult
