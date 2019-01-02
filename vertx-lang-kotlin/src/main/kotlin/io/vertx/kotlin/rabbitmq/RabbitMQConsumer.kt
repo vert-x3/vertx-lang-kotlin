@@ -8,7 +8,6 @@ import io.vertx.rabbitmq.RabbitMQConsumer
  * <p>
  * The operation is asynchronous. When consumption will be stopped, you can by notified via [io.vertx.rabbitmq.RabbitMQConsumer]
  *
- * @param cancelResult contains information about operation status: success/fail.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQConsumer original] using Vert.x codegen.

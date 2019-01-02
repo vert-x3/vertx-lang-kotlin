@@ -88,14 +88,17 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       writer.print("/**\n");
       Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
       writer.print(" *\n");
-      method.getParams().forEach(p -> {
-        writer.print(" * @param " + p.getName() + " ");
-        if (p.getDescription() != null) {
-          String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
-          writer.print(docInfo);
-        }
-        writer.print("\n");
-      });
+      method.getParams()
+        .stream()
+        .limit(method.getParams().size() - 1)
+        .forEach(p -> {
+          writer.print(" * @param " + p.getName() + " ");
+          if (p.getDescription() != null) {
+            String docInfo = Token.toHtml(p.getDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
+            writer.print(docInfo);
+          }
+          writer.print("\n");
+        });
       if (!method.getReturnType().isVoid()) {
         writer.print(" * @return");
         if (method.getReturnDescription() != null) {
@@ -159,7 +162,6 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     } else {
       writer.print(kotlinType(returnType));
     }
-
 
 
     if (lastParam.isNullableCallback()) {
@@ -290,7 +292,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     MethodKind methodKind = it.getKind();
     return
       !it.isDeprecated() &&
-      (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
+        (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
   }
 
   /**

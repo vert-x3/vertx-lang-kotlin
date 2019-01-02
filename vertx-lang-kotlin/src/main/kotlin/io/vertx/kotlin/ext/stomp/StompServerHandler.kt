@@ -11,7 +11,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * @param connection server connection that contains session ID
  * @param login the login
  * @param passcode the password
- * @param handler handler receiving the authentication result
  * @returnthe current [io.vertx.ext.stomp.StompServerHandler] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServerHandler original] using Vert.x codegen.

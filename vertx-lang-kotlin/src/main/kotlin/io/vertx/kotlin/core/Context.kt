@@ -19,7 +19,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param blockingCodeHandler handler representing the blocking code to run
  * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
- * @param resultHandler handler that will be called when the blocking code is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Context original] using Vert.x codegen.
@@ -34,7 +33,6 @@ suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler : Handler<Futur
  * Invoke [io.vertx.core.Context] with order = true.
  *
  * @param blockingCodeHandler handler representing the blocking code to run
- * @param resultHandler handler that will be called when the blocking code is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Context original] using Vert.x codegen.

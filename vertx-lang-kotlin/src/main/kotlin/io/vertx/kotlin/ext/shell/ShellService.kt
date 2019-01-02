@@ -6,7 +6,6 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Start the shell service, this is an asynchronous start.
  *
- * @param startHandler handler for getting notified when service is started
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellService original] using Vert.x codegen.
@@ -19,7 +18,6 @@ suspend fun ShellService.startAwait() : Unit {
 /**
  * Stop the shell service, this is an asynchronous start.
  *
- * @param stopHandler handler for getting notified when service is stopped
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellService original] using Vert.x codegen.
