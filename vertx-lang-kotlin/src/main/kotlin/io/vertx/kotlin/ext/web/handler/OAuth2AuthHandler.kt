@@ -12,7 +12,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * expects.
  *
  * @param context the routing context
- * @param handler the handler to be called once the information is available.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.OAuth2AuthHandler original] using Vert.x codegen.
@@ -27,7 +26,6 @@ suspend fun OAuth2AuthHandler.parseCredentialsAwait(context : RoutingContext) : 
  * Authorizes the given user against all added authorities.
  *
  * @param user a user.
- * @param handler the handler for the result.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.OAuth2AuthHandler original] using Vert.x codegen.

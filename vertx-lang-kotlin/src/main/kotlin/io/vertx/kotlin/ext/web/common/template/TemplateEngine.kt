@@ -14,7 +14,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param context the routing context
  * @param templateFileName the template file name to use
- * @param handler the handler that will be called with a result containing the buffer or a failure.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.common.template.TemplateEngine original] using Vert.x codegen.

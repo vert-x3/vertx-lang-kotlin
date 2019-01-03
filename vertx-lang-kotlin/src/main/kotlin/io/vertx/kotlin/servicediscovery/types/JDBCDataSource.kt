@@ -15,7 +15,6 @@ object JDBCDataSource {
  *
  * @param discovery The service discovery instance
  * @param filter The filter, optional
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.
@@ -32,7 +31,6 @@ object JDBCDataSource {
  *
  * @param discovery The service discovery instance
  * @param filter The filter (must not be <code>null</code>)
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.
@@ -50,7 +48,6 @@ object JDBCDataSource {
  * @param discovery The service discovery instance
  * @param filter The filter, optional
  * @param consumerConfiguration the consumer configuration
- * @param resultHandler the result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.
@@ -68,7 +65,6 @@ object JDBCDataSource {
  * @param discovery The service discovery instance
  * @param filter The filter, must not be <code>null</code>
  * @param consumerConfiguration the consumer configuration
- * @param resultHandler the result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.JDBCDataSource original] using Vert.x codegen.

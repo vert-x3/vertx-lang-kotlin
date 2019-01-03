@@ -10,7 +10,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Asynchronously write a record to a topic
  *
  * @param record record to write
- * @param handler handler called on operation completed
  * @returncurrent KafkaWriteStream instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.producer.KafkaProducer original] using Vert.x codegen.
@@ -25,7 +24,6 @@ suspend fun <K,V> KafkaProducer<K,V>.writeAwait(record : KafkaProducerRecord<K,V
  * Get the partition metadata for the give topic.
  *
  * @param topic topic partition for which getting partitions info
- * @param handler handler called on operation completed
  * @returncurrent KafkaProducer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.producer.KafkaProducer original] using Vert.x codegen.
@@ -39,7 +37,6 @@ suspend fun <K,V> KafkaProducer<K,V>.partitionsForAwait(topic : String) : List<P
 /**
  * Close the producer
  *
- * @param completionHandler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.producer.KafkaProducer original] using Vert.x codegen.
@@ -53,7 +50,6 @@ suspend fun <K,V> KafkaProducer<K,V>.closeAwait() : Unit {
  * Close the producer
  *
  * @param timeout timeout to wait for closing
- * @param completionHandler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.producer.KafkaProducer original] using Vert.x codegen.

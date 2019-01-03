@@ -16,7 +16,6 @@ object HttpEndpoint {
  *
  * @param discovery The service discovery instance
  * @param filter The filter, optional
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -33,7 +32,6 @@ object HttpEndpoint {
  *
  * @param discovery The service discovery instance
  * @param filter The filter, optional
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -52,7 +50,6 @@ object HttpEndpoint {
  * @param discovery The service discovery instance
  * @param filter The filter, optional
  * @param conf the configuration of the client
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -71,7 +68,6 @@ object HttpEndpoint {
  * @param discovery The service discovery instance
  * @param filter The filter, optional
  * @param conf the configuration of the client
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -88,7 +84,6 @@ object HttpEndpoint {
  *
  * @param discovery The service discovery instance
  * @param filter The filter
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -105,7 +100,6 @@ object HttpEndpoint {
  *
  * @param discovery The service discovery instance
  * @param filter The filter
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -124,7 +118,6 @@ object HttpEndpoint {
  * @param discovery The service discovery instance
  * @param filter The filter
  * @param conf the configuration of the client
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
@@ -143,7 +136,6 @@ object HttpEndpoint {
  * @param discovery The service discovery instance
  * @param filter The filter
  * @param conf the configuration of the client
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
