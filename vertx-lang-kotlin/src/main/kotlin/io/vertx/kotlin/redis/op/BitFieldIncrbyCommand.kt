@@ -18,3 +18,23 @@ fun bitFieldIncrbyCommandOf(
   }
 }
 
+@Deprecated(
+  message = "This function will be removed in a future version",
+  replaceWith = ReplaceWith("bitFieldIncrbyCommandOf(increment, offset, type)")
+)
+fun BitFieldIncrbyCommand(
+  increment: Long? = null,
+  offset: Long? = null,
+  type: String? = null): BitFieldIncrbyCommand = io.vertx.redis.op.BitFieldIncrbyCommand().apply {
+
+  if (increment != null) {
+    this.setIncrement(increment)
+  }
+  if (offset != null) {
+    this.setOffset(offset)
+  }
+  if (type != null) {
+    this.setType(type)
+  }
+}
+

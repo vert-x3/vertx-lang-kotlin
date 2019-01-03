@@ -29,3 +29,34 @@ fun rangeLimitOptionsOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.RangeLimitOptions] objects.
+ *
+ *
+ * @param count 
+ * @param offset 
+ * @param withscores 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.RangeLimitOptions original] using Vert.x codegen.
+ */
+@Deprecated(
+  message = "This function will be removed in a future version",
+  replaceWith = ReplaceWith("rangeLimitOptionsOf(count, offset, withscores)")
+)
+fun RangeLimitOptions(
+  count: Long? = null,
+  offset: Long? = null,
+  withscores: Boolean? = null): RangeLimitOptions = io.vertx.redis.op.RangeLimitOptions().apply {
+
+  if (count != null) {
+    this.setCount(count)
+  }
+  if (offset != null) {
+    this.setOffset(offset)
+  }
+  if (withscores != null) {
+    this.setWithscores(withscores)
+  }
+}
+
