@@ -101,7 +101,9 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
 
     ClassTypeInfo type = model.getType();
     String functionName = type.getRaw().getSimpleName();
-    functionName = Character.toLowerCase(functionName.charAt(0)) + functionName.substring(1) + "Of";
+    int index = functionName.indexOf(functionName.replaceFirst("[A-Z]+", ""));
+    if (index > 1) index--;
+    functionName = functionName.substring(0, index).toLowerCase().concat(functionName.substring(index)) + "Of";
     writer.println("fun " + functionName + "(");
     String paramsInfo = model.getPropertyMap()
       .values()

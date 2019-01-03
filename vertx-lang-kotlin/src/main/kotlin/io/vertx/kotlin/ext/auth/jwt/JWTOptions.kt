@@ -28,7 +28,7 @@ import io.vertx.ext.auth.jwt.JWTOptions
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jwt.JWTOptions original] using Vert.x codegen.
  */
-fun jWTOptionsOf(
+fun jwtOptionsOf(
   algorithm: String? = null,
   audience: Iterable<String>? = null,
   audiences: Iterable<String>? = null,
