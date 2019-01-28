@@ -13,7 +13,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * This is not implemented for HTTP/1.x.
  *
  * @param settings the new settings
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpConnection original] using Vert.x codegen.
  */
@@ -28,7 +28,7 @@ suspend fun HttpConnection.updateSettingsAwait(settings : Http2Settings) : Unit 
  * This is not implemented for HTTP/1.x.
  *
  * @param data the 8 bytes data of the frame
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpConnection original] using Vert.x codegen.
  */

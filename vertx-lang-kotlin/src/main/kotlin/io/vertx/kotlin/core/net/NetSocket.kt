@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * or failed to be written.
  *
  * @param message 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetSocket original] using Vert.x codegen.
  */
@@ -23,7 +23,7 @@ suspend fun NetSocket.writeAwait(message : Buffer) : Unit {
  * a failure has occurred
  *
  * @param filename file name of the file to send
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetSocket original] using Vert.x codegen.
  */
@@ -38,7 +38,7 @@ suspend fun NetSocket.sendFileAwait(filename : String) : Unit {
  *
  * @param filename file name of the file to send
  * @param offset offset
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetSocket original] using Vert.x codegen.
  */
@@ -54,7 +54,7 @@ suspend fun NetSocket.sendFileAwait(filename : String, offset : Long) : Unit {
  * @param filename file name of the file to send
  * @param offset offset
  * @param length length
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetSocket original] using Vert.x codegen.
  */

@@ -9,7 +9,7 @@ import io.vertx.mqtt.MqttServer
  *
  * @param port the port to listen on
  * @param host the host to listen on
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */
@@ -24,7 +24,7 @@ suspend fun MqttServer.listenAwait(port : Int, host : String) : MqttServer {
  * "0.0.0.0" as host. It ignores any options specified through the constructor
  *
  * @param port the port to listen on
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */
@@ -38,7 +38,7 @@ suspend fun MqttServer.listenAwait(port : Int) : MqttServer {
  * Start the server listening for incoming connections using the specified options
  * through the constructor
  *
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */

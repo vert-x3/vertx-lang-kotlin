@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * If the future has already been completed it will be called immediately. Otherwise it will be called when the
  * future is completed.
  *
- * @returna reference to this, so it can be used fluently *
+ * @return a reference to this, so it can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.BridgeEvent original] using Vert.x codegen.
  */

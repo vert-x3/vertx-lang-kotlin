@@ -13,7 +13,7 @@ import io.vertx.mqtt.MqttEndpoint
  * @param qosLevel QoS level
  * @param isDup if the message is a duplicate
  * @param isRetain if the message needs to be retained
- * @returncurrent MQTT client instance *
+ * @return current MQTT client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttEndpoint original] using Vert.x codegen.
  */

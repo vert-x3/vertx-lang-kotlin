@@ -3,9 +3,11 @@ package io.vertx.kotlin.core
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.Future
 import io.vertx.core.Handler
+import io.vertx.core.Verticle
 import io.vertx.core.Vertx as VertxVertxAlias
 import io.vertx.core.VertxOptions
 import io.vertx.kotlin.coroutines.awaitResult
+import java.util.function.Supplier
 
 /**
  * Like [io.vertx.core.Vertx] but the completionHandler will be called when the close is complete
@@ -114,6 +116,62 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : (Futu
 suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : (Future<T>) -> Unit) : T? {
   return awaitResult{
     this.executeBlocking(blockingCodeHandler, it::handle)
+  }
+}
+
+/**
+ * Like [io.vertx.core.Vertx] but the completionHandler will be notified when the deployment is complete.
+ * <p>
+ * If the deployment is successful the result will contain a string representing the unique deployment ID of the
+ * deployment.
+ * <p>
+ * This deployment ID can subsequently be used to undeploy the verticle.
+ *
+ * @param verticle the verticle instance to deploy
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ */
+suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle) : String {
+  return awaitResult{
+    this.deployVerticle(verticle, it)
+  }
+}
+
+/**
+ * Like [io.vertx.core.Vertx] but [io.vertx.core.DeploymentOptions] are provided to configure the
+ * deployment.
+ *
+ * @param verticle the verticle instance to deploy
+ * @param options the deployment options.
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ */
+suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle, options : DeploymentOptions) : String {
+  return awaitResult{
+    this.deployVerticle(verticle, options, it)
+  }
+}
+
+/**
+ * Like [io.vertx.core.Vertx] but [io.vertx.core.Verticle] instance is created by
+ * invoking the <code>verticleSupplier</code>.
+ * <p>
+ * The supplier will be invoked as many times as [io.vertx.core.DeploymentOptions].
+ * It must not return the same instance twice.
+ * <p>
+ * Note that the supplier will be invoked on the caller thread.
+ *
+ * @param verticleSupplier 
+ * @param options 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ */
+suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier : Supplier<Verticle>, options : DeploymentOptions) : String {
+  return awaitResult{
+    this.deployVerticle(verticleSupplier, options, it)
   }
 }
 
