@@ -48,7 +48,7 @@ suspend fun RedisClient.closeAwait() : Unit {
  * @param key Key string
  * @param value Value to append
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -63,7 +63,7 @@ suspend fun RedisClient.appendAwait(key : String, value : String) : Long {
  *
  * @param password Password for authentication
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -77,7 +77,7 @@ suspend fun RedisClient.authAwait(password : String) : String {
  * Asynchronously rewrite the append-only file
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -91,7 +91,7 @@ suspend fun RedisClient.bgrewriteaofAwait() : String {
  * Asynchronously save the dataset to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -106,7 +106,7 @@ suspend fun RedisClient.bgsaveAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -123,7 +123,7 @@ suspend fun RedisClient.bitcountAwait(key : String) : Long {
  * @param start Start index
  * @param end End index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -140,7 +140,7 @@ suspend fun RedisClient.bitcountRangeAwait(key : String, start : Long, end : Lon
  * @param destkey Destination key where result is stored
  * @param keys List of keys on which to perform the operation
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -156,7 +156,7 @@ suspend fun RedisClient.bitopAwait(operation : BitOperation, destkey : String, k
  * @param key Key string
  * @param bit What bit value to look for - must be 1, or 0
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -175,7 +175,7 @@ suspend fun RedisClient.bitposAwait(key : String, bit : Int) : Long {
  * @param bit What bit value to look for - must be 1, or 0
  * @param start Start offset
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -196,7 +196,7 @@ suspend fun RedisClient.bitposFromAwait(key : String, bit : Int, start : Int) : 
  * @param start Start offset
  * @param stop End offset - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -212,7 +212,7 @@ suspend fun RedisClient.bitposRangeAwait(key : String, bit : Int, start : Int, s
  * @param key Key string identifying a list to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -228,7 +228,7 @@ suspend fun RedisClient.blpopAwait(key : String, seconds : Int) : JsonArray {
  * @param keys List of key strings identifying lists to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -244,7 +244,7 @@ suspend fun RedisClient.blpopManyAwait(keys : List<String>, seconds : Int) : Jso
  * @param key Key string identifying a list to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -260,7 +260,7 @@ suspend fun RedisClient.brpopAwait(key : String, seconds : Int) : JsonArray {
  * @param keys List of key strings identifying lists to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -277,7 +277,7 @@ suspend fun RedisClient.brpopManyAwait(keys : List<String>, seconds : Int) : Jso
  * @param destkey Key string identifying the destination list
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -292,7 +292,7 @@ suspend fun RedisClient.brpoplpushAwait(key : String, destkey : String, seconds 
  *
  * @param filter Filter options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -306,7 +306,7 @@ suspend fun RedisClient.clientKillAwait(filter : KillFilter) : Long {
  * Get the list of client connections
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -320,7 +320,7 @@ suspend fun RedisClient.clientListAwait() : String {
  * Get the current connection name
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -335,7 +335,7 @@ suspend fun RedisClient.clientGetnameAwait() : String {
  *
  * @param millis Pause time in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -350,7 +350,7 @@ suspend fun RedisClient.clientPauseAwait(millis : Long) : String {
  *
  * @param name New name for current connection
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -365,7 +365,7 @@ suspend fun RedisClient.clientSetnameAwait(name : String) : String {
  *
  * @param slots 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -379,7 +379,7 @@ suspend fun RedisClient.clusterAddslotsAwait(slots : List<Long>) : Unit {
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -394,7 +394,7 @@ suspend fun RedisClient.clusterCountFailureReportsAwait(nodeId : String) : Long 
  *
  * @param slot 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -409,7 +409,7 @@ suspend fun RedisClient.clusterCountkeysinslotAwait(slot : Long) : Long {
  *
  * @param slot 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -423,7 +423,7 @@ suspend fun RedisClient.clusterDelslotsAwait(slot : Long) : Unit {
  *
  * @param slots 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -436,7 +436,7 @@ suspend fun RedisClient.clusterDelslotsManyAwait(slots : List<Long>) : Unit {
  * Forces a slave to perform a manual failover of its master.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -450,7 +450,7 @@ suspend fun RedisClient.clusterFailoverAwait() : Unit {
  *
  * @param options 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -464,7 +464,7 @@ suspend fun RedisClient.clusterFailOverWithOptionsAwait(options : FailoverOption
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -479,7 +479,7 @@ suspend fun RedisClient.clusterForgetAwait(nodeId : String) : Unit {
  * @param slot 
  * @param count 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -493,7 +493,7 @@ suspend fun RedisClient.clusterGetkeysinslotAwait(slot : Long, count : Long) : J
  * Provides info about Redis Cluster node state.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -508,7 +508,7 @@ suspend fun RedisClient.clusterInfoAwait() : JsonArray {
  *
  * @param key 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -524,7 +524,7 @@ suspend fun RedisClient.clusterKeyslotAwait(key : String) : Long {
  * @param ip 
  * @param port 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -537,7 +537,7 @@ suspend fun RedisClient.clusterMeetAwait(ip : String, port : Long) : Unit {
  * Get Cluster config for the node.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -552,7 +552,7 @@ suspend fun RedisClient.clusterNodesAwait() : JsonArray {
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -565,7 +565,7 @@ suspend fun RedisClient.clusterReplicateAwait(nodeId : String) : Unit {
  * Reset a Redis Cluster node.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -579,7 +579,7 @@ suspend fun RedisClient.clusterResetAwait() : Unit {
  *
  * @param options 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -592,7 +592,7 @@ suspend fun RedisClient.clusterResetWithOptionsAwait(options : ResetOptions) : U
  * Forces the node to save cluster state on disk.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -606,7 +606,7 @@ suspend fun RedisClient.clusterSaveconfigAwait() : Unit {
  *
  * @param epoch 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -621,7 +621,7 @@ suspend fun RedisClient.clusterSetConfigEpochAwait(epoch : Long) : Unit {
  * @param slot 
  * @param subcommand 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -637,7 +637,7 @@ suspend fun RedisClient.clusterSetslotAwait(slot : Long, subcommand : SlotCmd) :
  * @param subcommand 
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -651,7 +651,7 @@ suspend fun RedisClient.clusterSetslotWithNodeAwait(slot : Long, subcommand : Sl
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -665,7 +665,7 @@ suspend fun RedisClient.clusterSlavesAwait(nodeId : String) : JsonArray {
  * Get array of Cluster slot to node mappings
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -679,7 +679,7 @@ suspend fun RedisClient.clusterSlotsAwait() : JsonArray {
  * Get array of Redis command details
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -693,7 +693,7 @@ suspend fun RedisClient.commandAwait() : JsonArray {
  * Get total number of Redis commands
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -707,7 +707,7 @@ suspend fun RedisClient.commandCountAwait() : Long {
  * Extract keys given a full Redis command
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -722,7 +722,7 @@ suspend fun RedisClient.commandGetkeysAwait() : JsonArray {
  *
  * @param commands List of commands to get info for
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -737,7 +737,7 @@ suspend fun RedisClient.commandInfoAwait(commands : List<String>) : JsonArray {
  *
  * @param parameter Configuration parameter
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -751,7 +751,7 @@ suspend fun RedisClient.configGetAwait(parameter : String) : JsonArray {
  * Rewrite the configuration file with the in memory configuration
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -767,7 +767,7 @@ suspend fun RedisClient.configRewriteAwait() : String {
  * @param parameter Configuration parameter
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -781,7 +781,7 @@ suspend fun RedisClient.configSetAwait(parameter : String, value : String) : Str
  * Reset the stats returned by INFO
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -795,7 +795,7 @@ suspend fun RedisClient.configResetstatAwait() : String {
  * Return the number of keys in the selected database
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -810,7 +810,7 @@ suspend fun RedisClient.dbsizeAwait() : Long {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -824,7 +824,7 @@ suspend fun RedisClient.debugObjectAwait(key : String) : String {
  * Make the server crash
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -839,7 +839,7 @@ suspend fun RedisClient.debugSegfaultAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -855,7 +855,7 @@ suspend fun RedisClient.decrAwait(key : String) : Long {
  * @param key Key string
  * @param decrement Value by which to decrement
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -870,7 +870,7 @@ suspend fun RedisClient.decrbyAwait(key : String, decrement : Long) : Long {
  *
  * @param key Keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -885,7 +885,7 @@ suspend fun RedisClient.delAwait(key : String) : Long {
  *
  * @param keys List of keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -900,7 +900,7 @@ suspend fun RedisClient.delManyAwait(keys : List<String>) : Long {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -915,7 +915,7 @@ suspend fun RedisClient.dumpAwait(key : String) : String {
  *
  * @param message String to echo
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -936,7 +936,7 @@ suspend fun RedisClient.echoAwait(message : String) : String {
  * @param keys List of keys
  * @param args List of argument values
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -957,7 +957,7 @@ suspend fun RedisClient.evalAwait(script : String, keys : List<String>, args : L
  * @param keys List of keys
  * @param values List of values
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -979,7 +979,7 @@ suspend fun RedisClient.evalshaAwait(sha1 : String, keys : List<String>, values 
  * @param keys List of keys
  * @param args List of argument values
  * @param handler Handler for the result of this call. group: scripting
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -994,7 +994,7 @@ suspend fun RedisClient.evalScriptAwait(script : Script, keys : List<String>, ar
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1009,7 +1009,7 @@ suspend fun RedisClient.existsAwait(key : String) : Long {
  *
  * @param keys List of key strings
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1025,7 +1025,7 @@ suspend fun RedisClient.existsManyAwait(keys : List<String>) : Long {
  * @param key Key string
  * @param seconds Time to live in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1041,7 +1041,7 @@ suspend fun RedisClient.expireAwait(key : String, seconds : Long) : Long {
  * @param key Key string
  * @param seconds Expiry time as Unix timestamp in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1055,7 +1055,7 @@ suspend fun RedisClient.expireatAwait(key : String, seconds : Long) : Long {
  * Remove all keys from all databases
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1069,7 +1069,7 @@ suspend fun RedisClient.flushallAwait() : String {
  * Remove all keys from the current database
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1084,7 +1084,7 @@ suspend fun RedisClient.flushdbAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1099,7 +1099,7 @@ suspend fun RedisClient.getAwait(key : String) : String? {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1115,7 +1115,7 @@ suspend fun RedisClient.getBinaryAwait(key : String) : Buffer? {
  * @param key Key string
  * @param offset Offset in bits
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1132,7 +1132,7 @@ suspend fun RedisClient.getbitAwait(key : String, offset : Long) : Long {
  * @param start Start offset
  * @param end End offset - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1148,7 +1148,7 @@ suspend fun RedisClient.getrangeAwait(key : String, start : Long, end : Long) : 
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1164,7 +1164,7 @@ suspend fun RedisClient.getsetAwait(key : String, value : String) : String? {
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1180,7 +1180,7 @@ suspend fun RedisClient.hdelAwait(key : String, field : String) : Long {
  * @param key Key string
  * @param fields Field names
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1196,7 +1196,7 @@ suspend fun RedisClient.hdelManyAwait(key : String, fields : List<String>) : Lon
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1212,7 +1212,7 @@ suspend fun RedisClient.hexistsAwait(key : String, field : String) : Long {
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1227,7 +1227,7 @@ suspend fun RedisClient.hgetAwait(key : String, field : String) : String? {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1244,7 +1244,7 @@ suspend fun RedisClient.hgetallAwait(key : String) : JsonObject {
  * @param field Field name
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1261,7 +1261,7 @@ suspend fun RedisClient.hincrbyAwait(key : String, field : String, increment : L
  * @param field Field name
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1276,7 +1276,7 @@ suspend fun RedisClient.hincrbyfloatAwait(key : String, field : String, incremen
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1291,7 +1291,7 @@ suspend fun RedisClient.hkeysAwait(key : String) : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1307,7 +1307,7 @@ suspend fun RedisClient.hlenAwait(key : String) : Long {
  * @param key Key string
  * @param fields Field names
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1323,7 +1323,7 @@ suspend fun RedisClient.hmgetAwait(key : String, fields : List<String>) : JsonAr
  * @param key Key string
  * @param values Map of field:value pairs
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1340,7 +1340,7 @@ suspend fun RedisClient.hmsetAwait(key : String, values : JsonObject) : String {
  * @param field Field name
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1357,7 +1357,7 @@ suspend fun RedisClient.hsetAwait(key : String, field : String, value : String) 
  * @param field Field name
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1372,7 +1372,7 @@ suspend fun RedisClient.hsetnxAwait(key : String, field : String, value : String
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1387,7 +1387,7 @@ suspend fun RedisClient.hvalsAwait(key : String) : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1403,7 +1403,7 @@ suspend fun RedisClient.incrAwait(key : String) : Long {
  * @param key Key string
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1419,7 +1419,7 @@ suspend fun RedisClient.incrbyAwait(key : String, increment : Long) : Long {
  * @param key Key string
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1433,7 +1433,7 @@ suspend fun RedisClient.incrbyfloatAwait(key : String, increment : Double) : Str
  * Get information and statistics about the server
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1448,7 +1448,7 @@ suspend fun RedisClient.infoAwait() : JsonObject {
  *
  * @param section Specific section of information to return
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1463,7 +1463,7 @@ suspend fun RedisClient.infoSectionAwait(section : String) : JsonObject {
  *
  * @param pattern Pattern to limit the keys returned
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1477,7 +1477,7 @@ suspend fun RedisClient.keysAwait(pattern : String) : JsonArray {
  * Get the UNIX time stamp of the last successful save to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1493,7 +1493,7 @@ suspend fun RedisClient.lastsaveAwait() : Long {
  * @param key Key string
  * @param index Index of list element to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1511,7 +1511,7 @@ suspend fun RedisClient.lindexAwait(key : String, index : Int) : String {
  * @param pivot Key to use as a pivot
  * @param value Value to be inserted before or after the pivot
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1526,7 +1526,7 @@ suspend fun RedisClient.linsertAwait(key : String, option : InsertOptions, pivot
  *
  * @param key String key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1541,7 +1541,7 @@ suspend fun RedisClient.llenAwait(key : String) : Long {
  *
  * @param key String key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1557,7 +1557,7 @@ suspend fun RedisClient.lpopAwait(key : String) : String? {
  * @param key Key string
  * @param values Values to be added at the beginning of the list, one by one
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1573,7 +1573,7 @@ suspend fun RedisClient.lpushManyAwait(key : String, values : List<String>) : Lo
  * @param key Key string
  * @param value Value to be added at the beginning of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1589,7 +1589,7 @@ suspend fun RedisClient.lpushAwait(key : String, value : String) : Long {
  * @param key Key string
  * @param value Value to add at the beginning of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1606,7 +1606,7 @@ suspend fun RedisClient.lpushxAwait(key : String, value : String) : Long {
  * @param from Start index
  * @param to Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1623,7 +1623,7 @@ suspend fun RedisClient.lrangeAwait(key : String, from : Long, to : Long) : Json
  * @param count Number of first found occurrences equal to $value to remove from the list
  * @param value Value to be removed
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1640,7 +1640,7 @@ suspend fun RedisClient.lremAwait(key : String, count : Long, value : String) : 
  * @param index Position within list
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1657,7 +1657,7 @@ suspend fun RedisClient.lsetAwait(key : String, index : Long, value : String) : 
  * @param from Start index
  * @param to Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1672,7 +1672,7 @@ suspend fun RedisClient.ltrimAwait(key : String, from : Long, to : Long) : Strin
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1687,7 +1687,7 @@ suspend fun RedisClient.mgetAwait(key : String) : JsonArray {
  *
  * @param keys List of keys to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1707,7 +1707,7 @@ suspend fun RedisClient.mgetManyAwait(keys : List<String>) : JsonArray {
  * @param timeout 
  * @param options Migrate options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1721,7 +1721,7 @@ suspend fun RedisClient.migrateAwait(host : String, port : Int, key : String, de
  * Listen for all requests received by the server in real time
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1736,7 +1736,7 @@ suspend fun RedisClient.monitorAwait() : Unit {
  * @param key Key to migrate
  * @param destdb Destination database index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1751,7 +1751,7 @@ suspend fun RedisClient.moveAwait(key : String, destdb : Int) : Long {
  *
  * @param keyvals Key value pairs to set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1766,7 +1766,7 @@ suspend fun RedisClient.msetAwait(keyvals : JsonObject) : String {
  *
  * @param keyvals Key value pairs to set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1782,7 +1782,7 @@ suspend fun RedisClient.msetnxAwait(keyvals : JsonObject) : Long {
  * @param key Key string
  * @param cmd Object sub command
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1796,7 +1796,7 @@ suspend fun RedisClient.objectAwait(key : String, cmd : ObjectCmd) : Unit {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1812,7 +1812,7 @@ suspend fun RedisClient.persistAwait(key : String) : Long {
  * @param key String key
  * @param millis Time to live in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1828,7 +1828,7 @@ suspend fun RedisClient.pexpireAwait(key : String, millis : Long) : Long {
  * @param key Key string
  * @param millis Expiry time as Unix timestamp in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1844,7 +1844,7 @@ suspend fun RedisClient.pexpireatAwait(key : String, millis : Long) : Long {
  * @param key Key string
  * @param element Element to add
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1860,7 +1860,7 @@ suspend fun RedisClient.pfaddAwait(key : String, element : String) : Long {
  * @param key Key string
  * @param elements Elementa to add
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1875,7 +1875,7 @@ suspend fun RedisClient.pfaddManyAwait(key : String, elements : List<String>) : 
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1890,7 +1890,7 @@ suspend fun RedisClient.pfcountAwait(key : String) : Long {
  *
  * @param keys List of keys
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1906,7 +1906,7 @@ suspend fun RedisClient.pfcountManyAwait(keys : List<String>) : Long {
  * @param destkey Destination key
  * @param keys List of source keys
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1920,7 +1920,7 @@ suspend fun RedisClient.pfmergeAwait(destkey : String, keys : List<String>) : St
  * Ping the server
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1937,7 +1937,7 @@ suspend fun RedisClient.pingAwait() : String {
  * @param millis Number of milliseconds until the key expires
  * @param value New value for key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1951,7 +1951,7 @@ suspend fun RedisClient.psetexAwait(key : String, millis : Long, value : String)
  *
  * @param pattern Pattern string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1966,7 +1966,7 @@ suspend fun RedisClient.psubscribeAwait(pattern : String) : JsonArray {
  *
  * @param patterns List of patterns
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1981,7 +1981,7 @@ suspend fun RedisClient.psubscribeManyAwait(patterns : List<String>) : JsonArray
  *
  * @param pattern A glob-style pattern - an empty string means no pattern
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -1996,7 +1996,7 @@ suspend fun RedisClient.pubsubChannelsAwait(pattern : String) : JsonArray {
  *
  * @param channels List of channels
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2010,7 +2010,7 @@ suspend fun RedisClient.pubsubNumsubAwait(channels : List<String>) : JsonArray {
  * Returns the number of subscriptions to patterns (that are performed using the PSUBSCRIBE command)
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2025,7 +2025,7 @@ suspend fun RedisClient.pubsubNumpatAwait() : Long {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2041,7 +2041,7 @@ suspend fun RedisClient.pttlAwait(key : String) : Long {
  * @param channel Channel key
  * @param message Message to send to channel
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2056,7 +2056,7 @@ suspend fun RedisClient.publishAwait(channel : String, message : String) : Long 
  *
  * @param patterns List of patterns to match against
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2069,7 +2069,7 @@ suspend fun RedisClient.punsubscribeAwait(patterns : List<String>) : Unit {
  * Return a random key from the keyspace
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2085,7 +2085,7 @@ suspend fun RedisClient.randomkeyAwait() : String {
  * @param key Key string to be renamed
  * @param newkey New key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2101,7 +2101,7 @@ suspend fun RedisClient.renameAwait(key : String, newkey : String) : String {
  * @param key Key string to be renamed
  * @param newkey New key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2118,7 +2118,7 @@ suspend fun RedisClient.renamenxAwait(key : String, newkey : String) : Long {
  * @param millis Expiry time in milliseconds to set on the key
  * @param serialized Serialized form of the key value as obtained using DUMP
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2132,7 +2132,7 @@ suspend fun RedisClient.restoreAwait(key : String, millis : Long, serialized : S
  * Return the role of the instance in the context of replication
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2147,7 +2147,7 @@ suspend fun RedisClient.roleAwait() : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2163,7 +2163,7 @@ suspend fun RedisClient.rpopAwait(key : String) : String {
  * @param key Key string identifying source list
  * @param destkey Key string identifying destination list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2179,7 +2179,7 @@ suspend fun RedisClient.rpoplpushAwait(key : String, destkey : String) : String 
  * @param key Key string
  * @param values List of values to add to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2195,7 +2195,7 @@ suspend fun RedisClient.rpushManyAwait(key : String, values : List<String>) : Lo
  * @param key Key string
  * @param value Value to be added to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2211,7 +2211,7 @@ suspend fun RedisClient.rpushAwait(key : String, value : String) : Long {
  * @param key Key string
  * @param value Value to be added to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2227,7 +2227,7 @@ suspend fun RedisClient.rpushxAwait(key : String, value : String) : Long {
  * @param key Key string
  * @param member Value to be added to the set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2243,7 +2243,7 @@ suspend fun RedisClient.saddAwait(key : String, member : String) : Long {
  * @param key Key string
  * @param members Values to be added to the set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2257,7 +2257,7 @@ suspend fun RedisClient.saddManyAwait(key : String, members : List<String>) : Lo
  * Synchronously save the dataset to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2272,7 +2272,7 @@ suspend fun RedisClient.saveAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2287,7 +2287,7 @@ suspend fun RedisClient.scardAwait(key : String) : Long {
  *
  * @param script SHA1 digest identifying a script in the script cache
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2302,7 +2302,7 @@ suspend fun RedisClient.scriptExistsAwait(script : String) : JsonArray {
  *
  * @param scripts List of SHA1 digests identifying scripts in the script cache
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2316,7 +2316,7 @@ suspend fun RedisClient.scriptExistsManyAwait(scripts : List<String>) : JsonArra
  * Remove all the scripts from the script cache.
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2330,7 +2330,7 @@ suspend fun RedisClient.scriptFlushAwait() : String {
  * Kill the script currently in execution.
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2345,7 +2345,7 @@ suspend fun RedisClient.scriptKillAwait() : String {
  *
  * @param script Lua script
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2361,7 +2361,7 @@ suspend fun RedisClient.scriptLoadAwait(script : String) : String {
  * @param key Key identifying the set to compare with all other sets combined
  * @param cmpkeys List of keys identifying sets to subtract from the key set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2378,7 +2378,7 @@ suspend fun RedisClient.sdiffAwait(key : String, cmpkeys : List<String>) : JsonA
  * @param key Key identifying the set to compare with all other sets combined
  * @param cmpkeys List of keys identifying sets to subtract from the key set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2393,7 +2393,7 @@ suspend fun RedisClient.sdiffstoreAwait(destkey : String, key : String, cmpkeys 
  *
  * @param dbindex Index identifying the new active database
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2409,7 +2409,7 @@ suspend fun RedisClient.selectAwait(dbindex : Int) : String {
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2425,7 +2425,7 @@ suspend fun RedisClient.setAwait(key : String, value : String) : Unit {
  * @param value New value for the key
  * @param options Set options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2441,7 +2441,7 @@ suspend fun RedisClient.setWithOptionsAwait(key : String, value : String, option
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2457,7 +2457,7 @@ suspend fun RedisClient.setBinaryAwait(key : String, value : Buffer) : Unit {
  * @param value New value for the key
  * @param options Set options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2473,7 +2473,7 @@ suspend fun RedisClient.setBinaryWithOptionsAwait(key : String, value : Buffer, 
  * @param offset Bit offset
  * @param bit New value - must be 1 or 0
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2490,7 +2490,7 @@ suspend fun RedisClient.setbitAwait(key : String, offset : Long, bit : Int) : Lo
  * @param seconds Number of seconds until the key expires
  * @param value New value for key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2506,7 +2506,7 @@ suspend fun RedisClient.setexAwait(key : String, seconds : Long, value : String)
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2523,7 +2523,7 @@ suspend fun RedisClient.setnxAwait(key : String, value : String) : Long {
  * @param offset Offset - the maximum offset that you can set is 2^29 -1 (536870911), as Redis Strings are limited to 512 megabytes
  * @param value Value to overwrite with
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2538,7 +2538,7 @@ suspend fun RedisClient.setrangeAwait(key : String, offset : Int, value : String
  *
  * @param keys List of keys to perform intersection on
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2554,7 +2554,7 @@ suspend fun RedisClient.sinterAwait(keys : List<String>) : JsonArray {
  * @param destkey Key where to store the results
  * @param keys List of keys to perform intersection on
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2570,7 +2570,7 @@ suspend fun RedisClient.sinterstoreAwait(destkey : String, keys : List<String>) 
  * @param key Key string
  * @param member Member to look for
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2586,7 +2586,7 @@ suspend fun RedisClient.sismemberAwait(key : String, member : String) : Long {
  * @param host Host to become this server's master
  * @param port Port of our new master
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2600,7 +2600,7 @@ suspend fun RedisClient.slaveofAwait(host : String, port : Int) : String {
  * Make this server a master
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2615,7 +2615,7 @@ suspend fun RedisClient.slaveofNooneAwait() : String {
  *
  * @param limit Number of log entries to return. If value is less than zero all entries are returned
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2629,7 +2629,7 @@ suspend fun RedisClient.slowlogGetAwait(limit : Int) : JsonArray {
  * Get the length of the Redis slow queries log
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2643,7 +2643,7 @@ suspend fun RedisClient.slowlogLenAwait() : Long {
  * Reset the Redis slow queries log
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2657,7 +2657,7 @@ suspend fun RedisClient.slowlogResetAwait() : Unit {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2674,7 +2674,7 @@ suspend fun RedisClient.smembersAwait(key : String) : JsonArray {
  * @param destkey Key identifying the destination set
  * @param member Member to move
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2690,7 +2690,7 @@ suspend fun RedisClient.smoveAwait(key : String, destkey : String, member : Stri
  * @param key Key string
  * @param options Sort options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2705,7 +2705,7 @@ suspend fun RedisClient.sortAwait(key : String, options : SortOptions) : JsonArr
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2721,7 +2721,7 @@ suspend fun RedisClient.spopAwait(key : String) : String? {
  * @param key Key string
  * @param count Number of members to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2736,7 +2736,7 @@ suspend fun RedisClient.spopManyAwait(key : String, count : Int) : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2752,7 +2752,7 @@ suspend fun RedisClient.srandmemberAwait(key : String) : String {
  * @param key Key string
  * @param count Number of members to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2768,7 +2768,7 @@ suspend fun RedisClient.srandmemberCountAwait(key : String, count : Int) : JsonA
  * @param key Key string
  * @param member Member to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2784,7 +2784,7 @@ suspend fun RedisClient.sremAwait(key : String, member : String) : Long {
  * @param key Key string
  * @param members Members to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2799,7 +2799,7 @@ suspend fun RedisClient.sremManyAwait(key : String, members : List<String>) : Lo
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2814,7 +2814,7 @@ suspend fun RedisClient.strlenAwait(key : String) : Long {
  *
  * @param channel Channel to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2829,7 +2829,7 @@ suspend fun RedisClient.subscribeAwait(channel : String) : JsonArray {
  *
  * @param channels List of channels to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2844,7 +2844,7 @@ suspend fun RedisClient.subscribeManyAwait(channels : List<String>) : JsonArray 
  *
  * @param keys List of keys identifying sets to add up
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2860,7 +2860,7 @@ suspend fun RedisClient.sunionAwait(keys : List<String>) : JsonArray {
  * @param destkey Destination key
  * @param keys List of keys identifying sets to add up
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2874,7 +2874,7 @@ suspend fun RedisClient.sunionstoreAwait(destkey : String, keys : List<String>) 
  * Internal command used for replication
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2887,7 +2887,7 @@ suspend fun RedisClient.syncAwait() : Unit {
  * Return the current server time
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2902,7 +2902,7 @@ suspend fun RedisClient.timeAwait() : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2917,7 +2917,7 @@ suspend fun RedisClient.ttlAwait(key : String) : Long {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2932,7 +2932,7 @@ suspend fun RedisClient.typeAwait(key : String) : String {
  *
  * @param channels List of channels to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2947,7 +2947,7 @@ suspend fun RedisClient.unsubscribeAwait(channels : List<String>) : Unit {
  * @param numSlaves 
  * @param timeout 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2964,7 +2964,7 @@ suspend fun RedisClient.waitAwait(numSlaves : Long, timeout : Long) : String {
  * @param score Score used for sorting
  * @param member New member key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2980,7 +2980,7 @@ suspend fun RedisClient.zaddAwait(key : String, score : Double, member : String)
  * @param key Key string
  * @param members New member keys and their scores
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -2995,7 +2995,7 @@ suspend fun RedisClient.zaddManyAwait(key : String, members : Map<String,Double>
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3012,7 +3012,7 @@ suspend fun RedisClient.zcardAwait(key : String) : Long {
  * @param min Minimum score
  * @param max Maximum score
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3029,7 +3029,7 @@ suspend fun RedisClient.zcountAwait(key : String, min : Double, max : Double) : 
  * @param increment Increment amount
  * @param member Member key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3046,7 +3046,7 @@ suspend fun RedisClient.zincrbyAwait(key : String, increment : Double, member : 
  * @param sets List of keys identifying sorted sets to intersect
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3063,7 +3063,7 @@ suspend fun RedisClient.zinterstoreAwait(destkey : String, sets : List<String>, 
  * @param sets List of keys identifying sorted sets to intersect
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3080,7 +3080,7 @@ suspend fun RedisClient.zinterstoreWeighedAwait(destkey : String, sets : Map<Str
  * @param min Pattern to compare against for minimum value
  * @param max Pattern to compare against for maximum value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3097,7 +3097,7 @@ suspend fun RedisClient.zlexcountAwait(key : String, min : String, max : String)
  * @param start Start index for the range
  * @param stop Stop index for the range - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3115,7 +3115,7 @@ suspend fun RedisClient.zrangeAwait(key : String, start : Long, stop : Long) : J
  * @param stop Stop index for the range - inclusive
  * @param options Range options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3133,7 +3133,7 @@ suspend fun RedisClient.zrangeWithOptionsAwait(key : String, start : Long, stop 
  * @param max Pattern representing a maximum allowed value
  * @param options Limit options where limit can be specified
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3151,7 +3151,7 @@ suspend fun RedisClient.zrangebylexAwait(key : String, min : String, max : Strin
  * @param max Pattern defining a maximum value
  * @param options Range and limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3167,7 +3167,7 @@ suspend fun RedisClient.zrangebyscoreAwait(key : String, min : String, max : Str
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3183,7 +3183,7 @@ suspend fun RedisClient.zrankAwait(key : String, member : String) : Long {
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3199,7 +3199,7 @@ suspend fun RedisClient.zremAwait(key : String, member : String) : Long {
  * @param key Key string
  * @param members Members in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3216,7 +3216,7 @@ suspend fun RedisClient.zremManyAwait(key : String, members : List<String>) : Lo
  * @param min Pattern defining a minimum value
  * @param max Pattern defining a maximum value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3233,7 +3233,7 @@ suspend fun RedisClient.zremrangebylexAwait(key : String, min : String, max : St
  * @param start Start index
  * @param stop Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3250,7 +3250,7 @@ suspend fun RedisClient.zremrangebyrankAwait(key : String, start : Long, stop : 
  * @param min Pattern defining a minimum value
  * @param max Pattern defining a maximum value
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3268,7 +3268,7 @@ suspend fun RedisClient.zremrangebyscoreAwait(key : String, min : String, max : 
  * @param stop Stop index for the range - inclusive
  * @param options Range options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3286,7 +3286,7 @@ suspend fun RedisClient.zrevrangeAwait(key : String, start : Long, stop : Long, 
  * @param min Pattern defining a minimum value
  * @param options Limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3304,7 +3304,7 @@ suspend fun RedisClient.zrevrangebylexAwait(key : String, max : String, min : St
  * @param min Pattern defining a minimum value
  * @param options Range and limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3320,7 +3320,7 @@ suspend fun RedisClient.zrevrangebyscoreAwait(key : String, max : String, min : 
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3336,7 +3336,7 @@ suspend fun RedisClient.zrevrankAwait(key : String, member : String) : Long {
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3353,7 +3353,7 @@ suspend fun RedisClient.zscoreAwait(key : String, member : String) : String {
  * @param sets List of keys identifying sorted sets
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3370,7 +3370,7 @@ suspend fun RedisClient.zunionstoreAwait(destkey : String, sets : List<String>, 
  * @param sets Map containing set-key:weight pairs
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3386,7 +3386,7 @@ suspend fun RedisClient.zunionstoreWeighedAwait(key : String, sets : Map<String,
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3403,7 +3403,7 @@ suspend fun RedisClient.scanAwait(cursor : String, options : ScanOptions) : Json
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3420,7 +3420,7 @@ suspend fun RedisClient.sscanAwait(key : String, cursor : String, options : Scan
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3437,7 +3437,7 @@ suspend fun RedisClient.hscanAwait(key : String, cursor : String, options : Scan
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3455,7 +3455,7 @@ suspend fun RedisClient.zscanAwait(key : String, cursor : String, options : Scan
  * @param latitude latitude
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3471,7 +3471,7 @@ suspend fun RedisClient.geoaddAwait(key : String, longitude : Double, latitude :
  * @param key Key string
  * @param members list of &lt;lon, lat, member&gt;
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3488,7 +3488,7 @@ suspend fun RedisClient.geoaddManyAwait(key : String, members : List<GeoMember>)
  * @param key Key string
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3505,7 +3505,7 @@ suspend fun RedisClient.geohashAwait(key : String, member : String) : JsonArray 
  * @param key Key string
  * @param members list of members
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3522,7 +3522,7 @@ suspend fun RedisClient.geohashManyAwait(key : String, members : List<String>) :
  * @param key Key string
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3539,7 +3539,7 @@ suspend fun RedisClient.geoposAwait(key : String, member : String) : JsonArray {
  * @param key Key string
  * @param members list of members
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3556,7 +3556,7 @@ suspend fun RedisClient.geoposManyAwait(key : String, members : List<String>) : 
  * @param member1 member 1
  * @param member2 member 2
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3574,7 +3574,7 @@ suspend fun RedisClient.geodistAwait(key : String, member1 : String, member2 : S
  * @param member2 member 2
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3594,7 +3594,7 @@ suspend fun RedisClient.geodistWithUnitAwait(key : String, member1 : String, mem
  * @param radius radius
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3615,7 +3615,7 @@ suspend fun RedisClient.georadiusAwait(key : String, longitude : Double, latitud
  * @param unit geo unit
  * @param options geo radius options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3635,7 +3635,7 @@ suspend fun RedisClient.georadiusWithOptionsAwait(key : String, longitude : Doub
  * @param radius radius
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3656,7 +3656,7 @@ suspend fun RedisClient.georadiusbymemberAwait(key : String, member : String, ra
  * @param unit geo unit
  * @param options geo radius options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3671,7 +3671,7 @@ suspend fun RedisClient.georadiusbymemberWithOptionsAwait(key : String, member :
  *
  * @param options 
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3687,7 +3687,7 @@ suspend fun RedisClient.clientReplyAwait(options : ClientReplyOptions) : String 
  * @param key Key String
  * @param field field
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3702,7 +3702,7 @@ suspend fun RedisClient.hstrlenAwait(key : String, field : String) : Long {
  *
  * @param key Key String
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3717,7 +3717,7 @@ suspend fun RedisClient.touchAwait(key : String) : Long {
  *
  * @param keys list of keys
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3732,7 +3732,7 @@ suspend fun RedisClient.touchManyAwait(keys : List<String>) : Long {
  *
  * @param scriptDebugOptions the option
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3748,7 +3748,7 @@ suspend fun RedisClient.scriptDebugAwait(scriptDebugOptions : ScriptDebugOptions
  * @param key Key string
  * @param bitFieldOptions 
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3765,7 +3765,7 @@ suspend fun RedisClient.bitfieldAwait(key : String, bitFieldOptions : BitFieldOp
  * @param commands 
  * @param overflow 
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3780,7 +3780,7 @@ suspend fun RedisClient.bitfieldWithOverflowAwait(key : String, commands : BitFi
  *
  * @param key Key to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3795,7 +3795,7 @@ suspend fun RedisClient.unlinkAwait(key : String) : Long {
  *
  * @param keys List of keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */
@@ -3811,7 +3811,7 @@ suspend fun RedisClient.unlinkManyAwait(keys : List<String>) : Long {
  * @param index1 index of first database to swap
  * @param index2 index of second database to swap
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisClient original] using Vert.x codegen.
  */

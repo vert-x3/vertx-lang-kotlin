@@ -21,7 +21,7 @@ suspend fun RedisSentinel.closeAwait() : Unit {
  * Show a list of monitored masters and their state
  *
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -36,7 +36,7 @@ suspend fun RedisSentinel.mastersAwait() : JsonArray {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -51,7 +51,7 @@ suspend fun RedisSentinel.masterAwait(name : String) : JsonArray {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -66,7 +66,7 @@ suspend fun RedisSentinel.slavesAwait(name : String) : JsonArray {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -83,7 +83,7 @@ suspend fun RedisSentinel.sentinelsAwait(name : String) : JsonArray {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -100,7 +100,7 @@ suspend fun RedisSentinel.getMasterAddrByNameAwait(name : String) : JsonArray {
  *
  * @param pattern pattern String
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -116,7 +116,7 @@ suspend fun RedisSentinel.resetAwait(pattern : String) : Unit {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -133,7 +133,7 @@ suspend fun RedisSentinel.failoverAwait(name : String) : String {
  *
  * @param name master name
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */
@@ -153,7 +153,7 @@ suspend fun RedisSentinel.ckquorumAwait(name : String) : String {
  * is completely missing.
  *
  * @param handler Handler for the result of this call
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
  */

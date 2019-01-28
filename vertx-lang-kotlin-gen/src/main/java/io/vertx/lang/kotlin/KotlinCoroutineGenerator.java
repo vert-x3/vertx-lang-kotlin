@@ -43,7 +43,10 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     StringWriter buffer = new StringWriter();
     CodeWriter writer = new CodeWriter(buffer);
     ClassTypeInfo type = model.getType();
-    Stream<MethodInfo> methodStream = Stream.concat(model.getMethods().stream(), model.getAnyJavaTypeMethods().stream());
+    Stream<MethodInfo> methodStream = Stream.concat(
+      model.getMethods().stream(),
+      model.getAnyJavaTypeMethods().stream()
+    );
     Map<Boolean, List<MethodInfo>> methodGroupMap = methodStream
       .filter(this::generateFilter)
       .collect(Collectors.groupingBy(MethodInfo::isStaticMethod));
@@ -96,7 +99,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
         writer.print("\n");
       });
       if (!method.getReturnType().isVoid()) {
-        writer.print(" * @return");
+        writer.print(" * @return ");
         if (method.getReturnDescription() != null) {
           String docInfo = Token.toHtml(method.getReturnDescription().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "");
           writer.print(docInfo);

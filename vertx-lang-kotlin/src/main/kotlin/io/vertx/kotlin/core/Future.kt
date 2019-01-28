@@ -10,7 +10,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * future is completed.
  *
  * @param handler the Handler that will be called with the result
- * @returna reference to this, so it can be used fluently *
+ * @return a reference to this, so it can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Future original] using Vert.x codegen.
  */

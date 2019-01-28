@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param command the command to register
  * @param completionHandler notified when the command is registered
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */
@@ -24,7 +24,7 @@ suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command {
  *
  * @param commands the commands to register
  * @param completionHandler notified when the command is registered
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */
@@ -39,7 +39,7 @@ suspend fun CommandRegistry.registerCommandsAwait(commands : List<Command>) : Li
  *
  * @param commandName the command name
  * @param completionHandler notified when the command is unregistered
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */

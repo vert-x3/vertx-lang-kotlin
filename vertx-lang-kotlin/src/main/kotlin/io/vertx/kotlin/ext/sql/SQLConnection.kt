@@ -15,7 +15,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param sql the statement to execute
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -33,7 +33,7 @@ suspend fun SQLConnection.querySingleAwait(sql : String) : JsonArray? {
  * @param sql the statement to execute
  * @param arguments the arguments
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -48,7 +48,7 @@ suspend fun SQLConnection.querySingleWithParamsAwait(sql : String, arguments : J
  *
  * @param autoCommit the autoCommit flag, true by default.
  * @param resultHandler the handler which is called once this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -62,7 +62,7 @@ suspend fun SQLConnection.setAutoCommitAwait(autoCommit : Boolean) : Unit {
  *
  * @param sql the SQL to execute. For example <code>CREATE TABLE IF EXISTS table ...</code>
  * @param resultHandler the handler which is called once this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -76,7 +76,7 @@ suspend fun SQLConnection.executeAwait(sql : String) : Unit {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -91,7 +91,7 @@ suspend fun SQLConnection.queryAwait(sql : String) : ResultSet {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -107,7 +107,7 @@ suspend fun SQLConnection.queryStreamAwait(sql : String) : SQLRowStream {
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -123,7 +123,7 @@ suspend fun SQLConnection.queryWithParamsAwait(sql : String, params : JsonArray)
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
  * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -139,7 +139,7 @@ suspend fun SQLConnection.queryStreamWithParamsAwait(sql : String, params : Json
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param resultHandler the handler which is called once the operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -156,7 +156,7 @@ suspend fun SQLConnection.updateAwait(sql : String) : UpdateResult {
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
  * @param resultHandler the handler which is called once the operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -171,7 +171,7 @@ suspend fun SQLConnection.updateWithParamsAwait(sql : String, params : JsonArray
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -196,7 +196,7 @@ suspend fun SQLConnection.callAwait(sql : String) : ResultSet {
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -223,7 +223,7 @@ suspend fun SQLConnection.closeAwait() : Unit {
  * Commits all changes made since the previous commit/rollback.
  *
  * @param handler the handler called when this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -236,7 +236,7 @@ suspend fun SQLConnection.commitAwait() : Unit {
  * Rolls back all changes made since the previous commit/rollback.
  *
  * @param handler the handler called when this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -250,7 +250,7 @@ suspend fun SQLConnection.rollbackAwait() : Unit {
  *
  * @param sqlStatements sql statement
  * @param handler the result handler
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -267,7 +267,7 @@ suspend fun SQLConnection.batchAwait(sqlStatements : List<String>) : List<Int> {
  * @param sqlStatement sql statement
  * @param args the prepared statement arguments
  * @param handler the result handler
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -286,7 +286,7 @@ suspend fun SQLConnection.batchWithParamsAwait(sqlStatement : String, args : Lis
  * @param inArgs the callable statement input arguments
  * @param outArgs the callable statement output arguments
  * @param handler the result handler
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -303,7 +303,7 @@ suspend fun SQLConnection.batchCallableWithParamsAwait(sqlStatement : String, in
  *
  * @param isolation the level of isolation
  * @param handler the handler called when this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */
@@ -316,7 +316,7 @@ suspend fun SQLConnection.setTransactionIsolationAwait(isolation : TransactionIs
  * Attempts to return the transaction isolation level for this Connection object to the one given.
  *
  * @param handler the handler called when this operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLConnection original] using Vert.x codegen.
  */

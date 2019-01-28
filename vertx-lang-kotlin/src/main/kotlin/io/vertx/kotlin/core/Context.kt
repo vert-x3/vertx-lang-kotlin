@@ -16,6 +16,15 @@ import io.vertx.kotlin.coroutines.awaitResult
  * A <code>Future</code> instance is passed into <code>blockingCodeHandler</code>. When the blocking code successfully completes,
  * the handler should call the [io.vertx.core.Future] or [io.vertx.core.Future] method, or the [io.vertx.core.Future]
  * method if it failed.
+ * <p>
+ * The blocking code should block for a reasonable amount of time (i.e no more than a few seconds). Long blocking operations
+ * or polling operations (i.e a thread that spin in a loop polling events in a blocking fashion) are precluded.
+ * <p>
+ * When the blocking operation lasts more than the 10 seconds, a message will be printed on the console by the
+ * blocked thread checker.
+ * <p>
+ * Long blocking operations should use a dedicated thread managed by the application, which can interact with
+ * verticles using the event-bus or [io.vertx.core.Context]
  *
  * @param blockingCodeHandler handler representing the blocking code to run
  * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees

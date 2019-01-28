@@ -10,7 +10,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param email MailMessage object containing the mail text, from/to, attachments etc
  * @param resultHandler will be called when the operation is finished or it fails (may be null to ignore the result)
- * @returnthis MailClient instance so the method can be used fluently *
+ * @return this MailClient instance so the method can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailClient original] using Vert.x codegen.
  */

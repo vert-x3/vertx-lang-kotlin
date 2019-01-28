@@ -41,7 +41,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Returns the configuration and member information of the local agent
  *
  * @param resultHandler will be provided with the configuration and member information of the local agent
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -55,7 +55,7 @@ suspend fun ConsulClient.agentInfoAwait() : JsonObject {
  * Returns the LAN network coordinates for all nodes in a given DC
  *
  * @param resultHandler will be provided with network coordinates of nodes in datacenter
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -71,7 +71,7 @@ suspend fun ConsulClient.coordinateNodesAwait() : CoordinateList {
  *
  * @param options the blocking options
  * @param resultHandler will be provided with network coordinates of nodes in datacenter
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -85,7 +85,7 @@ suspend fun ConsulClient.coordinateNodesWithOptionsAwait(options : BlockingQuery
  * Returns the WAN network coordinates for all Consul servers, organized by DCs
  *
  * @param resultHandler will be provided with network coordinates for all Consul servers
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -100,7 +100,7 @@ suspend fun ConsulClient.coordinateDatacentersAwait() : List<DcCoordinates> {
  *
  * @param keyPrefix the prefix
  * @param resultHandler will be provided with keys list
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -116,7 +116,7 @@ suspend fun ConsulClient.getKeysAwait(keyPrefix : String) : List<String> {
  * @param keyPrefix the prefix
  * @param options the blocking options
  * @param resultHandler will be provided with keys list
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -132,7 +132,7 @@ suspend fun ConsulClient.getKeysWithOptionsAwait(keyPrefix : String, options : B
  *
  * @param key the key
  * @param resultHandler will be provided with key/value pair
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -150,7 +150,7 @@ suspend fun ConsulClient.getValueAwait(key : String) : KeyValue {
  * @param key the key
  * @param options the blocking options
  * @param resultHandler will be provided with key/value pair
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -165,7 +165,7 @@ suspend fun ConsulClient.getValueWithOptionsAwait(key : String, options : Blocki
  *
  * @param key the key
  * @param resultHandler will be called on complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -180,7 +180,7 @@ suspend fun ConsulClient.deleteValueAwait(key : String) : Unit {
  *
  * @param keyPrefix the prefix
  * @param resultHandler will be provided with list of key/value pairs
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -198,7 +198,7 @@ suspend fun ConsulClient.getValuesAwait(keyPrefix : String) : KeyValueList {
  * @param keyPrefix the prefix
  * @param options the blocking options
  * @param resultHandler will be provided with list of key/value pairs
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -213,7 +213,7 @@ suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix : String, options :
  *
  * @param keyPrefix the prefix
  * @param resultHandler will be called on complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -228,7 +228,7 @@ suspend fun ConsulClient.deleteValuesAwait(keyPrefix : String) : Unit {
  * @param key the key
  * @param value the value
  * @param resultHandler will be provided with success of operation
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -244,7 +244,7 @@ suspend fun ConsulClient.putValueAwait(key : String, value : String) : Boolean {
  * @param value the value
  * @param options options used to push pair
  * @param resultHandler will be provided with success of operation
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -259,7 +259,7 @@ suspend fun ConsulClient.putValueWithOptionsAwait(key : String, value : String, 
  *
  * @param request transaction request
  * @param resultHandler will be provided with result of transaction
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -274,7 +274,7 @@ suspend fun ConsulClient.transactionAwait(request : TxnRequest) : TxnResponse {
  *
  * @param token properties of the token
  * @param idHandler will be provided with ID of created token
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -289,7 +289,7 @@ suspend fun ConsulClient.createAclTokenAwait(token : AclToken) : String {
  *
  * @param token properties of the token to be updated
  * @param idHandler will be provided with ID of updated
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -304,7 +304,7 @@ suspend fun ConsulClient.updateAclTokenAwait(token : AclToken) : String {
  *
  * @param id the ID of token to be cloned
  * @param idHandler will be provided with ID of cloned token
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -318,7 +318,7 @@ suspend fun ConsulClient.cloneAclTokenAwait(id : String) : String {
  * Get list of Acl token
  *
  * @param resultHandler will be provided with list of tokens
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -333,7 +333,7 @@ suspend fun ConsulClient.listAclTokensAwait() : List<AclToken> {
  *
  * @param id the ID of token
  * @param tokenHandler will be provided with token
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -348,7 +348,7 @@ suspend fun ConsulClient.infoAclTokenAwait(id : String) : AclToken {
  *
  * @param id the ID of token
  * @param resultHandler will be called on complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -362,7 +362,7 @@ suspend fun ConsulClient.destroyAclTokenAwait(id : String) : Unit {
  *
  * @param name name of event
  * @param resultHandler will be provided with properties of event
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -378,7 +378,7 @@ suspend fun ConsulClient.fireEventAwait(name : String) : Event {
  * @param name name of event
  * @param options options used to create event
  * @param resultHandler will be provided with properties of event
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -392,7 +392,7 @@ suspend fun ConsulClient.fireEventWithOptionsAwait(name : String, options : Even
  * Returns the most recent events known by the agent
  *
  * @param resultHandler will be provided with list of events
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -414,7 +414,7 @@ suspend fun ConsulClient.listEventsAwait() : EventList {
  *
  * @param options the blocking options
  * @param resultHandler will be provided with list of events
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -429,7 +429,7 @@ suspend fun ConsulClient.listEventsWithOptionsAwait(options : EventListOptions) 
  *
  * @param serviceOptions the options of new service
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -443,7 +443,7 @@ suspend fun ConsulClient.registerServiceAwait(serviceOptions : ServiceOptions) :
  *
  * @param maintenanceOptions the maintenance options
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -458,7 +458,7 @@ suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions : Maintenanc
  *
  * @param id the ID of service
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -472,7 +472,7 @@ suspend fun ConsulClient.deregisterServiceAwait(id : String) : Unit {
  *
  * @param service name of service
  * @param resultHandler will be provided with list of nodes providing given service
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -488,7 +488,7 @@ suspend fun ConsulClient.catalogServiceNodesAwait(service : String) : ServiceLis
  * @param service name of service
  * @param options options used to request services
  * @param resultHandler will be provided with list of nodes providing given service
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -502,7 +502,7 @@ suspend fun ConsulClient.catalogServiceNodesWithOptionsAwait(service : String, o
  * Return all the datacenters that are known by the Consul server
  *
  * @param resultHandler will be provided with list of datacenters
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -516,7 +516,7 @@ suspend fun ConsulClient.catalogDatacentersAwait() : List<String> {
  * Returns the nodes registered in a datacenter
  *
  * @param resultHandler will be provided with list of nodes
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -531,7 +531,7 @@ suspend fun ConsulClient.catalogNodesAwait() : NodeList {
  *
  * @param options options used to request nodes
  * @param resultHandler will be provided with list of nodes
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -546,7 +546,7 @@ suspend fun ConsulClient.catalogNodesWithOptionsAwait(options : NodeQueryOptions
  *
  * @param service the service name
  * @param resultHandler will be provided with list of checks
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -562,7 +562,7 @@ suspend fun ConsulClient.healthChecksAwait(service : String) : CheckList {
  * @param service the service name
  * @param options options used to request checks
  * @param resultHandler will be provided with list of checks
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -577,7 +577,7 @@ suspend fun ConsulClient.healthChecksWithOptionsAwait(service : String, options 
  *
  * @param healthState the health state
  * @param resultHandler will be provided with list of checks
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -593,7 +593,7 @@ suspend fun ConsulClient.healthStateAwait(healthState : HealthState) : CheckList
  * @param healthState the health state
  * @param options options used to request checks
  * @param resultHandler will be provided with list of checks
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -610,7 +610,7 @@ suspend fun ConsulClient.healthStateWithOptionsAwait(healthState : HealthState, 
  * @param service the service name
  * @param passing if true, filter results to only nodes with all checks in the passing state
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -628,7 +628,7 @@ suspend fun ConsulClient.healthServiceNodesAwait(service : String, passing : Boo
  * @param passing if true, filter results to only nodes with all checks in the passing state
  * @param options options used to request services
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -642,7 +642,7 @@ suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service : String, pa
  * Returns the services registered in a datacenter
  *
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -658,7 +658,7 @@ suspend fun ConsulClient.catalogServicesAwait() : ServiceList {
  *
  * @param options the blocking options
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -673,7 +673,7 @@ suspend fun ConsulClient.catalogServicesWithOptionsAwait(options : BlockingQuery
  *
  * @param node node name
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -690,7 +690,7 @@ suspend fun ConsulClient.catalogNodeServicesAwait(node : String) : ServiceList {
  * @param node node name
  * @param options the blocking options
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -704,7 +704,7 @@ suspend fun ConsulClient.catalogNodeServicesWithOptionsAwait(node : String, opti
  * Returns list of services registered with the local agent.
  *
  * @param resultHandler will be provided with list of services
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -718,7 +718,7 @@ suspend fun ConsulClient.localServicesAwait() : List<Service> {
  * Return all the checks that are registered with the local agent.
  *
  * @param resultHandler will be provided with list of checks
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -734,7 +734,7 @@ suspend fun ConsulClient.localChecksAwait() : List<Check> {
  *
  * @param checkOptions options used to register new check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -748,7 +748,7 @@ suspend fun ConsulClient.registerCheckAwait(checkOptions : CheckOptions) : Unit 
  *
  * @param checkId the ID of check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -762,7 +762,7 @@ suspend fun ConsulClient.deregisterCheckAwait(checkId : String) : Unit {
  *
  * @param checkId the ID of check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -777,7 +777,7 @@ suspend fun ConsulClient.passCheckAwait(checkId : String) : Unit {
  * @param checkId the ID of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -791,7 +791,7 @@ suspend fun ConsulClient.passCheckWithNoteAwait(checkId : String, note : String)
  *
  * @param checkId the ID of check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -806,7 +806,7 @@ suspend fun ConsulClient.warnCheckAwait(checkId : String) : Unit {
  * @param checkId the ID of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -820,7 +820,7 @@ suspend fun ConsulClient.warnCheckWithNoteAwait(checkId : String, note : String)
  *
  * @param checkId the ID of check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -835,7 +835,7 @@ suspend fun ConsulClient.failCheckAwait(checkId : String) : Unit {
  * @param checkId the ID of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -850,7 +850,7 @@ suspend fun ConsulClient.failCheckWithNoteAwait(checkId : String, note : String)
  * @param checkId the ID of check
  * @param status new status of check
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -866,7 +866,7 @@ suspend fun ConsulClient.updateCheckAwait(checkId : String, status : CheckStatus
  * @param status new status of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -880,7 +880,7 @@ suspend fun ConsulClient.updateCheckWithNoteAwait(checkId : String, status : Che
  * It returns an address in format "<code>10.1.10.12:8300</code>"
  *
  * @param resultHandler will be provided with address of cluster leader
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -895,7 +895,7 @@ suspend fun ConsulClient.leaderStatusAwait() : String {
  * It returns a list of addresses "<code>10.1.10.12:8300</code>", "<code>10.1.10.13:8300</code>"
  *
  * @param resultHandler will be provided with list of peers
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -909,7 +909,7 @@ suspend fun ConsulClient.peersStatusAwait() : List<String> {
  * Initialize a new session
  *
  * @param idHandler will be provided with ID of new session
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -924,7 +924,7 @@ suspend fun ConsulClient.createSessionAwait() : String {
  *
  * @param options options used to create session
  * @param idHandler will be provided with ID of new session
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -939,7 +939,7 @@ suspend fun ConsulClient.createSessionWithOptionsAwait(options : SessionOptions)
  *
  * @param id the ID of requested session
  * @param resultHandler will be provided with info of requested session
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -956,7 +956,7 @@ suspend fun ConsulClient.infoSessionAwait(id : String) : Session {
  * @param id the ID of requested session
  * @param options the blocking options
  * @param resultHandler will be provided with info of requested session
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -971,7 +971,7 @@ suspend fun ConsulClient.infoSessionWithOptionsAwait(id : String, options : Bloc
  *
  * @param id the ID of session that should be renewed
  * @param resultHandler will be provided with info of renewed session
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -985,7 +985,7 @@ suspend fun ConsulClient.renewSessionAwait(id : String) : Session {
  * Returns the active sessions
  *
  * @param resultHandler will be provided with list of sessions
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1001,7 +1001,7 @@ suspend fun ConsulClient.listSessionsAwait() : SessionList {
  *
  * @param options the blocking options
  * @param resultHandler will be provided with list of sessions
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1016,7 +1016,7 @@ suspend fun ConsulClient.listSessionsWithOptionsAwait(options : BlockingQueryOpt
  *
  * @param nodeId the ID of node
  * @param resultHandler will be provided with list of sessions
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1033,7 +1033,7 @@ suspend fun ConsulClient.listNodeSessionsAwait(nodeId : String) : SessionList {
  * @param nodeId the ID of node
  * @param options the blocking options
  * @param resultHandler will be provided with list of sessions
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1048,7 +1048,7 @@ suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId : String, optio
  *
  * @param id the ID of session
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1061,7 +1061,7 @@ suspend fun ConsulClient.destroySessionAwait(id : String) : Unit {
  *
  * @param definition definition of the prepare query
  * @param resultHandler will be provided with id of created prepare query
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1076,7 +1076,7 @@ suspend fun ConsulClient.createPreparedQueryAwait(definition : PreparedQueryDefi
  *
  * @param id the id of the query to read
  * @param resultHandler will be provided with definition of the prepare query
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1090,7 +1090,7 @@ suspend fun ConsulClient.getPreparedQueryAwait(id : String) : PreparedQueryDefin
  * Returns a list of all prepared queries.
  *
  * @param resultHandler will be provided with list of definitions of the all prepare queries
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1104,7 +1104,7 @@ suspend fun ConsulClient.getAllPreparedQueriesAwait() : List<PreparedQueryDefini
  *
  * @param definition definition of the prepare query
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1118,7 +1118,7 @@ suspend fun ConsulClient.updatePreparedQueryAwait(definition : PreparedQueryDefi
  *
  * @param id the id of the query to delete
  * @param resultHandler will be called when complete
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1132,7 +1132,7 @@ suspend fun ConsulClient.deletePreparedQueryAwait(id : String) : Unit {
  *
  * @param query the ID of the query to execute. This can also be the name of an existing prepared query, or a name that matches a prefix name for a prepared query template.
  * @param resultHandler will be provided with response
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */
@@ -1148,7 +1148,7 @@ suspend fun ConsulClient.executePreparedQueryAwait(query : String) : PreparedQue
  * @param query the ID of the query to execute. This can also be the name of an existing prepared query, or a name that matches a prefix name for a prepared query template.
  * @param options the options used to execute prepared query
  * @param resultHandler will be provided with response
- * @returnreference to this, for fluency *
+ * @return reference to this, for fluency *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
  */

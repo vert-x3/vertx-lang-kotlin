@@ -12,7 +12,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -28,7 +28,7 @@ suspend fun SQLOperations.queryAwait(sql : String) : ResultSet {
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -43,7 +43,7 @@ suspend fun SQLOperations.queryWithParamsAwait(sql : String, params : JsonArray)
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -59,7 +59,7 @@ suspend fun SQLOperations.queryStreamAwait(sql : String) : SQLRowStream {
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
  * @param handler the handler which is called once the operation completes. It will return a <code>SQLRowStream</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -76,7 +76,7 @@ suspend fun SQLOperations.queryStreamWithParamsAwait(sql : String, params : Json
  *
  * @param sql the statement to execute
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -94,7 +94,7 @@ suspend fun SQLOperations.querySingleAwait(sql : String) : JsonArray? {
  * @param sql the statement to execute
  * @param arguments the arguments
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -110,7 +110,7 @@ suspend fun SQLOperations.querySingleWithParamsAwait(sql : String, arguments : J
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param resultHandler the handler which is called once the operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -127,7 +127,7 @@ suspend fun SQLOperations.updateAwait(sql : String) : UpdateResult {
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
  * @param resultHandler the handler which is called once the operation completes.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -142,7 +142,7 @@ suspend fun SQLOperations.updateWithParamsAwait(sql : String, params : JsonArray
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -167,7 +167,7 @@ suspend fun SQLOperations.callAwait(sql : String) : ResultSet {
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
  * @param resultHandler the handler which is called once the operation completes. It will return a <code>ResultSet</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */

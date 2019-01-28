@@ -7,7 +7,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Listen on default port 7000 with a handler to report the state of the socket listen operation.
  *
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
  */
@@ -23,7 +23,7 @@ suspend fun TcpEventBusBridge.listenAwait() : TcpEventBusBridge {
  * @param port tcp port
  * @param address tcp address to the bind
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
  */
@@ -38,7 +38,7 @@ suspend fun TcpEventBusBridge.listenAwait(port : Int, address : String) : TcpEve
  *
  * @param port tcp port
  * @param handler the result handler
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
  */
