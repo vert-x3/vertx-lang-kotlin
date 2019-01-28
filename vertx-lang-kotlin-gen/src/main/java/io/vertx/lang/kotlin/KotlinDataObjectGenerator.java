@@ -1,5 +1,6 @@
 package io.vertx.lang.kotlin;
 
+import io.vertx.codegen.Case;
 import io.vertx.codegen.DataObjectModel;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
@@ -101,10 +102,7 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   }
 
   private String generateFun(DataObjectModel model, CodeWriter writer) {
-    String functionName = model.getType().getRaw().getSimpleName();
-    int index = functionName.indexOf(functionName.replaceFirst("[A-Z]+", ""));
-    if (index > 1) index--;
-    functionName = functionName.substring(0, index).toLowerCase().concat(functionName.substring(index)) + "Of";
+    String functionName = model.getType().getSimpleName(Case.LOWER_CAMEL) + "Of";
     generateFunction(functionName, model, writer);
     return functionName;
   }
