@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.saveAwait(collection : String, document : JsonObject) : String {
+suspend fun MongoClient.saveAwait(collection : String, document : JsonObject) : String? {
   return awaitResult{
     this.save(collection, document, it)
   }
@@ -43,7 +43,7 @@ suspend fun MongoClient.saveAwait(collection : String, document : JsonObject) : 
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.saveWithOptionsAwait(collection : String, document : JsonObject, writeOption : WriteOption) : String {
+suspend fun MongoClient.saveWithOptionsAwait(collection : String, document : JsonObject, writeOption : WriteOption) : String? {
   return awaitResult{
     this.saveWithOptions(collection, document, writeOption, it)
   }
@@ -60,7 +60,7 @@ suspend fun MongoClient.saveWithOptionsAwait(collection : String, document : Jso
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.insertAwait(collection : String, document : JsonObject) : String {
+suspend fun MongoClient.insertAwait(collection : String, document : JsonObject) : String? {
   return awaitResult{
     this.insert(collection, document, it)
   }
@@ -78,7 +78,7 @@ suspend fun MongoClient.insertAwait(collection : String, document : JsonObject) 
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.insertWithOptionsAwait(collection : String, document : JsonObject, writeOption : WriteOption) : String {
+suspend fun MongoClient.insertWithOptionsAwait(collection : String, document : JsonObject, writeOption : WriteOption) : String? {
   return awaitResult{
     this.insertWithOptions(collection, document, writeOption, it)
   }
@@ -225,7 +225,7 @@ suspend fun MongoClient.findWithOptionsAwait(collection : String, query : JsonOb
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAwait(collection : String, query : JsonObject, fields : JsonObject) : JsonObject {
+suspend fun MongoClient.findOneAwait(collection : String, query : JsonObject, fields : JsonObject) : JsonObject? {
   return awaitResult{
     this.findOne(collection, query, fields, it)
   }
@@ -243,7 +243,7 @@ suspend fun MongoClient.findOneAwait(collection : String, query : JsonObject, fi
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndUpdateAwait(collection : String, query : JsonObject, update : JsonObject) : JsonObject {
+suspend fun MongoClient.findOneAndUpdateAwait(collection : String, query : JsonObject, update : JsonObject) : JsonObject? {
   return awaitResult{
     this.findOneAndUpdate(collection, query, update, it)
   }
@@ -263,7 +263,7 @@ suspend fun MongoClient.findOneAndUpdateAwait(collection : String, query : JsonO
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection : String, query : JsonObject, update : JsonObject, findOptions : FindOptions, updateOptions : UpdateOptions) : JsonObject {
+suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection : String, query : JsonObject, update : JsonObject, findOptions : FindOptions, updateOptions : UpdateOptions) : JsonObject? {
   return awaitResult{
     this.findOneAndUpdateWithOptions(collection, query, update, findOptions, updateOptions, it)
   }
@@ -281,7 +281,7 @@ suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection : String, qu
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndReplaceAwait(collection : String, query : JsonObject, replace : JsonObject) : JsonObject {
+suspend fun MongoClient.findOneAndReplaceAwait(collection : String, query : JsonObject, replace : JsonObject) : JsonObject? {
   return awaitResult{
     this.findOneAndReplace(collection, query, replace, it)
   }
@@ -301,7 +301,7 @@ suspend fun MongoClient.findOneAndReplaceAwait(collection : String, query : Json
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection : String, query : JsonObject, replace : JsonObject, findOptions : FindOptions, updateOptions : UpdateOptions) : JsonObject {
+suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection : String, query : JsonObject, replace : JsonObject, findOptions : FindOptions, updateOptions : UpdateOptions) : JsonObject? {
   return awaitResult{
     this.findOneAndReplaceWithOptions(collection, query, replace, findOptions, updateOptions, it)
   }
@@ -318,7 +318,7 @@ suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection : String, q
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndDeleteAwait(collection : String, query : JsonObject) : JsonObject {
+suspend fun MongoClient.findOneAndDeleteAwait(collection : String, query : JsonObject) : JsonObject? {
   return awaitResult{
     this.findOneAndDelete(collection, query, it)
   }
@@ -336,7 +336,7 @@ suspend fun MongoClient.findOneAndDeleteAwait(collection : String, query : JsonO
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.MongoClient original] using Vert.x codegen.
  */
-suspend fun MongoClient.findOneAndDeleteWithOptionsAwait(collection : String, query : JsonObject, findOptions : FindOptions) : JsonObject {
+suspend fun MongoClient.findOneAndDeleteWithOptionsAwait(collection : String, query : JsonObject, findOptions : FindOptions) : JsonObject? {
   return awaitResult{
     this.findOneAndDeleteWithOptions(collection, query, findOptions, it)
   }
