@@ -17,8 +17,7 @@ import kotlin.test.assertEquals
  */
 class CoroutinesTCKTest {
 
-  val tck: TestInterface = TestInterfaceImpl()
-  val nullableTck: NullableTCK = NullableTCKImpl()
+  private val tck: TestInterface = TestInterfaceImpl()
 
   @Test
   fun testAsyncResultSuccess() {
@@ -36,7 +35,7 @@ class CoroutinesTCKTest {
     }
   }
 
-  fun <T> coroutinesTest(block: suspend () -> T) : T {
+  private fun <T> coroutinesTest(block: suspend () -> T) : T {
     val deferred = GlobalScope.async(Dispatchers.Unconfined) {
       block()
     }
