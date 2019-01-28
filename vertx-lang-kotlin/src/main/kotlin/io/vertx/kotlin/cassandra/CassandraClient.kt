@@ -12,7 +12,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Connect to a Cassandra service.
  *
  * @param connectHandler handler called when asynchronous connect call ends
- * @returncurrent Cassandra client instance *
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -26,7 +26,7 @@ suspend fun CassandraClient.connectAwait() : Unit {
  *
  * @param keyspace The name of the keyspace to use for the created connection.
  * @param connectHandler handler called when asynchronous connect call ends
- * @returncurrent Cassandra client instance *
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -40,7 +40,7 @@ suspend fun CassandraClient.connectAwait(keyspace : String) : Unit {
  *
  * @param query the query to execute
  * @param resultHandler handler called when result of execution is present, but can be not fully fetched
- * @returncurrent Cassandra client instance *
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -55,7 +55,7 @@ suspend fun CassandraClient.executeAwait(query : String) : ResultSet {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param rowStreamHandler the handler which is called once the operation completes. It will return an instance of [io.vertx.cassandra.CassandraRowStream].
- * @returncurrent Cassandra client instance *
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -69,7 +69,7 @@ suspend fun CassandraClient.queryStreamAwait(sql : String) : CassandraRowStream 
  * Disconnects from the Cassandra service.
  *
  * @param disconnectHandler handler called when asynchronous disconnect call ends
- * @returncurrent Cassandra client instance *
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -82,7 +82,8 @@ suspend fun CassandraClient.disconnectAwait() : Unit {
  * Execute the query and provide a handler for consuming results.
  *
  * @param query the query to execute
- * @returncurrent Cassandra client instance *
+ * @param resultHandler handler called when result of execution is fully fetched.
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -96,7 +97,8 @@ suspend fun CassandraClient.executeWithFullFetchAwait(query : String) : List<Row
  * Execute the query and provide a handler for consuming results.
  *
  * @param statement the statement to execute
- * @returncurrent Cassandra client instance *
+ * @param resultHandler handler called when result of execution is fully fetched.
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -110,7 +112,8 @@ suspend fun CassandraClient.executeWithFullFetchAwait(statement : Statement) : L
  * Execute the statement and provide a handler for consuming results.
  *
  * @param statement the statement to execute
- * @returncurrent Cassandra client instance *
+ * @param resultHandler handler called when result of execution is present
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -124,7 +127,8 @@ suspend fun CassandraClient.executeAwait(statement : Statement) : ResultSet {
  * Prepares the provided query string.
  *
  * @param query the query to prepare
- * @returncurrent Cassandra client instance *
+ * @param resultHandler handler called when result of query preparation is present
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */
@@ -138,7 +142,8 @@ suspend fun CassandraClient.prepareAwait(query : String) : PreparedStatement {
  * Executes the given SQL statement which returns the results of the query as a read stream.
  *
  * @param statement the statement to execute.
- * @returncurrent Cassandra client instance *
+ * @param rowStreamHandler the handler which is called once the operation completes. It will return an instance of [io.vertx.cassandra.CassandraRowStream].
+ * @return current Cassandra client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
  */

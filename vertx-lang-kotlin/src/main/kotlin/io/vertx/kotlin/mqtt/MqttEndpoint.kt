@@ -14,7 +14,7 @@ import io.vertx.mqtt.MqttEndpoint
  * @param isDup if the message is a duplicate
  * @param isRetain if the message needs to be retained
  * @param publishSentHandler handler called after PUBLISH packet sent with a packetId
- * @returncurrent MQTT client instance *
+ * @return current MQTT client instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttEndpoint original] using Vert.x codegen.
  */

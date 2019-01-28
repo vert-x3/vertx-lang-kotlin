@@ -14,7 +14,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * @param port the port
  * @param host the host
  * @param connectHandler 
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
  */
@@ -34,7 +34,7 @@ suspend fun NetClient.connectAwait(port : Int, host : String) : NetSocket {
  * @param host the host
  * @param serverName the SNI server name
  * @param connectHandler 
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
  */
@@ -51,7 +51,7 @@ suspend fun NetClient.connectAwait(port : Int, host : String, serverName : Strin
  *
  * @param remoteAddress the remote address
  * @param connectHandler 
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
  */
@@ -69,7 +69,7 @@ suspend fun NetClient.connectAwait(remoteAddress : SocketAddress) : NetSocket {
  * @param remoteAddress the remote address
  * @param serverName the SNI server name
  * @param connectHandler 
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
  */

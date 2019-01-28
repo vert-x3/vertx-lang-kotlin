@@ -1,6 +1,6 @@
-package io.vertx.kotlin.core
+package io.vertx.kotlin.ext.eventbus.bridge.tcp
 
-import io.vertx.core.Future
+import io.vertx.ext.eventbus.bridge.tcp.BridgeEvent
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -12,9 +12,9 @@ import io.vertx.kotlin.coroutines.awaitResult
  * @param handler the Handler that will be called with the result
  * @return a reference to this, so it can be used fluently *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Future original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.BridgeEvent original] using Vert.x codegen.
  */
-suspend fun <T> Future<T>.setHandlerAwait() : T {
+suspend fun BridgeEvent.setHandlerAwait() : Boolean {
   return awaitResult{
     this.setHandler(it)
   }

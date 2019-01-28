@@ -43,7 +43,7 @@ suspend fun RedisTransaction.closeAwait() : Unit {
  * @param key Key string
  * @param value Value to append
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -58,7 +58,7 @@ suspend fun RedisTransaction.appendAwait(key : String, value : String) : String 
  *
  * @param password Password for authentication
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -72,7 +72,7 @@ suspend fun RedisTransaction.authAwait(password : String) : String {
  * Asynchronously rewrite the append-only file
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -86,7 +86,7 @@ suspend fun RedisTransaction.bgrewriteaofAwait() : String {
  * Asynchronously save the dataset to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -101,7 +101,7 @@ suspend fun RedisTransaction.bgsaveAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -118,7 +118,7 @@ suspend fun RedisTransaction.bitcountAwait(key : String) : String {
  * @param start Start index
  * @param end End index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -135,7 +135,7 @@ suspend fun RedisTransaction.bitcountRangeAwait(key : String, start : Long, end 
  * @param destkey Destination key where result is stored
  * @param keys List of keys on which to perform the operation
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -151,7 +151,7 @@ suspend fun RedisTransaction.bitopAwait(operation : BitOperation, destkey : Stri
  * @param key Key string
  * @param bit What bit value to look for - must be 1, or 0
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -170,7 +170,7 @@ suspend fun RedisTransaction.bitposAwait(key : String, bit : Int) : String {
  * @param bit What bit value to look for - must be 1, or 0
  * @param start Start offset
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -191,7 +191,7 @@ suspend fun RedisTransaction.bitposFromAwait(key : String, bit : Int, start : In
  * @param start Start offset
  * @param stop End offset - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -207,7 +207,7 @@ suspend fun RedisTransaction.bitposRangeAwait(key : String, bit : Int, start : I
  * @param key Key string identifying a list to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -223,7 +223,7 @@ suspend fun RedisTransaction.blpopAwait(key : String, seconds : Int) : String {
  * @param keys List of key strings identifying lists to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -239,7 +239,7 @@ suspend fun RedisTransaction.blpopManyAwait(keys : List<String>, seconds : Int) 
  * @param key Key string identifying a list to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -255,7 +255,7 @@ suspend fun RedisTransaction.brpopAwait(key : String, seconds : Int) : String {
  * @param keys List of key strings identifying lists to watch
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -272,7 +272,7 @@ suspend fun RedisTransaction.brpopManyAwait(keys : List<String>, seconds : Int) 
  * @param destkey Key string identifying the destination list
  * @param seconds Timeout in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -287,7 +287,7 @@ suspend fun RedisTransaction.brpoplpushAwait(key : String, destkey : String, sec
  *
  * @param filter Filter options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -301,7 +301,7 @@ suspend fun RedisTransaction.clientKillAwait(filter : KillFilter) : String {
  * Get the list of client connections
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -315,7 +315,7 @@ suspend fun RedisTransaction.clientListAwait() : String {
  * Get the current connection name
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -330,7 +330,7 @@ suspend fun RedisTransaction.clientGetnameAwait() : String {
  *
  * @param millis Pause time in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -345,7 +345,7 @@ suspend fun RedisTransaction.clientPauseAwait(millis : Long) : String {
  *
  * @param name New name for current connection
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -360,7 +360,7 @@ suspend fun RedisTransaction.clientSetnameAwait(name : String) : String {
  *
  * @param slots 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -375,7 +375,7 @@ suspend fun RedisTransaction.clusterAddslotsAwait(slots : List<String>) : String
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -390,7 +390,7 @@ suspend fun RedisTransaction.clusterCountFailureReportsAwait(nodeId : String) : 
  *
  * @param slot 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -405,7 +405,7 @@ suspend fun RedisTransaction.clusterCountkeysinslotAwait(slot : Long) : String {
  *
  * @param slot 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -420,7 +420,7 @@ suspend fun RedisTransaction.clusterDelslotsAwait(slot : Long) : String {
  *
  * @param slots 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -434,7 +434,7 @@ suspend fun RedisTransaction.clusterDelslotsManyAwait(slots : List<String>) : St
  * Forces a slave to perform a manual failover of its master.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -449,7 +449,7 @@ suspend fun RedisTransaction.clusterFailoverAwait() : String {
  *
  * @param options 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -464,7 +464,7 @@ suspend fun RedisTransaction.clusterFailOverWithOptionsAwait(options : FailoverO
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -480,7 +480,7 @@ suspend fun RedisTransaction.clusterForgetAwait(nodeId : String) : String {
  * @param slot 
  * @param count 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -494,7 +494,7 @@ suspend fun RedisTransaction.clusterGetkeysinslotAwait(slot : Long, count : Long
  * Provides info about Redis Cluster node state.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -509,7 +509,7 @@ suspend fun RedisTransaction.clusterInfoAwait() : String {
  *
  * @param key 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -525,7 +525,7 @@ suspend fun RedisTransaction.clusterKeyslotAwait(key : String) : String {
  * @param ip 
  * @param port 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -539,7 +539,7 @@ suspend fun RedisTransaction.clusterMeetAwait(ip : String, port : Long) : String
  * Get Cluster config for the node.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -554,7 +554,7 @@ suspend fun RedisTransaction.clusterNodesAwait() : String {
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -568,7 +568,7 @@ suspend fun RedisTransaction.clusterReplicateAwait(nodeId : String) : String {
  * Reset a Redis Cluster node.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -583,7 +583,7 @@ suspend fun RedisTransaction.clusterResetAwait() : String {
  *
  * @param options 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -597,7 +597,7 @@ suspend fun RedisTransaction.clusterResetWithOptionsAwait(options : ResetOptions
  * Forces the node to save cluster state on disk.
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -612,7 +612,7 @@ suspend fun RedisTransaction.clusterSaveconfigAwait() : String {
  *
  * @param epoch 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -628,7 +628,7 @@ suspend fun RedisTransaction.clusterSetConfigEpochAwait(epoch : Long) : String {
  * @param slot 
  * @param subcommand 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -645,7 +645,7 @@ suspend fun RedisTransaction.clusterSetslotAwait(slot : Long, subcommand : SlotC
  * @param subcommand 
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -660,7 +660,7 @@ suspend fun RedisTransaction.clusterSetslotWithNodeAwait(slot : Long, subcommand
  *
  * @param nodeId 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -674,7 +674,7 @@ suspend fun RedisTransaction.clusterSlavesAwait(nodeId : String) : String {
  * Get array of Cluster slot to node mappings
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -688,7 +688,7 @@ suspend fun RedisTransaction.clusterSlotsAwait() : String {
  * Get array of Redis command details
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -702,7 +702,7 @@ suspend fun RedisTransaction.commandAwait() : String {
  * Get total number of Redis commands
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -716,7 +716,7 @@ suspend fun RedisTransaction.commandCountAwait() : String {
  * Extract keys given a full Redis command
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -731,7 +731,7 @@ suspend fun RedisTransaction.commandGetkeysAwait() : String {
  *
  * @param commands List of commands to get info for
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -746,7 +746,7 @@ suspend fun RedisTransaction.commandInfoAwait(commands : List<String>) : String 
  *
  * @param parameter Configuration parameter
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -760,7 +760,7 @@ suspend fun RedisTransaction.configGetAwait(parameter : String) : String {
  * Rewrite the configuration file with the in memory configuration
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -776,7 +776,7 @@ suspend fun RedisTransaction.configRewriteAwait() : String {
  * @param parameter Configuration parameter
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -790,7 +790,7 @@ suspend fun RedisTransaction.configSetAwait(parameter : String, value : String) 
  * Reset the stats returned by INFO
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -804,7 +804,7 @@ suspend fun RedisTransaction.configResetstatAwait() : String {
  * Return the number of keys in the selected database
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -819,7 +819,7 @@ suspend fun RedisTransaction.dbsizeAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -833,7 +833,7 @@ suspend fun RedisTransaction.debugObjectAwait(key : String) : String {
  * Make the server crash
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -848,7 +848,7 @@ suspend fun RedisTransaction.debugSegfaultAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -864,7 +864,7 @@ suspend fun RedisTransaction.decrAwait(key : String) : String {
  * @param key Key string
  * @param decrement Value by which to decrement
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -879,7 +879,7 @@ suspend fun RedisTransaction.decrbyAwait(key : String, decrement : Long) : Strin
  *
  * @param key Keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -894,7 +894,7 @@ suspend fun RedisTransaction.delAwait(key : String) : String {
  *
  * @param keys List of keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -908,7 +908,7 @@ suspend fun RedisTransaction.delManyAwait(keys : List<String>) : String {
  * Discard all commands issued after MULTI
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -923,7 +923,7 @@ suspend fun RedisTransaction.discardAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -938,7 +938,7 @@ suspend fun RedisTransaction.dumpAwait(key : String) : String {
  *
  * @param message String to echo
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -959,7 +959,7 @@ suspend fun RedisTransaction.echoAwait(message : String) : String {
  * @param keys List of keys
  * @param args List of argument values
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -980,7 +980,7 @@ suspend fun RedisTransaction.evalAwait(script : String, keys : List<String>, arg
  * @param keys List of keys
  * @param values List of values
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -994,7 +994,7 @@ suspend fun RedisTransaction.evalshaAwait(sha1 : String, keys : List<String>, va
  * Execute all commands issued after MULTI
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1009,7 +1009,7 @@ suspend fun RedisTransaction.execAwait() : JsonArray {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1024,7 +1024,7 @@ suspend fun RedisTransaction.existsAwait(key : String) : String {
  *
  * @param keys List of key strings
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1040,7 +1040,7 @@ suspend fun RedisTransaction.existsManyAwait(keys : List<String>) : String {
  * @param key Key string
  * @param seconds Time to live in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1056,7 +1056,7 @@ suspend fun RedisTransaction.expireAwait(key : String, seconds : Int) : String {
  * @param key Key string
  * @param seconds Expiry time as Unix timestamp in seconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1070,7 +1070,7 @@ suspend fun RedisTransaction.expireatAwait(key : String, seconds : Long) : Strin
  * Remove all keys from all databases
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1084,7 +1084,7 @@ suspend fun RedisTransaction.flushallAwait() : String {
  * Remove all keys from the current database
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1099,7 +1099,7 @@ suspend fun RedisTransaction.flushdbAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1114,7 +1114,7 @@ suspend fun RedisTransaction.getAwait(key : String) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1130,7 +1130,7 @@ suspend fun RedisTransaction.getBinaryAwait(key : String) : Buffer {
  * @param key Key string
  * @param offset Offset in bits
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1147,7 +1147,7 @@ suspend fun RedisTransaction.getbitAwait(key : String, offset : Long) : String {
  * @param start Start offset
  * @param end End offset - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1163,7 +1163,7 @@ suspend fun RedisTransaction.getrangeAwait(key : String, start : Long, end : Lon
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1179,7 +1179,7 @@ suspend fun RedisTransaction.getsetAwait(key : String, value : String) : String 
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1195,7 +1195,7 @@ suspend fun RedisTransaction.hdelAwait(key : String, field : String) : String {
  * @param key Key string
  * @param fields Field names
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1211,7 +1211,7 @@ suspend fun RedisTransaction.hdelManyAwait(key : String, fields : List<String>) 
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1227,7 +1227,7 @@ suspend fun RedisTransaction.hexistsAwait(key : String, field : String) : String
  * @param key Key string
  * @param field Field name
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1242,7 +1242,7 @@ suspend fun RedisTransaction.hgetAwait(key : String, field : String) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1259,7 +1259,7 @@ suspend fun RedisTransaction.hgetallAwait(key : String) : String {
  * @param field Field name
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1276,7 +1276,7 @@ suspend fun RedisTransaction.hincrbyAwait(key : String, field : String, incremen
  * @param field Field name
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1291,7 +1291,7 @@ suspend fun RedisTransaction.hincrbyfloatAwait(key : String, field : String, inc
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1306,7 +1306,7 @@ suspend fun RedisTransaction.hkeysAwait(key : String) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1322,7 +1322,7 @@ suspend fun RedisTransaction.hlenAwait(key : String) : String {
  * @param key Key string
  * @param fields Field names
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1338,7 +1338,7 @@ suspend fun RedisTransaction.hmgetAwait(key : String, fields : List<String>) : S
  * @param key Key string
  * @param values Map of field:value pairs
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1355,7 +1355,7 @@ suspend fun RedisTransaction.hmsetAwait(key : String, values : JsonObject) : Str
  * @param field Field name
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1372,7 +1372,7 @@ suspend fun RedisTransaction.hsetAwait(key : String, field : String, value : Str
  * @param field Field name
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1387,7 +1387,7 @@ suspend fun RedisTransaction.hsetnxAwait(key : String, field : String, value : S
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1402,7 +1402,7 @@ suspend fun RedisTransaction.hvalsAwait(key : String) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1418,7 +1418,7 @@ suspend fun RedisTransaction.incrAwait(key : String) : String {
  * @param key Key string
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1434,7 +1434,7 @@ suspend fun RedisTransaction.incrbyAwait(key : String, increment : Long) : Strin
  * @param key Key string
  * @param increment Value by which to increment
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1448,7 +1448,7 @@ suspend fun RedisTransaction.incrbyfloatAwait(key : String, increment : Double) 
  * Get information and statistics about the server
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1463,7 +1463,7 @@ suspend fun RedisTransaction.infoAwait() : String {
  *
  * @param section Specific section of information to return
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1478,7 +1478,7 @@ suspend fun RedisTransaction.infoSectionAwait(section : String) : String {
  *
  * @param pattern Pattern to limit the keys returned
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1492,7 +1492,7 @@ suspend fun RedisTransaction.keysAwait(pattern : String) : String {
  * Get the UNIX time stamp of the last successful save to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1508,7 +1508,7 @@ suspend fun RedisTransaction.lastsaveAwait() : String {
  * @param key Key string
  * @param index Index of list element to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1526,7 +1526,7 @@ suspend fun RedisTransaction.lindexAwait(key : String, index : Int) : String {
  * @param pivot Key to use as a pivot
  * @param value Value to be inserted before or after the pivot
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1541,7 +1541,7 @@ suspend fun RedisTransaction.linsertAwait(key : String, option : InsertOptions, 
  *
  * @param key String key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1556,7 +1556,7 @@ suspend fun RedisTransaction.llenAwait(key : String) : String {
  *
  * @param key String key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1572,7 +1572,7 @@ suspend fun RedisTransaction.lpopAwait(key : String) : String {
  * @param key Key string
  * @param values Values to be added at the beginning of the list, one by one
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1588,7 +1588,7 @@ suspend fun RedisTransaction.lpushManyAwait(key : String, values : List<String>)
  * @param key Key string
  * @param value Value to be added at the beginning of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1604,7 +1604,7 @@ suspend fun RedisTransaction.lpushAwait(key : String, value : String) : String {
  * @param key Key string
  * @param value Value to add at the beginning of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1621,7 +1621,7 @@ suspend fun RedisTransaction.lpushxAwait(key : String, value : String) : String 
  * @param from Start index
  * @param to Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1638,7 +1638,7 @@ suspend fun RedisTransaction.lrangeAwait(key : String, from : Long, to : Long) :
  * @param count Number of first found occurrences equal to $value to remove from the list
  * @param value Value to be removed
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1655,7 +1655,7 @@ suspend fun RedisTransaction.lremAwait(key : String, count : Long, value : Strin
  * @param index Position within list
  * @param value New value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1672,7 +1672,7 @@ suspend fun RedisTransaction.lsetAwait(key : String, index : Long, value : Strin
  * @param from Start index
  * @param to Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1687,7 +1687,7 @@ suspend fun RedisTransaction.ltrimAwait(key : String, from : Long, to : Long) : 
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1702,7 +1702,7 @@ suspend fun RedisTransaction.mgetAwait(key : String) : String {
  *
  * @param keys List of keys to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1722,7 +1722,7 @@ suspend fun RedisTransaction.mgetManyAwait(keys : List<String>) : String {
  * @param timeout 
  * @param options Migrate options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1736,7 +1736,7 @@ suspend fun RedisTransaction.migrateAwait(host : String, port : Int, key : Strin
  * Listen for all requests received by the server in real time
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1752,7 +1752,7 @@ suspend fun RedisTransaction.monitorAwait() : String {
  * @param key Key to migrate
  * @param destdb Destination database index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1767,7 +1767,7 @@ suspend fun RedisTransaction.moveAwait(key : String, destdb : Int) : String {
  *
  * @param keyvals Key value pairs to set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1782,7 +1782,7 @@ suspend fun RedisTransaction.msetAwait(keyvals : JsonObject) : String {
  *
  * @param keyvals Key value pairs to set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1796,7 +1796,7 @@ suspend fun RedisTransaction.msetnxAwait(keyvals : JsonObject) : String {
  * Mark the start of a RedisTransaction block
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1812,7 +1812,7 @@ suspend fun RedisTransaction.multiAwait() : String {
  * @param key Key string
  * @param cmd Object sub command
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1827,7 +1827,7 @@ suspend fun RedisTransaction.objectAwait(key : String, cmd : ObjectCmd) : String
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1843,7 +1843,7 @@ suspend fun RedisTransaction.persistAwait(key : String) : String {
  * @param key String key
  * @param millis Time to live in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1859,7 +1859,7 @@ suspend fun RedisTransaction.pexpireAwait(key : String, millis : Long) : String 
  * @param key Key string
  * @param millis Expiry time as Unix timestamp in milliseconds
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1875,7 +1875,7 @@ suspend fun RedisTransaction.pexpireatAwait(key : String, millis : Long) : Strin
  * @param key Key string
  * @param element Element to add
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1891,7 +1891,7 @@ suspend fun RedisTransaction.pfaddAwait(key : String, element : String) : String
  * @param key Key string
  * @param elements Elementa to add
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1906,7 +1906,7 @@ suspend fun RedisTransaction.pfaddManyAwait(key : String, elements : List<String
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1921,7 +1921,7 @@ suspend fun RedisTransaction.pfcountAwait(key : String) : String {
  *
  * @param keys List of keys
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1937,7 +1937,7 @@ suspend fun RedisTransaction.pfcountManyAwait(keys : List<String>) : String {
  * @param destkey Destination key
  * @param keys List of source keys
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1951,7 +1951,7 @@ suspend fun RedisTransaction.pfmergeAwait(destkey : String, keys : List<String>)
  * Ping the server
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1968,7 +1968,7 @@ suspend fun RedisTransaction.pingAwait() : String {
  * @param millis Number of milliseconds until the key expires
  * @param value New value for key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1983,7 +1983,7 @@ suspend fun RedisTransaction.psetexAwait(key : String, millis : Long, value : St
  *
  * @param pattern Pattern string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -1998,7 +1998,7 @@ suspend fun RedisTransaction.psubscribeAwait(pattern : String) : String {
  *
  * @param patterns List of patterns
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2013,7 +2013,7 @@ suspend fun RedisTransaction.psubscribeManyAwait(patterns : List<String>) : Stri
  *
  * @param pattern A glob-style pattern - an empty string means no pattern
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2028,7 +2028,7 @@ suspend fun RedisTransaction.pubsubChannelsAwait(pattern : String) : String {
  *
  * @param channels List of channels
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2042,7 +2042,7 @@ suspend fun RedisTransaction.pubsubNumsubAwait(channels : List<String>) : String
  * Returns the number of subscriptions to patterns (that are performed using the PSUBSCRIBE command)
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2057,7 +2057,7 @@ suspend fun RedisTransaction.pubsubNumpatAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2073,7 +2073,7 @@ suspend fun RedisTransaction.pttlAwait(key : String) : String {
  * @param channel Channel key
  * @param message Message to send to channel
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2088,7 +2088,7 @@ suspend fun RedisTransaction.publishAwait(channel : String, message : String) : 
  *
  * @param patterns List of patterns to match against
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2102,7 +2102,7 @@ suspend fun RedisTransaction.punsubscribeAwait(patterns : List<String>) : String
  * Return a random key from the keyspace
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2118,7 +2118,7 @@ suspend fun RedisTransaction.randomkeyAwait() : String {
  * @param key Key string to be renamed
  * @param newkey New key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2134,7 +2134,7 @@ suspend fun RedisTransaction.renameAwait(key : String, newkey : String) : String
  * @param key Key string to be renamed
  * @param newkey New key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2151,7 +2151,7 @@ suspend fun RedisTransaction.renamenxAwait(key : String, newkey : String) : Stri
  * @param millis Expiry time in milliseconds to set on the key
  * @param serialized Serialized form of the key value as obtained using DUMP
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2165,7 +2165,7 @@ suspend fun RedisTransaction.restoreAwait(key : String, millis : Long, serialize
  * Return the role of the instance in the context of replication
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2180,7 +2180,7 @@ suspend fun RedisTransaction.roleAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2196,7 +2196,7 @@ suspend fun RedisTransaction.rpopAwait(key : String) : String {
  * @param key Key string identifying source list
  * @param destkey Key string identifying destination list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2212,7 +2212,7 @@ suspend fun RedisTransaction.rpoplpushAwait(key : String, destkey : String) : St
  * @param key Key string
  * @param values List of values to add to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2228,7 +2228,7 @@ suspend fun RedisTransaction.rpushManyAwait(key : String, values : List<String>)
  * @param key Key string
  * @param value Value to be added to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2244,7 +2244,7 @@ suspend fun RedisTransaction.rpushAwait(key : String, value : String) : String {
  * @param key Key string
  * @param value Value to be added to the end of the list
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2260,7 +2260,7 @@ suspend fun RedisTransaction.rpushxAwait(key : String, value : String) : String 
  * @param key Key string
  * @param member Value to be added to the set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2276,7 +2276,7 @@ suspend fun RedisTransaction.saddAwait(key : String, member : String) : String {
  * @param key Key string
  * @param members Values to be added to the set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2290,7 +2290,7 @@ suspend fun RedisTransaction.saddManyAwait(key : String, members : List<String>)
  * Synchronously save the dataset to disk
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2305,7 +2305,7 @@ suspend fun RedisTransaction.saveAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2320,7 +2320,7 @@ suspend fun RedisTransaction.scardAwait(key : String) : String {
  *
  * @param script SHA1 digest identifying a script in the script cache
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2335,7 +2335,7 @@ suspend fun RedisTransaction.scriptExistsAwait(script : String) : String {
  *
  * @param scripts List of SHA1 digests identifying scripts in the script cache
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2349,7 +2349,7 @@ suspend fun RedisTransaction.scriptExistsManyAwait(scripts : List<String>) : Str
  * Remove all the scripts from the script cache.
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2363,7 +2363,7 @@ suspend fun RedisTransaction.scriptFlushAwait() : String {
  * Kill the script currently in execution.
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2378,7 +2378,7 @@ suspend fun RedisTransaction.scriptKillAwait() : String {
  *
  * @param script Lua script
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2394,7 +2394,7 @@ suspend fun RedisTransaction.scriptLoadAwait(script : String) : String {
  * @param key Key identifying the set to compare with all other sets combined
  * @param cmpkeys List of keys identifying sets to subtract from the key set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2411,7 +2411,7 @@ suspend fun RedisTransaction.sdiffAwait(key : String, cmpkeys : List<String>) : 
  * @param key Key identifying the set to compare with all other sets combined
  * @param cmpkeys List of keys identifying sets to subtract from the key set
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2426,7 +2426,7 @@ suspend fun RedisTransaction.sdiffstoreAwait(destkey : String, key : String, cmp
  *
  * @param dbindex Index identifying the new active database
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2442,7 +2442,7 @@ suspend fun RedisTransaction.selectAwait(dbindex : Int) : String {
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2459,7 +2459,7 @@ suspend fun RedisTransaction.setAwait(key : String, value : String) : String {
  * @param value New value for the key
  * @param options Set options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2475,7 +2475,7 @@ suspend fun RedisTransaction.setWithOptionsAwait(key : String, value : String, o
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2492,7 +2492,7 @@ suspend fun RedisTransaction.setBinaryAwait(key : String, value : Buffer) : Stri
  * @param value New value for the key
  * @param options Set options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2509,7 +2509,7 @@ suspend fun RedisTransaction.setBinaryWithOptionsAwait(key : String, value : Buf
  * @param offset Bit offset
  * @param bit New value - must be 1 or 0
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2526,7 +2526,7 @@ suspend fun RedisTransaction.setbitAwait(key : String, offset : Long, bit : Int)
  * @param seconds Number of seconds until the key expires
  * @param value New value for key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2542,7 +2542,7 @@ suspend fun RedisTransaction.setexAwait(key : String, seconds : Long, value : St
  * @param key Key of which value to set
  * @param value New value for the key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2559,7 +2559,7 @@ suspend fun RedisTransaction.setnxAwait(key : String, value : String) : String {
  * @param offset Offset - the maximum offset that you can set is 2^29 -1 (536870911), as Redis Strings are limited to 512 megabytes
  * @param value Value to overwrite with
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2574,7 +2574,7 @@ suspend fun RedisTransaction.setrangeAwait(key : String, offset : Int, value : S
  *
  * @param keys List of keys to perform intersection on
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2590,7 +2590,7 @@ suspend fun RedisTransaction.sinterAwait(keys : List<String>) : String {
  * @param destkey Key where to store the results
  * @param keys List of keys to perform intersection on
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2606,7 +2606,7 @@ suspend fun RedisTransaction.sinterstoreAwait(destkey : String, keys : List<Stri
  * @param key Key string
  * @param member Member to look for
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2622,7 +2622,7 @@ suspend fun RedisTransaction.sismemberAwait(key : String, member : String) : Str
  * @param host Host to become this server's master
  * @param port Port of our new master
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2636,7 +2636,7 @@ suspend fun RedisTransaction.slaveofAwait(host : String, port : Int) : String {
  * Make this server a master
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2651,7 +2651,7 @@ suspend fun RedisTransaction.slaveofNooneAwait() : String {
  *
  * @param limit Number of log entries to return. If value is less than zero all entries are returned
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2665,7 +2665,7 @@ suspend fun RedisTransaction.slowlogGetAwait(limit : Int) : String {
  * Get the length of the Redis slow queries log
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2679,7 +2679,7 @@ suspend fun RedisTransaction.slowlogLenAwait() : String {
  * Reset the Redis slow queries log
  *
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2694,7 +2694,7 @@ suspend fun RedisTransaction.slowlogResetAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2711,7 +2711,7 @@ suspend fun RedisTransaction.smembersAwait(key : String) : JsonArray {
  * @param destkey Key identifying the destination set
  * @param member Member to move
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2727,7 +2727,7 @@ suspend fun RedisTransaction.smoveAwait(key : String, destkey : String, member :
  * @param key Key string
  * @param options Sort options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2742,7 +2742,7 @@ suspend fun RedisTransaction.sortAwait(key : String, options : SortOptions) : St
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2758,7 +2758,7 @@ suspend fun RedisTransaction.spopAwait(key : String) : String {
  * @param key Key string
  * @param count Number of members to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2773,7 +2773,7 @@ suspend fun RedisTransaction.spopManyAwait(key : String, count : Int) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2789,7 +2789,7 @@ suspend fun RedisTransaction.srandmemberAwait(key : String) : String {
  * @param key Key string
  * @param count Number of members to get
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2805,7 +2805,7 @@ suspend fun RedisTransaction.srandmemberCountAwait(key : String, count : Int) : 
  * @param key Key string
  * @param member Member to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2821,7 +2821,7 @@ suspend fun RedisTransaction.sremAwait(key : String, member : String) : String {
  * @param key Key string
  * @param members Members to remove
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2836,7 +2836,7 @@ suspend fun RedisTransaction.sremManyAwait(key : String, members : List<String>)
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2851,7 +2851,7 @@ suspend fun RedisTransaction.strlenAwait(key : String) : String {
  *
  * @param channel Channel to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2866,7 +2866,7 @@ suspend fun RedisTransaction.subscribeAwait(channel : String) : String {
  *
  * @param channels List of channels to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2881,7 +2881,7 @@ suspend fun RedisTransaction.subscribeManyAwait(channels : List<String>) : Strin
  *
  * @param keys List of keys identifying sets to add up
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2897,7 +2897,7 @@ suspend fun RedisTransaction.sunionAwait(keys : List<String>) : String {
  * @param destkey Destination key
  * @param keys List of keys identifying sets to add up
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2911,7 +2911,7 @@ suspend fun RedisTransaction.sunionstoreAwait(destkey : String, keys : List<Stri
  * Internal command used for replication
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2925,7 +2925,7 @@ suspend fun RedisTransaction.syncAwait() : String {
  * Return the current server time
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2940,7 +2940,7 @@ suspend fun RedisTransaction.timeAwait() : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2955,7 +2955,7 @@ suspend fun RedisTransaction.ttlAwait(key : String) : String {
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2970,7 +2970,7 @@ suspend fun RedisTransaction.typeAwait(key : String) : String {
  *
  * @param channels List of channels to subscribe to
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -2984,7 +2984,7 @@ suspend fun RedisTransaction.unsubscribeAwait(channels : List<String>) : String 
  * Forget about all watched keys
  *
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3000,7 +3000,7 @@ suspend fun RedisTransaction.unwatchAwait() : String {
  * @param numSlaves 
  * @param timeout 
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3015,7 +3015,7 @@ suspend fun RedisTransaction.waitAwait(numSlaves : Long, timeout : Long) : Strin
  *
  * @param key Key to watch
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3030,7 +3030,7 @@ suspend fun RedisTransaction.watchAwait(key : String) : String {
  *
  * @param keys List of keys to watch
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3047,7 +3047,7 @@ suspend fun RedisTransaction.watchManyAwait(keys : List<String>) : String {
  * @param score Score used for sorting
  * @param member New member key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3063,7 +3063,7 @@ suspend fun RedisTransaction.zaddAwait(key : String, score : Double, member : St
  * @param key Key string
  * @param members New member keys and their scores
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3078,7 +3078,7 @@ suspend fun RedisTransaction.zaddManyAwait(key : String, members : Map<String,Do
  *
  * @param key Key string
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3095,7 +3095,7 @@ suspend fun RedisTransaction.zcardAwait(key : String) : String {
  * @param min Minimum score
  * @param max Maximum score
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3112,7 +3112,7 @@ suspend fun RedisTransaction.zcountAwait(key : String, min : Double, max : Doubl
  * @param increment Increment amount
  * @param member Member key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3129,7 +3129,7 @@ suspend fun RedisTransaction.zincrbyAwait(key : String, increment : Double, memb
  * @param sets List of keys identifying sorted sets to intersect
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3146,7 +3146,7 @@ suspend fun RedisTransaction.zinterstoreAwait(destkey : String, sets : List<Stri
  * @param sets List of keys identifying sorted sets to intersect
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3163,7 +3163,7 @@ suspend fun RedisTransaction.zinterstoreWeighedAwait(destkey : String, sets : Ma
  * @param min Pattern to compare against for minimum value
  * @param max Pattern to compare against for maximum value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3180,7 +3180,7 @@ suspend fun RedisTransaction.zlexcountAwait(key : String, min : String, max : St
  * @param start Start index for the range
  * @param stop Stop index for the range - inclusive
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3198,7 +3198,7 @@ suspend fun RedisTransaction.zrangeAwait(key : String, start : Long, stop : Long
  * @param stop Stop index for the range - inclusive
  * @param options Range options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3216,7 +3216,7 @@ suspend fun RedisTransaction.zrangeWithOptionsAwait(key : String, start : Long, 
  * @param max Pattern representing a maximum allowed value
  * @param options Limit options where limit can be specified
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3234,7 +3234,7 @@ suspend fun RedisTransaction.zrangebylexAwait(key : String, min : String, max : 
  * @param max Pattern defining a maximum value
  * @param options Range and limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3250,7 +3250,7 @@ suspend fun RedisTransaction.zrangebyscoreAwait(key : String, min : String, max 
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3266,7 +3266,7 @@ suspend fun RedisTransaction.zrankAwait(key : String, member : String) : String 
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3282,7 +3282,7 @@ suspend fun RedisTransaction.zremAwait(key : String, member : String) : String {
  * @param key Key string
  * @param members Members in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3299,7 +3299,7 @@ suspend fun RedisTransaction.zremManyAwait(key : String, members : List<String>)
  * @param min Pattern defining a minimum value
  * @param max Pattern defining a maximum value
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3316,7 +3316,7 @@ suspend fun RedisTransaction.zremrangebylexAwait(key : String, min : String, max
  * @param start Start index
  * @param stop Stop index
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3333,7 +3333,7 @@ suspend fun RedisTransaction.zremrangebyrankAwait(key : String, start : Long, st
  * @param min Pattern defining a minimum value
  * @param max Pattern defining a maximum value
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3351,7 +3351,7 @@ suspend fun RedisTransaction.zremrangebyscoreAwait(key : String, min : String, m
  * @param stop Stop index for the range - inclusive
  * @param options Range options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3369,7 +3369,7 @@ suspend fun RedisTransaction.zrevrangeAwait(key : String, start : Long, stop : L
  * @param min Pattern defining a minimum value
  * @param options Limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3387,7 +3387,7 @@ suspend fun RedisTransaction.zrevrangebylexAwait(key : String, max : String, min
  * @param min Pattern defining a minimum value
  * @param options Range and limit options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3403,7 +3403,7 @@ suspend fun RedisTransaction.zrevrangebyscoreAwait(key : String, max : String, m
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3419,7 +3419,7 @@ suspend fun RedisTransaction.zrevrankAwait(key : String, member : String) : Stri
  * @param key Key string
  * @param member Member in the sorted set identified by key
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3436,7 +3436,7 @@ suspend fun RedisTransaction.zscoreAwait(key : String, member : String) : String
  * @param sets List of keys identifying sorted sets
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3453,7 +3453,7 @@ suspend fun RedisTransaction.zunionstoreAwait(destkey : String, sets : List<Stri
  * @param sets Map containing set-key:weight pairs
  * @param options Aggregation options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3469,7 +3469,7 @@ suspend fun RedisTransaction.zunionstoreWeighedAwait(key : String, sets : Map<St
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3486,7 +3486,7 @@ suspend fun RedisTransaction.scanAwait(cursor : String, options : ScanOptions) :
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3503,7 +3503,7 @@ suspend fun RedisTransaction.sscanAwait(key : String, cursor : String, options :
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3520,7 +3520,7 @@ suspend fun RedisTransaction.hscanAwait(key : String, cursor : String, options :
  * @param cursor Cursor id
  * @param options Scan options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3538,7 +3538,7 @@ suspend fun RedisTransaction.zscanAwait(key : String, cursor : String, options :
  * @param latitude latitude
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3554,7 +3554,7 @@ suspend fun RedisTransaction.geoaddAwait(key : String, longitude : Double, latit
  * @param key Key string
  * @param members list of &lt;lon, lat, member&gt;
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3571,7 +3571,7 @@ suspend fun RedisTransaction.geoaddManyAwait(key : String, members : List<GeoMem
  * @param key Key string
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3588,7 +3588,7 @@ suspend fun RedisTransaction.geohashAwait(key : String, member : String) : Strin
  * @param key Key string
  * @param members list of members
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3605,7 +3605,7 @@ suspend fun RedisTransaction.geohashManyAwait(key : String, members : List<Strin
  * @param key Key string
  * @param member member
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3622,7 +3622,7 @@ suspend fun RedisTransaction.geoposAwait(key : String, member : String) : String
  * @param key Key string
  * @param members list of members
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3639,7 +3639,7 @@ suspend fun RedisTransaction.geoposManyAwait(key : String, members : List<String
  * @param member1 member 1
  * @param member2 member 2
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3657,7 +3657,7 @@ suspend fun RedisTransaction.geodistAwait(key : String, member1 : String, member
  * @param member2 member 2
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3677,7 +3677,7 @@ suspend fun RedisTransaction.geodistWithUnitAwait(key : String, member1 : String
  * @param radius radius
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3698,7 +3698,7 @@ suspend fun RedisTransaction.georadiusAwait(key : String, longitude : Double, la
  * @param unit geo unit
  * @param options geo radius options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3718,7 +3718,7 @@ suspend fun RedisTransaction.georadiusWithOptionsAwait(key : String, longitude :
  * @param radius radius
  * @param unit geo unit
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3739,7 +3739,7 @@ suspend fun RedisTransaction.georadiusbymemberAwait(key : String, member : Strin
  * @param unit geo unit
  * @param options geo radius options
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3754,7 +3754,7 @@ suspend fun RedisTransaction.georadiusbymemberWithOptionsAwait(key : String, mem
  *
  * @param key Key string
  * @param handler 
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3769,7 +3769,7 @@ suspend fun RedisTransaction.unlinkAwait(key : String) : String {
  *
  * @param keys List of keys to delete
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */
@@ -3785,7 +3785,7 @@ suspend fun RedisTransaction.unlinkManyAwait(keys : List<String>) : String {
  * @param index1 index of first database to swap
  * @param index2 index of second database to swap
  * @param handler Handler for the result of this call.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisTransaction original] using Vert.x codegen.
  */

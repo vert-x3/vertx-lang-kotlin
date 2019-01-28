@@ -8,7 +8,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * it bounds calls the given handler with the result. The result may be a failure if the socket is already used.
  *
  * @param handler the handler to call with the result
- * @returnthe current [io.vertx.ext.stomp.StompServer] *
+ * @return the current [io.vertx.ext.stomp.StompServer] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServer original] using Vert.x codegen.
  */
@@ -24,7 +24,7 @@ suspend fun StompServer.listenAwait() : StompServer {
  *
  * @param port the port
  * @param handler the handler to call with the result
- * @returnthe current [io.vertx.ext.stomp.StompServer] *
+ * @return the current [io.vertx.ext.stomp.StompServer] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServer original] using Vert.x codegen.
  */
@@ -41,7 +41,7 @@ suspend fun StompServer.listenAwait(port : Int) : StompServer {
  * @param port the port
  * @param host the host / interface
  * @param handler the handler to call with the result
- * @returnthe current [io.vertx.ext.stomp.StompServer] *
+ * @return the current [io.vertx.ext.stomp.StompServer] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServer original] using Vert.x codegen.
  */

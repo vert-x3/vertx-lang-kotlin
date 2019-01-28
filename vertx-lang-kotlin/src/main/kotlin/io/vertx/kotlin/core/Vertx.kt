@@ -87,6 +87,15 @@ suspend fun VertxVertxAlias.undeployAwait(deploymentID : String) : Unit {
  * <p>
  * In the <code>blockingCodeHandler</code> the current context remains the original context and therefore any task
  * scheduled in the <code>blockingCodeHandler</code> will be executed on the this context and not on the worker thread.
+ * <p>
+ * The blocking code should block for a reasonable amount of time (i.e no more than a few seconds). Long blocking operations
+ * or polling operations (i.e a thread that spin in a loop polling events in a blocking fashion) are precluded.
+ * <p>
+ * When the blocking operation lasts more than the 10 seconds, a message will be printed on the console by the
+ * blocked thread checker.
+ * <p>
+ * Long blocking operations should use a dedicated thread managed by the application, which can interact with
+ * verticles using the event-bus or [io.vertx.core.Context]
  *
  * @param blockingCodeHandler handler representing the blocking code to run
  * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
@@ -125,6 +134,7 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handl
  * This deployment ID can subsequently be used to undeploy the verticle.
  *
  * @param verticle the verticle instance to deploy
+ * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -141,6 +151,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle) : String {
  *
  * @param verticle the verticle instance to deploy
  * @param options the deployment options.
+ * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -162,6 +173,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle, options : D
  *
  * @param verticleSupplier 
  * @param options 
+ * @param completionHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.

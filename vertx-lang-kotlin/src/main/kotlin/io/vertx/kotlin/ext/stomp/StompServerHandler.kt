@@ -12,7 +12,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * @param login the login
  * @param passcode the password
  * @param handler handler receiving the authentication result
- * @returnthe current [io.vertx.ext.stomp.StompServerHandler] *
+ * @return the current [io.vertx.ext.stomp.StompServerHandler] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServerHandler original] using Vert.x codegen.
  */

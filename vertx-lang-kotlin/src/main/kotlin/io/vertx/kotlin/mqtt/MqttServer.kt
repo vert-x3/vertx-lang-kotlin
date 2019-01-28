@@ -10,7 +10,7 @@ import io.vertx.mqtt.MqttServer
  * @param port the port to listen on
  * @param host the host to listen on
  * @param listenHandler handler called when the asynchronous listen call ends
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */
@@ -26,7 +26,7 @@ suspend fun MqttServer.listenAwait(port : Int, host : String) : MqttServer {
  *
  * @param port the port to listen on
  * @param listenHandler handler called when the asynchronous listen call ends
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */
@@ -41,7 +41,7 @@ suspend fun MqttServer.listenAwait(port : Int) : MqttServer {
  * through the constructor
  *
  * @param listenHandler handler called when the asynchronous listen call ends
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
  */

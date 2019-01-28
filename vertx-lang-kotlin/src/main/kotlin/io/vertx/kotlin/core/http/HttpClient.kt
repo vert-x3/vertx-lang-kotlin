@@ -11,7 +11,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param options the request options
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -29,7 +29,7 @@ suspend fun HttpClient.getNowAwait(options : RequestOptions) : HttpClientRespons
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -46,7 +46,7 @@ suspend fun HttpClient.getNowAwait(port : Int, host : String, requestURI : Strin
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -62,7 +62,7 @@ suspend fun HttpClient.getNowAwait(host : String, requestURI : String) : HttpCli
  *
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -78,7 +78,7 @@ suspend fun HttpClient.getNowAwait(requestURI : String) : HttpClientResponse {
  *
  * @param options the request options
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -96,7 +96,7 @@ suspend fun HttpClient.headNowAwait(options : RequestOptions) : HttpClientRespon
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -113,7 +113,7 @@ suspend fun HttpClient.headNowAwait(port : Int, host : String, requestURI : Stri
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -129,7 +129,7 @@ suspend fun HttpClient.headNowAwait(host : String, requestURI : String) : HttpCl
  *
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -145,7 +145,7 @@ suspend fun HttpClient.headNowAwait(requestURI : String) : HttpClientResponse {
  *
  * @param options the request options
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -163,7 +163,7 @@ suspend fun HttpClient.optionsNowAwait(options : RequestOptions) : HttpClientRes
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -180,7 +180,7 @@ suspend fun HttpClient.optionsNowAwait(port : Int, host : String, requestURI : S
  * @param host the host
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
@@ -196,7 +196,7 @@ suspend fun HttpClient.optionsNowAwait(host : String, requestURI : String) : Htt
  *
  * @param requestURI the relative URI
  * @param responseHandler the response handler
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClient original] using Vert.x codegen.
  */
