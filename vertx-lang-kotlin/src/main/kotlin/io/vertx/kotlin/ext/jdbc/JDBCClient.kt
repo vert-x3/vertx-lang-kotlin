@@ -10,7 +10,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * from the result set is returned.
  *
  * @param sql the statement to execute
- * @param handler the result handler
  * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.jdbc.JDBCClient original] using Vert.x codegen.
@@ -28,7 +27,6 @@ suspend fun JDBCClient.querySingleAwait(sql : String) : JsonArray? {
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @param handler the result handler
  * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.jdbc.JDBCClient original] using Vert.x codegen.

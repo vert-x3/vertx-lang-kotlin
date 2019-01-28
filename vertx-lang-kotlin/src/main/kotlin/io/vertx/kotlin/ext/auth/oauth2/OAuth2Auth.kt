@@ -9,7 +9,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * meta-information about this token.
  *
  * @param token the access token (base64 string)
- * @param handler A handler to receive the event
  * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.
@@ -26,7 +25,6 @@ suspend fun OAuth2Auth.introspectTokenAwait(token : String) : AccessToken {
  *
  * @param token the access token (base64 string)
  * @param tokenType hint to the token type e.g.: `access_token`
- * @param handler A handler to receive the event
  * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.
@@ -42,7 +40,6 @@ suspend fun OAuth2Auth.introspectTokenAwait(token : String, tokenType : String) 
  *
  * When calling this method several times, the loaded JWKs are updated in the underlying JWT object.
  *
- * @param handler 
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.

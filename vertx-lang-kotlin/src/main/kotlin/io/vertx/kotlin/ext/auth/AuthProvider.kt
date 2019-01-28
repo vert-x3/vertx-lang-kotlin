@@ -23,7 +23,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * The user object can then be used for authorisation.
  *
  * @param authInfo The auth information
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.AuthProvider original] using Vert.x codegen.

@@ -20,7 +20,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * consistent with the new topic.
  *
  * @param topic topic to subscribe to
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -42,7 +41,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topic : String) : Unit {
  * consistent with the new set of topics.
  *
  * @param topics topics to subscribe to
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -64,7 +62,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topics : Set<String>) : Unit
  * consistent with the new partition.
  *
  * @param topicPartition partition which want assigned
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -86,7 +83,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartition : TopicPartition
  * consistent with the new set of partitions.
  *
  * @param topicPartitions partitions which want assigned
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -99,7 +95,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartitions : Set<TopicPart
 /**
  * Get the set of partitions currently assigned to this consumer.
  *
- * @param handler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -113,7 +108,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignmentAwait() : Set<TopicPartition> {
 /**
  * Unsubscribe from topics currently subscribed with subscribe.
  *
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -126,7 +120,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.unsubscribeAwait() : Unit {
 /**
  * Get the current subscription.
  *
- * @param handler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -149,7 +142,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscriptionAwait() : Set<String> {
  * from the given <code>topicPartition</code>.
  *
  * @param topicPartition topic partition from which suspend fetching
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -171,7 +163,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartition : TopicPartition)
  * from the given <code>topicPartitions</code>.
  *
  * @param topicPartitions topic partition from which suspend fetching
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -184,7 +175,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartitions : Set<TopicParti
 /**
  * Get the set of partitions that were previously paused by a call to pause(Set).
  *
- * @param handler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -199,7 +189,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.pausedAwait() : Set<TopicPartition> {
  * Resume specified partition which have been paused with pause.
  *
  * @param topicPartition topic partition from which resume fetching
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -213,7 +202,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartition : TopicPartition
  * Resume specified partitions which have been paused with pause.
  *
  * @param topicPartitions topic partition from which resume fetching
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -236,7 +224,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartitions : Set<TopicPart
  *
  * @param topicPartition topic partition for which seek
  * @param offset offset to seek inside the topic partition
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -258,7 +245,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekAwait(topicPartition : TopicPartition, 
  * consistent with the new offset.
  *
  * @param topicPartition topic partition for which seek
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -280,7 +266,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartition : Topic
  * consistent with the new offset.
  *
  * @param topicPartitions topic partition for which seek
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -302,7 +287,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartitions : Set<
  * consistent with the new offset.
  *
  * @param topicPartition topic partition for which seek
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -324,7 +308,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartition : TopicPartit
  * consistent with the new offset.
  *
  * @param topicPartitions topic partition for which seek
- * @param completionHandler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -337,7 +320,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartitions : Set<TopicP
 /**
  * Commit current offsets for all the subscribed list of topics and partition.
  *
- * @param completionHandler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -351,7 +333,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.commitAwait() : Unit {
  * Get the last committed offset for the given partition (whether the commit happened by this process or another).
  *
  * @param topicPartition topic partition for getting last committed offset
- * @param handler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -366,7 +347,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.committedAwait(topicPartition : TopicPartit
  * Get metadata about the partitions for a given topic.
  *
  * @param topic topic partition for which getting partitions info
- * @param handler handler called on operation completed
  * @return current KafkaConsumer instance *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -380,7 +360,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.partitionsForAwait(topic : String) : List<P
 /**
  * Close the consumer
  *
- * @param completionHandler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -394,7 +373,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.closeAwait() : Unit {
  * Get the offset of the next record that will be fetched (if a record with that offset exists).
  *
  * @param partition The partition to get the position for
- * @param handler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -411,7 +389,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.positionAwait(partition : TopicPartition) :
  *
  * @param topicPartition TopicPartition to query.
  * @param timestamp Timestamp to be used in the query.
- * @param handler handler called on operation completed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -426,7 +403,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.offsetsForTimesAwait(topicPartition : Topic
  * Get the first offset for the given partitions.
  *
  * @param topicPartition the partition to get the earliest offset.
- * @param handler handler called on operation completed. Returns the earliest available offset for the given partition
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -442,7 +418,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.beginningOffsetsAwait(topicPartition : Topi
  * of the upcoming message, i.e. the offset of the last available message + 1.
  *
  * @param topicPartition the partition to get the end offset.
- * @param handler handler called on operation completed. The end offset for the given partition.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
@@ -457,7 +432,6 @@ suspend fun <K,V> KafkaConsumer<K,V>.endOffsetsAwait(topicPartition : TopicParti
  * Executes a poll for getting messages from Kafka
  *
  * @param timeout The time, in milliseconds, spent waiting in poll if data is not available in the buffer. If 0, returns immediately with any records that are available currently in the native Kafka consumer's buffer, else returns empty. Must not be negative.
- * @param handler handler called after the poll with batch of records (can be empty).
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.

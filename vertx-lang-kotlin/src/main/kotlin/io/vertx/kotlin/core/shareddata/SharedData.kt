@@ -11,7 +11,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * put into the map from any node is visible to to any other node.
  *
  * @param name the name of the map
- * @param resultHandler the map will be returned asynchronously in this handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.SharedData original] using Vert.x codegen.
@@ -31,7 +30,6 @@ suspend fun <K,V> SharedData.getClusterWideMapAwait(name : String) : AsyncMap<K,
  * </p>
  *
  * @param name the name of the map
- * @param resultHandler the map will be returned asynchronously in this handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.SharedData original] using Vert.x codegen.
@@ -50,7 +48,6 @@ suspend fun <K,V> SharedData.getAsyncMapAwait(name : String) : AsyncMap<K,V> {
  * </p>
  *
  * @param name the name of the lock
- * @param resultHandler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.SharedData original] using Vert.x codegen.
@@ -71,7 +68,6 @@ suspend fun SharedData.getLockAwait(name : String) : Lock {
  *
  * @param name the name of the lock
  * @param timeout the timeout in ms
- * @param resultHandler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.SharedData original] using Vert.x codegen.
@@ -86,7 +82,6 @@ suspend fun SharedData.getLockWithTimeoutAwait(name : String, timeout : Long) : 
  * Get an asynchronous counter. The counter will be passed to the handler.
  *
  * @param name the name of the counter.
- * @param resultHandler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.SharedData original] using Vert.x codegen.

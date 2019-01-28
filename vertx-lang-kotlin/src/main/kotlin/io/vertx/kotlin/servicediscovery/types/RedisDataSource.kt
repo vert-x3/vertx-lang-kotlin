@@ -15,7 +15,6 @@ object RedisDataSource {
  *
  * @param discovery The service discovery instance
  * @param filter The filter, optional
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.RedisDataSource original] using Vert.x codegen.
@@ -32,7 +31,6 @@ object RedisDataSource {
  *
  * @param discovery The service discovery instance
  * @param filter The filter, cannot be <code>null</code>
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.RedisDataSource original] using Vert.x codegen.
@@ -50,7 +48,6 @@ object RedisDataSource {
  * @param discovery The service discovery instance
  * @param filter The filter, optional
  * @param consumerConfiguration The additional consumer configuration
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.RedisDataSource original] using Vert.x codegen.
@@ -68,7 +65,6 @@ object RedisDataSource {
  * @param discovery The service discovery instance
  * @param filter The filter, cannot be <code>null</code>
  * @param consumerConfiguration The additional consumer configuration
- * @param resultHandler The result handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.RedisDataSource original] using Vert.x codegen.

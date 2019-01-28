@@ -8,7 +8,6 @@ import io.vertx.servicediscovery.spi.ServicePublisher
  * Publishes a record.
  *
  * @param record the record
- * @param resultHandler handler called when the operation has completed (successfully or not). In case of success, the passed record has a registration id required to modify and un-register the service.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
@@ -23,7 +22,6 @@ suspend fun ServicePublisher.publishAwait(record : Record) : Record {
  * Un-publishes a record.
  *
  * @param id the registration id
- * @param resultHandler handler called when the operation has completed (successfully or not).
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
@@ -37,7 +35,6 @@ suspend fun ServicePublisher.unpublishAwait(id : String) : Unit {
  * Updates an existing record.
  *
  * @param record the record
- * @param resultHandler handler called when the operation has completed (successfully or not). In case of success, the passed record has a registration id required to modify and un-register the service.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
