@@ -6,7 +6,6 @@ import io.vertx.kotlin.coroutines.awaitResult
 
 /**
  *
- * @param handler handler called when result is fetched
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
@@ -18,7 +17,6 @@ suspend fun ResultSet.fetchMoreResultsAwait() : Unit {
 
 /**
  *
- * @param handler handler called when one row is fetched
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
@@ -31,7 +29,6 @@ suspend fun ResultSet.oneAwait() : Row? {
 
 /**
  *
- * @param handler handler called when all the rows is fetched
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.

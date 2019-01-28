@@ -10,7 +10,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param port the port to listen on
  * @param host the host to listen on
- * @param listenHandler the listen handler
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServer original] using Vert.x codegen.
@@ -27,7 +26,6 @@ suspend fun HttpServer.listenAwait(port : Int, host : String) : HttpServer {
  * listening (or has failed).
  *
  * @param address the address to listen on
- * @param listenHandler the listen handler
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServer original] using Vert.x codegen.
@@ -42,7 +40,6 @@ suspend fun HttpServer.listenAwait(address : SocketAddress) : HttpServer {
  * Like [io.vertx.core.http.HttpServer] but supplying a handler that will be called when the server is actually listening (or has failed).
  *
  * @param port the port to listen on
- * @param listenHandler the listen handler
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServer original] using Vert.x codegen.
@@ -56,7 +53,6 @@ suspend fun HttpServer.listenAwait(port : Int) : HttpServer {
 /**
  * Like [io.vertx.core.http.HttpServer] but supplying a handler that will be called when the server is actually listening (or has failed).
  *
- * @param listenHandler the listen handler
  * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServer original] using Vert.x codegen.
@@ -70,7 +66,6 @@ suspend fun HttpServer.listenAwait() : HttpServer {
 /**
  * Like [io.vertx.core.http.HttpServer] but supplying a handler that will be called when the server is actually closed (or has failed).
  *
- * @param completionHandler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServer original] using Vert.x codegen.

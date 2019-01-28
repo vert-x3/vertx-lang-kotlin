@@ -12,7 +12,6 @@ import java.util.function.Supplier
 /**
  * Like [io.vertx.core.Vertx] but the completionHandler will be called when the close is complete
  *
- * @param completionHandler The handler will be notified when the close is complete.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -31,7 +30,6 @@ suspend fun VertxVertxAlias.closeAwait() : Unit {
  * This deployment ID can subsequently be used to undeploy the verticle.
  *
  * @param name The identifier
- * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -48,7 +46,6 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name : String) : String {
  *
  * @param name the name
  * @param options the deployment options.
- * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -63,7 +60,6 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name : String, options : Deploym
  * Like [io.vertx.core.Vertx][#undeploy(String)][io.vertx.core.Vertx] but the completionHandler will be notified when the undeployment is complete.
  *
  * @param deploymentID the deployment ID
- * @param completionHandler a handler which will be notified when the undeployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -99,14 +95,13 @@ suspend fun VertxVertxAlias.undeployAwait(deploymentID : String) : Unit {
  *
  * @param blockingCodeHandler handler representing the blocking code to run
  * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
- * @param resultHandler handler that will be called when the blocking code is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>, ordered : Boolean) : T? {
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : (Future<T>) -> Unit, ordered : Boolean) : T? {
   return awaitResult{
-    this.executeBlocking(blockingCodeHandler, ordered, it)
+    this.executeBlocking(blockingCodeHandler, ordered, it::handle)
   }
 }
 
@@ -114,14 +109,13 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handl
  * Like [io.vertx.core.Vertx] called with ordered = true.
  *
  * @param blockingCodeHandler 
- * @param resultHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>) : T? {
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : (Future<T>) -> Unit) : T? {
   return awaitResult{
-    this.executeBlocking(blockingCodeHandler, it)
+    this.executeBlocking(blockingCodeHandler, it::handle)
   }
 }
 
@@ -134,7 +128,6 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handl
  * This deployment ID can subsequently be used to undeploy the verticle.
  *
  * @param verticle the verticle instance to deploy
- * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -151,7 +144,6 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle) : String {
  *
  * @param verticle the verticle instance to deploy
  * @param options the deployment options.
- * @param completionHandler a handler which will be notified when the deployment is complete
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -173,7 +165,6 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle, options : D
  *
  * @param verticleSupplier 
  * @param options 
- * @param completionHandler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
@@ -185,17 +176,16 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier : Supplier<Vert
 }
 
 object Vertx {
-/**
- * Creates a clustered instance using the specified options.
- * <p>
- * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
- *
- * @param options the options to use
- * @param resultHandler the result handler that will receive the result
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
- */
+  /**
+   * Creates a clustered instance using the specified options.
+   * <p>
+   * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
+   *
+   * @param options the options to use
+   *
+   * <p/>
+   * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+   */
   suspend fun clusteredVertxAwait(options : VertxOptions) : VertxVertxAlias {
     return awaitResult{
       VertxVertxAlias.clusteredVertx(options, it)

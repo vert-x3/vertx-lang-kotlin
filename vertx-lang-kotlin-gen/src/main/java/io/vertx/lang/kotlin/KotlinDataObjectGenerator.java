@@ -10,9 +10,9 @@ import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.type.ClassKind;
 import io.vertx.codegen.type.ClassTypeInfo;
 import io.vertx.codegen.type.TypeInfo;
+import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 
-import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -44,18 +44,18 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   @Override
   public String render(DataObjectModel model, int index, int size, Map<String, Object> session) {
     StringWriter buffer = new StringWriter();
-    PrintWriter writer = new PrintWriter(buffer);
-    writer.print("package " + model.getType().translatePackageName("kotlin") + "\n");
-    writer.print("\n");
+    CodeWriter writer = new CodeWriter(buffer);
+    writer.println("package " + model.getType().translatePackageName("kotlin"));
+    writer.println();
     generateImport(model, writer);
-    writer.print("\n");
+    writer.println();
     generateDoc(model, writer);
     generateFun(model, writer);
     return buffer.toString();
   }
 
-  private void generateImport(DataObjectModel model, PrintWriter writer) {
-    writer.print("import " + model.getType().getRaw().getName() + "\n");
+  private void generateImport(DataObjectModel model, CodeWriter writer) {
+    writer.println("import " + model.getType().getRaw().getName());
     Set<String> genImports = new TreeSet<>();
     for (PropertyInfo p : model.getPropertyMap().values()) {
       ClassKind propertyKind = p.getType().getKind();
@@ -64,30 +64,30 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
       }
     }
     for (String i : genImports) {
-      writer.print("import " + i + "\n");
+      writer.println("import " + i);
     }
   }
 
-  private void generateDoc(DataObjectModel model, PrintWriter writer) {
+  private void generateDoc(DataObjectModel model, CodeWriter writer) {
     Doc doc = model.getDoc();
     if (doc != null) {
-      writer.print("/**\n");
-      writer.print(" * A function providing a DSL for building [" + model.getType().getName() + "] objects.\n");
-      writer.print(" *\n");
+      writer.println("/**");
+      writer.println(" * A function providing a DSL for building [" + model.getType().getName() + "] objects.");
+      writer.println(" *");
       Token.toHtml(doc.getTokens(), " *", KotlinCodeGenHelper::renderLinkToHtml, "\n", writer);
-      writer.print(" *\n");
+      writer.println(" *");
       model.getPropertyMap().values().stream().filter(filterProperties()).forEach(p -> {
         writer.print(" * @param " + p.getName() + " ");
         if (p.getDoc() != null) {
           String docInfo = Token.toHtml(p.getDoc().getTokens(), "", KotlinCodeGenHelper::renderLinkToHtml, "").replace("/*", "/<star>");
           writer.print(docInfo);
         }
-        writer.print("\n");
+        writer.println();
       });
-      writer.print(" *\n");
-      writer.print(" * <p/>\n");
-      writer.print(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.\n");
-      writer.print(" */\n");
+      writer.println(" *");
+      writer.println(" * <p/>");
+      writer.println(" * NOTE: This function has been automatically generated from the [" + model.getType().getName() + " original] using Vert.x codegen.");
+      writer.println(" */");
     }
   }
 
@@ -95,12 +95,12 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     return p -> p.getSetterMethod() != null || p.getAdderMethod() != null;
   }
 
-  private void generateFun(DataObjectModel model, PrintWriter writer) {
+  private void generateFun(DataObjectModel model, CodeWriter writer) {
 
     boolean isKotlin = model.getAnnotations().stream().anyMatch(ann -> ann.getName().equals("kotlin.Metadata"));
 
     ClassTypeInfo type = model.getType();
-    writer.print("fun " + type.getRaw().getSimpleName() + "(\n");
+    writer.println("fun " + type.getRaw().getSimpleName() + "(");
     String paramsInfo = model.getPropertyMap().values().stream().filter(filterProperties()).map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null").collect(Collectors.joining(",\n"));
     writer.print(paramsInfo);
     writer.print("): ");
@@ -111,40 +111,42 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     if (!model.hasEmptyConstructor()) {
       writer.print("io.vertx.core.json.JsonObject()");
     }
-    writer.print(").apply {\n");
-    writer.print("\n");
+    writer.println(").apply {");
+    writer.println();
+    writer.indent();
     model.getPropertyMap().values()
       .stream()
       .filter(filterProperties())
       .forEach(p -> {
         String propertyName = p.getName();
         PropertyKind propertyKind = p.getKind();
-        writer.print("  if (" + propertyName + " != null) {\n");
-//        writer.print("  ");
+        writer.println("if (" + propertyName + " != null) {");
+        writer.indent();
         if (p.getSetterMethod() != null) {
-          writer.print("    this." + (isKotlin ? (p.getName() + " = ") : (p.getSetterMethod() + "(")));
+          writer.print("this." + (isKotlin ? (p.getName() + " = ") : (p.getSetterMethod() + "(")));
           writer.print(propertyName);
           if (propertyKind.isList()) {
             writer.print(".toList()");
           } else if (propertyKind.isSet()) {
             writer.print(".toSet()");
           }
-          writer.print((isKotlin ? "" : ")") + "\n");
+          writer.println((isKotlin ? "" : ")"));
         } else {
-          writer.print("    for (item in " + propertyName);
-          writer.print(") {\n");
-          writer.print("      this." + p.getAdderMethod());
+          writer.print("for (item in " + propertyName);
+          writer.println(") {");
+          writer.indent();
+          writer.print("this." + p.getAdderMethod());
           if (propertyKind.isMap()) {
-            writer.print("(item.key, item.value)\n");
+            writer.println("(item.key, item.value)");
           } else {
-            writer.print("(item)\n");
+            writer.println("(item)");
           }
-          writer.print("    }\n");
+          writer.unindent().println("}");
         }
-        writer.print("  }\n");
+        writer.unindent().println("}");
       });
-    writer.print("}\n");
-    writer.print("\n");
+    writer.unindent().println("}");
+    writer.println();
   }
 
   private String mapKotlinType(TypeInfo type) {

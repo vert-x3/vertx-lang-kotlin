@@ -7,7 +7,6 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Like [io.vertx.core.net.NetServer] but providing a handler that will be notified when the server is listening, or fails.
  *
- * @param listenHandler handler that will be notified when listening or failed
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServer original] using Vert.x codegen.
@@ -23,7 +22,6 @@ suspend fun NetServer.listenAwait() : NetServer {
  *
  * @param port the port to listen on
  * @param host the host to listen on
- * @param listenHandler handler that will be notified when listening or failed
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServer original] using Vert.x codegen.
@@ -38,7 +36,6 @@ suspend fun NetServer.listenAwait(port : Int, host : String) : NetServer {
  * Like [io.vertx.core.net.NetServer] but providing a handler that will be notified when the server is listening, or fails.
  *
  * @param port the port to listen on
- * @param listenHandler handler that will be notified when listening or failed
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServer original] using Vert.x codegen.
@@ -53,7 +50,6 @@ suspend fun NetServer.listenAwait(port : Int) : NetServer {
  * Like [io.vertx.core.net.NetServer] but providing a handler that will be notified when the server is listening, or fails.
  *
  * @param localAddress the local address to listen on
- * @param listenHandler handler that will be notified when listening or failed
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServer original] using Vert.x codegen.
@@ -67,7 +63,6 @@ suspend fun NetServer.listenAwait(localAddress : SocketAddress) : NetServer {
 /**
  * Like [io.vertx.core.net.NetServer] but supplying a handler that will be notified when close is complete.
  *
- * @param completionHandler the handler
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServer original] using Vert.x codegen.

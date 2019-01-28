@@ -13,7 +13,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Like [io.vertx.ext.web.client.HttpRequest] but with an HTTP request <code>body</code> stream.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -28,7 +27,6 @@ suspend fun <T> HttpRequest<T>.sendStreamAwait(body : ReadStream<Buffer>) : Http
  * Like [io.vertx.ext.web.client.HttpRequest] but with an HTTP request <code>body</code> buffer.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -44,7 +42,6 @@ suspend fun <T> HttpRequest<T>.sendBufferAwait(body : Buffer) : HttpResponse<T> 
  * set to <code>application/json</code>.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -60,7 +57,6 @@ suspend fun <T> HttpRequest<T>.sendJsonObjectAwait(body : JsonObject) : HttpResp
  * set to <code>application/json</code>.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -78,7 +74,6 @@ suspend fun <T> HttpRequest<T>.sendJsonAwait(body : Any) : HttpResponse<T> {
  * When the content type header is previously set to <code>multipart/form-data</code> it will be used instead.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -94,7 +89,6 @@ suspend fun <T> HttpRequest<T>.sendFormAwait(body : MultiMap) : HttpResponse<T> 
  * set to <code>multipart/form-data</code>. You may use this method to send attributes and upload files.
  *
  * @param body the body
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.
@@ -108,7 +102,6 @@ suspend fun <T> HttpRequest<T>.sendMultipartFormAwait(body : MultipartForm) : Ht
 /**
  * Send a request, the <code>handler</code> will receive the response as an [io.vertx.ext.web.client.HttpResponse].
  *
- * @param handler 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.HttpRequest original] using Vert.x codegen.

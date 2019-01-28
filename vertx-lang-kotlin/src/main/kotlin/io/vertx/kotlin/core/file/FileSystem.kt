@@ -16,7 +16,6 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param from the path to copy from
  * @param to the path to copy to
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -32,7 +31,6 @@ suspend fun FileSystem.copyAwait(from : String, to : String) : Unit {
  * @param from the path to copy from
  * @param to the path to copy to
  * @param options options describing how the file should be copied
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -53,7 +51,6 @@ suspend fun FileSystem.copyAwait(from : String, to : String, options : CopyOptio
  * @param from the path to copy from
  * @param to the path to copy to
  * @param recursive 
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -70,7 +67,6 @@ suspend fun FileSystem.copyRecursiveAwait(from : String, to : String, recursive 
  *
  * @param from the path to copy from
  * @param to the path to copy to
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -86,7 +82,6 @@ suspend fun FileSystem.moveAwait(from : String, to : String) : Unit {
  * @param from the path to copy from
  * @param to the path to copy to
  * @param options options describing how the file should be copied
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -103,7 +98,6 @@ suspend fun FileSystem.moveAwait(from : String, to : String, options : CopyOptio
  *
  * @param path the path to the file
  * @param len the length to truncate it to
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -121,7 +115,6 @@ suspend fun FileSystem.truncateAwait(path : String, len : Long) : Unit {
  *
  * @param path the path to the file
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -142,7 +135,6 @@ suspend fun FileSystem.chmodAwait(path : String, perms : String) : Unit {
  * @param path the path to the file
  * @param perms the permissions string
  * @param dirPerms the directory permissions
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -158,7 +150,6 @@ suspend fun FileSystem.chmodRecursiveAwait(path : String, perms : String, dirPer
  * @param path the path to the file
  * @param user the user name, <code>null</code> will not change the user name
  * @param group the user group, <code>null</code> will not change the user group name
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -174,7 +165,6 @@ suspend fun FileSystem.chownAwait(path : String, user : String, group : String) 
  * If the file is a link, the link will be followed.
  *
  * @param path the path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -191,7 +181,6 @@ suspend fun FileSystem.propsAwait(path : String) : FileProps {
  * The link will not be followed.
  *
  * @param path the path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -207,7 +196,6 @@ suspend fun FileSystem.lpropsAwait(path : String) : FileProps {
  *
  * @param link the link
  * @param existing the link destination
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -222,7 +210,6 @@ suspend fun FileSystem.linkAwait(link : String, existing : String) : Unit {
  *
  * @param link the link
  * @param existing the link destination
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -236,7 +223,6 @@ suspend fun FileSystem.symlinkAwait(link : String, existing : String) : Unit {
  * Unlinks the link on the file system represented by the path <code>link</code>, asynchronously.
  *
  * @param link the link
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -250,7 +236,6 @@ suspend fun FileSystem.unlinkAwait(link : String) : Unit {
  * Returns the path representing the file that the symbolic link specified by <code>link</code> points to, asynchronously.
  *
  * @param link the link
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -265,7 +250,6 @@ suspend fun FileSystem.readSymlinkAwait(link : String) : String {
  * Deletes the file represented by the specified <code>path</code>, asynchronously.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -283,7 +267,6 @@ suspend fun FileSystem.deleteAwait(path : String) : Unit {
  *
  * @param path path to the file
  * @param recursive delete recursively?
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -299,7 +282,6 @@ suspend fun FileSystem.deleteRecursiveAwait(path : String, recursive : Boolean) 
  * The operation will fail if the directory already exists.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -321,7 +303,6 @@ suspend fun FileSystem.mkdirAwait(path : String) : Unit {
  *
  * @param path path to the file
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -337,7 +318,6 @@ suspend fun FileSystem.mkdirAwait(path : String, perms : String) : Unit {
  * The operation will fail if the directory already exists.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -359,7 +339,6 @@ suspend fun FileSystem.mkdirsAwait(path : String) : Unit {
  *
  * @param path path to the file
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -375,7 +354,6 @@ suspend fun FileSystem.mkdirsAwait(path : String, perms : String) : Unit {
  * The result is an array of String representing the paths of the files inside the directory.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -396,7 +374,6 @@ suspend fun FileSystem.readDirAwait(path : String) : List<String> {
  *
  * @param path path to the directory
  * @param filter the filter expression
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -413,7 +390,6 @@ suspend fun FileSystem.readDirAwait(path : String, filter : String) : List<Strin
  * Do not use this method to read very large files or you risk running out of available RAM.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -430,7 +406,6 @@ suspend fun FileSystem.readFileAwait(path : String) : Buffer {
  *
  * @param path path to the file
  * @param data 
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -447,7 +422,6 @@ suspend fun FileSystem.writeFileAwait(path : String, data : Buffer) : Unit {
  *
  * @param path path to the file
  * @param options options describing how the file should be opened
- * @param handler 
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -462,7 +436,6 @@ suspend fun FileSystem.openAwait(path : String, options : OpenOptions) : AsyncFi
  * Creates an empty file with the specified <code>path</code>, asynchronously.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -477,7 +450,6 @@ suspend fun FileSystem.createFileAwait(path : String) : Unit {
  *
  * @param path path to the file
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -491,7 +463,6 @@ suspend fun FileSystem.createFileAwait(path : String, perms : String) : Unit {
  * Determines whether the file as specified by the path <code>path</code> exists, asynchronously.
  *
  * @param path path to the file
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -506,7 +477,6 @@ suspend fun FileSystem.existsAwait(path : String) : Boolean {
  * Returns properties of the file-system being used by the specified <code>path</code>, asynchronously.
  *
  * @param path path to anywhere on the filesystem
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -528,7 +498,6 @@ suspend fun FileSystem.fsPropsAwait(path : String) : FileSystemProps {
  * </p>
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -556,7 +525,6 @@ suspend fun FileSystem.createTempDirectoryAwait(prefix : String) : String {
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -585,7 +553,6 @@ suspend fun FileSystem.createTempDirectoryAwait(prefix : String, perms : String)
  * @param dir the path to directory in which to create the directory
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -608,7 +575,6 @@ suspend fun FileSystem.createTempDirectoryAwait(dir : String, prefix : String, p
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -632,7 +598,6 @@ suspend fun FileSystem.createTempFileAwait(prefix : String, suffix : String) : S
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
  * @param perms 
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
@@ -662,7 +627,6 @@ suspend fun FileSystem.createTempFileAwait(prefix : String, suffix : String, per
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
  * @param perms the permissions string
- * @param handler the handler that will be called on completion
  * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
