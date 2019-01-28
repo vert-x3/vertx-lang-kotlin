@@ -1,5 +1,6 @@
 package io.vertx.lang.kotlin;
 
+import io.vertx.codegen.Case;
 import io.vertx.codegen.DataObjectModel;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
@@ -50,7 +51,12 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     generateImport(model, writer);
     writer.println();
     generateDoc(model, writer);
-    generateFun(model, writer);
+
+    // generate deprecated function
+    String functionName = generateFun(model, writer);
+    generateDoc(model, writer);
+    generateDeprecatedAnnotation(functionName, model, writer);
+    generateDeprecatedFun(model, writer);
     return buffer.toString();
   }
 
@@ -95,13 +101,42 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     return p -> p.getSetterMethod() != null || p.getAdderMethod() != null;
   }
 
-  private void generateFun(DataObjectModel model, CodeWriter writer) {
+  private String generateFun(DataObjectModel model, CodeWriter writer) {
+    String functionName = model.getType().getSimpleName(Case.LOWER_CAMEL) + "Of";
+    generateFunction(functionName, model, writer);
+    return functionName;
+  }
 
+  private void generateDeprecatedAnnotation(String replacement, DataObjectModel model, CodeWriter writer) {
+    writer.println("@Deprecated(");
+    writer.println("  message = \"This function will be removed in a future version\",");
+    writer.print("  replaceWith = ReplaceWith(\"" + replacement + "(");
+    String parameters = model.getPropertyMap()
+      .values()
+      .stream()
+      .filter(filterProperties())
+      .map(PropertyInfo::getName)
+      .collect(Collectors.joining(", "));
+    writer.print(parameters);
+    writer.println(")\")\n)");
+  }
+
+  private void generateDeprecatedFun(DataObjectModel model, CodeWriter writer) {
+    String functionName = model.getType().getRaw().getSimpleName();
+    generateFunction(functionName, model, writer);
+  }
+
+  private void generateFunction(String functionName, DataObjectModel model, CodeWriter writer) {
     boolean isKotlin = model.getAnnotations().stream().anyMatch(ann -> ann.getName().equals("kotlin.Metadata"));
 
     ClassTypeInfo type = model.getType();
-    writer.println("fun " + type.getRaw().getSimpleName() + "(");
-    String paramsInfo = model.getPropertyMap().values().stream().filter(filterProperties()).map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null").collect(Collectors.joining(",\n"));
+    writer.println("fun " + functionName + "(");
+    String paramsInfo = model.getPropertyMap()
+      .values()
+      .stream()
+      .filter(filterProperties())
+      .map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null")
+      .collect(Collectors.joining(",\n"));
     writer.print(paramsInfo);
     writer.print("): ");
     writer.print(model.getType().getSimpleName());
