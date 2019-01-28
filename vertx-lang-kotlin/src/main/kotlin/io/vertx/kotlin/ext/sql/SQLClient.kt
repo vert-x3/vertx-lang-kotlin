@@ -14,7 +14,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * from the result set is returned.
  *
  * @param sql the statement to execute
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -31,7 +31,7 @@ suspend fun SQLClient.querySingleAwait(sql : String) : JsonArray? {
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -45,7 +45,7 @@ suspend fun SQLClient.querySingleWithParamsAwait(sql : String, arguments : JsonA
  * Returns a connection that can be used to perform SQL operations on. It's important to remember
  * to close the connection when you are done, so it is returned to the pool.
  *
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -73,7 +73,7 @@ suspend fun SQLClient.closeAwait() : Unit {
  * statement and returns it back after the execution.
  *
  * @param sql the statement to execute
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -87,7 +87,7 @@ suspend fun SQLClient.queryAwait(sql : String) : ResultSet {
  * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -102,7 +102,7 @@ suspend fun SQLClient.queryStreamAwait(sql : String) : SQLRowStream {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -118,7 +118,7 @@ suspend fun SQLClient.queryStreamWithParamsAwait(sql : String, params : JsonArra
  *
  * @param sql the statement to execute
  * @param arguments the arguments to the statement
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -133,7 +133,7 @@ suspend fun SQLClient.queryWithParamsAwait(sql : String, arguments : JsonArray) 
  * statement.
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -149,7 +149,7 @@ suspend fun SQLClient.updateAwait(sql : String) : UpdateResult {
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -163,7 +163,7 @@ suspend fun SQLClient.updateWithParamsAwait(sql : String, params : JsonArray) : 
  * Calls the given SQL <code>PROCEDURE</code> which returns the result from the procedure.
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */
@@ -187,7 +187,7 @@ suspend fun SQLClient.callAwait(sql : String) : ResultSet {
  * @param sql the SQL to execute. For example <code>{call getEmpName (?, ?)}</code>.
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
  */

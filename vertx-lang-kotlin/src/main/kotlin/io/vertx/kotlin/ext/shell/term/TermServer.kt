@@ -6,7 +6,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Bind the term server, the [io.vertx.ext.shell.term.TermServer] must be set before.
  *
- * @returnthis object *
+ * @return this object *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TermServer original] using Vert.x codegen.
  */

@@ -11,7 +11,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Executes the given SQL <code>SELECT</code> statement which returns the results of the query.
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -26,7 +26,7 @@ suspend fun SQLOperations.queryAwait(sql : String) : ResultSet {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -40,7 +40,7 @@ suspend fun SQLOperations.queryWithParamsAwait(sql : String, params : JsonArray)
  * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -55,7 +55,7 @@ suspend fun SQLOperations.queryStreamAwait(sql : String) : SQLRowStream {
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -71,7 +71,7 @@ suspend fun SQLOperations.queryStreamWithParamsAwait(sql : String, params : Json
  * from the result set is returned.
  *
  * @param sql the statement to execute
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -88,7 +88,7 @@ suspend fun SQLOperations.querySingleAwait(sql : String) : JsonArray? {
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @returnself *
+ * @return self *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -103,7 +103,7 @@ suspend fun SQLOperations.querySingleWithParamsAwait(sql : String, arguments : J
  * statement.
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -119,7 +119,7 @@ suspend fun SQLOperations.updateAwait(sql : String) : UpdateResult {
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -133,7 +133,7 @@ suspend fun SQLOperations.updateWithParamsAwait(sql : String, params : JsonArray
  * Calls the given SQL <code>PROCEDURE</code> which returns the result from the procedure.
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */
@@ -157,7 +157,7 @@ suspend fun SQLOperations.callAwait(sql : String) : ResultSet {
  * @param sql the SQL to execute. For example <code>{call getEmpName (?, ?)}</code>.
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLOperations original] using Vert.x codegen.
  */

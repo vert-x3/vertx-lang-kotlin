@@ -8,7 +8,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Register a command
  *
  * @param command the command to register
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */
@@ -22,7 +22,7 @@ suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command {
  * Register a list of commands.
  *
  * @param commands the commands to register
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */
@@ -36,7 +36,7 @@ suspend fun CommandRegistry.registerCommandsAwait(commands : List<Command>) : Li
  * Unregister a command.
  *
  * @param commandName the command name
- * @returna reference to this, so the API can be used fluently *
+ * @return a reference to this, so the API can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
  */

@@ -9,7 +9,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * send a single mail via MailClient
  *
  * @param email MailMessage object containing the mail text, from/to, attachments etc
- * @returnthis MailClient instance so the method can be used fluently *
+ * @return this MailClient instance so the method can be used fluently *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailClient original] using Vert.x codegen.
  */

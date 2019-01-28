@@ -10,7 +10,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * @param port the server port
  * @param host the server host
- * @returnthe current [io.vertx.ext.stomp.StompClient] *
+ * @return the current [io.vertx.ext.stomp.StompClient] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClient original] using Vert.x codegen.
  */
@@ -24,7 +24,7 @@ suspend fun StompClient.connectAwait(port : Int, host : String) : StompClientCon
  * Connects to the server.
  *
  * @param net the NET client to use
- * @returnthe current [io.vertx.ext.stomp.StompClient] *
+ * @return the current [io.vertx.ext.stomp.StompClient] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClient original] using Vert.x codegen.
  */
@@ -40,7 +40,7 @@ suspend fun StompClient.connectAwait(net : NetClient) : StompClientConnection {
  * @param port the server port
  * @param host the server host
  * @param net the NET client to use
- * @returnthe current [io.vertx.ext.stomp.StompClient] *
+ * @return the current [io.vertx.ext.stomp.StompClient] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClient original] using Vert.x codegen.
  */
@@ -53,7 +53,7 @@ suspend fun StompClient.connectAwait(port : Int, host : String, net : NetClient)
 /**
  * Connects to the server using the host and port configured in the client's options.
  *
- * @returnthe current [io.vertx.ext.stomp.StompClient] *
+ * @return the current [io.vertx.ext.stomp.StompClient] *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClient original] using Vert.x codegen.
  */

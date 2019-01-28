@@ -6,7 +6,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Start the shell service, this is an asynchronous start.
  *
- * @return *
+ * @return  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellServer original] using Vert.x codegen.
  */
