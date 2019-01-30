@@ -17,6 +17,18 @@
       <artifactId>kotlin-compiler-embeddable</artifactId>
       <version>${kotlin.version}</version>
     </dependency>
+    <!--
+      Same version than kotlin-compiler-embeddable
+      this library used to be embedded in kotlin-compiler-embeddable but is not anymore
+      now it is a dependency on the org.jetbrains.intellij.deps:trove4j
+      that is set with a runtime scope
+      this seem to confuse the vertx stack manager that does not include it
+    -->
+    <dependency>
+      <groupId>org.jetbrains.intellij.deps</groupId>
+      <artifactId>trove4j</artifactId>
+      <version>1.0.20181211</version>
+    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-script-runtime</artifactId>
