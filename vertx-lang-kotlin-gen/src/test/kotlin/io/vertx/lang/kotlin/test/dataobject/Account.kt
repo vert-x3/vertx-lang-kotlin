@@ -12,12 +12,11 @@ class Account {
   var otherNames: List<String> = ArrayList()
 
   constructor(jo: JsonObject) {
-    this.id = jo.getLong("id")!!
-    this.name = jo.getString("name")
-    for (obj in jo.getJsonArray("otherNames", JsonArray())) {
-      if (obj is String) {
-        otherNames += obj
-      }
-    }
+    id = jo.getLong("id", id)
+    name = jo.getString("name")
+    otherNames = jo.getJsonArray("otherNames", JsonArray())
+      .list
+      .filter { it is String }
+      .map { it as String }
   }
 }
