@@ -1,15 +1,20 @@
 package io.vertx.kotlin.core.json
 
-import io.vertx.core.json.*
+import io.vertx.core.json.JsonArray
+import io.vertx.core.json.JsonObject
 import java.time.Instant
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Base64
 
 object Json
 
-// JsonObject creation
-
-fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject {
+/**
+ * A function providing a DSL for building [io.vertx.core.json.JsonObject]
+ *
+ * @param fields key:value pairs to create the instance
+ * @return [JsonObject]
+ */
+fun jsonObjectOf(vararg fields: Pair<String, Any?>): JsonObject {
     val processedCases = fields.map {
         when {
             // @See io.vertx.core.json.JsonObject.put(java.lang.String, java.time.Instant)
@@ -24,7 +29,39 @@ fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject {
     return JsonObject(linkedMapOf(*processedCases))
 }
 
-fun JsonArray(vararg values: Any?): JsonArray = io.vertx.core.json.JsonArray(arrayListOf(*values))
+/**
+ * A function providing a DSL for building [io.vertx.core.json.JsonObject]
+ *
+ * @param fields key:value pairs to create the instance
+ * @return [JsonObject]
+ */
+@Deprecated(
+  message = "This function will be removed in a future version",
+  replaceWith = ReplaceWith("jsonObjectOf(*fields)")
+)
+fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject {
+  return jsonObjectOf(*fields)
+}
+
+/**
+ * A function providing a DSL for building [io.vertx.core.json.JsonArray]
+ *
+ * @param values objects that should be part of the array
+ * @return [JsonArray]
+ */
+fun jsonArrayOf(vararg values: Any?): JsonArray = io.vertx.core.json.JsonArray(arrayListOf(*values))
+
+/**
+ * A function providing a DSL for building [io.vertx.core.json.JsonArray]
+ *
+ * @param values objects that should be part of the array
+ * @return [JsonArray]
+ */
+@Deprecated(
+  message = "This function will be removed in a future version",
+  replaceWith = ReplaceWith("jsonArrayOf(*values)")
+)
+fun JsonArray(vararg values: Any?): JsonArray = jsonArrayOf(*values)
 
 /**
  * The json builder for creating [io.vertx.core.json.JsonObject] or [io.vertx.core.json.JsonArray]
@@ -40,15 +77,15 @@ inline fun <T> json(block: Json.() -> T): T = Json.block()
  * @param fields the varargs of json fields
  * @return a [io.vertx.core.json.JsonObject]
  */
-fun Json.obj(vararg fields: Pair<String, Any?>): JsonObject = JsonObject(*fields)
+fun Json.obj(vararg fields: Pair<String, Any?>): JsonObject = jsonObjectOf(*fields)
 
 /**
  * A [io.vertx.core.json.JsonArray] builder from a varargs of values, i.e a varargs of `Any?`
  *
- * @param fields the varargs of json values
+ * @param values the varargs of json values
  * @return a [io.vertx.core.json.JsonArray]
  */
-fun Json.array(vararg values: Any?): JsonArray = JsonArray(*values)
+fun Json.array(vararg values: Any?): JsonArray = jsonArrayOf(*values)
 
 /**
  * A [io.vertx.core.json.JsonObject] builder from an [Iterable] of fields, i.e an [Iterable] of `Pair<String, Any?>`
@@ -56,7 +93,7 @@ fun Json.array(vararg values: Any?): JsonArray = JsonArray(*values)
  * @param fields the [Iterable] of json fields
  * @return a [io.vertx.core.json.JsonObject]
  */
-fun Json.obj(fields: Iterable<Pair<String, Any?>>): JsonObject = JsonObject(*fields.toList().toTypedArray())
+fun Json.obj(fields: Iterable<Pair<String, Any?>>): JsonObject = jsonObjectOf(*fields.toList().toTypedArray())
 
 /**
  * A [io.vertx.core.json.JsonObject] builder from an [Map] of fields, i.e a `Map<String, Any?>`
@@ -69,24 +106,24 @@ fun Json.obj(fields: Map<String, Any?>): JsonObject = JsonObject(fields)
 /**
  * A [io.vertx.core.json.JsonArray] builder from an [Iterable] of values, i.e an [Iterable] of `Any?`
  *
- * @param fields the [Iterable] of json values
+ * @param values the [Iterable] of json values
  * @return a [io.vertx.core.json.JsonArray]
  */
-fun Json.array(values: Iterable<Any?>): JsonArray = JsonArray(*values.toList().toTypedArray())
+fun Json.array(values: Iterable<Any?>): JsonArray = jsonArrayOf(*values.toList().toTypedArray())
 
 /**
  * A function for applying a block onto a [io.vertx.core.json.JsonObject].
  */
-fun Json.obj(block: JsonObject.() -> Unit): JsonObject = JsonObject().apply(block)
+fun Json.obj(block: JsonObject.() -> Unit): JsonObject = jsonObjectOf().apply(block)
 
 /**
  * A function for applying a block onto a [io.vertx.core.json.JsonArray].
  */
-fun Json.array(block: JsonArray.() -> Unit): JsonArray = JsonArray().apply(block)
+fun Json.array(block: JsonArray.() -> Unit): JsonArray = jsonArrayOf().apply(block)
 
 // Those are needed for avoid inference mismatch
-fun Json.array(value: JsonObject): JsonArray = JsonArray(value)
-fun Json.array(value: JsonArray): JsonArray = JsonArray(value)
+fun Json.array(value: JsonObject): JsonArray = jsonArrayOf(value)
+fun Json.array(value: JsonArray): JsonArray = jsonArrayOf(value)
 
 /**
  * The postscript operator for [JsonObject].
