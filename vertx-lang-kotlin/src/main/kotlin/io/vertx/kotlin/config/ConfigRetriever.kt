@@ -5,15 +5,14 @@ import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Reads the configuration from the different 
- * and computes the final configuration.
+ * Suspending version of method [io.vertx.config.ConfigRetriever.getConfig]
  *
+ * @return [JsonObject]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.config.ConfigRetriever original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.config.ConfigRetriever] using Vert.x codegen.
  */
-suspend fun ConfigRetriever.getConfigAwait() : JsonObject {
-  return awaitResult{
+suspend fun ConfigRetriever.getConfigAwait(): JsonObject {
+  return awaitResult {
     this.getConfig(it)
   }
 }

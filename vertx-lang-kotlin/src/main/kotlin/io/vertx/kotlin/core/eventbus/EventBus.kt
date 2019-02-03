@@ -6,34 +6,32 @@ import io.vertx.core.eventbus.Message
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Like [io.vertx.core.eventbus.EventBus] but specifying a <code>replyHandler</code> that will be called if the recipient
- * subsequently replies to the message.
+ * Suspending version of method [io.vertx.core.eventbus.EventBus.send]
  *
  * @param address the address to send it to
  * @param message the message, may be <code>null</code>
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBus original] using Vert.x codegen.
+ * @return [Message<T>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.sendAwait(address : String, message : Any) : Message<T> {
-  return awaitResult{
+suspend fun <T> EventBus.sendAwait(address: String, message: Any): Message<T> {
+  return awaitResult {
     this.send(address, message, it)
   }
 }
 
 /**
- * Like [io.vertx.core.eventbus.EventBus] but specifying a <code>replyHandler</code> that will be called if the recipient
- * subsequently replies to the message.
+ * Suspending version of method [io.vertx.core.eventbus.EventBus.send]
  *
  * @param address the address to send it to
  * @param message the message, may be <code>null</code>
  * @param options delivery options
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBus original] using Vert.x codegen.
+ * @return [Message<T>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.sendAwait(address : String, message : Any, options : DeliveryOptions) : Message<T> {
-  return awaitResult{
+suspend fun <T> EventBus.sendAwait(address: String, message: Any, options: DeliveryOptions): Message<T> {
+  return awaitResult {
     this.send(address, message, options, it)
   }
 }

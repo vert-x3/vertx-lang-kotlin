@@ -4,26 +4,26 @@ import io.vertx.ext.shell.ShellServer
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Start the shell service, this is an asynchronous start.
+ * Suspending version of method [io.vertx.ext.shell.ShellServer.listen]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellServer original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.ShellServer] using Vert.x codegen.
  */
-suspend fun ShellServer.listenAwait() : Unit {
-  return awaitResult{
-    this.listen({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ShellServer.listenAwait(): Unit {
+  return awaitResult {
+    this.listen { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Close the shell server, this is an asynchronous close.
+ * Suspending version of method [io.vertx.ext.shell.ShellServer.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.ShellServer original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.ShellServer] using Vert.x codegen.
  */
-suspend fun ShellServer.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ShellServer.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

@@ -38,1048 +38,1026 @@ import io.vertx.ext.consul.TxnResponse
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Returns the configuration and member information of the local agent
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.agentInfo]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [JsonObject]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.agentInfoAwait() : JsonObject {
-  return awaitResult{
+suspend fun ConsulClient.agentInfoAwait(): JsonObject {
+  return awaitResult {
     this.agentInfo(it)
   }
 }
 
 /**
- * Returns the LAN network coordinates for all nodes in a given DC
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.coordinateNodes]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CoordinateList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.coordinateNodesAwait() : CoordinateList {
-  return awaitResult{
+suspend fun ConsulClient.coordinateNodesAwait(): CoordinateList {
+  return awaitResult {
     this.coordinateNodes(it)
   }
 }
 
 /**
- * Returns the LAN network coordinates for all nodes in a given DC
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.coordinateNodesWithOptions]
  *
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CoordinateList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.coordinateNodesWithOptionsAwait(options : BlockingQueryOptions) : CoordinateList {
-  return awaitResult{
+suspend fun ConsulClient.coordinateNodesWithOptionsAwait(options: BlockingQueryOptions): CoordinateList {
+  return awaitResult {
     this.coordinateNodesWithOptions(options, it)
   }
 }
 
 /**
- * Returns the WAN network coordinates for all Consul servers, organized by DCs
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.coordinateDatacenters]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<DcCoordinates>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.coordinateDatacentersAwait() : List<DcCoordinates> {
-  return awaitResult{
+suspend fun ConsulClient.coordinateDatacentersAwait(): List<DcCoordinates> {
+  return awaitResult {
     this.coordinateDatacenters(it)
   }
 }
 
 /**
- * Returns the list of keys that corresponding to the specified key prefix.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getKeys]
  *
  * @param keyPrefix the prefix
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getKeysAwait(keyPrefix : String) : List<String> {
-  return awaitResult{
+suspend fun ConsulClient.getKeysAwait(keyPrefix: String): List<String> {
+  return awaitResult {
     this.getKeys(keyPrefix, it)
   }
 }
 
 /**
- * Returns the list of keys that corresponding to the specified key prefix.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getKeysWithOptions]
  *
  * @param keyPrefix the prefix
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getKeysWithOptionsAwait(keyPrefix : String, options : BlockingQueryOptions) : List<String> {
-  return awaitResult{
+suspend fun ConsulClient.getKeysWithOptionsAwait(keyPrefix: String, options: BlockingQueryOptions): List<String> {
+  return awaitResult {
     this.getKeysWithOptions(keyPrefix, options, it)
   }
 }
 
 /**
- * Returns key/value pair that corresponding to the specified key.
- * An empty [io.vertx.ext.consul.KeyValue] object will be returned if no such key is found.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getValue]
  *
  * @param key the key
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [KeyValue]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getValueAwait(key : String) : KeyValue {
-  return awaitResult{
+suspend fun ConsulClient.getValueAwait(key: String): KeyValue {
+  return awaitResult {
     this.getValue(key, it)
   }
 }
 
 /**
- * Returns key/value pair that corresponding to the specified key.
- * An empty [io.vertx.ext.consul.KeyValue] object will be returned if no such key is found.
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getValueWithOptions]
  *
  * @param key the key
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [KeyValue]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getValueWithOptionsAwait(key : String, options : BlockingQueryOptions) : KeyValue {
-  return awaitResult{
+suspend fun ConsulClient.getValueWithOptionsAwait(key: String, options: BlockingQueryOptions): KeyValue {
+  return awaitResult {
     this.getValueWithOptions(key, options, it)
   }
 }
 
 /**
- * Remove the key/value pair that corresponding to the specified key
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deleteValue]
  *
  * @param key the key
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.deleteValueAwait(key : String) : Unit {
-  return awaitResult{
-    this.deleteValue(key, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.deleteValueAwait(key: String): Unit {
+  return awaitResult {
+    this.deleteValue(key) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Returns the list of key/value pairs that corresponding to the specified key prefix.
- * An empty [io.vertx.ext.consul.KeyValueList] object will be returned if no such key prefix is found.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getValues]
  *
  * @param keyPrefix the prefix
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [KeyValueList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getValuesAwait(keyPrefix : String) : KeyValueList {
-  return awaitResult{
+suspend fun ConsulClient.getValuesAwait(keyPrefix: String): KeyValueList {
+  return awaitResult {
     this.getValues(keyPrefix, it)
   }
 }
 
 /**
- * Returns the list of key/value pairs that corresponding to the specified key prefix.
- * An empty [io.vertx.ext.consul.KeyValueList] object will be returned if no such key prefix is found.
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getValuesWithOptions]
  *
  * @param keyPrefix the prefix
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [KeyValueList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix : String, options : BlockingQueryOptions) : KeyValueList {
-  return awaitResult{
+suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix: String, options: BlockingQueryOptions): KeyValueList {
+  return awaitResult {
     this.getValuesWithOptions(keyPrefix, options, it)
   }
 }
 
 /**
- * Removes all the key/value pair that corresponding to the specified key prefix
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deleteValues]
  *
  * @param keyPrefix the prefix
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.deleteValuesAwait(keyPrefix : String) : Unit {
-  return awaitResult{
-    this.deleteValues(keyPrefix, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.deleteValuesAwait(keyPrefix: String): Unit {
+  return awaitResult {
+    this.deleteValues(keyPrefix) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Adds specified key/value pair
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.putValue]
  *
  * @param key the key
  * @param value the value
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.putValueAwait(key : String, value : String) : Boolean {
-  return awaitResult{
+suspend fun ConsulClient.putValueAwait(key: String, value: String): Boolean {
+  return awaitResult {
     this.putValue(key, value, it)
   }
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.putValueWithOptions]
  *
  * @param key the key
  * @param value the value
  * @param options options used to push pair
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.putValueWithOptionsAwait(key : String, value : String, options : KeyValueOptions) : Boolean {
-  return awaitResult{
+suspend fun ConsulClient.putValueWithOptionsAwait(key: String, value: String, options: KeyValueOptions): Boolean {
+  return awaitResult {
     this.putValueWithOptions(key, value, options, it)
   }
 }
 
 /**
- * Manages multiple operations inside a single, atomic transaction.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.transaction]
  *
  * @param request transaction request
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [TxnResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.transactionAwait(request : TxnRequest) : TxnResponse {
-  return awaitResult{
+suspend fun ConsulClient.transactionAwait(request: TxnRequest): TxnResponse {
+  return awaitResult {
     this.transaction(request, it)
   }
 }
 
 /**
- * Create new Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createAclToken]
  *
  * @param token properties of the token
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.createAclTokenAwait(token : AclToken) : String {
-  return awaitResult{
+suspend fun ConsulClient.createAclTokenAwait(token: AclToken): String {
+  return awaitResult {
     this.createAclToken(token, it)
   }
 }
 
 /**
- * Update Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.updateAclToken]
  *
  * @param token properties of the token to be updated
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.updateAclTokenAwait(token : AclToken) : String {
-  return awaitResult{
+suspend fun ConsulClient.updateAclTokenAwait(token: AclToken): String {
+  return awaitResult {
     this.updateAclToken(token, it)
   }
 }
 
 /**
- * Clone Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.cloneAclToken]
  *
  * @param id the ID of token to be cloned
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.cloneAclTokenAwait(id : String) : String {
-  return awaitResult{
+suspend fun ConsulClient.cloneAclTokenAwait(id: String): String {
+  return awaitResult {
     this.cloneAclToken(id, it)
   }
 }
 
 /**
- * Get list of Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listAclTokens]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<AclToken>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listAclTokensAwait() : List<AclToken> {
-  return awaitResult{
+suspend fun ConsulClient.listAclTokensAwait(): List<AclToken> {
+  return awaitResult {
     this.listAclTokens(it)
   }
 }
 
 /**
- * Get info of Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.infoAclToken]
  *
  * @param id the ID of token
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [AclToken]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.infoAclTokenAwait(id : String) : AclToken {
-  return awaitResult{
+suspend fun ConsulClient.infoAclTokenAwait(id: String): AclToken {
+  return awaitResult {
     this.infoAclToken(id, it)
   }
 }
 
 /**
- * Destroy Acl token
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.destroyAclToken]
  *
  * @param id the ID of token
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.destroyAclTokenAwait(id : String) : Unit {
-  return awaitResult{
-    this.destroyAclToken(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.destroyAclTokenAwait(id: String): Unit {
+  return awaitResult {
+    this.destroyAclToken(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Fires a new user event
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.fireEvent]
  *
  * @param name name of event
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Event]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.fireEventAwait(name : String) : Event {
-  return awaitResult{
+suspend fun ConsulClient.fireEventAwait(name: String): Event {
+  return awaitResult {
     this.fireEvent(name, it)
   }
 }
 
 /**
- * Fires a new user event
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.fireEventWithOptions]
  *
  * @param name name of event
  * @param options options used to create event
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Event]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.fireEventWithOptionsAwait(name : String, options : EventOptions) : Event {
-  return awaitResult{
+suspend fun ConsulClient.fireEventWithOptionsAwait(name: String, options: EventOptions): Event {
+  return awaitResult {
     this.fireEventWithOptions(name, options, it)
   }
 }
 
 /**
- * Returns the most recent events known by the agent
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listEvents]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [EventList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listEventsAwait() : EventList {
-  return awaitResult{
+suspend fun ConsulClient.listEventsAwait(): EventList {
+  return awaitResult {
     this.listEvents(it)
   }
 }
 
 /**
- * Returns the most recent events known by the agent.
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]. However, the semantics of this endpoint
- * are slightly different. Most blocking queries provide a monotonic index and block until a newer index is available.
- * This can be supported as a consequence of the total ordering of the consensus protocol. With gossip,
- * there is no ordering, and instead <code>X-Consul-Index</code> maps to the newest event that matches the query.
- * <p>
- * In practice, this means the index is only useful when used against a single agent and has no meaning globally.
- * Because Consul defines the index as being opaque, clients should not be expecting a natural ordering either.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listEventsWithOptions]
  *
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [EventList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listEventsWithOptionsAwait(options : EventListOptions) : EventList {
-  return awaitResult{
+suspend fun ConsulClient.listEventsWithOptionsAwait(options: EventListOptions): EventList {
+  return awaitResult {
     this.listEventsWithOptions(options, it)
   }
 }
 
 /**
- * Adds a new service, with an optional health check, to the local agent.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.registerService]
  *
  * @param serviceOptions the options of new service
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.registerServiceAwait(serviceOptions : ServiceOptions) : Unit {
-  return awaitResult{
-    this.registerService(serviceOptions, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.registerServiceAwait(serviceOptions: ServiceOptions): Unit {
+  return awaitResult {
+    this.registerService(serviceOptions) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Places a given service into "maintenance mode"
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.maintenanceService]
  *
  * @param maintenanceOptions the maintenance options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions : MaintenanceOptions) : Unit {
-  return awaitResult{
-    this.maintenanceService(maintenanceOptions, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions: MaintenanceOptions): Unit {
+  return awaitResult {
+    this.maintenanceService(maintenanceOptions) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Remove a service from the local agent. The agent will take care of deregistering the service with the Catalog.
- * If there is an associated check, that is also deregistered.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deregisterService]
  *
  * @param id the ID of service
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.deregisterServiceAwait(id : String) : Unit {
-  return awaitResult{
-    this.deregisterService(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.deregisterServiceAwait(id: String): Unit {
+  return awaitResult {
+    this.deregisterService(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Returns the nodes providing a service
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogServiceNodes]
  *
  * @param service name of service
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogServiceNodesAwait(service : String) : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogServiceNodesAwait(service: String): ServiceList {
+  return awaitResult {
     this.catalogServiceNodes(service, it)
   }
 }
 
 /**
- * Returns the nodes providing a service
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogServiceNodesWithOptions]
  *
  * @param service name of service
  * @param options options used to request services
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogServiceNodesWithOptionsAwait(service : String, options : ServiceQueryOptions) : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogServiceNodesWithOptionsAwait(service: String, options: ServiceQueryOptions): ServiceList {
+  return awaitResult {
     this.catalogServiceNodesWithOptions(service, options, it)
   }
 }
 
 /**
- * Return all the datacenters that are known by the Consul server
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogDatacenters]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogDatacentersAwait() : List<String> {
-  return awaitResult{
+suspend fun ConsulClient.catalogDatacentersAwait(): List<String> {
+  return awaitResult {
     this.catalogDatacenters(it)
   }
 }
 
 /**
- * Returns the nodes registered in a datacenter
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogNodes]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [NodeList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogNodesAwait() : NodeList {
-  return awaitResult{
+suspend fun ConsulClient.catalogNodesAwait(): NodeList {
+  return awaitResult {
     this.catalogNodes(it)
   }
 }
 
 /**
- * Returns the nodes registered in a datacenter
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogNodesWithOptions]
  *
  * @param options options used to request nodes
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [NodeList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogNodesWithOptionsAwait(options : NodeQueryOptions) : NodeList {
-  return awaitResult{
+suspend fun ConsulClient.catalogNodesWithOptionsAwait(options: NodeQueryOptions): NodeList {
+  return awaitResult {
     this.catalogNodesWithOptions(options, it)
   }
 }
 
 /**
- * Returns the checks associated with the service
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthChecks]
  *
  * @param service the service name
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CheckList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthChecksAwait(service : String) : CheckList {
-  return awaitResult{
+suspend fun ConsulClient.healthChecksAwait(service: String): CheckList {
+  return awaitResult {
     this.healthChecks(service, it)
   }
 }
 
 /**
- * Returns the checks associated with the service
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthChecksWithOptions]
  *
  * @param service the service name
  * @param options options used to request checks
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CheckList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthChecksWithOptionsAwait(service : String, options : CheckQueryOptions) : CheckList {
-  return awaitResult{
+suspend fun ConsulClient.healthChecksWithOptionsAwait(service: String, options: CheckQueryOptions): CheckList {
+  return awaitResult {
     this.healthChecksWithOptions(service, options, it)
   }
 }
 
 /**
- * Returns the checks in the specified status
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthState]
  *
  * @param healthState the health state
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CheckList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthStateAwait(healthState : HealthState) : CheckList {
-  return awaitResult{
+suspend fun ConsulClient.healthStateAwait(healthState: HealthState): CheckList {
+  return awaitResult {
     this.healthState(healthState, it)
   }
 }
 
 /**
- * Returns the checks in the specified status
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthStateWithOptions]
  *
  * @param healthState the health state
  * @param options options used to request checks
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [CheckList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthStateWithOptionsAwait(healthState : HealthState, options : CheckQueryOptions) : CheckList {
-  return awaitResult{
+suspend fun ConsulClient.healthStateWithOptionsAwait(healthState: HealthState, options: CheckQueryOptions): CheckList {
+  return awaitResult {
     this.healthStateWithOptions(healthState, options, it)
   }
 }
 
 /**
- * Returns the nodes providing the service. This endpoint is very similar to the [io.vertx.ext.consul.ConsulClient] endpoint;
- * however, this endpoint automatically returns the status of the associated health check as well as any system level health checks.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthServiceNodes]
  *
  * @param service the service name
  * @param passing if true, filter results to only nodes with all checks in the passing state
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceEntryList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthServiceNodesAwait(service : String, passing : Boolean) : ServiceEntryList {
-  return awaitResult{
+suspend fun ConsulClient.healthServiceNodesAwait(service: String, passing: Boolean): ServiceEntryList {
+  return awaitResult {
     this.healthServiceNodes(service, passing, it)
   }
 }
 
 /**
- * Returns the nodes providing the service. This endpoint is very similar to the [io.vertx.ext.consul.ConsulClient] endpoint;
- * however, this endpoint automatically returns the status of the associated health check as well as any system level health checks.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthServiceNodesWithOptions]
  *
  * @param service the service name
  * @param passing if true, filter results to only nodes with all checks in the passing state
  * @param options options used to request services
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceEntryList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service : String, passing : Boolean, options : ServiceQueryOptions) : ServiceEntryList {
-  return awaitResult{
+suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service: String, passing: Boolean, options: ServiceQueryOptions): ServiceEntryList {
+  return awaitResult {
     this.healthServiceNodesWithOptions(service, passing, options, it)
   }
 }
 
 /**
- * Returns the services registered in a datacenter
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogServices]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogServicesAwait() : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogServicesAwait(): ServiceList {
+  return awaitResult {
     this.catalogServices(it)
   }
 }
 
 /**
- * Returns the services registered in a datacenter
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogServicesWithOptions]
  *
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogServicesWithOptionsAwait(options : BlockingQueryOptions) : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogServicesWithOptionsAwait(options: BlockingQueryOptions): ServiceList {
+  return awaitResult {
     this.catalogServicesWithOptions(options, it)
   }
 }
 
 /**
- * Returns the node's registered services
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogNodeServices]
  *
  * @param node node name
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogNodeServicesAwait(node : String) : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogNodeServicesAwait(node: String): ServiceList {
+  return awaitResult {
     this.catalogNodeServices(node, it)
   }
 }
 
 /**
- * Returns the node's registered services
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.catalogNodeServicesWithOptions]
  *
  * @param node node name
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [ServiceList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.catalogNodeServicesWithOptionsAwait(node : String, options : BlockingQueryOptions) : ServiceList {
-  return awaitResult{
+suspend fun ConsulClient.catalogNodeServicesWithOptionsAwait(node: String, options: BlockingQueryOptions): ServiceList {
+  return awaitResult {
     this.catalogNodeServicesWithOptions(node, options, it)
   }
 }
 
 /**
- * Returns list of services registered with the local agent.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.localServices]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<Service>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.localServicesAwait() : List<Service> {
-  return awaitResult{
+suspend fun ConsulClient.localServicesAwait(): List<Service> {
+  return awaitResult {
     this.localServices(it)
   }
 }
 
 /**
- * Return all the checks that are registered with the local agent.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.localChecks]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<Check>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.localChecksAwait() : List<Check> {
-  return awaitResult{
+suspend fun ConsulClient.localChecksAwait(): List<Check> {
+  return awaitResult {
     this.localChecks(it)
   }
 }
 
 /**
- * Add a new check to the local agent. The agent is responsible for managing the status of the check
- * and keeping the Catalog in sync.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.registerCheck]
  *
  * @param checkOptions options used to register new check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.registerCheckAwait(checkOptions : CheckOptions) : Unit {
-  return awaitResult{
-    this.registerCheck(checkOptions, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.registerCheckAwait(checkOptions: CheckOptions): Unit {
+  return awaitResult {
+    this.registerCheck(checkOptions) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Remove a check from the local agent. The agent will take care of deregistering the check from the Catalog.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deregisterCheck]
  *
  * @param checkId the ID of check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.deregisterCheckAwait(checkId : String) : Unit {
-  return awaitResult{
-    this.deregisterCheck(checkId, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.deregisterCheckAwait(checkId: String): Unit {
+  return awaitResult {
+    this.deregisterCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to "passing". Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.passCheck]
  *
  * @param checkId the ID of check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
- */
-suspend fun ConsulClient.passCheckAwait(checkId : String) : Unit {
-  return awaitResult{
-    this.passCheck(checkId, { ar -> it.handle(ar.mapEmpty()) })}
-}
-
-/**
- * Set status of the check to "passing". Used with a check that is of the TTL type. The TTL clock will be reset.
  *
- * @param checkId the ID of check
- * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.passCheckWithNoteAwait(checkId : String, note : String) : Unit {
-  return awaitResult{
-    this.passCheckWithNote(checkId, note, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.passCheckAwait(checkId: String): Unit {
+  return awaitResult {
+    this.passCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to "warning". Used with a check that is of the TTL type. The TTL clock will be reset.
- *
- * @param checkId the ID of check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
- */
-suspend fun ConsulClient.warnCheckAwait(checkId : String) : Unit {
-  return awaitResult{
-    this.warnCheck(checkId, { ar -> it.handle(ar.mapEmpty()) })}
-}
-
-/**
- * Set status of the check to "warning". Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.passCheckWithNote]
  *
  * @param checkId the ID of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.warnCheckWithNoteAwait(checkId : String, note : String) : Unit {
-  return awaitResult{
-    this.warnCheckWithNote(checkId, note, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.passCheckWithNoteAwait(checkId: String, note: String): Unit {
+  return awaitResult {
+    this.passCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to "critical". Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.warnCheck]
  *
  * @param checkId the ID of check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.failCheckAwait(checkId : String) : Unit {
-  return awaitResult{
-    this.failCheck(checkId, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.warnCheckAwait(checkId: String): Unit {
+  return awaitResult {
+    this.warnCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to "critical". Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.warnCheckWithNote]
  *
  * @param checkId the ID of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.failCheckWithNoteAwait(checkId : String, note : String) : Unit {
-  return awaitResult{
-    this.failCheckWithNote(checkId, note, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.warnCheckWithNoteAwait(checkId: String, note: String): Unit {
+  return awaitResult {
+    this.warnCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to given status. Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.failCheck]
+ *
+ * @param checkId the ID of check
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+suspend fun ConsulClient.failCheckAwait(checkId: String): Unit {
+  return awaitResult {
+    this.failCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.failCheckWithNote]
+ *
+ * @param checkId the ID of check
+ * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+suspend fun ConsulClient.failCheckWithNoteAwait(checkId: String, note: String): Unit {
+  return awaitResult {
+    this.failCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.updateCheck]
  *
  * @param checkId the ID of check
  * @param status new status of check
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.updateCheckAwait(checkId : String, status : CheckStatus) : Unit {
-  return awaitResult{
-    this.updateCheck(checkId, status, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.updateCheckAwait(checkId: String, status: CheckStatus): Unit {
+  return awaitResult {
+    this.updateCheck(checkId, status) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Set status of the check to given status. Used with a check that is of the TTL type. The TTL clock will be reset.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.updateCheckWithNote]
  *
  * @param checkId the ID of check
  * @param status new status of check
  * @param note specifies a human-readable message. This will be passed through to the check's <code>Output</code> field.
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.updateCheckWithNoteAwait(checkId : String, status : CheckStatus, note : String) : Unit {
-  return awaitResult{
-    this.updateCheckWithNote(checkId, status, note, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.updateCheckWithNoteAwait(checkId: String, status: CheckStatus, note: String): Unit {
+  return awaitResult {
+    this.updateCheckWithNote(checkId, status, note) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Get the Raft leader for the datacenter in which the agent is running.
- * It returns an address in format "<code>10.1.10.12:8300</code>"
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.leaderStatus]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.leaderStatusAwait() : String {
-  return awaitResult{
+suspend fun ConsulClient.leaderStatusAwait(): String {
+  return awaitResult {
     this.leaderStatus(it)
   }
 }
 
 /**
- * Retrieves the Raft peers for the datacenter in which the the agent is running.
- * It returns a list of addresses "<code>10.1.10.12:8300</code>", "<code>10.1.10.13:8300</code>"
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.peersStatus]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.peersStatusAwait() : List<String> {
-  return awaitResult{
+suspend fun ConsulClient.peersStatusAwait(): List<String> {
+  return awaitResult {
     this.peersStatus(it)
   }
 }
 
 /**
- * Initialize a new session
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createSession]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.createSessionAwait() : String {
-  return awaitResult{
+suspend fun ConsulClient.createSessionAwait(): String {
+  return awaitResult {
     this.createSession(it)
   }
 }
 
 /**
- * Initialize a new session
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createSessionWithOptions]
  *
  * @param options options used to create session
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.createSessionWithOptionsAwait(options : SessionOptions) : String {
-  return awaitResult{
+suspend fun ConsulClient.createSessionWithOptionsAwait(options: SessionOptions): String {
+  return awaitResult {
     this.createSessionWithOptions(options, it)
   }
 }
 
 /**
- * Returns the requested session information
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.infoSession]
  *
  * @param id the ID of requested session
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Session]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.infoSessionAwait(id : String) : Session {
-  return awaitResult{
+suspend fun ConsulClient.infoSessionAwait(id: String): Session {
+  return awaitResult {
     this.infoSession(id, it)
   }
 }
 
 /**
- * Returns the requested session information
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.infoSessionWithOptions]
  *
  * @param id the ID of requested session
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Session]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.infoSessionWithOptionsAwait(id : String, options : BlockingQueryOptions) : Session {
-  return awaitResult{
+suspend fun ConsulClient.infoSessionWithOptionsAwait(id: String, options: BlockingQueryOptions): Session {
+  return awaitResult {
     this.infoSessionWithOptions(id, options, it)
   }
 }
 
 /**
- * Renews the given session. This is used with sessions that have a TTL, and it extends the expiration by the TTL
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.renewSession]
  *
  * @param id the ID of session that should be renewed
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [Session]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.renewSessionAwait(id : String) : Session {
-  return awaitResult{
+suspend fun ConsulClient.renewSessionAwait(id: String): Session {
+  return awaitResult {
     this.renewSession(id, it)
   }
 }
 
 /**
- * Returns the active sessions
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listSessions]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [SessionList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listSessionsAwait() : SessionList {
-  return awaitResult{
+suspend fun ConsulClient.listSessionsAwait(): SessionList {
+  return awaitResult {
     this.listSessions(it)
   }
 }
 
 /**
- * Returns the active sessions
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listSessionsWithOptions]
  *
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [SessionList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listSessionsWithOptionsAwait(options : BlockingQueryOptions) : SessionList {
-  return awaitResult{
+suspend fun ConsulClient.listSessionsWithOptionsAwait(options: BlockingQueryOptions): SessionList {
+  return awaitResult {
     this.listSessionsWithOptions(options, it)
   }
 }
 
 /**
- * Returns the active sessions for a given node
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listNodeSessions]
  *
  * @param nodeId the ID of node
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [SessionList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listNodeSessionsAwait(nodeId : String) : SessionList {
-  return awaitResult{
+suspend fun ConsulClient.listNodeSessionsAwait(nodeId: String): SessionList {
+  return awaitResult {
     this.listNodeSessions(nodeId, it)
   }
 }
 
 /**
- * Returns the active sessions for a given node
- * This is blocking query unlike [io.vertx.ext.consul.ConsulClient]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.listNodeSessionsWithOptions]
  *
  * @param nodeId the ID of node
  * @param options the blocking options
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [SessionList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId : String, options : BlockingQueryOptions) : SessionList {
-  return awaitResult{
+suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId: String, options: BlockingQueryOptions): SessionList {
+  return awaitResult {
     this.listNodeSessionsWithOptions(nodeId, options, it)
   }
 }
 
 /**
- * Destroys the given session
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.destroySession]
  *
  * @param id the ID of session
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.destroySessionAwait(id : String) : Unit {
-  return awaitResult{
-    this.destroySession(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.destroySessionAwait(id: String): Unit {
+  return awaitResult {
+    this.destroySession(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createPreparedQuery]
  *
  * @param definition definition of the prepare query
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.createPreparedQueryAwait(definition : PreparedQueryDefinition) : String {
-  return awaitResult{
+suspend fun ConsulClient.createPreparedQueryAwait(definition: PreparedQueryDefinition): String {
+  return awaitResult {
     this.createPreparedQuery(definition, it)
   }
 }
 
 /**
- * Returns an existing prepared query
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getPreparedQuery]
  *
  * @param id the id of the query to read
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [PreparedQueryDefinition]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getPreparedQueryAwait(id : String) : PreparedQueryDefinition {
-  return awaitResult{
+suspend fun ConsulClient.getPreparedQueryAwait(id: String): PreparedQueryDefinition {
+  return awaitResult {
     this.getPreparedQuery(id, it)
   }
 }
 
 /**
- * Returns a list of all prepared queries.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getAllPreparedQueries]
  *
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [List<PreparedQueryDefinition>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.getAllPreparedQueriesAwait() : List<PreparedQueryDefinition> {
-  return awaitResult{
+suspend fun ConsulClient.getAllPreparedQueriesAwait(): List<PreparedQueryDefinition> {
+  return awaitResult {
     this.getAllPreparedQueries(it)
   }
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.updatePreparedQuery]
  *
  * @param definition definition of the prepare query
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.updatePreparedQueryAwait(definition : PreparedQueryDefinition) : Unit {
-  return awaitResult{
-    this.updatePreparedQuery(definition, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.updatePreparedQueryAwait(definition: PreparedQueryDefinition): Unit {
+  return awaitResult {
+    this.updatePreparedQuery(definition) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Deletes an existing prepared query
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deletePreparedQuery]
  *
  * @param id the id of the query to delete
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.deletePreparedQueryAwait(id : String) : Unit {
-  return awaitResult{
-    this.deletePreparedQuery(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ConsulClient.deletePreparedQueryAwait(id: String): Unit {
+  return awaitResult {
+    this.deletePreparedQuery(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Executes an existing prepared query.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.executePreparedQuery]
  *
  * @param query the ID of the query to execute. This can also be the name of an existing prepared query, or a name that matches a prefix name for a prepared query template.
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [PreparedQueryExecuteResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.executePreparedQueryAwait(query : String) : PreparedQueryExecuteResponse {
-  return awaitResult{
+suspend fun ConsulClient.executePreparedQueryAwait(query: String): PreparedQueryExecuteResponse {
+  return awaitResult {
     this.executePreparedQuery(query, it)
   }
 }
 
 /**
- * Executes an existing prepared query.
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.executePreparedQueryWithOptions]
  *
  * @param query the ID of the query to execute. This can also be the name of an existing prepared query, or a name that matches a prefix name for a prepared query template.
  * @param options the options used to execute prepared query
- * @return reference to this, for fluency *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClient original] using Vert.x codegen.
+ * @return [PreparedQueryExecuteResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-suspend fun ConsulClient.executePreparedQueryWithOptionsAwait(query : String, options : PreparedQueryExecuteOptions) : PreparedQueryExecuteResponse {
-  return awaitResult{
+suspend fun ConsulClient.executePreparedQueryWithOptionsAwait(query: String, options: PreparedQueryExecuteOptions): PreparedQueryExecuteResponse {
+  return awaitResult {
     this.executePreparedQueryWithOptions(query, options, it)
   }
 }

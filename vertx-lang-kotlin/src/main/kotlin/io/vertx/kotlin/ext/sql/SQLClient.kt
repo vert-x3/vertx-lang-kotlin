@@ -9,190 +9,172 @@ import io.vertx.ext.sql.UpdateResult
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Execute a one shot SQL statement that returns a single SQL row. This method will reduce the boilerplate code by
- * getting a connection from the pool (this object) and return it back after the execution. Only the first result
- * from the result set is returned.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.querySingle]
  *
  * @param sql the statement to execute
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.querySingleAwait(sql : String) : JsonArray? {
-  return awaitResult{
+suspend fun SQLClient.querySingleAwait(sql: String): JsonArray? {
+  return awaitResult {
     this.querySingle(sql, it)
   }
 }
 
 /**
- * Execute a one shot SQL statement with arguments that returns a single SQL row. This method will reduce the
- * boilerplate code by getting a connection from the pool (this object) and return it back after the execution.
- * Only the first result from the result set is returned.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.querySingleWithParams]
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.querySingleWithParamsAwait(sql : String, arguments : JsonArray) : JsonArray? {
-  return awaitResult{
+suspend fun SQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
+  return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
   }
 }
 
 /**
- * Returns a connection that can be used to perform SQL operations on. It's important to remember
- * to close the connection when you are done, so it is returned to the pool.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.getConnection]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [SQLConnection]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.getConnectionAwait() : SQLConnection {
-  return awaitResult{
+suspend fun SQLClient.getConnectionAwait(): SQLConnection {
+  return awaitResult {
     this.getConnection(it)
   }
 }
 
 /**
- * Close the client and release all resources.
- * Call the handler when close is complete.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SQLClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Execute a single SQL statement, this method acquires a connection from the the pool and executes the SQL
- * statement and returns it back after the execution.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.query]
  *
  * @param sql the statement to execute
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.queryAwait(sql : String) : ResultSet {
-  return awaitResult{
+suspend fun SQLClient.queryAwait(sql: String): ResultSet {
+  return awaitResult {
     this.query(sql, it)
   }
 }
 
 /**
- * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.queryStream]
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [SQLRowStream]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.queryStreamAwait(sql : String) : SQLRowStream {
-  return awaitResult{
+suspend fun SQLClient.queryStreamAwait(sql: String): SQLRowStream {
+  return awaitResult {
     this.queryStream(sql, it)
   }
 }
 
 /**
- * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.queryStreamWithParams]
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
  * @param params these are the parameters to fill the statement.
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [SQLRowStream]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.queryStreamWithParamsAwait(sql : String, params : JsonArray) : SQLRowStream {
-  return awaitResult{
+suspend fun SQLClient.queryStreamWithParamsAwait(sql: String, params: JsonArray): SQLRowStream {
+  return awaitResult {
     this.queryStreamWithParams(sql, params, it)
   }
 }
 
 /**
- * Execute a single SQL prepared statement, this method acquires a connection from the the pool and executes the SQL
- * prepared statement and returns it back after the execution.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.queryWithParams]
  *
  * @param sql the statement to execute
  * @param arguments the arguments to the statement
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.queryWithParamsAwait(sql : String, arguments : JsonArray) : ResultSet {
-  return awaitResult{
+suspend fun SQLClient.queryWithParamsAwait(sql: String, arguments: JsonArray): ResultSet {
+  return awaitResult {
     this.queryWithParams(sql, arguments, it)
   }
 }
 
 /**
- * Executes the given SQL statement which may be an <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>
- * statement.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.update]
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [UpdateResult]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.updateAwait(sql : String) : UpdateResult {
-  return awaitResult{
+suspend fun SQLClient.updateAwait(sql: String): UpdateResult {
+  return awaitResult {
     this.update(sql, it)
   }
 }
 
 /**
- * Executes the given prepared statement which may be an <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code>
- * statement with the given parameters
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.updateWithParams]
  *
  * @param sql the SQL to execute. For example <code>INSERT INTO table ...</code>
  * @param params these are the parameters to fill the statement.
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [UpdateResult]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.updateWithParamsAwait(sql : String, params : JsonArray) : UpdateResult {
-  return awaitResult{
+suspend fun SQLClient.updateWithParamsAwait(sql: String, params: JsonArray): UpdateResult {
+  return awaitResult {
     this.updateWithParams(sql, params, it)
   }
 }
 
 /**
- * Calls the given SQL <code>PROCEDURE</code> which returns the result from the procedure.
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.call]
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName}</code>.
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.callAwait(sql : String) : ResultSet {
-  return awaitResult{
+suspend fun SQLClient.callAwait(sql: String): ResultSet {
+  return awaitResult {
     this.call(sql, it)
   }
 }
 
 /**
- * Calls the given SQL <code>PROCEDURE</code> which returns the result from the procedure.
- *
- * The index of params and outputs are important for both arrays, for example when dealing with a prodecure that
- * takes the first 2 arguments as input values and the 3 arg as an output then the arrays should be like:
- *
- * <pre>
- *   params = [VALUE1, VALUE2, null]
- *   outputs = [null, null, "VARCHAR"]
- * </pre>
+ * Suspending version of method [io.vertx.ext.sql.SQLClient.callWithParams]
  *
  * @param sql the SQL to execute. For example <code>{call getEmpName (?, ?)}</code>.
  * @param params these are the parameters to fill the statement.
  * @param outputs these are the outputs to fill the statement.
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-suspend fun SQLClient.callWithParamsAwait(sql : String, params : JsonArray, outputs : JsonArray) : ResultSet {
-  return awaitResult{
+suspend fun SQLClient.callWithParamsAwait(sql: String, params: JsonArray, outputs: JsonArray): ResultSet {
+  return awaitResult {
     this.callWithParams(sql, params, outputs, it)
   }
 }

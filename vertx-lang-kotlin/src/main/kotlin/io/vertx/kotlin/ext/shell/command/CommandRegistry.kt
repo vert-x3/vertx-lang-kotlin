@@ -5,43 +5,43 @@ import io.vertx.ext.shell.command.CommandRegistry
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Register a command
+ * Suspending version of method [io.vertx.ext.shell.command.CommandRegistry.registerCommand]
  *
  * @param command the command to register
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
+ * @return [Command]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
-suspend fun CommandRegistry.registerCommandAwait(command : Command) : Command {
-  return awaitResult{
+suspend fun CommandRegistry.registerCommandAwait(command: Command): Command {
+  return awaitResult {
     this.registerCommand(command, it)
   }
 }
 
 /**
- * Register a list of commands.
+ * Suspending version of method [io.vertx.ext.shell.command.CommandRegistry.registerCommands]
  *
  * @param commands the commands to register
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
+ * @return [List<Command>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
-suspend fun CommandRegistry.registerCommandsAwait(commands : List<Command>) : List<Command> {
-  return awaitResult{
+suspend fun CommandRegistry.registerCommandsAwait(commands: List<Command>): List<Command> {
+  return awaitResult {
     this.registerCommands(commands, it)
   }
 }
 
 /**
- * Unregister a command.
+ * Suspending version of method [io.vertx.ext.shell.command.CommandRegistry.unregisterCommand]
  *
  * @param commandName the command name
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.command.CommandRegistry original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
-suspend fun CommandRegistry.unregisterCommandAwait(commandName : String) : Unit {
-  return awaitResult{
-    this.unregisterCommand(commandName, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun CommandRegistry.unregisterCommandAwait(commandName: String): Unit {
+  return awaitResult {
+    this.unregisterCommand(commandName) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

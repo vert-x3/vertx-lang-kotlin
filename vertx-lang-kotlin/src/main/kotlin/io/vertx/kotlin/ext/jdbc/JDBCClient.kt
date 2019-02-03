@@ -5,34 +5,30 @@ import io.vertx.ext.jdbc.JDBCClient
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Execute a one shot SQL statement that returns a single SQL row. This method will reduce the boilerplate code by
- * getting a connection from the pool (this object) and return it back after the execution. Only the first result
- * from the result set is returned.
+ * Suspending version of method [io.vertx.ext.jdbc.JDBCClient.querySingle]
  *
  * @param sql the statement to execute
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.jdbc.JDBCClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.jdbc.JDBCClient] using Vert.x codegen.
  */
-suspend fun JDBCClient.querySingleAwait(sql : String) : JsonArray? {
-  return awaitResult{
+suspend fun JDBCClient.querySingleAwait(sql: String): JsonArray? {
+  return awaitResult {
     this.querySingle(sql, it)
   }
 }
 
 /**
- * Execute a one shot SQL statement with arguments that returns a single SQL row. This method will reduce the
- * boilerplate code by getting a connection from the pool (this object) and return it back after the execution.
- * Only the first result from the result set is returned.
+ * Suspending version of method [io.vertx.ext.jdbc.JDBCClient.querySingleWithParams]
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.jdbc.JDBCClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.jdbc.JDBCClient] using Vert.x codegen.
  */
-suspend fun JDBCClient.querySingleWithParamsAwait(sql : String, arguments : JsonArray) : JsonArray? {
-  return awaitResult{
+suspend fun JDBCClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
+  return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
   }
 }

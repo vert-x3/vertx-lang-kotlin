@@ -7,105 +7,105 @@ import io.vertx.mqtt.MqttClient
 import io.vertx.mqtt.messages.MqttConnAckMessage
 
 /**
- * Connects to an MQTT server calling connectHandler after connection
+ * Suspending version of method [io.vertx.mqtt.MqttClient.connect]
  *
  * @param port port of the MQTT server
  * @param host hostname/ip address of the MQTT server
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [MqttConnAckMessage]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.connectAwait(port : Int, host : String) : MqttConnAckMessage {
-  return awaitResult{
+suspend fun MqttClient.connectAwait(port: Int, host: String): MqttConnAckMessage {
+  return awaitResult {
     this.connect(port, host, it)
   }
 }
 
 /**
- * Connects to an MQTT server calling connectHandler after connection
+ * Suspending version of method [io.vertx.mqtt.MqttClient.connect]
  *
  * @param port port of the MQTT server
  * @param host hostname/ip address of the MQTT server
  * @param serverName the SNI server name
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [MqttConnAckMessage]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.connectAwait(port : Int, host : String, serverName : String) : MqttConnAckMessage {
-  return awaitResult{
+suspend fun MqttClient.connectAwait(port: Int, host: String, serverName: String): MqttConnAckMessage {
+  return awaitResult {
     this.connect(port, host, serverName, it)
   }
 }
 
 /**
- * Disconnects from the MQTT server calling disconnectHandler after disconnection
+ * Suspending version of method [io.vertx.mqtt.MqttClient.disconnect]
  *
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.disconnectAwait() : Unit {
-  return awaitResult{
-    this.disconnect({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun MqttClient.disconnectAwait(): Unit {
+  return awaitResult {
+    this.disconnect { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Sends the PUBLISH message to the remote MQTT server
+ * Suspending version of method [io.vertx.mqtt.MqttClient.publish]
  *
  * @param topic topic on which the message is published
  * @param payload message payload
  * @param qosLevel QoS level
  * @param isDup if the message is a duplicate
  * @param isRetain if the message needs to be retained
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.publishAwait(topic : String, payload : Buffer, qosLevel : MqttQoS, isDup : Boolean, isRetain : Boolean) : Int {
-  return awaitResult{
+suspend fun MqttClient.publishAwait(topic: String, payload: Buffer, qosLevel: MqttQoS, isDup: Boolean, isRetain: Boolean): Int {
+  return awaitResult {
     this.publish(topic, payload, qosLevel, isDup, isRetain, it)
   }
 }
 
 /**
- * Subscribes to the topic with a specified QoS level
+ * Suspending version of method [io.vertx.mqtt.MqttClient.subscribe]
  *
  * @param topic topic you subscribe on
  * @param qos QoS level
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.subscribeAwait(topic : String, qos : Int) : Int {
-  return awaitResult{
+suspend fun MqttClient.subscribeAwait(topic: String, qos: Int): Int {
+  return awaitResult {
     this.subscribe(topic, qos, it)
   }
 }
 
 /**
- * Subscribes to the topic and adds a handler which will be called after the request is sent
+ * Suspending version of method [io.vertx.mqtt.MqttClient.subscribe]
  *
  * @param topics topics you subscribe on
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.subscribeAwait(topics : Map<String,Int>) : Int {
-  return awaitResult{
+suspend fun MqttClient.subscribeAwait(topics: Map<String,Int>): Int {
+  return awaitResult {
     this.subscribe(topics, it)
   }
 }
 
 /**
- * Unsubscribe from receiving messages on given topic
+ * Suspending version of method [io.vertx.mqtt.MqttClient.unsubscribe]
  *
  * @param topic Topic you want to unsubscribe from
- * @return current MQTT client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClient original] using Vert.x codegen.
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
-suspend fun MqttClient.unsubscribeAwait(topic : String) : Int {
-  return awaitResult{
+suspend fun MqttClient.unsubscribeAwait(topic: String): Int {
+  return awaitResult {
     this.unsubscribe(topic, it)
   }
 }

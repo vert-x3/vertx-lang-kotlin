@@ -4,14 +4,14 @@ import io.vertx.ext.sql.SQLRowStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Closes the stream/underlying cursor(s). The actual close happens asynchronously.
+ * Suspending version of method [io.vertx.ext.sql.SQLRowStream.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLRowStream original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
  */
-suspend fun SQLRowStream.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SQLRowStream.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

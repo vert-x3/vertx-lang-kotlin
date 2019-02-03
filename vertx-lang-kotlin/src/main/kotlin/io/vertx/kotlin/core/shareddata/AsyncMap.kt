@@ -4,163 +4,160 @@ import io.vertx.core.shareddata.AsyncMap
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Get a value from the map, asynchronously.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.get]
  *
  * @param k the key
+ * @return [V?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.getAwait(k : K) : V? {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.getAwait(k: K): V? {
+  return awaitResult {
     this.get(k, it)
   }
 }
 
 /**
- * Put a value in the map, asynchronously.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.put]
  *
  * @param k the key
  * @param v the value
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.putAwait(k : K, v : V) : Unit {
-  return awaitResult{
-    this.put(k, v, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V): Unit {
+  return awaitResult {
+    this.put(k, v) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Like [io.vertx.core.shareddata.AsyncMap] but specifying a time to live for the entry. Entry will expire and get evicted after the
- * ttl.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.put]
  *
  * @param k the key
  * @param v the value
  * @param ttl The time to live (in ms) for the entry
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.putAwait(k : K, v : V, ttl : Long) : Unit {
-  return awaitResult{
-    this.put(k, v, ttl, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V, ttl: Long): Unit {
+  return awaitResult {
+    this.put(k, v, ttl) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Put the entry only if there is no entry with the key already present. If key already present then the existing
- * value will be returned to the handler, otherwise null.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.putIfAbsent]
  *
  * @param k the key
  * @param v the value
+ * @return [V?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k : K, v : V) : V? {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V): V? {
+  return awaitResult {
     this.putIfAbsent(k, v, it)
   }
 }
 
 /**
- * Link [io.vertx.core.shareddata.AsyncMap] but specifying a time to live for the entry. Entry will expire and get evicted
- * after the ttl.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.putIfAbsent]
  *
  * @param k the key
  * @param v the value
  * @param ttl The time to live (in ms) for the entry
+ * @return [V?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k : K, v : V, ttl : Long) : V? {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V, ttl: Long): V? {
+  return awaitResult {
     this.putIfAbsent(k, v, ttl, it)
   }
 }
 
 /**
- * Remove a value from the map, asynchronously.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.remove]
  *
  * @param k the key
+ * @return [V?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.removeAwait(k : K) : V? {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.removeAwait(k: K): V? {
+  return awaitResult {
     this.remove(k, it)
   }
 }
 
 /**
- * Remove a value from the map, only if entry already exists with same value.
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.removeIfPresent]
  *
  * @param k the key
  * @param v the value
+ * @return [Boolean]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.removeIfPresentAwait(k : K, v : V) : Boolean {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.removeIfPresentAwait(k: K, v: V): Boolean {
+  return awaitResult {
     this.removeIfPresent(k, v, it)
   }
 }
 
 /**
- * Replace the entry only if it is currently mapped to some value
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.replace]
  *
  * @param k the key
  * @param v the new value
+ * @return [V?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k : K, v : V) : V? {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V): V? {
+  return awaitResult {
     this.replace(k, v, it)
   }
 }
 
 /**
- * Replace the entry only if it is currently mapped to a specific value
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.replaceIfPresent]
  *
  * @param k the key
  * @param oldValue the existing value
  * @param newValue the new value
+ * @return [Boolean]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k : K, oldValue : V, newValue : V) : Boolean {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValue: V): Boolean {
+  return awaitResult {
     this.replaceIfPresent(k, oldValue, newValue, it)
   }
 }
 
 /**
- * Clear all entries in the map
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.clear]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.clearAwait() : Unit {
-  return awaitResult{
-    this.clear({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun <K,V> AsyncMap<K,V>.clearAwait(): Unit {
+  return awaitResult {
+    this.clear { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Provide the number of entries in the map
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.size]
  *
+ * @return [Int]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.AsyncMap original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-suspend fun <K,V> AsyncMap<K,V>.sizeAwait() : Int {
-  return awaitResult{
+suspend fun <K,V> AsyncMap<K,V>.sizeAwait(): Int {
+  return awaitResult {
     this.size(it)
   }
 }

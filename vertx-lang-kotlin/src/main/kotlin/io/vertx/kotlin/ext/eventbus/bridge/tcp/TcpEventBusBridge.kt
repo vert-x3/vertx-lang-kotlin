@@ -4,56 +4,56 @@ import io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Listen on default port 7000 with a handler to report the state of the socket listen operation.
+ * Suspending version of method [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge.listen]
  *
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
+ * @return [TcpEventBusBridge]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
-suspend fun TcpEventBusBridge.listenAwait() : TcpEventBusBridge {
-  return awaitResult{
+suspend fun TcpEventBusBridge.listenAwait(): TcpEventBusBridge {
+  return awaitResult {
     this.listen(it)
   }
 }
 
 /**
- * Listen on specific port and bind to specific address
+ * Suspending version of method [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge.listen]
  *
  * @param port tcp port
  * @param address tcp address to the bind
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
+ * @return [TcpEventBusBridge]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
-suspend fun TcpEventBusBridge.listenAwait(port : Int, address : String) : TcpEventBusBridge {
-  return awaitResult{
+suspend fun TcpEventBusBridge.listenAwait(port: Int, address: String): TcpEventBusBridge {
+  return awaitResult {
     this.listen(port, address, it)
   }
 }
 
 /**
- * Listen on specific port
+ * Suspending version of method [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge.listen]
  *
  * @param port tcp port
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
+ * @return [TcpEventBusBridge]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
-suspend fun TcpEventBusBridge.listenAwait(port : Int) : TcpEventBusBridge {
-  return awaitResult{
+suspend fun TcpEventBusBridge.listenAwait(port: Int): TcpEventBusBridge {
+  return awaitResult {
     this.listen(port, it)
   }
 }
 
 /**
- * Close the current socket.
+ * Suspending version of method [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
-suspend fun TcpEventBusBridge.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun TcpEventBusBridge.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
