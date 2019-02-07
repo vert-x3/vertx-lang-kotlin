@@ -143,7 +143,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   ) {
     List<ParamInfo> params = method.getParams();
     ParamInfo lastParam = params.get(params.size() - 1);
-    TypeInfo returnType = getReturnType(method, lastParam);
+    TypeInfo returnType = getAsyncTypeArgument(method, lastParam);
     String returnTypeAsString = getReturnTypeAsString(returnType, lastParam.isNullableCallback(), type, className);
     generateDoc(model, method, returnTypeAsString, writer);
 
@@ -183,7 +183,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     generateFunctionBody(method, objectName, returnType, writer);
   }
 
-  private TypeInfo getReturnType(MethodInfo method, ParamInfo lastParam) {
+  private TypeInfo getAsyncTypeArgument(MethodInfo method, ParamInfo lastParam) {
     ParameterizedTypeInfo lastParamType = (ParameterizedTypeInfo) lastParam.getType();
     TypeInfo handlerArg = lastParamType.getArg(0);
     TypeInfo returnType;
