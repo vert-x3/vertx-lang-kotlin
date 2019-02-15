@@ -4,27 +4,27 @@ import io.vertx.ext.shell.term.TermServer
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Bind the term server, the [io.vertx.ext.shell.term.TermServer] must be set before.
+ * Suspending version of method [io.vertx.ext.shell.term.TermServer.listen]
  *
- * @return this object *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TermServer original] using Vert.x codegen.
+ * @return [TermServer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.term.TermServer] using Vert.x codegen.
  */
-suspend fun TermServer.listenAwait() : TermServer {
-  return awaitResult{
+suspend fun TermServer.listenAwait(): TermServer {
+  return awaitResult {
     this.listen(it)
   }
 }
 
 /**
- * Like [io.vertx.ext.shell.term.TermServer] but supplying a handler that will be notified when close is complete.
+ * Suspending version of method [io.vertx.ext.shell.term.TermServer.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TermServer original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.shell.term.TermServer] using Vert.x codegen.
  */
-suspend fun TermServer.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun TermServer.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

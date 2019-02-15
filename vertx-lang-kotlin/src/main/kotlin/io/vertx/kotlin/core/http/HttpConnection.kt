@@ -6,34 +6,28 @@ import io.vertx.core.http.HttpConnection
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Send to the remote endpoint an update of this endpoint settings
- * <p/>
- * The <code>completionHandler</code> will be notified when the remote endpoint has acknowledged the settings.
- * <p/>
- * This is not implemented for HTTP/1.x.
+ * Suspending version of method [io.vertx.core.http.HttpConnection.updateSettings]
  *
  * @param settings the new settings
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpConnection original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-suspend fun HttpConnection.updateSettingsAwait(settings : Http2Settings) : Unit {
-  return awaitResult{
-    this.updateSettings(settings, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
+  return awaitResult {
+    this.updateSettings(settings) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Send a  frame to the remote endpoint.
- * <p/>
- * This is not implemented for HTTP/1.x.
+ * Suspending version of method [io.vertx.core.http.HttpConnection.ping]
  *
  * @param data the 8 bytes data of the frame
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpConnection original] using Vert.x codegen.
+ * @return [Buffer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-suspend fun HttpConnection.pingAwait(data : Buffer) : Buffer {
-  return awaitResult{
+suspend fun HttpConnection.pingAwait(data: Buffer): Buffer {
+  return awaitResult {
     this.ping(data, it)
   }
 }

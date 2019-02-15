@@ -4,97 +4,96 @@ import io.vertx.core.shareddata.Counter
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Get the current value of the counter
+ * Suspending version of method [io.vertx.core.shareddata.Counter.get]
  *
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.getAwait() : Long {
-  return awaitResult{
+suspend fun Counter.getAwait(): Long {
+  return awaitResult {
     this.get(it)
   }
 }
 
 /**
- * Increment the counter atomically and return the new count
+ * Suspending version of method [io.vertx.core.shareddata.Counter.incrementAndGet]
  *
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.incrementAndGetAwait() : Long {
-  return awaitResult{
+suspend fun Counter.incrementAndGetAwait(): Long {
+  return awaitResult {
     this.incrementAndGet(it)
   }
 }
 
 /**
- * Increment the counter atomically and return the value before the increment.
+ * Suspending version of method [io.vertx.core.shareddata.Counter.getAndIncrement]
  *
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.getAndIncrementAwait() : Long {
-  return awaitResult{
+suspend fun Counter.getAndIncrementAwait(): Long {
+  return awaitResult {
     this.getAndIncrement(it)
   }
 }
 
 /**
- * Decrement the counter atomically and return the new count
+ * Suspending version of method [io.vertx.core.shareddata.Counter.decrementAndGet]
  *
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.decrementAndGetAwait() : Long {
-  return awaitResult{
+suspend fun Counter.decrementAndGetAwait(): Long {
+  return awaitResult {
     this.decrementAndGet(it)
   }
 }
 
 /**
- * Add the value to the counter atomically and return the new count
+ * Suspending version of method [io.vertx.core.shareddata.Counter.addAndGet]
  *
  * @param value the value to add
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.addAndGetAwait(value : Long) : Long {
-  return awaitResult{
+suspend fun Counter.addAndGetAwait(value: Long): Long {
+  return awaitResult {
     this.addAndGet(value, it)
   }
 }
 
 /**
- * Add the value to the counter atomically and return the value before the add
+ * Suspending version of method [io.vertx.core.shareddata.Counter.getAndAdd]
  *
  * @param value the value to add
+ * @return [Long]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.getAndAddAwait(value : Long) : Long {
-  return awaitResult{
+suspend fun Counter.getAndAddAwait(value: Long): Long {
+  return awaitResult {
     this.getAndAdd(value, it)
   }
 }
 
 /**
- * Set the counter to the specified value only if the current value is the expectec value. This happens
- * atomically.
+ * Suspending version of method [io.vertx.core.shareddata.Counter.compareAndSet]
  *
  * @param expected the expected value
  * @param value the new value
+ * @return [Boolean]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.shareddata.Counter original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-suspend fun Counter.compareAndSetAwait(expected : Long, value : Long) : Boolean {
-  return awaitResult{
+suspend fun Counter.compareAndSetAwait(expected: Long, value: Long): Boolean {
+  return awaitResult {
     this.compareAndSet(expected, value, it)
   }
 }

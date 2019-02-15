@@ -4,14 +4,14 @@ import io.vertx.ext.unit.Completion
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Completion handler to receive a completion signal when this completions completes.
+ * Suspending version of method [io.vertx.ext.unit.Completion.handler]
  *
+ * @return [T?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.unit.Completion original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.unit.Completion] using Vert.x codegen.
  */
-suspend fun <T> Completion<T>.handlerAwait() : T? {
-  return awaitResult{
+suspend fun <T> Completion<T>.handlerAwait(): T? {
+  return awaitResult {
     this.handler(it)
   }
 }

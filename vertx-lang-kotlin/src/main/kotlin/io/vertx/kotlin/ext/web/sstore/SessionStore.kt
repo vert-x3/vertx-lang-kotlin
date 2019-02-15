@@ -5,68 +5,66 @@ import io.vertx.ext.web.sstore.SessionStore
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Get the session with the specified ID.
+ * Suspending version of method [io.vertx.ext.web.sstore.SessionStore.get]
  *
  * @param cookieValue the unique ID of the session
+ * @return [Session?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-suspend fun SessionStore.getAwait(cookieValue : String) : Session? {
-  return awaitResult{
+suspend fun SessionStore.getAwait(cookieValue: String): Session? {
+  return awaitResult {
     this.get(cookieValue, it)
   }
 }
 
 /**
- * Delete the session with the specified ID.
+ * Suspending version of method [io.vertx.ext.web.sstore.SessionStore.delete]
  *
  * @param id the session id
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-suspend fun SessionStore.deleteAwait(id : String) : Unit {
-  return awaitResult{
-    this.delete(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SessionStore.deleteAwait(id: String): Unit {
+  return awaitResult {
+    this.delete(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Add a session with the specified ID.
+ * Suspending version of method [io.vertx.ext.web.sstore.SessionStore.put]
  *
  * @param session the session
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-suspend fun SessionStore.putAwait(session : Session) : Unit {
-  return awaitResult{
-    this.put(session, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SessionStore.putAwait(session: Session): Unit {
+  return awaitResult {
+    this.put(session) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Remove all sessions from the store.
+ * Suspending version of method [io.vertx.ext.web.sstore.SessionStore.clear]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-suspend fun SessionStore.clearAwait() : Unit {
-  return awaitResult{
-    this.clear({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SessionStore.clearAwait(): Unit {
+  return awaitResult {
+    this.clear { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Get the number of sessions in the store.
- * <p>
- * Beware of the result which is just an estimate, in particular with distributed session stores.
+ * Suspending version of method [io.vertx.ext.web.sstore.SessionStore.size]
  *
+ * @return [Int]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.sstore.SessionStore original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-suspend fun SessionStore.sizeAwait() : Int {
-  return awaitResult{
+suspend fun SessionStore.sizeAwait(): Int {
+  return awaitResult {
     this.size(it)
   }
 }

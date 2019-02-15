@@ -5,47 +5,43 @@ import io.vertx.ext.auth.oauth2.OAuth2Auth
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Query an OAuth 2.0 authorization server to determine the active state of an OAuth 2.0 token and to determine
- * meta-information about this token.
+ * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.introspectToken]
  *
  * @param token the access token (base64 string)
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.
+ * @return [AccessToken]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-suspend fun OAuth2Auth.introspectTokenAwait(token : String) : AccessToken {
-  return awaitResult{
+suspend fun OAuth2Auth.introspectTokenAwait(token: String): AccessToken {
+  return awaitResult {
     this.introspectToken(token, it)
   }
 }
 
 /**
- * Query an OAuth 2.0 authorization server to determine the active state of an OAuth 2.0 token and to determine
- * meta-information about this token.
+ * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.introspectToken]
  *
  * @param token the access token (base64 string)
  * @param tokenType hint to the token type e.g.: `access_token`
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.
+ * @return [AccessToken]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-suspend fun OAuth2Auth.introspectTokenAwait(token : String, tokenType : String) : AccessToken {
-  return awaitResult{
+suspend fun OAuth2Auth.introspectTokenAwait(token: String, tokenType: String): AccessToken {
+  return awaitResult {
     this.introspectToken(token, tokenType, it)
   }
 }
 
 /**
- * Loads a JWK Set from the remote provider.
+ * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.loadJWK]
  *
- * When calling this method several times, the loaded JWKs are updated in the underlying JWT object.
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2Auth original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-suspend fun OAuth2Auth.loadJWKAwait() : Unit {
-  return awaitResult{
-    this.loadJWK({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun OAuth2Auth.loadJWKAwait(): Unit {
+  return awaitResult {
+    this.loadJWK { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

@@ -10,629 +10,516 @@ import io.vertx.core.file.OpenOptions
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.
- * <p>
- * The copy will fail if the destination already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.copy]
  *
  * @param from the path to copy from
  * @param to the path to copy to
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.copyAwait(from : String, to : String) : Unit {
-  return awaitResult{
-    this.copy(from, to, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.copyAwait(from: String, to: String): Unit {
+  return awaitResult {
+    this.copy(from, to) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.copy]
  *
  * @param from the path to copy from
  * @param to the path to copy to
  * @param options options describing how the file should be copied
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.copyAwait(from : String, to : String, options : CopyOptions) : Unit {
-  return awaitResult{
-    this.copy(from, to, options, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.copyAwait(from: String, to: String, options: CopyOptions): Unit {
+  return awaitResult {
+    this.copy(from, to, options) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Copy a file from the path <code>from</code> to path <code>to</code>, asynchronously.
- * <p>
- * If <code>recursive</code> is <code>true</code> and <code>from</code> represents a directory, then the directory and its contents
- * will be copied recursively to the destination <code>to</code>.
- * <p>
- * The copy will fail if the destination if the destination already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.copyRecursive]
  *
  * @param from the path to copy from
  * @param to the path to copy to
  * @param recursive 
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.copyRecursiveAwait(from : String, to : String, recursive : Boolean) : Unit {
-  return awaitResult{
-    this.copyRecursive(from, to, recursive, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.copyRecursiveAwait(from: String, to: String, recursive: Boolean): Unit {
+  return awaitResult {
+    this.copyRecursive(from, to, recursive) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Move a file from the path <code>from</code> to path <code>to</code>, asynchronously.
- * <p>
- * The move will fail if the destination already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.move]
  *
  * @param from the path to copy from
  * @param to the path to copy to
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.moveAwait(from : String, to : String) : Unit {
-  return awaitResult{
-    this.move(from, to, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.moveAwait(from: String, to: String): Unit {
+  return awaitResult {
+    this.move(from, to) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Move a file from the path <code>from</code> to path <code>to</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.move]
  *
  * @param from the path to copy from
  * @param to the path to copy to
  * @param options options describing how the file should be copied
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.moveAwait(from : String, to : String, options : CopyOptions) : Unit {
-  return awaitResult{
-    this.move(from, to, options, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.moveAwait(from: String, to: String, options: CopyOptions): Unit {
+  return awaitResult {
+    this.move(from, to, options) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Truncate the file represented by <code>path</code> to length <code>len</code> in bytes, asynchronously.
- * <p>
- * The operation will fail if the file does not exist or <code>len</code> is less than <code>zero</code>.
+ * Suspending version of method [io.vertx.core.file.FileSystem.truncate]
  *
  * @param path the path to the file
  * @param len the length to truncate it to
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.truncateAwait(path : String, len : Long) : Unit {
-  return awaitResult{
-    this.truncate(path, len, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.truncateAwait(path: String, len: Long): Unit {
+  return awaitResult {
+    this.truncate(path, len) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.
- * <p>
- * The permission String takes the form rwxr-x--- as
- * specified <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
+ * Suspending version of method [io.vertx.core.file.FileSystem.chmod]
  *
  * @param path the path to the file
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.chmodAwait(path : String, perms : String) : Unit {
-  return awaitResult{
-    this.chmod(path, perms, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.chmodAwait(path: String, perms: String): Unit {
+  return awaitResult {
+    this.chmod(path, perms) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Change the permissions on the file represented by <code>path</code> to <code>perms</code>, asynchronously.<p>
- * The permission String takes the form rwxr-x--- as
- * specified in {<a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>}.
- * <p>
- * If the file is directory then all contents will also have their permissions changed recursively. Any directory permissions will
- * be set to <code>dirPerms</code>, whilst any normal file permissions will be set to <code>perms</code>.
+ * Suspending version of method [io.vertx.core.file.FileSystem.chmodRecursive]
  *
  * @param path the path to the file
  * @param perms the permissions string
  * @param dirPerms the directory permissions
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.chmodRecursiveAwait(path : String, perms : String, dirPerms : String) : Unit {
-  return awaitResult{
-    this.chmodRecursive(path, perms, dirPerms, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.chmodRecursiveAwait(path: String, perms: String, dirPerms: String): Unit {
+  return awaitResult {
+    this.chmodRecursive(path, perms, dirPerms) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Change the ownership on the file represented by <code>path</code> to <code>user</code> and {code group}, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.chown]
  *
  * @param path the path to the file
  * @param user the user name, <code>null</code> will not change the user name
  * @param group the user group, <code>null</code> will not change the user group name
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.chownAwait(path : String, user : String, group : String) : Unit {
-  return awaitResult{
-    this.chown(path, user, group, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.chownAwait(path: String, user: String, group: String): Unit {
+  return awaitResult {
+    this.chown(path, user, group) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Obtain properties for the file represented by <code>path</code>, asynchronously.
- * <p>
- * If the file is a link, the link will be followed.
+ * Suspending version of method [io.vertx.core.file.FileSystem.props]
  *
  * @param path the path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [FileProps]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.propsAwait(path : String) : FileProps {
-  return awaitResult{
+suspend fun FileSystem.propsAwait(path: String): FileProps {
+  return awaitResult {
     this.props(path, it)
   }
 }
 
 /**
- * Obtain properties for the link represented by <code>path</code>, asynchronously.
- * <p>
- * The link will not be followed.
+ * Suspending version of method [io.vertx.core.file.FileSystem.lprops]
  *
  * @param path the path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [FileProps]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.lpropsAwait(path : String) : FileProps {
-  return awaitResult{
+suspend fun FileSystem.lpropsAwait(path: String): FileProps {
+  return awaitResult {
     this.lprops(path, it)
   }
 }
 
 /**
- * Create a hard link on the file system from <code>link</code> to <code>existing</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.link]
  *
  * @param link the link
  * @param existing the link destination
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.linkAwait(link : String, existing : String) : Unit {
-  return awaitResult{
-    this.link(link, existing, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.linkAwait(link: String, existing: String): Unit {
+  return awaitResult {
+    this.link(link, existing) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Create a symbolic link on the file system from <code>link</code> to <code>existing</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.symlink]
  *
  * @param link the link
  * @param existing the link destination
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.symlinkAwait(link : String, existing : String) : Unit {
-  return awaitResult{
-    this.symlink(link, existing, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.symlinkAwait(link: String, existing: String): Unit {
+  return awaitResult {
+    this.symlink(link, existing) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Unlinks the link on the file system represented by the path <code>link</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.unlink]
  *
  * @param link the link
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.unlinkAwait(link : String) : Unit {
-  return awaitResult{
-    this.unlink(link, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.unlinkAwait(link: String): Unit {
+  return awaitResult {
+    this.unlink(link) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Returns the path representing the file that the symbolic link specified by <code>link</code> points to, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.readSymlink]
  *
  * @param link the link
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.readSymlinkAwait(link : String) : String {
-  return awaitResult{
+suspend fun FileSystem.readSymlinkAwait(link: String): String {
+  return awaitResult {
     this.readSymlink(link, it)
   }
 }
 
 /**
- * Deletes the file represented by the specified <code>path</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.delete]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.deleteAwait(path : String) : Unit {
-  return awaitResult{
-    this.delete(path, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.deleteAwait(path: String): Unit {
+  return awaitResult {
+    this.delete(path) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Deletes the file represented by the specified <code>path</code>, asynchronously.
- * <p>
- * If the path represents a directory and <code>recursive = true</code> then the directory and its contents will be
- * deleted recursively.
+ * Suspending version of method [io.vertx.core.file.FileSystem.deleteRecursive]
  *
  * @param path path to the file
  * @param recursive delete recursively?
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.deleteRecursiveAwait(path : String, recursive : Boolean) : Unit {
-  return awaitResult{
-    this.deleteRecursive(path, recursive, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.deleteRecursiveAwait(path: String, recursive: Boolean): Unit {
+  return awaitResult {
+    this.deleteRecursive(path, recursive) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Create the directory represented by <code>path</code>, asynchronously.
- * <p>
- * The operation will fail if the directory already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.mkdir]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.mkdirAwait(path : String) : Unit {
-  return awaitResult{
-    this.mkdir(path, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.mkdirAwait(path: String): Unit {
+  return awaitResult {
+    this.mkdir(path) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Create the directory represented by <code>path</code>, asynchronously.
- * <p>
- * The new directory will be created with permissions as specified by <code>perms</code>.
- * <p>
- * The permission String takes the form rwxr-x--- as specified
- * in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
- * <p>
- * The operation will fail if the directory already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.mkdir]
  *
  * @param path path to the file
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.mkdirAwait(path : String, perms : String) : Unit {
-  return awaitResult{
-    this.mkdir(path, perms, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.mkdirAwait(path: String, perms: String): Unit {
+  return awaitResult {
+    this.mkdir(path, perms) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Create the directory represented by <code>path</code> and any non existent parents, asynchronously.
- * <p>
- * The operation will fail if the directory already exists.
+ * Suspending version of method [io.vertx.core.file.FileSystem.mkdirs]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.mkdirsAwait(path : String) : Unit {
-  return awaitResult{
-    this.mkdirs(path, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.mkdirsAwait(path: String): Unit {
+  return awaitResult {
+    this.mkdirs(path) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Create the directory represented by <code>path</code> and any non existent parents, asynchronously.
- * <p>
- * The new directory will be created with permissions as specified by <code>perms</code>.
- * <p>
- * The permission String takes the form rwxr-x--- as specified
- * in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
- * <p>
- * The operation will fail if the directory already exists.<p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.mkdirs]
  *
  * @param path path to the file
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.mkdirsAwait(path : String, perms : String) : Unit {
-  return awaitResult{
-    this.mkdirs(path, perms, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.mkdirsAwait(path: String, perms: String): Unit {
+  return awaitResult {
+    this.mkdirs(path, perms) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Read the contents of the directory specified by <code>path</code>, asynchronously.
- * <p>
- * The result is an array of String representing the paths of the files inside the directory.
+ * Suspending version of method [io.vertx.core.file.FileSystem.readDir]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.readDirAwait(path : String) : List<String> {
-  return awaitResult{
+suspend fun FileSystem.readDirAwait(path: String): List<String> {
+  return awaitResult {
     this.readDir(path, it)
   }
 }
 
 /**
- * Read the contents of the directory specified by <code>path</code>, asynchronously.
- * <p>
- * The parameter <code>filter</code> is a regular expression. If <code>filter</code> is specified then only the paths that
- * match  @{filter}will be returned.
- * <p>
- * The result is an array of String representing the paths of the files inside the directory.
+ * Suspending version of method [io.vertx.core.file.FileSystem.readDir]
  *
  * @param path path to the directory
  * @param filter the filter expression
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [List<String>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.readDirAwait(path : String, filter : String) : List<String> {
-  return awaitResult{
+suspend fun FileSystem.readDirAwait(path: String, filter: String): List<String> {
+  return awaitResult {
     this.readDir(path, filter, it)
   }
 }
 
 /**
- * Reads the entire file as represented by the path <code>path</code> as a , asynchronously.
- * <p>
- * Do not use this method to read very large files or you risk running out of available RAM.
+ * Suspending version of method [io.vertx.core.file.FileSystem.readFile]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [Buffer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.readFileAwait(path : String) : Buffer {
-  return awaitResult{
+suspend fun FileSystem.readFileAwait(path: String): Buffer {
+  return awaitResult {
     this.readFile(path, it)
   }
 }
 
 /**
- * Creates the file, and writes the specified <code>Buffer data</code> to the file represented by the path <code>path</code>,
- * asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.writeFile]
  *
  * @param path path to the file
  * @param data 
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.writeFileAwait(path : String, data : Buffer) : Unit {
-  return awaitResult{
-    this.writeFile(path, data, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.writeFileAwait(path: String, data: Buffer): Unit {
+  return awaitResult {
+    this.writeFile(path, data) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Open the file represented by <code>path</code>, asynchronously.
- * <p>
- * The file is opened for both reading and writing. If the file does not already exist it will be created.
+ * Suspending version of method [io.vertx.core.file.FileSystem.open]
  *
  * @param path path to the file
  * @param options options describing how the file should be opened
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [AsyncFile]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.openAwait(path : String, options : OpenOptions) : AsyncFile {
-  return awaitResult{
+suspend fun FileSystem.openAwait(path: String, options: OpenOptions): AsyncFile {
+  return awaitResult {
     this.open(path, options, it)
   }
 }
 
 /**
- * Creates an empty file with the specified <code>path</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.createFile]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createFileAwait(path : String) : Unit {
-  return awaitResult{
-    this.createFile(path, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.createFileAwait(path: String): Unit {
+  return awaitResult {
+    this.createFile(path) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Creates an empty file with the specified <code>path</code> and permissions <code>perms</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.createFile]
  *
  * @param path path to the file
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createFileAwait(path : String, perms : String) : Unit {
-  return awaitResult{
-    this.createFile(path, perms, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun FileSystem.createFileAwait(path: String, perms: String): Unit {
+  return awaitResult {
+    this.createFile(path, perms) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Determines whether the file as specified by the path <code>path</code> exists, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.exists]
  *
  * @param path path to the file
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.existsAwait(path : String) : Boolean {
-  return awaitResult{
+suspend fun FileSystem.existsAwait(path: String): Boolean {
+  return awaitResult {
     this.exists(path, it)
   }
 }
 
 /**
- * Returns properties of the file-system being used by the specified <code>path</code>, asynchronously.
+ * Suspending version of method [io.vertx.core.file.FileSystem.fsProps]
  *
  * @param path path to anywhere on the filesystem
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [FileSystemProps]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.fsPropsAwait(path : String) : FileSystemProps {
-  return awaitResult{
+suspend fun FileSystem.fsPropsAwait(path: String): FileSystemProps {
+  return awaitResult {
     this.fsProps(path, it)
   }
 }
 
 /**
- * Creates a new directory in the default temporary-file directory, using the given
- * prefix to generate its name, asynchronously.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempDirectory]
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempDirectoryAwait(prefix : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempDirectoryAwait(prefix: String): String {
+  return awaitResult {
     this.createTempDirectory(prefix, it)
   }
 }
 
 /**
- * Creates a new directory in the default temporary-file directory, using the given
- * prefix to generate its name, asynchronously.
- * <p>
- * The new directory will be created with permissions as specified by <code>perms</code>.
- * </p>
- * The permission String takes the form rwxr-x--- as specified
- * in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempDirectory]
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempDirectoryAwait(prefix : String, perms : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempDirectoryAwait(prefix: String, perms: String): String {
+  return awaitResult {
     this.createTempDirectory(prefix, perms, it)
   }
 }
 
 /**
- * Creates a new directory in the directory provided by the path <code>path</code>, using the given
- * prefix to generate its name, asynchronously.
- * <p>
- * The new directory will be created with permissions as specified by <code>perms</code>.
- * </p>
- * The permission String takes the form rwxr-x--- as specified
- * in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempDirectory]
  *
  * @param dir the path to directory in which to create the directory
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempDirectoryAwait(dir : String, prefix : String, perms : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempDirectoryAwait(dir: String, prefix: String, perms: String): String {
+  return awaitResult {
     this.createTempDirectory(dir, prefix, perms, it)
   }
 }
 
 /**
- * Creates a new file in the default temporary-file directory, using the given
- * prefix and suffix to generate its name, asynchronously.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempFile]
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempFileAwait(prefix : String, suffix : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String): String {
+  return awaitResult {
     this.createTempFile(prefix, suffix, it)
   }
 }
 
 /**
- * Creates a new file in the directory provided by the path <code>dir</code>, using the given
- * prefix and suffix to generate its name, asynchronously.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempFile]
  *
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
  * @param perms 
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempFileAwait(prefix : String, suffix : String, perms : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String, perms: String): String {
+  return awaitResult {
     this.createTempFile(prefix, suffix, perms, it)
   }
 }
 
 /**
- * Creates a new file in the directory provided by the path <code>dir</code>, using the given
- * prefix and suffix to generate its name, asynchronously.
- * <p>
- * The new directory will be created with permissions as specified by <code>perms</code>.
- * </p>
- * The permission String takes the form rwxr-x--- as specified
- * in <a href="http://download.oracle.com/javase/7/docs/api/java/nio/file/attribute/PosixFilePermissions.html">here</a>.
- *
- * <p>
- * As with the <code>File.createTempFile</code> methods, this method is only
- * part of a temporary-file facility.A [java.lang.Runtime],
- * or the [java.io.File] mechanism may be used to delete the directory automatically.
- * </p>
+ * Suspending version of method [io.vertx.core.file.FileSystem.createTempFile]
  *
  * @param dir the path to directory in which to create the directory
  * @param prefix the prefix string to be used in generating the directory's name; may be <code>null</code>
  * @param suffix the suffix string to be used in generating the file's name; may be <code>null</code>, in which case "<code>.tmp</code>" is used
  * @param perms the permissions string
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.file.FileSystem original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.createTempFileAwait(dir : String, prefix : String, suffix : String, perms : String) : String {
-  return awaitResult{
+suspend fun FileSystem.createTempFileAwait(dir: String, prefix: String, suffix: String, perms: String): String {
+  return awaitResult {
     this.createTempFile(dir, prefix, suffix, perms, it)
   }
 }

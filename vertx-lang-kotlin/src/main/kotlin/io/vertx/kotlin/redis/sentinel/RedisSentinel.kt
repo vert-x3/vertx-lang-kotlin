@@ -5,150 +5,136 @@ import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.redis.sentinel.RedisSentinel
 
 /**
- * Close the client - when it is fully closed the handler will be called.
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun RedisSentinel.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Show a list of monitored masters and their state
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.masters]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.mastersAwait() : JsonArray {
-  return awaitResult{
+suspend fun RedisSentinel.mastersAwait(): JsonArray {
+  return awaitResult {
     this.masters(it)
   }
 }
 
 /**
- * Show the state and info of the specified master
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.master]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.masterAwait(name : String) : JsonArray {
-  return awaitResult{
+suspend fun RedisSentinel.masterAwait(name: String): JsonArray {
+  return awaitResult {
     this.master(name, it)
   }
 }
 
 /**
- * Show a list of slaves for this master, and their state
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.slaves]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.slavesAwait(name : String) : JsonArray {
-  return awaitResult{
+suspend fun RedisSentinel.slavesAwait(name: String): JsonArray {
+  return awaitResult {
     this.slaves(name, it)
   }
 }
 
 /**
- * Show a list of sentinel instances for this master, and their state
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.sentinels]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.sentinelsAwait(name : String) : JsonArray {
-  return awaitResult{
+suspend fun RedisSentinel.sentinelsAwait(name: String): JsonArray {
+  return awaitResult {
     this.sentinels(name, it)
   }
 }
 
 /**
- * Return the ip and port number of the master with that name.
- * If a failover is in progress or terminated successfully for this master
- * it returns the address and port of the promoted slave
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.getMasterAddrByName]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.getMasterAddrByNameAwait(name : String) : JsonArray {
-  return awaitResult{
+suspend fun RedisSentinel.getMasterAddrByNameAwait(name: String): JsonArray {
+  return awaitResult {
     this.getMasterAddrByName(name, it)
   }
 }
 
 /**
- * Reset all the masters with matching name.
- * The pattern argument is a glob-style pattern.
- * The reset process clears any previous state in a master (including a failover in pro
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.reset]
  *
  * @param pattern pattern String
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.resetAwait(pattern : String) : Unit {
-  return awaitResult{
-    this.reset(pattern, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun RedisSentinel.resetAwait(pattern: String): Unit {
+  return awaitResult {
+    this.reset(pattern) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Force a failover as if the master was not reachable, and without asking for agreement to other Sentinels
- * (however a new version of the configuration will be published so that the other Sentinels
- * will update their configurations)
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.failover]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.failoverAwait(name : String) : String {
-  return awaitResult{
+suspend fun RedisSentinel.failoverAwait(name: String): String {
+  return awaitResult {
     this.failover(name, it)
   }
 }
 
 /**
- * Check if the current Sentinel configuration is able to reach the quorum needed to failover a master,
- * and the majority needed to authorize the failover. This command should be used in monitoring systems
- * to check if a Sentinel deployment is ok.
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.ckquorum]
  *
  * @param name master name
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ * @return [String]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.ckquorumAwait(name : String) : String {
-  return awaitResult{
+suspend fun RedisSentinel.ckquorumAwait(name: String): String {
+  return awaitResult {
     this.ckquorum(name, it)
   }
 }
 
 /**
- * Force Sentinel to rewrite its configuration on disk, including the current Sentinel state.
- * Normally Sentinel rewrites the configuration every time something changes in its state
- * (in the context of the subset of the state which is persisted on disk across restart).
- * However sometimes it is possible that the configuration file is lost because of operation errors,
- * disk failures, package upgrade scripts or configuration managers. In those cases a way to to force Sentinel to
- * rewrite the configuration file is handy. This command works even if the previous configuration file
- * is completely missing.
+ * Suspending version of method [io.vertx.redis.sentinel.RedisSentinel.flushConfig]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.sentinel.RedisSentinel original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.sentinel.RedisSentinel] using Vert.x codegen.
  */
-suspend fun RedisSentinel.flushConfigAwait() : Unit {
-  return awaitResult{
-    this.flushConfig({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun RedisSentinel.flushConfigAwait(): Unit {
+  return awaitResult {
+    this.flushConfig { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

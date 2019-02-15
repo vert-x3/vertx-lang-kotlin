@@ -11,137 +11,125 @@ import java.util.function.Function
 
 object HttpEndpoint {
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter, optional
+   * @return [HttpClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : HttpClient {
-    return awaitResult{
+  suspend fun getClientAwait(discovery: ServiceDiscovery, filter: JsonObject): HttpClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, it)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getWebClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter, optional
+   * @return [WebClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject) : WebClient {
-    return awaitResult{
+  suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: JsonObject): WebClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, it)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails. This method accepts a
-   * configuration for the HTTP client
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter, optional
    * @param conf the configuration of the client
+   * @return [HttpClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : HttpClient {
-    return awaitResult{
+  suspend fun getClientAwait(discovery: ServiceDiscovery, filter: JsonObject, conf: JsonObject): HttpClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, conf, it)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails. This method accepts a
-   * configuration for the HTTP client
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getWebClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter, optional
    * @param conf the configuration of the client
+   * @return [WebClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : JsonObject, conf : JsonObject) : WebClient {
-    return awaitResult{
+  suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: JsonObject, conf: JsonObject): WebClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter
+   * @return [HttpClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : HttpClient {
-    return awaitResult{
+  suspend fun getClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): HttpClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, it::handle)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getWebClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter
+   * @return [WebClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean) : WebClient {
-    return awaitResult{
+  suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): WebClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, it::handle)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails. This method accepts a
-   * configuration for the HTTP client.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter
    * @param conf the configuration of the client
+   * @return [HttpClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean, conf : JsonObject) : HttpClient {
-    return awaitResult{
+  suspend fun getClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, conf: JsonObject): HttpClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, conf, it::handle)
     }
   }
 
   /**
-   * Convenient method that looks for a HTTP endpoint and provides the configured . The async result
-   * is marked as failed is there are no matching services, or if the lookup fails. This method accepts a
-   * configuration for the HTTP client.
+   * Suspending version of method [io.vertx.servicediscovery.types.HttpEndpoint.getWebClient]
    *
    * @param discovery The service discovery instance
    * @param filter The filter
    * @param conf the configuration of the client
+   * @return [WebClient]
    *
-   * <p/>
-   * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.types.HttpEndpoint original] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  suspend fun getWebClientAwait(discovery : ServiceDiscovery, filter : (Record) -> Boolean, conf : JsonObject) : WebClient {
-    return awaitResult{
+  suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, conf: JsonObject): WebClient {
+    return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it::handle)
     }
   }

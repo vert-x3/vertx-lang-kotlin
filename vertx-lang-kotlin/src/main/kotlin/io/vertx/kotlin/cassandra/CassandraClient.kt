@@ -9,136 +9,136 @@ import io.vertx.cassandra.ResultSet
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Connect to a Cassandra service.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.connect]
  *
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.connectAwait() : Unit {
-  return awaitResult{
-    this.connect({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun CassandraClient.connectAwait(): Unit {
+  return awaitResult {
+    this.connect { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Connect to a Cassandra service.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.connect]
  *
  * @param keyspace The name of the keyspace to use for the created connection.
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.connectAwait(keyspace : String) : Unit {
-  return awaitResult{
-    this.connect(keyspace, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun CassandraClient.connectAwait(keyspace: String): Unit {
+  return awaitResult {
+    this.connect(keyspace) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Execute the query and provide a handler for consuming results.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.execute]
  *
  * @param query the query to execute
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeAwait(query : String) : ResultSet {
-  return awaitResult{
+suspend fun CassandraClient.executeAwait(query: String): ResultSet {
+  return awaitResult {
     this.execute(query, it)
   }
 }
 
 /**
- * Executes the given SQL <code>SELECT</code> statement which returns the results of the query as a read stream.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.queryStream]
  *
  * @param sql the SQL to execute. For example <code>SELECT * FROM table ...</code>.
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [CassandraRowStream]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.queryStreamAwait(sql : String) : CassandraRowStream {
-  return awaitResult{
+suspend fun CassandraClient.queryStreamAwait(sql: String): CassandraRowStream {
+  return awaitResult {
     this.queryStream(sql, it)
   }
 }
 
 /**
- * Disconnects from the Cassandra service.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.disconnect]
  *
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.disconnectAwait() : Unit {
-  return awaitResult{
-    this.disconnect({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun CassandraClient.disconnectAwait(): Unit {
+  return awaitResult {
+    this.disconnect { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Execute the query and provide a handler for consuming results.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.executeWithFullFetch]
  *
  * @param query the query to execute
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeWithFullFetchAwait(query : String) : List<Row> {
-  return awaitResult{
+suspend fun CassandraClient.executeWithFullFetchAwait(query: String): List<Row> {
+  return awaitResult {
     this.executeWithFullFetch(query, it)
   }
 }
 
 /**
- * Execute the query and provide a handler for consuming results.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.executeWithFullFetch]
  *
  * @param statement the statement to execute
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeWithFullFetchAwait(statement : Statement) : List<Row> {
-  return awaitResult{
+suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement): List<Row> {
+  return awaitResult {
     this.executeWithFullFetch(statement, it)
   }
 }
 
 /**
- * Execute the statement and provide a handler for consuming results.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.execute]
  *
  * @param statement the statement to execute
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [ResultSet]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeAwait(statement : Statement) : ResultSet {
-  return awaitResult{
+suspend fun CassandraClient.executeAwait(statement: Statement): ResultSet {
+  return awaitResult {
     this.execute(statement, it)
   }
 }
 
 /**
- * Prepares the provided query string.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.prepare]
  *
  * @param query the query to prepare
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [PreparedStatement]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.prepareAwait(query : String) : PreparedStatement {
-  return awaitResult{
+suspend fun CassandraClient.prepareAwait(query: String): PreparedStatement {
+  return awaitResult {
     this.prepare(query, it)
   }
 }
 
 /**
- * Executes the given SQL statement which returns the results of the query as a read stream.
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.queryStream]
  *
  * @param statement the statement to execute.
- * @return current Cassandra client instance *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClient original] using Vert.x codegen.
+ * @return [CassandraRowStream]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.queryStreamAwait(statement : Statement) : CassandraRowStream {
-  return awaitResult{
+suspend fun CassandraClient.queryStreamAwait(statement: Statement): CassandraRowStream {
+  return awaitResult {
     this.queryStream(statement, it)
   }
 }

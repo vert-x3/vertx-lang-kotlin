@@ -7,31 +7,29 @@ import io.vertx.ext.web.handler.DigestAuthHandler
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Parses the credentials from the request into a JsonObject. The implementation should
- * be able to extract the required info for the auth provider in the format the provider
- * expects.
+ * Suspending version of method [io.vertx.ext.web.handler.DigestAuthHandler.parseCredentials]
  *
  * @param context the routing context
+ * @return [JsonObject]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.DigestAuthHandler original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.DigestAuthHandler] using Vert.x codegen.
  */
-suspend fun DigestAuthHandler.parseCredentialsAwait(context : RoutingContext) : JsonObject {
-  return awaitResult{
+suspend fun DigestAuthHandler.parseCredentialsAwait(context: RoutingContext): JsonObject {
+  return awaitResult {
     this.parseCredentials(context, it)
   }
 }
 
 /**
- * Authorizes the given user against all added authorities.
+ * Suspending version of method [io.vertx.ext.web.handler.DigestAuthHandler.authorize]
  *
  * @param user a user.
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.DigestAuthHandler original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.DigestAuthHandler] using Vert.x codegen.
  */
-suspend fun DigestAuthHandler.authorizeAwait(user : User) : Unit {
-  return awaitResult{
-    this.authorize(user, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun DigestAuthHandler.authorizeAwait(user: User): Unit {
+  return awaitResult {
+    this.authorize(user) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

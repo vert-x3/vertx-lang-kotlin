@@ -5,42 +5,42 @@ import io.vertx.servicediscovery.Record
 import io.vertx.servicediscovery.spi.ServicePublisher
 
 /**
- * Publishes a record.
+ * Suspending version of method [io.vertx.servicediscovery.spi.ServicePublisher.publish]
  *
  * @param record the record
+ * @return [Record]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
-suspend fun ServicePublisher.publishAwait(record : Record) : Record {
-  return awaitResult{
+suspend fun ServicePublisher.publishAwait(record: Record): Record {
+  return awaitResult {
     this.publish(record, it)
   }
 }
 
 /**
- * Un-publishes a record.
+ * Suspending version of method [io.vertx.servicediscovery.spi.ServicePublisher.unpublish]
  *
  * @param id the registration id
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
-suspend fun ServicePublisher.unpublishAwait(id : String) : Unit {
-  return awaitResult{
-    this.unpublish(id, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ServicePublisher.unpublishAwait(id: String): Unit {
+  return awaitResult {
+    this.unpublish(id) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Updates an existing record.
+ * Suspending version of method [io.vertx.servicediscovery.spi.ServicePublisher.update]
  *
  * @param record the record
+ * @return [Record]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.servicediscovery.spi.ServicePublisher original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
-suspend fun ServicePublisher.updateAwait(record : Record) : Record {
-  return awaitResult{
+suspend fun ServicePublisher.updateAwait(record: Record): Record {
+  return awaitResult {
     this.update(record, it)
   }
 }

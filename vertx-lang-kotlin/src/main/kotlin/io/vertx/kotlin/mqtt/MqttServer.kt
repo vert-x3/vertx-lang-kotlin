@@ -4,59 +4,56 @@ import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.mqtt.MqttServer
 
 /**
- * Start the server listening for incoming connections on the port and host specified
- * It ignores any options specified through the constructor
+ * Suspending version of method [io.vertx.mqtt.MqttServer.listen]
  *
  * @param port the port to listen on
  * @param host the host to listen on
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
+ * @return [MqttServer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-suspend fun MqttServer.listenAwait(port : Int, host : String) : MqttServer {
-  return awaitResult{
+suspend fun MqttServer.listenAwait(port: Int, host: String): MqttServer {
+  return awaitResult {
     this.listen(port, host, it)
   }
 }
 
 /**
- * Start the server listening for incoming connections on the port specified but on
- * "0.0.0.0" as host. It ignores any options specified through the constructor
+ * Suspending version of method [io.vertx.mqtt.MqttServer.listen]
  *
  * @param port the port to listen on
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
+ * @return [MqttServer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-suspend fun MqttServer.listenAwait(port : Int) : MqttServer {
-  return awaitResult{
+suspend fun MqttServer.listenAwait(port: Int): MqttServer {
+  return awaitResult {
     this.listen(port, it)
   }
 }
 
 /**
- * Start the server listening for incoming connections using the specified options
- * through the constructor
+ * Suspending version of method [io.vertx.mqtt.MqttServer.listen]
  *
- * @return a reference to this, so the API can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
+ * @return [MqttServer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-suspend fun MqttServer.listenAwait() : MqttServer {
-  return awaitResult{
+suspend fun MqttServer.listenAwait(): MqttServer {
+  return awaitResult {
     this.listen(it)
   }
 }
 
 /**
- * Close the server supplying an handler that will be called when the server is actually closed (or has failed).
+ * Suspending version of method [io.vertx.mqtt.MqttServer.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServer original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-suspend fun MqttServer.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun MqttServer.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

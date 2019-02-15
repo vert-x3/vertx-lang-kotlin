@@ -5,36 +5,39 @@ import io.vertx.cassandra.ResultSet
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.cassandra.ResultSet.fetchMoreResults]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.fetchMoreResultsAwait() : Unit {
-  return awaitResult{
-    this.fetchMoreResults({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ResultSet.fetchMoreResultsAwait(): Unit {
+  return awaitResult {
+    this.fetchMoreResults { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
+ * Suspending version of method [io.vertx.cassandra.ResultSet.one]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ * @return [Row?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.oneAwait() : Row? {
-  return awaitResult{
+suspend fun ResultSet.oneAwait(): Row? {
+  return awaitResult {
     this.one(it)
   }
 }
 
 /**
+ * Suspending version of method [io.vertx.cassandra.ResultSet.all]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.allAwait() : List<Row> {
-  return awaitResult{
+suspend fun ResultSet.allAwait(): List<Row> {
+  return awaitResult {
     this.all(it)
   }
 }

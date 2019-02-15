@@ -4,17 +4,14 @@ import io.vertx.ext.web.handler.sockjs.BridgeEvent
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Set a handler for the result.
- * <p>
- * If the future has already been completed it will be called immediately. Otherwise it will be called when the
- * future is completed.
+ * Suspending version of method [io.vertx.ext.web.handler.sockjs.BridgeEvent.setHandler]
  *
- * @return a reference to this, so it can be used fluently *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.BridgeEvent original] using Vert.x codegen.
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.BridgeEvent] using Vert.x codegen.
  */
-suspend fun BridgeEvent.setHandlerAwait() : Boolean {
-  return awaitResult{
+suspend fun BridgeEvent.setHandlerAwait(): Boolean {
+  return awaitResult {
     this.setHandler(it)
   }
 }
