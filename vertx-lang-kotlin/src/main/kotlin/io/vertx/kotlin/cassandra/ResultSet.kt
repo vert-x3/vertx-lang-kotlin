@@ -20,61 +20,53 @@ import io.vertx.cassandra.ResultSet
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.cassandra.ResultSet.fetchMoreResults]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.fetchMoreResultsAwait() : Unit {
-  return awaitResult{
-    this.fetchMoreResults({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun ResultSet.fetchMoreResultsAwait(): Unit {
+  return awaitResult {
+    this.fetchMoreResults { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * The method should <strong>not</strong> be used concurrently with others like [io.vertx.cassandra.ResultSet] or [io.vertx.cassandra.ResultSet].
- * This may lead to unexpected result.
+ * Suspending version of method [io.vertx.cassandra.ResultSet.one]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ * @return [Row?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.oneAwait() : Row? {
-  return awaitResult{
+suspend fun ResultSet.oneAwait(): Row? {
+  return awaitResult {
     this.one(it)
   }
 }
 
 /**
- * Fetch a specific amount of rows and notify via a handler.
- * <p>
- * If remaining amount of rows in a result set is less than desired amount of rows to fetch,
- * the <code>handler</code> will be called with a successful result encompassing just the remaining rows.
- *
- * <p>
- * The method should <strong>not</strong> be used concurrently with others like [io.vertx.cassandra.ResultSet] or [io.vertx.cassandra.ResultSet].
- * This may lead to unexpected result.
+ * Suspending version of method [io.vertx.cassandra.ResultSet.several]
  *
  * @param amount the amount
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.severalAwait(amount : Int) : List<Row> {
-  return awaitResult{
+suspend fun ResultSet.severalAwait(amount: Int): List<Row> {
+  return awaitResult {
     this.several(amount, it)
   }
 }
 
 /**
- * The method should <strong>not</strong> be used concurrently with others like [io.vertx.cassandra.ResultSet] or [io.vertx.cassandra.ResultSet].
- * This may lead to unexpected result.
+ * Suspending version of method [io.vertx.cassandra.ResultSet.all]
  *
- * @return  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.cassandra.ResultSet original] using Vert.x codegen.
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-suspend fun ResultSet.allAwait() : List<Row> {
-  return awaitResult{
+suspend fun ResultSet.allAwait(): List<Row> {
+  return awaitResult {
     this.all(it)
   }
 }

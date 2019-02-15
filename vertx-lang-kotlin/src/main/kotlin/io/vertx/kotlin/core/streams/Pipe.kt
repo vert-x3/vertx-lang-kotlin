@@ -20,17 +20,15 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Start to pipe the elements to the destination <code>WriteStream</code>.
- * <p>
- * When the operation fails with a write error, the source stream is resumed.
+ * Suspending version of method [io.vertx.core.streams.Pipe.to]
  *
  * @param dst the destination write stream
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.streams.Pipe original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.streams.Pipe] using Vert.x codegen.
  */
-suspend fun <T> Pipe<T>.toAwait(dst : WriteStream<T>) : Unit {
-  return awaitResult{
-    this.to(dst, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun <T> Pipe<T>.toAwait(dst: WriteStream<T>): Unit {
+  return awaitResult {
+    this.to(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

@@ -17,7 +17,6 @@ package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.Future
-import io.vertx.core.Handler
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx as VertxVertxAlias
 import io.vertx.core.VertxOptions
@@ -25,184 +24,143 @@ import io.vertx.kotlin.coroutines.awaitResult
 import java.util.function.Supplier
 
 /**
- * Like [io.vertx.core.Vertx] but the completionHandler will be called when the close is complete
+ * Suspending version of method [io.vertx.core.Vertx.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun VertxVertxAlias.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Like [io.vertx.core.Vertx] but the completionHandler will be notified when the deployment is complete.
- * <p>
- * If the deployment is successful the result will contain a String representing the unique deployment ID of the
- * deployment.
- * <p>
- * This deployment ID can subsequently be used to undeploy the verticle.
+ * Suspending version of method [io.vertx.core.Vertx.deployVerticle]
  *
  * @param name The identifier
+ * @return [String]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.deployVerticleAwait(name : String) : String {
-  return awaitResult{
+suspend fun VertxVertxAlias.deployVerticleAwait(name: String): String {
+  return awaitResult {
     this.deployVerticle(name, it)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx] but [io.vertx.core.DeploymentOptions] are provided to configure the
- * deployment.
+ * Suspending version of method [io.vertx.core.Vertx.deployVerticle]
  *
  * @param name the name
  * @param options the deployment options.
+ * @return [String]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.deployVerticleAwait(name : String, options : DeploymentOptions) : String {
-  return awaitResult{
+suspend fun VertxVertxAlias.deployVerticleAwait(name: String, options: DeploymentOptions): String {
+  return awaitResult {
     this.deployVerticle(name, options, it)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx][#undeploy(String)][io.vertx.core.Vertx] but the completionHandler will be notified when the undeployment is complete.
+ * Suspending version of method [io.vertx.core.Vertx.undeploy]
  *
  * @param deploymentID the deployment ID
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.undeployAwait(deploymentID : String) : Unit {
-  return awaitResult{
-    this.undeploy(deploymentID, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
+  return awaitResult {
+    this.undeploy(deploymentID) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Safely execute some blocking code.
- * <p>
- * Executes the blocking code in the handler <code>blockingCodeHandler</code> using a thread from the worker pool.
- * <p>
- * When the code is complete the handler <code>resultHandler</code> will be called with the result on the original context
- * (e.g. on the original event loop of the caller).
- * <p>
- * A <code>Future</code> instance is passed into <code>blockingCodeHandler</code>. When the blocking code successfully completes,
- * the handler should call the [io.vertx.core.Future] or [io.vertx.core.Future] method, or the [io.vertx.core.Future]
- * method if it failed.
- * <p>
- * In the <code>blockingCodeHandler</code> the current context remains the original context and therefore any task
- * scheduled in the <code>blockingCodeHandler</code> will be executed on the this context and not on the worker thread.
- * <p>
- * The blocking code should block for a reasonable amount of time (i.e no more than a few seconds). Long blocking operations
- * or polling operations (i.e a thread that spin in a loop polling events in a blocking fashion) are precluded.
- * <p>
- * When the blocking operation lasts more than the 10 seconds, a message will be printed on the console by the
- * blocked thread checker.
- * <p>
- * Long blocking operations should use a dedicated thread managed by the application, which can interact with
- * verticles using the event-bus or [io.vertx.core.Context]
+ * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
  *
  * @param blockingCodeHandler handler representing the blocking code to run
  * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
+ * @return [T?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>, ordered : Boolean) : T? {
-  return awaitResult{
-    this.executeBlocking(blockingCodeHandler, ordered, it)
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit, ordered: Boolean): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, ordered, it::handle)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx] called with ordered = true.
+ * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
  *
  * @param blockingCodeHandler 
+ * @return [T?]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler : Handler<Future<T>>) : T? {
-  return awaitResult{
-    this.executeBlocking(blockingCodeHandler, it)
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, it::handle)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx] but the completionHandler will be notified when the deployment is complete.
- * <p>
- * If the deployment is successful the result will contain a string representing the unique deployment ID of the
- * deployment.
- * <p>
- * This deployment ID can subsequently be used to undeploy the verticle.
+ * Suspending version of method [io.vertx.core.Vertx.deployVerticle]
  *
  * @param verticle the verticle instance to deploy
+ * @return [String]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle) : String {
-  return awaitResult{
+suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle): String {
+  return awaitResult {
     this.deployVerticle(verticle, it)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx] but [io.vertx.core.DeploymentOptions] are provided to configure the
- * deployment.
+ * Suspending version of method [io.vertx.core.Vertx.deployVerticle]
  *
  * @param verticle the verticle instance to deploy
  * @param options the deployment options.
+ * @return [String]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.deployVerticleAwait(verticle : Verticle, options : DeploymentOptions) : String {
-  return awaitResult{
+suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle, options: DeploymentOptions): String {
+  return awaitResult {
     this.deployVerticle(verticle, options, it)
   }
 }
 
 /**
- * Like [io.vertx.core.Vertx] but [io.vertx.core.Verticle] instance is created by
- * invoking the <code>verticleSupplier</code>.
- * <p>
- * The supplier will be invoked as many times as [io.vertx.core.DeploymentOptions].
- * It must not return the same instance twice.
- * <p>
- * Note that the supplier will be invoked on the caller thread.
+ * Suspending version of method [io.vertx.core.Vertx.deployVerticle]
  *
  * @param verticleSupplier 
  * @param options 
+ * @return [String]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier : Supplier<Verticle>, options : DeploymentOptions) : String {
-  return awaitResult{
+suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier: Supplier<Verticle>, options: DeploymentOptions): String {
+  return awaitResult {
     this.deployVerticle(verticleSupplier, options, it)
   }
 }
 
 object Vertx {
-/**
- * Creates a clustered instance using the specified options.
- * <p>
- * The instance is created asynchronously and the resultHandler is called with the result when it is ready.
- *
- * @param options the options to use
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.Vertx original] using Vert.x codegen.
- */
-  suspend fun clusteredVertxAwait(options : VertxOptions) : VertxVertxAlias {
-    return awaitResult{
+  /**
+   * Suspending version of method [io.vertx.core.Vertx.clusteredVertx]
+   *
+   * @param options the options to use
+   * @return [VertxVertxAlias]
+   *
+   * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
+   */
+  suspend fun clusteredVertxAwait(options: VertxOptions): VertxVertxAlias {
+    return awaitResult {
       VertxVertxAlias.clusteredVertx(options, it)
     }
   }
