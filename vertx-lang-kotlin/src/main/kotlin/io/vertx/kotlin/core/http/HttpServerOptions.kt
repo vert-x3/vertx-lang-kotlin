@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit
  * Represents options used by an [io.vertx.core.http.HttpServer] instance
  *
  * @param acceptBacklog  Set the accept back log
- * @param acceptUnmaskedFrames  Set true when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting true It's set to false as default.
+ * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param clientAuth  Set whether client auth is required
- * @param clientAuthRequired  Set whether client auth is required
  * @param compressionLevel  This method allows to set the compression level to be used in http1.x/2 response bodies when compression support is turned on (@see setCompressionSupported) and the client advertises to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header default value is : 6 (Netty legacy) The compression level determines how much the data is compressed on a scale from 1 to 9, where '9' is trying to achieve the maximum compression ratio while '1' instead is giving priority to speed instead of compression ratio using some algorithm optimizations and skipping pedantic loops that usually gives just little improvements While one can think that best value is always the maximum compression ratio, there's a trade-off to consider: the most compressed level requires the most computational work to compress/decompress data, e.g. more dictionary lookups and loops. E.g. you have it set fairly high on a high-volume website, you may experience performance degradation and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side while decompressing - setting an higher compression level can result in an overall higher page load time especially nowadays when many clients are handled mobile devices with a low CPU profile. see also: http://www.gzip.org/algorithm.txt
  * @param compressionSupported  Set whether the server should support gzip/deflate compression (serving compressed responses to clients advertising support for them with Accept-Encoding header)
  * @param crlPaths  Add a CRL path
@@ -42,13 +41,13 @@ import java.util.concurrent.TimeUnit
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum websocket frames size
- * @param maxWebsocketMessageSize  Set the maximum websocket message size
+ * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for WebSocket Defalte Frame compression
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket Permessage Deflate compression
+ * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -67,11 +66,10 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
- * @param websocketAllowServerNoContext  Set the WebSocket Allow Server No Context option
- * @param websocketCompressionLevel  Set the WebSocket compression level 
- * @param websocketPreferredClientNoContext  Set the WebSocket Preferred Client No Context setting
- * @param websocketSubProtocols  Set the websocket subprotocols supported by the server.
+ * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketCompressionLevel  Set the WebSocket compression level.
+ * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerOptions original] using Vert.x codegen.
@@ -81,7 +79,6 @@ fun httpServerOptionsOf(
   acceptUnmaskedFrames: Boolean? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   clientAuth: ClientAuth? = null,
-  clientAuthRequired: Boolean? = null,
   compressionLevel: Int? = null,
   compressionSupported: Boolean? = null,
   crlPaths: Iterable<String>? = null,
@@ -127,7 +124,6 @@ fun httpServerOptionsOf(
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   websocketAllowServerNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
   websocketPreferredClientNoContext: Boolean? = null,
@@ -144,9 +140,6 @@ fun httpServerOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
-  }
-  if (clientAuthRequired != null) {
-    this.setClientAuthRequired(clientAuthRequired)
   }
   if (compressionLevel != null) {
     this.setCompressionLevel(compressionLevel)
@@ -288,9 +281,6 @@ fun httpServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (websocketAllowServerNoContext != null) {
     this.setWebsocketAllowServerNoContext(websocketAllowServerNoContext)
@@ -312,10 +302,9 @@ fun httpServerOptionsOf(
  * Represents options used by an [io.vertx.core.http.HttpServer] instance
  *
  * @param acceptBacklog  Set the accept back log
- * @param acceptUnmaskedFrames  Set true when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting true It's set to false as default.
+ * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param clientAuth  Set whether client auth is required
- * @param clientAuthRequired  Set whether client auth is required
  * @param compressionLevel  This method allows to set the compression level to be used in http1.x/2 response bodies when compression support is turned on (@see setCompressionSupported) and the client advertises to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header default value is : 6 (Netty legacy) The compression level determines how much the data is compressed on a scale from 1 to 9, where '9' is trying to achieve the maximum compression ratio while '1' instead is giving priority to speed instead of compression ratio using some algorithm optimizations and skipping pedantic loops that usually gives just little improvements While one can think that best value is always the maximum compression ratio, there's a trade-off to consider: the most compressed level requires the most computational work to compress/decompress data, e.g. more dictionary lookups and loops. E.g. you have it set fairly high on a high-volume website, you may experience performance degradation and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side while decompressing - setting an higher compression level can result in an overall higher page load time especially nowadays when many clients are handled mobile devices with a low CPU profile. see also: http://www.gzip.org/algorithm.txt
  * @param compressionSupported  Set whether the server should support gzip/deflate compression (serving compressed responses to clients advertising support for them with Accept-Encoding header)
  * @param crlPaths  Add a CRL path
@@ -336,13 +325,13 @@ fun httpServerOptionsOf(
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum websocket frames size
- * @param maxWebsocketMessageSize  Set the maximum websocket message size
+ * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for WebSocket Defalte Frame compression
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket Permessage Deflate compression
+ * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -361,25 +350,23 @@ fun httpServerOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
- * @param websocketAllowServerNoContext  Set the WebSocket Allow Server No Context option
- * @param websocketCompressionLevel  Set the WebSocket compression level 
- * @param websocketPreferredClientNoContext  Set the WebSocket Preferred Client No Context setting
- * @param websocketSubProtocols  Set the websocket subprotocols supported by the server.
+ * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketCompressionLevel  Set the WebSocket compression level.
+ * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, clientAuthRequired, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn, usePooledBuffers, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
+  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
 )
 fun HttpServerOptions(
   acceptBacklog: Int? = null,
   acceptUnmaskedFrames: Boolean? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   clientAuth: ClientAuth? = null,
-  clientAuthRequired: Boolean? = null,
   compressionLevel: Int? = null,
   compressionSupported: Boolean? = null,
   crlPaths: Iterable<String>? = null,
@@ -425,7 +412,6 @@ fun HttpServerOptions(
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   websocketAllowServerNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
   websocketPreferredClientNoContext: Boolean? = null,
@@ -442,9 +428,6 @@ fun HttpServerOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
-  }
-  if (clientAuthRequired != null) {
-    this.setClientAuthRequired(clientAuthRequired)
   }
   if (compressionLevel != null) {
     this.setCompressionLevel(compressionLevel)
@@ -586,9 +569,6 @@ fun HttpServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (websocketAllowServerNoContext != null) {
     this.setWebsocketAllowServerNoContext(websocketAllowServerNoContext)

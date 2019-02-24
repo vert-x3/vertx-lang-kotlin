@@ -9,31 +9,6 @@ import io.vertx.cassandra.ResultSet
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.cassandra.CassandraClient.connect]
- *
- *
- * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
- */
-suspend fun CassandraClient.connectAwait(): Unit {
-  return awaitResult {
-    this.connect { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.cassandra.CassandraClient.connect]
- *
- * @param keyspace The name of the keyspace to use for the created connection.
- *
- * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
- */
-suspend fun CassandraClient.connectAwait(keyspace: String): Unit {
-  return awaitResult {
-    this.connect(keyspace) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.cassandra.CassandraClient.execute]
  *
  * @param query the query to execute
@@ -62,14 +37,14 @@ suspend fun CassandraClient.queryStreamAwait(sql: String): CassandraRowStream {
 }
 
 /**
- * Suspending version of method [io.vertx.cassandra.CassandraClient.disconnect]
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.close]
  *
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.disconnectAwait(): Unit {
+suspend fun CassandraClient.closeAwait(): Unit {
   return awaitResult {
-    this.disconnect { ar -> it.handle(ar.mapEmpty()) }
+    this.close { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

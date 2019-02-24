@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources. Deprecated. Use FileSystemOptions instead.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
@@ -56,7 +55,6 @@ fun vertxOptionsOf(
   clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
-  fileResolverCachingEnabled: Boolean? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
   haEnabled: Boolean? = null,
   haGroup: String? = null,
@@ -107,9 +105,6 @@ fun vertxOptionsOf(
   }
   if (eventLoopPoolSize != null) {
     this.setEventLoopPoolSize(eventLoopPoolSize)
-  }
-  if (fileResolverCachingEnabled != null) {
-    this.setFileResolverCachingEnabled(fileResolverCachingEnabled)
   }
   if (fileSystemOptions != null) {
     this.setFileSystemOptions(fileSystemOptions)
@@ -172,7 +167,6 @@ fun vertxOptionsOf(
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources. Deprecated. Use FileSystemOptions instead.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
@@ -193,7 +187,7 @@ fun vertxOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileResolverCachingEnabled, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
+  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
 )
 fun VertxOptions(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
@@ -208,7 +202,6 @@ fun VertxOptions(
   clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
-  fileResolverCachingEnabled: Boolean? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
   haEnabled: Boolean? = null,
   haGroup: String? = null,
@@ -259,9 +252,6 @@ fun VertxOptions(
   }
   if (eventLoopPoolSize != null) {
     this.setEventLoopPoolSize(eventLoopPoolSize)
-  }
-  if (fileResolverCachingEnabled != null) {
-    this.setFileResolverCachingEnabled(fileResolverCachingEnabled)
   }
   if (fileSystemOptions != null) {
     this.setFileSystemOptions(fileSystemOptions)

@@ -1,12 +1,27 @@
 package io.vertx.kotlin.kafka.client.consumer
 
+import io.vertx.core.streams.WriteStream
 import io.vertx.kafka.client.common.PartitionInfo
 import io.vertx.kafka.client.common.TopicPartition
 import io.vertx.kafka.client.consumer.KafkaConsumer
+import io.vertx.kafka.client.consumer.KafkaConsumerRecord
 import io.vertx.kafka.client.consumer.KafkaConsumerRecords
 import io.vertx.kafka.client.consumer.OffsetAndMetadata
 import io.vertx.kafka.client.consumer.OffsetAndTimestamp
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.kafka.client.consumer.KafkaConsumer.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst: WriteStream<KafkaConsumerRecord<K,V>>): Unit {
+  return awaitResult {
+    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.kafka.client.consumer.KafkaConsumer.subscribe]

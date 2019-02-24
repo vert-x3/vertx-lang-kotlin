@@ -1,8 +1,23 @@
 package io.vertx.kotlin.core.datagram
 
 import io.vertx.core.buffer.Buffer
+import io.vertx.core.datagram.DatagramPacket
 import io.vertx.core.datagram.DatagramSocket
+import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.core.datagram.DatagramSocket.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
+ */
+suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
+  return awaitResult {
+    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.core.datagram.DatagramSocket.send]

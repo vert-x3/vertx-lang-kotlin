@@ -2,7 +2,21 @@ package io.vertx.kotlin.core.file
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.file.AsyncFile
+import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.core.file.AsyncFile.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
+ */
+suspend fun AsyncFile.pipeToAwait(dst: WriteStream<Buffer>): Unit {
+  return awaitResult {
+    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.core.file.AsyncFile.close]

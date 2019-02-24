@@ -61,8 +61,8 @@ import java.util.concurrent.TimeUnit
  * @param maxPoolSize  Set the maximum pool size for connections
  * @param maxRedirects  Set to <code>maxRedirects</code> the maximum number of redirection a request can follow.
  * @param maxWaitQueueSize  Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
- * @param maxWebsocketFrameSize  Set the max websocket frame size
- * @param maxWebsocketMessageSize  Set the max websocket message size
+ * @param maxWebsocketFrameSize  Set the max WebSocket frame size
+ * @param maxWebsocketMessageSize  Set the max WebSocket message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -81,7 +81,7 @@ import java.util.concurrent.TimeUnit
  * @param revocationPath  Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
  * @param scopeSeparator  Set the provider scope separator
  * @param sendBufferSize  Set the TCP send buffer size
- * @param sendUnmaskedFrames  Set true when the client wants to skip frame masking. You may want to set it true on server by server websocket communication: In this case you are by passing RFC6455 protocol. It's false as default.
+ * @param sendUnmaskedFrames  Set <code>true</code> when the client wants to skip frame masking. <p> You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing RFC6455 protocol. <p> It's <code>false</code> as default.
  * @param site  Root URL for the provider
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
@@ -95,19 +95,18 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
- * @param tryUsePerFrameWebsocketCompression  Set option to offer per frame WebSocket compression.
- * @param tryUsePerMessageWebsocketCompression  Set option to offer per message WebSocket compression.
+ * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
+ * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
  * @param validateIssuer 
  * @param verifyHost  Set whether hostname verification is enabled
- * @param websocketCompressionAllowClientNoContext  Set the WebSocket compression allow client no context option.
- * @param websocketCompressionLevel  Set WebSocket compression level
- * @param websocketCompressionRequestServerNoContext  Set the WebSocket compression server no context option
+ * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param websocketCompressionLevel  Set the Websocket deflate compression level.
+ * @param websocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2ClientOptions original] using Vert.x codegen.
@@ -192,7 +191,6 @@ fun oAuth2ClientOptionsOf(
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   useBasicAuthorizationHeader: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -445,9 +443,6 @@ fun oAuth2ClientOptionsOf(
   if (useBasicAuthorizationHeader != null) {
     this.setUseBasicAuthorizationHeader(useBasicAuthorizationHeader)
   }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
-  }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
   }
@@ -520,8 +515,8 @@ fun oAuth2ClientOptionsOf(
  * @param maxPoolSize  Set the maximum pool size for connections
  * @param maxRedirects  Set to <code>maxRedirects</code> the maximum number of redirection a request can follow.
  * @param maxWaitQueueSize  Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
- * @param maxWebsocketFrameSize  Set the max websocket frame size
- * @param maxWebsocketMessageSize  Set the max websocket message size
+ * @param maxWebsocketFrameSize  Set the max WebSocket frame size
+ * @param maxWebsocketMessageSize  Set the max WebSocket message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -540,7 +535,7 @@ fun oAuth2ClientOptionsOf(
  * @param revocationPath  Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
  * @param scopeSeparator  Set the provider scope separator
  * @param sendBufferSize  Set the TCP send buffer size
- * @param sendUnmaskedFrames  Set true when the client wants to skip frame masking. You may want to set it true on server by server websocket communication: In this case you are by passing RFC6455 protocol. It's false as default.
+ * @param sendUnmaskedFrames  Set <code>true</code> when the client wants to skip frame masking. <p> You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing RFC6455 protocol. <p> It's <code>false</code> as default.
  * @param site  Root URL for the provider
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
@@ -554,26 +549,25 @@ fun oAuth2ClientOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
- * @param tryUsePerFrameWebsocketCompression  Set option to offer per frame WebSocket compression.
- * @param tryUsePerMessageWebsocketCompression  Set option to offer per message WebSocket compression.
+ * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
+ * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
  * @param validateIssuer 
  * @param verifyHost  Set whether hostname verification is enabled
- * @param websocketCompressionAllowClientNoContext  Set the WebSocket compression allow client no context option.
- * @param websocketCompressionLevel  Set WebSocket compression level
- * @param websocketCompressionRequestServerNoContext  Set the WebSocket compression server no context option
+ * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param websocketCompressionLevel  Set the Websocket deflate compression level.
+ * @param websocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2ClientOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, usePooledBuffers, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
 )
 fun OAuth2ClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -655,7 +649,6 @@ fun OAuth2ClientOptions(
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   useBasicAuthorizationHeader: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -907,9 +900,6 @@ fun OAuth2ClientOptions(
   }
   if (useBasicAuthorizationHeader != null) {
     this.setUseBasicAuthorizationHeader(useBasicAuthorizationHeader)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
