@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources. Deprecated. Use FileSystemOptions instead.
+ * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
@@ -172,7 +172,7 @@ fun vertxOptionsOf(
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources. Deprecated. Use FileSystemOptions instead.
+ * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.

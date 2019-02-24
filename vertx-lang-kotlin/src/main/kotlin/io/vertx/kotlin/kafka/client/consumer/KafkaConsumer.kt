@@ -1,12 +1,32 @@
 package io.vertx.kotlin.kafka.client.consumer
 
+import io.vertx.core.streams.WriteStream
 import io.vertx.kafka.client.common.PartitionInfo
 import io.vertx.kafka.client.common.TopicPartition
 import io.vertx.kafka.client.consumer.KafkaConsumer
+import io.vertx.kafka.client.consumer.KafkaConsumerRecord
 import io.vertx.kafka.client.consumer.KafkaConsumerRecords
 import io.vertx.kafka.client.consumer.OffsetAndMetadata
 import io.vertx.kafka.client.consumer.OffsetAndTimestamp
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Pipe this <code>ReadStream</code> to the <code>WriteStream</code>.
+ * <p>
+ * Elements emitted by this stream will be written to the write stream until this stream ends or fails.
+ * <p>
+ * Once this stream has ended or failed, the write stream will be ended and the <code>handler</code> will be
+ * called with the result.
+ *
+ * @param dst the destination write stream
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.KafkaConsumer original] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst : WriteStream<KafkaConsumerRecord<K,V>>) : Unit {
+  return awaitResult{
+    this.pipeTo(dst, { ar -> it.handle(ar.mapEmpty()) })}
+}
 
 /**
  * Subscribe to the given topic to get dynamically assigned partitions.

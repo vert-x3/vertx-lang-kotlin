@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
  * The web term configuration options.
  *
  * @param acceptBacklog  Set the accept back log
- * @param acceptUnmaskedFrames  Set true when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting true It's set to false as default.
+ * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param charset  Set the charset used for encoding / decoding text data from/to SockJS
  * @param clientAuth  Set whether client auth is required
@@ -46,13 +46,13 @@ import java.util.concurrent.TimeUnit
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum websocket frames size
- * @param maxWebsocketMessageSize  Set the maximum websocket message size
+ * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for WebSocket Defalte Frame compression
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket Permessage Deflate compression
+ * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -77,10 +77,10 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
- * @param websocketAllowServerNoContext  Set the WebSocket Allow Server No Context option
- * @param websocketCompressionLevel  Set the WebSocket compression level 
- * @param websocketPreferredClientNoContext  Set the WebSocket Preferred Client No Context setting
- * @param websocketSubProtocols  Set the websocket subprotocols supported by the server.
+ * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketCompressionLevel  Set the WebSocket compression level.
+ * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.HttpTermOptions original] using Vert.x codegen.
@@ -349,7 +349,7 @@ fun httpTermOptionsOf(
  * The web term configuration options.
  *
  * @param acceptBacklog  Set the accept back log
- * @param acceptUnmaskedFrames  Set true when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting true It's set to false as default.
+ * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param charset  Set the charset used for encoding / decoding text data from/to SockJS
  * @param clientAuth  Set whether client auth is required
@@ -375,13 +375,13 @@ fun httpTermOptionsOf(
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum websocket frames size
- * @param maxWebsocketMessageSize  Set the maximum websocket message size
+ * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for WebSocket Defalte Frame compression
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket Permessage Deflate compression
+ * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -406,10 +406,10 @@ fun httpTermOptionsOf(
  * @param useAlpn  Set the ALPN usage.
  * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
- * @param websocketAllowServerNoContext  Set the WebSocket Allow Server No Context option
- * @param websocketCompressionLevel  Set the WebSocket compression level 
- * @param websocketPreferredClientNoContext  Set the WebSocket Preferred Client No Context setting
- * @param websocketSubProtocols  Set the websocket subprotocols supported by the server.
+ * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketCompressionLevel  Set the WebSocket compression level.
+ * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.HttpTermOptions original] using Vert.x codegen.
