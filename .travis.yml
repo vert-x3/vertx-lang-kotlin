@@ -3,6 +3,9 @@ branches:
   only:
   - master
   - /^\d+\.\d+$/
+cache:
+  directories:
+    - $HOME/.m2
 jobs:
   include:
     - stage: test
