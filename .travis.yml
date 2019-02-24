@@ -3,19 +3,26 @@ branches:
   only:
   - master
   - /^\d+\.\d+$/
+cache:
+  directories:
+    - $HOME/.m2
 jobs:
   include:
     - stage: test
       name: "OracleJDK 8"
       jdk: oraclejdk8
+      install: true
       script: mvn -q clean verify -B
     - if: type != pull_request
       name: "OpenJDK 11"
       jdk: openjdk11
+      install: true
       script: mvn -q clean verify -B
     - stage: deploy
       name: "Deploy to Sonatype's snapshots repository"
+      jdk: oraclejdk8
       if: type != pull_request AND env(SONATYPE_NEXUS_USERNAME) IS present
+      install: true
       script: bash .travis.deploy.artifacts.sh
 notifications:
   email:
