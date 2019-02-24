@@ -20,6 +20,7 @@ jobs:
       name: "Deploy to Sonatype's snapshots repository"
       jdk: oraclejdk8
       if: type != pull_request AND env(SONATYPE_NEXUS_USERNAME) IS present
+      install: true
       script: bash .travis.deploy.artifacts.sh
 notifications:
   email:
