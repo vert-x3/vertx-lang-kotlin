@@ -171,7 +171,7 @@ class JsonTest {
   @Test
   fun testInstantProcessing() {
     val expected = Instant.now()
-    val json = JsonObject("time" to expected)
+    val json = jsonObjectOf("time" to expected)
 
     val actual = json.getInstant("time")
 
@@ -184,7 +184,7 @@ class JsonTest {
     expected.set(0, 0)
     expected.set(1, 1)
     expected.set(2, 2)
-    val json = JsonObject("bytes" to expected)
+    val json = jsonObjectOf("bytes" to expected)
 
     val actual = json.getBinary("bytes")
 
@@ -196,7 +196,7 @@ class JsonTest {
   @Test
   fun testNormalProcessing() {
     val expected = "A Value"
-    val json = JsonObject("key" to expected)
+    val json = jsonObjectOf("key" to expected)
 
     val actual = json.getString("key")
 
