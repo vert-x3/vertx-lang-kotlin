@@ -70,7 +70,7 @@ open class KotlinVerticleFactory : VerticleFactory {
       CompositeFuture.all(
           children.map { verticle ->
             Future.future<String>().apply {
-              vertx.deployVerticle(verticle, completer())
+              vertx.deployVerticle(verticle, this)
             }
           }).setHandler { startFuture.complete() }
     }
