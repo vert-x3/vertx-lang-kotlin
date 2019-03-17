@@ -1,5 +1,3 @@
-
-@ModuleGen(groupPackage = "io.vertx", name = "vertx-test")
 /*
  * Copyright 2019 Red Hat, Inc.
  *
@@ -15,6 +13,8 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
+
+@ModuleGen(groupPackage = "io.vertx", name = "vertx-test")
 package io.vertx.lang.kotlin.test.dataobject;
 
 import io.vertx.codegen.annotations.ModuleGen;
