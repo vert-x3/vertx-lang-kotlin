@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 Red Hat, Inc.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Apache License v2.0 which accompanies this distribution.
+ *
+ * The Eclipse Public License is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * The Apache License v2.0 is available at
+ * http://www.opensource.org/licenses/apache2.0.php
+ *
+ * You may elect to redistribute this code under either of these licenses.
+ */
 package io.vertx.lang.kotlin;
 
 import io.vertx.codegen.Case;
@@ -21,6 +36,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static io.vertx.codegen.type.ClassKind.*;
+import static io.vertx.lang.kotlin.helper.KotlinCodeGenHelper.LICENSE;
 
 public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectModel> {
 
@@ -46,6 +62,7 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   public String render(DataObjectModel model, int index, int size, Map<String, Object> session) {
     StringWriter buffer = new StringWriter();
     CodeWriter writer = new CodeWriter(buffer);
+    writer.println(LICENSE);
     writer.println("package " + model.getType().translatePackageName("kotlin"));
     writer.println();
     generateImport(model, writer);

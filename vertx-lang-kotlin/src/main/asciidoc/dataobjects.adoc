@@ -846,6 +846,23 @@ Set whether Netty pooled buffers are enabled
 +++
 |===
 
+[[Config]]
+== Config
+
+++++
+ A configuration object containing the configuration entries for a resource
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[entries]]`@entries`|`Array of link:dataobjects.html#ConfigEntry[ConfigEntry]`|+++
+Set the configuration entries for a resource
++++
+|===
+
 [[ConfigChange]]
 == ConfigChange
 
@@ -863,6 +880,64 @@ Sets the new configuration.
 +++
 |[[previousConfiguration]]`@previousConfiguration`|`Json object`|+++
 Sets the previous configuration.
++++
+|===
+
+[[ConfigEntry]]
+== ConfigEntry
+
+++++
+ A class representing a configuration entry containing name, value and additional metadata
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[default]]`@default`|`Boolean`|+++
+Set whether the config value is the default or if it's been explicitly set
++++
+|[[name]]`@name`|`String`|+++
+Set the config name
++++
+|[[readOnly]]`@readOnly`|`Boolean`|+++
+Set whether the config is read-only and cannot be updated
++++
+|[[sensitive]]`@sensitive`|`Boolean`|+++
+Set whether the config value is sensitive. The value is always set to null by the broker if the config value is sensitive
++++
+|[[source]]`@source`|`link:enums.html#ConfigSource[ConfigSource]`|+++
+Set the source of this configuration entry
++++
+|[[synonyms]]`@synonyms`|`Array of link:dataobjects.html#ConfigSynonym[ConfigSynonym]`|+++
+Set all config values that may be used as the value of this config along with their source, in the order of precedence
++++
+|[[value]]`@value`|`String`|+++
+Set the value or null. Null is returned if the config is unset or if isSensitive is true
++++
+|===
+
+[[ConfigResource]]
+== ConfigResource
+
+++++
+ A class representing resources that have configuration
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[default]]`@default`|`Boolean`|+++
+Set if this is the default resource of a resource type. Resource name is empty for the default resource.
++++
+|[[name]]`@name`|`String`|+++
+Set the resource name
++++
+|[[type]]`@type`|`link:enums.html#Type[Type]`|+++
+Set the resource type
 +++
 |===
 
@@ -916,6 +991,29 @@ Sets whether or not the store is optional. When the configuration is retrieve, i
 +++
 |[[type]]`@type`|`String`|+++
 Sets the configuration type
++++
+|===
+
+[[ConfigSynonym]]
+== ConfigSynonym
+
+++++
+ Class representing a configuration synonym of a link
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[name]]`@name`|`String`|+++
+Set the name of this configuration
++++
+|[[source]]`@source`|`link:enums.html#ConfigSource[ConfigSource]`|+++
+Set the source of this configuration
++++
+|[[value]]`@value`|`String`|+++
+Set the value of this configuration, which may be null if the configuration is sensitive
 +++
 |===
 
@@ -1184,6 +1282,58 @@ Set the Websocket deflate compression level.
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
++++
+|===
+
+[[ConsumerGroupDescription]]
+== ConsumerGroupDescription
+
+++++
+ A detailed description of a single consumer group in the cluster
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[coordinator]]`@coordinator`|`link:dataobjects.html#Node[Node]`|+++
+Set the consumer group coordinator, or null if the coordinator is not known
++++
+|[[groupId]]`@groupId`|`String`|+++
+Set the id of the consumer group
++++
+|[[members]]`@members`|`Array of link:dataobjects.html#MemberDescription[MemberDescription]`|+++
+Set a list of the members of the consumer group
++++
+|[[partitionAssignor]]`@partitionAssignor`|`String`|+++
+Set the consumer group partition assignor
++++
+|[[simpleConsumerGroup]]`@simpleConsumerGroup`|`Boolean`|+++
+Set if consumer group is simple or not
++++
+|[[state]]`@state`|`link:enums.html#ConsumerGroupState[ConsumerGroupState]`|+++
+Set the consumer group state, or UNKNOWN if the state is too new for us to parse
++++
+|===
+
+[[ConsumerGroupListing]]
+== ConsumerGroupListing
+
+++++
+ A listing of a consumer group in the cluster.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[groupId]]`@groupId`|`String`|+++
+Set the consumer group id
++++
+|[[simpleConsumerGroup]]`@simpleConsumerGroup`|`Boolean`|+++
+Set if consumer group is simple or not
 +++
 |===
 
@@ -1915,6 +2065,23 @@ Set the additional debug data
 +++
 |[[lastStreamId]]`@lastStreamId`|`Number (int)`|+++
 Set the last stream id.
++++
+|===
+
+[[GraphQLHandlerOptions]]
+== GraphQLHandlerOptions
+
+++++
+ Options for configuring the link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[requestBatchingEnabled]]`@requestBatchingEnabled`|`Boolean`|+++
+Whether request batching should be enabled. Defaults to <code>false</code>.
 +++
 |===
 
@@ -3376,6 +3543,49 @@ Set the matched value.
 +++
 |===
 
+[[MemberAssignment]]
+== MemberAssignment
+
+++++
+ A description of the assignments of a specific group member
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[topicPartitions]]`@topicPartitions`|`Array of link:dataobjects.html#TopicPartition[TopicPartition]`|+++
+Set the list of topic partitions
++++
+|===
+
+[[MemberDescription]]
+== MemberDescription
+
+++++
+ A detailed description of a single group instance in the cluster
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[assignment]]`@assignment`|`link:dataobjects.html#MemberAssignment[MemberAssignment]`|+++
+Set the assignment of the group member
++++
+|[[clientId]]`@clientId`|`String`|+++
+Set the client id of the group member
++++
+|[[consumerId]]`@consumerId`|`String`|+++
+Set the consumer id of the group member
++++
+|[[host]]`@host`|`String`|+++
+Set the host where the group member is running
++++
+|===
+
 [[MetricsOptions]]
 == MetricsOptions
 
@@ -4205,6 +4415,32 @@ Set the TCP send buffer size
 +++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
++++
+|===
+
+[[NewTopic]]
+== NewTopic
+
+++++
+ A new topic to be created
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[config]]`@config`|`String`|+++
+Set the configuration for the new topic or null if no configs ever specified
++++
+|[[name]]`@name`|`String`|+++
+Set the name of the topic to be created
++++
+|[[numPartitions]]`@numPartitions`|`Number (int)`|+++
+Set the number of partitions for the new topic or -1 if a replica assignment has been specified
++++
+|[[replicationFactor]]`@replicationFactor`|`Number (short)`|+++
+Set the replication factor for the new topic or -1 if a replica assignment has been specified
 +++
 |===
 
@@ -5425,6 +5661,48 @@ Set the topic the record was appended to
 == RedisOptions
 
 ++++
+ Redis Client Configuration options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[masterName]]`@masterName`|`String`|+++
+Set the master name (only considered in HA mode).
++++
+|[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
+Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
++++
+|[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
+The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
+ backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
++++
+|[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
+Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
++++
+|[[password]]`@password`|`String`|+++
+Set the provided password to be used when establishing a connection to the server.
++++
+|[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
+Set the role name (only considered in HA mode).
++++
+|[[select]]`@select`|`Number (Integer)`|+++
+Set the provided database to be selected when establishing a connection to the server.
++++
+|[[type]]`@type`|`link:enums.html#RedisClientType[RedisClientType]`|+++
+Set the desired client type to be created.
++++
+|[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
+Set whether or not to use slave nodes (only considered in Cluster mode).
++++
+|===
+
+[[RedisOptions]]
+== RedisOptions
+
+++++
  This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
  since it has built the following sensible defaults:
  <p>
@@ -5733,8 +6011,8 @@ Get the rows - each row represented as a JsonObject where the keys are the colum
 |===
 ^|Name | Type ^| Description
 |[[mountNotImplementedHandler]]`@mountNotImplementedHandler`|`Boolean`|+++
-Automatic mount handlers that return HTTP 501 status code for operations where you didn't specify an handler.
- You can change the "not implemented handler" with link
+If true, Router Factory will automatically mount an handler that return HTTP 501 status code for each operation where you didn't specify an handler.
+ You can customize the response with link
 +++
 |[[mountResponseContentTypeHandler]]`@mountResponseContentTypeHandler`|`Boolean`|+++
 If true, when required, the factory will mount a link
@@ -6921,6 +7199,30 @@ Configure the execution to use an event loop when there is no one existing.
 +++
 |===
 
+[[TopicDescription]]
+== TopicDescription
+
+++++
+ A detailed description of a single topic in the cluster
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[internal]]`@internal`|`Boolean`|+++
+Set whether the topic is internal to Kafka.
++++
+|[[name]]`@name`|`String`|+++
+Set the name of the topic.
++++
+|[[partitions]]`@partitions`|`Array of link:dataobjects.html#TopicPartitionInfo[TopicPartitionInfo]`|+++
+Set A list of partitions where the index represents the partition id and the element
+ contains leadership and replica information for that partition.
++++
+|===
+
 [[TopicPartition]]
 == TopicPartition
 
@@ -6938,6 +7240,32 @@ Set the partition number
 +++
 |[[topic]]`@topic`|`String`|+++
 Set the topic name
++++
+|===
+
+[[TopicPartitionInfo]]
+== TopicPartitionInfo
+
+++++
+ A class containing leadership, replicas and ISR information for a topic partition.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[isr]]`@isr`|`Array of link:dataobjects.html#Node[Node]`|+++
+Set the subset of the replicas that are in sync
++++
+|[[leader]]`@leader`|`link:dataobjects.html#Node[Node]`|+++
+Set the node id of the node currently acting as a leader
++++
+|[[partition]]`@partition`|`Number (int)`|+++
+Set the partition id
++++
+|[[replicas]]`@replicas`|`Array of link:dataobjects.html#Node[Node]`|+++
+Set the complete set of replicas for this partition
 +++
 |===
 
