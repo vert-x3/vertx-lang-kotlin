@@ -1,4 +1,19 @@
-package io.vertx.lang.kotlin.test;
+/*
+ * Copyright 2019 Red Hat, Inc.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Apache License v2.0 which accompanies this distribution.
+ *
+ * The Eclipse Public License is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * The Apache License v2.0 is available at
+ * http://www.opensource.org/licenses/apache2.0.php
+ *
+ * You may elect to redistribute this code under either of these licenses.
+ */
+package io.vertx.lang.kotlin.test
 
 import io.vertx.codegen.testmodel.DataObjectTCK
 import io.vertx.codegen.testmodel.DataObjectTCKImpl
@@ -7,13 +22,6 @@ import io.vertx.codegen.testmodel.TestGenEnum
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithBuffer
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithListAdders
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithLists
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithMapAdders
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithMaps
-import io.vertx.kotlin.codegen.testmodel.DataObjectWithNestedBuffer
-import io.vertx.kotlin.codegen.testmodel.TestDataObject
 import io.vertx.kotlin.codegen.testmodel.dataObjectWithBufferOf
 import io.vertx.kotlin.codegen.testmodel.dataObjectWithListAddersOf
 import io.vertx.kotlin.codegen.testmodel.dataObjectWithListsOf

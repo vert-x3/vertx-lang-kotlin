@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 Red Hat, Inc.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Apache License v2.0 which accompanies this distribution.
+ *
+ * The Eclipse Public License is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * The Apache License v2.0 is available at
+ * http://www.opensource.org/licenses/apache2.0.php
+ *
+ * You may elect to redistribute this code under either of these licenses.
+ */
 package io.vertx.kotlin.ext.web.api.contract
 
 import io.vertx.ext.web.api.contract.RouterFactoryOptions
@@ -6,7 +21,7 @@ import io.vertx.ext.web.api.contract.RouterFactoryOptions
  * A function providing a DSL for building [io.vertx.ext.web.api.contract.RouterFactoryOptions] objects.
  *
  *
- * @param mountNotImplementedHandler  Automatic mount handlers that return HTTP 501 status code for operations where you didn't specify an handler. You can change the "not implemented handler" with [io.vertx.ext.web.api.contract.RouterFactory]
+ * @param mountNotImplementedHandler  If true, Router Factory will automatically mount an handler that return HTTP 501 status code for each operation where you didn't specify an handler. You can customize the response with [io.vertx.ext.web.Router]
  * @param mountResponseContentTypeHandler  If true, when required, the factory will mount a [io.vertx.ext.web.handler.ResponseContentTypeHandler]
  * @param mountValidationFailureHandler  Enable or disable validation failure handler. If you enable it during router creation a failure handler that manages ValidationException will be mounted. You can change the validation failure handler with with function [io.vertx.ext.web.api.contract.RouterFactory]. If failure is different from ValidationException, next failure handler will be called.
  * @param operationModelKey  When set, an additional handler will be created to expose the operation model in the routing context under the given key. When the key is null, the handler is not added.
@@ -43,7 +58,7 @@ fun routerFactoryOptionsOf(
  * A function providing a DSL for building [io.vertx.ext.web.api.contract.RouterFactoryOptions] objects.
  *
  *
- * @param mountNotImplementedHandler  Automatic mount handlers that return HTTP 501 status code for operations where you didn't specify an handler. You can change the "not implemented handler" with [io.vertx.ext.web.api.contract.RouterFactory]
+ * @param mountNotImplementedHandler  If true, Router Factory will automatically mount an handler that return HTTP 501 status code for each operation where you didn't specify an handler. You can customize the response with [io.vertx.ext.web.Router]
  * @param mountResponseContentTypeHandler  If true, when required, the factory will mount a [io.vertx.ext.web.handler.ResponseContentTypeHandler]
  * @param mountValidationFailureHandler  Enable or disable validation failure handler. If you enable it during router creation a failure handler that manages ValidationException will be mounted. You can change the validation failure handler with with function [io.vertx.ext.web.api.contract.RouterFactory]. If failure is different from ValidationException, next failure handler will be called.
  * @param operationModelKey  When set, an additional handler will be created to expose the operation model in the routing context under the given key. When the key is null, the handler is not added.
