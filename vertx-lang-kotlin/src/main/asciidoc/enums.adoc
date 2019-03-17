@@ -711,6 +711,52 @@ SOCSK5 tcp proxy
 |[[WITHSCORES]]`WITHSCORES`|-
 |===
 
+[[RedisRole]]
+== RedisRole
+
+++++
+ Define which kind of role to be used in HA mode.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[MASTER]]`MASTER`|+++
+Use a MASTER node connection.
++++
+|[[SLAVE]]`SLAVE`|+++
+Use a SLAVE node connection.
++++
+|[[SENTINEL]]`SENTINEL`|+++
+Use a SENTINEL node connection.
++++
+|===
+
+[[RedisSlaves]]
+== RedisSlaves
+
+++++
+ When should Redis Slave nodes be used for queries.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NEVER]]`NEVER`|+++
+Never use SLAVES, queries are always run on a MASTER node.
++++
+|[[SHARE]]`SHARE`|+++
+Queries can be randomly run on both MASTER and SLAVE nodes.
++++
+|[[ALWAYS]]`ALWAYS`|+++
+Queries are always run on SLAVE nodes (never on MASTER node).
++++
+|===
+
 [[ReplyFailure]]
 == ReplyFailure
 
@@ -747,6 +793,35 @@ The message send failed because the recipient actively sent back a failure (reje
 ^|Name | Description
 |[[HARD]]`HARD`|-
 |[[SOFT]]`SOFT`|-
+|===
+
+[[ResponseType]]
+== ResponseType
+
+++++
+ Define the response types that the client can receive from REDIS.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SIMPLE]]`SIMPLE`|+++
+C String simple String.
++++
+|[[ERROR]]`ERROR`|+++
+C String simple String representing an error.
++++
+|[[INTEGER]]`INTEGER`|+++
+64 bit integer value.
++++
+|[[BULK]]`BULK`|+++
+byte array value.
++++
+|[[MULTI]]`MULTI`|+++
+List of multiple bulk responses.
++++
 |===
 
 [[ResultSetConcurrency]]

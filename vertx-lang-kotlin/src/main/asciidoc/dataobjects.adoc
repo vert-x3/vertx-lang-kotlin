@@ -5442,6 +5442,45 @@ Set the topic the record was appended to
 == RedisOptions
 
 ++++
+ Redis Client Configuration options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[masterName]]`@masterName`|`String`|+++
+Set the master name (only considered in HA mode).
++++
+|[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
+Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
++++
+|[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
+The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
+ backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
++++
+|[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
+Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
++++
+|[[password]]`@password`|`String`|+++
+Set the provided password to be used when establishing a connection to the server.
++++
+|[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
+Set the role name (only considered in HA mode).
++++
+|[[select]]`@select`|`Number (Integer)`|+++
+Set the provided database to be selected when establishing a connection to the server.
++++
+|[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
+Set whether or not to use slave nodes (only considered in Cluster mode).
++++
+|===
+
+[[RedisOptions]]
+== RedisOptions
+
+++++
  This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
  since it has built the following sensible defaults:
  <p>

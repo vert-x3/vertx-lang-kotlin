@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 Red Hat, Inc.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Apache License v2.0 which accompanies this distribution.
+ *
+ * The Eclipse Public License is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * The Apache License v2.0 is available at
+ * http://www.opensource.org/licenses/apache2.0.php
+ *
+ * You may elect to redistribute this code under either of these licenses.
+ */
 package io.vertx.lang.kotlin;
 
 import io.vertx.codegen.*;
@@ -15,6 +30,8 @@ import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static io.vertx.lang.kotlin.helper.KotlinCodeGenHelper.LICENSE;
 
 public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
@@ -43,6 +60,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   public String render(ClassModel model, int index, int size, Map<String, Object> session) {
     StringWriter buffer = new StringWriter();
     CodeWriter writer = new CodeWriter(buffer);
+    writer.println(LICENSE);
     ClassTypeInfo type = model.getType();
     Stream<MethodInfo> methodStream = Stream.concat(
       model.getMethods().stream(),
