@@ -29,6 +29,11 @@ open class KotlinVerticleFactory : VerticleFactory {
   override fun createVerticle(verticleName: String, classLoader: ClassLoader): Verticle {
     val resourceName = VerticleFactory.removePrefix(verticleName)
 
+    //fix only kt: prefix, no kt|kts suffix case, as class to deal with
+    if(!resourceName.endsWith(".kt") && !resourceName.endsWith(".kts")) {
+      return classLoader.loadClass(resourceName).let { it.newInstance() as Verticle }
+    }
+
     var url = classLoader.getResource(resourceName)
     if (url == null) {
       var f = File(resourceName)
