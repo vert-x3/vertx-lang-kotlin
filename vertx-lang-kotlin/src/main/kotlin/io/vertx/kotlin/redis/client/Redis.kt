@@ -15,77 +15,47 @@
  */
 package io.vertx.kotlin.redis.client
 
-import io.vertx.core.Vertx
-import io.vertx.core.net.SocketAddress
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
-import io.vertx.redis.client.Redis as RedisVertxAlias
-import io.vertx.redis.client.RedisOptions
+import io.vertx.redis.client.Redis
 import io.vertx.redis.client.Request
 import io.vertx.redis.client.Response
 
 /**
- * Pipe this <code>ReadStream</code> to the <code>WriteStream</code>.
- * <p>
- * Elements emitted by this stream will be written to the write stream until this stream ends or fails.
- * <p>
- * Once this stream has ended or failed, the write stream will be ended and the <code>handler</code> will be
- * called with the result.
+ * Suspending version of method [io.vertx.redis.client.Redis.pipeTo]
  *
  * @param dst the destination write stream
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.client.Redis original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-suspend fun RedisVertxAlias.pipeToAwait(dst : WriteStream<Response>) : Unit {
-  return awaitResult{
-    this.pipeTo(dst, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun Redis.pipeToAwait(dst: WriteStream<Response>): Unit {
+  return awaitResult {
+    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
-suspend fun RedisVertxAlias.sendAwait(command : Request) : Response? {
-  return awaitResult{
+/**
+ * Suspending version of method [io.vertx.redis.client.Redis.connect]
+ *
+ * @return [Redis]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
+ */
+suspend fun Redis.connectAwait(): Redis {
+  return awaitResult {
+    this.connect(it)
+  }
+}
+
+suspend fun Redis.sendAwait(command: Request): Response? {
+  return awaitResult {
     this.send(command, it)
   }
 }
 
-suspend fun RedisVertxAlias.batchAwait(commands : List<Request>) : List<Response> {
-  return awaitResult{
+suspend fun Redis.batchAwait(commands: List<Request>): List<Response> {
+  return awaitResult {
     this.batch(commands, it)
   }
 }
 
-object Redis {
-/**
- * Connect to redis, the <code>onConnect</code> will get the [io.vertx.redis.client.Redis] instance.
- *
- * This connection will use the default options which are connect
- * to a standalone server on the default port on "localhost".
- *
- * @param vertx 
- * @param address 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.client.Redis original] using Vert.x codegen.
- */
-  suspend fun createClientAwait(vertx : Vertx, address : SocketAddress) : RedisVertxAlias {
-    return awaitResult{
-      RedisVertxAlias.createClient(vertx, address, it)
-    }
-  }
-
-/**
- * Connect to redis, the <code>onConnect</code> will get the [io.vertx.redis.client.Redis] instance.
- *
- * @param vertx 
- * @param options 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.redis.client.Redis original] using Vert.x codegen.
- */
-  suspend fun createClientAwait(vertx : Vertx, options : RedisOptions) : RedisVertxAlias {
-    return awaitResult{
-      RedisVertxAlias.createClient(vertx, options, it)
-    }
-  }
-
-}

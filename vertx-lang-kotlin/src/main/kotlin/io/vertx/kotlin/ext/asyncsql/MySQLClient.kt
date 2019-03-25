@@ -20,34 +20,30 @@ import io.vertx.ext.asyncsql.MySQLClient
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Execute a one shot SQL statement that returns a single SQL row. This method will reduce the boilerplate code by
- * getting a connection from the pool (this object) and return it back after the execution. Only the first result
- * from the result set is returned.
+ * Suspending version of method [io.vertx.ext.asyncsql.MySQLClient.querySingle]
  *
  * @param sql the statement to execute
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.asyncsql.MySQLClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.asyncsql.MySQLClient] using Vert.x codegen.
  */
-suspend fun MySQLClient.querySingleAwait(sql : String) : JsonArray? {
-  return awaitResult{
+suspend fun MySQLClient.querySingleAwait(sql: String): JsonArray? {
+  return awaitResult {
     this.querySingle(sql, it)
   }
 }
 
 /**
- * Execute a one shot SQL statement with arguments that returns a single SQL row. This method will reduce the
- * boilerplate code by getting a connection from the pool (this object) and return it back after the execution.
- * Only the first result from the result set is returned.
+ * Suspending version of method [io.vertx.ext.asyncsql.MySQLClient.querySingleWithParams]
  *
  * @param sql the statement to execute
  * @param arguments the arguments
- * @return self *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.asyncsql.MySQLClient original] using Vert.x codegen.
+ * @return [JsonArray?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.asyncsql.MySQLClient] using Vert.x codegen.
  */
-suspend fun MySQLClient.querySingleWithParamsAwait(sql : String, arguments : JsonArray) : JsonArray? {
-  return awaitResult{
+suspend fun MySQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
+  return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
   }
 }

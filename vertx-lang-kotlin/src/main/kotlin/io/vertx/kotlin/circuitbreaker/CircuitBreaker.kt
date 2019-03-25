@@ -17,36 +17,35 @@ package io.vertx.kotlin.circuitbreaker
 
 import io.vertx.circuitbreaker.CircuitBreaker
 import io.vertx.core.Future
-import io.vertx.core.Handler
 import io.vertx.kotlin.coroutines.awaitResult
 import java.util.function.Function
 
 /**
- * Same as [io.vertx.circuitbreaker.CircuitBreaker] but using a callback.
+ * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.executeCommandWithFallback]
  *
  * @param command the operation
  * @param fallback the fallback
+ * @return [T]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command : Handler<Future<T>>, fallback : Function<Throwable,T>) : T {
-  return awaitResult{
-    this.executeCommandWithFallback(command, fallback, it)
+suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command: (Future<T>) -> Unit, fallback: (Throwable) -> T): T {
+  return awaitResult {
+    this.executeCommandWithFallback(command, fallback, it::handle)
   }
 }
 
 /**
- * Same as [io.vertx.circuitbreaker.CircuitBreaker] but using the circuit breaker default fallback.
+ * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.executeCommand]
  *
  * @param command the operation
+ * @return [T]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.circuitbreaker.CircuitBreaker original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandAwait(command : Handler<Future<T>>) : T {
-  return awaitResult{
-    this.executeCommand(command, it)
+suspend fun <T> CircuitBreaker.executeCommandAwait(command: (Future<T>) -> Unit): T {
+  return awaitResult {
+    this.executeCommand(command, it::handle)
   }
 }
 

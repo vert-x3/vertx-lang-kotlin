@@ -21,32 +21,27 @@ import io.vertx.ext.sql.SQLRowStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Pipe this <code>ReadStream</code> to the <code>WriteStream</code>.
- * <p>
- * Elements emitted by this stream will be written to the write stream until this stream ends or fails.
- * <p>
- * Once this stream has ended or failed, the write stream will be ended and the <code>handler</code> will be
- * called with the result.
+ * Suspending version of method [io.vertx.ext.sql.SQLRowStream.pipeTo]
  *
  * @param dst the destination write stream
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLRowStream original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
  */
-suspend fun SQLRowStream.pipeToAwait(dst : WriteStream<JsonArray>) : Unit {
-  return awaitResult{
-    this.pipeTo(dst, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SQLRowStream.pipeToAwait(dst: WriteStream<JsonArray>): Unit {
+  return awaitResult {
+    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Closes the stream/underlying cursor(s). The actual close happens asynchronously.
+ * Suspending version of method [io.vertx.ext.sql.SQLRowStream.close]
  *
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.sql.SQLRowStream original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
  */
-suspend fun SQLRowStream.closeAwait() : Unit {
-  return awaitResult{
-    this.close({ ar -> it.handle(ar.mapEmpty()) })}
+suspend fun SQLRowStream.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 

@@ -21,53 +21,53 @@ import io.vertx.kafka.admin.NewTopic
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * List the topics available in the cluster with the default options.
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.listTopics]
  *
+ * @return [Set<String>]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.KafkaAdminClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-suspend fun KafkaAdminClient.listTopicsAwait() : Set<String> {
-  return awaitResult{
+suspend fun KafkaAdminClient.listTopicsAwait(): Set<String> {
+  return awaitResult {
     this.listTopics(it)
   }
 }
 
 /**
- * Creates a batch of new Kafka topics
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.createTopics]
  *
  * @param topics topics to create
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.KafkaAdminClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-suspend fun KafkaAdminClient.createTopicsAwait(topics : List<NewTopic>) : Unit {
-  return awaitResult{
-    this.createTopics(topics, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
+  return awaitResult {
+    this.createTopics(topics) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Deletes a batch of Kafka topics
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.deleteTopics]
  *
  * @param topicNames the names of the topics to delete
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.KafkaAdminClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames : List<String>) : Unit {
-  return awaitResult{
-    this.deleteTopics(topicNames, { ar -> it.handle(ar.mapEmpty()) })}
+suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames: List<String>): Unit {
+  return awaitResult {
+    this.deleteTopics(topicNames) { ar -> it.handle(ar.mapEmpty()) }
+  }
 }
 
 /**
- * Get the the consumer groups available in the cluster with the default options
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.listConsumerGroups]
  *
+ * @return [List<ConsumerGroupListing>]
  *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.KafkaAdminClient original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-suspend fun KafkaAdminClient.listConsumerGroupsAwait() : List<ConsumerGroupListing> {
-  return awaitResult{
+suspend fun KafkaAdminClient.listConsumerGroupsAwait(): List<ConsumerGroupListing> {
+  return awaitResult {
     this.listConsumerGroups(it)
   }
 }
