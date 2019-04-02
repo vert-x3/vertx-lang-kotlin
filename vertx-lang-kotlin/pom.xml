@@ -209,6 +209,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-amqp-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-service-discovery</artifactId>
       <optional>true</optional>
     </dependency>
@@ -384,6 +389,7 @@
             vertx-stomp,
             vertx-mail-client,
             vertx-consul-client,
+            vertx-amqp-client,
             vertx-service-discovery,
             vertx-service-discovery-backend-consul,
             vertx-service-discovery-backend-redis,
