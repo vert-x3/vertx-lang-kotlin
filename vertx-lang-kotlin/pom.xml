@@ -279,6 +279,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-amqp-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-kafka-client</artifactId>
       <optional>true</optional>
     </dependency>
@@ -423,6 +428,7 @@
             vertx-service-discovery-bridge-docker-links,
             vertx-config,
             vertx-amqp-bridge,
+            vertx-amqp-client,
             vertx-kafka-client,
             vertx-mqtt,
             vertx-mysql-postgresql-client,
