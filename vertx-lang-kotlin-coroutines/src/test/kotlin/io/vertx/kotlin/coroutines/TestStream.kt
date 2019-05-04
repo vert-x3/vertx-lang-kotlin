@@ -15,6 +15,8 @@
  */
 package io.vertx.kotlin.coroutines
 
+import io.vertx.core.AsyncResult
+import io.vertx.core.Future
 import io.vertx.core.Handler
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
@@ -71,14 +73,29 @@ class TestStream<T> : ReadStream<T>, WriteStream<T> {
   }
 
   override fun write(data: T): TestStream<T> {
+    return write(data, null)
+  }
+
+  override fun write(data: T, completionHandler: Handler<AsyncResult<Void>>?): TestStream<T> {
     handler.handle(data)
     writtenElements++
+    if (completionHandler != null) {
+      completionHandler.handle(Future.succeededFuture())
+    }
     return this
   }
 
   override fun end() {
+    val nothing : Handler<AsyncResult<Void>>? = null
+    end(nothing);
+  }
+
+  override fun end(completionHandler: Handler<AsyncResult<Void>>?) {
     isEnded = true
     endHandler?.handle(null)
+    if (completionHandler != null) {
+      completionHandler.handle(Future.succeededFuture())
+    }
   }
 
   override fun setWriteQueueMaxSize(size: Int): TestStream<T> {

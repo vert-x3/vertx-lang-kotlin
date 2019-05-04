@@ -22,6 +22,7 @@ import io.vertx.core.streams.*
 import io.vertx.kotlin.core.json.*
 import io.vertx.kotlin.core.streams.*
 import io.vertx.kotlin.core.buffer.*
+import io.vertx.kotlin.core.json.Json
 import org.junit.Test
 import java.time.Instant
 import java.util.*
@@ -126,8 +127,16 @@ class JsonTest {
         throw UnsupportedOperationException("not implemented")
       }
 
+      override fun write(data: Buffer?, handler: Handler<AsyncResult<Void>>?): WriteStream<Buffer> {
+        throw UnsupportedOperationException("not implemented")
+      }
+
       override fun end() {
         ended.set(true)
+      }
+
+      override fun end(handler: Handler<AsyncResult<Void>>?) {
+        throw UnsupportedOperationException("not implemented")
       }
 
       override fun drainHandler(handler: Handler<Void>?): WriteStream<Buffer> {
@@ -151,9 +160,12 @@ class JsonTest {
     assertFalse(ended.get())
 
     received.clear()
-    ws.end {
+    val block: Json.() -> JsonObject = {
       obj("k" to "v")
     }
+    ws.end(block = {
+      obj("k" to "v")
+    })
     assertEquals(1, received.size)
     assertEquals("{\"k\":\"v\"}", received.single().toString(Charsets.UTF_8))
     assertTrue(ended.get())
