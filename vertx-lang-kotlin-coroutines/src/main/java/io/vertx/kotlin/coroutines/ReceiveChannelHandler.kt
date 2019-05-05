@@ -20,6 +20,7 @@ import io.vertx.core.Handler
 import io.vertx.core.Vertx
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -86,10 +87,17 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   }
 
   @ObsoleteCoroutinesApi
+  @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
   override fun cancel(cause: Throwable?): Boolean {
-    return channel.cancel(cause)
+    channel.cancel(CancellationException(message = null, cause = cause))
+    return true
   }
 
+  override fun cancel(cause: CancellationException?) {
+    channel.cancel(cause)
+  }
+
+  @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
   override fun cancel(): Unit {
     return channel.cancel()
   }
