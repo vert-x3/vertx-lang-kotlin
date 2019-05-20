@@ -13,9 +13,9 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.amqp
+package io.vertx.kotlin.amqp
 
-import io.vertx.ext.amqp.AmqpClientOptions
+import io.vertx.amqp.AmqpClientOptions
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -26,7 +26,7 @@ import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpClientOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpClientOptions] objects.
  *
  * Configures the AMQP Client.
  * You can also configure the underlying Proton instance. Refer to  for details.
@@ -80,7 +80,7 @@ import java.util.concurrent.TimeUnit
  * @param virtualHost 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpClientOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
  */
 fun amqpClientOptionsOf(
   connectTimeout: Int? = null,
@@ -129,7 +129,7 @@ fun amqpClientOptionsOf(
   useAlpn: Boolean? = null,
   usePooledBuffers: Boolean? = null,
   username: String? = null,
-  virtualHost: String? = null): AmqpClientOptions = io.vertx.ext.amqp.AmqpClientOptions().apply {
+  virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
@@ -283,7 +283,7 @@ fun amqpClientOptionsOf(
 }
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpClientOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpClientOptions] objects.
  *
  * Configures the AMQP Client.
  * You can also configure the underlying Proton instance. Refer to  for details.
@@ -337,7 +337,7 @@ fun amqpClientOptionsOf(
  * @param virtualHost 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpClientOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
@@ -390,7 +390,7 @@ fun AmqpClientOptions(
   useAlpn: Boolean? = null,
   usePooledBuffers: Boolean? = null,
   username: String? = null,
-  virtualHost: String? = null): AmqpClientOptions = io.vertx.ext.amqp.AmqpClientOptions().apply {
+  virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)

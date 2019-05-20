@@ -13,25 +13,25 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.amqp
+package io.vertx.kotlin.amqp
 
-import io.vertx.ext.amqp.AmqpReceiverOptions
+import io.vertx.amqp.AmqpReceiverOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpReceiverOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpReceiverOptions] objects.
  *
  * Configures the AMQP Receiver.
  *
  * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.ext.amqp.AmqpReceiver] method on the [io.vertx.ext.amqp.AmqpReceiver] received once opened.
+ * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
  * @param linkName 
  * @param maxBufferedMessages  Sets the max buffered messages. This message can be used to configure the initial credit of a receiver.
  * @param qos  Sets the local QOS config.
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpReceiverOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpReceiverOptions original] using Vert.x codegen.
  */
 fun amqpReceiverOptionsOf(
   capabilities: Iterable<String>? = null,
@@ -40,7 +40,7 @@ fun amqpReceiverOptionsOf(
   dynamic: Boolean? = null,
   linkName: String? = null,
   maxBufferedMessages: Int? = null,
-  qos: String? = null): AmqpReceiverOptions = io.vertx.ext.amqp.AmqpReceiverOptions().apply {
+  qos: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
 
   if (capabilities != null) {
     this.setCapabilities(capabilities.toList())
@@ -68,20 +68,20 @@ fun amqpReceiverOptionsOf(
 }
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpReceiverOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpReceiverOptions] objects.
  *
  * Configures the AMQP Receiver.
  *
  * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.ext.amqp.AmqpReceiver] method on the [io.vertx.ext.amqp.AmqpReceiver] received once opened.
+ * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
  * @param linkName 
  * @param maxBufferedMessages  Sets the max buffered messages. This message can be used to configure the initial credit of a receiver.
  * @param qos  Sets the local QOS config.
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpReceiverOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpReceiverOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
@@ -94,7 +94,7 @@ fun AmqpReceiverOptions(
   dynamic: Boolean? = null,
   linkName: String? = null,
   maxBufferedMessages: Int? = null,
-  qos: String? = null): AmqpReceiverOptions = io.vertx.ext.amqp.AmqpReceiverOptions().apply {
+  qos: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
 
   if (capabilities != null) {
     this.setCapabilities(capabilities.toList())

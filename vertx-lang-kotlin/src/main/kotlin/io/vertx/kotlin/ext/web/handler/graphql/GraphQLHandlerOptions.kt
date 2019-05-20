@@ -16,20 +16,26 @@
 package io.vertx.kotlin.ext.web.handler.graphql
 
 import io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions
+import io.vertx.ext.web.handler.graphql.GraphiQLOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions] objects.
  *
  * Options for configuring the [io.vertx.ext.web.handler.graphql.GraphQLHandler].
  *
+ * @param graphiQLOptions  Configure the GraphiQL development tool.
  * @param requestBatchingEnabled  Whether request batching should be enabled. Defaults to <code>false</code>.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions original] using Vert.x codegen.
  */
 fun graphQLHandlerOptionsOf(
+  graphiQLOptions: io.vertx.ext.web.handler.graphql.GraphiQLOptions? = null,
   requestBatchingEnabled: Boolean? = null): GraphQLHandlerOptions = io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions().apply {
 
+  if (graphiQLOptions != null) {
+    this.setGraphiQLOptions(graphiQLOptions)
+  }
   if (requestBatchingEnabled != null) {
     this.setRequestBatchingEnabled(requestBatchingEnabled)
   }
@@ -40,6 +46,7 @@ fun graphQLHandlerOptionsOf(
  *
  * Options for configuring the [io.vertx.ext.web.handler.graphql.GraphQLHandler].
  *
+ * @param graphiQLOptions  Configure the GraphiQL development tool.
  * @param requestBatchingEnabled  Whether request batching should be enabled. Defaults to <code>false</code>.
  *
  * <p/>
@@ -47,11 +54,15 @@ fun graphQLHandlerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("graphQLHandlerOptionsOf(requestBatchingEnabled)")
+  replaceWith = ReplaceWith("graphQLHandlerOptionsOf(graphiQLOptions, requestBatchingEnabled)")
 )
 fun GraphQLHandlerOptions(
+  graphiQLOptions: io.vertx.ext.web.handler.graphql.GraphiQLOptions? = null,
   requestBatchingEnabled: Boolean? = null): GraphQLHandlerOptions = io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions().apply {
 
+  if (graphiQLOptions != null) {
+    this.setGraphiQLOptions(graphiQLOptions)
+  }
   if (requestBatchingEnabled != null) {
     this.setRequestBatchingEnabled(requestBatchingEnabled)
   }

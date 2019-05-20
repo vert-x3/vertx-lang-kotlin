@@ -13,26 +13,26 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.amqp
+package io.vertx.kotlin.amqp
 
-import io.vertx.ext.amqp.AmqpSenderOptions
+import io.vertx.amqp.AmqpSenderOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpSenderOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpSenderOptions] objects.
  *
  * Configures the AMQP Receiver.
  *
  * @param autoDrained  Sets whether the link is automatically marked drained after the send queue drain handler callback returns if the receiving peer requested that credit be drained. <p> <code>true</code> by default.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.ext.amqp.AmqpSender] method on the [io.vertx.ext.amqp.AmqpSender] received once opened.
+ * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpSender] method on the [io.vertx.amqp.AmqpSender] received once opened.
  * @param linkName 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpSenderOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpSenderOptions original] using Vert.x codegen.
  */
 fun amqpSenderOptionsOf(
   autoDrained: Boolean? = null,
   dynamic: Boolean? = null,
-  linkName: String? = null): AmqpSenderOptions = io.vertx.ext.amqp.AmqpSenderOptions().apply {
+  linkName: String? = null): AmqpSenderOptions = io.vertx.amqp.AmqpSenderOptions().apply {
 
   if (autoDrained != null) {
     this.setAutoDrained(autoDrained)
@@ -46,16 +46,16 @@ fun amqpSenderOptionsOf(
 }
 
 /**
- * A function providing a DSL for building [io.vertx.ext.amqp.AmqpSenderOptions] objects.
+ * A function providing a DSL for building [io.vertx.amqp.AmqpSenderOptions] objects.
  *
  * Configures the AMQP Receiver.
  *
  * @param autoDrained  Sets whether the link is automatically marked drained after the send queue drain handler callback returns if the receiving peer requested that credit be drained. <p> <code>true</code> by default.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.ext.amqp.AmqpSender] method on the [io.vertx.ext.amqp.AmqpSender] received once opened.
+ * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpSender] method on the [io.vertx.amqp.AmqpSender] received once opened.
  * @param linkName 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.amqp.AmqpSenderOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpSenderOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
@@ -64,7 +64,7 @@ fun amqpSenderOptionsOf(
 fun AmqpSenderOptions(
   autoDrained: Boolean? = null,
   dynamic: Boolean? = null,
-  linkName: String? = null): AmqpSenderOptions = io.vertx.ext.amqp.AmqpSenderOptions().apply {
+  linkName: String? = null): AmqpSenderOptions = io.vertx.amqp.AmqpSenderOptions().apply {
 
   if (autoDrained != null) {
     this.setAutoDrained(autoDrained)

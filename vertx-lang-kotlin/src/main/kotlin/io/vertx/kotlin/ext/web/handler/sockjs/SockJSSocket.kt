@@ -21,6 +21,31 @@ import io.vertx.ext.web.handler.sockjs.SockJSSocket
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
+ */
+suspend fun SockJSSocket.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.end]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
+ */
+suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.pipeTo]
  *
  * @param dst the destination write stream
@@ -30,6 +55,12 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun SockJSSocket.writeAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

@@ -13,21 +13,21 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.amqp
+package io.vertx.kotlin.amqp
 
-import io.vertx.ext.amqp.AmqpConnection
-import io.vertx.ext.amqp.AmqpMessage
-import io.vertx.ext.amqp.AmqpReceiver
-import io.vertx.ext.amqp.AmqpReceiverOptions
-import io.vertx.ext.amqp.AmqpSender
-import io.vertx.ext.amqp.AmqpSenderOptions
+import io.vertx.amqp.AmqpConnection
+import io.vertx.amqp.AmqpMessage
+import io.vertx.amqp.AmqpReceiver
+import io.vertx.amqp.AmqpReceiverOptions
+import io.vertx.amqp.AmqpSender
+import io.vertx.amqp.AmqpSenderOptions
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.close]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.close]
  *
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.closeAwait(): Unit {
   return awaitResult {
@@ -36,12 +36,12 @@ suspend fun AmqpConnection.closeAwait(): Unit {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createReceiver]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createReceiver]
  *
  * @param address The source address to attach the consumer to, must not be <code>null</code>
  * @return [AmqpReceiver]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createReceiverAwait(address: String): AmqpReceiver {
   return awaitResult {
@@ -50,13 +50,13 @@ suspend fun AmqpConnection.createReceiverAwait(address: String): AmqpReceiver {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createReceiver]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createReceiver]
  *
  * @param address The source address to attach the consumer to, must not be <code>null</code>
  * @param messageHandler The message handler, must not be <code>null</code>
  * @return [AmqpReceiver]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createReceiverAwait(address: String, messageHandler: (AmqpMessage) -> Unit): AmqpReceiver {
   return awaitResult {
@@ -65,14 +65,14 @@ suspend fun AmqpConnection.createReceiverAwait(address: String, messageHandler: 
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createReceiver]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createReceiver]
  *
  * @param address The source address to attach the consumer to.
  * @param receiverOptions The options for this receiver.
  * @param messageHandler The message handler, must not be <code>null</code>
  * @return [AmqpReceiver]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions: AmqpReceiverOptions, messageHandler: (AmqpMessage) -> Unit): AmqpReceiver {
   return awaitResult {
@@ -81,13 +81,13 @@ suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions:
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createReceiver]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createReceiver]
  *
  * @param address The source address to attach the consumer to.
  * @param receiverOptions The options for this receiver.
  * @return [AmqpReceiver]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions: AmqpReceiverOptions): AmqpReceiver {
   return awaitResult {
@@ -96,11 +96,11 @@ suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions:
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createDynamicReceiver]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createDynamicReceiver]
  *
  * @return [AmqpReceiver]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createDynamicReceiverAwait(): AmqpReceiver {
   return awaitResult {
@@ -109,12 +109,12 @@ suspend fun AmqpConnection.createDynamicReceiverAwait(): AmqpReceiver {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createSender]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createSender]
  *
  * @param address The target address to attach to, must not be <code>null</code>
  * @return [AmqpSender]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createSenderAwait(address: String): AmqpSender {
   return awaitResult {
@@ -123,13 +123,13 @@ suspend fun AmqpConnection.createSenderAwait(address: String): AmqpSender {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createSender]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createSender]
  *
  * @param address The target address to attach to, allowed to be <code>null</code> if the <code>options</code> configures the sender to be attached to a dynamic address (provided by the broker).
  * @param options The AMQP sender options
  * @return [AmqpSender]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createSenderAwait(address: String, options: AmqpSenderOptions): AmqpSender {
   return awaitResult {
@@ -138,11 +138,11 @@ suspend fun AmqpConnection.createSenderAwait(address: String, options: AmqpSende
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpConnection.createAnonymousSender]
+ * Suspending version of method [io.vertx.amqp.AmqpConnection.createAnonymousSender]
  *
  * @return [AmqpSender]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
 suspend fun AmqpConnection.createAnonymousSenderAwait(): AmqpSender {
   return awaitResult {

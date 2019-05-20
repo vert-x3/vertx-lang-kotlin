@@ -13,19 +13,19 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.amqp
+package io.vertx.kotlin.amqp
 
+import io.vertx.amqp.AmqpMessage
+import io.vertx.amqp.AmqpReceiver
 import io.vertx.core.streams.WriteStream
-import io.vertx.ext.amqp.AmqpMessage
-import io.vertx.ext.amqp.AmqpReceiver
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpReceiver.pipeTo]
+ * Suspending version of method [io.vertx.amqp.AmqpReceiver.pipeTo]
  *
  * @param dst the destination write stream
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpReceiver] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpReceiver] using Vert.x codegen.
  */
 suspend fun AmqpReceiver.pipeToAwait(dst: WriteStream<AmqpMessage>): Unit {
   return awaitResult {
@@ -34,10 +34,10 @@ suspend fun AmqpReceiver.pipeToAwait(dst: WriteStream<AmqpMessage>): Unit {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.amqp.AmqpReceiver.close]
+ * Suspending version of method [io.vertx.amqp.AmqpReceiver.close]
  *
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.amqp.AmqpReceiver] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpReceiver] using Vert.x codegen.
  */
 suspend fun AmqpReceiver.closeAwait(): Unit {
   return awaitResult {

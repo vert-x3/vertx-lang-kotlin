@@ -17,8 +17,22 @@ package io.vertx.kotlin.core.http
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.WebSocket
+import io.vertx.core.http.WebSocketFrame
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocket.end]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.endAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.core.http.WebSocket.pipeTo]
@@ -30,6 +44,93 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun WebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocket.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocket.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocket.close]
+ *
+ * @param statusCode 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.closeAwait(statusCode: Short): Unit {
+  return awaitResult {
+    this.close(statusCode) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocket.close]
+ *
+ * @param statusCode 
+ * @param reason 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.closeAwait(statusCode: Short, reason: String): Unit {
+  return awaitResult {
+    this.close(statusCode, reason) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeFrameAwait(frame: WebSocketFrame): Unit {
+  return awaitResult {
+    this.writeFrame(frame) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeFinalTextFrameAwait(text: String): Unit {
+  return awaitResult {
+    this.writeFinalTextFrame(text) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeFinalBinaryFrameAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writeFinalBinaryFrame(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeBinaryMessageAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writeBinaryMessage(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun WebSocket.writeTextMessageAwait(text: String): Unit {
+  return awaitResult {
+    this.writeTextMessage(text) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

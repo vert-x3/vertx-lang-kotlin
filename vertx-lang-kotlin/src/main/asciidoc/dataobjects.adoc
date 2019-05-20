@@ -2314,8 +2314,40 @@ Set the last stream id.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[graphiQLOptions]]`@graphiQLOptions`|`link:dataobjects.html#GraphiQLOptions[GraphiQLOptions]`|+++
+Configure the GraphiQL development tool.
++++
 |[[requestBatchingEnabled]]`@requestBatchingEnabled`|`Boolean`|+++
 Whether request batching should be enabled. Defaults to <code>false</code>.
++++
+|===
+
+[[GraphiQLOptions]]
+== GraphiQLOptions
+
+++++
+ Embedded GraphiQL user interface options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[enabled]]`@enabled`|`Boolean`|+++
+Whether the GraphiQL development tool should be enabled. Defaults to <code>false</code>.
++++
+|[[graphQLUri]]`@graphQLUri`|`String`|+++
+Set the GraphQL endpoint URI. Defaults to the path used to get the GraphiQL user interface.
++++
+|[[headers]]`@headers`|`String`|+++
+A fixed set of HTTP headers to add to GraphiQL requests. Defaults to <code>null</code>.
++++
+|[[query]]`@query`|`String`|+++
+Initial value of the query area in the GraphiQL user interface. Defaults to <code>null</code>.
++++
+|[[variables]]`@variables`|`Json object`|+++
+Initial value of the variables area in the GraphiQL user interface. Defaults to <code>null</code>.
 +++
 |===
 
@@ -6171,6 +6203,9 @@ Replace the current list of reporters with a new one.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[headers]]`@headers`|`String`|+++
+Add a request header.
++++
 |[[host]]`@host`|`String`|+++
 Set the host name to be used by the client request.
 +++
@@ -8110,6 +8145,41 @@ Set the Websocket deflate compression level.
 |[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
++++
+|===
+
+[[WebSocketConnectOptions]]
+== WebSocketConnectOptions
+
+++++
+ Options describing how an link connect a link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[headers]]`@headers`|`String`|+++
+Add a request header.
++++
+|[[host]]`@host`|`String`|+++
+Set the host name to be used by the client request.
++++
+|[[port]]`@port`|`Number (int)`|+++
+Set the port to be used by the client request.
++++
+|[[ssl]]`@ssl`|`Boolean`|+++
+Set whether SSL/TLS is enabled
++++
+|[[subProtocols]]`@subProtocols`|`Array of String`|+++
+Set the WebSocket sub protocols to use.
++++
+|[[uri]]`@uri`|`String`|+++
+Set the request relative URI
++++
+|[[version]]`@version`|`link:enums.html#WebsocketVersion[WebsocketVersion]`|+++
+Set the WebSocket version.
 +++
 |===
 
