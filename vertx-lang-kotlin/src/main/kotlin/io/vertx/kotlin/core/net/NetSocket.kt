@@ -21,6 +21,19 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.core.net.NetSocket.end]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.endAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.net.NetSocket.pipeTo]
  *
  * @param dst the destination write stream
@@ -30,6 +43,33 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.write]
+ *
+ * @param str 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.writeAwait(str: String): Unit {
+  return awaitResult {
+    this.write(str) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.write]
+ *
+ * @param str 
+ * @param enc 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.writeAwait(str: String, enc: String): Unit {
+  return awaitResult {
+    this.write(str, enc) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -85,6 +125,30 @@ suspend fun NetSocket.sendFileAwait(filename: String, offset: Long): Unit {
 suspend fun NetSocket.sendFileAwait(filename: String, offset: Long, length: Long): Unit {
   return awaitResult {
     this.sendFile(filename, offset, length) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.closeAwait(): Unit {
+  return awaitResult {
+    this.close { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

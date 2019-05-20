@@ -15,12 +15,9 @@
  */
 package io.vertx.kotlin.redis.client
 
-import io.vertx.core.Vertx
-import io.vertx.core.net.SocketAddress
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
-import io.vertx.redis.client.Redis as RedisVertxAlias
-import io.vertx.redis.client.RedisOptions
+import io.vertx.redis.client.Redis
 import io.vertx.redis.client.Request
 import io.vertx.redis.client.Response
 
@@ -31,113 +28,34 @@ import io.vertx.redis.client.Response
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-suspend fun RedisVertxAlias.pipeToAwait(dst: WriteStream<Response>): Unit {
+suspend fun Redis.pipeToAwait(dst: WriteStream<Response>): Unit {
   return awaitResult {
     this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
-suspend fun RedisVertxAlias.sendAwait(command: Request): Response? {
+/**
+ * Suspending version of method [io.vertx.redis.client.Redis.connect]
+ *
+ * @return [Redis]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
+ */
+suspend fun Redis.connectAwait(): Redis {
+  return awaitResult {
+    this.connect(it)
+  }
+}
+
+suspend fun Redis.sendAwait(command: Request): Response? {
   return awaitResult {
     this.send(command, it)
   }
 }
 
-suspend fun RedisVertxAlias.batchAwait(commands: List<Request>): List<Response> {
+suspend fun Redis.batchAwait(commands: List<Request>): List<Response> {
   return awaitResult {
     this.batch(commands, it)
   }
 }
 
-object Redis {
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createClient]
-   *
-   * @param vertx 
-   * @param address 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createClientAwait(vertx: Vertx, address: SocketAddress): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createClient(vertx, address, it)
-    }
-  }
-
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createClient]
-   *
-   * @param vertx 
-   * @param options 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createClientAwait(vertx: Vertx, options: RedisOptions): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createClient(vertx, options, it)
-    }
-  }
-
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createSentinelClient]
-   *
-   * @param vertx 
-   * @param address 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createSentinelClientAwait(vertx: Vertx, address: SocketAddress): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createSentinelClient(vertx, address, it)
-    }
-  }
-
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createSentinelClient]
-   *
-   * @param vertx 
-   * @param options 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createSentinelClientAwait(vertx: Vertx, options: RedisOptions): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createSentinelClient(vertx, options, it)
-    }
-  }
-
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createClusterClient]
-   *
-   * @param vertx 
-   * @param address 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createClusterClientAwait(vertx: Vertx, address: SocketAddress): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createClusterClient(vertx, address, it)
-    }
-  }
-
-  /**
-   * Suspending version of method [io.vertx.redis.client.Redis.createClusterClient]
-   *
-   * @param vertx 
-   * @param options 
-   * @return [RedisVertxAlias]
-   *
-   * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
-   */
-  suspend fun createClusterClientAwait(vertx: Vertx, options: RedisOptions): RedisVertxAlias {
-    return awaitResult {
-      RedisVertxAlias.createClusterClient(vertx, options, it)
-    }
-  }
-
-}

@@ -45,6 +45,20 @@ suspend fun ResultSet.oneAwait(): Row? {
 }
 
 /**
+ * Suspending version of method [io.vertx.cassandra.ResultSet.several]
+ *
+ * @param amount the amount
+ * @return [List<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
+ */
+suspend fun ResultSet.severalAwait(amount: Int): List<Row> {
+  return awaitResult {
+    this.several(amount, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.cassandra.ResultSet.all]
  *
  * @return [List<Row>]

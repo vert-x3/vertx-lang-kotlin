@@ -16,9 +16,102 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.MultiMap
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.write]
+ *
+ * @param chunk 
+ * @param enc 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.writeAwait(chunk: String, enc: String): Unit {
+  return awaitResult {
+    this.write(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.write]
+ *
+ * @param chunk 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
+  return awaitResult {
+    this.write(chunk) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
+ *
+ * @param chunk 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.endAwait(chunk: String): Unit {
+  return awaitResult {
+    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
+ *
+ * @param chunk 
+ * @param enc 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
+  return awaitResult {
+    this.end(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
+ *
+ * @param chunk 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
+  return awaitResult {
+    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.core.http.HttpServerResponse.sendFile]

@@ -22,16 +22,47 @@ import io.vertx.kafka.client.producer.RecordMetadata
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.write]
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.end]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): Unit {
+  return awaitResult {
+    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.send]
  *
  * @param record record to write
  * @return [RecordMetadata]
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-suspend fun <K,V> KafkaProducer<K,V>.writeAwait(record: KafkaProducerRecord<K,V>): RecordMetadata {
+suspend fun <K,V> KafkaProducer<K,V>.sendAwait(record: KafkaProducerRecord<K,V>): RecordMetadata {
   return awaitResult {
-    this.write(record, it)
+    this.send(record, it)
   }
 }
 

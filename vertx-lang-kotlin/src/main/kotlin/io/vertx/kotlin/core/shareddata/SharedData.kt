@@ -50,6 +50,20 @@ suspend fun <K,V> SharedData.getAsyncMapAwait(name: String): AsyncMap<K,V> {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.shareddata.SharedData.getLocalAsyncMap]
+ *
+ * @param name the name of the map
+ * @return [AsyncMap<K,V>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
+ */
+suspend fun <K,V> SharedData.getLocalAsyncMapAwait(name: String): AsyncMap<K,V> {
+  return awaitResult {
+    this.getLocalAsyncMap(name, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.shareddata.SharedData.getLock]
  *
  * @param name the name of the lock
@@ -79,6 +93,35 @@ suspend fun SharedData.getLockWithTimeoutAwait(name: String, timeout: Long): Loc
 }
 
 /**
+ * Suspending version of method [io.vertx.core.shareddata.SharedData.getLocalLock]
+ *
+ * @param name the name of the lock
+ * @return [Lock]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
+ */
+suspend fun SharedData.getLocalLockAwait(name: String): Lock {
+  return awaitResult {
+    this.getLocalLock(name, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.shareddata.SharedData.getLocalLockWithTimeout]
+ *
+ * @param name the name of the lock
+ * @param timeout the timeout in ms
+ * @return [Lock]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
+ */
+suspend fun SharedData.getLocalLockWithTimeoutAwait(name: String, timeout: Long): Lock {
+  return awaitResult {
+    this.getLocalLockWithTimeout(name, timeout, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.shareddata.SharedData.getCounter]
  *
  * @param name the name of the counter.
@@ -89,6 +132,20 @@ suspend fun SharedData.getLockWithTimeoutAwait(name: String, timeout: Long): Loc
 suspend fun SharedData.getCounterAwait(name: String): Counter {
   return awaitResult {
     this.getCounter(name, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.shareddata.SharedData.getLocalCounter]
+ *
+ * @param name the name of the counter.
+ * @return [Counter]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
+ */
+suspend fun SharedData.getLocalCounterAwait(name: String): Counter {
+  return awaitResult {
+    this.getLocalCounter(name, it)
   }
 }
 

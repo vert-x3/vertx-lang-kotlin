@@ -711,6 +711,33 @@ SOCSK5 tcp proxy
 |[[WITHSCORES]]`WITHSCORES`|-
 |===
 
+[[RedisClientType]]
+== RedisClientType
+
+++++
+ Define what kind of behavior is expected from the client.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[STANDALONE]]`STANDALONE`|+++
+The client should work in single server mode (the default).
++++
+|[[SENTINEL]]`SENTINEL`|+++
+The client should work in sentinel mode. When this mode is active
+ use the link to define which role to get the client
+ connection to.
++++
+|[[CLUSTER]]`CLUSTER`|+++
+The client should work in cluster mode. When this mode is active
+ use the link to define when slave nodes can be used
+ for read only queries.
++++
+|===
+
 [[RedisRole]]
 == RedisRole
 

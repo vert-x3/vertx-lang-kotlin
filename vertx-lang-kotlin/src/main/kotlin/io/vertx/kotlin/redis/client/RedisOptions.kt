@@ -17,6 +17,7 @@ package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisOptions
 import io.vertx.core.net.NetClientOptions
+import io.vertx.redis.client.RedisClientType
 import io.vertx.redis.client.RedisRole
 import io.vertx.redis.client.RedisSlaves
 
@@ -34,6 +35,7 @@ import io.vertx.redis.client.RedisSlaves
  * @param password  Set the provided password to be used when establishing a connection to the server.
  * @param role  Set the role name (only considered in HA mode).
  * @param select  Set the provided database to be selected when establishing a connection to the server.
+ * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
  *
  * <p/>
@@ -49,6 +51,7 @@ fun redisOptionsOf(
   password: String? = null,
   role: RedisRole? = null,
   select: Int? = null,
+  type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
   if (endpoint != null) {
@@ -77,6 +80,9 @@ fun redisOptionsOf(
   }
   if (select != null) {
     this.setSelect(select)
+  }
+  if (type != null) {
+    this.setType(type)
   }
   if (useSlave != null) {
     this.setUseSlave(useSlave)
@@ -97,6 +103,7 @@ fun redisOptionsOf(
  * @param password  Set the provided password to be used when establishing a connection to the server.
  * @param role  Set the role name (only considered in HA mode).
  * @param select  Set the provided database to be selected when establishing a connection to the server.
+ * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
  *
  * <p/>
@@ -104,7 +111,7 @@ fun redisOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxWaitingHandlers, netClientOptions, password, role, select, useSlave)")
+  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxWaitingHandlers, netClientOptions, password, role, select, type, useSlave)")
 )
 fun RedisOptions(
   endpoint: io.vertx.core.net.SocketAddress? = null,
@@ -116,6 +123,7 @@ fun RedisOptions(
   password: String? = null,
   role: RedisRole? = null,
   select: Int? = null,
+  type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
   if (endpoint != null) {
@@ -144,6 +152,9 @@ fun RedisOptions(
   }
   if (select != null) {
     this.setSelect(select)
+  }
+  if (type != null) {
+    this.setType(type)
   }
   if (useSlave != null) {
     this.setUseSlave(useSlave)

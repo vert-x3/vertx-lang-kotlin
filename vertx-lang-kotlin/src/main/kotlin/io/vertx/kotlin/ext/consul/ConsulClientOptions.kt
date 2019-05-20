@@ -98,7 +98,6 @@ import java.util.concurrent.TimeUnit
  * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
@@ -176,7 +175,6 @@ fun consulClientOptionsOf(
   tryUsePerFrameWebsocketCompression: Boolean? = null,
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
@@ -387,9 +385,6 @@ fun consulClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
@@ -482,7 +477,6 @@ fun consulClientOptionsOf(
  * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
@@ -495,7 +489,7 @@ fun consulClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("consulClientOptionsOf(aclToken, alpnVersions, connectTimeout, crlPaths, crlValues, dc, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeout, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, usePooledBuffers, userAgent, userAgentEnabled, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("consulClientOptionsOf(aclToken, alpnVersions, connectTimeout, crlPaths, crlValues, dc, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeout, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, userAgent, userAgentEnabled, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
 )
 fun ConsulClientOptions(
   aclToken: String? = null,
@@ -564,7 +558,6 @@ fun ConsulClientOptions(
   tryUsePerFrameWebsocketCompression: Boolean? = null,
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
@@ -775,9 +768,6 @@ fun ConsulClientOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
