@@ -66,6 +66,8 @@ import java.util.concurrent.TimeUnit
  * @param sniServerName 
  * @param soLinger 
  * @param ssl 
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork 
  * @param tcpFastOpen 
  * @param tcpKeepAlive 
@@ -118,6 +120,8 @@ fun amqpClientOptionsOf(
   sniServerName: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -243,6 +247,12 @@ fun amqpClientOptionsOf(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
@@ -323,6 +333,8 @@ fun amqpClientOptionsOf(
  * @param sniServerName 
  * @param soLinger 
  * @param ssl 
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork 
  * @param tcpFastOpen 
  * @param tcpKeepAlive 
@@ -341,7 +353,7 @@ fun amqpClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, username, virtualHost)")
+  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, username, virtualHost)")
 )
 fun AmqpClientOptions(
   connectTimeout: Int? = null,
@@ -379,6 +391,8 @@ fun AmqpClientOptions(
   sniServerName: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -504,6 +518,12 @@ fun AmqpClientOptions(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
