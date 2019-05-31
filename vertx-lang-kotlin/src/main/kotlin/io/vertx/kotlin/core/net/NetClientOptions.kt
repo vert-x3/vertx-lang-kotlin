@@ -68,7 +68,6 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClientOptions original] using Vert.x codegen.
@@ -111,8 +110,7 @@ fun netClientOptionsOf(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
+  useAlpn: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
@@ -233,9 +231,6 @@ fun netClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -282,14 +277,13 @@ fun netClientOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClientOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("netClientOptionsOf(connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers)")
+  replaceWith = ReplaceWith("netClientOptionsOf(connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn)")
 )
 fun NetClientOptions(
   connectTimeout: Int? = null,
@@ -329,8 +323,7 @@ fun NetClientOptions(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
+  useAlpn: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
@@ -451,9 +444,6 @@ fun NetClientOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

@@ -77,7 +77,6 @@ import java.util.concurrent.TimeUnit
  * @param trustAll 
  * @param trustStoreOptions 
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers 
  * @param username  Sets the username.
  * @param virtualHost 
  *
@@ -131,7 +130,6 @@ fun amqpClientOptionsOf(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   username: String? = null,
   virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
@@ -280,9 +278,6 @@ fun amqpClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (username != null) {
     this.setUsername(username)
@@ -344,7 +339,6 @@ fun amqpClientOptionsOf(
  * @param trustAll 
  * @param trustStoreOptions 
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers 
  * @param username  Sets the username.
  * @param virtualHost 
  *
@@ -353,7 +347,7 @@ fun amqpClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, username, virtualHost)")
+  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, username, virtualHost)")
 )
 fun AmqpClientOptions(
   connectTimeout: Int? = null,
@@ -402,7 +396,6 @@ fun AmqpClientOptions(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   username: String? = null,
   virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
@@ -551,9 +544,6 @@ fun AmqpClientOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (username != null) {
     this.setUsername(username)

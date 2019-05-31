@@ -96,7 +96,6 @@ import java.util.concurrent.TimeUnit
  * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param verifyHost  Set whether hostname verification is enabled
  * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param websocketCompressionLevel  Set the Websocket deflate compression level.
@@ -170,7 +169,6 @@ fun httpClientOptionsOf(
   tryUsePerFrameWebsocketCompression: Boolean? = null,
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   verifyHost: Boolean? = null,
   websocketCompressionAllowClientNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
@@ -373,9 +371,6 @@ fun httpClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
@@ -460,7 +455,6 @@ fun httpClientOptionsOf(
  * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param verifyHost  Set whether hostname verification is enabled
  * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param websocketCompressionLevel  Set the Websocket deflate compression level.
@@ -471,7 +465,7 @@ fun httpClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, usePooledBuffers, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("httpClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
 )
 fun HttpClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -538,7 +532,6 @@ fun HttpClientOptions(
   tryUsePerFrameWebsocketCompression: Boolean? = null,
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   verifyHost: Boolean? = null,
   websocketCompressionAllowClientNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
@@ -741,9 +734,6 @@ fun HttpClientOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)

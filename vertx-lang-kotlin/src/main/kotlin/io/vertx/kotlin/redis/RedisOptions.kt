@@ -97,7 +97,6 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisOptions original] using Vert.x codegen.
@@ -151,8 +150,7 @@ fun redisOptionsOf(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): RedisOptions = io.vertx.redis.RedisOptions().apply {
+  useAlpn: Boolean? = null): RedisOptions = io.vertx.redis.RedisOptions().apply {
 
   if (address != null) {
     this.setAddress(address)
@@ -306,9 +304,6 @@ fun redisOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -384,14 +379,13 @@ fun redisOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.RedisOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(address, auth, binary, connectTimeout, crlPaths, crlValues, domainSocket, domainSocketAddress, enabledCipherSuites, enabledSecureTransportProtocols, encoding, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, masterName, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, select, sendBufferSize, sentinels, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers)")
+  replaceWith = ReplaceWith("redisOptionsOf(address, auth, binary, connectTimeout, crlPaths, crlValues, domainSocket, domainSocketAddress, enabledCipherSuites, enabledSecureTransportProtocols, encoding, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, masterName, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, select, sendBufferSize, sentinels, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn)")
 )
 fun RedisOptions(
   address: String? = null,
@@ -442,8 +436,7 @@ fun RedisOptions(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): RedisOptions = io.vertx.redis.RedisOptions().apply {
+  useAlpn: Boolean? = null): RedisOptions = io.vertx.redis.RedisOptions().apply {
 
   if (address != null) {
     this.setAddress(address)
@@ -597,9 +590,6 @@ fun RedisOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

@@ -116,7 +116,6 @@ import java.util.concurrent.TimeUnit
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
@@ -211,7 +210,6 @@ fun oAuth2ClientOptionsOf(
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   useBasicAuthorizationHeader: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -469,9 +467,6 @@ fun oAuth2ClientOptionsOf(
   }
   if (useBasicAuthorizationHeader != null) {
     this.setUseBasicAuthorizationHeader(useBasicAuthorizationHeader)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
@@ -585,7 +580,6 @@ fun oAuth2ClientOptionsOf(
  * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
@@ -600,7 +594,7 @@ fun oAuth2ClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, usePooledBuffers, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
 )
 fun OAuth2ClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -684,7 +678,6 @@ fun OAuth2ClientOptions(
   tryUsePerMessageWebsocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   useBasicAuthorizationHeader: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -942,9 +935,6 @@ fun OAuth2ClientOptions(
   }
   if (useBasicAuthorizationHeader != null) {
     this.setUseBasicAuthorizationHeader(useBasicAuthorizationHeader)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)

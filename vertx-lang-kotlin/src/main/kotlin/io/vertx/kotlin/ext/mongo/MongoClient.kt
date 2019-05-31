@@ -20,6 +20,7 @@ import io.vertx.core.json.JsonObject
 import io.vertx.ext.mongo.BulkOperation
 import io.vertx.ext.mongo.BulkWriteOptions
 import io.vertx.ext.mongo.FindOptions
+import io.vertx.ext.mongo.IndexModel
 import io.vertx.ext.mongo.IndexOptions
 import io.vertx.ext.mongo.MongoClient
 import io.vertx.ext.mongo.MongoClientBulkWriteResult
@@ -476,6 +477,20 @@ suspend fun MongoClient.createIndexAwait(collection: String, key: JsonObject): U
 suspend fun MongoClient.createIndexWithOptionsAwait(collection: String, key: JsonObject, options: IndexOptions): Unit {
   return awaitResult {
     this.createIndexWithOptions(collection, key, options) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.createIndexes]
+ *
+ * @param collection the collection
+ * @param indexes A model that contains pairs of document and indexOptions, document contains the field and value pairs where the field is the index key and the value describes the type of index for that field. For an ascending index on a field, specify a value of 1; for descending index, specify a value of -1.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+suspend fun MongoClient.createIndexesAwait(collection: String, indexes: List<IndexModel>): Unit {
+  return awaitResult {
+    this.createIndexes(collection, indexes) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

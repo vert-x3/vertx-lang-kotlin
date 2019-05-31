@@ -73,7 +73,6 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
@@ -121,8 +120,7 @@ fun eventBusOptionsOf(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
+  useAlpn: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -258,9 +256,6 @@ fun eventBusOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -312,14 +307,13 @@ fun eventBusOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("eventBusOptionsOf(acceptBacklog, clientAuth, clusterPingInterval, clusterPingReplyInterval, clusterPublicHost, clusterPublicPort, clustered, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers)")
+  replaceWith = ReplaceWith("eventBusOptionsOf(acceptBacklog, clientAuth, clusterPingInterval, clusterPingReplyInterval, clusterPublicHost, clusterPublicPort, clustered, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn)")
 )
 fun EventBusOptions(
   acceptBacklog: Int? = null,
@@ -364,8 +358,7 @@ fun EventBusOptions(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
+  useAlpn: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -501,9 +494,6 @@ fun EventBusOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

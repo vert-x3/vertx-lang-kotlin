@@ -39,7 +39,6 @@ import java.util.concurrent.TimeUnit
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param charset  Set the charset used for encoding / decoding text data from/to SockJS
  * @param clientAuth  Set whether client auth is required
- * @param clientAuthRequired  Set whether client auth is required
  * @param compressionLevel  This method allows to set the compression level to be used in http1.x/2 response bodies when compression support is turned on (@see setCompressionSupported) and the client advertises to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header default value is : 6 (Netty legacy) The compression level determines how much the data is compressed on a scale from 1 to 9, where '9' is trying to achieve the maximum compression ratio while '1' instead is giving priority to speed instead of compression ratio using some algorithm optimizations and skipping pedantic loops that usually gives just little improvements While one can think that best value is always the maximum compression ratio, there's a trade-off to consider: the most compressed level requires the most computational work to compress/decompress data, e.g. more dictionary lookups and loops. E.g. you have it set fairly high on a high-volume website, you may experience performance degradation and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side while decompressing - setting an higher compression level can result in an overall higher page load time especially nowadays when many clients are handled mobile devices with a low CPU profile. see also: http://www.gzip.org/algorithm.txt
  * @param compressionSupported  Set whether the server should support gzip/deflate compression (serving compressed responses to clients advertising support for them with Accept-Encoding header)
  * @param crlPaths  Add a CRL path
@@ -92,7 +91,6 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
  * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param websocketCompressionLevel  Set the WebSocket compression level.
@@ -108,7 +106,6 @@ fun httpTermOptionsOf(
   alpnVersions: Iterable<HttpVersion>? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,
-  clientAuthRequired: Boolean? = null,
   compressionLevel: Int? = null,
   compressionSupported: Boolean? = null,
   crlPaths: Iterable<String>? = null,
@@ -161,7 +158,6 @@ fun httpTermOptionsOf(
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
   websocketAllowServerNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
@@ -182,9 +178,6 @@ fun httpTermOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
-  }
-  if (clientAuthRequired != null) {
-    this.setClientAuthRequired(clientAuthRequired)
   }
   if (compressionLevel != null) {
     this.setCompressionLevel(compressionLevel)
@@ -347,9 +340,6 @@ fun httpTermOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)
@@ -378,7 +368,6 @@ fun httpTermOptionsOf(
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param charset  Set the charset used for encoding / decoding text data from/to SockJS
  * @param clientAuth  Set whether client auth is required
- * @param clientAuthRequired  Set whether client auth is required
  * @param compressionLevel  This method allows to set the compression level to be used in http1.x/2 response bodies when compression support is turned on (@see setCompressionSupported) and the client advertises to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header default value is : 6 (Netty legacy) The compression level determines how much the data is compressed on a scale from 1 to 9, where '9' is trying to achieve the maximum compression ratio while '1' instead is giving priority to speed instead of compression ratio using some algorithm optimizations and skipping pedantic loops that usually gives just little improvements While one can think that best value is always the maximum compression ratio, there's a trade-off to consider: the most compressed level requires the most computational work to compress/decompress data, e.g. more dictionary lookups and loops. E.g. you have it set fairly high on a high-volume website, you may experience performance degradation and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side while decompressing - setting an higher compression level can result in an overall higher page load time especially nowadays when many clients are handled mobile devices with a low CPU profile. see also: http://www.gzip.org/algorithm.txt
  * @param compressionSupported  Set whether the server should support gzip/deflate compression (serving compressed responses to clients advertising support for them with Accept-Encoding header)
  * @param crlPaths  Add a CRL path
@@ -431,7 +420,6 @@ fun httpTermOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
  * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param websocketCompressionLevel  Set the WebSocket compression level.
@@ -443,7 +431,7 @@ fun httpTermOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, charset, clientAuth, clientAuthRequired, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, usePooledBuffers, vertsShellJsResource, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
+  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
 )
 fun HttpTermOptions(
   acceptBacklog: Int? = null,
@@ -451,7 +439,6 @@ fun HttpTermOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,
-  clientAuthRequired: Boolean? = null,
   compressionLevel: Int? = null,
   compressionSupported: Boolean? = null,
   crlPaths: Iterable<String>? = null,
@@ -504,7 +491,6 @@ fun HttpTermOptions(
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
   websocketAllowServerNoContext: Boolean? = null,
   websocketCompressionLevel: Int? = null,
@@ -525,9 +511,6 @@ fun HttpTermOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
-  }
-  if (clientAuthRequired != null) {
-    this.setClientAuthRequired(clientAuthRequired)
   }
   if (compressionLevel != null) {
     this.setCompressionLevel(compressionLevel)
@@ -690,9 +673,6 @@ fun HttpTermOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)

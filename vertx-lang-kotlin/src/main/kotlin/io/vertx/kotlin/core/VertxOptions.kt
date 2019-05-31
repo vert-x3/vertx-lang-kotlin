@@ -20,6 +20,7 @@ import io.vertx.core.dns.AddressResolverOptions
 import io.vertx.core.eventbus.EventBusOptions
 import io.vertx.core.file.FileSystemOptions
 import io.vertx.core.metrics.MetricsOptions
+import io.vertx.core.tracing.TracingOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -39,7 +40,6 @@ import java.util.concurrent.TimeUnit
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
@@ -51,6 +51,7 @@ import java.util.concurrent.TimeUnit
  * @param metricsOptions  Set the metrics options
  * @param preferNativeTransport  Set wether to prefer the native transport to the JDK transport.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
+ * @param tracingOptions 
  * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace. in [io.vertx.core.VertxOptions]. The default value of [io.vertx.core.VertxOptions] is 
  * @param warningExceptionTimeUnit  Set the time unit of <code>warningExceptionTime</code>.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.
@@ -71,7 +72,6 @@ fun vertxOptionsOf(
   clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
-  fileResolverCachingEnabled: Boolean? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
   haEnabled: Boolean? = null,
   haGroup: String? = null,
@@ -83,6 +83,7 @@ fun vertxOptionsOf(
   metricsOptions: io.vertx.core.metrics.MetricsOptions? = null,
   preferNativeTransport: Boolean? = null,
   quorumSize: Int? = null,
+  tracingOptions: io.vertx.core.tracing.TracingOptions? = null,
   warningExceptionTime: Long? = null,
   warningExceptionTimeUnit: TimeUnit? = null,
   workerPoolSize: Int? = null): VertxOptions = io.vertx.core.VertxOptions().apply {
@@ -123,9 +124,6 @@ fun vertxOptionsOf(
   if (eventLoopPoolSize != null) {
     this.setEventLoopPoolSize(eventLoopPoolSize)
   }
-  if (fileResolverCachingEnabled != null) {
-    this.setFileResolverCachingEnabled(fileResolverCachingEnabled)
-  }
   if (fileSystemOptions != null) {
     this.setFileSystemOptions(fileSystemOptions)
   }
@@ -158,6 +156,9 @@ fun vertxOptionsOf(
   }
   if (quorumSize != null) {
     this.setQuorumSize(quorumSize)
+  }
+  if (tracingOptions != null) {
+    this.setTracingOptions(tracingOptions)
   }
   if (warningExceptionTime != null) {
     this.setWarningExceptionTime(warningExceptionTime)
@@ -187,7 +188,6 @@ fun vertxOptionsOf(
  * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
- * @param fileResolverCachingEnabled  Set whether the Vert.x file resolver uses caching for classpath resources.
  * @param fileSystemOptions  Set the file system options
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param haGroup  Set the HA group to be used when HA is enabled.
@@ -199,6 +199,7 @@ fun vertxOptionsOf(
  * @param metricsOptions  Set the metrics options
  * @param preferNativeTransport  Set wether to prefer the native transport to the JDK transport.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
+ * @param tracingOptions 
  * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace. in [io.vertx.core.VertxOptions]. The default value of [io.vertx.core.VertxOptions] is 
  * @param warningExceptionTimeUnit  Set the time unit of <code>warningExceptionTime</code>.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.
@@ -208,7 +209,7 @@ fun vertxOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileResolverCachingEnabled, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
+  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, tracingOptions, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
 )
 fun VertxOptions(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
@@ -223,7 +224,6 @@ fun VertxOptions(
   clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
-  fileResolverCachingEnabled: Boolean? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
   haEnabled: Boolean? = null,
   haGroup: String? = null,
@@ -235,6 +235,7 @@ fun VertxOptions(
   metricsOptions: io.vertx.core.metrics.MetricsOptions? = null,
   preferNativeTransport: Boolean? = null,
   quorumSize: Int? = null,
+  tracingOptions: io.vertx.core.tracing.TracingOptions? = null,
   warningExceptionTime: Long? = null,
   warningExceptionTimeUnit: TimeUnit? = null,
   workerPoolSize: Int? = null): VertxOptions = io.vertx.core.VertxOptions().apply {
@@ -275,9 +276,6 @@ fun VertxOptions(
   if (eventLoopPoolSize != null) {
     this.setEventLoopPoolSize(eventLoopPoolSize)
   }
-  if (fileResolverCachingEnabled != null) {
-    this.setFileResolverCachingEnabled(fileResolverCachingEnabled)
-  }
   if (fileSystemOptions != null) {
     this.setFileSystemOptions(fileSystemOptions)
   }
@@ -310,6 +308,9 @@ fun VertxOptions(
   }
   if (quorumSize != null) {
     this.setQuorumSize(quorumSize)
+  }
+  if (tracingOptions != null) {
+    this.setTracingOptions(tracingOptions)
   }
   if (warningExceptionTime != null) {
     this.setWarningExceptionTime(warningExceptionTime)

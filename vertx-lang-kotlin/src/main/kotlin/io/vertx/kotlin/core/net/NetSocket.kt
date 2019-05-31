@@ -152,3 +152,28 @@ suspend fun NetSocket.closeAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.upgradeToSsl]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.upgradeToSslAwait(): Unit {
+  return awaitResult {
+    this.upgradeToSsl { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.upgradeToSsl]
+ *
+ * @param serverName the server name
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+suspend fun NetSocket.upgradeToSslAwait(serverName: String): Unit {
+  return awaitResult {
+    this.upgradeToSsl(serverName) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+

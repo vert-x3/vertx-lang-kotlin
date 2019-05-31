@@ -78,7 +78,6 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param useStompFrame  Sets whether or not the connection is made using the <code>STOMP</code> command instead of the <code>CONNECT</code> command. The <code>STOMP</code> command has been introduced in the 1.2 version of the protocol to ease the network analysis (as <code>CONNECT</code> is also used by HTTP. To be compliant with server not implementing the 1.2 specification, this option should be disabled. This option is disabled by default.
  * @param virtualHost  Sets the virtual host that will be used as "host" header value in the `CONNECT` frame.
  *
@@ -133,7 +132,6 @@ fun stompClientOptionsOf(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   useStompFrame: Boolean? = null,
   virtualHost: String? = null): StompClientOptions = io.vertx.ext.stomp.StompClientOptions().apply {
 
@@ -283,9 +281,6 @@ fun stompClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (useStompFrame != null) {
     this.setUseStompFrame(useStompFrame)
@@ -348,7 +343,6 @@ fun stompClientOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param useStompFrame  Sets whether or not the connection is made using the <code>STOMP</code> command instead of the <code>CONNECT</code> command. The <code>STOMP</code> command has been introduced in the 1.2 version of the protocol to ease the network analysis (as <code>CONNECT</code> is also used by HTTP. To be compliant with server not implementing the 1.2 specification, this option should be disabled. This option is disabled by default.
  * @param virtualHost  Sets the virtual host that will be used as "host" header value in the `CONNECT` frame.
  *
@@ -357,7 +351,7 @@ fun stompClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("stompClientOptionsOf(acceptedVersions, autoComputeContentLength, bypassHostHeader, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, login, metricsName, openSslEngineOptions, passcode, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trailingLine, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, useStompFrame, virtualHost)")
+  replaceWith = ReplaceWith("stompClientOptionsOf(acceptedVersions, autoComputeContentLength, bypassHostHeader, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, login, metricsName, openSslEngineOptions, passcode, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trailingLine, trustAll, trustStoreOptions, useAlpn, useStompFrame, virtualHost)")
 )
 fun StompClientOptions(
   acceptedVersions: Iterable<String>? = null,
@@ -407,7 +401,6 @@ fun StompClientOptions(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  usePooledBuffers: Boolean? = null,
   useStompFrame: Boolean? = null,
   virtualHost: String? = null): StompClientOptions = io.vertx.ext.stomp.StompClientOptions().apply {
 
@@ -557,9 +550,6 @@ fun StompClientOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (usePooledBuffers != null) {
-    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (useStompFrame != null) {
     this.setUseStompFrame(useStompFrame)
