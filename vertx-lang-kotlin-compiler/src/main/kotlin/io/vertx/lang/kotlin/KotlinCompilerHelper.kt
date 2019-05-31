@@ -24,11 +24,13 @@ import org.jetbrains.kotlin.codegen.*
 import org.jetbrains.kotlin.codegen.state.*
 import org.jetbrains.kotlin.com.intellij.openapi.*
 import org.jetbrains.kotlin.com.intellij.openapi.util.*
+import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.load.java.*
 import org.jetbrains.kotlin.name.*
 import org.jetbrains.kotlin.resolve.*
+import org.jetbrains.kotlin.scripting.compiler.plugin.ScriptingCompilerConfigurationComponentRegistrar
 import java.io.*
 import java.net.*
 import java.nio.file.*
@@ -58,6 +60,7 @@ object KotlinCompilerHelper {
     configuration.put(JVMConfigurationKeys.RETAIN_OUTPUT_IN_MEMORY, true)
     configuration.put(JVMConfigurationKeys.SKIP_RUNTIME_VERSION_CHECK, true)
     configuration.put(CommonConfigurationKeys.MODULE_NAME, JvmAbi.DEFAULT_MODULE_NAME)
+    configuration.add(ComponentRegistrar.PLUGIN_COMPONENT_REGISTRARS, ScriptingCompilerConfigurationComponentRegistrar())
 
     if (scriptMode) {
       configuration.put(CommonConfigurationKeys.MODULE_NAME, "dynamic")
