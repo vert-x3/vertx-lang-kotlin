@@ -26,7 +26,7 @@
        latest version compatible with coroutines lib
        when upgrading also upgrade org.jetbrains.intellij.deps:trove4j to have the same version
     -->
-    <kotlin.version>1.3.31</kotlin.version>
+    <kotlin.version>1.3.30</kotlin.version>
     <junit.version>4.12</junit.version>
     <stack.version>4.0.0-SNAPSHOT</stack.version>
   </properties>
