@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit
  * @param acceptBacklog  Set the accept back log
  * @param charset  Set the charset to use when binary mode is active, see [io.vertx.ext.shell.term.TelnetTermOptions] and [io.vertx.ext.shell.term.TelnetTermOptions].
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -69,6 +70,7 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TelnetTermOptions original] using Vert.x codegen.
@@ -77,6 +79,7 @@ fun telnetTermOptionsOf(
   acceptBacklog: Int? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -112,7 +115,8 @@ fun telnetTermOptionsOf(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -122,6 +126,9 @@ fun telnetTermOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -236,6 +243,9 @@ fun telnetTermOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -247,6 +257,7 @@ fun telnetTermOptionsOf(
  * @param acceptBacklog  Set the accept back log
  * @param charset  Set the charset to use when binary mode is active, see [io.vertx.ext.shell.term.TelnetTermOptions] and [io.vertx.ext.shell.term.TelnetTermOptions].
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -283,18 +294,20 @@ fun telnetTermOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TelnetTermOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("telnetTermOptionsOf(acceptBacklog, charset, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, inBinary, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, outBinary, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("telnetTermOptionsOf(acceptBacklog, charset, clientAuth, clientAuthRequired, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, inBinary, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, outBinary, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn, usePooledBuffers)")
 )
 fun TelnetTermOptions(
   acceptBacklog: Int? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -330,7 +343,8 @@ fun TelnetTermOptions(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -340,6 +354,9 @@ fun TelnetTermOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -454,6 +471,9 @@ fun TelnetTermOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

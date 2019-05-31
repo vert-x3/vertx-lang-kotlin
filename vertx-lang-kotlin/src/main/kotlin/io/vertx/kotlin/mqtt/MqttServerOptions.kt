@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit
  * @param acceptBacklog  Set the accept back log
  * @param autoClientId  Set if clientid should be auto-generated when it's "zero-bytes"
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -68,6 +69,7 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
@@ -76,6 +78,7 @@ fun mqttServerOptionsOf(
   acceptBacklog: Int? = null,
   autoClientId: Boolean? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -110,7 +113,8 @@ fun mqttServerOptionsOf(
   timeoutOnConnect: Int? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -120,6 +124,9 @@ fun mqttServerOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -231,6 +238,9 @@ fun mqttServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -242,6 +252,7 @@ fun mqttServerOptionsOf(
  * @param acceptBacklog  Set the accept back log
  * @param autoClientId  Set if clientid should be auto-generated when it's "zero-bytes"
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -277,18 +288,20 @@ fun mqttServerOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, clientAuthRequired, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustStoreOptions, useAlpn, usePooledBuffers)")
 )
 fun MqttServerOptions(
   acceptBacklog: Int? = null,
   autoClientId: Boolean? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -323,7 +336,8 @@ fun MqttServerOptions(
   timeoutOnConnect: Int? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -333,6 +347,9 @@ fun MqttServerOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -444,6 +461,9 @@ fun MqttServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

@@ -277,6 +277,9 @@ Set the SSL handshake timeout unit. If not specified, default is seconds.
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+
++++
 |[[username]]`@username`|`String`|+++
 Sets the username.
 +++
@@ -963,6 +966,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |===
 
 [[Config]]
@@ -1385,6 +1391,9 @@ Set whether the client will offer the WebSocket per-message deflate compression 
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[userAgent]]`@userAgent`|`String`|+++
 Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
 +++
@@ -1679,6 +1688,18 @@ Sets the value of max worker execute time, in link.
 |[[maxWorkerExecuteTimeUnit]]`@maxWorkerExecuteTimeUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
 Set the time unit of <code>maxWorkerExecuteTime</code>
 +++
+|[[multiThreaded]]`@multiThreaded`|`Boolean`|+++
+Set whether the verticle(s) should be deployed as a multi-threaded worker verticle.
+ <p>
+ <strong>WARNING</strong>: Multi-threaded worker verticles are a deprecated feature.
+ <p>
+ Most applications will have no need for them. Because of the concurrency in these verticles you have to be
+ very careful to keep the verticle in a consistent state using standard Java techniques for multi-threaded
+ programming.
+ <p>
+ You can read the documentation that explains how you can replace this feature by the usage of custom worker
+ pools or <code>executeBlocking</code> calls.
++++
 |[[worker]]`@worker`|`Boolean`|+++
 Set whether the verticle(s) should be deployed as a worker verticle
 +++
@@ -1953,6 +1974,9 @@ Set the trust options in jks format, aka Java truststore
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
 +++
 |===
 
@@ -2537,6 +2561,9 @@ Set whether the client will offer the WebSocket per-message deflate compression 
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[verifyHost]]`@verifyHost`|`Boolean`|+++
 Set whether hostname verification is enabled
 +++
@@ -2608,6 +2635,9 @@ Set <code>true</code> when the server accepts unmasked frame.
 Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[compressionLevel]]`@compressionLevel`|`Number (int)`|+++
@@ -2777,6 +2807,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[websocketAllowServerNoContext]]`@websocketAllowServerNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message
  deflate compression extension offered by the client.
@@ -2823,6 +2856,9 @@ Set the list of protocol versions to provide to the server during the Applicatio
 Set the charset used for encoding / decoding text data from/to SockJS
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[compressionLevel]]`@compressionLevel`|`Number (int)`|+++
@@ -3007,6 +3043,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[vertsShellJsResource]]`@vertsShellJsResource`|`Buffer`|+++
 Set <code>vertxshell.js</code> resource to use.
 +++
@@ -3023,22 +3062,6 @@ Set whether the WebSocket server will accept the <code>client_no_context_takeove
 +++
 |[[websocketSubProtocols]]`@websocketSubProtocols`|`String`|+++
 Set the WebSocket sub-protocols supported by the server.
-+++
-|===
-
-[[IndexModel]]
-== IndexModel
-
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[key]]`@key`|`Json object`|+++
-Get the index key
-+++
-|[[options]]`@options`|`link:dataobjects.html#IndexOptions[IndexOptions]`|+++
-Get the index options
 +++
 |===
 
@@ -4185,6 +4208,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[username]]`@username`|`String`|+++
 Set the username
 +++
@@ -4224,6 +4250,9 @@ Set the accept back log
 Set if clientid should be auto-generated when it's "zero-bytes"
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[crlPaths]]`@crlPaths`|`Array of String`|+++
@@ -4331,6 +4360,9 @@ Set the trust options in jks format, aka Java truststore
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
 +++
 |===
 
@@ -4643,6 +4675,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |===
 
 [[NetServerOptions]]
@@ -4661,6 +4696,9 @@ Set the ALPN usage.
 Set the accept back log
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[crlPaths]]`@crlPaths`|`Array of String`|+++
@@ -4762,6 +4800,9 @@ Set the trust options in jks format, aka Java truststore
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
 +++
 |===
 
@@ -5209,6 +5250,9 @@ Set the ALPN usage.
 +++
 |[[useBasicAuthorizationHeader]]`@useBasicAuthorizationHeader`|`Boolean`|+++
 Flag to use HTTP basic auth header with client id, client secret.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
 +++
 |[[userAgent]]`@userAgent`|`String`|+++
 Set a custom user agent to use when communicating to a provider
@@ -6475,6 +6519,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |===
 
 [[RedisOptions]]
@@ -6649,7 +6696,7 @@ Get the rows - each row represented as a JsonObject where the keys are the colum
 |===
 ^|Name | Type ^| Description
 |[[mountNotImplementedHandler]]`@mountNotImplementedHandler`|`Boolean`|+++
-If true, Router Factory will automatically mount an handler that return HTTP 405/501 status code for each operation where you didn't specify an handler.
+If true, Router Factory will automatically mount an handler that return HTTP 501 status code for each operation where you didn't specify an handler.
  You can customize the response with link
 +++
 |[[mountResponseContentTypeHandler]]`@mountResponseContentTypeHandler`|`Boolean`|+++
@@ -7516,6 +7563,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[useStompFrame]]`@useStompFrame`|`Boolean`|+++
 Sets whether or not the connection is made using the <code>STOMP</code> command instead of the <code>CONNECT</code> command.
  The <code>STOMP</code> command has been introduced in the 1.2 version of the protocol to ease the network analysis
@@ -7543,6 +7593,9 @@ Sets the virtual host that will be used as "host" header value in the `CONNECT` 
 Set the accept back log
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[crlPaths]]`@crlPaths`|`Array of String`|+++
@@ -7687,6 +7740,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |[[websocketBridge]]`@websocketBridge`|`Boolean`|+++
 Enables or disables the web socket bridge.
 +++
@@ -7821,6 +7877,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |===
 
 [[TelnetTermOptions]]
@@ -7842,6 +7901,9 @@ Set the accept back log
 Set the charset to use when binary mode is active, see link and link.
 +++
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
+Set whether client auth is required
++++
+|[[clientAuthRequired]]`@clientAuthRequired`|`Boolean`|+++
 Set whether client auth is required
 +++
 |[[crlPaths]]`@crlPaths`|`Array of String`|+++
@@ -7955,6 +8017,9 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
 |===
 
 [[TestOptions]]
@@ -8060,24 +8125,6 @@ Set the partition id
 +++
 |[[replicas]]`@replicas`|`Array of link:dataobjects.html#Node[Node]`|+++
 Set the complete set of replicas for this partition
-+++
-|===
-
-[[TracingOptions]]
-== TracingOptions
-
-++++
- Vert.x tracing base configuration, this class can be extended by provider implementations to configure
- those specific implementations.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[enabled]]`@enabled`|`Boolean`|+++
-Set whether tracing will be enabled on the Vert.x instance.
 +++
 |===
 
@@ -8350,6 +8397,9 @@ Sets the event bus configuration to configure the host, port, ssl...
 |[[eventLoopPoolSize]]`@eventLoopPoolSize`|`Number (int)`|+++
 Set the number of event loop threads to be used by the Vert.x instance.
 +++
+|[[fileResolverCachingEnabled]]`@fileResolverCachingEnabled`|`Boolean`|+++
+Set whether the Vert.x file resolver uses caching for classpath resources.
++++
 |[[fileSystemOptions]]`@fileSystemOptions`|`link:dataobjects.html#FileSystemOptions[FileSystemOptions]`|+++
 Set the file system options
 +++
@@ -8387,7 +8437,6 @@ Set wether to prefer the native transport to the JDK transport.
 |[[quorumSize]]`@quorumSize`|`Number (int)`|+++
 Set the quorum size to be used when HA is enabled.
 +++
-|[[tracingOptions]]`@tracingOptions`|`link:dataobjects.html#TracingOptions[TracingOptions]`|-
 |[[warningExceptionTime]]`@warningExceptionTime`|`Number (long)`|+++
 Set the threshold value above this, the blocked warning contains a stack trace. in link.
  The default value of link is
@@ -8669,6 +8718,9 @@ Set whether the client will offer the WebSocket per-message deflate compression 
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
 +++
 |[[userAgent]]`@userAgent`|`String`|+++
 Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.

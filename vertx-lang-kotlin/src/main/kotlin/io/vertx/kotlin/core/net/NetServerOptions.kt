@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param acceptBacklog  Set the accept back log
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -65,6 +66,7 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServerOptions original] using Vert.x codegen.
@@ -72,6 +74,7 @@ import java.util.concurrent.TimeUnit
 fun netServerOptionsOf(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -104,13 +107,17 @@ fun netServerOptionsOf(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -216,6 +223,9 @@ fun netServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 
@@ -226,6 +236,7 @@ fun netServerOptionsOf(
  *
  * @param acceptBacklog  Set the accept back log
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -259,17 +270,19 @@ fun netServerOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServerOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("netServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("netServerOptionsOf(acceptBacklog, clientAuth, clientAuthRequired, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn, usePooledBuffers)")
 )
 fun NetServerOptions(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -302,13 +315,17 @@ fun NetServerOptions(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
+  useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -414,6 +431,9 @@ fun NetServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
 }
 

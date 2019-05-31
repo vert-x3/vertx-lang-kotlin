@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param acceptBacklog  Set the accept back log
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -77,6 +78,7 @@ import java.util.concurrent.TimeUnit
  * @param transactionChunkSize  Sets the chunk size when replaying a transaction. To avoid blocking the event loop for too long, large transactions are split into chunks, replayed one by one. This settings sets the chunk size.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param websocketBridge  Enables or disables the web socket bridge.
  * @param websocketPath  Sets the websocket path. Only frames received on this path would be considered as STOMP frame.
  *
@@ -86,6 +88,7 @@ import java.util.concurrent.TimeUnit
 fun stompServerOptionsOf(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -131,6 +134,7 @@ fun stompServerOptionsOf(
   transactionChunkSize: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null,
   websocketBridge: Boolean? = null,
   websocketPath: String? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
 
@@ -139,6 +143,9 @@ fun stompServerOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -280,6 +287,9 @@ fun stompServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (websocketBridge != null) {
     this.setWebsocketBridge(websocketBridge)
@@ -296,6 +306,7 @@ fun stompServerOptionsOf(
  *
  * @param acceptBacklog  Set the accept back log
  * @param clientAuth  Set whether client auth is required
+ * @param clientAuthRequired  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -341,6 +352,7 @@ fun stompServerOptionsOf(
  * @param transactionChunkSize  Sets the chunk size when replaying a transaction. To avoid blocking the event loop for too long, large transactions are split into chunks, replayed one by one. This settings sets the chunk size.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param usePooledBuffers  Set whether Netty pooled buffers are enabled
  * @param websocketBridge  Enables or disables the web socket bridge.
  * @param websocketPath  Sets the websocket path. Only frames received on this path would be considered as STOMP frame.
  *
@@ -349,11 +361,12 @@ fun stompServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
+  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, clientAuthRequired, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustStoreOptions, useAlpn, usePooledBuffers, websocketBridge, websocketPath)")
 )
 fun StompServerOptions(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clientAuthRequired: Boolean? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -399,6 +412,7 @@ fun StompServerOptions(
   transactionChunkSize: Int? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  usePooledBuffers: Boolean? = null,
   websocketBridge: Boolean? = null,
   websocketPath: String? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
 
@@ -407,6 +421,9 @@ fun StompServerOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clientAuthRequired != null) {
+    this.setClientAuthRequired(clientAuthRequired)
   }
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -548,6 +565,9 @@ fun StompServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (usePooledBuffers != null) {
+    this.setUsePooledBuffers(usePooledBuffers)
   }
   if (websocketBridge != null) {
     this.setWebsocketBridge(websocketBridge)
