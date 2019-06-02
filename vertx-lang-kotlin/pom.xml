@@ -277,6 +277,21 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-sql-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-pg-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-mysql-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-rabbitmq-client</artifactId>
       <optional>true</optional>
     </dependency>
@@ -404,6 +419,9 @@
             vertx-service-discovery-bridge-docker-links,
             vertx-config,
             vertx-kafka-client,
+            vertx-sql-client,
+            vertx-pg-client,
+            vertx-mysql-client,
             vertx-mqtt,
             vertx-rabbitmq-client,
             vertx-health-check,

@@ -22,6 +22,19 @@ import io.vertx.kafka.client.producer.RecordMetadata
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.end]
  *
  *
@@ -43,12 +56,6 @@ suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
 suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): Unit {
   return awaitResult {
     this.end(data) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>): Unit {
-  return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -77,6 +84,18 @@ suspend fun <K,V> KafkaProducer<K,V>.sendAwait(record: KafkaProducerRecord<K,V>)
 suspend fun <K,V> KafkaProducer<K,V>.partitionsForAwait(topic: String): List<PartitionInfo> {
   return awaitResult {
     this.partitionsFor(topic, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.flush]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
+suspend fun <K,V> KafkaProducer<K,V>.flushAwait(): Unit {
+  return awaitResult {
+    this.flush { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
