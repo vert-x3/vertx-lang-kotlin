@@ -16,7 +16,7 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.Context
-import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Context] using Vert.x codegen.
  */
-suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit, ordered: Boolean): T? {
+suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit, ordered: Boolean): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, ordered, it::handle)
   }
@@ -42,7 +42,7 @@ suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler: (Future<T>) ->
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Context] using Vert.x codegen.
  */
-suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit): T? {
+suspend fun <T> Context.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, it::handle)
   }

@@ -637,6 +637,22 @@ Specifying a maximum duration for the blocking request. This is limited to 10 mi
 +++
 |===
 
+[[Box]]
+== Box
+
+++++
+ Rectangular box data type in Postgres represented by pairs of links that are opposite corners of the box.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[lowerLeftCorner]]`@lowerLeftCorner`|`link:dataobjects.html#Point[Point]`|-
+|[[upperRightCorner]]`@upperRightCorner`|`link:dataobjects.html#Point[Point]`|-
+|===
+
 [[BridgeOptions]]
 == BridgeOptions
 
@@ -655,6 +671,27 @@ Sets the list of inbound permitted options.
 |[[outboundPermitteds]]`@outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|+++
 Sets the list of outbound permitted options.
 +++
+|===
+
+[[BridgeOptions]]
+== BridgeOptions
+
+++++
+ Specify the event bus bridge options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[inboundPermitteds]]`@inboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|+++
+Sets the list of inbound permitted options.
++++
+|[[outboundPermitteds]]`@outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|+++
+Sets the list of outbound permitted options.
++++
+|[[pointToPoint]]`@pointToPoint`|`Boolean`|-
 |===
 
 [[BridgeOptions]]
@@ -677,27 +714,6 @@ Sets the list of outbound permitted options.
 |[[outboundPermitteds]]`@outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|-
 |[[pingTimeout]]`@pingTimeout`|`Number (long)`|-
 |[[replyTimeout]]`@replyTimeout`|`Number (long)`|-
-|===
-
-[[BridgeOptions]]
-== BridgeOptions
-
-++++
- Specify the event bus bridge options.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[inboundPermitteds]]`@inboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|+++
-Sets the list of inbound permitted options.
-+++
-|[[outboundPermitteds]]`@outboundPermitteds`|`Array of link:dataobjects.html#PermittedOptions[PermittedOptions]`|+++
-Sets the list of outbound permitted options.
-+++
-|[[pointToPoint]]`@pointToPoint`|`Boolean`|-
 |===
 
 [[BulkOperation]]
@@ -915,6 +931,22 @@ Set options for blocking query
 |[[near]]`@near`|`String`|+++
 Set node name for sorting the list in ascending order based on the estimated round trip time from that node.
 +++
+|===
+
+[[Circle]]
+== Circle
+
+++++
+ Circle data type in Postgres represented by a center link and radius.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[centerPoint]]`@centerPoint`|`link:dataobjects.html#Point[Point]`|-
+|[[radius]]`@radius`|`Number (double)`|-
 |===
 
 [[CircuitBreakerOptions]]
@@ -3256,6 +3288,28 @@ Gets the weighting object for use with a text index
 +++
 |===
 
+[[Interval]]
+== Interval
+
+++++
+ Postgres Interval is date and time based
+ such as 120 years 3 months 332 days 20 hours 20 minutes 20.999999 seconds
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[days]]`@days`|`Number (int)`|-
+|[[hours]]`@hours`|`Number (int)`|-
+|[[microseconds]]`@microseconds`|`Number (int)`|-
+|[[minutes]]`@minutes`|`Number (int)`|-
+|[[months]]`@months`|`Number (int)`|-
+|[[seconds]]`@seconds`|`Number (int)`|-
+|[[years]]`@years`|`Number (int)`|-
+|===
+
 [[JDBCAuthOptions]]
 == JDBCAuthOptions
 
@@ -3578,6 +3632,39 @@ Set TYPE filter
 ^|Name | Type ^| Description
 |[[count]]`@count`|`Number (Long)`|-
 |[[offset]]`@offset`|`Number (Long)`|-
+|===
+
+[[Line]]
+== Line
+
+++++
+ Line data type in Postgres represented by the linear equation Ax + By + C = 0, where A and B are not both zero.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[a]]`@a`|`Number (double)`|-
+|[[b]]`@b`|`Number (double)`|-
+|[[c]]`@c`|`Number (double)`|-
+|===
+
+[[LineSegment]]
+== LineSegment
+
+++++
+ Finite line segment data type in Postgres represented by pairs of links that are the endpoints of the segment.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[p1]]`@p1`|`link:dataobjects.html#Point[Point]`|-
+|[[p2]]`@p2`|`link:dataobjects.html#Point[Point]`|-
 |===
 
 [[MailAttachment]]
@@ -4459,6 +4546,156 @@ Set whether Netty pooled buffers are enabled
 +++
 |[[willTopic]]`@willTopic`|`String`|+++
 
++++
+|===
+
+[[MySQLConnectOptions]]
+== MySQLConnectOptions
+
+++++
+ Connect options for configuring link or link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
+Set the connect timeout
++++
+|[[crlPaths]]`@crlPaths`|`Array of String`|+++
+Add a CRL path
++++
+|[[crlValues]]`@crlValues`|`Array of Buffer`|+++
+Add a CRL value
++++
+|[[database]]`@database`|`String`|+++
+Specify the default database for the connection.
++++
+|[[enabledCipherSuites]]`@enabledCipherSuites`|`Array of String`|+++
+Add an enabled cipher suite, appended to the ordered suites.
++++
+|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
+Sets the list of enabled SSL/TLS protocols.
++++
+|[[host]]`@host`|`String`|+++
+Specify the host for connecting to the server.
++++
+|[[hostnameVerificationAlgorithm]]`@hostnameVerificationAlgorithm`|`String`|+++
+Set the hostname verification algorithm interval
+ To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
++++
+|[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
+Set the idle timeout, default time unit is seconds. Zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
+
+ If you want change default time unit, use link
++++
+|[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the idle timeout unit. If not specified, default is seconds.
++++
+|[[jdkSslEngineOptions]]`@jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keyStoreOptions]]`@keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the key/cert options in jks format, aka Java keystore.
++++
+|[[localAddress]]`@localAddress`|`String`|+++
+Set the local interface to bind for network connections. When the local address is null,
+ it will pick any local address, the default local address is null.
++++
+|[[logActivity]]`@logActivity`|`Boolean`|+++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
++++
+|[[metricsName]]`@metricsName`|`String`|+++
+Set the metrics name identifying the reported metrics, useful for grouping metrics
+ with the same name.
++++
+|[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
+|[[password]]`@password`|`String`|+++
+Specify the user password to be used for the authentication.
++++
+|[[pemKeyCertOptions]]`@pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|+++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`@pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the trust options in pfx format
++++
+|[[port]]`@port`|`Number (int)`|+++
+Specify the port for connecting to the server.
++++
+|[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
+Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
++++
+|[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
+Set the TCP receive buffer size
++++
+|[[reconnectAttempts]]`@reconnectAttempts`|`Number (int)`|+++
+Set the value of reconnect attempts
++++
+|[[reconnectInterval]]`@reconnectInterval`|`Number (long)`|+++
+Set the reconnect interval
++++
+|[[reuseAddress]]`@reuseAddress`|`Boolean`|+++
+Set the value of reuse address
++++
+|[[reusePort]]`@reusePort`|`Boolean`|+++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
+Set the TCP send buffer size
++++
+|[[soLinger]]`@soLinger`|`Number (int)`|+++
+Set whether SO_linger keep alive is enabled
++++
+|[[ssl]]`@ssl`|`Boolean`|+++
+Set whether SSL/TLS is enabled
++++
+|[[sslHandshakeTimeout]]`@sslHandshakeTimeout`|`Number (long)`|+++
+Set the SSL handshake timeout, default time unit is seconds.
++++
+|[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the SSL handshake timeout unit. If not specified, default is seconds.
++++
+|[[tcpCork]]`@tcpCork`|`Boolean`|+++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`@tcpFastOpen`|`Boolean`|+++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`@tcpKeepAlive`|`Boolean`|+++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`@tcpNoDelay`|`Boolean`|+++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[trafficClass]]`@trafficClass`|`Number (int)`|+++
+Set the value of traffic class
++++
+|[[trustAll]]`@trustAll`|`Boolean`|+++
+Set whether all server certificates should be trusted
++++
+|[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`@useAlpn`|`Boolean`|+++
+Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
+|[[user]]`@user`|`String`|+++
+Specify the user account to be used for the authentication.
 +++
 |===
 
@@ -5423,6 +5660,24 @@ Set the topic name
 +++
 |===
 
+[[Path]]
+== Path
+
+++++
+ Path data type in Postgres represented by lists of connected points.
+ Paths can be open, where the first and last points in the list are considered not connected,
+ or closed, where the first and last points are considered connected.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[open]]`@open`|`Boolean`|-
+|[[points]]`@points`|`Array of link:dataobjects.html#Point[Point]`|-
+|===
+
 [[PemKeyCertOptions]]
 == PemKeyCertOptions
 
@@ -5669,6 +5924,237 @@ Set the path
 +++
 |[[value]]`@value`|`Buffer`|+++
 Set the store as a buffer
++++
+|===
+
+[[PgConnectOptions]]
+== PgConnectOptions
+
+++++
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|-
+|[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
+Set the connect timeout
++++
+|[[crlPaths]]`@crlPaths`|`Array of String`|+++
+Add a CRL path
++++
+|[[crlValues]]`@crlValues`|`Array of Buffer`|+++
+Add a CRL value
++++
+|[[database]]`@database`|`String`|+++
+Specify the default database for the connection.
++++
+|[[enabledCipherSuites]]`@enabledCipherSuites`|`Array of String`|+++
+Add an enabled cipher suite, appended to the ordered suites.
++++
+|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
+Sets the list of enabled SSL/TLS protocols.
++++
+|[[host]]`@host`|`String`|+++
+Specify the host for connecting to the server.
++++
+|[[hostnameVerificationAlgorithm]]`@hostnameVerificationAlgorithm`|`String`|+++
+Set the hostname verification algorithm interval
+ To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
++++
+|[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
+Set the idle timeout, default time unit is seconds. Zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
+
+ If you want change default time unit, use link
++++
+|[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the idle timeout unit. If not specified, default is seconds.
++++
+|[[jdkSslEngineOptions]]`@jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keyStoreOptions]]`@keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the key/cert options in jks format, aka Java keystore.
++++
+|[[localAddress]]`@localAddress`|`String`|+++
+Set the local interface to bind for network connections. When the local address is null,
+ it will pick any local address, the default local address is null.
++++
+|[[logActivity]]`@logActivity`|`Boolean`|+++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
++++
+|[[metricsName]]`@metricsName`|`String`|+++
+Set the metrics name identifying the reported metrics, useful for grouping metrics
+ with the same name.
++++
+|[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
+|[[password]]`@password`|`String`|+++
+Specify the user password to be used for the authentication.
++++
+|[[pemKeyCertOptions]]`@pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|+++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`@pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the trust options in pfx format
++++
+|[[pipeliningLimit]]`@pipeliningLimit`|`Number (int)`|-
+|[[port]]`@port`|`Number (int)`|+++
+Specify the port for connecting to the server.
++++
+|[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
+Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
++++
+|[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
+Set the TCP receive buffer size
++++
+|[[reconnectAttempts]]`@reconnectAttempts`|`Number (int)`|+++
+Set the value of reconnect attempts
++++
+|[[reconnectInterval]]`@reconnectInterval`|`Number (long)`|+++
+Set the reconnect interval
++++
+|[[reuseAddress]]`@reuseAddress`|`Boolean`|+++
+Set the value of reuse address
++++
+|[[reusePort]]`@reusePort`|`Boolean`|+++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
+Set the TCP send buffer size
++++
+|[[soLinger]]`@soLinger`|`Number (int)`|+++
+Set whether SO_linger keep alive is enabled
++++
+|[[ssl]]`@ssl`|`Boolean`|+++
+Set whether SSL/TLS is enabled
++++
+|[[sslHandshakeTimeout]]`@sslHandshakeTimeout`|`Number (long)`|+++
+Set the SSL handshake timeout, default time unit is seconds.
++++
+|[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the SSL handshake timeout unit. If not specified, default is seconds.
++++
+|[[sslMode]]`@sslMode`|`link:enums.html#SslMode[SslMode]`|+++
+Set link for the client, this option can be used to provide different levels of secure protection.
++++
+|[[tcpCork]]`@tcpCork`|`Boolean`|+++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`@tcpFastOpen`|`Boolean`|+++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`@tcpKeepAlive`|`Boolean`|+++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`@tcpNoDelay`|`Boolean`|+++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[trafficClass]]`@trafficClass`|`Number (int)`|+++
+Set the value of traffic class
++++
+|[[trustAll]]`@trustAll`|`Boolean`|+++
+Set whether all server certificates should be trusted
++++
+|[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`@useAlpn`|`Boolean`|+++
+Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
+|[[user]]`@user`|`String`|+++
+Specify the user account to be used for the authentication.
++++
+|[[usingDomainSocket]]`@usingDomainSocket`|`Boolean`|-
+|===
+
+[[PgNotification]]
+== PgNotification
+
+++++
+ A notification emited by Postgres.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[channel]]`@channel`|`String`|+++
+Set the channel value.
++++
+|[[payload]]`@payload`|`String`|+++
+Set the payload value.
++++
+|[[processId]]`@processId`|`Number (int)`|+++
+Set the process id.
++++
+|===
+
+[[Point]]
+== Point
+
+++++
+ A Postgresql point.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[x]]`@x`|`Number (double)`|-
+|[[y]]`@y`|`Number (double)`|-
+|===
+
+[[Polygon]]
+== Polygon
+
+++++
+ Polygon data type in Postgres represented by lists of points (the vertexes of the polygon).
+ Polygons are very similar to closed paths, but are stored differently and have their own set of support routines.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[points]]`@points`|`Array of link:dataobjects.html#Point[Point]`|-
+|===
+
+[[PoolOptions]]
+== PoolOptions
+
+++++
+ The options for configuring a connection pool.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[maxSize]]`@maxSize`|`Number (int)`|+++
+Set the maximum pool size
++++
+|[[maxWaitQueueSize]]`@maxWaitQueueSize`|`Number (int)`|+++
+Set the maximum connection request allowed in the wait queue, any requests beyond the max size will result in
+ an failure.  If the value is set to a negative number then the queue will be unbounded.
 +++
 |===
 
@@ -6005,48 +6491,6 @@ Set the topic the record was appended to
 == RedisOptions
 
 ++++
- Redis Client Configuration options.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[masterName]]`@masterName`|`String`|+++
-Set the master name (only considered in HA mode).
-+++
-|[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
-Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
-+++
-|[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
-The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
- backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
-+++
-|[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
-Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
-+++
-|[[password]]`@password`|`String`|+++
-Set the provided password to be used when establishing a connection to the server.
-+++
-|[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
-Set the role name (only considered in HA mode).
-+++
-|[[select]]`@select`|`Number (Integer)`|+++
-Set the provided database to be selected when establishing a connection to the server.
-+++
-|[[type]]`@type`|`link:enums.html#RedisClientType[RedisClientType]`|+++
-Set the desired client type to be created.
-+++
-|[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
-Set whether or not to use slave nodes (only considered in Cluster mode).
-+++
-|===
-
-[[RedisOptions]]
-== RedisOptions
-
-++++
  This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
  since it has built the following sensible defaults:
  <p>
@@ -6231,6 +6675,48 @@ Set the ALPN usage.
 +++
 |[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
 Set whether Netty pooled buffers are enabled
++++
+|===
+
+[[RedisOptions]]
+== RedisOptions
+
+++++
+ Redis Client Configuration options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[masterName]]`@masterName`|`String`|+++
+Set the master name (only considered in HA mode).
++++
+|[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
+Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
++++
+|[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
+The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
+ backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
++++
+|[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
+Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
++++
+|[[password]]`@password`|`String`|+++
+Set the provided password to be used when establishing a connection to the server.
++++
+|[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
+Set the role name (only considered in HA mode).
++++
+|[[select]]`@select`|`Number (Integer)`|+++
+Set the provided database to be selected when establishing a connection to the server.
++++
+|[[type]]`@type`|`link:enums.html#RedisClientType[RedisClientType]`|+++
+Set the desired client type to be created.
++++
+|[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
+Set whether or not to use slave nodes (only considered in Cluster mode).
 +++
 |===
 
@@ -6892,6 +7378,156 @@ Set the Shiro auth options type.
 |[[descending]]`@descending`|`Boolean`|-
 |[[gets]]`@gets`|`Array of String`|-
 |[[store]]`@store`|`String`|-
+|===
+
+[[SqlConnectOptions]]
+== SqlConnectOptions
+
+++++
+ Connect options for configuring link or link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
+Set the connect timeout
++++
+|[[crlPaths]]`@crlPaths`|`Array of String`|+++
+Add a CRL path
++++
+|[[crlValues]]`@crlValues`|`Array of Buffer`|+++
+Add a CRL value
++++
+|[[database]]`@database`|`String`|+++
+Specify the default database for the connection.
++++
+|[[enabledCipherSuites]]`@enabledCipherSuites`|`Array of String`|+++
+Add an enabled cipher suite, appended to the ordered suites.
++++
+|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
+Sets the list of enabled SSL/TLS protocols.
++++
+|[[host]]`@host`|`String`|+++
+Specify the host for connecting to the server.
++++
+|[[hostnameVerificationAlgorithm]]`@hostnameVerificationAlgorithm`|`String`|+++
+Set the hostname verification algorithm interval
+ To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
++++
+|[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
+Set the idle timeout, default time unit is seconds. Zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
+
+ If you want change default time unit, use link
++++
+|[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the idle timeout unit. If not specified, default is seconds.
++++
+|[[jdkSslEngineOptions]]`@jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keyStoreOptions]]`@keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the key/cert options in jks format, aka Java keystore.
++++
+|[[localAddress]]`@localAddress`|`String`|+++
+Set the local interface to bind for network connections. When the local address is null,
+ it will pick any local address, the default local address is null.
++++
+|[[logActivity]]`@logActivity`|`Boolean`|+++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
++++
+|[[metricsName]]`@metricsName`|`String`|+++
+Set the metrics name identifying the reported metrics, useful for grouping metrics
+ with the same name.
++++
+|[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
+|[[password]]`@password`|`String`|+++
+Specify the user password to be used for the authentication.
++++
+|[[pemKeyCertOptions]]`@pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|+++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`@pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the trust options in pfx format
++++
+|[[port]]`@port`|`Number (int)`|+++
+Specify the port for connecting to the server.
++++
+|[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
+Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
++++
+|[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
+Set the TCP receive buffer size
++++
+|[[reconnectAttempts]]`@reconnectAttempts`|`Number (int)`|+++
+Set the value of reconnect attempts
++++
+|[[reconnectInterval]]`@reconnectInterval`|`Number (long)`|+++
+Set the reconnect interval
++++
+|[[reuseAddress]]`@reuseAddress`|`Boolean`|+++
+Set the value of reuse address
++++
+|[[reusePort]]`@reusePort`|`Boolean`|+++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
+Set the TCP send buffer size
++++
+|[[soLinger]]`@soLinger`|`Number (int)`|+++
+Set whether SO_linger keep alive is enabled
++++
+|[[ssl]]`@ssl`|`Boolean`|+++
+Set whether SSL/TLS is enabled
++++
+|[[sslHandshakeTimeout]]`@sslHandshakeTimeout`|`Number (long)`|+++
+Set the SSL handshake timeout, default time unit is seconds.
++++
+|[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the SSL handshake timeout unit. If not specified, default is seconds.
++++
+|[[tcpCork]]`@tcpCork`|`Boolean`|+++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`@tcpFastOpen`|`Boolean`|+++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`@tcpKeepAlive`|`Boolean`|+++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`@tcpNoDelay`|`Boolean`|+++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[trafficClass]]`@trafficClass`|`Number (int)`|+++
+Set the value of traffic class
++++
+|[[trustAll]]`@trustAll`|`Boolean`|+++
+Set whether all server certificates should be trusted
++++
+|[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`@useAlpn`|`Boolean`|+++
+Set the ALPN usage.
++++
+|[[usePooledBuffers]]`@usePooledBuffers`|`Boolean`|+++
+Set whether Netty pooled buffers are enabled
++++
+|[[user]]`@user`|`String`|+++
+Specify the user account to be used for the authentication.
++++
 |===
 
 [[Status]]
