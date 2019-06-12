@@ -81,16 +81,22 @@ open class KotlinVerticleFactory : VerticleFactory {
       this.vertx = vertx
     }
 
-    override fun start(startFuture: Future<Void>) {
+    override fun start(startFuture: Promise<Void>) {
       CompositeFuture.all(
-          children.map { verticle ->
-            Future.future<String>().apply {
-              vertx.deployVerticle(verticle, this)
-            }
-          }).setHandler { startFuture.complete() }
+        children.map { verticle ->
+          val promise = Promise.promise<String>()
+          vertx.deployVerticle(verticle, promise)
+          promise.future()
+        }).setHandler {
+        if (it.succeeded()) {
+          startFuture.complete()
+        } else {
+          startFuture.fail(it.cause())
+        }
+      }
     }
 
-    override fun stop(stopFuture: Future<Void>) {
+    override fun stop(stopFuture: Promise<Void>) {
     }
 
     override fun getVertx() = vertx

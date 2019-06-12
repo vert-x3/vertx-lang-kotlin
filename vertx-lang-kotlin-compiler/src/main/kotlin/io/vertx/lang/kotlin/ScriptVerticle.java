@@ -18,6 +18,7 @@ package io.vertx.lang.kotlin;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
 import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 
 import java.lang.reflect.Method;
@@ -35,10 +36,10 @@ public class ScriptVerticle extends AbstractVerticle {
   }
 
   @Override
-  public void start(Future<Void> startFuture) throws Exception {
+  public void start(Promise<Void> startFuture) throws Exception {
     instance = clazz.getConstructor(Vertx.class, Context.class).newInstance(vertx, context);
     try {
-      Method start = clazz.getDeclaredMethod("start", Future.class);
+      Method start = clazz.getDeclaredMethod("start", Promise.class);
       start.invoke(instance, startFuture);
     } catch (NoSuchMethodException ignore) {
       startFuture.complete();
@@ -46,14 +47,14 @@ public class ScriptVerticle extends AbstractVerticle {
   }
 
   @Override
-  public void stop(Future<Void> stopFuture) throws Exception {
+  public void stop(Promise<Void> stopFuture) throws Exception {
     try {
       Method stop = clazz.getDeclaredMethod("stop");
       stop.invoke(instance);
       stopFuture.complete();
     } catch (NoSuchMethodException e) {
       try {
-        Method stop = clazz.getDeclaredMethod("stop", Future.class);
+        Method stop = clazz.getDeclaredMethod("stop", Promise.class);
         stop.invoke(instance, stopFuture);
       } catch (NoSuchMethodException ignore) {
       }

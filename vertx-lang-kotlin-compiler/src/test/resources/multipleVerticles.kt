@@ -7,12 +7,12 @@ class M1 : Verticle {
     this.vertx = vertx
   }
 
-  override fun start(startFuture: Future<Void>?) {
+  override fun start(startFuture: Promise<Void>?) {
     vertx.sharedData().getLocalMap<String, String>("M").put("M1", "1")
     startFuture?.complete()
   }
 
-  override fun stop(stopFuture: Future<Void>?) {
+  override fun stop(stopFuture: Promise<Void>?) {
     stopFuture?.complete()
   }
 
@@ -26,12 +26,12 @@ class M2 : Verticle {
     this.vertx = vertx
   }
 
-  override fun start(startFuture: Future<Void>?) {
+  override fun start(startFuture: Promise<Void>?) {
     vertx.sharedData().getLocalMap<String, String>("M").put("M2", "2")
     startFuture?.complete()
   }
 
-  override fun stop(stopFuture: Future<Void>?) {
+  override fun stop(stopFuture: Promise<Void>?) {
     stopFuture?.complete()
   }
 
@@ -45,12 +45,12 @@ class M3 : Verticle {
     this.vertx = vertx
   }
 
-  override fun start(startFuture: Future<Void>?) {
+  override fun start(startFuture: Promise<Void>?) {
     vertx.sharedData().getLocalMap<String, String>("M").put("M3", "3")
     startFuture?.complete()
   }
 
-  override fun stop(stopFuture: Future<Void>?) {
+  override fun stop(stopFuture: Promise<Void>?) {
     stopFuture?.complete()
   }
 

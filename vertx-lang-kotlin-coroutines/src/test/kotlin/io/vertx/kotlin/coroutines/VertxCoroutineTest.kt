@@ -17,6 +17,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Context
 import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpServerOptions
@@ -340,9 +341,9 @@ class VertxCoroutineTest {
   @Test
   fun `test await of succeeded future`(testContext: TestContext) {
     val async = testContext.async()
-    val fut = Future.future<String>()
+    val fut = Promise.promise<String>()
     GlobalScope.launch(vertx.dispatcher()) {
-      val s = fut.await()
+      val s = fut.future().await()
       testContext.assertEquals("the-string", s)
       async.complete()
     }
@@ -354,11 +355,11 @@ class VertxCoroutineTest {
   @Test
   fun `test await of failed future`(testContext: TestContext) {
     val async = testContext.async()
-    val fut = Future.future<String>()
+    val fut = Promise.promise<String>()
     val cause = RuntimeException()
     GlobalScope.launch(vertx.dispatcher()) {
       try {
-        fut.await()
+        fut.future().await()
         testContext.fail()
       } catch (e: Exception) {
         testContext.assertEquals(cause, e.cause)

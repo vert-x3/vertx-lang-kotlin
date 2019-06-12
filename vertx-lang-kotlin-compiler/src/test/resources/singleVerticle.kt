@@ -7,11 +7,11 @@ class V1 : Verticle {
     this.vertx = vertx
   }
 
-  override fun start(startFuture: Future<Void>?) {
+  override fun start(startFuture: Promise<Void>?) {
     startFuture?.complete()
   }
 
-  override fun stop(stopFuture: Future<Void>?) {
+  override fun stop(stopFuture: Promise<Void>?) {
     stopFuture?.complete()
   }
 

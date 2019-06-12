@@ -2,10 +2,7 @@
 
 package examples
 
-import io.vertx.core.CompositeFuture
-import io.vertx.core.Future
-import io.vertx.core.Handler
-import io.vertx.core.Vertx
+import io.vertx.core.*
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageProducer
@@ -138,15 +135,15 @@ class ExampleVerticle : CoroutineVerticle() {
 
   // tag::awaitingFuture[]
   suspend fun awaitingFuture() {
-    val httpServerFuture = Future.future<HttpServer>()
+    val httpServerPromise = Promise.promise<HttpServer>()
     vertx.createHttpServer()
       .requestHandler { req -> req.response().end("Hello!") }
-      .listen(8000, httpServerFuture)
+      .listen(8000, httpServerPromise)
 
-    val httpServer = httpServerFuture.await()
+    val httpServer = httpServerPromise.future().await()
     println("HTTP server port: ${httpServer.actualPort()}")
 
-    val result = CompositeFuture.all(httpServerFuture, httpServerFuture).await()
+    val result = CompositeFuture.all(httpServerPromise.future(), httpServerPromise.future()).await()
     if (result.succeeded()) {
       println("The server is now running!")
     } else {

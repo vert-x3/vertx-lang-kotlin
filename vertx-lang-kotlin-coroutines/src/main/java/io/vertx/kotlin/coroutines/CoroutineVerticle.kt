@@ -15,10 +15,7 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.Context
-import io.vertx.core.Future
-import io.vertx.core.Verticle
-import io.vertx.core.Vertx
+import io.vertx.core.*
 import io.vertx.core.json.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -47,7 +44,7 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
   override fun getVertx(): Vertx = vertxInstance
 
-  override fun start(startFuture: Future<Void>?) {
+  override fun start(startFuture: Promise<Void>?) {
     launch {
       try {
         start()
@@ -58,7 +55,7 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
     }
   }
 
-  override fun stop(stopFuture: Future<Void>?) {
+  override fun stop(stopFuture: Promise<Void>?) {
     launch {
       try {
         stop()
