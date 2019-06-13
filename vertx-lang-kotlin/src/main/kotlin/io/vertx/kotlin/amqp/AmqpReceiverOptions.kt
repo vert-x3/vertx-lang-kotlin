@@ -22,6 +22,7 @@ import io.vertx.amqp.AmqpReceiverOptions
  *
  * Configures the AMQP Receiver.
  *
+ * @param autoAcknowledgement  Sets the auto-acknowledgement. When enabled (default), the messages are automatically acknowledged. If set to <code>false</code>, the messages must be acknowledged explicitly using [io.vertx.amqp.AmqpMessage], [io.vertx.amqp.AmqpMessage] and [io.vertx.amqp.AmqpMessage].
  * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
@@ -34,6 +35,7 @@ import io.vertx.amqp.AmqpReceiverOptions
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpReceiverOptions original] using Vert.x codegen.
  */
 fun amqpReceiverOptionsOf(
+  autoAcknowledgement: Boolean? = null,
   capabilities: Iterable<String>? = null,
   capabilitys: Iterable<String>? = null,
   durable: Boolean? = null,
@@ -42,6 +44,9 @@ fun amqpReceiverOptionsOf(
   maxBufferedMessages: Int? = null,
   qos: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
 
+  if (autoAcknowledgement != null) {
+    this.setAutoAcknowledgement(autoAcknowledgement)
+  }
   if (capabilities != null) {
     this.setCapabilities(capabilities.toList())
   }
@@ -72,6 +77,7 @@ fun amqpReceiverOptionsOf(
  *
  * Configures the AMQP Receiver.
  *
+ * @param autoAcknowledgement  Sets the auto-acknowledgement. When enabled (default), the messages are automatically acknowledged. If set to <code>false</code>, the messages must be acknowledged explicitly using [io.vertx.amqp.AmqpMessage], [io.vertx.amqp.AmqpMessage] and [io.vertx.amqp.AmqpMessage].
  * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
@@ -85,9 +91,10 @@ fun amqpReceiverOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("amqpReceiverOptionsOf(capabilities, capabilitys, durable, dynamic, linkName, maxBufferedMessages, qos)")
+  replaceWith = ReplaceWith("amqpReceiverOptionsOf(autoAcknowledgement, capabilities, capabilitys, durable, dynamic, linkName, maxBufferedMessages, qos)")
 )
 fun AmqpReceiverOptions(
+  autoAcknowledgement: Boolean? = null,
   capabilities: Iterable<String>? = null,
   capabilitys: Iterable<String>? = null,
   durable: Boolean? = null,
@@ -96,6 +103,9 @@ fun AmqpReceiverOptions(
   maxBufferedMessages: Int? = null,
   qos: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
 
+  if (autoAcknowledgement != null) {
+    this.setAutoAcknowledgement(autoAcknowledgement)
+  }
   if (capabilities != null) {
     this.setCapabilities(capabilities.toList())
   }

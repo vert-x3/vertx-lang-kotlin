@@ -97,11 +97,11 @@ suspend fun MongoClient.insertWithOptionsAwait(collection: String, document: Jso
  * @param collection the collection
  * @param query query used to match the documents
  * @param update used to describe how the documents will be updated
- * @return [MongoClientUpdateResult]
+ * @return [MongoClientUpdateResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObject, update: JsonObject): MongoClientUpdateResult {
+suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObject, update: JsonObject): MongoClientUpdateResult? {
   return awaitResult {
     this.updateCollection(collection, query, update, it)
   }
@@ -114,11 +114,11 @@ suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObj
  * @param query query used to match the documents
  * @param update used to describe how the documents will be updated
  * @param options options to configure the update
- * @return [MongoClientUpdateResult]
+ * @return [MongoClientUpdateResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, query: JsonObject, update: JsonObject, options: UpdateOptions): MongoClientUpdateResult {
+suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, query: JsonObject, update: JsonObject, options: UpdateOptions): MongoClientUpdateResult? {
   return awaitResult {
     this.updateCollectionWithOptions(collection, query, update, options, it)
   }
@@ -130,11 +130,11 @@ suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, que
  * @param collection the collection
  * @param query query used to match the documents
  * @param replace all matching documents will be replaced with this
- * @return [MongoClientUpdateResult]
+ * @return [MongoClientUpdateResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.replaceDocumentsAwait(collection: String, query: JsonObject, replace: JsonObject): MongoClientUpdateResult {
+suspend fun MongoClient.replaceDocumentsAwait(collection: String, query: JsonObject, replace: JsonObject): MongoClientUpdateResult? {
   return awaitResult {
     this.replaceDocuments(collection, query, replace, it)
   }
@@ -147,11 +147,11 @@ suspend fun MongoClient.replaceDocumentsAwait(collection: String, query: JsonObj
  * @param query query used to match the documents
  * @param replace all matching documents will be replaced with this
  * @param options options to configure the replace
- * @return [MongoClientUpdateResult]
+ * @return [MongoClientUpdateResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection: String, query: JsonObject, replace: JsonObject, options: UpdateOptions): MongoClientUpdateResult {
+suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection: String, query: JsonObject, replace: JsonObject, options: UpdateOptions): MongoClientUpdateResult? {
   return awaitResult {
     this.replaceDocumentsWithOptions(collection, query, replace, options, it)
   }
@@ -162,11 +162,11 @@ suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection: String, que
  *
  * @param collection the collection
  * @param operations the operations to execute
- * @return [MongoClientBulkWriteResult]
+ * @return [MongoClientBulkWriteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.bulkWriteAwait(collection: String, operations: List<BulkOperation>): MongoClientBulkWriteResult {
+suspend fun MongoClient.bulkWriteAwait(collection: String, operations: List<BulkOperation>): MongoClientBulkWriteResult? {
   return awaitResult {
     this.bulkWrite(collection, operations, it)
   }
@@ -178,11 +178,11 @@ suspend fun MongoClient.bulkWriteAwait(collection: String, operations: List<Bulk
  * @param collection the collection
  * @param operations the operations to execute
  * @param bulkWriteOptions the write options
- * @return [MongoClientBulkWriteResult]
+ * @return [MongoClientBulkWriteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.bulkWriteWithOptionsAwait(collection: String, operations: List<BulkOperation>, bulkWriteOptions: BulkWriteOptions): MongoClientBulkWriteResult {
+suspend fun MongoClient.bulkWriteWithOptionsAwait(collection: String, operations: List<BulkOperation>, bulkWriteOptions: BulkWriteOptions): MongoClientBulkWriteResult? {
   return awaitResult {
     this.bulkWriteWithOptions(collection, operations, bulkWriteOptions, it)
   }
@@ -354,11 +354,11 @@ suspend fun MongoClient.countAwait(collection: String, query: JsonObject): Long 
  *
  * @param collection the collection
  * @param query query used to match documents
- * @return [MongoClientDeleteResult]
+ * @return [MongoClientDeleteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.removeDocumentsAwait(collection: String, query: JsonObject): MongoClientDeleteResult {
+suspend fun MongoClient.removeDocumentsAwait(collection: String, query: JsonObject): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocuments(collection, query, it)
   }
@@ -370,11 +370,11 @@ suspend fun MongoClient.removeDocumentsAwait(collection: String, query: JsonObje
  * @param collection the collection
  * @param query query used to match documents
  * @param writeOption the write option to use
- * @return [MongoClientDeleteResult]
+ * @return [MongoClientDeleteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult {
+suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentsWithOptions(collection, query, writeOption, it)
   }
@@ -385,11 +385,11 @@ suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection: String, quer
  *
  * @param collection the collection
  * @param query query used to match document
- * @return [MongoClientDeleteResult]
+ * @return [MongoClientDeleteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.removeDocumentAwait(collection: String, query: JsonObject): MongoClientDeleteResult {
+suspend fun MongoClient.removeDocumentAwait(collection: String, query: JsonObject): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocument(collection, query, it)
   }
@@ -401,11 +401,11 @@ suspend fun MongoClient.removeDocumentAwait(collection: String, query: JsonObjec
  * @param collection the collection
  * @param query query used to match document
  * @param writeOption the write option to use
- * @return [MongoClientDeleteResult]
+ * @return [MongoClientDeleteResult?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult {
+suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentWithOptions(collection, query, writeOption, it)
   }
@@ -512,11 +512,11 @@ suspend fun MongoClient.dropIndexAwait(collection: String, indexName: String): U
  *
  * @param commandName the name of the command
  * @param command the command
- * @return [JsonObject]
+ * @return [JsonObject?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
-suspend fun MongoClient.runCommandAwait(commandName: String, command: JsonObject): JsonObject {
+suspend fun MongoClient.runCommandAwait(commandName: String, command: JsonObject): JsonObject? {
   return awaitResult {
     this.runCommand(commandName, command, it)
   }
