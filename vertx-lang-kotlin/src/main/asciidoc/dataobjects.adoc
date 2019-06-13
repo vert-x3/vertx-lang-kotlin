@@ -454,6 +454,12 @@ Sets the username.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[autoAcknowledgement]]`@autoAcknowledgement`|`Boolean`|+++
+Sets the auto-acknowledgement.
+ When enabled (default), the messages are automatically acknowledged. If set to <code>false</code>, the messages must
+ be acknowledged explicitly using link, link and
+ link.
++++
 |[[capabilities]]`@capabilities`|`Array of String`|+++
 Sets the list of desired capabilities
  A registry of commonly defined source capabilities and their meanings is maintained at

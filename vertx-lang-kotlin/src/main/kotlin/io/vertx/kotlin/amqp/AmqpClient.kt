@@ -21,6 +21,7 @@ import io.vertx.amqp.AmqpMessage
 import io.vertx.amqp.AmqpReceiver
 import io.vertx.amqp.AmqpReceiverOptions
 import io.vertx.amqp.AmqpSender
+import io.vertx.amqp.AmqpSenderOptions
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -104,6 +105,21 @@ suspend fun AmqpClient.createReceiverAwait(address: String, receiverOptions: Amq
 suspend fun AmqpClient.createSenderAwait(address: String): AmqpSender {
   return awaitResult {
     this.createSender(address, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.amqp.AmqpClient.createSender]
+ *
+ * @param address The target address to attach to, must not be <code>null</code>
+ * @param options The options for this sender.
+ * @return [AmqpSender]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpClient] using Vert.x codegen.
+ */
+suspend fun AmqpClient.createSenderAwait(address: String, options: AmqpSenderOptions): AmqpSender {
+  return awaitResult {
+    this.createSender(address, options, it)
   }
 }
 

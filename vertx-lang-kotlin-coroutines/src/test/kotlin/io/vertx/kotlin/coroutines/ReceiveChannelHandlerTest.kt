@@ -33,7 +33,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.test.assertFalse
 
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
@@ -160,9 +159,9 @@ class ReceiveChannelHandlerTest {
 
     stream.handler { elt -> received.add(elt) }
     runBlocking {
-      for (elt in expected) {
-        channel.send(elt)
-        assertFalse(channel.isFull)
+      expected.forEach {
+        val offered = channel.offer(it)
+        testContext.assertTrue(offered)
       }
     }
     testContext.assertEquals(expected, received)
@@ -174,10 +173,10 @@ class ReceiveChannelHandlerTest {
     GlobalScope.launch(vertx.dispatcher()) {
       for (elt in expected) {
         channel.send(elt)
-        testContext.assertFalse(channel.isFull)
       }
       channel.send(capacity) // Need an extra element for the inflight
-      testContext.assertTrue(channel.isFull)
+      val isNotFull = channel.offer(-1)
+      testContext.assertFalse(isNotFull)
       channel.send(capacity + 1) // Shall be suspended until resume
       foo = true
     }
