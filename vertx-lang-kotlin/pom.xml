@@ -14,6 +14,8 @@
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
+    <graphql.java.major.version>12</graphql.java.major.version>
+    <graphql.java.version>${graphql.java.major.version}.0</graphql.java.version>
   </properties>
 
   <dependencies>
@@ -537,6 +539,7 @@
                 <maven.groupId>${project.groupId}</maven.groupId>
                 <maven.artifactId>${project.artifactId}</maven.artifactId>
                 <maven.version>${project.version}</maven.version>
+                <graphql.java.doc.version>v${graphql.java.major.version}</graphql.java.doc.version>
               </optionMap>
             </configuration>
           </execution>
