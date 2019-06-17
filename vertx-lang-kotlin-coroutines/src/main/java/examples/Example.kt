@@ -75,7 +75,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
     // Send a message and wait for a reply
     val reply = awaitResult<Message<String>> { h ->
-      vertx.eventBus().send("a.b.c", "ping", h)
+      vertx.eventBus().request("a.b.c", "ping", h)
     }
     println("Reply received: ${reply.body()}")
   }
@@ -92,7 +92,7 @@ class ExampleVerticle : CoroutineVerticle() {
     // Send a message and wait for a reply
     try {
       awaitResult<Message<String>> { h ->
-        vertx.eventBus().send("a.b.c", "ping", h)
+        vertx.eventBus().request("a.b.c", "ping", h)
       }
     } catch (e: ReplyException) {
       // Handle specific reply exception here
