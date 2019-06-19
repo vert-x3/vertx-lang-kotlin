@@ -118,25 +118,23 @@ class JsonTest {
     val received = ArrayList<Buffer>()
     val ended = AtomicBoolean()
     val ws = object : WriteStream<Buffer> {
-      override fun write(data: Buffer?): WriteStream<Buffer> {
+      override fun write(data: Buffer?): Future<Void> {
         data?.let { received.add(it) }
-        return this
+        return Future.succeededFuture()
       }
 
       override fun writeQueueFull(): Boolean {
         throw UnsupportedOperationException("not implemented")
       }
 
-      override fun write(data: Buffer?, handler: Handler<AsyncResult<Void>>?): WriteStream<Buffer> {
-        throw UnsupportedOperationException("not implemented")
-      }
-
-      override fun end() {
-        ended.set(true)
+      override fun write(data: Buffer?, handler: Handler<AsyncResult<Void>>?) {
+        data?.let { received.add(it) }
+        handler?.handle(Future.succeededFuture())
       }
 
       override fun end(handler: Handler<AsyncResult<Void>>?) {
-        throw UnsupportedOperationException("not implemented")
+        ended.set(true)
+        handler?.handle(Future.succeededFuture())
       }
 
       override fun drainHandler(handler: Handler<Void>?): WriteStream<Buffer> {
