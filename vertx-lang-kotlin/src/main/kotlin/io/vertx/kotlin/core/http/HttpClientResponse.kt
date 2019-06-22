@@ -33,3 +33,16 @@ suspend fun HttpClientResponse.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClientResponse.body]
+ *
+ * @return [Buffer]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientResponse] using Vert.x codegen.
+ */
+suspend fun HttpClientResponse.bodyAwait(): Buffer {
+  return awaitResult {
+    this.body(it)
+  }
+}
+

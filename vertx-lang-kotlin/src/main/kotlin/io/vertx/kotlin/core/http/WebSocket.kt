@@ -22,6 +22,19 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.core.http.WebSocket.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
+ */
+suspend fun WebSocket.writeAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.WebSocket.end]
  *
  * @param data 
@@ -95,12 +108,6 @@ suspend fun WebSocket.closeAwait(statusCode: Short): Unit {
 suspend fun WebSocket.closeAwait(statusCode: Short, reason: String): Unit {
   return awaitResult {
     this.close(statusCode, reason) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-suspend fun WebSocket.writeAwait(data: Buffer): Unit {
-  return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

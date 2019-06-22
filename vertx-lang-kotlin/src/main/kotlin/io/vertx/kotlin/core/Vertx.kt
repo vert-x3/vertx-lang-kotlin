@@ -16,7 +16,7 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
-import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx as VertxVertxAlias
 import io.vertx.core.VertxOptions
@@ -86,7 +86,7 @@ suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit, ordered: Boolean): T? {
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit, ordered: Boolean): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, ordered, it::handle)
   }
@@ -100,7 +100,7 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Futur
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Future<T>) -> Unit): T? {
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, it::handle)
   }

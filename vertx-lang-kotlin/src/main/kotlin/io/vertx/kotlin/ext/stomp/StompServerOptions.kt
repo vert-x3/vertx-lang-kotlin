@@ -63,6 +63,8 @@ import java.util.concurrent.TimeUnit
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param supportedVersions  Sets the STOMP protocol versions supported by the server. Versions must be given in the decreasing order.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
@@ -115,6 +117,8 @@ fun stompServerOptionsOf(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   supportedVersions: Iterable<String>? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
@@ -234,6 +238,12 @@ fun stompServerOptionsOf(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (supportedVersions != null) {
     this.setSupportedVersions(supportedVersions.toList())
@@ -317,6 +327,8 @@ fun stompServerOptionsOf(
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param supportedVersions  Sets the STOMP protocol versions supported by the server. Versions must be given in the decreasing order.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
@@ -337,7 +349,7 @@ fun stompServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
+  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
 )
 fun StompServerOptions(
   acceptBacklog: Int? = null,
@@ -373,6 +385,8 @@ fun StompServerOptions(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   supportedVersions: Iterable<String>? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
@@ -492,6 +506,12 @@ fun StompServerOptions(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (supportedVersions != null) {
     this.setSupportedVersions(supportedVersions.toList())

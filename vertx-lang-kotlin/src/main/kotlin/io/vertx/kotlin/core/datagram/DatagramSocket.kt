@@ -40,13 +40,12 @@ suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
  * @param packet the [io.vertx.core.buffer.Buffer] to write
  * @param port the host port of the remote peer
  * @param host the host address of the remote peer
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): DatagramSocket {
+suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(packet, port, host, it)
+    this.send(packet, port, host) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -56,13 +55,12 @@ suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): D
  * @param str the [java.lang.String] to write
  * @param port the host port of the remote peer
  * @param host the host address of the remote peer
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): DatagramSocket {
+suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(str, port, host, it)
+    this.send(str, port, host) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -73,13 +71,12 @@ suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Data
  * @param enc the charset used for encoding
  * @param port the host port of the remote peer
  * @param host the host address of the remote peer
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: String): DatagramSocket {
+suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(str, enc, port, host, it)
+    this.send(str, enc, port, host) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -99,13 +96,12 @@ suspend fun DatagramSocket.closeAwait(): Unit {
  * Suspending version of method [io.vertx.core.datagram.DatagramSocket.listenMulticastGroup]
  *
  * @param multicastAddress the address of the multicast group to join
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): DatagramSocket {
+suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
-    this.listenMulticastGroup(multicastAddress, it)
+    this.listenMulticastGroup(multicastAddress) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -115,13 +111,12 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): 
  * @param multicastAddress the address of the multicast group to join
  * @param networkInterface the network interface on which to listen for packets.
  * @param source the address of the source for which we will listen for multicast packets
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): DatagramSocket {
+suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
   return awaitResult {
-    this.listenMulticastGroup(multicastAddress, networkInterface, source, it)
+    this.listenMulticastGroup(multicastAddress, networkInterface, source) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -129,13 +124,12 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, n
  * Suspending version of method [io.vertx.core.datagram.DatagramSocket.unlistenMulticastGroup]
  *
  * @param multicastAddress the address of the multicast group to leave
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String): DatagramSocket {
+suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
-    this.unlistenMulticastGroup(multicastAddress, it)
+    this.unlistenMulticastGroup(multicastAddress) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -145,13 +139,12 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String)
  * @param multicastAddress the address of the multicast group to join
  * @param networkInterface the network interface on which to listen for packets.
  * @param source the address of the source for which we will listen for multicast packets
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): DatagramSocket {
+suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
   return awaitResult {
-    this.unlistenMulticastGroup(multicastAddress, networkInterface, source, it)
+    this.unlistenMulticastGroup(multicastAddress, networkInterface, source) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -160,13 +153,12 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String,
  *
  * @param multicastAddress the address for which you want to block the source address
  * @param sourceToBlock the source address which should be blocked. You will not receive an multicast packets for it anymore.
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, sourceToBlock: String): DatagramSocket {
+suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, sourceToBlock: String): Unit {
   return awaitResult {
-    this.blockMulticastGroup(multicastAddress, sourceToBlock, it)
+    this.blockMulticastGroup(multicastAddress, sourceToBlock) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 
@@ -176,13 +168,12 @@ suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, so
  * @param multicastAddress the address for which you want to block the source address
  * @param networkInterface the network interface on which the blocking should occur.
  * @param sourceToBlock the source address which should be blocked. You will not receive an multicast packets for it anymore.
- * @return [DatagramSocket]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, networkInterface: String, sourceToBlock: String): DatagramSocket {
+suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, networkInterface: String, sourceToBlock: String): Unit {
   return awaitResult {
-    this.blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock, it)
+    this.blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

@@ -80,6 +80,8 @@ import java.util.concurrent.TimeUnit
  * @param sockJSHandlerOptions  The SockJS handler options.
  * @param sockJSPath  Configure the SockJS path, the default value is <code>/term/<star></code>.
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -145,6 +147,8 @@ fun httpTermOptionsOf(
   sockJSHandlerOptions: io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions? = null,
   sockJSPath: String? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -303,6 +307,12 @@ fun httpTermOptionsOf(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
@@ -399,6 +409,8 @@ fun httpTermOptionsOf(
  * @param sockJSHandlerOptions  The SockJS handler options.
  * @param sockJSPath  Configure the SockJS path, the default value is <code>/term/<star></code>.
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -419,7 +431,7 @@ fun httpTermOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
+  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
 )
 fun HttpTermOptions(
   acceptBacklog: Int? = null,
@@ -468,6 +480,8 @@ fun HttpTermOptions(
   sockJSHandlerOptions: io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions? = null,
   sockJSPath: String? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -626,6 +640,12 @@ fun HttpTermOptions(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)

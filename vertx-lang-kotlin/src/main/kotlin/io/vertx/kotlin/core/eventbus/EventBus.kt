@@ -21,33 +21,33 @@ import io.vertx.core.eventbus.Message
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.eventbus.EventBus.send]
+ * Suspending version of method [io.vertx.core.eventbus.EventBus.request]
  *
  * @param address the address to send it to
- * @param message the message, may be <code>null</code>
+ * @param message the message body, may be <code>null</code>
  * @return [Message<T>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.sendAwait(address: String, message: Any): Message<T> {
+suspend fun <T> EventBus.requestAwait(address: String, message: Any): Message<T> {
   return awaitResult {
-    this.send(address, message, it)
+    this.request(address, message, it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.core.eventbus.EventBus.send]
+ * Suspending version of method [io.vertx.core.eventbus.EventBus.request]
  *
  * @param address the address to send it to
- * @param message the message, may be <code>null</code>
+ * @param message the message body, may be <code>null</code>
  * @param options delivery options
  * @return [Message<T>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.sendAwait(address: String, message: Any, options: DeliveryOptions): Message<T> {
+suspend fun <T> EventBus.requestAwait(address: String, message: Any, options: DeliveryOptions): Message<T> {
   return awaitResult {
-    this.send(address, message, options, it)
+    this.request(address, message, options, it)
   }
 }
 

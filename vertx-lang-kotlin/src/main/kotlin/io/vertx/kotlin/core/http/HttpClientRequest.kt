@@ -17,6 +17,7 @@ package io.vertx.kotlin.core.http
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpClientRequest
+import io.vertx.core.http.HttpClientResponse
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -108,6 +109,12 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
     this.end { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+suspend fun HttpClientRequest.setHandlerAwait(): HttpClientResponse {
+  return awaitResult {
+    this.setHandler(it)
   }
 }
 

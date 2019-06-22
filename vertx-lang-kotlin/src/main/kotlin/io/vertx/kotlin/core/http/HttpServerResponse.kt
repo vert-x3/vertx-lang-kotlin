@@ -22,18 +22,6 @@ import io.vertx.core.http.HttpServerResponse
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
- *
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
- */
-suspend fun HttpServerResponse.endAwait(): Unit {
-  return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.core.http.HttpServerResponse.write]
  *
  * @param data 
@@ -43,6 +31,18 @@ suspend fun HttpServerResponse.endAwait(): Unit {
 suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+suspend fun HttpServerResponse.endAwait(): Unit {
+  return awaitResult {
+    this.end { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

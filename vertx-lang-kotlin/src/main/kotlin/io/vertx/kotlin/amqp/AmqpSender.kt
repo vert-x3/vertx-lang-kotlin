@@ -20,6 +20,19 @@ import io.vertx.amqp.AmqpSender
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.amqp.AmqpSender.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
+ */
+suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.amqp.AmqpSender.end]
  *
  *
@@ -41,12 +54,6 @@ suspend fun AmqpSender.endAwait(): Unit {
 suspend fun AmqpSender.endAwait(data: AmqpMessage): Unit {
   return awaitResult {
     this.end(data) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
-  return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

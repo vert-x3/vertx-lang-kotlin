@@ -86,6 +86,9 @@ This event will occur when a message is attempted to be delivered from the serve
 |[[REGISTER]]`REGISTER`|+++
 This event will occur when a client attempts to register a handler.
 +++
+|[[REGISTERED]]`REGISTERED`|+++
+This event will occur when a client successfully registered. The raw message used for registration, notified with  event
++++
 |[[UNREGISTER]]`UNREGISTER`|+++
 This event will occur when a client attempts to unregister a handler.
 +++

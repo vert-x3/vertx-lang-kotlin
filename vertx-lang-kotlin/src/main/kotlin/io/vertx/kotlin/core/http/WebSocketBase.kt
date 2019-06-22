@@ -22,6 +22,19 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.core.http.WebSocketBase.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketBase] using Vert.x codegen.
+ */
+suspend fun WebSocketBase.writeAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.WebSocketBase.end]
  *
  * @param data 
@@ -44,12 +57,6 @@ suspend fun WebSocketBase.endAwait(data: Buffer): Unit {
 suspend fun WebSocketBase.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-suspend fun WebSocketBase.writeAwait(data: Buffer): Unit {
-  return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

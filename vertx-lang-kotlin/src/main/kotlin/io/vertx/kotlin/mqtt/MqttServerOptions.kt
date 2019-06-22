@@ -57,6 +57,8 @@ import java.util.concurrent.TimeUnit
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -98,6 +100,8 @@ fun mqttServerOptionsOf(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -194,6 +198,12 @@ fun mqttServerOptionsOf(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
@@ -256,6 +266,8 @@ fun mqttServerOptionsOf(
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
+ * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -271,7 +283,7 @@ fun mqttServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustStoreOptions, useAlpn)")
 )
 fun MqttServerOptions(
   acceptBacklog: Int? = null,
@@ -301,6 +313,8 @@ fun MqttServerOptions(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslHandshakeTimeout: Long? = null,
+  sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -397,6 +411,12 @@ fun MqttServerOptions(
   }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (sslHandshakeTimeout != null) {
+    this.setSslHandshakeTimeout(sslHandshakeTimeout)
+  }
+  if (sslHandshakeTimeoutUnit != null) {
+    this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)

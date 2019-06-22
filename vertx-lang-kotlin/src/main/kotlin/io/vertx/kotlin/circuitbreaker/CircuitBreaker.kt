@@ -16,7 +16,7 @@
 package io.vertx.kotlin.circuitbreaker
 
 import io.vertx.circuitbreaker.CircuitBreaker
-import io.vertx.core.Future
+import io.vertx.core.Promise
 import io.vertx.kotlin.coroutines.awaitResult
 import java.util.function.Function
 
@@ -29,7 +29,7 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command: (Future<T>) -> Unit, fallback: (Throwable) -> T): T {
+suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command: (Promise<T>) -> Unit, fallback: (Throwable) -> T): T {
   return awaitResult {
     this.executeCommandWithFallback(command, fallback, it::handle)
   }
@@ -43,7 +43,7 @@ suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command: (Future<
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandAwait(command: (Future<T>) -> Unit): T {
+suspend fun <T> CircuitBreaker.executeCommandAwait(command: (Promise<T>) -> Unit): T {
   return awaitResult {
     this.executeCommand(command, it::handle)
   }

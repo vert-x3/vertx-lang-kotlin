@@ -19,6 +19,19 @@ import io.vertx.core.eventbus.MessageProducer
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.core.eventbus.MessageProducer.write]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
+ */
+suspend fun <T> MessageProducer<T>.writeAwait(data: T): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.eventbus.MessageProducer.end]
  *
  * @param data 
@@ -28,12 +41,6 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun <T> MessageProducer<T>.endAwait(data: T): Unit {
   return awaitResult {
     this.end(data) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
-
-suspend fun <T> MessageProducer<T>.writeAwait(data: T): Unit {
-  return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
   }
 }
 

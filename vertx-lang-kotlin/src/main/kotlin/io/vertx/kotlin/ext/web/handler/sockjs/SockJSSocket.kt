@@ -58,6 +58,12 @@ suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   }
 }
 
+suspend fun SockJSSocket.writeAwait(data: String): Unit {
+  return awaitResult {
+    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+  }
+}
+
 suspend fun SockJSSocket.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data) { ar -> it.handle(ar.mapEmpty()) }

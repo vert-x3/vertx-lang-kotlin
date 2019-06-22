@@ -20,31 +20,31 @@ import io.vertx.core.eventbus.Message
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.eventbus.Message.reply]
+ * Suspending version of method [io.vertx.core.eventbus.Message.replyAndRequest]
  *
  * @param message the message to reply with.
  * @return [Message<R>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.Message] using Vert.x codegen.
  */
-suspend fun <R,T> Message<T>.replyAwait(message: Any): Message<R> {
+suspend fun <R,T> Message<T>.replyAndRequestAwait(message: Any): Message<R> {
   return awaitResult {
-    this.reply(message, it)
+    this.replyAndRequest(message, it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.core.eventbus.Message.reply]
+ * Suspending version of method [io.vertx.core.eventbus.Message.replyAndRequest]
  *
- * @param message the reply message
- * @param options the delivery options
+ * @param message the message body, may be <code>null</code>
+ * @param options delivery options
  * @return [Message<R>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.Message] using Vert.x codegen.
  */
-suspend fun <R,T> Message<T>.replyAwait(message: Any, options: DeliveryOptions): Message<R> {
+suspend fun <R,T> Message<T>.replyAndRequestAwait(message: Any, options: DeliveryOptions): Message<R> {
   return awaitResult {
-    this.reply(message, options, it)
+    this.replyAndRequest(message, options, it)
   }
 }
 
