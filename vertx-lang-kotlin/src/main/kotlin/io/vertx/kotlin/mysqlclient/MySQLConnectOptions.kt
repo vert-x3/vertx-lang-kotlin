@@ -30,6 +30,8 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -52,6 +54,10 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -79,6 +85,8 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.mysqlclient.MySQLConnectOptions original] using Vert.x codegen.
  */
 fun mySQLConnectOptionsOf(
+  cachePreparedStatements: Boolean? = null,
+  collation: String? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -101,6 +109,10 @@ fun mySQLConnectOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -124,6 +136,12 @@ fun mySQLConnectOptionsOf(
   usePooledBuffers: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
+  if (cachePreparedStatements != null) {
+    this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (collation != null) {
+    this.setCollation(collation)
+  }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
   }
@@ -195,6 +213,20 @@ fun mySQLConnectOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (propertys != null) {
+    for (item in propertys) {
+      this.addProperty(item.key, item.value)
+    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
@@ -269,6 +301,8 @@ fun mySQLConnectOptionsOf(
  *
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -291,6 +325,10 @@ fun mySQLConnectOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -319,9 +357,11 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
 )
 fun MySQLConnectOptions(
+  cachePreparedStatements: Boolean? = null,
+  collation: String? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -344,6 +384,10 @@ fun MySQLConnectOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -367,6 +411,12 @@ fun MySQLConnectOptions(
   usePooledBuffers: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
+  if (cachePreparedStatements != null) {
+    this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (collation != null) {
+    this.setCollation(collation)
+  }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
   }
@@ -438,6 +488,20 @@ fun MySQLConnectOptions(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (propertys != null) {
+    for (item in propertys) {
+      this.addProperty(item.key, item.value)
+    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)

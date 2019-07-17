@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
  * A function providing a DSL for building [io.vertx.pgclient.PgConnectOptions] objects.
  *
  *
- * @param cachePreparedStatements 
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -54,6 +54,10 @@ import java.util.concurrent.TimeUnit
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param pipeliningLimit 
  * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -106,6 +110,10 @@ fun pgConnectOptionsOf(
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   pipeliningLimit: Int? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -207,6 +215,20 @@ fun pgConnectOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (propertys != null) {
+    for (item in propertys) {
+      this.addProperty(item.key, item.value)
+    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
@@ -283,7 +305,7 @@ fun pgConnectOptionsOf(
  * A function providing a DSL for building [io.vertx.pgclient.PgConnectOptions] objects.
  *
  *
- * @param cachePreparedStatements 
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -307,6 +329,10 @@ fun pgConnectOptionsOf(
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param pipeliningLimit 
  * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -336,7 +362,7 @@ fun pgConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
+  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
 )
 fun PgConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -363,6 +389,10 @@ fun PgConnectOptions(
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   pipeliningLimit: Int? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -464,6 +494,20 @@ fun PgConnectOptions(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (propertys != null) {
+    for (item in propertys) {
+      this.addProperty(item.key, item.value)
+    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)

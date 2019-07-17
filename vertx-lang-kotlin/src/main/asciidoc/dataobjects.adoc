@@ -4567,6 +4567,12 @@ Set whether Netty pooled buffers are enabled
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|+++
+Set whether prepared statements cache should be enabled.
++++
+|[[collation]]`@collation`|`String`|+++
+Set the collation for the connection.
++++
 |[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
 Set the connect timeout
 +++
@@ -4634,6 +4640,18 @@ Set the trust options in pfx format
 +++
 |[[port]]`@port`|`Number (int)`|+++
 Specify the port for connecting to the server.
++++
+|[[preparedStatementCacheMaxSize]]`@preparedStatementCacheMaxSize`|`Number (int)`|+++
+Set the maximum number of prepared statements that the connection will cache.
++++
+|[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
+Set the maximum length of prepared statement SQL string that the connection will cache.
++++
+|[[properties]]`@properties`|`String`|+++
+Set properties for this client, which will be sent to server at the connection start.
++++
+|[[propertys]]`@propertys`|`String`|+++
+Add a property for this client, which will be sent to server at the connection start.
 +++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
@@ -5944,7 +5962,9 @@ Set the store as a buffer
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|-
+|[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|+++
+Set whether prepared statements cache should be enabled.
++++
 |[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
 Set the connect timeout
 +++
@@ -6013,6 +6033,18 @@ Set the trust options in pfx format
 |[[pipeliningLimit]]`@pipeliningLimit`|`Number (int)`|-
 |[[port]]`@port`|`Number (int)`|+++
 Specify the port for connecting to the server.
++++
+|[[preparedStatementCacheMaxSize]]`@preparedStatementCacheMaxSize`|`Number (int)`|+++
+Set the maximum number of prepared statements that the connection will cache.
++++
+|[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
+Set the maximum length of prepared statement SQL string that the connection will cache.
++++
+|[[properties]]`@properties`|`String`|+++
+Set properties for this client, which will be sent to server at the connection start.
++++
+|[[propertys]]`@propertys`|`String`|+++
+Add a property for this client, which will be sent to server at the connection start.
 +++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
@@ -7398,6 +7430,9 @@ Set the Shiro auth options type.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|+++
+Set whether prepared statements cache should be enabled.
++++
 |[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
 Set the connect timeout
 +++
@@ -7465,6 +7500,18 @@ Set the trust options in pfx format
 +++
 |[[port]]`@port`|`Number (int)`|+++
 Specify the port for connecting to the server.
++++
+|[[preparedStatementCacheMaxSize]]`@preparedStatementCacheMaxSize`|`Number (int)`|+++
+Set the maximum number of prepared statements that the connection will cache.
++++
+|[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
+Set the maximum length of prepared statement SQL string that the connection will cache.
++++
+|[[properties]]`@properties`|`String`|+++
+Set properties for this client, which will be sent to server at the connection start.
++++
+|[[propertys]]`@propertys`|`String`|+++
+Add a property for this client, which will be sent to server at the connection start.
 +++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
