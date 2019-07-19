@@ -493,6 +493,37 @@
               <stripClassifier>true</stripClassifier>
             </configuration>
           </execution>
+
+          <execution>
+            <id>unpack-sql-client-to-mysql-client</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <includes>*.adoc</includes>
+              <includeGroupIds>io.vertx</includeGroupIds>
+              <includeArtifactIds>vertx-sql-client</includeArtifactIds>
+              <includeTypes>jar</includeTypes>
+              <classifier>sources</classifier>
+              <outputDirectory>${project.build.directory}/sources/asciidoc/vertx-mysql-client${asciidoc.path}</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-sql-client-to-pg-client</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <includes>*.adoc</includes>
+              <includeGroupIds>io.vertx</includeGroupIds>
+              <includeArtifactIds>vertx-sql-client</includeArtifactIds>
+              <includeTypes>jar</includeTypes>
+              <classifier>sources</classifier>
+              <outputDirectory>${project.build.directory}/sources/asciidoc/vertx-pg-client${asciidoc.path}</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
