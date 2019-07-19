@@ -53,7 +53,7 @@ suspend fun Redis.sendAwait(command: Request): Response? {
   }
 }
 
-suspend fun Redis.batchAwait(commands: List<Request>): List<Response> {
+suspend fun Redis.batchAwait(commands: List<Request>): List<Response?> {
   return awaitResult {
     this.batch(commands, it)
   }
