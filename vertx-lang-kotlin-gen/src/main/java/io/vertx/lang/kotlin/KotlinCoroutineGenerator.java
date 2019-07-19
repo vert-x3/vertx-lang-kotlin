@@ -280,11 +280,11 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     String returnTypeAsString;
     if (returnType.equals(type)) {
       returnTypeAsString = className;
+      if (isNullable) {
+        returnTypeAsString += "?";
+      }
     } else {
       returnTypeAsString = kotlinType(returnType);
-    }
-    if (isNullable) {
-      returnTypeAsString += "?";
     }
     return returnTypeAsString;
   }
@@ -347,8 +347,11 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     writer.println("}");
     writer.println();
   }
-
   private String kotlinType(TypeInfo type) {
+    String result = kotlinNotNullType(type);
+    return type.isNullable() ? result + "?" : result;
+  }
+  private String kotlinNotNullType(TypeInfo type) {
     ClassKind kind = type.getKind();
     if (type instanceof VoidTypeInfo) {
       return "Unit";
