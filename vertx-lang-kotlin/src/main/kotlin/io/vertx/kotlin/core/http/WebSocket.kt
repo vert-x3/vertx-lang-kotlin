@@ -105,7 +105,7 @@ suspend fun WebSocket.closeAwait(statusCode: Short): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-suspend fun WebSocket.closeAwait(statusCode: Short, reason: String): Unit {
+suspend fun WebSocket.closeAwait(statusCode: Short, reason: String?): Unit {
   return awaitResult {
     this.close(statusCode, reason) { ar -> it.handle(ar.mapEmpty()) }
   }
