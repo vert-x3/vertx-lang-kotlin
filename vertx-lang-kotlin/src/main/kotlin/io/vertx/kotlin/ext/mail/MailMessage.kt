@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.mail
 
 import io.vertx.ext.mail.MailMessage
-import io.vertx.ext.mail.MailAttachment
 
 /**
  * A function providing a DSL for building [io.vertx.ext.mail.MailMessage] objects.

@@ -3409,41 +3409,6 @@ Set TYPE filter
 |[[offset]]`@offset`|`Number (Long)`|-
 |===
 
-[[MailAttachment]]
-== MailAttachment
-
-++++
- Represent a mail attachment that can be used in a MailMessage.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[contentId]]`@contentId`|`String`|+++
-set the Content-ID field to be used in the attachment
-+++
-|[[contentType]]`@contentType`|`String`|+++
-set the Content-Type
-+++
-|[[data]]`@data`|`Buffer`|+++
-set the data
-+++
-|[[description]]`@description`|`String`|+++
-set the description field to be used in the attachment
-+++
-|[[disposition]]`@disposition`|`String`|+++
-set the disposition field to be used in the attachment
-+++
-|[[headers]]`@headers`|`String`|+++
-Add an header to this attachment.
-+++
-|[[name]]`@name`|`String`|+++
-set the name
-+++
-|===
-
 [[MailConfig]]
 == MailConfig
 
@@ -3547,9 +3512,6 @@ Set the username for the login.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[attachment]]`@attachment`|`Array of link:dataobjects.html#MailAttachment[MailAttachment]`|+++
-set the list of attachments of this mail
-+++
 |[[bcc]]`@bcc`|`Array of String`|+++
 set list of bcc addresses
 +++
@@ -3570,9 +3532,6 @@ Add a message header.
 +++
 |[[html]]`@html`|`String`|+++
 set the html text of this mail
-+++
-|[[inlineAttachment]]`@inlineAttachment`|`Array of link:dataobjects.html#MailAttachment[MailAttachment]`|+++
-set the list of inline attachments of this mail
 +++
 |[[subject]]`@subject`|`String`|+++
 set the subject of this mail
@@ -7555,6 +7514,9 @@ Returns the number of results in this response
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[arrayFilters]]`@arrayFilters`|`Json array`|+++
+Set the arrayFilters option
++++
 |[[multi]]`@multi`|`Boolean`|+++
 Set whether multi is enabled
 +++

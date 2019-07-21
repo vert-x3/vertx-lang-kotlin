@@ -23,6 +23,7 @@ import io.vertx.ext.mongo.WriteOption
  *
  * Options for configuring updates.
  *
+ * @param arrayFilters  Set the arrayFilters option
  * @param multi  Set whether multi is enabled
  * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
  * @param upsert  Set whether upsert is enabled
@@ -32,11 +33,15 @@ import io.vertx.ext.mongo.WriteOption
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.UpdateOptions original] using Vert.x codegen.
  */
 fun updateOptionsOf(
+  arrayFilters: io.vertx.core.json.JsonArray? = null,
   multi: Boolean? = null,
   returningNewDocument: Boolean? = null,
   upsert: Boolean? = null,
   writeOption: WriteOption? = null): UpdateOptions = io.vertx.ext.mongo.UpdateOptions().apply {
 
+  if (arrayFilters != null) {
+    this.setArrayFilters(arrayFilters)
+  }
   if (multi != null) {
     this.setMulti(multi)
   }
@@ -56,6 +61,7 @@ fun updateOptionsOf(
  *
  * Options for configuring updates.
  *
+ * @param arrayFilters  Set the arrayFilters option
  * @param multi  Set whether multi is enabled
  * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
  * @param upsert  Set whether upsert is enabled
@@ -66,14 +72,18 @@ fun updateOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("updateOptionsOf(multi, returningNewDocument, upsert, writeOption)")
+  replaceWith = ReplaceWith("updateOptionsOf(arrayFilters, multi, returningNewDocument, upsert, writeOption)")
 )
 fun UpdateOptions(
+  arrayFilters: io.vertx.core.json.JsonArray? = null,
   multi: Boolean? = null,
   returningNewDocument: Boolean? = null,
   upsert: Boolean? = null,
   writeOption: WriteOption? = null): UpdateOptions = io.vertx.ext.mongo.UpdateOptions().apply {
 
+  if (arrayFilters != null) {
+    this.setArrayFilters(arrayFilters)
+  }
   if (multi != null) {
     this.setMulti(multi)
   }
