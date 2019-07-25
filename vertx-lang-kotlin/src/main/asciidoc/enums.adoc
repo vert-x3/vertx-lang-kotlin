@@ -1,55 +1,5 @@
 = Enums
 
-[[AggregateOptions]]
-== AggregateOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[NONE]]`NONE`|-
-|[[SUM]]`SUM`|-
-|[[MIN]]`MIN`|-
-|[[MAX]]`MAX`|-
-|===
-
-[[BitFieldOverflowOptions]]
-== BitFieldOverflowOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[WRAP]]`WRAP`|-
-|[[SAT]]`SAT`|-
-|[[FAIL]]`FAIL`|-
-|===
-
-[[BitOperation]]
-== BitOperation
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[AND]]`AND`|-
-|[[OR]]`OR`|-
-|[[XOR]]`XOR`|-
-|[[NOT]]`NOT`|-
-|===
-
 [[BridgeEventType]]
 == BridgeEventType
 
@@ -118,22 +68,6 @@ Accept authentication if presented by client. If this option is set and the clie
 |[[REQUIRED]]`REQUIRED`|+++
 Require client to present authentication, if not presented then negotiations will be declined.
 +++
-|===
-
-[[ClientReplyOptions]]
-== ClientReplyOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[ON]]`ON`|-
-|[[OFF]]`OFF`|-
-|[[SKIP]]`SKIP`|-
 |===
 
 [[ContainerSerializationStyle]]
@@ -260,21 +194,6 @@ The job is terminated.
 +++
 |===
 
-[[FailoverOptions]]
-== FailoverOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[FORCE]]`FORCE`|-
-|[[TAKEOVER]]`TAKEOVER`|-
-|===
-
 [[FetchDirection]]
 == FetchDirection
 
@@ -290,32 +209,6 @@ The job is terminated.
 |[[FORWARD]]`FORWARD`|-
 |[[REVERSE]]`REVERSE`|-
 |[[UNKNOWN]]`UNKNOWN`|-
-|===
-
-[[GeoUnit]]
-== GeoUnit
-
-++++
- GeoUnit represents a geo spatial unit it covers both the metric and imperial systems.
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[m]]`m`|+++
-Meter
-+++
-|[[km]]`km`|+++
-Kilometer
-+++
-|[[mi]]`mi`|+++
-Mile
-+++
-|[[ft]]`ft`|+++
-Feet
-+++
 |===
 
 [[HashAlgorithm]]
@@ -398,21 +291,6 @@ Salt is NOT stored in the database, but defined as external value like applicati
 |[[HTTP_1_0]]`HTTP_1_0`|-
 |[[HTTP_1_1]]`HTTP_1_1`|-
 |[[HTTP_2]]`HTTP_2`|-
-|===
-
-[[InsertOptions]]
-== InsertOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[BEFORE]]`BEFORE`|-
-|[[AFTER]]`AFTER`|-
 |===
 
 [[JsonEventType]]
@@ -589,22 +467,6 @@ RFC7523
 +++
 |===
 
-[[ObjectCmd]]
-== ObjectCmd
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[REFCOUNT]]`REFCOUNT`|-
-|[[ENCODING]]`ENCODING`|-
-|[[IDLETIME]]`IDLETIME`|-
-|===
-
 [[ParameterLocation]]
 == ParameterLocation
 
@@ -697,21 +559,6 @@ SOCKS4/4a tcp proxy
 |[[SOCKS5]]`SOCKS5`|+++
 SOCSK5 tcp proxy
 +++
-|===
-
-[[RangeOptions]]
-== RangeOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[NONE]]`NONE`|-
-|[[WITHSCORES]]`WITHSCORES`|-
 |===
 
 [[RedisClientType]]
@@ -810,21 +657,6 @@ The message send failed because the recipient actively sent back a failure (reje
 +++
 |===
 
-[[ResetOptions]]
-== ResetOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[HARD]]`HARD`|-
-|[[SOFT]]`SOFT`|-
-|===
-
 [[ResponseType]]
 == ResponseType
 
@@ -887,22 +719,6 @@ List of multiple bulk responses.
 |[[SCROLL_SENSITIVE]]`SCROLL_SENSITIVE`|-
 |===
 
-[[ScriptDebugOptions]]
-== ScriptDebugOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[YES]]`YES`|-
-|[[SYNC]]`SYNC`|-
-|[[NO]]`NO`|-
-|===
-
 [[ShiroAuthRealmType]]
 == ShiroAuthRealmType
 
@@ -921,39 +737,6 @@ The realm is a Shiro properties auth provider
 |[[LDAP]]`LDAP`|+++
 The realm is a Shiro LDAP auth provider
 +++
-|===
-
-[[ShutdownOptions]]
-== ShutdownOptions
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[NONE]]`NONE`|-
-|[[SAVE]]`SAVE`|-
-|[[NOSAVE]]`NOSAVE`|-
-|===
-
-[[SlotCmd]]
-== SlotCmd
-
-++++
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[IMPORTING]]`IMPORTING`|-
-|[[MIGRATING]]`MIGRATING`|-
-|[[STABLE]]`STABLE`|-
-|[[NODE]]`NODE`|-
 |===
 
 [[Status]]

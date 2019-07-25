@@ -47,12 +47,28 @@ suspend fun Redis.connectAwait(): Redis {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.redis.client.Redis.send]
+ *
+ * @param command the command to send
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
+ */
 suspend fun Redis.sendAwait(command: Request): Response? {
   return awaitResult {
     this.send(command, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.redis.client.Redis.batch]
+ *
+ * @param commands list of command to send
+ * @return [List<Response>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
+ */
 suspend fun Redis.batchAwait(commands: List<Request>): List<Response> {
   return awaitResult {
     this.batch(commands, it)

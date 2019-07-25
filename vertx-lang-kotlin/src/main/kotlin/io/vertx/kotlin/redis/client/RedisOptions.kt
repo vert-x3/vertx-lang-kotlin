@@ -32,9 +32,7 @@ import io.vertx.redis.client.RedisSlaves
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
- * @param password  Set the provided password to be used when establishing a connection to the server.
  * @param role  Set the role name (only considered in HA mode).
- * @param select  Set the provided database to be selected when establishing a connection to the server.
  * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
  *
@@ -42,15 +40,13 @@ import io.vertx.redis.client.RedisSlaves
  * NOTE: This function has been automatically generated from the [io.vertx.redis.client.RedisOptions original] using Vert.x codegen.
  */
 fun redisOptionsOf(
-  endpoint: io.vertx.core.net.SocketAddress? = null,
-  endpoints: Iterable<io.vertx.core.net.SocketAddress>? = null,
+  endpoint: String? = null,
+  endpoints: Iterable<String>? = null,
   masterName: String? = null,
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
-  password: String? = null,
   role: RedisRole? = null,
-  select: Int? = null,
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
@@ -72,14 +68,8 @@ fun redisOptionsOf(
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
   }
-  if (password != null) {
-    this.setPassword(password)
-  }
   if (role != null) {
     this.setRole(role)
-  }
-  if (select != null) {
-    this.setSelect(select)
   }
   if (type != null) {
     this.setType(type)
@@ -100,9 +90,7 @@ fun redisOptionsOf(
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
- * @param password  Set the provided password to be used when establishing a connection to the server.
  * @param role  Set the role name (only considered in HA mode).
- * @param select  Set the provided database to be selected when establishing a connection to the server.
  * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
  *
@@ -111,18 +99,16 @@ fun redisOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxWaitingHandlers, netClientOptions, password, role, select, type, useSlave)")
+  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxWaitingHandlers, netClientOptions, role, type, useSlave)")
 )
 fun RedisOptions(
-  endpoint: io.vertx.core.net.SocketAddress? = null,
-  endpoints: Iterable<io.vertx.core.net.SocketAddress>? = null,
+  endpoint: String? = null,
+  endpoints: Iterable<String>? = null,
   masterName: String? = null,
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
-  password: String? = null,
   role: RedisRole? = null,
-  select: Int? = null,
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
@@ -144,14 +130,8 @@ fun RedisOptions(
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
   }
-  if (password != null) {
-    this.setPassword(password)
-  }
   if (role != null) {
     this.setRole(role)
-  }
-  if (select != null) {
-    this.setSelect(select)
   }
   if (type != null) {
     this.setType(type)
