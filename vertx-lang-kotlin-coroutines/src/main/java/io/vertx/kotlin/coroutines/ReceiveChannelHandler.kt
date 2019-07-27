@@ -18,7 +18,6 @@ package io.vertx.kotlin.coroutines
 import io.vertx.core.Context
 import io.vertx.core.Handler
 import io.vertx.core.Vertx
-import io.vertx.core.file.AsyncFile
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import kotlinx.coroutines.CancellationException
@@ -117,7 +116,7 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-@Deprecated("Because of name clash on AsyncFile, please use toRecieveChannel instead")
+@Deprecated("Please use toRecieveChannel instead to avoid name clash")
 fun <T> ReadStream<T>.toChannel(vertx: Vertx): ReceiveChannel<T> {
   return toChannel(vertx.orCreateContext)
 }
