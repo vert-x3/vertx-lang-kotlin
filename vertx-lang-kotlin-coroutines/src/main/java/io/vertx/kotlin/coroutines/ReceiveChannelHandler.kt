@@ -116,7 +116,7 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-@Deprecated("Please use toRecieveChannel instead to avoid name clash")
+@Deprecated("Please use toReceiveChannel instead to avoid name clash")
 fun <T> ReadStream<T>.toChannel(vertx: Vertx): ReceiveChannel<T> {
   return toChannel(vertx.orCreateContext)
 }
