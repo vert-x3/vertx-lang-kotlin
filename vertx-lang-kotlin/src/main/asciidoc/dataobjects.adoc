@@ -520,6 +520,23 @@ Sets whether the link remote terminus to be used should indicate it is
 |[[linkName]]`@linkName`|`String`|-
 |===
 
+[[ApolloWSOptions]]
+== ApolloWSOptions
+
+++++
+ Options for configuring the link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[keepAlive]]`@keepAlive`|`Number (long)`|+++
+Set the interval in milliseconds to send <code>KEEPALIVE</code> messages to all clients. Defaults to <code>30000</code>.
++++
+|===
+
 [[Argument]]
 == Argument
 
@@ -2382,16 +2399,13 @@ Set the last stream id.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[graphiQLOptions]]`@graphiQLOptions`|`link:dataobjects.html#GraphiQLOptions[GraphiQLOptions]`|+++
-Configure the GraphiQL development tool.
-+++
 |[[requestBatchingEnabled]]`@requestBatchingEnabled`|`Boolean`|+++
 Whether request batching should be enabled. Defaults to <code>false</code>.
 +++
 |===
 
-[[GraphiQLOptions]]
-== GraphiQLOptions
+[[GraphiQLHandlerOptions]]
+== GraphiQLHandlerOptions
 
 ++++
  Embedded GraphiQL user interface options.
@@ -4569,6 +4583,9 @@ Set whether Netty pooled buffers are enabled
 ^|Name | Type ^| Description
 |[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|+++
 Set whether prepared statements cache should be enabled.
++++
+|[[charset]]`@charset`|`String`|+++
+Set the charset for the connection.
 +++
 |[[collation]]`@collation`|`String`|+++
 Set the collation for the connection.

@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param charset  Set the charset for the connection.
  * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -86,6 +87,7 @@ import java.util.concurrent.TimeUnit
  */
 fun mySQLConnectOptionsOf(
   cachePreparedStatements: Boolean? = null,
+  charset: String? = null,
   collation: String? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -138,6 +140,9 @@ fun mySQLConnectOptionsOf(
 
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (charset != null) {
+    this.setCharset(charset)
   }
   if (collation != null) {
     this.setCollation(collation)
@@ -302,6 +307,7 @@ fun mySQLConnectOptionsOf(
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param charset  Set the charset for the connection.
  * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -357,10 +363,11 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
 )
 fun MySQLConnectOptions(
   cachePreparedStatements: Boolean? = null,
+  charset: String? = null,
   collation: String? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -413,6 +420,9 @@ fun MySQLConnectOptions(
 
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (charset != null) {
+    this.setCharset(charset)
   }
   if (collation != null) {
     this.setCollation(collation)
