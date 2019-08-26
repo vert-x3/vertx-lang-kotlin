@@ -20,6 +20,20 @@ import io.vertx.ext.auth.oauth2.OAuth2Auth
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.decodeToken]
+ *
+ * @param token the access token (base64 string)
+ * @return [AccessToken]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
+ */
+suspend fun OAuth2Auth.decodeTokenAwait(token: String): AccessToken {
+  return awaitResult {
+    this.decodeToken(token, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.introspectToken]
  *
  * @param token the access token (base64 string)

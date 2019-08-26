@@ -363,6 +363,23 @@ Sets whether the link remote terminus to be used should indicate it is
 |[[linkName]]`@linkName`|`String`|-
 |===
 
+[[ApolloWSOptions]]
+== ApolloWSOptions
+
+++++
+ Options for configuring the link.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[keepAlive]]`@keepAlive`|`Number (long)`|+++
+Set the interval in milliseconds to send <code>KEEPALIVE</code> messages to all clients. Defaults to <code>30000</code>.
++++
+|===
+
 [[Argument]]
 == Argument
 
@@ -2106,16 +2123,13 @@ Set the last stream id.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[graphiQLOptions]]`@graphiQLOptions`|`link:dataobjects.html#GraphiQLOptions[GraphiQLOptions]`|+++
-Configure the GraphiQL development tool.
-+++
 |[[requestBatchingEnabled]]`@requestBatchingEnabled`|`Boolean`|+++
 Whether request batching should be enabled. Defaults to <code>false</code>.
 +++
 |===
 
-[[GraphiQLOptions]]
-== GraphiQLOptions
+[[GraphiQLHandlerOptions]]
+== GraphiQLHandlerOptions
 
 ++++
  Embedded GraphiQL user interface options.
@@ -6139,12 +6153,25 @@ Set the master name (only considered in HA mode).
 |[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
 Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
 +++
+|[[maxPoolSize]]`@maxPoolSize`|`Number (int)`|+++
+Tune the maximum size of the connection pool. When working with cluster or sentinel
+ this value should be atleast the total number of cluster member (or number of sentinels + 1)
++++
+|[[maxPoolWaiting]]`@maxPoolWaiting`|`Number (int)`|+++
+Tune the maximum waiting requests for a connection from the pool.
++++
 |[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
 The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
  backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
 +++
 |[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
 Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
++++
+|[[poolCleanerInterval]]`@poolCleanerInterval`|`Number (int)`|+++
+Tune how often in milliseconds should the connection pool cleaner execute.
++++
+|[[poolRecycleTimeout]]`@poolRecycleTimeout`|`Number (int)`|+++
+Tune when a connection should be recycled in milliseconds.
 +++
 |[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
 Set the role name (only considered in HA mode).

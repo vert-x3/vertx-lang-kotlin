@@ -30,8 +30,12 @@ import io.vertx.redis.client.RedisSlaves
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
+ * @param maxPoolSize  Tune the maximum size of the connection pool. When working with cluster or sentinel this value should be atleast the total number of cluster member (or number of sentinels + 1)
+ * @param maxPoolWaiting  Tune the maximum waiting requests for a connection from the pool.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
+ * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute.
+ * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
  * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
@@ -44,8 +48,12 @@ fun redisOptionsOf(
   endpoints: Iterable<String>? = null,
   masterName: String? = null,
   maxNestedArrays: Int? = null,
+  maxPoolSize: Int? = null,
+  maxPoolWaiting: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
+  poolCleanerInterval: Int? = null,
+  poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
@@ -62,11 +70,23 @@ fun redisOptionsOf(
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)
   }
+  if (maxPoolSize != null) {
+    this.setMaxPoolSize(maxPoolSize)
+  }
+  if (maxPoolWaiting != null) {
+    this.setMaxPoolWaiting(maxPoolWaiting)
+  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
+  }
+  if (poolCleanerInterval != null) {
+    this.setPoolCleanerInterval(poolCleanerInterval)
+  }
+  if (poolRecycleTimeout != null) {
+    this.setPoolRecycleTimeout(poolRecycleTimeout)
   }
   if (role != null) {
     this.setRole(role)
@@ -88,8 +108,12 @@ fun redisOptionsOf(
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
+ * @param maxPoolSize  Tune the maximum size of the connection pool. When working with cluster or sentinel this value should be atleast the total number of cluster member (or number of sentinels + 1)
+ * @param maxPoolWaiting  Tune the maximum waiting requests for a connection from the pool.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
+ * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute.
+ * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
  * @param type  Set the desired client type to be created.
  * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
@@ -99,15 +123,19 @@ fun redisOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxWaitingHandlers, netClientOptions, role, type, useSlave)")
+  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxPoolSize, maxPoolWaiting, maxWaitingHandlers, netClientOptions, poolCleanerInterval, poolRecycleTimeout, role, type, useSlave)")
 )
 fun RedisOptions(
   endpoint: String? = null,
   endpoints: Iterable<String>? = null,
   masterName: String? = null,
   maxNestedArrays: Int? = null,
+  maxPoolSize: Int? = null,
+  maxPoolWaiting: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
+  poolCleanerInterval: Int? = null,
+  poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
@@ -124,11 +152,23 @@ fun RedisOptions(
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)
   }
+  if (maxPoolSize != null) {
+    this.setMaxPoolSize(maxPoolSize)
+  }
+  if (maxPoolWaiting != null) {
+    this.setMaxPoolWaiting(maxPoolWaiting)
+  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
+  }
+  if (poolCleanerInterval != null) {
+    this.setPoolCleanerInterval(poolCleanerInterval)
+  }
+  if (poolRecycleTimeout != null) {
+    this.setPoolRecycleTimeout(poolRecycleTimeout)
   }
   if (role != null) {
     this.setRole(role)

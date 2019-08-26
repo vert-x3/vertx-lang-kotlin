@@ -15,63 +15,20 @@
  */
 package io.vertx.kotlin.redis.client
 
-import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.redis.client.Redis
-import io.vertx.redis.client.Request
-import io.vertx.redis.client.Response
-
-/**
- * Suspending version of method [io.vertx.redis.client.Redis.pipeTo]
- *
- * @param dst the destination write stream
- *
- * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
- */
-suspend fun Redis.pipeToAwait(dst: WriteStream<Response>): Unit {
-  return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
-  }
-}
+import io.vertx.redis.client.RedisConnection
 
 /**
  * Suspending version of method [io.vertx.redis.client.Redis.connect]
  *
- * @return [Redis]
+ * @return [RedisConnection]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-suspend fun Redis.connectAwait(): Redis {
+suspend fun Redis.connectAwait(): RedisConnection {
   return awaitResult {
     this.connect(it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.redis.client.Redis.send]
- *
- * @param command the command to send
- * @return [Response?]
- *
- * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
- */
-suspend fun Redis.sendAwait(command: Request): Response? {
-  return awaitResult {
-    this.send(command, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.redis.client.Redis.batch]
- *
- * @param commands list of command to send
- * @return [List<Response>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
- */
-suspend fun Redis.batchAwait(commands: List<Request>): List<Response> {
-  return awaitResult {
-    this.batch(commands, it)
   }
 }
 
