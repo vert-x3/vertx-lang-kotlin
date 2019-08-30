@@ -73,7 +73,7 @@ suspend fun AmqpClient.createReceiverAwait(address: String): AmqpReceiver {
  */
 suspend fun AmqpClient.createReceiverAwait(address: String, receiverOptions: AmqpReceiverOptions): AmqpReceiver {
   return awaitResult {
-    this.createReceiver(address, receiverOptions, it)
+    this.createReceiver(address, receiverOptions, null,  it)
   }
 }
 
