@@ -40,7 +40,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Remove this route from the masterRouter
+   * Remove this route from the router
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -49,7 +49,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Append a request handler to the route handlers list. The masterRouter routes requests to handlers depending on whether the various
+   * Append a request handler to the route handlers list. The router routes requests to handlers depending on whether the various
    * criteria such as method, path, etc match. When method, path, etc are the same for different routes, You should add multiple
    * handlers to the same route object rather than creating two different routes objects with one handler for route
    *
@@ -89,7 +89,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Specify the order for this route. The masterRouter tests routes in that order.
+   * Specify the order for this route. The router tests routes in that order.
    *
    * @param order  the order
    * @return a reference to this, so the API can be used fluently
@@ -162,7 +162,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Specify this is the last route for the masterRouter.
+   * Specify this is the last route for the router.
    *
    * @return a reference to this, so the API can be used fluently
    */
@@ -196,7 +196,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Append a failure handler to the route failure handlers list. The masterRouter routes failures to failurehandlers depending on whether the various
+   * Append a failure handler to the route failure handlers list. The router routes failures to failurehandlers depending on whether the various
    * criteria such as method, path, etc match. When method, path, etc are the same for different routes, You should add multiple
    * failure handlers to the same route object rather than creating two different routes objects with one failure handler for route
    *
@@ -215,7 +215,7 @@ class CoroutineRoute(val route: Route, override val coroutineContext: CoroutineC
   }
 
   /**
-   * Disable this route. While disabled the masterRouter will not route any requests or failures to it.
+   * Disable this route. While disabled the router will not route any requests or failures to it.
    *
    * @return a reference to this, so the API can be used fluently
    */
