@@ -50,7 +50,7 @@ fun withCoroutines(vertx: Vertx): Unit {
             router("/v1") {
 
                 getAwait("/hello") {
-                    //call suspend methods or app layer
+                    //call suspend methods
                     delay(500)
                     it.response().end(jsonObjectOf("hello" to name).toBuffer())
                 }
@@ -94,7 +94,7 @@ fun withoutCoroutines(vertx: Vertx): Unit {
         router("/v1") {
 
             get("/hello") {
-                //call suspend methods or app layer
+                //cannot call suspend methods!
                 //                delay(500)
                 it.response().end(jsonObjectOf("hello" to name).toBuffer())
             }
