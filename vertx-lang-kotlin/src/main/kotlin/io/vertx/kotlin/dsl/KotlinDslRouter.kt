@@ -84,7 +84,7 @@ class KotlinDslRouter(vertx: Vertx): CoroutineScope {
   fun delete(path: String, handler: (RoutingContext) -> Unit) {
     this.router.delete(path).handler(handler)
   }
-  fun delete(path: String, handler: suspend (RoutingContext) -> Unit) {
+  fun deleteAwait(path: String, handler: suspend (RoutingContext) -> Unit) {
     this.router.delete(path).coroutineHandler(handler)
   }
 
