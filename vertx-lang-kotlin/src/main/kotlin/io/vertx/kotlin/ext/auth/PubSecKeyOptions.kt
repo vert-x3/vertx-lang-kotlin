@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.auth
 
 import io.vertx.ext.auth.PubSecKeyOptions
+import io.vertx.ext.auth.KeyType
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.PubSecKeyOptions] objects.
@@ -24,6 +25,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  *
  * @param algorithm 
  * @param certificate 
+ * @param keyType 
  * @param publicKey 
  * @param secretKey 
  * @param symmetric 
@@ -34,6 +36,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
 fun pubSecKeyOptionsOf(
   algorithm: String? = null,
   certificate: Boolean? = null,
+  keyType: KeyType? = null,
   publicKey: String? = null,
   secretKey: String? = null,
   symmetric: Boolean? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
@@ -43,6 +46,9 @@ fun pubSecKeyOptionsOf(
   }
   if (certificate != null) {
     this.setCertificate(certificate)
+  }
+  if (keyType != null) {
+    this.setKeyType(keyType)
   }
   if (publicKey != null) {
     this.setPublicKey(publicKey)
@@ -62,6 +68,7 @@ fun pubSecKeyOptionsOf(
  *
  * @param algorithm 
  * @param certificate 
+ * @param keyType 
  * @param publicKey 
  * @param secretKey 
  * @param symmetric 
@@ -71,11 +78,12 @@ fun pubSecKeyOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("pubSecKeyOptionsOf(algorithm, certificate, publicKey, secretKey, symmetric)")
+  replaceWith = ReplaceWith("pubSecKeyOptionsOf(algorithm, certificate, keyType, publicKey, secretKey, symmetric)")
 )
 fun PubSecKeyOptions(
   algorithm: String? = null,
   certificate: Boolean? = null,
+  keyType: KeyType? = null,
   publicKey: String? = null,
   secretKey: String? = null,
   symmetric: Boolean? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
@@ -85,6 +93,9 @@ fun PubSecKeyOptions(
   }
   if (certificate != null) {
     this.setCertificate(certificate)
+  }
+  if (keyType != null) {
+    this.setKeyType(keyType)
   }
   if (publicKey != null) {
     this.setPublicKey(publicKey)

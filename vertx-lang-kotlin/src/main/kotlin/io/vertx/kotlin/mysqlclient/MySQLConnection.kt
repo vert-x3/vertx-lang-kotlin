@@ -21,6 +21,7 @@ import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLConnection as MySQLConnectionVertxAlias
 import io.vertx.mysqlclient.MySQLSetOption
 import io.vertx.sqlclient.PreparedQuery
+import io.vertx.sqlclient.Row
 import io.vertx.sqlclient.RowSet
 import io.vertx.sqlclient.Tuple
 
@@ -30,19 +31,19 @@ suspend fun MySQLConnectionVertxAlias.prepareAwait(sql: String): PreparedQuery {
   }
 }
 
-suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String): RowSet {
+suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String): RowSet<Row> {
   return awaitResult {
     this.preparedQuery(sql, it)
   }
 }
 
-suspend fun MySQLConnectionVertxAlias.queryAwait(sql: String): RowSet {
+suspend fun MySQLConnectionVertxAlias.queryAwait(sql: String): RowSet<Row> {
   return awaitResult {
     this.query(sql, it)
   }
 }
 
-suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String, arguments: Tuple): RowSet {
+suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
   return awaitResult {
     this.preparedQuery(sql, arguments, it)
   }

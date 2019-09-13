@@ -17,17 +17,18 @@ package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.Cursor
+import io.vertx.sqlclient.Row
 import io.vertx.sqlclient.RowSet
 
 /**
  * Suspending version of method [io.vertx.sqlclient.Cursor.read]
  *
  * @param count the amount of rows to read
- * @return [RowSet]
+ * @return [RowSet<Row>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Cursor] using Vert.x codegen.
  */
-suspend fun Cursor.readAwait(count: Int): RowSet {
+suspend fun Cursor.readAwait(count: Int): RowSet<Row> {
   return awaitResult {
     this.read(count, it)
   }

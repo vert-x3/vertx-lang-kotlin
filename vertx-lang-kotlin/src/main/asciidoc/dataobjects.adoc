@@ -3107,57 +3107,6 @@ Set whether the JDBC client is shared or non shared.
 |[[keyStore]]`@keyStore`|`link:dataobjects.html#KeyStoreOptions[KeyStoreOptions]`|-
 |[[permissionsClaimKey]]`@permissionsClaimKey`|`String`|-
 |[[pubSecKeys]]`@pubSecKeys`|`Array of link:dataobjects.html#PubSecKeyOptions[PubSecKeyOptions]`|-
-|[[secrets]]`@secrets`|`Array of link:dataobjects.html#SecretOptions[SecretOptions]`|-
-|===
-
-[[JWTKeyStoreOptions]]
-== JWTKeyStoreOptions
-
-++++
- Options describing how an JWT KeyStore should behave.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[password]]`@password`|`String`|-
-|[[path]]`@path`|`String`|-
-|[[type]]`@type`|`String`|-
-|===
-
-[[JWTOptions]]
-== JWTOptions
-
-++++
- Options related to creation of new tokens.
-
- If any expiresInMinutes, audience, subject, issuer are not provided, there is no default.
- The jwt generated won't include those properties in the payload.
-
- Generated JWTs will include an iat claim by default unless noTimestamp is specified.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[algorithm]]`@algorithm`|`String`|-
-|[[audience]]`@audience`|`Array of String`|-
-|[[audiences]]`@audiences`|`Array of String`|-
-|[[expiresInMinutes]]`@expiresInMinutes`|`Number (int)`|-
-|[[expiresInSeconds]]`@expiresInSeconds`|`Number (int)`|-
-|[[header]]`@header`|`Json object`|-
-|[[ignoreExpiration]]`@ignoreExpiration`|`Boolean`|-
-|[[issuer]]`@issuer`|`String`|-
-|[[leeway]]`@leeway`|`Number (int)`|-
-|[[noTimestamp]]`@noTimestamp`|`Boolean`|-
-|[[permissions]]`@permissions`|`Array of String`|+++
-The permissions of this token.
-+++
-|[[subject]]`@subject`|`String`|-
 |===
 
 [[JWTOptions]]
@@ -5024,6 +4973,12 @@ Set whether TCP no delay is enabled
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 +++
+|[[tenant]]`@tenant`|`String`|+++
+Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs.
+ The tenant should be set prior to any URL as it affects the way the URLs will be stored.
+
+ Some provders may name this differently, for example: `realm`.
++++
 |[[tokenPath]]`@tokenPath`|`String`|+++
 Get the Oauth2 token resource path. e.g.: /oauth/token
 +++
@@ -5468,37 +5423,6 @@ Add a certificate path
 +++
 |[[certValues]]`@certValues`|`Array of Buffer`|+++
 Add a certificate value
-+++
-|===
-
-[[PermittedOptions]]
-== PermittedOptions
-
-++++
- Specify a match to allow for inbound and outbound traffic using the
- link.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[address]]`@address`|`String`|+++
-The exact address the message is being sent to. If you want to allow messages based on
- an exact address you use this field.
-+++
-|[[addressRegex]]`@addressRegex`|`String`|+++
-A regular expression that will be matched against the address. If you want to allow messages
- based on a regular expression you use this field. If the link value is specified
- this will be ignored.
-+++
-|[[match]]`@match`|`Json object`|+++
-This allows you to allow messages based on their structure. Any fields in the match must exist in the
- message with the same values for them to be allowed. This currently only works with JSON messages.
-+++
-|[[requiredAuthority]]`@requiredAuthority`|`String`|+++
-Declare a specific authority that user must have in order to allow messages
 +++
 |===
 
@@ -5979,6 +5903,7 @@ Set proxy username.
 ^|Name | Type ^| Description
 |[[algorithm]]`@algorithm`|`String`|-
 |[[certificate]]`@certificate`|`Boolean`|-
+|[[keyType]]`@keyType`|`link:enums.html#KeyType[KeyType]`|-
 |[[publicKey]]`@publicKey`|`String`|-
 |[[secretKey]]`@secretKey`|`String`|-
 |[[symmetric]]`@symmetric`|`Boolean`|-
@@ -6396,22 +6321,6 @@ Set the key pair options in pfx format.
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
-|===
-
-[[SecretOptions]]
-== SecretOptions
-
-++++
- Options describing a secret.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[secret]]`@secret`|`String`|-
-|[[type]]`@type`|`String`|-
 |===
 
 [[Service]]
