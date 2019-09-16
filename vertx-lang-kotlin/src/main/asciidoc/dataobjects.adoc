@@ -4274,6 +4274,9 @@ Set the SSL handshake timeout, default time unit is seconds.
 |[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
 Set the SSL handshake timeout unit. If not specified, default is seconds.
 +++
+|[[sslMode]]`@sslMode`|`link:enums.html#SslMode[SslMode]`|+++
+Set the link for the client, this option can be used to specify the desired security state of the connection to the server.
++++
 |[[tcpCork]]`@tcpCork`|`Boolean`|+++
 Enable the <code>TCP_CORK</code> option - only with linux native transport.
 +++
@@ -5903,7 +5906,6 @@ Set proxy username.
 ^|Name | Type ^| Description
 |[[algorithm]]`@algorithm`|`String`|-
 |[[certificate]]`@certificate`|`Boolean`|-
-|[[keyType]]`@keyType`|`link:enums.html#KeyType[KeyType]`|-
 |[[publicKey]]`@publicKey`|`String`|-
 |[[secretKey]]`@secretKey`|`String`|-
 |[[symmetric]]`@symmetric`|`Boolean`|-

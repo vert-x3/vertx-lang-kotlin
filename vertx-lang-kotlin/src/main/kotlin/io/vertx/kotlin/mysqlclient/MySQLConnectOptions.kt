@@ -23,6 +23,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.mysqlclient.SslMode
 import java.util.concurrent.TimeUnit
 
 /**
@@ -70,6 +71,7 @@ import java.util.concurrent.TimeUnit
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
+ * @param sslMode  Set the [io.vertx.mysqlclient.SslMode] for the client, this option can be used to specify the desired security state of the connection to the server.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -125,6 +127,7 @@ fun mySQLConnectOptionsOf(
   ssl: Boolean? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
+  sslMode: SslMode? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -263,6 +266,9 @@ fun mySQLConnectOptionsOf(
   }
   if (sslHandshakeTimeoutUnit != null) {
     this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
+  }
+  if (sslMode != null) {
+    this.setSslMode(sslMode)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
@@ -341,6 +347,7 @@ fun mySQLConnectOptionsOf(
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
+ * @param sslMode  Set the [io.vertx.mysqlclient.SslMode] for the client, this option can be used to specify the desired security state of the connection to the server.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -357,7 +364,7 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
 )
 fun MySQLConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -400,6 +407,7 @@ fun MySQLConnectOptions(
   ssl: Boolean? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
+  sslMode: SslMode? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -538,6 +546,9 @@ fun MySQLConnectOptions(
   }
   if (sslHandshakeTimeoutUnit != null) {
     this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
+  }
+  if (sslMode != null) {
+    this.setSslMode(sslMode)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
