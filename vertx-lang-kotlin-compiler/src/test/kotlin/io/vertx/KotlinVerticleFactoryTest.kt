@@ -35,6 +35,12 @@ class KotlinVerticleFactoryTest {
   }
 
   @Test
+  fun testCompiledVerticle() {
+    vertx.deployVerticleBlocking("kt:io.vertx.verticle.KotlinVerticle")
+    vertx.deployVerticleBlocking("kts:io.vertx.verticle.KotlinVerticle")
+  }
+
+  @Test
   fun testMultiple() {
     vertx.deployVerticleBlocking("multipleVerticles.kt")
 
