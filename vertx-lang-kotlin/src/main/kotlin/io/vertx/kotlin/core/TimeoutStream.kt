@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun TimeoutStream.pipeToAwait(dst: WriteStream<Long>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

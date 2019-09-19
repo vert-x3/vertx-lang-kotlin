@@ -60,7 +60,7 @@ suspend fun MqttClient.connectAwait(port: Int, host: String, serverName: String)
  */
 suspend fun MqttClient.disconnectAwait(): Unit {
   return awaitResult {
-    this.disconnect { ar -> it.handle(ar.mapEmpty()) }
+    this.disconnect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

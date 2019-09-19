@@ -17,6 +17,7 @@ package io.vertx.kotlin.mysqlclient
 
 import io.vertx.core.Vertx
 import io.vertx.kotlin.coroutines.awaitResult
+import io.vertx.mysqlclient.MySQLAuthOptions
 import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLConnection as MySQLConnectionVertxAlias
 import io.vertx.mysqlclient.MySQLSetOption
@@ -57,7 +58,7 @@ suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String, arguments:
  */
 suspend fun MySQLConnectionVertxAlias.pingAwait(): Unit {
   return awaitResult {
-    this.ping { ar -> it.handle(ar.mapEmpty()) }
+    this.ping(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -70,7 +71,7 @@ suspend fun MySQLConnectionVertxAlias.pingAwait(): Unit {
  */
 suspend fun MySQLConnectionVertxAlias.specifySchemaAwait(schemaName: String): Unit {
   return awaitResult {
-    this.specifySchema(schemaName) { ar -> it.handle(ar.mapEmpty()) }
+    this.specifySchema(schemaName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -96,7 +97,7 @@ suspend fun MySQLConnectionVertxAlias.getInternalStatisticsAwait(): String {
  */
 suspend fun MySQLConnectionVertxAlias.setOptionAwait(option: MySQLSetOption): Unit {
   return awaitResult {
-    this.setOption(option) { ar -> it.handle(ar.mapEmpty()) }
+    this.setOption(option, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -108,7 +109,7 @@ suspend fun MySQLConnectionVertxAlias.setOptionAwait(option: MySQLSetOption): Un
  */
 suspend fun MySQLConnectionVertxAlias.resetConnectionAwait(): Unit {
   return awaitResult {
-    this.resetConnection { ar -> it.handle(ar.mapEmpty()) }
+    this.resetConnection(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -120,20 +121,20 @@ suspend fun MySQLConnectionVertxAlias.resetConnectionAwait(): Unit {
  */
 suspend fun MySQLConnectionVertxAlias.debugAwait(): Unit {
   return awaitResult {
-    this.debug { ar -> it.handle(ar.mapEmpty()) }
+    this.debug(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 /**
  * Suspending version of method [io.vertx.mysqlclient.MySQLConnection.changeUser]
  *
- * @param options authentication options, only username, password, database, collation and properties will be used.
+ * @param options authentication options
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-suspend fun MySQLConnectionVertxAlias.changeUserAwait(options: MySQLConnectOptions): Unit {
+suspend fun MySQLConnectionVertxAlias.changeUserAwait(options: MySQLAuthOptions): Unit {
   return awaitResult {
-    this.changeUser(options) { ar -> it.handle(ar.mapEmpty()) }
+    this.changeUser(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

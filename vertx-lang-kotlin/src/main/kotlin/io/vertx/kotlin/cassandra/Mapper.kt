@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <T> Mapper<T>.saveAwait(entity: T): Unit {
   return awaitResult {
-    this.save(entity) { ar -> it.handle(ar.mapEmpty()) }
+    this.save(entity, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -40,7 +40,7 @@ suspend fun <T> Mapper<T>.saveAwait(entity: T): Unit {
  */
 suspend fun <T> Mapper<T>.deleteAwait(primaryKey: List<Any>): Unit {
   return awaitResult {
-    this.delete(primaryKey) { ar -> it.handle(ar.mapEmpty()) }
+    this.delete(primaryKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

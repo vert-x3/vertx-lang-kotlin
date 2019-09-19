@@ -44,7 +44,7 @@ suspend fun BasicAuthHandler.parseCredentialsAwait(context: RoutingContext): Jso
  */
 suspend fun BasicAuthHandler.authorizeAwait(user: User): Unit {
   return awaitResult {
-    this.authorize(user) { ar -> it.handle(ar.mapEmpty()) }
+    this.authorize(user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

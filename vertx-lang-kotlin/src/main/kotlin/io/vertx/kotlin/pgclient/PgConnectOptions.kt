@@ -57,7 +57,6 @@ import java.util.concurrent.TimeUnit
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
- * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -112,7 +111,6 @@ fun pgConnectOptionsOf(
   preparedStatementCacheMaxSize: Int? = null,
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
-  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -222,11 +220,6 @@ fun pgConnectOptionsOf(
   }
   if (properties != null) {
     this.setProperties(properties)
-  }
-  if (propertys != null) {
-    for (item in propertys) {
-      this.addProperty(item.key, item.value)
-    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
@@ -327,7 +320,6 @@ fun pgConnectOptionsOf(
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
- * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -356,7 +348,7 @@ fun pgConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
+  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
 )
 fun PgConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -386,7 +378,6 @@ fun PgConnectOptions(
   preparedStatementCacheMaxSize: Int? = null,
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
-  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -496,11 +487,6 @@ fun PgConnectOptions(
   }
   if (properties != null) {
     this.setProperties(properties)
-  }
-  if (propertys != null) {
-    for (item in propertys) {
-      this.addProperty(item.key, item.value)
-    }
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)

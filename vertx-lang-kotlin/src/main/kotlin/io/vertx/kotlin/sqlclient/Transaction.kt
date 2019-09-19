@@ -44,7 +44,7 @@ suspend fun Transaction.prepareAwait(sql: String): PreparedQuery {
  */
 suspend fun Transaction.commitAwait(): Unit {
   return awaitResult {
-    this.commit { ar -> it.handle(ar.mapEmpty()) }
+    this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -56,7 +56,7 @@ suspend fun Transaction.commitAwait(): Unit {
  */
 suspend fun Transaction.rollbackAwait(): Unit {
   return awaitResult {
-    this.rollback { ar -> it.handle(ar.mapEmpty()) }
+    this.rollback(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

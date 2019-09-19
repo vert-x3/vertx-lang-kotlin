@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun ShellServer.listenAwait(): Unit {
   return awaitResult {
-    this.listen { ar -> it.handle(ar.mapEmpty()) }
+    this.listen(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -38,7 +38,7 @@ suspend fun ShellServer.listenAwait(): Unit {
  */
 suspend fun ShellServer.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

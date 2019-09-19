@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
   return awaitResult {
-    this.updateSettings(settings) { ar -> it.handle(ar.mapEmpty()) }
+    this.updateSettings(settings, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -70,7 +70,7 @@ suspend fun OAuth2Auth.introspectTokenAwait(token: String, tokenType: String): A
  */
 suspend fun OAuth2Auth.loadJWKAwait(): Unit {
   return awaitResult {
-    this.loadJWK { ar -> it.handle(ar.mapEmpty()) }
+    this.loadJWK(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

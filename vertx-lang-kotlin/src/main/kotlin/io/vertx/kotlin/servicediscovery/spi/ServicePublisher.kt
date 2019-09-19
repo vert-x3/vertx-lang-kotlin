@@ -42,7 +42,7 @@ suspend fun ServicePublisher.publishAwait(record: Record): Record {
  */
 suspend fun ServicePublisher.unpublishAwait(id: String): Unit {
   return awaitResult {
-    this.unpublish(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.unpublish(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

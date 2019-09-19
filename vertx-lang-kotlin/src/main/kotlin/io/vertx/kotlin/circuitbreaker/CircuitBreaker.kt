@@ -21,7 +21,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 import java.util.function.Function
 
 /**
- * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.executeCommandWithFallback]
+ * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.executeWithFallback]
  *
  * @param command the operation
  * @param fallback the fallback
@@ -29,23 +29,23 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandWithFallbackAwait(command: (Promise<T>) -> Unit, fallback: (Throwable) -> T): T {
+suspend fun <T> CircuitBreaker.executeWithFallbackAwait(command: (Promise<T>) -> Unit, fallback: (Throwable) -> T): T {
   return awaitResult {
-    this.executeCommandWithFallback(command, fallback, it::handle)
+    this.executeWithFallback(command, fallback, it::handle)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.executeCommand]
+ * Suspending version of method [io.vertx.circuitbreaker.CircuitBreaker.execute]
  *
  * @param command the operation
  * @return [T]
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
-suspend fun <T> CircuitBreaker.executeCommandAwait(command: (Promise<T>) -> Unit): T {
+suspend fun <T> CircuitBreaker.executeAwait(command: (Promise<T>) -> Unit): T {
   return awaitResult {
-    this.executeCommand(command, it::handle)
+    this.execute(command, it::handle)
   }
 }
 

@@ -30,7 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -45,7 +45,7 @@ suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
  */
 suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(packet, port, host) { ar -> it.handle(ar.mapEmpty()) }
+    this.send(packet, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -60,7 +60,7 @@ suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): U
  */
 suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(str, port, host) { ar -> it.handle(ar.mapEmpty()) }
+    this.send(str, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -76,7 +76,7 @@ suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Unit
  */
 suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: String): Unit {
   return awaitResult {
-    this.send(str, enc, port, host) { ar -> it.handle(ar.mapEmpty()) }
+    this.send(str, enc, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -88,7 +88,7 @@ suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: 
  */
 suspend fun DatagramSocket.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -101,7 +101,7 @@ suspend fun DatagramSocket.closeAwait(): Unit {
  */
 suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
-    this.listenMulticastGroup(multicastAddress) { ar -> it.handle(ar.mapEmpty()) }
+    this.listenMulticastGroup(multicastAddress, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -116,7 +116,7 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): 
  */
 suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
   return awaitResult {
-    this.listenMulticastGroup(multicastAddress, networkInterface, source) { ar -> it.handle(ar.mapEmpty()) }
+    this.listenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -129,7 +129,7 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, n
  */
 suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
-    this.unlistenMulticastGroup(multicastAddress) { ar -> it.handle(ar.mapEmpty()) }
+    this.unlistenMulticastGroup(multicastAddress, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -144,7 +144,7 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String)
  */
 suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
   return awaitResult {
-    this.unlistenMulticastGroup(multicastAddress, networkInterface, source) { ar -> it.handle(ar.mapEmpty()) }
+    this.unlistenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -158,7 +158,7 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String,
  */
 suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, sourceToBlock: String): Unit {
   return awaitResult {
-    this.blockMulticastGroup(multicastAddress, sourceToBlock) { ar -> it.handle(ar.mapEmpty()) }
+    this.blockMulticastGroup(multicastAddress, sourceToBlock, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -173,7 +173,7 @@ suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, so
  */
 suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, networkInterface: String, sourceToBlock: String): Unit {
   return awaitResult {
-    this.blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock) { ar -> it.handle(ar.mapEmpty()) }
+    this.blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

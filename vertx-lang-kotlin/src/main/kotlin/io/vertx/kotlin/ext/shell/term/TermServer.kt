@@ -39,7 +39,7 @@ suspend fun TermServer.listenAwait(): TermServer {
  */
 suspend fun TermServer.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

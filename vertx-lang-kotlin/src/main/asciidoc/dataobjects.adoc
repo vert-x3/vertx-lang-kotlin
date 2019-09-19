@@ -2157,6 +2157,33 @@ Initial value of the variables area in the GraphiQL user interface. Defaults to 
 +++
 |===
 
+[[GridFsDownloadOptions]]
+== GridFsDownloadOptions
+
+++++
+ Options used to configure downloads from GridFS.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[revision]]`@revision`|`Number (Integer)`|-
+|===
+
+[[GridFsUploadOptions]]
+== GridFsUploadOptions
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[chunkSizeBytes]]`@chunkSizeBytes`|`Number (Integer)`|-
+|[[metadata]]`@metadata`|`Json object`|-
+|===
+
 [[HtpasswdAuthOptions]]
 == HtpasswdAuthOptions
 
@@ -4138,6 +4165,44 @@ Set the ALPN usage.
 +++
 |===
 
+[[MySQLAuthOptions]]
+== MySQLAuthOptions
+
+++++
+ Authentication options for MySQL authentication which can be used for CHANGE_USER command.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[charset]]`@charset`|`String`|+++
+Set the charset for the connection.
++++
+|[[collation]]`@collation`|`String`|+++
+Set the collation for the connection.
++++
+|[[database]]`@database`|`String`|+++
+Specify the default database for the re-authentication.
++++
+|[[password]]`@password`|`String`|+++
+Specify the user password to be used for the authentication.
++++
+|[[properties]]`@properties`|`String`|+++
+Set connection attributes which will be sent to server at the re-authentication.
++++
+|[[serverRsaPublicKeyPath]]`@serverRsaPublicKeyPath`|`String`|+++
+Set the path of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
++++
+|[[serverRsaPublicKeyValue]]`@serverRsaPublicKeyValue`|`Buffer`|+++
+Set the value of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
++++
+|[[user]]`@user`|`String`|+++
+Specify the user account to be used for the authentication.
++++
+|===
+
 [[MySQLConnectOptions]]
 == MySQLConnectOptions
 
@@ -4236,9 +4301,6 @@ Set the maximum length of prepared statement SQL string that the connection will
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.
 +++
-|[[propertys]]`@propertys`|`String`|+++
-Add a property for this client, which will be sent to server at the connection start.
-+++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
 +++
@@ -4261,6 +4323,12 @@ Set the value of reuse port.
 +++
 |[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
 Set the TCP send buffer size
++++
+|[[serverRsaPublicKeyPath]]`@serverRsaPublicKeyPath`|`String`|+++
+Set the path of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
++++
+|[[serverRsaPublicKeyValue]]`@serverRsaPublicKeyValue`|`Buffer`|+++
+Set the value of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
 +++
 |[[soLinger]]`@soLinger`|`Number (int)`|+++
 Set whether SO_linger keep alive is enabled
@@ -5592,9 +5660,6 @@ Set the maximum length of prepared statement SQL string that the connection will
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.
 +++
-|[[propertys]]`@propertys`|`String`|+++
-Add a property for this client, which will be sent to server at the connection start.
-+++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
 +++
@@ -6796,9 +6861,6 @@ Set the maximum length of prepared statement SQL string that the connection will
 +++
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.
-+++
-|[[propertys]]`@propertys`|`String`|+++
-Add a property for this client, which will be sent to server at the connection start.
 +++
 |[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
 Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.

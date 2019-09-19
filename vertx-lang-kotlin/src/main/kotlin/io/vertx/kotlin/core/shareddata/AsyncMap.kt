@@ -42,7 +42,7 @@ suspend fun <K,V> AsyncMap<K,V>.getAwait(k: K): V? {
  */
 suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V): Unit {
   return awaitResult {
-    this.put(k, v) { ar -> it.handle(ar.mapEmpty()) }
+    this.put(k, v, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -57,7 +57,7 @@ suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V): Unit {
  */
 suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V, ttl: Long): Unit {
   return awaitResult {
-    this.put(k, v, ttl) { ar -> it.handle(ar.mapEmpty()) }
+    this.put(k, v, ttl, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -160,7 +160,7 @@ suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValu
  */
 suspend fun <K,V> AsyncMap<K,V>.clearAwait(): Unit {
   return awaitResult {
-    this.clear { ar -> it.handle(ar.mapEmpty()) }
+    this.clear(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

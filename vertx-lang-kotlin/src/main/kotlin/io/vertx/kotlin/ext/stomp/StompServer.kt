@@ -68,7 +68,7 @@ suspend fun StompServer.listenAwait(port: Int, host: String): StompServer {
  */
 suspend fun StompServer.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

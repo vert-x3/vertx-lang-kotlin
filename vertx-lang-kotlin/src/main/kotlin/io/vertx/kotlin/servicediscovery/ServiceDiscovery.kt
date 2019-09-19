@@ -19,7 +19,37 @@ import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.servicediscovery.Record
 import io.vertx.servicediscovery.ServiceDiscovery
+import io.vertx.servicediscovery.spi.ServiceExporter
+import io.vertx.servicediscovery.spi.ServiceImporter
 import java.util.function.Function
+
+/**
+ * Suspending version of method [io.vertx.servicediscovery.ServiceDiscovery.registerServiceImporter]
+ *
+ * @param importer the service importer
+ * @param configuration the optional configuration
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
+ */
+suspend fun ServiceDiscovery.registerServiceImporterAwait(importer: ServiceImporter, configuration: JsonObject): Unit {
+  return awaitResult {
+    this.registerServiceImporter(importer, configuration, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.servicediscovery.ServiceDiscovery.registerServiceExporter]
+ *
+ * @param exporter the service exporter
+ * @param configuration the optional configuration
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
+ */
+suspend fun ServiceDiscovery.registerServiceExporterAwait(exporter: ServiceExporter, configuration: JsonObject): Unit {
+  return awaitResult {
+    this.registerServiceExporter(exporter, configuration, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.servicediscovery.ServiceDiscovery.publish]
@@ -44,7 +74,7 @@ suspend fun ServiceDiscovery.publishAwait(record: Record): Record {
  */
 suspend fun ServiceDiscovery.unpublishAwait(id: String): Unit {
   return awaitResult {
-    this.unpublish(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.unpublish(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun HttpClientRequest.writeAwait(data: Buffer): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,7 +42,7 @@ suspend fun HttpClientRequest.writeAwait(data: Buffer): Unit {
  */
 suspend fun HttpClientRequest.writeAwait(chunk: String): Unit {
   return awaitResult {
-    this.write(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -56,7 +56,7 @@ suspend fun HttpClientRequest.writeAwait(chunk: String): Unit {
  */
 suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
   return awaitResult {
-    this.write(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -69,7 +69,7 @@ suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
  */
 suspend fun HttpClientRequest.endAwait(chunk: String): Unit {
   return awaitResult {
-    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -83,7 +83,7 @@ suspend fun HttpClientRequest.endAwait(chunk: String): Unit {
  */
 suspend fun HttpClientRequest.endAwait(chunk: String, enc: String): Unit {
   return awaitResult {
-    this.end(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -96,7 +96,7 @@ suspend fun HttpClientRequest.endAwait(chunk: String, enc: String): Unit {
  */
 suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
   return awaitResult {
-    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -108,7 +108,7 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
  */
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -172,7 +172,7 @@ suspend fun ConsulClient.getValueWithOptionsAwait(key: String, options: Blocking
  */
 suspend fun ConsulClient.deleteValueAwait(key: String): Unit {
   return awaitResult {
-    this.deleteValue(key) { ar -> it.handle(ar.mapEmpty()) }
+    this.deleteValue(key, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -214,7 +214,7 @@ suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix: String, options: B
  */
 suspend fun ConsulClient.deleteValuesAwait(keyPrefix: String): Unit {
   return awaitResult {
-    this.deleteValues(keyPrefix) { ar -> it.handle(ar.mapEmpty()) }
+    this.deleteValues(keyPrefix, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -341,7 +341,7 @@ suspend fun ConsulClient.infoAclTokenAwait(id: String): AclToken {
  */
 suspend fun ConsulClient.destroyAclTokenAwait(id: String): Unit {
   return awaitResult {
-    this.destroyAclToken(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.destroyAclToken(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -410,7 +410,7 @@ suspend fun ConsulClient.listEventsWithOptionsAwait(options: EventListOptions): 
  */
 suspend fun ConsulClient.registerServiceAwait(serviceOptions: ServiceOptions): Unit {
   return awaitResult {
-    this.registerService(serviceOptions) { ar -> it.handle(ar.mapEmpty()) }
+    this.registerService(serviceOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -423,7 +423,7 @@ suspend fun ConsulClient.registerServiceAwait(serviceOptions: ServiceOptions): U
  */
 suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions: MaintenanceOptions): Unit {
   return awaitResult {
-    this.maintenanceService(maintenanceOptions) { ar -> it.handle(ar.mapEmpty()) }
+    this.maintenanceService(maintenanceOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -436,7 +436,7 @@ suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions: Maintenance
  */
 suspend fun ConsulClient.deregisterServiceAwait(id: String): Unit {
   return awaitResult {
-    this.deregisterService(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.deregisterService(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -689,7 +689,7 @@ suspend fun ConsulClient.localChecksAwait(): List<Check> {
  */
 suspend fun ConsulClient.registerCheckAwait(checkOptions: CheckOptions): Unit {
   return awaitResult {
-    this.registerCheck(checkOptions) { ar -> it.handle(ar.mapEmpty()) }
+    this.registerCheck(checkOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -702,7 +702,7 @@ suspend fun ConsulClient.registerCheckAwait(checkOptions: CheckOptions): Unit {
  */
 suspend fun ConsulClient.deregisterCheckAwait(checkId: String): Unit {
   return awaitResult {
-    this.deregisterCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+    this.deregisterCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -715,7 +715,7 @@ suspend fun ConsulClient.deregisterCheckAwait(checkId: String): Unit {
  */
 suspend fun ConsulClient.passCheckAwait(checkId: String): Unit {
   return awaitResult {
-    this.passCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+    this.passCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -729,7 +729,7 @@ suspend fun ConsulClient.passCheckAwait(checkId: String): Unit {
  */
 suspend fun ConsulClient.passCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
-    this.passCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+    this.passCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -742,7 +742,7 @@ suspend fun ConsulClient.passCheckWithNoteAwait(checkId: String, note: String): 
  */
 suspend fun ConsulClient.warnCheckAwait(checkId: String): Unit {
   return awaitResult {
-    this.warnCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+    this.warnCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -756,7 +756,7 @@ suspend fun ConsulClient.warnCheckAwait(checkId: String): Unit {
  */
 suspend fun ConsulClient.warnCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
-    this.warnCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+    this.warnCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -769,7 +769,7 @@ suspend fun ConsulClient.warnCheckWithNoteAwait(checkId: String, note: String): 
  */
 suspend fun ConsulClient.failCheckAwait(checkId: String): Unit {
   return awaitResult {
-    this.failCheck(checkId) { ar -> it.handle(ar.mapEmpty()) }
+    this.failCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -783,7 +783,7 @@ suspend fun ConsulClient.failCheckAwait(checkId: String): Unit {
  */
 suspend fun ConsulClient.failCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
-    this.failCheckWithNote(checkId, note) { ar -> it.handle(ar.mapEmpty()) }
+    this.failCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -797,7 +797,7 @@ suspend fun ConsulClient.failCheckWithNoteAwait(checkId: String, note: String): 
  */
 suspend fun ConsulClient.updateCheckAwait(checkId: String, status: CheckStatus): Unit {
   return awaitResult {
-    this.updateCheck(checkId, status) { ar -> it.handle(ar.mapEmpty()) }
+    this.updateCheck(checkId, status, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -812,7 +812,7 @@ suspend fun ConsulClient.updateCheckAwait(checkId: String, status: CheckStatus):
  */
 suspend fun ConsulClient.updateCheckWithNoteAwait(checkId: String, status: CheckStatus, note: String): Unit {
   return awaitResult {
-    this.updateCheckWithNote(checkId, status, note) { ar -> it.handle(ar.mapEmpty()) }
+    this.updateCheckWithNote(checkId, status, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -977,7 +977,7 @@ suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId: String, option
  */
 suspend fun ConsulClient.destroySessionAwait(id: String): Unit {
   return awaitResult {
-    this.destroySession(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.destroySession(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1031,7 +1031,7 @@ suspend fun ConsulClient.getAllPreparedQueriesAwait(): List<PreparedQueryDefinit
  */
 suspend fun ConsulClient.updatePreparedQueryAwait(definition: PreparedQueryDefinition): Unit {
   return awaitResult {
-    this.updatePreparedQuery(definition) { ar -> it.handle(ar.mapEmpty()) }
+    this.updatePreparedQuery(definition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1044,7 +1044,7 @@ suspend fun ConsulClient.updatePreparedQueryAwait(definition: PreparedQueryDefin
  */
 suspend fun ConsulClient.deletePreparedQueryAwait(id: String): Unit {
   return awaitResult {
-    this.deletePreparedQuery(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.deletePreparedQuery(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

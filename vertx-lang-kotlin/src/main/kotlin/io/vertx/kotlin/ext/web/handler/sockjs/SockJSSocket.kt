@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun SockJSSocket.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -41,7 +41,7 @@ suspend fun SockJSSocket.endAwait(): Unit {
  */
 suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -54,19 +54,19 @@ suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
  */
 suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun SockJSSocket.writeAwait(data: String): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun SockJSSocket.writeAwait(data: Buffer): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

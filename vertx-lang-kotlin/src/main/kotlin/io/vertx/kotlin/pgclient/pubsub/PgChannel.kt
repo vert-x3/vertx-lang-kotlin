@@ -28,7 +28,7 @@ import io.vertx.pgclient.pubsub.PgChannel
  */
 suspend fun PgChannel.pipeToAwait(dst: WriteStream<String>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -70,7 +70,7 @@ suspend fun PreparedQuery.batchAwait(argsList: List<Tuple>): RowSet<Row> {
  */
 suspend fun PreparedQuery.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

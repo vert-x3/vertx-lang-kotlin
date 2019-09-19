@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun NetSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,7 +42,7 @@ suspend fun NetSocket.endAwait(data: Buffer): Unit {
  */
 suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -55,7 +55,7 @@ suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  */
 suspend fun NetSocket.writeAwait(str: String): Unit {
   return awaitResult {
-    this.write(str) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(str, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -69,7 +69,7 @@ suspend fun NetSocket.writeAwait(str: String): Unit {
  */
 suspend fun NetSocket.writeAwait(str: String, enc: String): Unit {
   return awaitResult {
-    this.write(str, enc) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(str, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -82,7 +82,7 @@ suspend fun NetSocket.writeAwait(str: String, enc: String): Unit {
  */
 suspend fun NetSocket.writeAwait(message: Buffer): Unit {
   return awaitResult {
-    this.write(message) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -95,7 +95,7 @@ suspend fun NetSocket.writeAwait(message: Buffer): Unit {
  */
 suspend fun NetSocket.sendFileAwait(filename: String): Unit {
   return awaitResult {
-    this.sendFile(filename) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -109,7 +109,7 @@ suspend fun NetSocket.sendFileAwait(filename: String): Unit {
  */
 suspend fun NetSocket.sendFileAwait(filename: String, offset: Long): Unit {
   return awaitResult {
-    this.sendFile(filename, offset) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -124,7 +124,7 @@ suspend fun NetSocket.sendFileAwait(filename: String, offset: Long): Unit {
  */
 suspend fun NetSocket.sendFileAwait(filename: String, offset: Long, length: Long): Unit {
   return awaitResult {
-    this.sendFile(filename, offset, length) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, offset, length, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -136,7 +136,7 @@ suspend fun NetSocket.sendFileAwait(filename: String, offset: Long, length: Long
  */
 suspend fun NetSocket.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -148,7 +148,7 @@ suspend fun NetSocket.endAwait(): Unit {
  */
 suspend fun NetSocket.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -160,7 +160,7 @@ suspend fun NetSocket.closeAwait(): Unit {
  */
 suspend fun NetSocket.upgradeToSslAwait(): Unit {
   return awaitResult {
-    this.upgradeToSsl { ar -> it.handle(ar.mapEmpty()) }
+    this.upgradeToSsl(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -173,7 +173,7 @@ suspend fun NetSocket.upgradeToSslAwait(): Unit {
  */
 suspend fun NetSocket.upgradeToSslAwait(serverName: String): Unit {
   return awaitResult {
-    this.upgradeToSsl(serverName) { ar -> it.handle(ar.mapEmpty()) }
+    this.upgradeToSsl(serverName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

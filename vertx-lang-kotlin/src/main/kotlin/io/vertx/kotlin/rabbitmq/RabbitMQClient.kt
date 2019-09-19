@@ -107,7 +107,7 @@ suspend fun RabbitMQClient.basicConsumerAwait(queue: String, options: QueueOptio
  */
 suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, message: JsonObject): Unit {
   return awaitResult {
-    this.basicPublish(exchange, routingKey, message) { ar -> it.handle(ar.mapEmpty()) }
+    this.basicPublish(exchange, routingKey, message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -119,7 +119,7 @@ suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: Strin
  */
 suspend fun RabbitMQClient.confirmSelectAwait(): Unit {
   return awaitResult {
-    this.confirmSelect { ar -> it.handle(ar.mapEmpty()) }
+    this.confirmSelect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -131,7 +131,7 @@ suspend fun RabbitMQClient.confirmSelectAwait(): Unit {
  */
 suspend fun RabbitMQClient.waitForConfirmsAwait(): Unit {
   return awaitResult {
-    this.waitForConfirms { ar -> it.handle(ar.mapEmpty()) }
+    this.waitForConfirms(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -144,7 +144,7 @@ suspend fun RabbitMQClient.waitForConfirmsAwait(): Unit {
  */
 suspend fun RabbitMQClient.waitForConfirmsAwait(timeout: Long): Unit {
   return awaitResult {
-    this.waitForConfirms(timeout) { ar -> it.handle(ar.mapEmpty()) }
+    this.waitForConfirms(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -157,7 +157,7 @@ suspend fun RabbitMQClient.waitForConfirmsAwait(timeout: Long): Unit {
  */
 suspend fun RabbitMQClient.basicQosAwait(prefetchCount: Int): Unit {
   return awaitResult {
-    this.basicQos(prefetchCount) { ar -> it.handle(ar.mapEmpty()) }
+    this.basicQos(prefetchCount, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -171,7 +171,7 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchCount: Int): Unit {
  */
 suspend fun RabbitMQClient.basicQosAwait(prefetchCount: Int, global: Boolean): Unit {
   return awaitResult {
-    this.basicQos(prefetchCount, global) { ar -> it.handle(ar.mapEmpty()) }
+    this.basicQos(prefetchCount, global, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -186,7 +186,7 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchCount: Int, global: Boolean): U
  */
 suspend fun RabbitMQClient.basicQosAwait(prefetchSize: Int, prefetchCount: Int, global: Boolean): Unit {
   return awaitResult {
-    this.basicQos(prefetchSize, prefetchCount, global) { ar -> it.handle(ar.mapEmpty()) }
+    this.basicQos(prefetchSize, prefetchCount, global, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -202,7 +202,7 @@ suspend fun RabbitMQClient.basicQosAwait(prefetchSize: Int, prefetchCount: Int, 
  */
 suspend fun RabbitMQClient.exchangeDeclareAwait(exchange: String, type: String, durable: Boolean, autoDelete: Boolean): Unit {
   return awaitResult {
-    this.exchangeDeclare(exchange, type, durable, autoDelete) { ar -> it.handle(ar.mapEmpty()) }
+    this.exchangeDeclare(exchange, type, durable, autoDelete, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -219,7 +219,7 @@ suspend fun RabbitMQClient.exchangeDeclareAwait(exchange: String, type: String, 
  */
 suspend fun RabbitMQClient.exchangeDeclareAwait(exchange: String, type: String, durable: Boolean, autoDelete: Boolean, config: JsonObject): Unit {
   return awaitResult {
-    this.exchangeDeclare(exchange, type, durable, autoDelete, config) { ar -> it.handle(ar.mapEmpty()) }
+    this.exchangeDeclare(exchange, type, durable, autoDelete, config, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -232,7 +232,7 @@ suspend fun RabbitMQClient.exchangeDeclareAwait(exchange: String, type: String, 
  */
 suspend fun RabbitMQClient.exchangeDeleteAwait(exchange: String): Unit {
   return awaitResult {
-    this.exchangeDelete(exchange) { ar -> it.handle(ar.mapEmpty()) }
+    this.exchangeDelete(exchange, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -247,7 +247,7 @@ suspend fun RabbitMQClient.exchangeDeleteAwait(exchange: String): Unit {
  */
 suspend fun RabbitMQClient.exchangeBindAwait(destination: String, source: String, routingKey: String): Unit {
   return awaitResult {
-    this.exchangeBind(destination, source, routingKey) { ar -> it.handle(ar.mapEmpty()) }
+    this.exchangeBind(destination, source, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -262,7 +262,7 @@ suspend fun RabbitMQClient.exchangeBindAwait(destination: String, source: String
  */
 suspend fun RabbitMQClient.exchangeUnbindAwait(destination: String, source: String, routingKey: String): Unit {
   return awaitResult {
-    this.exchangeUnbind(destination, source, routingKey) { ar -> it.handle(ar.mapEmpty()) }
+    this.exchangeUnbind(destination, source, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -355,7 +355,7 @@ suspend fun RabbitMQClient.queueDeleteIfAwait(queue: String, ifUnused: Boolean, 
  */
 suspend fun RabbitMQClient.queueBindAwait(queue: String, exchange: String, routingKey: String): Unit {
   return awaitResult {
-    this.queueBind(queue, exchange, routingKey) { ar -> it.handle(ar.mapEmpty()) }
+    this.queueBind(queue, exchange, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -381,7 +381,7 @@ suspend fun RabbitMQClient.messageCountAwait(queue: String): Long {
  */
 suspend fun RabbitMQClient.startAwait(): Unit {
   return awaitResult {
-    this.start { ar -> it.handle(ar.mapEmpty()) }
+    this.start(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -393,7 +393,7 @@ suspend fun RabbitMQClient.startAwait(): Unit {
  */
 suspend fun RabbitMQClient.stopAwait(): Unit {
   return awaitResult {
-    this.stop { ar -> it.handle(ar.mapEmpty()) }
+    this.stop(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
