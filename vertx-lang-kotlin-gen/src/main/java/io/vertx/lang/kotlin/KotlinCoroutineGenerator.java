@@ -308,9 +308,9 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     writer.print(objectName);
     writer.print(".");
     writer.print(keyWordConverter(method.getName()));
+    writer.print("(");
     boolean methodHasMoreThanOneParameter = params.size() > 1;
     if (methodHasMoreThanOneParameter) {
-      writer.print("(");
       writer.print(params.stream()
         .limit(params.size() - 1)
         .map(p -> keyWordConverter(p.getName()))
@@ -318,12 +318,13 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     }
     if (returnType.getName().equals("java.lang.Void")) {
       if (methodHasMoreThanOneParameter) {
-        writer.print(")");
+        writer.print(", ");
       }
+      writer.print("io.vertx.core.Handler ");
       if (method.getKind() == MethodKind.HANDLER) {
-        writer.println(" { v -> it.handle(null) }");
+        writer.println("{ v -> it.handle(null) })");
       } else {
-        writer.println(" { ar -> it.handle(ar.mapEmpty()) }");
+        writer.println("{ ar -> it.handle(ar.mapEmpty()) })");
       }
     } else {
       boolean hasLambdaParam = params.stream().limit(params.size() - 1).anyMatch(p -> {
@@ -332,8 +333,6 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       });
       if (methodHasMoreThanOneParameter) {
         writer.print(", ");
-      } else {
-        writer.print("(");
       }
       if (hasLambdaParam) {
         writer.println("it::handle)");
