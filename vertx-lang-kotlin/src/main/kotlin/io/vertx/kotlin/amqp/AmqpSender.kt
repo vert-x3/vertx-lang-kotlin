@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun AmqpSender.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -40,13 +40,13 @@ suspend fun AmqpSender.endAwait(): Unit {
  */
 suspend fun AmqpSender.endAwait(data: AmqpMessage): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -59,7 +59,7 @@ suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
  */
 suspend fun AmqpSender.sendWithAckAwait(message: AmqpMessage): Unit {
   return awaitResult {
-    this.sendWithAck(message) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendWithAck(message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -71,7 +71,7 @@ suspend fun AmqpSender.sendWithAckAwait(message: AmqpMessage): Unit {
  */
 suspend fun AmqpSender.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

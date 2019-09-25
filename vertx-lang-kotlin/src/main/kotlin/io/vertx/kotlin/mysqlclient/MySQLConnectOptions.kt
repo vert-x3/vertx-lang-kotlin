@@ -23,6 +23,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.mysqlclient.SslMode
 import java.util.concurrent.TimeUnit
 
 /**
@@ -58,7 +59,6 @@ import java.util.concurrent.TimeUnit
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
- * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -66,10 +66,13 @@ import java.util.concurrent.TimeUnit
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
+ * @param serverRsaPublicKeyPath  Set the path of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
+ * @param serverRsaPublicKeyValue  Set the value of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
+ * @param sslMode  Set the [io.vertx.mysqlclient.SslMode] for the client, this option can be used to specify the desired security state of the connection to the server.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -114,7 +117,6 @@ fun mySQLConnectOptionsOf(
   preparedStatementCacheMaxSize: Int? = null,
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
-  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -122,10 +124,13 @@ fun mySQLConnectOptionsOf(
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
+  serverRsaPublicKeyPath: String? = null,
+  serverRsaPublicKeyValue: io.vertx.core.buffer.Buffer? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
+  sslMode: SslMode? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -228,11 +233,6 @@ fun mySQLConnectOptionsOf(
   if (properties != null) {
     this.setProperties(properties)
   }
-  if (propertys != null) {
-    for (item in propertys) {
-      this.addProperty(item.key, item.value)
-    }
-  }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
@@ -254,6 +254,12 @@ fun mySQLConnectOptionsOf(
   if (sendBufferSize != null) {
     this.setSendBufferSize(sendBufferSize)
   }
+  if (serverRsaPublicKeyPath != null) {
+    this.setServerRsaPublicKeyPath(serverRsaPublicKeyPath)
+  }
+  if (serverRsaPublicKeyValue != null) {
+    this.setServerRsaPublicKeyValue(serverRsaPublicKeyValue)
+  }
   if (soLinger != null) {
     this.setSoLinger(soLinger)
   }
@@ -265,6 +271,9 @@ fun mySQLConnectOptionsOf(
   }
   if (sslHandshakeTimeoutUnit != null) {
     this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
+  }
+  if (sslMode != null) {
+    this.setSslMode(sslMode)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)
@@ -334,7 +343,6 @@ fun mySQLConnectOptionsOf(
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
- * @param propertys  Add a property for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
@@ -342,10 +350,13 @@ fun mySQLConnectOptionsOf(
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
+ * @param serverRsaPublicKeyPath  Set the path of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
+ * @param serverRsaPublicKeyValue  Set the value of server RSA public key which is mostly used for encrypting password under insecure connections when performing authentication.
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
+ * @param sslMode  Set the [io.vertx.mysqlclient.SslMode] for the client, this option can be used to specify the desired security state of the connection to the server.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
@@ -363,7 +374,7 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, propertys, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, serverRsaPublicKeyPath, serverRsaPublicKeyValue, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, usePooledBuffers, user)")
 )
 fun MySQLConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -394,7 +405,6 @@ fun MySQLConnectOptions(
   preparedStatementCacheMaxSize: Int? = null,
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
-  propertys: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -402,10 +412,13 @@ fun MySQLConnectOptions(
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
+  serverRsaPublicKeyPath: String? = null,
+  serverRsaPublicKeyValue: io.vertx.core.buffer.Buffer? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
+  sslMode: SslMode? = null,
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
@@ -508,11 +521,6 @@ fun MySQLConnectOptions(
   if (properties != null) {
     this.setProperties(properties)
   }
-  if (propertys != null) {
-    for (item in propertys) {
-      this.addProperty(item.key, item.value)
-    }
-  }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
@@ -534,6 +542,12 @@ fun MySQLConnectOptions(
   if (sendBufferSize != null) {
     this.setSendBufferSize(sendBufferSize)
   }
+  if (serverRsaPublicKeyPath != null) {
+    this.setServerRsaPublicKeyPath(serverRsaPublicKeyPath)
+  }
+  if (serverRsaPublicKeyValue != null) {
+    this.setServerRsaPublicKeyValue(serverRsaPublicKeyValue)
+  }
   if (soLinger != null) {
     this.setSoLinger(soLinger)
   }
@@ -545,6 +559,9 @@ fun MySQLConnectOptions(
   }
   if (sslHandshakeTimeoutUnit != null) {
     this.setSslHandshakeTimeoutUnit(sslHandshakeTimeoutUnit)
+  }
+  if (sslMode != null) {
+    this.setSslMode(sslMode)
   }
   if (tcpCork != null) {
     this.setTcpCork(tcpCork)

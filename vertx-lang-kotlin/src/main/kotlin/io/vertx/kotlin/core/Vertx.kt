@@ -31,7 +31,7 @@ import java.util.function.Supplier
  */
 suspend fun VertxVertxAlias.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -73,7 +73,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name: String, options: Deploymen
  */
 suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
   return awaitResult {
-    this.undeploy(deploymentID) { ar -> it.handle(ar.mapEmpty()) }
+    this.undeploy(deploymentID, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

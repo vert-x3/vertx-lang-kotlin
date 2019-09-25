@@ -52,7 +52,7 @@ import io.vertx.redis.op.SortOptions
  */
 suspend fun RedisClient.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -358,7 +358,7 @@ suspend fun RedisClient.clientSetnameAwait(name: String): String {
  */
 suspend fun RedisClient.clusterAddslotsAwait(slots: List<Long>): Unit {
   return awaitResult {
-    this.clusterAddslots(slots) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterAddslots(slots, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -399,7 +399,7 @@ suspend fun RedisClient.clusterCountkeysinslotAwait(slot: Long): Long {
  */
 suspend fun RedisClient.clusterDelslotsAwait(slot: Long): Unit {
   return awaitResult {
-    this.clusterDelslots(slot) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterDelslots(slot, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -412,7 +412,7 @@ suspend fun RedisClient.clusterDelslotsAwait(slot: Long): Unit {
  */
 suspend fun RedisClient.clusterDelslotsManyAwait(slots: List<Long>): Unit {
   return awaitResult {
-    this.clusterDelslotsMany(slots) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterDelslotsMany(slots, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -424,7 +424,7 @@ suspend fun RedisClient.clusterDelslotsManyAwait(slots: List<Long>): Unit {
  */
 suspend fun RedisClient.clusterFailoverAwait(): Unit {
   return awaitResult {
-    this.clusterFailover { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterFailover(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -437,7 +437,7 @@ suspend fun RedisClient.clusterFailoverAwait(): Unit {
  */
 suspend fun RedisClient.clusterFailOverWithOptionsAwait(options: FailoverOptions): Unit {
   return awaitResult {
-    this.clusterFailOverWithOptions(options) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterFailOverWithOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -450,7 +450,7 @@ suspend fun RedisClient.clusterFailOverWithOptionsAwait(options: FailoverOptions
  */
 suspend fun RedisClient.clusterForgetAwait(nodeId: String): Unit {
   return awaitResult {
-    this.clusterForget(nodeId) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterForget(nodeId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -506,7 +506,7 @@ suspend fun RedisClient.clusterKeyslotAwait(key: String): Long {
  */
 suspend fun RedisClient.clusterMeetAwait(ip: String, port: Long): Unit {
   return awaitResult {
-    this.clusterMeet(ip, port) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterMeet(ip, port, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -532,7 +532,7 @@ suspend fun RedisClient.clusterNodesAwait(): JsonArray {
  */
 suspend fun RedisClient.clusterReplicateAwait(nodeId: String): Unit {
   return awaitResult {
-    this.clusterReplicate(nodeId) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterReplicate(nodeId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -544,7 +544,7 @@ suspend fun RedisClient.clusterReplicateAwait(nodeId: String): Unit {
  */
 suspend fun RedisClient.clusterResetAwait(): Unit {
   return awaitResult {
-    this.clusterReset { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterReset(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -557,7 +557,7 @@ suspend fun RedisClient.clusterResetAwait(): Unit {
  */
 suspend fun RedisClient.clusterResetWithOptionsAwait(options: ResetOptions): Unit {
   return awaitResult {
-    this.clusterResetWithOptions(options) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterResetWithOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -569,7 +569,7 @@ suspend fun RedisClient.clusterResetWithOptionsAwait(options: ResetOptions): Uni
  */
 suspend fun RedisClient.clusterSaveconfigAwait(): Unit {
   return awaitResult {
-    this.clusterSaveconfig { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterSaveconfig(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -582,7 +582,7 @@ suspend fun RedisClient.clusterSaveconfigAwait(): Unit {
  */
 suspend fun RedisClient.clusterSetConfigEpochAwait(epoch: Long): Unit {
   return awaitResult {
-    this.clusterSetConfigEpoch(epoch) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterSetConfigEpoch(epoch, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -596,7 +596,7 @@ suspend fun RedisClient.clusterSetConfigEpochAwait(epoch: Long): Unit {
  */
 suspend fun RedisClient.clusterSetslotAwait(slot: Long, subcommand: SlotCmd): Unit {
   return awaitResult {
-    this.clusterSetslot(slot, subcommand) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterSetslot(slot, subcommand, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -611,7 +611,7 @@ suspend fun RedisClient.clusterSetslotAwait(slot: Long, subcommand: SlotCmd): Un
  */
 suspend fun RedisClient.clusterSetslotWithNodeAwait(slot: Long, subcommand: SlotCmd, nodeId: String): Unit {
   return awaitResult {
-    this.clusterSetslotWithNode(slot, subcommand, nodeId) { ar -> it.handle(ar.mapEmpty()) }
+    this.clusterSetslotWithNode(slot, subcommand, nodeId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1613,7 +1613,7 @@ suspend fun RedisClient.migrateAwait(host: String, port: Int, key: String, destd
  */
 suspend fun RedisClient.monitorAwait(): Unit {
   return awaitResult {
-    this.monitor { ar -> it.handle(ar.mapEmpty()) }
+    this.monitor(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1670,7 +1670,7 @@ suspend fun RedisClient.msetnxAwait(keyvals: JsonObject): Long {
  */
 suspend fun RedisClient.objectAwait(key: String, cmd: ObjectCmd): Unit {
   return awaitResult {
-    this.`object`(key, cmd) { ar -> it.handle(ar.mapEmpty()) }
+    this.`object`(key, cmd, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1815,7 +1815,7 @@ suspend fun RedisClient.pingAwait(): String {
  */
 suspend fun RedisClient.psetexAwait(key: String, millis: Long, value: String): Unit {
   return awaitResult {
-    this.psetex(key, millis, value) { ar -> it.handle(ar.mapEmpty()) }
+    this.psetex(key, millis, value, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -1926,7 +1926,7 @@ suspend fun RedisClient.publishAwait(channel: String, message: String): Long {
  */
 suspend fun RedisClient.punsubscribeAwait(patterns: List<String>): Unit {
   return awaitResult {
-    this.punsubscribe(patterns) { ar -> it.handle(ar.mapEmpty()) }
+    this.punsubscribe(patterns, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2256,7 +2256,7 @@ suspend fun RedisClient.selectAwait(dbindex: Int): String {
  */
 suspend fun RedisClient.setAwait(key: String, value: String): Unit {
   return awaitResult {
-    this.set(key, value) { ar -> it.handle(ar.mapEmpty()) }
+    this.set(key, value, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2286,7 +2286,7 @@ suspend fun RedisClient.setWithOptionsAwait(key: String, value: String, options:
  */
 suspend fun RedisClient.setBinaryAwait(key: String, value: Buffer): Unit {
   return awaitResult {
-    this.setBinary(key, value) { ar -> it.handle(ar.mapEmpty()) }
+    this.setBinary(key, value, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2301,7 +2301,7 @@ suspend fun RedisClient.setBinaryAwait(key: String, value: Buffer): Unit {
  */
 suspend fun RedisClient.setBinaryWithOptionsAwait(key: String, value: Buffer, options: SetOptions): Unit {
   return awaitResult {
-    this.setBinaryWithOptions(key, value, options) { ar -> it.handle(ar.mapEmpty()) }
+    this.setBinaryWithOptions(key, value, options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2475,7 +2475,7 @@ suspend fun RedisClient.slowlogLenAwait(): Long {
  */
 suspend fun RedisClient.slowlogResetAwait(): Unit {
   return awaitResult {
-    this.slowlogReset { ar -> it.handle(ar.mapEmpty()) }
+    this.slowlogReset(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2691,7 +2691,7 @@ suspend fun RedisClient.sunionstoreAwait(destkey: String, keys: List<String>): L
  */
 suspend fun RedisClient.syncAwait(): Unit {
   return awaitResult {
-    this.sync { ar -> it.handle(ar.mapEmpty()) }
+    this.sync(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -2745,7 +2745,7 @@ suspend fun RedisClient.typeAwait(key: String): String {
  */
 suspend fun RedisClient.unsubscribeAwait(channels: List<String>): Unit {
   return awaitResult {
-    this.unsubscribe(channels) { ar -> it.handle(ar.mapEmpty()) }
+    this.unsubscribe(channels, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

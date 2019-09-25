@@ -30,7 +30,7 @@ import io.vertx.redis.client.Response
  */
 suspend fun Redis.pipeToAwait(dst: WriteStream<Response>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

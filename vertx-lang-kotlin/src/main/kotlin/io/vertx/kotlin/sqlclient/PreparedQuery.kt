@@ -17,17 +17,18 @@ package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedQuery
+import io.vertx.sqlclient.Row
 import io.vertx.sqlclient.RowSet
 import io.vertx.sqlclient.Tuple
 
 /**
  * Suspending version of method [io.vertx.sqlclient.PreparedQuery.execute]
  *
- * @return [RowSet]
+ * @return [RowSet<Row>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.executeAwait(): RowSet {
+suspend fun PreparedQuery.executeAwait(): RowSet<Row> {
   return awaitResult {
     this.execute(it)
   }
@@ -37,11 +38,11 @@ suspend fun PreparedQuery.executeAwait(): RowSet {
  * Suspending version of method [io.vertx.sqlclient.PreparedQuery.execute]
  *
  * @param args the list of arguments
- * @return [RowSet]
+ * @return [RowSet<Row>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.executeAwait(args: Tuple): RowSet {
+suspend fun PreparedQuery.executeAwait(args: Tuple): RowSet<Row> {
   return awaitResult {
     this.execute(args, it)
   }
@@ -51,11 +52,11 @@ suspend fun PreparedQuery.executeAwait(args: Tuple): RowSet {
  * Suspending version of method [io.vertx.sqlclient.PreparedQuery.batch]
  *
  * @param argsList the list of tuple for the batch
- * @return [RowSet]
+ * @return [RowSet<Row>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.batchAwait(argsList: List<Tuple>): RowSet {
+suspend fun PreparedQuery.batchAwait(argsList: List<Tuple>): RowSet<Row> {
   return awaitResult {
     this.batch(argsList, it)
   }
@@ -69,7 +70,7 @@ suspend fun PreparedQuery.batchAwait(argsList: List<Tuple>): RowSet {
  */
 suspend fun PreparedQuery.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

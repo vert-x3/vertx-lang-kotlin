@@ -420,7 +420,7 @@ suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query
  */
 suspend fun MongoClient.createCollectionAwait(collectionName: String): Unit {
   return awaitResult {
-    this.createCollection(collectionName) { ar -> it.handle(ar.mapEmpty()) }
+    this.createCollection(collectionName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -446,7 +446,7 @@ suspend fun MongoClient.getCollectionsAwait(): List<String> {
  */
 suspend fun MongoClient.dropCollectionAwait(collection: String): Unit {
   return awaitResult {
-    this.dropCollection(collection) { ar -> it.handle(ar.mapEmpty()) }
+    this.dropCollection(collection, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -460,7 +460,7 @@ suspend fun MongoClient.dropCollectionAwait(collection: String): Unit {
  */
 suspend fun MongoClient.createIndexAwait(collection: String, key: JsonObject): Unit {
   return awaitResult {
-    this.createIndex(collection, key) { ar -> it.handle(ar.mapEmpty()) }
+    this.createIndex(collection, key, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -475,7 +475,7 @@ suspend fun MongoClient.createIndexAwait(collection: String, key: JsonObject): U
  */
 suspend fun MongoClient.createIndexWithOptionsAwait(collection: String, key: JsonObject, options: IndexOptions): Unit {
   return awaitResult {
-    this.createIndexWithOptions(collection, key, options) { ar -> it.handle(ar.mapEmpty()) }
+    this.createIndexWithOptions(collection, key, options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -503,7 +503,7 @@ suspend fun MongoClient.listIndexesAwait(collection: String): JsonArray {
  */
 suspend fun MongoClient.dropIndexAwait(collection: String, indexName: String): Unit {
   return awaitResult {
-    this.dropIndex(collection, indexName) { ar -> it.handle(ar.mapEmpty()) }
+    this.dropIndex(collection, indexName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

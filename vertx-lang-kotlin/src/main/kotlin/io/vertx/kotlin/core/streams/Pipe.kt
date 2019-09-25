@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <T> Pipe<T>.toAwait(dst: WriteStream<T>): Unit {
   return awaitResult {
-    this.to(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.to(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

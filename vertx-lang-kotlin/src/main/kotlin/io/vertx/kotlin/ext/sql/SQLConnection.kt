@@ -61,7 +61,7 @@ suspend fun SQLConnection.querySingleWithParamsAwait(sql: String, arguments: Jso
  */
 suspend fun SQLConnection.setAutoCommitAwait(autoCommit: Boolean): Unit {
   return awaitResult {
-    this.setAutoCommit(autoCommit) { ar -> it.handle(ar.mapEmpty()) }
+    this.setAutoCommit(autoCommit, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -74,7 +74,7 @@ suspend fun SQLConnection.setAutoCommitAwait(autoCommit: Boolean): Unit {
  */
 suspend fun SQLConnection.executeAwait(sql: String): Unit {
   return awaitResult {
-    this.execute(sql) { ar -> it.handle(ar.mapEmpty()) }
+    this.execute(sql, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -203,7 +203,7 @@ suspend fun SQLConnection.callWithParamsAwait(sql: String, params: JsonArray, ou
  */
 suspend fun SQLConnection.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -215,7 +215,7 @@ suspend fun SQLConnection.closeAwait(): Unit {
  */
 suspend fun SQLConnection.commitAwait(): Unit {
   return awaitResult {
-    this.commit { ar -> it.handle(ar.mapEmpty()) }
+    this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -227,7 +227,7 @@ suspend fun SQLConnection.commitAwait(): Unit {
  */
 suspend fun SQLConnection.rollbackAwait(): Unit {
   return awaitResult {
-    this.rollback { ar -> it.handle(ar.mapEmpty()) }
+    this.rollback(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -285,7 +285,7 @@ suspend fun SQLConnection.batchCallableWithParamsAwait(sqlStatement: String, inA
  */
 suspend fun SQLConnection.setTransactionIsolationAwait(isolation: TransactionIsolation): Unit {
   return awaitResult {
-    this.setTransactionIsolation(isolation) { ar -> it.handle(ar.mapEmpty()) }
+    this.setTransactionIsolation(isolation, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

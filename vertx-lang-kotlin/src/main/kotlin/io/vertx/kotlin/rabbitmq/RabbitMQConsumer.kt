@@ -29,7 +29,7 @@ import io.vertx.rabbitmq.RabbitMQMessage
  */
 suspend fun RabbitMQConsumer.pipeToAwait(dst: WriteStream<RabbitMQMessage>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -41,7 +41,7 @@ suspend fun RabbitMQConsumer.pipeToAwait(dst: WriteStream<RabbitMQMessage>): Uni
  */
 suspend fun RabbitMQConsumer.cancelAwait(): Unit {
   return awaitResult {
-    this.cancel { ar -> it.handle(ar.mapEmpty()) }
+    this.cancel(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

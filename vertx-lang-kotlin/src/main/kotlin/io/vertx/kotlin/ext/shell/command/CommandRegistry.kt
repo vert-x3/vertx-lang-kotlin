@@ -56,7 +56,7 @@ suspend fun CommandRegistry.registerCommandsAwait(commands: List<Command>): List
  */
 suspend fun CommandRegistry.unregisterCommandAwait(commandName: String): Unit {
   return awaitResult {
-    this.unregisterCommand(commandName) { ar -> it.handle(ar.mapEmpty()) }
+    this.unregisterCommand(commandName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

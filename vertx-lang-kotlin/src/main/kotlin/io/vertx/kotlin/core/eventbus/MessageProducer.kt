@@ -27,13 +27,13 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <T> MessageProducer<T>.endAwait(data: T): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun <T> MessageProducer<T>.writeAwait(data: T): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -45,7 +45,7 @@ suspend fun <T> MessageProducer<T>.writeAwait(data: T): Unit {
  */
 suspend fun <T> MessageProducer<T>.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -57,7 +57,7 @@ suspend fun <T> MessageProducer<T>.endAwait(): Unit {
  */
 suspend fun <T> MessageProducer<T>.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

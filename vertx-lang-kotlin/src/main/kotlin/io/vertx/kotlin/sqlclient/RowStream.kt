@@ -28,7 +28,7 @@ import io.vertx.sqlclient.RowStream
  */
 suspend fun <T> RowStream<T>.pipeToAwait(dst: WriteStream<T>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -40,7 +40,7 @@ suspend fun <T> RowStream<T>.pipeToAwait(dst: WriteStream<T>): Unit {
  */
 suspend fun <T> RowStream<T>.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

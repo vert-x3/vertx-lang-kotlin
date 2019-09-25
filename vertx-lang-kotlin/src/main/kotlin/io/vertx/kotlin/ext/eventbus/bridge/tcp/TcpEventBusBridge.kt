@@ -68,7 +68,7 @@ suspend fun TcpEventBusBridge.listenAwait(port: Int): TcpEventBusBridge {
  */
 suspend fun TcpEventBusBridge.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

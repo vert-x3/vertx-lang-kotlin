@@ -27,7 +27,7 @@ import io.vertx.redis.sentinel.RedisSentinel
  */
 suspend fun RedisSentinel.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -109,7 +109,7 @@ suspend fun RedisSentinel.getMasterAddrByNameAwait(name: String): JsonArray {
  */
 suspend fun RedisSentinel.resetAwait(pattern: String): Unit {
   return awaitResult {
-    this.reset(pattern) { ar -> it.handle(ar.mapEmpty()) }
+    this.reset(pattern, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -149,7 +149,7 @@ suspend fun RedisSentinel.ckquorumAwait(name: String): String {
  */
 suspend fun RedisSentinel.flushConfigAwait(): Unit {
   return awaitResult {
-    this.flushConfig { ar -> it.handle(ar.mapEmpty()) }
+    this.flushConfig(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

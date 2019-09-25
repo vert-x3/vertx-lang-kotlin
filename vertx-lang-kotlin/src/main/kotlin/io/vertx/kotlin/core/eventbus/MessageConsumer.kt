@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <T> MessageConsumer<T>.pipeToAwait(dst: WriteStream<Message<T>>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -41,7 +41,7 @@ suspend fun <T> MessageConsumer<T>.pipeToAwait(dst: WriteStream<Message<T>>): Un
  */
 suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
   return awaitResult {
-    this.completionHandler { ar -> it.handle(ar.mapEmpty()) }
+    this.completionHandler(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -53,7 +53,7 @@ suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
  */
 suspend fun <T> MessageConsumer<T>.unregisterAwait(): Unit {
   return awaitResult {
-    this.unregister { ar -> it.handle(ar.mapEmpty()) }
+    this.unregister(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

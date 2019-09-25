@@ -42,7 +42,7 @@ suspend fun SessionStore.getAwait(cookieValue: String): Session? {
  */
 suspend fun SessionStore.deleteAwait(id: String): Unit {
   return awaitResult {
-    this.delete(id) { ar -> it.handle(ar.mapEmpty()) }
+    this.delete(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -55,7 +55,7 @@ suspend fun SessionStore.deleteAwait(id: String): Unit {
  */
 suspend fun SessionStore.putAwait(session: Session): Unit {
   return awaitResult {
-    this.put(session) { ar -> it.handle(ar.mapEmpty()) }
+    this.put(session, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -67,7 +67,7 @@ suspend fun SessionStore.putAwait(session: Session): Unit {
  */
 suspend fun SessionStore.clearAwait(): Unit {
   return awaitResult {
-    this.clear { ar -> it.handle(ar.mapEmpty()) }
+    this.clear(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,13 +42,13 @@ suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
  */
 suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -88,7 +88,7 @@ suspend fun <K,V> KafkaProducer<K,V>.partitionsForAwait(topic: String): List<Par
  */
 suspend fun <K,V> KafkaProducer<K,V>.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -101,7 +101,7 @@ suspend fun <K,V> KafkaProducer<K,V>.closeAwait(): Unit {
  */
 suspend fun <K,V> KafkaProducer<K,V>.closeAwait(timeout: Long): Unit {
   return awaitResult {
-    this.close(timeout) { ar -> it.handle(ar.mapEmpty()) }
+    this.close(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

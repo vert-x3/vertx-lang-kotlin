@@ -26,7 +26,7 @@ import io.vertx.pgclient.pubsub.PgSubscriber
  */
 suspend fun PgSubscriber.connectAwait(): Unit {
   return awaitResult {
-    this.connect { ar -> it.handle(ar.mapEmpty()) }
+    this.connect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

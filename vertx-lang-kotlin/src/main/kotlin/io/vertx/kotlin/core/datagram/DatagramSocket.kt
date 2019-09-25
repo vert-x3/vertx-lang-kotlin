@@ -30,7 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -91,7 +91,7 @@ suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: 
  */
 suspend fun DatagramSocket.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

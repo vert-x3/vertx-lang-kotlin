@@ -30,7 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun AccessToken.refreshAwait(): Unit {
   return awaitResult {
-    this.refresh { ar -> it.handle(ar.mapEmpty()) }
+    this.refresh(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -43,7 +43,7 @@ suspend fun AccessToken.refreshAwait(): Unit {
  */
 suspend fun AccessToken.revokeAwait(token_type: String): Unit {
   return awaitResult {
-    this.revoke(token_type) { ar -> it.handle(ar.mapEmpty()) }
+    this.revoke(token_type, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -55,7 +55,7 @@ suspend fun AccessToken.revokeAwait(token_type: String): Unit {
  */
 suspend fun AccessToken.logoutAwait(): Unit {
   return awaitResult {
-    this.logout { ar -> it.handle(ar.mapEmpty()) }
+    this.logout(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -67,7 +67,7 @@ suspend fun AccessToken.logoutAwait(): Unit {
  */
 suspend fun AccessToken.introspectAwait(): Unit {
   return awaitResult {
-    this.introspect { ar -> it.handle(ar.mapEmpty()) }
+    this.introspect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -80,7 +80,7 @@ suspend fun AccessToken.introspectAwait(): Unit {
  */
 suspend fun AccessToken.introspectAwait(tokenType: String): Unit {
   return awaitResult {
-    this.introspect(tokenType) { ar -> it.handle(ar.mapEmpty()) }
+    this.introspect(tokenType, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

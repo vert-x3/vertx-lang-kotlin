@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun JsonParser.pipeToAwait(dst: WriteStream<JsonEvent>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

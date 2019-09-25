@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun ResultSet.fetchMoreResultsAwait(): Unit {
   return awaitResult {
-    this.fetchMoreResults { ar -> it.handle(ar.mapEmpty()) }
+    this.fetchMoreResults(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

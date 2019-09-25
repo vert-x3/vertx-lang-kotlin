@@ -42,7 +42,7 @@ suspend fun KafkaAdminClient.listTopicsAwait(): Set<String> {
  */
 suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
   return awaitResult {
-    this.createTopics(topics) { ar -> it.handle(ar.mapEmpty()) }
+    this.createTopics(topics, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -55,7 +55,7 @@ suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
  */
 suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames: List<String>): Unit {
   return awaitResult {
-    this.deleteTopics(topicNames) { ar -> it.handle(ar.mapEmpty()) }
+    this.deleteTopics(topicNames, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

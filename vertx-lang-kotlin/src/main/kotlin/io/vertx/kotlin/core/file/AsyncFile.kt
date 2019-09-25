@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun AsyncFile.endAwait(data: Buffer): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,7 +42,7 @@ suspend fun AsyncFile.endAwait(data: Buffer): Unit {
  */
 suspend fun AsyncFile.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -55,7 +55,7 @@ suspend fun AsyncFile.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  */
 suspend fun AsyncFile.writeAwait(data: Buffer): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -67,7 +67,7 @@ suspend fun AsyncFile.writeAwait(data: Buffer): Unit {
  */
 suspend fun AsyncFile.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -79,7 +79,7 @@ suspend fun AsyncFile.endAwait(): Unit {
  */
 suspend fun AsyncFile.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -93,7 +93,7 @@ suspend fun AsyncFile.closeAwait(): Unit {
  */
 suspend fun AsyncFile.writeAwait(buffer: Buffer, position: Long): Unit {
   return awaitResult {
-    this.write(buffer, position) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(buffer, position, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -122,7 +122,7 @@ suspend fun AsyncFile.readAwait(buffer: Buffer, offset: Int, position: Long, len
  */
 suspend fun AsyncFile.flushAwait(): Unit {
   return awaitResult {
-    this.flush { ar -> it.handle(ar.mapEmpty()) }
+    this.flush(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

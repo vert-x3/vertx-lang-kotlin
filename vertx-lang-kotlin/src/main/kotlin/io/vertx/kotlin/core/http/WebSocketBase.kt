@@ -30,7 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun WebSocketBase.endAwait(data: Buffer): Unit {
   return awaitResult {
-    this.end(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -43,13 +43,13 @@ suspend fun WebSocketBase.endAwait(data: Buffer): Unit {
  */
 suspend fun WebSocketBase.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
 suspend fun WebSocketBase.writeAwait(data: Buffer): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -62,7 +62,7 @@ suspend fun WebSocketBase.writeAwait(data: Buffer): Unit {
  */
 suspend fun WebSocketBase.writeFrameAwait(frame: WebSocketFrame): Unit {
   return awaitResult {
-    this.writeFrame(frame) { ar -> it.handle(ar.mapEmpty()) }
+    this.writeFrame(frame, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -75,7 +75,7 @@ suspend fun WebSocketBase.writeFrameAwait(frame: WebSocketFrame): Unit {
  */
 suspend fun WebSocketBase.writeFinalTextFrameAwait(text: String): Unit {
   return awaitResult {
-    this.writeFinalTextFrame(text) { ar -> it.handle(ar.mapEmpty()) }
+    this.writeFinalTextFrame(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -88,7 +88,7 @@ suspend fun WebSocketBase.writeFinalTextFrameAwait(text: String): Unit {
  */
 suspend fun WebSocketBase.writeFinalBinaryFrameAwait(data: Buffer): Unit {
   return awaitResult {
-    this.writeFinalBinaryFrame(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.writeFinalBinaryFrame(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -101,7 +101,7 @@ suspend fun WebSocketBase.writeFinalBinaryFrameAwait(data: Buffer): Unit {
  */
 suspend fun WebSocketBase.writeBinaryMessageAwait(data: Buffer): Unit {
   return awaitResult {
-    this.writeBinaryMessage(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.writeBinaryMessage(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -114,7 +114,7 @@ suspend fun WebSocketBase.writeBinaryMessageAwait(data: Buffer): Unit {
  */
 suspend fun WebSocketBase.writeTextMessageAwait(text: String): Unit {
   return awaitResult {
-    this.writeTextMessage(text) { ar -> it.handle(ar.mapEmpty()) }
+    this.writeTextMessage(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -126,7 +126,7 @@ suspend fun WebSocketBase.writeTextMessageAwait(text: String): Unit {
  */
 suspend fun WebSocketBase.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -138,7 +138,7 @@ suspend fun WebSocketBase.endAwait(): Unit {
  */
 suspend fun WebSocketBase.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -151,7 +151,7 @@ suspend fun WebSocketBase.closeAwait(): Unit {
  */
 suspend fun WebSocketBase.closeAwait(statusCode: Short): Unit {
   return awaitResult {
-    this.close(statusCode) { ar -> it.handle(ar.mapEmpty()) }
+    this.close(statusCode, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -165,7 +165,7 @@ suspend fun WebSocketBase.closeAwait(statusCode: Short): Unit {
  */
 suspend fun WebSocketBase.closeAwait(statusCode: Short, reason: String): Unit {
   return awaitResult {
-    this.close(statusCode, reason) { ar -> it.handle(ar.mapEmpty()) }
+    this.close(statusCode, reason, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

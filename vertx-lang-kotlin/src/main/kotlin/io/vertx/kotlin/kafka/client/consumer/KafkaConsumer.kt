@@ -34,7 +34,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst: WriteStream<KafkaConsumerRecord<K,V>>): Unit {
   return awaitResult {
-    this.pipeTo(dst) { ar -> it.handle(ar.mapEmpty()) }
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -47,7 +47,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst: WriteStream<KafkaConsumerR
  */
 suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topic: String): Unit {
   return awaitResult {
-    this.subscribe(topic) { ar -> it.handle(ar.mapEmpty()) }
+    this.subscribe(topic, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -60,7 +60,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topic: String): Unit {
  */
 suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topics: Set<String>): Unit {
   return awaitResult {
-    this.subscribe(topics) { ar -> it.handle(ar.mapEmpty()) }
+    this.subscribe(topics, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -73,7 +73,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topics: Set<String>): Unit {
  */
 suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
-    this.assign(topicPartition) { ar -> it.handle(ar.mapEmpty()) }
+    this.assign(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -86,7 +86,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartition: TopicPartition)
  */
 suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
-    this.assign(topicPartitions) { ar -> it.handle(ar.mapEmpty()) }
+    this.assign(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -111,7 +111,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignmentAwait(): Set<TopicPartition> {
  */
 suspend fun <K,V> KafkaConsumer<K,V>.unsubscribeAwait(): Unit {
   return awaitResult {
-    this.unsubscribe { ar -> it.handle(ar.mapEmpty()) }
+    this.unsubscribe(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -137,7 +137,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscriptionAwait(): Set<String> {
  */
 suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
-    this.pause(topicPartition) { ar -> it.handle(ar.mapEmpty()) }
+    this.pause(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -150,7 +150,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartition: TopicPartition):
  */
 suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
-    this.pause(topicPartitions) { ar -> it.handle(ar.mapEmpty()) }
+    this.pause(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -176,7 +176,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pausedAwait(): Set<TopicPartition> {
  */
 suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
-    this.resume(topicPartition) { ar -> it.handle(ar.mapEmpty()) }
+    this.resume(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -189,7 +189,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartition: TopicPartition)
  */
 suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
-    this.resume(topicPartitions) { ar -> it.handle(ar.mapEmpty()) }
+    this.resume(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -203,7 +203,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartitions: Set<TopicParti
  */
 suspend fun <K,V> KafkaConsumer<K,V>.seekAwait(topicPartition: TopicPartition, offset: Long): Unit {
   return awaitResult {
-    this.seek(topicPartition, offset) { ar -> it.handle(ar.mapEmpty()) }
+    this.seek(topicPartition, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -216,7 +216,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekAwait(topicPartition: TopicPartition, o
  */
 suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
-    this.seekToBeginning(topicPartition) { ar -> it.handle(ar.mapEmpty()) }
+    this.seekToBeginning(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -229,7 +229,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartition: TopicP
  */
 suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
-    this.seekToBeginning(topicPartitions) { ar -> it.handle(ar.mapEmpty()) }
+    this.seekToBeginning(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -242,7 +242,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartitions: Set<T
  */
 suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
-    this.seekToEnd(topicPartition) { ar -> it.handle(ar.mapEmpty()) }
+    this.seekToEnd(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -255,7 +255,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartition: TopicPartiti
  */
 suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
-    this.seekToEnd(topicPartitions) { ar -> it.handle(ar.mapEmpty()) }
+    this.seekToEnd(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -267,7 +267,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartitions: Set<TopicPa
  */
 suspend fun <K,V> KafkaConsumer<K,V>.commitAwait(): Unit {
   return awaitResult {
-    this.commit { ar -> it.handle(ar.mapEmpty()) }
+    this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -307,7 +307,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.partitionsForAwait(topic: String): List<Par
  */
 suspend fun <K,V> KafkaConsumer<K,V>.closeAwait(): Unit {
   return awaitResult {
-    this.close { ar -> it.handle(ar.mapEmpty()) }
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

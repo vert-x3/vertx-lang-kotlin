@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  */
 suspend fun HttpServerResponse.endAwait(): Unit {
   return awaitResult {
-    this.end { ar -> it.handle(ar.mapEmpty()) }
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,7 +42,7 @@ suspend fun HttpServerResponse.endAwait(): Unit {
  */
 suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
   return awaitResult {
-    this.write(data) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -56,7 +56,7 @@ suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
  */
 suspend fun HttpServerResponse.writeAwait(chunk: String, enc: String): Unit {
   return awaitResult {
-    this.write(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -69,7 +69,7 @@ suspend fun HttpServerResponse.writeAwait(chunk: String, enc: String): Unit {
  */
 suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
   return awaitResult {
-    this.write(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.write(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -82,7 +82,7 @@ suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
  */
 suspend fun HttpServerResponse.endAwait(chunk: String): Unit {
   return awaitResult {
-    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -96,7 +96,7 @@ suspend fun HttpServerResponse.endAwait(chunk: String): Unit {
  */
 suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
   return awaitResult {
-    this.end(chunk, enc) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -109,7 +109,7 @@ suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
  */
 suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
   return awaitResult {
-    this.end(chunk) { ar -> it.handle(ar.mapEmpty()) }
+    this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -122,7 +122,7 @@ suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
  */
 suspend fun HttpServerResponse.sendFileAwait(filename: String): Unit {
   return awaitResult {
-    this.sendFile(filename) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -136,7 +136,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String): Unit {
  */
 suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long): Unit {
   return awaitResult {
-    this.sendFile(filename, offset) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -151,7 +151,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long): Un
  */
 suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long, length: Long): Unit {
   return awaitResult {
-    this.sendFile(filename, offset, length) { ar -> it.handle(ar.mapEmpty()) }
+    this.sendFile(filename, offset, length, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
