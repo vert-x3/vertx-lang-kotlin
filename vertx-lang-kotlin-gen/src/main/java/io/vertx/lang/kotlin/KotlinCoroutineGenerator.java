@@ -37,7 +37,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
   private static final Set<String> keyWords = new HashSet<>(Arrays.asList("object", "fun", "in", "typealias", "var", "val"));
   private static final String methodSuffix = "Await";
-  private static final Set<String> unnecessaryImports = new HashSet<>(Arrays.asList(Handler.class.getCanonicalName()));
+  private static final Set<String> unnecessaryImports = Collections.singleton(Handler.class.getCanonicalName());
 
   public KotlinCoroutineGenerator() {
     super("codegen.kotlin.coroutines");
