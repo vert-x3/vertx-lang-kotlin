@@ -277,16 +277,16 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   }
 
   private String getReturnTypeAsString(TypeInfo returnType, Boolean isNullable, ClassTypeInfo type, String className) {
-    String returnTypeAsString;
+    StringBuilder result = new StringBuilder();
     if (returnType.equals(type)) {
-      returnTypeAsString = className;
+      result.append(className);
+      if (isNullable == Boolean.TRUE) {
+        result.append("?");
+      }
     } else {
-      returnTypeAsString = kotlinType(returnType);
+      result.append(kotlinType(returnType));
     }
-    if (isNullable) {
-      returnTypeAsString += "?";
-    }
-    return returnTypeAsString;
+    return result.toString();
   }
 
   private void generateFunctionBody(MethodInfo method, String objectName, TypeInfo returnType, CodeWriter writer) {
@@ -349,36 +349,40 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
   private String kotlinType(TypeInfo type) {
     ClassKind kind = type.getKind();
+    String result;
     if (type instanceof VoidTypeInfo) {
-      return "Unit";
+      result = "Unit";
     } else if (type instanceof PrimitiveTypeInfo) {
-      return Case.CAMEL.format(Collections.singletonList(type.getSimpleName()));
+      result = Case.CAMEL.format(Collections.singletonList(type.getSimpleName()));
     } else if (type.getKind() == ClassKind.BOXED_PRIMITIVE) {
       switch (type.getSimpleName()) {
         case "Integer":
-          return "Int";
+          result = "Int";
+          break;
         case "Character":
-          return "Char";
+          result = "Char";
+          break;
         default:
-          return type.getSimpleName();
+          result = type.getSimpleName();
       }
     } else if ("java.lang.Void".equals(type.getName())) {
-      return "Unit";
+      result = "Unit";
     } else if ("java.lang.Object".equals(type.getName())) {
-      return "Any";
+      result = "Any";
     } else {
       if (type instanceof ParameterizedTypeInfo) {
         if (kind == ClassKind.HANDLER || kind == ClassKind.FUNCTION) {
           List<String> args = ((ParameterizedTypeInfo) type).getArgs().stream().map(this::kotlinType).collect(Collectors.toList());
-          return "(" + args.get(0) + ") -> " + (args.size() == 1 ? "Unit" : args.get(1));
+          result = "(" + args.get(0) + ") -> " + (args.size() == 1 ? "Unit" : args.get(1));
         } else {
           List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
-          return type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
+          result = type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
         }
       } else {
-        return type.getSimpleName();
+        result = type.getSimpleName();
       }
     }
+    return type.isNullable() ? result + "?" : result;
   }
 
 
