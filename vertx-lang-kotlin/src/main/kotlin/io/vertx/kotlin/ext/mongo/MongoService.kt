@@ -35,7 +35,7 @@ suspend fun MongoService.saveAwait(collection: String, document: JsonObject): St
   }
 }
 
-suspend fun MongoService.saveWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption): String? {
+suspend fun MongoService.saveWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption?): String? {
   return awaitResult {
     this.saveWithOptions(collection, document, writeOption, it)
   }
@@ -47,7 +47,7 @@ suspend fun MongoService.insertAwait(collection: String, document: JsonObject): 
   }
 }
 
-suspend fun MongoService.insertWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption): String? {
+suspend fun MongoService.insertWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption?): String? {
   return awaitResult {
     this.insertWithOptions(collection, document, writeOption, it)
   }
@@ -101,7 +101,7 @@ suspend fun MongoService.findWithOptionsAwait(collection: String, query: JsonObj
   }
 }
 
-suspend fun MongoService.findOneAwait(collection: String, query: JsonObject, fields: JsonObject): JsonObject? {
+suspend fun MongoService.findOneAwait(collection: String, query: JsonObject, fields: JsonObject?): JsonObject? {
   return awaitResult {
     this.findOne(collection, query, fields, it)
   }
@@ -155,7 +155,7 @@ suspend fun MongoService.removeDocumentsAwait(collection: String, query: JsonObj
   }
 }
 
-suspend fun MongoService.removeDocumentsWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult? {
+suspend fun MongoService.removeDocumentsWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption?): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentsWithOptions(collection, query, writeOption, it)
   }
@@ -167,7 +167,7 @@ suspend fun MongoService.removeDocumentAwait(collection: String, query: JsonObje
   }
 }
 
-suspend fun MongoService.removeDocumentWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption): MongoClientDeleteResult? {
+suspend fun MongoService.removeDocumentWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption?): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentWithOptions(collection, query, writeOption, it)
   }
