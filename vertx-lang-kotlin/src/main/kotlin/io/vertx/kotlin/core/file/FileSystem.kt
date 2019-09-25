@@ -149,7 +149,7 @@ suspend fun FileSystem.chmodRecursiveAwait(path: String, perms: String, dirPerms
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-suspend fun FileSystem.chownAwait(path: String, user: String, group: String): Unit {
+suspend fun FileSystem.chownAwait(path: String, user: String?, group: String?): Unit {
   return awaitResult {
     this.chown(path, user, group, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }

@@ -52,11 +52,11 @@ suspend fun RedisConnection.sendAwait(command: Request): Response? {
  * Suspending version of method [io.vertx.redis.client.RedisConnection.batch]
  *
  * @param commands list of command to send
- * @return [List<Response>]
+ * @return [List<Response?>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
  */
-suspend fun RedisConnection.batchAwait(commands: List<Request>): List<Response> {
+suspend fun RedisConnection.batchAwait(commands: List<Request>): List<Response?> {
   return awaitResult {
     this.batch(commands, it)
   }

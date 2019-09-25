@@ -114,7 +114,7 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
+suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String?): Unit {
   return awaitResult {
     this.listenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
@@ -142,7 +142,7 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String): Unit {
+suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String?): Unit {
   return awaitResult {
     this.unlistenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
