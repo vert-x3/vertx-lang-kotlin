@@ -3759,6 +3759,9 @@ set if ESMTP should be tried as first command (EHLO)
  in that way, the property has to be set to false.
  <p>
 +++
+|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
+Sets the list of enabled SSL/TLS protocols.
++++
 |[[hostname]]`@hostname`|`String`|+++
 Set the hostname of the smtp server.
 +++
@@ -4772,6 +4775,12 @@ Set whether all server certificates should be trusted
 +++
 |[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
 Set the trust options in jks format, aka Java truststore
++++
+|[[useAffectedRows]]`@useAffectedRows`|`Boolean`|+++
+Sets how affected rows are calculated on update/delete/insert, if set to <code>true</code> an update that effectively
+ does not change any data returns zero affected rows.
+
+ See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-affected-rows.html">mysql-affected-rows</a> for details.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.

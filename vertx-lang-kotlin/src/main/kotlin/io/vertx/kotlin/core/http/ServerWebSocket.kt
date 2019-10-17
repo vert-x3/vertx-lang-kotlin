@@ -15,6 +15,7 @@
  */
 package io.vertx.kotlin.core.http
 
+import io.vertx.core.Future
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
@@ -131,6 +132,20 @@ suspend fun ServerWebSocket.writeBinaryMessageAwait(data: Buffer): Unit {
 suspend fun ServerWebSocket.writeTextMessageAwait(text: String): Unit {
   return awaitResult {
     this.writeTextMessage(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.ServerWebSocket.setHandshake]
+ *
+ * @param future the future to complete with
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
+ */
+suspend fun ServerWebSocket.setHandshakeAwait(future: Future<Int>): Int {
+  return awaitResult {
+    this.setHandshake(future, it)
   }
 }
 
