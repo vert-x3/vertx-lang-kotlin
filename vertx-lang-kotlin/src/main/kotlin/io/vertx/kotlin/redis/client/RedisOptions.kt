@@ -26,7 +26,9 @@ import io.vertx.redis.client.RedisSlaves
  *
  * Redis Client Configuration options.
  *
- * @param endpoint  Sets a single endpoint to use while connecting to the redis server. Will replace the previously configured endpoints.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
@@ -44,6 +46,8 @@ import io.vertx.redis.client.RedisSlaves
  * NOTE: This function has been automatically generated from the [io.vertx.redis.client.RedisOptions original] using Vert.x codegen.
  */
 fun redisOptionsOf(
+  connectionString: String? = null,
+  connectionStrings: Iterable<String>? = null,
   endpoint: String? = null,
   endpoints: Iterable<String>? = null,
   masterName: String? = null,
@@ -58,6 +62,14 @@ fun redisOptionsOf(
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
+  if (connectionString != null) {
+    this.setConnectionString(connectionString)
+  }
+  if (connectionStrings != null) {
+    for (item in connectionStrings) {
+      this.addConnectionString(item)
+    }
+  }
   if (endpoint != null) {
     this.setEndpoint(endpoint)
   }
@@ -104,7 +116,9 @@ fun redisOptionsOf(
  *
  * Redis Client Configuration options.
  *
- * @param endpoint  Sets a single endpoint to use while connecting to the redis server. Will replace the previously configured endpoints.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
@@ -123,9 +137,11 @@ fun redisOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(endpoint, endpoints, masterName, maxNestedArrays, maxPoolSize, maxPoolWaiting, maxWaitingHandlers, netClientOptions, poolCleanerInterval, poolRecycleTimeout, role, type, useSlave)")
+  replaceWith = ReplaceWith("redisOptionsOf(connectionString, connectionStrings, endpoint, endpoints, masterName, maxNestedArrays, maxPoolSize, maxPoolWaiting, maxWaitingHandlers, netClientOptions, poolCleanerInterval, poolRecycleTimeout, role, type, useSlave)")
 )
 fun RedisOptions(
+  connectionString: String? = null,
+  connectionStrings: Iterable<String>? = null,
   endpoint: String? = null,
   endpoints: Iterable<String>? = null,
   masterName: String? = null,
@@ -140,6 +156,14 @@ fun RedisOptions(
   type: RedisClientType? = null,
   useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
+  if (connectionString != null) {
+    this.setConnectionString(connectionString)
+  }
+  if (connectionStrings != null) {
+    for (item in connectionStrings) {
+      this.addConnectionString(item)
+    }
+  }
   if (endpoint != null) {
     this.setEndpoint(endpoint)
   }

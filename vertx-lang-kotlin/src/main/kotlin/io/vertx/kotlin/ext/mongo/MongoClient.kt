@@ -598,3 +598,15 @@ suspend fun MongoClient.createGridFsBucketServiceAwait(bucketName: String): Mong
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+suspend fun MongoClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

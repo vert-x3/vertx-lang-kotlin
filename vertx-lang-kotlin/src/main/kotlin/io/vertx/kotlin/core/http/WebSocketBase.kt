@@ -126,6 +126,32 @@ suspend fun WebSocketBase.writeTextMessageAwait(text: String): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.WebSocketBase.writePing]
+ *
+ * @param data the data to write, may be at most 125 bytes
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketBase] using Vert.x codegen.
+ */
+suspend fun WebSocketBase.writePingAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writePing(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocketBase.writePong]
+ *
+ * @param data the data to write, may be at most 125 bytes
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketBase] using Vert.x codegen.
+ */
+suspend fun WebSocketBase.writePongAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writePong(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.WebSocketBase.end]
  *
  *

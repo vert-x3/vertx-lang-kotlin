@@ -34,6 +34,19 @@ suspend fun HttpClientRequest.writeAwait(data: Buffer): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpClientRequest.onComplete]
+ *
+ * @return [HttpClientResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
+ */
+suspend fun HttpClientRequest.onCompleteAwait(): HttpClientResponse {
+  return awaitResult {
+    this.onComplete(it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpClientRequest.write]
  *
  * @param chunk 

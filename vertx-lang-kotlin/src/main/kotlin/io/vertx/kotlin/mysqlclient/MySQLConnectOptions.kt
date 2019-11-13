@@ -81,6 +81,7 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
+ * @param useAffectedRows  Sets how affected rows are calculated on update/delete/insert, if set to <code>true</code> an update that effectively does not change any data returns zero affected rows. See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-affected-rows.html">mysql-affected-rows</a> for details.
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
  *
@@ -138,6 +139,7 @@ fun mySQLConnectOptionsOf(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
+  useAffectedRows: Boolean? = null,
   useAlpn: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
@@ -296,6 +298,9 @@ fun mySQLConnectOptionsOf(
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
+  }
+  if (useAffectedRows != null) {
+    this.setUseAffectedRows(useAffectedRows)
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
@@ -360,6 +365,7 @@ fun mySQLConnectOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
+ * @param useAffectedRows  Sets how affected rows are calculated on update/delete/insert, if set to <code>true</code> an update that effectively does not change any data returns zero affected rows. See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-affected-rows.html">mysql-affected-rows</a> for details.
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
  *
@@ -368,7 +374,7 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, serverRsaPublicKeyPath, serverRsaPublicKeyValue, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, serverRsaPublicKeyPath, serverRsaPublicKeyValue, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAffectedRows, useAlpn, user)")
 )
 fun MySQLConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -421,6 +427,7 @@ fun MySQLConnectOptions(
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
+  useAffectedRows: Boolean? = null,
   useAlpn: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
@@ -579,6 +586,9 @@ fun MySQLConnectOptions(
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
+  }
+  if (useAffectedRows != null) {
+    this.setUseAffectedRows(useAffectedRows)
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)

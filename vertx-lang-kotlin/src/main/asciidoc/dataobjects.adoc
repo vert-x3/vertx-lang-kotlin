@@ -117,9 +117,6 @@ Set the flag if writing to temporary files is enabled.
 |[[batchSize]]`@batchSize`|`Number (int)`|+++
 Set the batch size for methods loading found data in batches.
 +++
-|[[maxAwaitTime]]`@maxAwaitTime`|`Number (long)`|+++
-The maximum amount of time for the server to wait on new documents to satisfy a $changeStream aggregation.
-+++
 |[[maxTime]]`@maxTime`|`Number (long)`|+++
 Set the time limit in milliseconds for processing operations on a cursor.
 +++
@@ -2126,6 +2123,9 @@ Set the last stream id.
 |[[requestBatchingEnabled]]`@requestBatchingEnabled`|`Boolean`|+++
 Whether request batching should be enabled. Defaults to <code>false</code>.
 +++
+|[[requestMultipartEnabled]]`@requestMultipartEnabled`|`Boolean`|+++
+Whether request multipart should be enabled. Defaults to <code>false</code>.
++++
 |===
 
 [[GraphiQLHandlerOptions]]
@@ -3157,6 +3157,8 @@ Set whether the JDBC client is shared or non shared.
 |[[permissions]]`@permissions`|`Array of String`|+++
 The permissions of this token.
 +++
+|[[scopeDelimiter]]`@scopeDelimiter`|`String`|-
+|[[scopes]]`@scopes`|`Array of String`|-
 |[[subject]]`@subject`|`String`|-
 |===
 
@@ -3385,6 +3387,9 @@ set if ESMTP should be tried as first command (EHLO)
  in that way, the property has to be set to false.
  <p>
 +++
+|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
+Sets the list of enabled SSL/TLS protocols.
++++
 |[[hostname]]`@hostname`|`String`|+++
 Set the hostname of the smtp server.
 +++
@@ -3433,6 +3438,15 @@ Set the tls security mode for the connection.
 |[[trustAll]]`@trustAll`|`Boolean`|+++
 set whether to trust all certificates on ssl connect the option is also
  applied to STARTTLS operation
++++
+|[[userAgent]]`@userAgent`|`String`|+++
+Sets the Mail User Agent(MUA) name.
+
+<p>
+ It is used to generate the boundary in case of MultiPart email and the Message-ID.
+
+ If <code>null</code> is set, DEFAULT_USER_AGENT is used.
+</p>
 +++
 |[[username]]`@username`|`String`|+++
 Set the username for the login.
@@ -4368,6 +4382,12 @@ Set whether all server certificates should be trusted
 +++
 |[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
 Set the trust options in jks format, aka Java truststore
++++
+|[[useAffectedRows]]`@useAffectedRows`|`Boolean`|+++
+Sets how affected rows are calculated on update/delete/insert, if set to <code>true</code> an update that effectively
+ does not change any data returns zero affected rows.
+
+ See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-affected-rows.html">mysql-affected-rows</a> for details.
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
@@ -6132,8 +6152,21 @@ Set the topic the record was appended to
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[connectionString]]`@connectionString`|`String`|+++
+Sets a single connection string (endpoint) to use while connecting to the redis server.
+ Will replace the previously configured connection strings.
+ <p>
+ Does not support rediss (redis over ssl scheme) for now.
++++
+|[[connectionStrings]]`@connectionStrings`|`Array of String`|+++
+Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will
+ consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
+ <p>
+ Does not support rediss (redis over ssl scheme) for now.
++++
 |[[endpoint]]`@endpoint`|`String`|+++
-Sets a single endpoint to use while connecting to the redis server. Will replace the previously configured endpoints.
+Sets a single connection string to use while connecting to the redis server.
+ Will replace the previously configured connection strings.
 +++
 |[[endpoints]]`@endpoints`|`Array of String`|+++
 Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than

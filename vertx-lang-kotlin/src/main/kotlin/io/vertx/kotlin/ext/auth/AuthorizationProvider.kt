@@ -13,20 +13,24 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.core
+package io.vertx.kotlin.ext.auth
 
-import io.vertx.core.CompositeFuture
+import io.vertx.ext.auth.Authorization
+import io.vertx.ext.auth.AuthorizationProvider
+import io.vertx.ext.auth.User
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun CompositeFuture.setHandlerAwait(): CompositeFuture {
+/**
+ * Suspending version of method [io.vertx.ext.auth.AuthorizationProvider.getAuthorizations]
+ *
+ * @param user 
+ * @return [Set<Authorization>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.AuthorizationProvider] using Vert.x codegen.
+ */
+suspend fun AuthorizationProvider.getAuthorizationsAwait(user: User): Set<Authorization> {
   return awaitResult {
-    this.setHandler(it)
-  }
-}
-
-suspend fun CompositeFuture.onCompleteAwait(): CompositeFuture {
-  return awaitResult {
-    this.onComplete(it)
+    this.getAuthorizations(user, it)
   }
 }
 

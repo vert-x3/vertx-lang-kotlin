@@ -28,6 +28,7 @@ import io.vertx.ext.mail.StartTLSOptions
  * @param allowRcptErrors  set if sending allows rcpt errors <p> if true, the mail will be sent to the recipients that the server accepted, if any <p>
  * @param authMethods  set string of allowed auth methods. if set only these methods will be used if the server supports them. If null or empty all supported methods may be used
  * @param disableEsmtp  set if ESMTP should be tried as first command (EHLO) <p> rfc 1869 states that clients should always attempt EHLO as first command to determine if ESMTP is supported, if this returns an error code, HELO is tried to use old SMTP. If there is a server that does not support EHLO and does not give an error code back, the connection should be closed and retried with HELO. We do not do that and rather support turning off ESMTP with a setting. The odds of this actually happening are very small since the client will not connect to arbitrary smtp hosts on the internet. Since the client knows that is connects to a host that doesn't support ESMTP/EHLO in that way, the property has to be set to false. <p>
+ * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostname  Set the hostname of the smtp server.
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
@@ -40,6 +41,7 @@ import io.vertx.ext.mail.StartTLSOptions
  * @param ssl  Set the sslOnConnect mode for the connection.
  * @param starttls  Set the tls security mode for the connection. <p> Either NONE, OPTIONAL or REQUIRED
  * @param trustAll  set whether to trust all certificates on ssl connect the option is also applied to STARTTLS operation
+ * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
  * @param username  Set the username for the login.
  *
  * <p/>
@@ -49,6 +51,7 @@ fun mailConfigOf(
   allowRcptErrors: Boolean? = null,
   authMethods: String? = null,
   disableEsmtp: Boolean? = null,
+  enabledSecureTransportProtocols: Iterable<String>? = null,
   hostname: String? = null,
   keepAlive: Boolean? = null,
   keyStore: String? = null,
@@ -61,6 +64,7 @@ fun mailConfigOf(
   ssl: Boolean? = null,
   starttls: StartTLSOptions? = null,
   trustAll: Boolean? = null,
+  userAgent: String? = null,
   username: String? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
 
   if (allowRcptErrors != null) {
@@ -71,6 +75,9 @@ fun mailConfigOf(
   }
   if (disableEsmtp != null) {
     this.setDisableEsmtp(disableEsmtp)
+  }
+  if (enabledSecureTransportProtocols != null) {
+    this.setEnabledSecureTransportProtocols(enabledSecureTransportProtocols.toSet())
   }
   if (hostname != null) {
     this.setHostname(hostname)
@@ -107,6 +114,9 @@ fun mailConfigOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (userAgent != null) {
+    this.setUserAgent(userAgent)
   }
   if (username != null) {
     this.setUsername(username)
@@ -122,6 +132,7 @@ fun mailConfigOf(
  * @param allowRcptErrors  set if sending allows rcpt errors <p> if true, the mail will be sent to the recipients that the server accepted, if any <p>
  * @param authMethods  set string of allowed auth methods. if set only these methods will be used if the server supports them. If null or empty all supported methods may be used
  * @param disableEsmtp  set if ESMTP should be tried as first command (EHLO) <p> rfc 1869 states that clients should always attempt EHLO as first command to determine if ESMTP is supported, if this returns an error code, HELO is tried to use old SMTP. If there is a server that does not support EHLO and does not give an error code back, the connection should be closed and retried with HELO. We do not do that and rather support turning off ESMTP with a setting. The odds of this actually happening are very small since the client will not connect to arbitrary smtp hosts on the internet. Since the client knows that is connects to a host that doesn't support ESMTP/EHLO in that way, the property has to be set to false. <p>
+ * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostname  Set the hostname of the smtp server.
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
@@ -134,6 +145,7 @@ fun mailConfigOf(
  * @param ssl  Set the sslOnConnect mode for the connection.
  * @param starttls  Set the tls security mode for the connection. <p> Either NONE, OPTIONAL or REQUIRED
  * @param trustAll  set whether to trust all certificates on ssl connect the option is also applied to STARTTLS operation
+ * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
  * @param username  Set the username for the login.
  *
  * <p/>
@@ -141,12 +153,13 @@ fun mailConfigOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, disableEsmtp, hostname, keepAlive, keyStore, keyStorePassword, login, maxPoolSize, ownHostname, password, port, ssl, starttls, trustAll, username)")
+  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, disableEsmtp, enabledSecureTransportProtocols, hostname, keepAlive, keyStore, keyStorePassword, login, maxPoolSize, ownHostname, password, port, ssl, starttls, trustAll, userAgent, username)")
 )
 fun MailConfig(
   allowRcptErrors: Boolean? = null,
   authMethods: String? = null,
   disableEsmtp: Boolean? = null,
+  enabledSecureTransportProtocols: Iterable<String>? = null,
   hostname: String? = null,
   keepAlive: Boolean? = null,
   keyStore: String? = null,
@@ -159,6 +172,7 @@ fun MailConfig(
   ssl: Boolean? = null,
   starttls: StartTLSOptions? = null,
   trustAll: Boolean? = null,
+  userAgent: String? = null,
   username: String? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
 
   if (allowRcptErrors != null) {
@@ -169,6 +183,9 @@ fun MailConfig(
   }
   if (disableEsmtp != null) {
     this.setDisableEsmtp(disableEsmtp)
+  }
+  if (enabledSecureTransportProtocols != null) {
+    this.setEnabledSecureTransportProtocols(enabledSecureTransportProtocols.toSet())
   }
   if (hostname != null) {
     this.setHostname(hostname)
@@ -205,6 +222,9 @@ fun MailConfig(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (userAgent != null) {
+    this.setUserAgent(userAgent)
   }
   if (username != null) {
     this.setUsername(username)

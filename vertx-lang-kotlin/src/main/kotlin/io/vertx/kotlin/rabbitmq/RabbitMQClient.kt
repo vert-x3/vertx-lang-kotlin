@@ -15,24 +15,28 @@
  */
 package io.vertx.kotlin.rabbitmq
 
+import com.rabbitmq.client.AMQP.Queue.DeclareOk
+import com.rabbitmq.client.AMQP.Queue.DeleteOk
+import com.rabbitmq.client.BasicProperties
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.json.JsonObject
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.rabbitmq.QueueOptions
 import io.vertx.rabbitmq.RabbitMQClient
 import io.vertx.rabbitmq.RabbitMQConsumer
+import io.vertx.rabbitmq.RabbitMQMessage
 
 /**
  * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.basicAck]
  *
  * @param deliveryTag 
  * @param multiple 
- * @return [JsonObject]
  *
  * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
  */
-suspend fun RabbitMQClient.basicAckAwait(deliveryTag: Long, multiple: Boolean): JsonObject {
+suspend fun RabbitMQClient.basicAckAwait(deliveryTag: Long, multiple: Boolean): Unit {
   return awaitResult {
-    this.basicAck(deliveryTag, multiple, it)
+    this.basicAck(deliveryTag, multiple, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -42,13 +46,12 @@ suspend fun RabbitMQClient.basicAckAwait(deliveryTag: Long, multiple: Boolean): 
  * @param deliveryTag 
  * @param multiple 
  * @param requeue 
- * @return [JsonObject]
  *
  * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
  */
-suspend fun RabbitMQClient.basicNackAwait(deliveryTag: Long, multiple: Boolean, requeue: Boolean): JsonObject {
+suspend fun RabbitMQClient.basicNackAwait(deliveryTag: Long, multiple: Boolean, requeue: Boolean): Unit {
   return awaitResult {
-    this.basicNack(deliveryTag, multiple, requeue, it)
+    this.basicNack(deliveryTag, multiple, requeue, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -57,11 +60,11 @@ suspend fun RabbitMQClient.basicNackAwait(deliveryTag: Long, multiple: Boolean, 
  *
  * @param queue 
  * @param autoAck 
- * @return [JsonObject]
+ * @return [RabbitMQMessage]
  *
  * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
  */
-suspend fun RabbitMQClient.basicGetAwait(queue: String, autoAck: Boolean): JsonObject {
+suspend fun RabbitMQClient.basicGetAwait(queue: String, autoAck: Boolean): RabbitMQMessage {
   return awaitResult {
     this.basicGet(queue, autoAck, it)
   }
@@ -101,13 +104,13 @@ suspend fun RabbitMQClient.basicConsumerAwait(queue: String, options: QueueOptio
  *
  * @param exchange 
  * @param routingKey 
- * @param message 
+ * @param body 
  *
  * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
  */
-suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, message: JsonObject): Unit {
+suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, body: Buffer): Unit {
   return awaitResult {
-    this.basicPublish(exchange, routingKey, message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.basicPublish(exchange, routingKey, body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -280,71 +283,6 @@ suspend fun RabbitMQClient.queueDeclareAutoAwait(): JsonObject {
 }
 
 /**
- * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeclare]
- *
- * @param queue 
- * @param durable 
- * @param exclusive 
- * @param autoDelete 
- * @return [JsonObject]
- *
- * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
- */
-suspend fun RabbitMQClient.queueDeclareAwait(queue: String, durable: Boolean, exclusive: Boolean, autoDelete: Boolean): JsonObject {
-  return awaitResult {
-    this.queueDeclare(queue, durable, exclusive, autoDelete, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeclare]
- *
- * @param queue 
- * @param durable 
- * @param exclusive 
- * @param autoDelete 
- * @param config 
- * @return [JsonObject]
- *
- * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
- */
-suspend fun RabbitMQClient.queueDeclareAwait(queue: String, durable: Boolean, exclusive: Boolean, autoDelete: Boolean, config: JsonObject): JsonObject {
-  return awaitResult {
-    this.queueDeclare(queue, durable, exclusive, autoDelete, config, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDelete]
- *
- * @param queue 
- * @return [JsonObject]
- *
- * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
- */
-suspend fun RabbitMQClient.queueDeleteAwait(queue: String): JsonObject {
-  return awaitResult {
-    this.queueDelete(queue, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeleteIf]
- *
- * @param queue 
- * @param ifUnused 
- * @param ifEmpty 
- * @return [JsonObject]
- *
- * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
- */
-suspend fun RabbitMQClient.queueDeleteIfAwait(queue: String, ifUnused: Boolean, ifEmpty: Boolean): JsonObject {
-  return awaitResult {
-    this.queueDeleteIf(queue, ifUnused, ifEmpty, it)
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueBind]
  *
  * @param queue 
@@ -394,6 +332,87 @@ suspend fun RabbitMQClient.startAwait(): Unit {
 suspend fun RabbitMQClient.stopAwait(): Unit {
   return awaitResult {
     this.stop(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.basicPublish]
+ *
+ * @param exchange 
+ * @param routingKey 
+ * @param properties 
+ * @param body 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, properties: BasicProperties, body: Buffer): Unit {
+  return awaitResult {
+    this.basicPublish(exchange, routingKey, properties, body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeclare]
+ *
+ * @param queue 
+ * @param durable 
+ * @param exclusive 
+ * @param autoDelete 
+ * @return [DeclareOk]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueDeclareAwait(queue: String, durable: Boolean, exclusive: Boolean, autoDelete: Boolean): DeclareOk {
+  return awaitResult {
+    this.queueDeclare(queue, durable, exclusive, autoDelete, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeclare]
+ *
+ * @param queue 
+ * @param durable 
+ * @param exclusive 
+ * @param autoDelete 
+ * @param config 
+ * @return [DeclareOk]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueDeclareAwait(queue: String, durable: Boolean, exclusive: Boolean, autoDelete: Boolean, config: JsonObject): DeclareOk {
+  return awaitResult {
+    this.queueDeclare(queue, durable, exclusive, autoDelete, config, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDelete]
+ *
+ * @param queue 
+ * @return [DeleteOk]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueDeleteAwait(queue: String): DeleteOk {
+  return awaitResult {
+    this.queueDelete(queue, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueDeleteIf]
+ *
+ * @param queue 
+ * @param ifUnused 
+ * @param ifEmpty 
+ * @return [DeleteOk]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueDeleteIfAwait(queue: String, ifUnused: Boolean, ifEmpty: Boolean): DeleteOk {
+  return awaitResult {
+    this.queueDeleteIf(queue, ifUnused, ifEmpty, it)
   }
 }
 

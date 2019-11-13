@@ -21,13 +21,12 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Suspending version of method [io.vertx.ext.shell.term.TermServer.listen]
  *
- * @return [TermServer]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.term.TermServer] using Vert.x codegen.
  */
-suspend fun TermServer.listenAwait(): TermServer {
+suspend fun TermServer.listenAwait(): Unit {
   return awaitResult {
-    this.listen(it)
+    this.listen(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -29,6 +29,7 @@ fun jwtOptionsOf(
   leeway: Int? = null,
   noTimestamp: Boolean? = null,
   permissions: Iterable<String>? = null,
+  scopes: Iterable<String>? = null,
   subject: String? = null): JWTOptions = io.vertx.ext.jwt.JWTOptions().apply {
 
   if (algorithm != null) {
@@ -66,6 +67,9 @@ fun jwtOptionsOf(
   if (permissions != null) {
     this.setPermissions(permissions.toList())
   }
+  if (scopes != null) {
+    this.setScopes(scopes.toList())
+  }
   if (subject != null) {
     this.setSubject(subject)
   }
@@ -73,7 +77,7 @@ fun jwtOptionsOf(
 
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("jwtOptionsOf(algorithm, audience, audiences, expiresInMinutes, expiresInSeconds, header, ignoreExpiration, issuer, leeway, noTimestamp, permissions, subject)")
+  replaceWith = ReplaceWith("jwtOptionsOf(algorithm, audience, audiences, expiresInMinutes, expiresInSeconds, header, ignoreExpiration, issuer, leeway, noTimestamp, permissions, scopes, subject)")
 )
 fun JWTOptions(
   algorithm: String? = null,
@@ -87,6 +91,7 @@ fun JWTOptions(
   leeway: Int? = null,
   noTimestamp: Boolean? = null,
   permissions: Iterable<String>? = null,
+  scopes: Iterable<String>? = null,
   subject: String? = null): JWTOptions = io.vertx.ext.jwt.JWTOptions().apply {
 
   if (algorithm != null) {
@@ -123,6 +128,9 @@ fun JWTOptions(
   }
   if (permissions != null) {
     this.setPermissions(permissions.toList())
+  }
+  if (scopes != null) {
+    this.setScopes(scopes.toList())
   }
   if (subject != null) {
     this.setSubject(subject)

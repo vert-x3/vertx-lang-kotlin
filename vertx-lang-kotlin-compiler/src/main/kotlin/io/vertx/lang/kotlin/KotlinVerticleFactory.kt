@@ -22,11 +22,12 @@ import org.jetbrains.kotlin.js.descriptorUtils.*
 import org.jetbrains.kotlin.types.*
 import org.jetbrains.kotlin.types.typeUtil.*
 import java.io.*
+import java.util.concurrent.Callable
 
 open class KotlinVerticleFactory : VerticleFactory {
   override fun prefix() = "kt"
 
-  override fun createVerticle(verticleName: String, classLoader: ClassLoader): Verticle {
+  override fun createVerticle(verticleName: String?, classLoader: ClassLoader, promise: Promise<Callable<Verticle>>) {
     val resourceName = VerticleFactory.removePrefix(verticleName)
 
     var url = classLoader.getResource(resourceName)
@@ -55,11 +56,13 @@ open class KotlinVerticleFactory : VerticleFactory {
           && it.effectiveVisibility().publicApi
     }
 
-    return when (verticleClasses.size) {
-      0 -> throw IllegalStateException("No verticle classes found in the file")
-      1 -> toVerticle(verticleClasses.toList().single())
-      else -> CompositeVerticle(verticleClasses.map { it -> toVerticle(it.toPair()) })
-    }
+    promise.complete(Callable {
+      when (verticleClasses.size) {
+        0 -> throw IllegalStateException("No verticle classes found in the file")
+        1 -> toVerticle(verticleClasses.toList().single())
+        else -> CompositeVerticle(verticleClasses.map { it -> toVerticle(it.toPair()) })
+      }
+    });
   }
 
   private fun toVerticle(entry : Pair<Class<*>, ClassDescriptor>) : Verticle {
