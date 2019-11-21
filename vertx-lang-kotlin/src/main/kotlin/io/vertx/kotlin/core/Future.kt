@@ -31,3 +31,16 @@ suspend fun <T> Future<T>.setHandlerAwait(): T {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.Future.onComplete]
+ *
+ * @return [T]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.Future] using Vert.x codegen.
+ */
+suspend fun <T> Future<T>.onCompleteAwait(): T {
+  return awaitResult {
+    this.onComplete(it)
+  }
+}
+

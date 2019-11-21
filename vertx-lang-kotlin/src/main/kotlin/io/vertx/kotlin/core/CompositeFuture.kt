@@ -24,3 +24,9 @@ suspend fun CompositeFuture.setHandlerAwait(): CompositeFuture {
   }
 }
 
+suspend fun CompositeFuture.onCompleteAwait(): CompositeFuture {
+  return awaitResult {
+    this.onComplete(it)
+  }
+}
+
