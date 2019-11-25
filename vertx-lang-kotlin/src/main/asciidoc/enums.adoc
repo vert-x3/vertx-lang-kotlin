@@ -588,6 +588,34 @@ Will use user defined formatter function.
 |[[XOAUTH2]]`XOAUTH2`|-
 |===
 
+[[LoginOption]]
+== LoginOption
+
+++++
+ possible options for a login into a SMTP server
+ <br>
+ either DISABLED, OPTIONAL, REQUIRED or XOAUTH2
+ <p>
+ DISABLED means no login will be attempted
+ <p>
+ NONE means a login will be attempted if the server supports in and login credentials are set
+ <p>
+ REQUIRED means that a login will be attempted if the server supports it and the send operation will fail otherwise
+ <p>
+ XOAUTH2 means that a login will be attempted using Google Gmail Oauth2 tokens
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[DISABLED]]`DISABLED`|-
+|[[NONE]]`NONE`|-
+|[[REQUIRED]]`REQUIRED`|-
+|[[XOAUTH2]]`XOAUTH2`|-
+|===
+
 [[MatchType]]
 == MatchType
 
