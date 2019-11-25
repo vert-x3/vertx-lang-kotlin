@@ -74,7 +74,7 @@ suspend fun <T> HttpRequest<T>.sendJsonObjectAwait(body: JsonObject): HttpRespon
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-suspend fun <T> HttpRequest<T>.sendJsonAwait(body: Any): HttpResponse<T> {
+suspend fun <T> HttpRequest<T>.sendJsonAwait(body: Any?): HttpResponse<T> {
   return awaitResult {
     this.sendJson(body, it)
   }

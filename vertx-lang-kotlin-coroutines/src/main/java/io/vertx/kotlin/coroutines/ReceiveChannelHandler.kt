@@ -20,15 +20,8 @@ import io.vertx.core.Handler
 import io.vertx.core.Vertx
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ChannelIterator
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.selects.SelectClause1
 import kotlin.coroutines.CoroutineContext
 
@@ -100,6 +93,17 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
   override fun cancel(): Unit {
     return channel.cancel()
+  }
+
+  // NOTE: this is marked as "do not use". Added to compile. Never called by our test suite.
+  @InternalCoroutinesApi
+  override val onReceiveOrClosed: SelectClause1<ValueOrClosed<T>>
+    get() = TODO("not implemented")
+
+  // NOTE: this is marked as "do not use". Added to compile. Never called by our test suite.
+  @InternalCoroutinesApi
+  override suspend fun receiveOrClosed(): ValueOrClosed<T> {
+    TODO("not implemented")
   }
 }
 
