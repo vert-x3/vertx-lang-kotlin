@@ -19,13 +19,13 @@ import io.vertx.ext.shell.term.SSHTermOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PfxOptions
-import io.vertx.ext.auth.AuthOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.shell.term.SSHTermOptions] objects.
  *
  * The SSH term configuration options.
  *
+ * @param authOptions  Set the auth options.
  * @param defaultCharset  Set the default charset to use when the client does not specifies one.
  * @param host  Set the host
  * @param intputrc  The path of the <i>inputrc</i> config.
@@ -38,6 +38,7 @@ import io.vertx.ext.auth.AuthOptions
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.SSHTermOptions original] using Vert.x codegen.
  */
 fun sshTermOptionsOf(
+  authOptions: io.vertx.core.json.JsonObject? = null,
   defaultCharset: String? = null,
   host: String? = null,
   intputrc: String? = null,
@@ -46,6 +47,9 @@ fun sshTermOptionsOf(
   pfxKeyPairOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null): SSHTermOptions = io.vertx.ext.shell.term.SSHTermOptions().apply {
 
+  if (authOptions != null) {
+    this.setAuthOptions(authOptions)
+  }
   if (defaultCharset != null) {
     this.setDefaultCharset(defaultCharset)
   }
@@ -74,6 +78,7 @@ fun sshTermOptionsOf(
  *
  * The SSH term configuration options.
  *
+ * @param authOptions  Set the auth options.
  * @param defaultCharset  Set the default charset to use when the client does not specifies one.
  * @param host  Set the host
  * @param intputrc  The path of the <i>inputrc</i> config.
@@ -87,9 +92,10 @@ fun sshTermOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("sshTermOptionsOf(defaultCharset, host, intputrc, keyPairOptions, pemKeyPairOptions, pfxKeyPairOptions, port)")
+  replaceWith = ReplaceWith("sshTermOptionsOf(authOptions, defaultCharset, host, intputrc, keyPairOptions, pemKeyPairOptions, pfxKeyPairOptions, port)")
 )
 fun SSHTermOptions(
+  authOptions: io.vertx.core.json.JsonObject? = null,
   defaultCharset: String? = null,
   host: String? = null,
   intputrc: String? = null,
@@ -98,6 +104,9 @@ fun SSHTermOptions(
   pfxKeyPairOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null): SSHTermOptions = io.vertx.ext.shell.term.SSHTermOptions().apply {
 
+  if (authOptions != null) {
+    this.setAuthOptions(authOptions)
+  }
   if (defaultCharset != null) {
     this.setDefaultCharset(defaultCharset)
   }

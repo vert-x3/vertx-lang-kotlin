@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.requestAwait(address: String, message: Any): Message<T> {
+suspend fun <T> EventBus.requestAwait(address: String, message: Any?): Message<T> {
   return awaitResult {
     this.request(address, message, it)
   }
@@ -45,7 +45,7 @@ suspend fun <T> EventBus.requestAwait(address: String, message: Any): Message<T>
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-suspend fun <T> EventBus.requestAwait(address: String, message: Any, options: DeliveryOptions): Message<T> {
+suspend fun <T> EventBus.requestAwait(address: String, message: Any?, options: DeliveryOptions): Message<T> {
   return awaitResult {
     this.request(address, message, options, it)
   }

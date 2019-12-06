@@ -18,6 +18,8 @@ package io.vertx.kotlin.core.http
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpClientRequest
 import io.vertx.core.http.HttpClientResponse
+import io.vertx.core.http.HttpVersion
+import io.vertx.core.net.NetSocket
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -74,6 +76,19 @@ suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpClientRequest.sendHead]
+ *
+ * @return [HttpVersion]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
+ */
+suspend fun HttpClientRequest.sendHeadAwait(): HttpVersion {
+  return awaitResult {
+    this.sendHead(it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpClientRequest.end]
  *
  * @param chunk 
@@ -122,6 +137,19 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClientRequest.netSocket]
+ *
+ * @return [NetSocket]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
+ */
+suspend fun HttpClientRequest.netSocketAwait(): NetSocket {
+  return awaitResult {
+    this.netSocket(it)
   }
 }
 

@@ -97,7 +97,7 @@ import java.util.concurrent.TimeUnit
  * @param scopeSeparator  Set the provider scope separator
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendUnmaskedFrames  Set <code>true</code> when the client wants to skip frame masking. <p> You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing RFC6455 protocol. <p> It's <code>false</code> as default.
- * @param site  Root URL for the provider
+ * @param site  Root URL for the provider without trailing slashes
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
@@ -566,7 +566,7 @@ fun oAuth2ClientOptionsOf(
  * @param scopeSeparator  Set the provider scope separator
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendUnmaskedFrames  Set <code>true</code> when the client wants to skip frame masking. <p> You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing RFC6455 protocol. <p> It's <code>false</code> as default.
- * @param site  Root URL for the provider
+ * @param site  Root URL for the provider without trailing slashes
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
