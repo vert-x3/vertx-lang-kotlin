@@ -1503,6 +1503,64 @@ Whether an existing file, empty directory, or link should be replaced. Defaults 
 +++
 |===
 
+[[DKIMSignOptions]]
+== DKIMSignOptions
+
+++++
+
+ This represents the options used to perform DKIM Signature signing action.
+
+ See: https://tools.ietf.org/html/rfc6376
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[auid]]`@auid`|`String`|+++
+Sets the Agent or User Identifier(AUID)
++++
+|[[bodyCanonic]]`@bodyCanonic`|`link:enums.html#MessageCanonic[MessageCanonic]`|+++
+Sets the message canonicalization for email body.
++++
+|[[bodyLimit]]`@bodyLimit`|`Number (int)`|+++
+Sets the body limit to sign.
++++
+|[[copiedHeaders]]`@copiedHeaders`|`Array of String`|+++
+Sets the copied headers used in DKIM.
++++
+|[[expireTime]]`@expireTime`|`Number (long)`|+++
+Sets the expire time in seconds when the signature sign will be expired.
+
+ Success call of this method indicates that the signature sign timestamp is enabled.
++++
+|[[headerCanonic]]`@headerCanonic`|`link:enums.html#MessageCanonic[MessageCanonic]`|+++
+Sets the message canonicalization for email signedHeaders.
++++
+|[[privateKey]]`@privateKey`|`String`|+++
+Sets the PKCS#8 format private key used to sign the email.
++++
+|[[privateKeyPath]]`@privateKeyPath`|`String`|+++
+Sets the PKCS#8 format private key file path.
++++
+|[[sdid]]`@sdid`|`String`|+++
+Sets the Singing Domain Identifier(SDID).
++++
+|[[selector]]`@selector`|`String`|+++
+Sets the selector used to query the public key.
++++
+|[[signAlgo]]`@signAlgo`|`link:enums.html#DKIMSignAlgorithm[DKIMSignAlgorithm]`|+++
+Sets the signing algorithm.
++++
+|[[signatureTimestamp]]`@signatureTimestamp`|`Boolean`|+++
+Sets to enable or disable signature sign timestmap. Default is disabled.
++++
+|[[signedHeaders]]`@signedHeaders`|`Array of String`|+++
+Sets the email signedHeaders used to sign.
++++
+|===
+
 [[DatagramSocketOptions]]
 == DatagramSocketOptions
 
@@ -2765,8 +2823,8 @@ Set <code>true</code> when the server accepts unmasked frame.
 |[[alpnVersions]]`@alpnVersions`|`Array of link:enums.html#HttpVersion[HttpVersion]`|+++
 Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
 +++
-|[[authOptions]]`@authOptions`|`link:dataobjects.html#AuthOptions[AuthOptions]`|+++
-
+|[[authOptions]]`@authOptions`|`Json object`|+++
+Set the auth options.
 +++
 |[[charset]]`@charset`|`String`|+++
 Set the charset used for encoding / decoding text data from/to SockJS
@@ -3117,6 +3175,46 @@ Set whether the JDBC client is shared or non shared.
 +++
 |===
 
+[[JDBCAuthenticationOptions]]
+== JDBCAuthenticationOptions
+
+++++
+ Options configuring JDBC authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authenticationQuery]]`@authenticationQuery`|`String`|+++
+Set the authentication query to use. Use this if you want to override the
+ default authentication query.
++++
+|===
+
+[[JDBCAuthorizationOptions]]
+== JDBCAuthorizationOptions
+
+++++
+ Options configuring JDBC authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[permissionsQuery]]`@permissionsQuery`|`String`|+++
+Set the permissions query to use. Use this if you want to override the
+ default permissions query.
++++
+|[[rolesQuery]]`@rolesQuery`|`String`|+++
+Set the roles query to use. Use this if you want to override the default
+ roles query.
++++
+|===
+
 [[JWTAuthOptions]]
 == JWTAuthOptions
 
@@ -3157,8 +3255,12 @@ Set whether the JDBC client is shared or non shared.
 |[[permissions]]`@permissions`|`Array of String`|+++
 The permissions of this token.
 +++
-|[[scopeDelimiter]]`@scopeDelimiter`|`String`|-
-|[[scopes]]`@scopes`|`Array of String`|-
+|[[scopeDelimiter]]`@scopeDelimiter`|`String`|+++
+
++++
+|[[scopes]]`@scopes`|`Array of String`|+++
+
++++
 |[[subject]]`@subject`|`String`|-
 |===
 
@@ -3386,6 +3488,19 @@ set if ESMTP should be tried as first command (EHLO)
  smtp hosts on the internet. Since the client knows that is connects to a host that doesn't support ESMTP/EHLO
  in that way, the property has to be set to false.
  <p>
++++
+|[[dkimSignOption]]`@dkimSignOption`|`link:dataobjects.html#DKIMSignOptions[DKIMSignOptions]`|+++
+Sets one DKIMSignOptions for convenient.
++++
+|[[dkimSignOptions]]`@dkimSignOptions`|`Array of link:dataobjects.html#DKIMSignOptions[DKIMSignOptions]`|+++
+Sets DKIMSignOptions.
++++
+|[[enableDKIM]]`@enableDKIM`|`Boolean`|+++
+Sets true to enable DKIM Signatures, sets false to disable it.
+
+ <p>
+     This is used most for temporary disable DKIM without removing DKIM opations from current config.
+ </p>
 +++
 |[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
 Sets the list of enabled SSL/TLS protocols.
@@ -5035,7 +5150,7 @@ Set <code>true</code> when the client wants to skip frame masking.
  It's <code>false</code> as default.
 +++
 |[[site]]`@site`|`String`|+++
-Root URL for the provider
+Root URL for the provider without trailing slashes
 +++
 |[[soLinger]]`@soLinger`|`Number (int)`|+++
 Set whether SO_linger keep alive is enabled
@@ -6397,8 +6512,8 @@ If true, when you call link the factory will mount for every path
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[authOptions]]`@authOptions`|`link:dataobjects.html#AuthOptions[AuthOptions]`|+++
-
+|[[authOptions]]`@authOptions`|`Json object`|+++
+Set the auth options.
 +++
 |[[defaultCharset]]`@defaultCharset`|`String`|+++
 Set the default charset to use when the client does not specifies one.
