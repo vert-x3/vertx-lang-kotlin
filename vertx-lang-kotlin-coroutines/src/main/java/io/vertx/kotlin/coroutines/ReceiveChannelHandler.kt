@@ -95,15 +95,13 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.cancel()
   }
 
-  // NOTE: this is marked as "do not use". Added to compile. Never called by our test suite.
   @InternalCoroutinesApi
   override val onReceiveOrClosed: SelectClause1<ValueOrClosed<T>>
-    get() = TODO("not implemented")
+    get() = channel.onReceiveOrClosed
 
-  // NOTE: this is marked as "do not use". Added to compile. Never called by our test suite.
   @InternalCoroutinesApi
   override suspend fun receiveOrClosed(): ValueOrClosed<T> {
-    TODO("not implemented")
+    return channel.receiveOrClosed()
   }
 }
 
