@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param characterEncoding  Set the Java charset for encoding string values, this value is UTF-8 by default.
  * @param charset  Set the charset for the connection.
  * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
@@ -90,6 +91,7 @@ import java.util.concurrent.TimeUnit
  */
 fun mySQLConnectOptionsOf(
   cachePreparedStatements: Boolean? = null,
+  characterEncoding: String? = null,
   charset: String? = null,
   collation: String? = null,
   connectTimeout: Int? = null,
@@ -145,6 +147,9 @@ fun mySQLConnectOptionsOf(
 
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (characterEncoding != null) {
+    this.setCharacterEncoding(characterEncoding)
   }
   if (charset != null) {
     this.setCharset(charset)
@@ -316,6 +321,7 @@ fun mySQLConnectOptionsOf(
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param characterEncoding  Set the Java charset for encoding string values, this value is UTF-8 by default.
  * @param charset  Set the charset for the connection.
  * @param collation  Set the collation for the connection.
  * @param connectTimeout  Set the connect timeout
@@ -374,10 +380,11 @@ fun mySQLConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, serverRsaPublicKeyPath, serverRsaPublicKeyValue, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAffectedRows, useAlpn, user)")
+  replaceWith = ReplaceWith("mySQLConnectOptionsOf(cachePreparedStatements, characterEncoding, charset, collation, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, serverRsaPublicKeyPath, serverRsaPublicKeyValue, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAffectedRows, useAlpn, user)")
 )
 fun MySQLConnectOptions(
   cachePreparedStatements: Boolean? = null,
+  characterEncoding: String? = null,
   charset: String? = null,
   collation: String? = null,
   connectTimeout: Int? = null,
@@ -433,6 +440,9 @@ fun MySQLConnectOptions(
 
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
+  }
+  if (characterEncoding != null) {
+    this.setCharacterEncoding(characterEncoding)
   }
   if (charset != null) {
     this.setCharset(charset)
