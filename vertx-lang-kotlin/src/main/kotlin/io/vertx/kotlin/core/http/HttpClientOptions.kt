@@ -62,8 +62,8 @@ import java.util.concurrent.TimeUnit
  * @param maxPoolSize  Set the maximum pool size for connections
  * @param maxRedirects  Set to <code>maxRedirects</code> the maximum number of redirection a request can follow.
  * @param maxWaitQueueSize  Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
- * @param maxWebsocketFrameSize  Set the max WebSocket frame size
- * @param maxWebsocketMessageSize  Set the max WebSocket message size
+ * @param maxWebSocketFrameSize  Set the max WebSocket frame size
+ * @param maxWebSocketMessageSize  Set the max WebSocket message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -93,13 +93,13 @@ import java.util.concurrent.TimeUnit
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
- * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
- * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
+ * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
+ * @param tryUsePerMessageWebSocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param verifyHost  Set whether hostname verification is enabled
- * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
- * @param websocketCompressionLevel  Set the Websocket deflate compression level.
- * @param websocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
+ * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClientOptions original] using Vert.x codegen.
@@ -135,8 +135,8 @@ fun httpClientOptionsOf(
   maxPoolSize: Int? = null,
   maxRedirects: Int? = null,
   maxWaitQueueSize: Int? = null,
-  maxWebsocketFrameSize: Int? = null,
-  maxWebsocketMessageSize: Int? = null,
+  maxWebSocketFrameSize: Int? = null,
+  maxWebSocketMessageSize: Int? = null,
   metricsName: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
@@ -166,13 +166,13 @@ fun httpClientOptionsOf(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
-  tryUsePerFrameWebsocketCompression: Boolean? = null,
-  tryUsePerMessageWebsocketCompression: Boolean? = null,
+  tryUsePerFrameWebSocketCompression: Boolean? = null,
+  tryUsePerMessageWebSocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   verifyHost: Boolean? = null,
-  websocketCompressionAllowClientNoContext: Boolean? = null,
-  websocketCompressionLevel: Int? = null,
-  websocketCompressionRequestServerNoContext: Boolean? = null): HttpClientOptions = io.vertx.core.http.HttpClientOptions().apply {
+  webSocketCompressionAllowClientNoContext: Boolean? = null,
+  webSocketCompressionLevel: Int? = null,
+  webSocketCompressionRequestServerNoContext: Boolean? = null): HttpClientOptions = io.vertx.core.http.HttpClientOptions().apply {
 
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
@@ -270,11 +270,11 @@ fun httpClientOptionsOf(
   if (maxWaitQueueSize != null) {
     this.setMaxWaitQueueSize(maxWaitQueueSize)
   }
-  if (maxWebsocketFrameSize != null) {
-    this.setMaxWebsocketFrameSize(maxWebsocketFrameSize)
+  if (maxWebSocketFrameSize != null) {
+    this.setMaxWebSocketFrameSize(maxWebSocketFrameSize)
   }
-  if (maxWebsocketMessageSize != null) {
-    this.setMaxWebsocketMessageSize(maxWebsocketMessageSize)
+  if (maxWebSocketMessageSize != null) {
+    this.setMaxWebSocketMessageSize(maxWebSocketMessageSize)
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
@@ -363,11 +363,11 @@ fun httpClientOptionsOf(
   if (tryUseCompression != null) {
     this.setTryUseCompression(tryUseCompression)
   }
-  if (tryUsePerFrameWebsocketCompression != null) {
-    this.setTryUsePerFrameWebsocketCompression(tryUsePerFrameWebsocketCompression)
+  if (tryUsePerFrameWebSocketCompression != null) {
+    this.setTryUsePerFrameWebSocketCompression(tryUsePerFrameWebSocketCompression)
   }
-  if (tryUsePerMessageWebsocketCompression != null) {
-    this.setTryUsePerMessageWebsocketCompression(tryUsePerMessageWebsocketCompression)
+  if (tryUsePerMessageWebSocketCompression != null) {
+    this.setTryUsePerMessageWebSocketCompression(tryUsePerMessageWebSocketCompression)
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
@@ -375,14 +375,14 @@ fun httpClientOptionsOf(
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
   }
-  if (websocketCompressionAllowClientNoContext != null) {
-    this.setWebsocketCompressionAllowClientNoContext(websocketCompressionAllowClientNoContext)
+  if (webSocketCompressionAllowClientNoContext != null) {
+    this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)
   }
-  if (websocketCompressionLevel != null) {
-    this.setWebsocketCompressionLevel(websocketCompressionLevel)
+  if (webSocketCompressionLevel != null) {
+    this.setWebSocketCompressionLevel(webSocketCompressionLevel)
   }
-  if (websocketCompressionRequestServerNoContext != null) {
-    this.setWebsocketCompressionRequestServerNoContext(websocketCompressionRequestServerNoContext)
+  if (webSocketCompressionRequestServerNoContext != null) {
+    this.setWebSocketCompressionRequestServerNoContext(webSocketCompressionRequestServerNoContext)
   }
 }
 
@@ -421,8 +421,8 @@ fun httpClientOptionsOf(
  * @param maxPoolSize  Set the maximum pool size for connections
  * @param maxRedirects  Set to <code>maxRedirects</code> the maximum number of redirection a request can follow.
  * @param maxWaitQueueSize  Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
- * @param maxWebsocketFrameSize  Set the max WebSocket frame size
- * @param maxWebsocketMessageSize  Set the max WebSocket message size
+ * @param maxWebSocketFrameSize  Set the max WebSocket frame size
+ * @param maxWebSocketMessageSize  Set the max WebSocket message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -452,20 +452,20 @@ fun httpClientOptionsOf(
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
- * @param tryUsePerFrameWebsocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
- * @param tryUsePerMessageWebsocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
+ * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
+ * @param tryUsePerMessageWebSocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
  * @param verifyHost  Set whether hostname verification is enabled
- * @param websocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
- * @param websocketCompressionLevel  Set the Websocket deflate compression level.
- * @param websocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
+ * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpClientOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, verifyHost, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("httpClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
 )
 fun HttpClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -498,8 +498,8 @@ fun HttpClientOptions(
   maxPoolSize: Int? = null,
   maxRedirects: Int? = null,
   maxWaitQueueSize: Int? = null,
-  maxWebsocketFrameSize: Int? = null,
-  maxWebsocketMessageSize: Int? = null,
+  maxWebSocketFrameSize: Int? = null,
+  maxWebSocketMessageSize: Int? = null,
   metricsName: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
@@ -529,13 +529,13 @@ fun HttpClientOptions(
   trustAll: Boolean? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
-  tryUsePerFrameWebsocketCompression: Boolean? = null,
-  tryUsePerMessageWebsocketCompression: Boolean? = null,
+  tryUsePerFrameWebSocketCompression: Boolean? = null,
+  tryUsePerMessageWebSocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
   verifyHost: Boolean? = null,
-  websocketCompressionAllowClientNoContext: Boolean? = null,
-  websocketCompressionLevel: Int? = null,
-  websocketCompressionRequestServerNoContext: Boolean? = null): HttpClientOptions = io.vertx.core.http.HttpClientOptions().apply {
+  webSocketCompressionAllowClientNoContext: Boolean? = null,
+  webSocketCompressionLevel: Int? = null,
+  webSocketCompressionRequestServerNoContext: Boolean? = null): HttpClientOptions = io.vertx.core.http.HttpClientOptions().apply {
 
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
@@ -633,11 +633,11 @@ fun HttpClientOptions(
   if (maxWaitQueueSize != null) {
     this.setMaxWaitQueueSize(maxWaitQueueSize)
   }
-  if (maxWebsocketFrameSize != null) {
-    this.setMaxWebsocketFrameSize(maxWebsocketFrameSize)
+  if (maxWebSocketFrameSize != null) {
+    this.setMaxWebSocketFrameSize(maxWebSocketFrameSize)
   }
-  if (maxWebsocketMessageSize != null) {
-    this.setMaxWebsocketMessageSize(maxWebsocketMessageSize)
+  if (maxWebSocketMessageSize != null) {
+    this.setMaxWebSocketMessageSize(maxWebSocketMessageSize)
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
@@ -726,11 +726,11 @@ fun HttpClientOptions(
   if (tryUseCompression != null) {
     this.setTryUseCompression(tryUseCompression)
   }
-  if (tryUsePerFrameWebsocketCompression != null) {
-    this.setTryUsePerFrameWebsocketCompression(tryUsePerFrameWebsocketCompression)
+  if (tryUsePerFrameWebSocketCompression != null) {
+    this.setTryUsePerFrameWebSocketCompression(tryUsePerFrameWebSocketCompression)
   }
-  if (tryUsePerMessageWebsocketCompression != null) {
-    this.setTryUsePerMessageWebsocketCompression(tryUsePerMessageWebsocketCompression)
+  if (tryUsePerMessageWebSocketCompression != null) {
+    this.setTryUsePerMessageWebSocketCompression(tryUsePerMessageWebSocketCompression)
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
@@ -738,14 +738,14 @@ fun HttpClientOptions(
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
   }
-  if (websocketCompressionAllowClientNoContext != null) {
-    this.setWebsocketCompressionAllowClientNoContext(websocketCompressionAllowClientNoContext)
+  if (webSocketCompressionAllowClientNoContext != null) {
+    this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)
   }
-  if (websocketCompressionLevel != null) {
-    this.setWebsocketCompressionLevel(websocketCompressionLevel)
+  if (webSocketCompressionLevel != null) {
+    this.setWebSocketCompressionLevel(webSocketCompressionLevel)
   }
-  if (websocketCompressionRequestServerNoContext != null) {
-    this.setWebsocketCompressionRequestServerNoContext(websocketCompressionRequestServerNoContext)
+  if (webSocketCompressionRequestServerNoContext != null) {
+    this.setWebSocketCompressionRequestServerNoContext(webSocketCompressionRequestServerNoContext)
   }
 }
 

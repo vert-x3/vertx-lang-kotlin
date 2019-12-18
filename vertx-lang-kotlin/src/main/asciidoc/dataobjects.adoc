@@ -1241,10 +1241,10 @@ Set to <code>maxRedirects</code> the maximum number of redirection a request can
 Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in
  a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the max websocket frame size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the max websocket message size
 +++
 |[[metricsName]]`@metricsName`|`String`|+++
@@ -1342,13 +1342,13 @@ Set the trust options in jks format, aka Java truststore
 |[[tryUseCompression]]`@tryUseCompression`|`Boolean`|+++
 Set whether compression is enabled
 +++
-|[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerFrameWebSocketCompression]]`@tryUsePerFrameWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-frame deflate compression extension.
 +++
-|[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerMessageWebSocketCompression]]`@tryUsePerMessageWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-message deflate compression extension.
 +++
-|[[tryWebsocketDeflateFrameCompression]]`@tryWebsocketDeflateFrameCompression`|`Boolean`|+++
+|[[tryWebSocketDeflateFrameCompression]]`@tryWebSocketDeflateFrameCompression`|`Boolean`|+++
 
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
@@ -1363,14 +1363,14 @@ Sets whether the Web Client should send a user agent header. Defaults to true.
 |[[verifyHost]]`@verifyHost`|`Boolean`|+++
 Set whether hostname verification is enabled
 +++
-|[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
+|[[webSocketCompressionAllowClientNoContext]]`@webSocketCompressionAllowClientNoContext`|`Boolean`|+++
 Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set the Websocket deflate compression level.
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
+Set the WebSocket deflate compression level.
 +++
-|[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
+|[[webSocketCompressionRequestServerNoContext]]`@webSocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
@@ -2432,10 +2432,10 @@ Set to <code>maxRedirects</code> the maximum number of redirection a request can
 Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in
  a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the max WebSocket frame size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the max WebSocket message size
 +++
 |[[metricsName]]`@metricsName`|`String`|+++
@@ -2532,13 +2532,13 @@ Set the trust options in jks format, aka Java truststore
 |[[tryUseCompression]]`@tryUseCompression`|`Boolean`|+++
 Set whether compression is enabled
 +++
-|[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerFrameWebSocketCompression]]`@tryUsePerFrameWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-frame deflate compression extension.
 +++
-|[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerMessageWebSocketCompression]]`@tryUsePerMessageWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-message deflate compression extension.
 +++
-|[[tryWebsocketDeflateFrameCompression]]`@tryWebsocketDeflateFrameCompression`|`Boolean`|+++
+|[[tryWebSocketDeflateFrameCompression]]`@tryWebSocketDeflateFrameCompression`|`Boolean`|+++
 
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
@@ -2547,14 +2547,14 @@ Set the ALPN usage.
 |[[verifyHost]]`@verifyHost`|`Boolean`|+++
 Set whether hostname verification is enabled
 +++
-|[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
+|[[webSocketCompressionAllowClientNoContext]]`@webSocketCompressionAllowClientNoContext`|`Boolean`|+++
 Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set the Websocket deflate compression level.
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
+Set the WebSocket deflate compression level.
 +++
-|[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
+|[[webSocketCompressionRequestServerNoContext]]`@webSocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
@@ -2703,10 +2703,10 @@ Set the maximum length of all headers for HTTP/1.x .
 |[[maxInitialLineLength]]`@maxInitialLineLength`|`Number (int)`|+++
 Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the maximum WebSocket frames size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the maximum WebSocket message size
 +++
 |[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
@@ -2716,10 +2716,10 @@ Set the key/cert store options in pem format.
 |[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
 Set the trust options in pem format
 +++
-|[[perFrameWebsocketCompressionSupported]]`@perFrameWebsocketCompressionSupported`|`Boolean`|+++
+|[[perFrameWebSocketCompressionSupported]]`@perFrameWebSocketCompressionSupported`|`Boolean`|+++
 Enable or disable support for the WebSocket per-frame deflate compression extension.
 +++
-|[[perMessageWebsocketCompressionSupported]]`@perMessageWebsocketCompressionSupported`|`Boolean`|+++
+|[[perMessageWebSocketCompressionSupported]]`@perMessageWebSocketCompressionSupported`|`Boolean`|+++
 Enable or disable support for WebSocket per-message deflate compression extension.
 +++
 |[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
@@ -2784,19 +2784,19 @@ Set the trust options in jks format, aka Java truststore
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
 +++
-|[[websocketAllowServerNoContext]]`@websocketAllowServerNoContext`|`Boolean`|+++
+|[[webSocketAllowServerNoContext]]`@webSocketAllowServerNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message
  deflate compression extension offered by the client.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
 Set the WebSocket compression level.
 +++
-|[[websocketPreferredClientNoContext]]`@websocketPreferredClientNoContext`|`Boolean`|+++
+|[[webSocketPreferredClientNoContext]]`@webSocketPreferredClientNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message
  deflate compression extension offered by the client.
 +++
-|[[websocketSubProtocols]]`@websocketSubProtocols`|`String`|+++
-Set the WebSocket sub-protocols supported by the server.
+|[[webSocketSubProtocols]]`@webSocketSubProtocols`|`Array of String`|+++
+Set the WebSocket list of sub-protocol supported by the server.
 +++
 |===
 
@@ -2921,10 +2921,10 @@ Set the maximum length of all headers for HTTP/1.x .
 |[[maxInitialLineLength]]`@maxInitialLineLength`|`Number (int)`|+++
 Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the maximum WebSocket frames size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the maximum WebSocket message size
 +++
 |[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
@@ -2934,10 +2934,10 @@ Set the key/cert store options in pem format.
 |[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
 Set the trust options in pem format
 +++
-|[[perFrameWebsocketCompressionSupported]]`@perFrameWebsocketCompressionSupported`|`Boolean`|+++
+|[[perFrameWebSocketCompressionSupported]]`@perFrameWebSocketCompressionSupported`|`Boolean`|+++
 Enable or disable support for the WebSocket per-frame deflate compression extension.
 +++
-|[[perMessageWebsocketCompressionSupported]]`@perMessageWebsocketCompressionSupported`|`Boolean`|+++
+|[[perMessageWebSocketCompressionSupported]]`@perMessageWebSocketCompressionSupported`|`Boolean`|+++
 Enable or disable support for WebSocket per-message deflate compression extension.
 +++
 |[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
@@ -3017,19 +3017,19 @@ Set the ALPN usage.
 |[[vertsShellJsResource]]`@vertsShellJsResource`|`Buffer`|+++
 Set <code>vertxshell.js</code> resource to use.
 +++
-|[[websocketAllowServerNoContext]]`@websocketAllowServerNoContext`|`Boolean`|+++
+|[[webSocketAllowServerNoContext]]`@webSocketAllowServerNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message
  deflate compression extension offered by the client.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
 Set the WebSocket compression level.
 +++
-|[[websocketPreferredClientNoContext]]`@websocketPreferredClientNoContext`|`Boolean`|+++
+|[[webSocketPreferredClientNoContext]]`@webSocketPreferredClientNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message
  deflate compression extension offered by the client.
 +++
-|[[websocketSubProtocols]]`@websocketSubProtocols`|`String`|+++
-Set the WebSocket sub-protocols supported by the server.
+|[[webSocketSubProtocols]]`@webSocketSubProtocols`|`Array of String`|+++
+Set the WebSocket list of sub-protocol supported by the server.
 +++
 |===
 
@@ -3332,6 +3332,7 @@ Set the key store as a buffer
 |===
 ^|Name | Type ^| Description
 |[[password]]`@password`|`String`|-
+|[[passwordProtection]]`@passwordProtection`|`String`|-
 |[[path]]`@path`|`String`|-
 |[[type]]`@type`|`String`|-
 |===
@@ -3873,6 +3874,59 @@ The property name to be used to set the name of the field, where the username is
 +++
 |===
 
+[[MongoAuthenticationOptions]]
+== MongoAuthenticationOptions
+
+++++
+ Options configuring Mongo authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[collectionName]]`@collectionName`|`String`|+++
+The property name to be used to set the name of the collection inside the config.
++++
+|[[passwordCredentialField]]`@passwordCredentialField`|`String`|-
+|[[passwordField]]`@passwordField`|`String`|+++
+The property name to be used to set the name of the field, where the password is stored inside
++++
+|[[usernameCredentialField]]`@usernameCredentialField`|`String`|+++
+The property name to be used to set the name of the field, where the username for the credentials is stored inside.
++++
+|[[usernameField]]`@usernameField`|`String`|+++
+The property name to be used to set the name of the field, where the username is stored inside.
++++
+|===
+
+[[MongoAuthorizationOptions]]
+== MongoAuthorizationOptions
+
+++++
+ Options configuring Mongo authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[collectionName]]`@collectionName`|`String`|+++
+The property name to be used to set the name of the collection inside the config.
++++
+|[[permissionField]]`@permissionField`|`String`|+++
+The property name to be used to set the name of the field, where the permissions are stored inside.
++++
+|[[roleField]]`@roleField`|`String`|+++
+The property name to be used to set the name of the field, where the roles are stored inside.
++++
+|[[usernameField]]`@usernameField`|`String`|+++
+The property name to be used to set the name of the field, where the username is stored inside.
++++
+|===
+
 [[MongoClientBulkWriteResult]]
 == MongoClientBulkWriteResult
 
@@ -4346,6 +4400,9 @@ Specify the user account to be used for the authentication.
 ^|Name | Type ^| Description
 |[[cachePreparedStatements]]`@cachePreparedStatements`|`Boolean`|+++
 Set whether prepared statements cache should be enabled.
++++
+|[[characterEncoding]]`@characterEncoding`|`String`|+++
+Set the Java charset for encoding string values, this value is UTF-8 by default.
 +++
 |[[charset]]`@charset`|`String`|+++
 Set the charset for the connection.
@@ -5079,10 +5136,10 @@ Set to <code>maxRedirects</code> the maximum number of redirection a request can
 Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in
  a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the max WebSocket frame size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the max WebSocket message size
 +++
 |[[metricsName]]`@metricsName`|`String`|+++
@@ -5200,13 +5257,13 @@ Set the trust options in jks format, aka Java truststore
 |[[tryUseCompression]]`@tryUseCompression`|`Boolean`|+++
 Set whether compression is enabled
 +++
-|[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerFrameWebSocketCompression]]`@tryUsePerFrameWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-frame deflate compression extension.
 +++
-|[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerMessageWebSocketCompression]]`@tryUsePerMessageWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-message deflate compression extension.
 +++
-|[[tryWebsocketDeflateFrameCompression]]`@tryWebsocketDeflateFrameCompression`|`Boolean`|+++
+|[[tryWebSocketDeflateFrameCompression]]`@tryWebSocketDeflateFrameCompression`|`Boolean`|+++
 
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
@@ -5228,14 +5285,14 @@ Set the provider userInfo resource path
 |[[verifyHost]]`@verifyHost`|`Boolean`|+++
 Set whether hostname verification is enabled
 +++
-|[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
+|[[webSocketCompressionAllowClientNoContext]]`@webSocketCompressionAllowClientNoContext`|`Boolean`|+++
 Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set the Websocket deflate compression level.
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
+Set the WebSocket deflate compression level.
 +++
-|[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
+|[[webSocketCompressionRequestServerNoContext]]`@webSocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
@@ -6096,7 +6153,7 @@ Set proxy username.
 == PubSecKeyOptions
 
 ++++
- Options describing how a Cryptographic Key.
+ Options describing Key stored in PEM format.
 ++++
 '''
 
@@ -6105,7 +6162,11 @@ Set proxy username.
 |===
 ^|Name | Type ^| Description
 |[[algorithm]]`@algorithm`|`String`|-
+|[[buffer]]`@buffer`|`String`|+++
+The PEM or Secret key buffer
++++
 |[[certificate]]`@certificate`|`Boolean`|-
+|[[id]]`@id`|`String`|-
 |[[publicKey]]`@publicKey`|`String`|-
 |[[secretKey]]`@secretKey`|`String`|-
 |[[symmetric]]`@symmetric`|`Boolean`|-
@@ -6322,6 +6383,16 @@ Set the desired client type to be created.
 |[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
 Set whether or not to use slave nodes (only considered in Cluster mode).
 +++
+|===
+
+[[RelayParty]]
+== RelayParty
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
 |===
 
 [[ReportOptions]]
@@ -8181,6 +8252,43 @@ When true, an embedded server will init to expose metrics with Prometheus format
 +++
 |===
 
+[[WebAuthnInfo]]
+== WebAuthnInfo
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[challenge]]`@challenge`|`String`|-
+|[[username]]`@username`|`String`|-
+|[[webauthn]]`@webauthn`|`Json object`|-
+|===
+
+[[WebAuthnOptions]]
+== WebAuthnOptions
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[attestation]]`@attestation`|`link:enums.html#Attestation[Attestation]`|-
+|[[authenticatorAttachment]]`@authenticatorAttachment`|`link:enums.html#AuthenticatorAttachment[AuthenticatorAttachment]`|-
+|[[authenticatorSelection]]`@authenticatorSelection`|`Json object`|-
+|[[challengeLength]]`@challengeLength`|`Number (int)`|-
+|[[origin]]`@origin`|`String`|-
+|[[pubKeyCredParams]]`@pubKeyCredParams`|`Array of String`|-
+|[[requireResidentKey]]`@requireResidentKey`|`Boolean`|-
+|[[rpIcon]]`@rpIcon`|`String`|-
+|[[rpId]]`@rpId`|`String`|-
+|[[rpName]]`@rpName`|`String`|-
+|[[rpObject]]`@rpObject`|`Json object`|-
+|[[timeout]]`@timeout`|`Number (int)`|-
+|[[transports]]`@transports`|`Array of String`|-
+|[[userVerification]]`@userVerification`|`link:enums.html#UserVerification[UserVerification]`|-
+|===
+
 [[WebClientOptions]]
 == WebClientOptions
 
@@ -8309,10 +8417,10 @@ Set to <code>maxRedirects</code> the maximum number of redirection a request can
 Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in
  a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
 +++
-|[[maxWebsocketFrameSize]]`@maxWebsocketFrameSize`|`Number (int)`|+++
+|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
 Set the max WebSocket frame size
 +++
-|[[maxWebsocketMessageSize]]`@maxWebsocketMessageSize`|`Number (int)`|+++
+|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
 Set the max WebSocket message size
 +++
 |[[metricsName]]`@metricsName`|`String`|+++
@@ -8409,13 +8517,13 @@ Set the trust options in jks format, aka Java truststore
 |[[tryUseCompression]]`@tryUseCompression`|`Boolean`|+++
 Set whether compression is enabled
 +++
-|[[tryUsePerFrameWebsocketCompression]]`@tryUsePerFrameWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerFrameWebSocketCompression]]`@tryUsePerFrameWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-frame deflate compression extension.
 +++
-|[[tryUsePerMessageWebsocketCompression]]`@tryUsePerMessageWebsocketCompression`|`Boolean`|+++
+|[[tryUsePerMessageWebSocketCompression]]`@tryUsePerMessageWebSocketCompression`|`Boolean`|+++
 Set whether the client will offer the WebSocket per-message deflate compression extension.
 +++
-|[[tryWebsocketDeflateFrameCompression]]`@tryWebsocketDeflateFrameCompression`|`Boolean`|+++
+|[[tryWebSocketDeflateFrameCompression]]`@tryWebSocketDeflateFrameCompression`|`Boolean`|+++
 
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
@@ -8430,14 +8538,14 @@ Sets whether the Web Client should send a user agent header. Defaults to true.
 |[[verifyHost]]`@verifyHost`|`Boolean`|+++
 Set whether hostname verification is enabled
 +++
-|[[websocketCompressionAllowClientNoContext]]`@websocketCompressionAllowClientNoContext`|`Boolean`|+++
+|[[webSocketCompressionAllowClientNoContext]]`@webSocketCompressionAllowClientNoContext`|`Boolean`|+++
 Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++
-|[[websocketCompressionLevel]]`@websocketCompressionLevel`|`Number (int)`|+++
-Set the Websocket deflate compression level.
+|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
+Set the WebSocket deflate compression level.
 +++
-|[[websocketCompressionRequestServerNoContext]]`@websocketCompressionRequestServerNoContext`|`Boolean`|+++
+|[[webSocketCompressionRequestServerNoContext]]`@webSocketCompressionRequestServerNoContext`|`Boolean`|+++
 Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
  deflate compression extension will be offered.
 +++

@@ -57,7 +57,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
- * @param secured  Enables or disables the server security feature. It requires an [io.vertx.ext.auth.AuthProvider] handler.
+ * @param secured  Enables or disables the server security feature. It requires an [io.vertx.ext.auth.authentication.AuthenticationProvider] handler.
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendErrorOnNoSubscriptions  Sets whether or not an error is sent to the client when this client sends a message to an not subscribed destinations (no subscriptions on this destination).
  * @param sni  Set whether the server supports Server Name Indiciation
@@ -321,7 +321,7 @@ fun stompServerOptionsOf(
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
- * @param secured  Enables or disables the server security feature. It requires an [io.vertx.ext.auth.AuthProvider] handler.
+ * @param secured  Enables or disables the server security feature. It requires an [io.vertx.ext.auth.authentication.AuthenticationProvider] handler.
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendErrorOnNoSubscriptions  Sets whether or not an error is sent to the client when this client sends a message to an not subscribed destinations (no subscriptions on this destination).
  * @param sni  Set whether the server supports Server Name Indiciation
