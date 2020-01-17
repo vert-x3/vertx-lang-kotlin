@@ -14,7 +14,7 @@
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
-    <graphql.java.major.version>13</graphql.java.major.version>
+    <graphql.java.major.version>14</graphql.java.major.version>
     <graphql.java.version>${graphql.java.major.version}.0</graphql.java.version>
     <datastax-driver.minor.version>3.5</datastax-driver.minor.version>
     <datastax-driver.version>${datastax-driver.minor.version}.0</datastax-driver.version>
