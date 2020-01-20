@@ -397,30 +397,6 @@ Salt is NOT stored in the database, but defined as external value like applicati
 |[[ANY]]`ANY`|-
 |===
 
-[[HttpMethod]]
-== HttpMethod
-
-++++
- Represents an HTTP method
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[OPTIONS]]`OPTIONS`|-
-|[[GET]]`GET`|-
-|[[HEAD]]`HEAD`|-
-|[[POST]]`POST`|-
-|[[PUT]]`PUT`|-
-|[[DELETE]]`DELETE`|-
-|[[TRACE]]`TRACE`|-
-|[[CONNECT]]`CONNECT`|-
-|[[PATCH]]`PATCH`|-
-|[[OTHER]]`OTHER`|-
-|===
-
 [[HttpVersion]]
 == HttpVersion
 

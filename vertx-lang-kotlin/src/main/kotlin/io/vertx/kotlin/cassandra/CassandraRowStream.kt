@@ -15,7 +15,7 @@
  */
 package io.vertx.kotlin.cassandra
 
-import com.datastax.driver.core.Row
+import com.datastax.oss.driver.api.core.cql.Row
 import io.vertx.cassandra.CassandraRowStream
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
