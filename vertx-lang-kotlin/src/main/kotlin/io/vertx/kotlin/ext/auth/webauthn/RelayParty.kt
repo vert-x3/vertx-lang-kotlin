@@ -18,16 +18,38 @@ package io.vertx.kotlin.ext.auth.webauthn
 import io.vertx.ext.auth.webauthn.RelayParty
 
 fun relayPartyOf(
-): RelayParty = io.vertx.ext.auth.webauthn.RelayParty().apply {
+  icon: String? = null,
+  id: String? = null,
+  name: String? = null): RelayParty = io.vertx.ext.auth.webauthn.RelayParty().apply {
 
+  if (icon != null) {
+    this.setIcon(icon)
+  }
+  if (id != null) {
+    this.setId(id)
+  }
+  if (name != null) {
+    this.setName(name)
+  }
 }
 
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("relayPartyOf()")
+  replaceWith = ReplaceWith("relayPartyOf(icon, id, name)")
 )
 fun RelayParty(
-): RelayParty = io.vertx.ext.auth.webauthn.RelayParty().apply {
+  icon: String? = null,
+  id: String? = null,
+  name: String? = null): RelayParty = io.vertx.ext.auth.webauthn.RelayParty().apply {
 
+  if (icon != null) {
+    this.setIcon(icon)
+  }
+  if (id != null) {
+    this.setId(id)
+  }
+  if (name != null) {
+    this.setName(name)
+  }
 }
 

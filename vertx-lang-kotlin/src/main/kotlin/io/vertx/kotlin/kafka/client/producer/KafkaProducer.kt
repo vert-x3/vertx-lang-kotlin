@@ -59,6 +59,30 @@ suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): U
   }
 }
 
+suspend fun <K,V> KafkaProducer<K,V>.initTransactionsAwait(): Unit {
+  return awaitResult {
+    this.initTransactions(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+suspend fun <K,V> KafkaProducer<K,V>.beginTransactionAwait(): Unit {
+  return awaitResult {
+    this.beginTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+suspend fun <K,V> KafkaProducer<K,V>.commitTransactionAwait(): Unit {
+  return awaitResult {
+    this.commitTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+suspend fun <K,V> KafkaProducer<K,V>.abortTransactionAwait(): Unit {
+  return awaitResult {
+    this.abortTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
 /**
  * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.send]
  *

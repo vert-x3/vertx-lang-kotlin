@@ -18,6 +18,7 @@ package io.vertx.kotlin.ext.auth.webauthn
 import io.vertx.ext.auth.webauthn.WebAuthnOptions
 import io.vertx.ext.auth.webauthn.Attestation
 import io.vertx.ext.auth.webauthn.AuthenticatorAttachment
+import io.vertx.ext.auth.webauthn.RelayParty
 import io.vertx.ext.auth.webauthn.UserVerification
 
 fun webAuthnOptionsOf(
@@ -26,10 +27,8 @@ fun webAuthnOptionsOf(
   challengeLength: Int? = null,
   origin: String? = null,
   pubKeyCredParams: Iterable<String>? = null,
+  relayParty: io.vertx.ext.auth.webauthn.RelayParty? = null,
   requireResidentKey: Boolean? = null,
-  rpIcon: String? = null,
-  rpId: String? = null,
-  rpName: String? = null,
   timeout: Int? = null,
   transports: Iterable<String>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
@@ -49,17 +48,11 @@ fun webAuthnOptionsOf(
   if (pubKeyCredParams != null) {
     this.setPubKeyCredParams(pubKeyCredParams.toSet())
   }
+  if (relayParty != null) {
+    this.setRelayParty(relayParty)
+  }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
-  }
-  if (rpIcon != null) {
-    this.setRpIcon(rpIcon)
-  }
-  if (rpId != null) {
-    this.setRpId(rpId)
-  }
-  if (rpName != null) {
-    this.setRpName(rpName)
   }
   if (timeout != null) {
     this.setTimeout(timeout)
@@ -74,7 +67,7 @@ fun webAuthnOptionsOf(
 
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webAuthnOptionsOf(attestation, authenticatorAttachment, challengeLength, origin, pubKeyCredParams, requireResidentKey, rpIcon, rpId, rpName, timeout, transports, userVerification)")
+  replaceWith = ReplaceWith("webAuthnOptionsOf(attestation, authenticatorAttachment, challengeLength, origin, pubKeyCredParams, relayParty, requireResidentKey, timeout, transports, userVerification)")
 )
 fun WebAuthnOptions(
   attestation: Attestation? = null,
@@ -82,10 +75,8 @@ fun WebAuthnOptions(
   challengeLength: Int? = null,
   origin: String? = null,
   pubKeyCredParams: Iterable<String>? = null,
+  relayParty: io.vertx.ext.auth.webauthn.RelayParty? = null,
   requireResidentKey: Boolean? = null,
-  rpIcon: String? = null,
-  rpId: String? = null,
-  rpName: String? = null,
   timeout: Int? = null,
   transports: Iterable<String>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
@@ -105,17 +96,11 @@ fun WebAuthnOptions(
   if (pubKeyCredParams != null) {
     this.setPubKeyCredParams(pubKeyCredParams.toSet())
   }
+  if (relayParty != null) {
+    this.setRelayParty(relayParty)
+  }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
-  }
-  if (rpIcon != null) {
-    this.setRpIcon(rpIcon)
-  }
-  if (rpId != null) {
-    this.setRpId(rpId)
-  }
-  if (rpName != null) {
-    this.setRpName(rpName)
   }
   if (timeout != null) {
     this.setTimeout(timeout)

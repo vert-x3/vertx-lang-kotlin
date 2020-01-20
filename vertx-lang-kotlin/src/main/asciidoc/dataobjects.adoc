@@ -589,14 +589,11 @@ Set the write option
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[contactPoints]]`@contactPoints`|`Array of String`|+++
-Set a list of hosts, where some of cluster nodes is located.
+|[[contactPoints]]`@contactPoints`|`Number (int)`|+++
+Adds a contact point to use for the initial connection to the cluster
 +++
 |[[keyspace]]`@keyspace`|`String`|+++
 Set the keyspace to use when creating the Cassandra session. Defaults to <code>null</code>.
-+++
-|[[port]]`@port`|`Number (int)`|+++
-Set which port should be used for all the hosts to connect to a cassandra service.
 +++
 |===
 
@@ -3478,6 +3475,15 @@ set string of allowed auth methods.
  if the server supports them. If null or empty all supported methods may be
  used
 +++
+|[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
+Set the connect timeout
++++
+|[[crlPaths]]`@crlPaths`|`Array of String`|+++
+Add a CRL path
++++
+|[[crlValues]]`@crlValues`|`Array of Buffer`|+++
+Add a CRL value
++++
 |[[disableEsmtp]]`@disableEsmtp`|`Boolean`|+++
 set if ESMTP should be tried as first command (EHLO)
  <p>
@@ -3503,12 +3509,29 @@ Sets true to enable DKIM Signatures, sets false to disable it.
      This is used most for temporary disable DKIM without removing DKIM opations from current config.
  </p>
 +++
+|[[enabledCipherSuites]]`@enabledCipherSuites`|`Array of String`|+++
+Add an enabled cipher suite, appended to the ordered suites.
++++
 |[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
 Sets the list of enabled SSL/TLS protocols.
 +++
 |[[hostname]]`@hostname`|`String`|+++
 Set the hostname of the smtp server.
 +++
+|[[hostnameVerificationAlgorithm]]`@hostnameVerificationAlgorithm`|`String`|+++
+Set the hostname verification algorithm interval
+ To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
++++
+|[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
+Set the idle timeout, default time unit is seconds. Zero means don't timeout.
+ This determines if a connection will timeout and be closed if no data is received within the timeout.
+
+ If you want change default time unit, use link
++++
+|[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the idle timeout unit. If not specified, default is seconds.
++++
+|[[jdkSslEngineOptions]]`@jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
 |[[keepAlive]]`@keepAlive`|`Boolean`|+++
 set if connection pool is enabled
  default is true
@@ -3522,8 +3545,18 @@ get the key store filename to be used when opening SMTP connections
  if not set, an options object will be created based on other settings (ssl
  and trustAll)
 +++
+|[[keyStoreOptions]]`@keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the key/cert options in jks format, aka Java keystore.
++++
 |[[keyStorePassword]]`@keyStorePassword`|`String`|+++
 get the key store password to be used when opening SMTP connections
++++
+|[[localAddress]]`@localAddress`|`String`|+++
+Set the local interface to bind for network connections. When the local address is null,
+ it will pick any local address, the default local address is null.
++++
+|[[logActivity]]`@logActivity`|`Boolean`|+++
+Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
 +++
 |[[login]]`@login`|`link:enums.html#LoginOption[LoginOption]`|+++
 Set the login mode for the connection.
@@ -3534,26 +3567,98 @@ Set the login mode for the connection.
 set the max allowed number of open connections to the mail server
  if not set the default is 10
 +++
+|[[metricsName]]`@metricsName`|`String`|+++
+Set the metrics name identifying the reported metrics, useful for grouping metrics
+ with the same name.
++++
+|[[openSslEngineOptions]]`@openSslEngineOptions`|`link:dataobjects.html#OpenSSLEngineOptions[OpenSSLEngineOptions]`|-
 |[[ownHostname]]`@ownHostname`|`String`|+++
 set the hostname to be used for HELO/EHLO and the Message-ID
 +++
 |[[password]]`@password`|`String`|+++
 Set the password for the login.
 +++
+|[[pemKeyCertOptions]]`@pemKeyCertOptions`|`link:dataobjects.html#PemKeyCertOptions[PemKeyCertOptions]`|+++
+Set the key/cert store options in pem format.
++++
+|[[pemTrustOptions]]`@pemTrustOptions`|`link:dataobjects.html#PemTrustOptions[PemTrustOptions]`|+++
+Set the trust options in pem format
++++
+|[[pfxKeyCertOptions]]`@pfxKeyCertOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the key/cert options in pfx format.
++++
+|[[pfxTrustOptions]]`@pfxTrustOptions`|`link:dataobjects.html#PfxOptions[PfxOptions]`|+++
+Set the trust options in pfx format
++++
 |[[port]]`@port`|`Number (int)`|+++
 Set the port of the smtp server.
 +++
+|[[proxyOptions]]`@proxyOptions`|`link:dataobjects.html#ProxyOptions[ProxyOptions]`|+++
+Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
++++
+|[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
+Set the TCP receive buffer size
++++
+|[[reconnectAttempts]]`@reconnectAttempts`|`Number (int)`|+++
+Set the value of reconnect attempts
++++
+|[[reconnectInterval]]`@reconnectInterval`|`Number (long)`|+++
+Set the reconnect interval
++++
+|[[reuseAddress]]`@reuseAddress`|`Boolean`|+++
+Set the value of reuse address
++++
+|[[reusePort]]`@reusePort`|`Boolean`|+++
+Set the value of reuse port.
+ <p/>
+ This is only supported by native transports.
++++
+|[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
+Set the TCP send buffer size
++++
+|[[soLinger]]`@soLinger`|`Number (int)`|+++
+Set whether SO_linger keep alive is enabled
++++
 |[[ssl]]`@ssl`|`Boolean`|+++
-Set the sslOnConnect mode for the connection.
+Set whether SSL/TLS is enabled
++++
+|[[sslHandshakeTimeout]]`@sslHandshakeTimeout`|`Number (long)`|+++
+Set the SSL handshake timeout, default time unit is seconds.
++++
+|[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the SSL handshake timeout unit. If not specified, default is seconds.
 +++
 |[[starttls]]`@starttls`|`link:enums.html#StartTLSOptions[StartTLSOptions]`|+++
 Set the tls security mode for the connection.
  <p>
  Either NONE, OPTIONAL or REQUIRED
 +++
+|[[tcpCork]]`@tcpCork`|`Boolean`|+++
+Enable the <code>TCP_CORK</code> option - only with linux native transport.
++++
+|[[tcpFastOpen]]`@tcpFastOpen`|`Boolean`|+++
+Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
++++
+|[[tcpKeepAlive]]`@tcpKeepAlive`|`Boolean`|+++
+Set whether TCP keep alive is enabled
++++
+|[[tcpNoDelay]]`@tcpNoDelay`|`Boolean`|+++
+Set whether TCP no delay is enabled
++++
+|[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
+Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[trafficClass]]`@trafficClass`|`Number (int)`|+++
+Set the value of traffic class
++++
 |[[trustAll]]`@trustAll`|`Boolean`|+++
-set whether to trust all certificates on ssl connect the option is also
- applied to STARTTLS operation
+Set whether all server certificates should be trusted
++++
+|[[trustStoreOptions]]`@trustStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
+Set the trust options in jks format, aka Java truststore
++++
+|[[useAlpn]]`@useAlpn`|`Boolean`|+++
+Set the ALPN usage.
 +++
 |[[userAgent]]`@userAgent`|`String`|+++
 Sets the Mail User Agent(MUA) name.
@@ -6393,6 +6498,9 @@ Set whether or not to use slave nodes (only considered in Cluster mode).
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[icon]]`@icon`|`String`|-
+|[[id]]`@id`|`String`|-
+|[[name]]`@name`|`String`|-
 |===
 
 [[ReportOptions]]
@@ -8279,11 +8387,8 @@ When true, an embedded server will init to expose metrics with Prometheus format
 |[[challengeLength]]`@challengeLength`|`Number (int)`|-
 |[[origin]]`@origin`|`String`|-
 |[[pubKeyCredParams]]`@pubKeyCredParams`|`Array of String`|-
+|[[relayParty]]`@relayParty`|`link:dataobjects.html#RelayParty[RelayParty]`|-
 |[[requireResidentKey]]`@requireResidentKey`|`Boolean`|-
-|[[rpIcon]]`@rpIcon`|`String`|-
-|[[rpId]]`@rpId`|`String`|-
-|[[rpName]]`@rpName`|`String`|-
-|[[rpObject]]`@rpObject`|`Json object`|-
 |[[timeout]]`@timeout`|`Number (int)`|-
 |[[transports]]`@transports`|`Array of String`|-
 |[[userVerification]]`@userVerification`|`link:enums.html#UserVerification[UserVerification]`|-
