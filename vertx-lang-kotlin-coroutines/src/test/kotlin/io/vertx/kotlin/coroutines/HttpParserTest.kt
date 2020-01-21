@@ -17,6 +17,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
+import io.vertx.core.http.HttpMethod
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
@@ -120,9 +121,7 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.get(8080, "localhost", "/foo") {}
-      .exceptionHandler { err -> testContext.fail(err) }
-      .end()
+    client.get(8080, "localhost", "/foo", testContext.asyncAssertSuccess())
   }
 
   @Test
@@ -136,9 +135,7 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.put(8080, "localhost", "/foo") {}
-      .exceptionHandler { err -> testContext.fail(err) }
-      .end("abc123")
+    client.put(8080, "localhost", "/foo", Buffer.buffer("abc123"), testContext.asyncAssertSuccess())
   }
 
   @Test
@@ -152,8 +149,8 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    val req = client.put(8080, "localhost", "/foo") {}
-      .exceptionHandler { err -> testContext.fail(err) }
+    val req = client.request(HttpMethod.PUT, 8080, "localhost", "/foo")
+      .setHandler(testContext.asyncAssertSuccess())
       .setChunked(true)
     req.write("abc")
     vertx.setTimer(1) {
