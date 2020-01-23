@@ -86,7 +86,7 @@ suspend fun HttpClient.webSocketAwait(options: WebSocketConnectOptions): WebSock
  *
  * @param url the absolute url
  * @param headers the headers
- * @param version the websocket version
+ * @param version the WebSocket version
  * @param subProtocols the subprotocols to use
  * @return [WebSocket]
  *

@@ -590,6 +590,22 @@ Verticle metrics.
 +++
 |===
 
+[[MySQLSetOption]]
+== MySQLSetOption
+
+++++
+ MySQL set options which can be used by link.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[MYSQL_OPTION_MULTI_STATEMENTS_ON]]`MYSQL_OPTION_MULTI_STATEMENTS_ON`|-
+|[[MYSQL_OPTION_MULTI_STATEMENTS_OFF]]`MYSQL_OPTION_MULTI_STATEMENTS_OFF`|-
+|===
+
 [[OAuth2FlowType]]
 == OAuth2FlowType
 
@@ -975,6 +991,69 @@ The realm is a Shiro LDAP auth provider
 |[[MIGRATING]]`MIGRATING`|-
 |[[STABLE]]`STABLE`|-
 |[[NODE]]`NODE`|-
+|===
+
+[[SslMode]]
+== SslMode
+
+++++
+ This parameter specifies the desired security state of the connection to the server.
+ More information can be found in <a href="https://dev.mysql.com/doc/refman/8.0/en/connection-options.html#option_general_ssl-mode">MySQL Reference Manual</a>
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[DISABLED]]`DISABLED`|+++
+establish an unencrypted connection.
++++
+|[[PREFERRED]]`PREFERRED`|+++
+establish an encrypted connection if the server supports encrypted connections, falling back to an unencrypted connection if an encrypted connection cannot be established.
++++
+|[[REQUIRED]]`REQUIRED`|+++
+establish an encrypted connection if the server supports encrypted connections. The connection attempt fails if an encrypted connection cannot be established.
++++
+|[[VERIFY_CA]]`VERIFY_CA`|+++
+Like REQUIRED, but additionally verify the server Certificate Authority (CA) certificate against the configured CA certificates. The connection attempt fails if no valid matching CA certificates are found.
++++
+|[[VERIFY_IDENTITY]]`VERIFY_IDENTITY`|+++
+Like VERIFY_CA, but additionally perform host name identity verification by checking the host name the client uses for connecting to the server against the identity in the certificate that the server sends to the client.
++++
+|===
+
+[[SslMode]]
+== SslMode
+
+++++
+ The different values for the sslmode parameter provide different levels of protection.
+ See more information in <a href="https://www.postgresql.org/docs/current/libpq-ssl.html#LIBPQ-SSL-PROTECTION">Protection Provided in Different Modes</a>.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[DISABLE]]`DISABLE`|+++
+only try a non-SSL connection.
++++
+|[[ALLOW]]`ALLOW`|+++
+first try a non-SSL connection; if that fails, try an SSL connection.
++++
+|[[PREFER]]`PREFER`|+++
+first try an SSL connection; if that fails, try a non-SSL connection.
++++
+|[[REQUIRE]]`REQUIRE`|+++
+only try an SSL connection. If a root CA file is present, verify the certificate in the same way as if verify-ca was specified.
++++
+|[[VERIFY_CA]]`VERIFY_CA`|+++
+only try an SSL connection, and verify that the server certificate is issued by a trusted certificate authority (CA).
++++
+|[[VERIFY_FULL]]`VERIFY_FULL`|+++
+only try an SSL connection, verify that the server certificate is issued by a trusted CA and that the requested server host name matches that in the certificate.
++++
 |===
 
 [[Status]]
