@@ -54,7 +54,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
- * @param jdkSslEngineOptions
+ * @param jdkSslEngineOptions 
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
@@ -62,7 +62,7 @@ import java.util.concurrent.TimeUnit
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
  * @param maxWebSocketMessageSize  Set the maximum WebSocket message size
- * @param openSslEngineOptions
+ * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
  * @param perFrameWebSocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
@@ -388,7 +388,7 @@ fun httpTermOptionsOf(
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
- * @param jdkSslEngineOptions
+ * @param jdkSslEngineOptions 
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
@@ -396,7 +396,7 @@ fun httpTermOptionsOf(
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
  * @param maxWebSocketMessageSize  Set the maximum WebSocket message size
- * @param openSslEngineOptions
+ * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
  * @param perFrameWebSocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.

@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
- * @param jdkSslEngineOptions
+ * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
@@ -59,7 +59,7 @@ import java.util.concurrent.TimeUnit
  * @param login  Set the login mode for the connection. <p> Either DISABLED, OPTIONAL or REQUIRED
  * @param maxPoolSize  set the max allowed number of open connections to the mail server if not set the default is 10
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
- * @param openSslEngineOptions
+ * @param openSslEngineOptions 
  * @param ownHostname  set the hostname to be used for HELO/EHLO and the Message-ID
  * @param password  Set the password for the login.
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -349,7 +349,7 @@ fun mailConfigOf(
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
- * @param jdkSslEngineOptions
+ * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
@@ -359,7 +359,7 @@ fun mailConfigOf(
  * @param login  Set the login mode for the connection. <p> Either DISABLED, OPTIONAL or REQUIRED
  * @param maxPoolSize  set the max allowed number of open connections to the mail server if not set the default is 10
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
- * @param openSslEngineOptions
+ * @param openSslEngineOptions 
  * @param ownHostname  set the hostname to be used for HELO/EHLO and the Message-ID
  * @param password  Set the password for the login.
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
