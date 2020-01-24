@@ -54,19 +54,19 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
- * @param jdkSslEngineOptions 
+ * @param jdkSslEngineOptions
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
- * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
- * @param openSslEngineOptions 
+ * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebSocketMessageSize  Set the maximum WebSocket message size
+ * @param openSslEngineOptions
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
+ * @param perFrameWebSocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebSocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -92,10 +92,10 @@ import java.util.concurrent.TimeUnit
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
- * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
- * @param websocketCompressionLevel  Set the WebSocket compression level.
- * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
- * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
+ * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketCompressionLevel  Set the WebSocket compression level.
+ * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketSubProtocols  Set the WebSocket list of sub-protocol supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.HttpTermOptions original] using Vert.x codegen.
@@ -128,13 +128,13 @@ fun httpTermOptionsOf(
   maxChunkSize: Int? = null,
   maxHeaderSize: Int? = null,
   maxInitialLineLength: Int? = null,
-  maxWebsocketFrameSize: Int? = null,
-  maxWebsocketMessageSize: Int? = null,
+  maxWebSocketFrameSize: Int? = null,
+  maxWebSocketMessageSize: Int? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
-  perFrameWebsocketCompressionSupported: Boolean? = null,
-  perMessageWebsocketCompressionSupported: Boolean? = null,
+  perFrameWebSocketCompressionSupported: Boolean? = null,
+  perMessageWebSocketCompressionSupported: Boolean? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
@@ -160,10 +160,10 @@ fun httpTermOptionsOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
-  websocketAllowServerNoContext: Boolean? = null,
-  websocketCompressionLevel: Int? = null,
-  websocketPreferredClientNoContext: Boolean? = null,
-  websocketSubProtocols: String? = null): HttpTermOptions = io.vertx.ext.shell.term.HttpTermOptions().apply {
+  webSocketAllowServerNoContext: Boolean? = null,
+  webSocketCompressionLevel: Int? = null,
+  webSocketPreferredClientNoContext: Boolean? = null,
+  webSocketSubProtocols: Iterable<String>? = null): HttpTermOptions = io.vertx.ext.shell.term.HttpTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -252,11 +252,11 @@ fun httpTermOptionsOf(
   if (maxInitialLineLength != null) {
     this.setMaxInitialLineLength(maxInitialLineLength)
   }
-  if (maxWebsocketFrameSize != null) {
-    this.setMaxWebsocketFrameSize(maxWebsocketFrameSize)
+  if (maxWebSocketFrameSize != null) {
+    this.setMaxWebSocketFrameSize(maxWebSocketFrameSize)
   }
-  if (maxWebsocketMessageSize != null) {
-    this.setMaxWebsocketMessageSize(maxWebsocketMessageSize)
+  if (maxWebSocketMessageSize != null) {
+    this.setMaxWebSocketMessageSize(maxWebSocketMessageSize)
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
@@ -267,11 +267,11 @@ fun httpTermOptionsOf(
   if (pemTrustOptions != null) {
     this.setPemTrustOptions(pemTrustOptions)
   }
-  if (perFrameWebsocketCompressionSupported != null) {
-    this.setPerFrameWebsocketCompressionSupported(perFrameWebsocketCompressionSupported)
+  if (perFrameWebSocketCompressionSupported != null) {
+    this.setPerFrameWebSocketCompressionSupported(perFrameWebSocketCompressionSupported)
   }
-  if (perMessageWebsocketCompressionSupported != null) {
-    this.setPerMessageWebsocketCompressionSupported(perMessageWebsocketCompressionSupported)
+  if (perMessageWebSocketCompressionSupported != null) {
+    this.setPerMessageWebSocketCompressionSupported(perMessageWebSocketCompressionSupported)
   }
   if (pfxKeyCertOptions != null) {
     this.setPfxKeyCertOptions(pfxKeyCertOptions)
@@ -348,17 +348,17 @@ fun httpTermOptionsOf(
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)
   }
-  if (websocketAllowServerNoContext != null) {
-    this.setWebsocketAllowServerNoContext(websocketAllowServerNoContext)
+  if (webSocketAllowServerNoContext != null) {
+    this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)
   }
-  if (websocketCompressionLevel != null) {
-    this.setWebsocketCompressionLevel(websocketCompressionLevel)
+  if (webSocketCompressionLevel != null) {
+    this.setWebSocketCompressionLevel(webSocketCompressionLevel)
   }
-  if (websocketPreferredClientNoContext != null) {
-    this.setWebsocketPreferredClientNoContext(websocketPreferredClientNoContext)
+  if (webSocketPreferredClientNoContext != null) {
+    this.setWebSocketPreferredClientNoContext(webSocketPreferredClientNoContext)
   }
-  if (websocketSubProtocols != null) {
-    this.setWebsocketSubProtocols(websocketSubProtocols)
+  if (webSocketSubProtocols != null) {
+    this.setWebSocketSubProtocols(webSocketSubProtocols.toList())
   }
 }
 
@@ -388,19 +388,19 @@ fun httpTermOptionsOf(
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
- * @param jdkSslEngineOptions 
+ * @param jdkSslEngineOptions
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
- * @param maxWebsocketFrameSize  Set the maximum WebSocket frames size
- * @param maxWebsocketMessageSize  Set the maximum WebSocket message size
- * @param openSslEngineOptions 
+ * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
+ * @param maxWebSocketMessageSize  Set the maximum WebSocket message size
+ * @param openSslEngineOptions
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
- * @param perFrameWebsocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
- * @param perMessageWebsocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
+ * @param perFrameWebSocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebSocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -426,17 +426,17 @@ fun httpTermOptionsOf(
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
- * @param websocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
- * @param websocketCompressionLevel  Set the WebSocket compression level.
- * @param websocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
- * @param websocketSubProtocols  Set the WebSocket sub-protocols supported by the server.
+ * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketCompressionLevel  Set the WebSocket compression level.
+ * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketSubProtocols  Set the WebSocket list of sub-protocol supported by the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.HttpTermOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebsocketFrameSize, maxWebsocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebsocketCompressionSupported, perMessageWebsocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, websocketAllowServerNoContext, websocketCompressionLevel, websocketPreferredClientNoContext, websocketSubProtocols)")
+  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
 )
 fun HttpTermOptions(
   acceptBacklog: Int? = null,
@@ -466,13 +466,13 @@ fun HttpTermOptions(
   maxChunkSize: Int? = null,
   maxHeaderSize: Int? = null,
   maxInitialLineLength: Int? = null,
-  maxWebsocketFrameSize: Int? = null,
-  maxWebsocketMessageSize: Int? = null,
+  maxWebSocketFrameSize: Int? = null,
+  maxWebSocketMessageSize: Int? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
-  perFrameWebsocketCompressionSupported: Boolean? = null,
-  perMessageWebsocketCompressionSupported: Boolean? = null,
+  perFrameWebSocketCompressionSupported: Boolean? = null,
+  perMessageWebSocketCompressionSupported: Boolean? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
@@ -498,10 +498,10 @@ fun HttpTermOptions(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
-  websocketAllowServerNoContext: Boolean? = null,
-  websocketCompressionLevel: Int? = null,
-  websocketPreferredClientNoContext: Boolean? = null,
-  websocketSubProtocols: String? = null): HttpTermOptions = io.vertx.ext.shell.term.HttpTermOptions().apply {
+  webSocketAllowServerNoContext: Boolean? = null,
+  webSocketCompressionLevel: Int? = null,
+  webSocketPreferredClientNoContext: Boolean? = null,
+  webSocketSubProtocols: Iterable<String>? = null): HttpTermOptions = io.vertx.ext.shell.term.HttpTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -590,11 +590,11 @@ fun HttpTermOptions(
   if (maxInitialLineLength != null) {
     this.setMaxInitialLineLength(maxInitialLineLength)
   }
-  if (maxWebsocketFrameSize != null) {
-    this.setMaxWebsocketFrameSize(maxWebsocketFrameSize)
+  if (maxWebSocketFrameSize != null) {
+    this.setMaxWebSocketFrameSize(maxWebSocketFrameSize)
   }
-  if (maxWebsocketMessageSize != null) {
-    this.setMaxWebsocketMessageSize(maxWebsocketMessageSize)
+  if (maxWebSocketMessageSize != null) {
+    this.setMaxWebSocketMessageSize(maxWebSocketMessageSize)
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
@@ -605,11 +605,11 @@ fun HttpTermOptions(
   if (pemTrustOptions != null) {
     this.setPemTrustOptions(pemTrustOptions)
   }
-  if (perFrameWebsocketCompressionSupported != null) {
-    this.setPerFrameWebsocketCompressionSupported(perFrameWebsocketCompressionSupported)
+  if (perFrameWebSocketCompressionSupported != null) {
+    this.setPerFrameWebSocketCompressionSupported(perFrameWebSocketCompressionSupported)
   }
-  if (perMessageWebsocketCompressionSupported != null) {
-    this.setPerMessageWebsocketCompressionSupported(perMessageWebsocketCompressionSupported)
+  if (perMessageWebSocketCompressionSupported != null) {
+    this.setPerMessageWebSocketCompressionSupported(perMessageWebSocketCompressionSupported)
   }
   if (pfxKeyCertOptions != null) {
     this.setPfxKeyCertOptions(pfxKeyCertOptions)
@@ -686,17 +686,17 @@ fun HttpTermOptions(
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)
   }
-  if (websocketAllowServerNoContext != null) {
-    this.setWebsocketAllowServerNoContext(websocketAllowServerNoContext)
+  if (webSocketAllowServerNoContext != null) {
+    this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)
   }
-  if (websocketCompressionLevel != null) {
-    this.setWebsocketCompressionLevel(websocketCompressionLevel)
+  if (webSocketCompressionLevel != null) {
+    this.setWebSocketCompressionLevel(webSocketCompressionLevel)
   }
-  if (websocketPreferredClientNoContext != null) {
-    this.setWebsocketPreferredClientNoContext(websocketPreferredClientNoContext)
+  if (webSocketPreferredClientNoContext != null) {
+    this.setWebSocketPreferredClientNoContext(webSocketPreferredClientNoContext)
   }
-  if (websocketSubProtocols != null) {
-    this.setWebsocketSubProtocols(websocketSubProtocols)
+  if (webSocketSubProtocols != null) {
+    this.setWebSocketSubProtocols(webSocketSubProtocols.toList())
   }
 }
 

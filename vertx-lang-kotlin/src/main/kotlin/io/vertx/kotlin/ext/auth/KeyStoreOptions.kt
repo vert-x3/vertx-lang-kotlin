@@ -23,6 +23,7 @@ import io.vertx.ext.auth.KeyStoreOptions
  * Options describing how an JWT KeyStore should behave.
  *
  * @param password 
+ * @param passwordProtection 
  * @param path 
  * @param type 
  *
@@ -31,11 +32,15 @@ import io.vertx.ext.auth.KeyStoreOptions
  */
 fun keyStoreOptionsOf(
   password: String? = null,
+  passwordProtection: Map<String, String>? = null,
   path: String? = null,
   type: String? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
 
   if (password != null) {
     this.setPassword(password)
+  }
+  if (passwordProtection != null) {
+    this.setPasswordProtection(passwordProtection)
   }
   if (path != null) {
     this.setPath(path)
@@ -51,6 +56,7 @@ fun keyStoreOptionsOf(
  * Options describing how an JWT KeyStore should behave.
  *
  * @param password 
+ * @param passwordProtection 
  * @param path 
  * @param type 
  *
@@ -59,15 +65,19 @@ fun keyStoreOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("keyStoreOptionsOf(password, path, type)")
+  replaceWith = ReplaceWith("keyStoreOptionsOf(password, passwordProtection, path, type)")
 )
 fun KeyStoreOptions(
   password: String? = null,
+  passwordProtection: Map<String, String>? = null,
   path: String? = null,
   type: String? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
 
   if (password != null) {
     this.setPassword(password)
+  }
+  if (passwordProtection != null) {
+    this.setPasswordProtection(passwordProtection)
   }
   if (path != null) {
     this.setPath(path)

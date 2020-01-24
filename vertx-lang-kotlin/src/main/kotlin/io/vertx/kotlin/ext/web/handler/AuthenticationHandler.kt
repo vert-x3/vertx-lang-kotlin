@@ -16,35 +16,21 @@
 package io.vertx.kotlin.ext.web.handler
 
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.auth.User
 import io.vertx.ext.web.RoutingContext
-import io.vertx.ext.web.handler.AuthHandler
+import io.vertx.ext.web.handler.AuthenticationHandler
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.ext.web.handler.AuthHandler.parseCredentials]
+ * Suspending version of method [io.vertx.ext.web.handler.AuthenticationHandler.parseCredentials]
  *
  * @param context the routing context
  * @return [JsonObject]
  *
- * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.AuthHandler] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.AuthenticationHandler] using Vert.x codegen.
  */
-suspend fun AuthHandler.parseCredentialsAwait(context: RoutingContext): JsonObject {
+suspend fun AuthenticationHandler.parseCredentialsAwait(context: RoutingContext): JsonObject {
   return awaitResult {
     this.parseCredentials(context, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.ext.web.handler.AuthHandler.authorize]
- *
- * @param user a user.
- *
- * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.AuthHandler] using Vert.x codegen.
- */
-suspend fun AuthHandler.authorizeAwait(user: User): Unit {
-  return awaitResult {
-    this.authorize(user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -378,6 +378,10 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
           List<TypeInfo> args = ((ParameterizedTypeInfo) type).getArgs();
           result = type.getRaw().getSimpleName() + args.stream().map(this::kotlinType).collect(Collectors.joining(",", "<", ">"));
         }
+      } else if ("com.datastax.oss.driver.api.core.cql.Statement".equals(type.getName())) {
+        // Work around for Cassandra self bound generic
+        // it's not great but will do for now
+        result = "Statement<*>";
       } else {
         result = type.getSimpleName();
       }

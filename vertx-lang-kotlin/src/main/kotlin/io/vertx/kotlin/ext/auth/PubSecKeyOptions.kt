@@ -20,10 +20,12 @@ import io.vertx.ext.auth.PubSecKeyOptions
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.PubSecKeyOptions] objects.
  *
- * Options describing how a Cryptographic Key.
+ * Options describing Key stored in PEM format.
  *
  * @param algorithm 
+ * @param buffer  The PEM or Secret key buffer
  * @param certificate 
+ * @param id 
  * @param publicKey 
  * @param secretKey 
  * @param symmetric 
@@ -33,7 +35,9 @@ import io.vertx.ext.auth.PubSecKeyOptions
  */
 fun pubSecKeyOptionsOf(
   algorithm: String? = null,
+  buffer: String? = null,
   certificate: Boolean? = null,
+  id: String? = null,
   publicKey: String? = null,
   secretKey: String? = null,
   symmetric: Boolean? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
@@ -41,8 +45,14 @@ fun pubSecKeyOptionsOf(
   if (algorithm != null) {
     this.setAlgorithm(algorithm)
   }
+  if (buffer != null) {
+    this.setBuffer(buffer)
+  }
   if (certificate != null) {
     this.setCertificate(certificate)
+  }
+  if (id != null) {
+    this.setId(id)
   }
   if (publicKey != null) {
     this.setPublicKey(publicKey)
@@ -58,10 +68,12 @@ fun pubSecKeyOptionsOf(
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.PubSecKeyOptions] objects.
  *
- * Options describing how a Cryptographic Key.
+ * Options describing Key stored in PEM format.
  *
  * @param algorithm 
+ * @param buffer  The PEM or Secret key buffer
  * @param certificate 
+ * @param id 
  * @param publicKey 
  * @param secretKey 
  * @param symmetric 
@@ -71,11 +83,13 @@ fun pubSecKeyOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("pubSecKeyOptionsOf(algorithm, certificate, publicKey, secretKey, symmetric)")
+  replaceWith = ReplaceWith("pubSecKeyOptionsOf(algorithm, buffer, certificate, id, publicKey, secretKey, symmetric)")
 )
 fun PubSecKeyOptions(
   algorithm: String? = null,
+  buffer: String? = null,
   certificate: Boolean? = null,
+  id: String? = null,
   publicKey: String? = null,
   secretKey: String? = null,
   symmetric: Boolean? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
@@ -83,8 +97,14 @@ fun PubSecKeyOptions(
   if (algorithm != null) {
     this.setAlgorithm(algorithm)
   }
+  if (buffer != null) {
+    this.setBuffer(buffer)
+  }
   if (certificate != null) {
     this.setCertificate(certificate)
+  }
+  if (id != null) {
+    this.setId(id)
   }
   if (publicKey != null) {
     this.setPublicKey(publicKey)

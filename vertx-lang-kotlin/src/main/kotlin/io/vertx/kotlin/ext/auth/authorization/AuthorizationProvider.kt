@@ -13,23 +13,22 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.cassandra
+package io.vertx.kotlin.ext.auth.authorization
 
-import com.datastax.oss.driver.api.core.cql.Row
-import io.vertx.cassandra.CassandraRowStream
-import io.vertx.core.streams.WriteStream
+import io.vertx.ext.auth.User
+import io.vertx.ext.auth.authorization.AuthorizationProvider
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.cassandra.CassandraRowStream.pipeTo]
+ * Suspending version of method [io.vertx.ext.auth.authorization.AuthorizationProvider.getAuthorizations]
  *
- * @param dst the destination write stream
+ * @param user user to lookup and update
  *
- * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraRowStream] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authorization.AuthorizationProvider] using Vert.x codegen.
  */
-suspend fun CassandraRowStream.pipeToAwait(dst: WriteStream<Row>): Unit {
+suspend fun AuthorizationProvider.getAuthorizationsAwait(user: User): Unit {
   return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.getAuthorizations(user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

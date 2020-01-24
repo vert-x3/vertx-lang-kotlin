@@ -15,9 +15,9 @@
  */
 package io.vertx.kotlin.cassandra
 
-import com.datastax.driver.core.PreparedStatement
-import com.datastax.driver.core.Row
-import com.datastax.driver.core.Statement
+import com.datastax.oss.driver.api.core.cql.PreparedStatement
+import com.datastax.oss.driver.api.core.cql.Row
+import com.datastax.oss.driver.api.core.cql.Statement
 import io.vertx.cassandra.CassandraClient
 import io.vertx.cassandra.CassandraRowStream
 import io.vertx.cassandra.ResultSet
@@ -85,7 +85,7 @@ suspend fun CassandraClient.executeWithFullFetchAwait(query: String): List<Row> 
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement): List<Row> {
+suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement<*>): List<Row> {
   return awaitResult {
     this.executeWithFullFetch(statement, it)
   }
@@ -99,7 +99,7 @@ suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement): Lis
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.executeAwait(statement: Statement): ResultSet {
+suspend fun CassandraClient.executeAwait(statement: Statement<*>): ResultSet {
   return awaitResult {
     this.execute(statement, it)
   }
@@ -127,7 +127,7 @@ suspend fun CassandraClient.prepareAwait(query: String): PreparedStatement {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
-suspend fun CassandraClient.queryStreamAwait(statement: Statement): CassandraRowStream {
+suspend fun CassandraClient.queryStreamAwait(statement: Statement<*>): CassandraRowStream {
   return awaitResult {
     this.queryStream(statement, it)
   }
