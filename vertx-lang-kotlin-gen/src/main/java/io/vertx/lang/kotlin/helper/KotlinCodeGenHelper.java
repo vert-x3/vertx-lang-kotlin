@@ -24,16 +24,12 @@ public class KotlinCodeGenHelper {
     ClassTypeInfo rawType = link.getTargetType().getRaw();
     if (rawType.getModule() != null) {
       String label = link.getLabel().trim();
-      if (rawType.getKind() == ClassKind.DATA_OBJECT) {
-        return "[" + rawType.getName() + "]";
-      } else {
-        if (rawType.getKind() == ClassKind.API) {
-          String ret = "[" + rawType.getName() + "]";
-          if (label.length() > 0) {
-            ret += "[" + label + "]" + ret;
-          }
-          return ret;
+      if (rawType.getKind() == ClassKind.API) {
+        String ret = "[" + rawType.getName() + "]";
+        if (label.length() > 0) {
+          ret += "[" + label + "]" + ret;
         }
+        return ret;
       }
     }
     return "[" + rawType.getName() + "]";
