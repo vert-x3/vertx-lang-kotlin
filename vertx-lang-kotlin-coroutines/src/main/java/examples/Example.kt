@@ -171,7 +171,7 @@ class ExampleVerticle : CoroutineVerticle() {
   fun handlerAndCoroutineExample() {
     // tag::handlerAndCoroutine[]
     vertx.createHttpServer().requestHandler { req ->
-      launch {
+      GlobalScope.launch {
         val timerID = awaitEvent<Long> { h -> vertx.setTimer(2000, h) }
         req.response().end("Hello, this is timerID $timerID after 2 seconds!")
       }
@@ -210,7 +210,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val channel = stream.toChannel(vertx)
 
       // Run the coroutine
-      launch {
+      GlobalScope.launch {
 
         // Receive the request-line
         // Non-blocking
@@ -349,7 +349,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun delayExample() {
     // tag::delay[]
-    launch {
+    GlobalScope.launch {
       // Set a one second Vertx timer
       delay(1000)
     }
@@ -358,7 +358,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun cancellationExample() {
     // tag::cancellation[]
-    val job = launch {
+    val job = GlobalScope.launch {
       // Set a one second Vertx timer
       while (true) {
         delay(1000)
@@ -373,7 +373,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun withTimeoutExample() {
     // tag::withTimeout[]
-    launch {
+    GlobalScope.launch {
       try {
         val id = withTimeout<String>(1000) {
           awaitEvent { anAsyncMethod(it) }
