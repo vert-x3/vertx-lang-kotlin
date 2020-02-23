@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.SessionList
-import io.vertx.ext.consul.Session
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.SessionList] objects.

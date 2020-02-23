@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.web.handler.sockjs
 
 import io.vertx.ext.web.handler.sockjs.BridgeOptions
-import io.vertx.ext.bridge.PermittedOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.BridgeOptions] objects.

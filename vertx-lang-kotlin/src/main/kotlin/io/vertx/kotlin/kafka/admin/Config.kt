@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.Config
-import io.vertx.kafka.admin.ConfigEntry
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.admin.Config] objects.

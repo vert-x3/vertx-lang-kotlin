@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.CheckQueryOptions
-import io.vertx.ext.consul.BlockingQueryOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.CheckQueryOptions] objects.

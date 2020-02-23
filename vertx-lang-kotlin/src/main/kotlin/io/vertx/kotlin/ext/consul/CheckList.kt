@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.CheckList
-import io.vertx.ext.consul.Check
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.CheckList] objects.

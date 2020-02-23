@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.NodeList
-import io.vertx.ext.consul.Node
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.NodeList] objects.
