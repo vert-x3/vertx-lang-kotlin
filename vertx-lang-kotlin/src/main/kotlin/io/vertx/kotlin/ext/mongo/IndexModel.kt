@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.IndexModel
-import io.vertx.ext.mongo.IndexOptions
 
 fun indexModelOf(
 ): IndexModel = io.vertx.ext.mongo.IndexModel(io.vertx.core.json.JsonObject()).apply {

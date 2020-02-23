@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.KeyValueList
-import io.vertx.ext.consul.KeyValue
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.KeyValueList] objects.

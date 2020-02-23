@@ -16,8 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.ConsumerGroupDescription
-import io.vertx.kafka.admin.MemberDescription
-import io.vertx.kafka.client.common.Node
 import org.apache.kafka.common.ConsumerGroupState
 
 /**

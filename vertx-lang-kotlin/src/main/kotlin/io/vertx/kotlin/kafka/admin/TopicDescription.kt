@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.TopicDescription
-import io.vertx.kafka.client.common.TopicPartitionInfo
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.admin.TopicDescription] objects.

@@ -16,14 +16,6 @@
 package io.vertx.kotlin.ext.mail
 
 import io.vertx.ext.mail.MailConfig
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.core.net.ProxyOptions
-import io.vertx.ext.mail.DKIMSignOptions
 import io.vertx.ext.mail.LoginOption
 import io.vertx.ext.mail.StartTLSOptions
 import java.util.concurrent.TimeUnit
@@ -51,6 +43,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param keyStorePassword  get the key store password to be used when opening SMTP connections
@@ -76,6 +69,7 @@ import java.util.concurrent.TimeUnit
  * @param sendBufferSize  Set the TCP send buffer size
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param starttls  Set the tls security mode for the connection. <p> Either NONE, OPTIONAL or REQUIRED
@@ -86,6 +80,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
@@ -112,6 +107,7 @@ fun mailConfigOf(
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAlive: Boolean? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStore: String? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   keyStorePassword: String? = null,
@@ -137,6 +133,7 @@ fun mailConfigOf(
   sendBufferSize: Int? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   starttls: StartTLSOptions? = null,
@@ -147,6 +144,7 @@ fun mailConfigOf(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   userAgent: String? = null,
@@ -208,6 +206,9 @@ fun mailConfigOf(
   }
   if (keepAlive != null) {
     this.setKeepAlive(keepAlive)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStore != null) {
     this.setKeyStore(keyStore)
@@ -284,6 +285,9 @@ fun mailConfigOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -313,6 +317,9 @@ fun mailConfigOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -351,6 +358,7 @@ fun mailConfigOf(
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param keyStorePassword  get the key store password to be used when opening SMTP connections
@@ -376,6 +384,7 @@ fun mailConfigOf(
  * @param sendBufferSize  Set the TCP send buffer size
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param starttls  Set the tls security mode for the connection. <p> Either NONE, OPTIONAL or REQUIRED
@@ -386,6 +395,7 @@ fun mailConfigOf(
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
@@ -396,7 +406,7 @@ fun mailConfigOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, connectTimeout, crlPaths, crlValues, disableEsmtp, dkimSignOption, dkimSignOptions, enableDKIM, enabledCipherSuites, enabledSecureTransportProtocols, hostname, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keepAlive, keyStore, keyStoreOptions, keyStorePassword, localAddress, logActivity, login, maxPoolSize, metricsName, openSslEngineOptions, ownHostname, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, starttls, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, userAgent, username)")
+  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, connectTimeout, crlPaths, crlValues, disableEsmtp, dkimSignOption, dkimSignOptions, enableDKIM, enabledCipherSuites, enabledSecureTransportProtocols, hostname, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keepAlive, keyCertOptions, keyStore, keyStoreOptions, keyStorePassword, localAddress, logActivity, login, maxPoolSize, metricsName, openSslEngineOptions, ownHostname, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, starttls, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, userAgent, username)")
 )
 fun MailConfig(
   allowRcptErrors: Boolean? = null,
@@ -416,6 +426,7 @@ fun MailConfig(
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAlive: Boolean? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStore: String? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   keyStorePassword: String? = null,
@@ -441,6 +452,7 @@ fun MailConfig(
   sendBufferSize: Int? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   starttls: StartTLSOptions? = null,
@@ -451,6 +463,7 @@ fun MailConfig(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   userAgent: String? = null,
@@ -512,6 +525,9 @@ fun MailConfig(
   }
   if (keepAlive != null) {
     this.setKeepAlive(keepAlive)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStore != null) {
     this.setKeyStore(keyStore)
@@ -588,6 +604,9 @@ fun MailConfig(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -617,6 +636,9 @@ fun MailConfig(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

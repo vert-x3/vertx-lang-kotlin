@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.PreparedQueryExecuteResponse
-import io.vertx.ext.consul.ServiceEntry
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.PreparedQueryExecuteResponse] objects.

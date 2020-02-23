@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.unit
 
 import io.vertx.ext.unit.TestOptions
-import io.vertx.ext.unit.report.ReportOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.unit.TestOptions] objects.

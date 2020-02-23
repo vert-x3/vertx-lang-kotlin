@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.DcCoordinates
-import io.vertx.ext.consul.Coordinate
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.DcCoordinates] objects.

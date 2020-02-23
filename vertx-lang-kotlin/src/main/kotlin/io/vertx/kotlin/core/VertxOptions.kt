@@ -16,11 +16,6 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.VertxOptions
-import io.vertx.core.dns.AddressResolverOptions
-import io.vertx.core.eventbus.EventBusOptions
-import io.vertx.core.file.FileSystemOptions
-import io.vertx.core.metrics.MetricsOptions
-import io.vertx.core.tracing.TracingOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -32,6 +27,7 @@ import java.util.concurrent.TimeUnit
  * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
  * @param blockedThreadCheckIntervalUnit  Set the time unit of <code>blockedThreadCheckInterval</code>.
  * @param clusterHost  Set the hostname to be used for clustering.
+ * @param clusterManager  Programmatically set the cluster manager to be used when clustering. <p> Only valid if clustered = true. <p> Normally Vert.x will look on the classpath for a cluster manager, but if you want to set one programmatically you can use this method.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
  * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
  * @param clusterPort  Set the port to be used for clustering.
@@ -64,6 +60,7 @@ fun vertxOptionsOf(
   blockedThreadCheckInterval: Long? = null,
   blockedThreadCheckIntervalUnit: TimeUnit? = null,
   clusterHost: String? = null,
+  clusterManager: io.vertx.core.spi.cluster.ClusterManager? = null,
   clusterPingInterval: Long? = null,
   clusterPingReplyInterval: Long? = null,
   clusterPort: Int? = null,
@@ -99,6 +96,9 @@ fun vertxOptionsOf(
   }
   if (clusterHost != null) {
     this.setClusterHost(clusterHost)
+  }
+  if (clusterManager != null) {
+    this.setClusterManager(clusterManager)
   }
   if (clusterPingInterval != null) {
     this.setClusterPingInterval(clusterPingInterval)
@@ -180,6 +180,7 @@ fun vertxOptionsOf(
  * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
  * @param blockedThreadCheckIntervalUnit  Set the time unit of <code>blockedThreadCheckInterval</code>.
  * @param clusterHost  Set the hostname to be used for clustering.
+ * @param clusterManager  Programmatically set the cluster manager to be used when clustering. <p> Only valid if clustered = true. <p> Normally Vert.x will look on the classpath for a cluster manager, but if you want to set one programmatically you can use this method.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
  * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
  * @param clusterPort  Set the port to be used for clustering.
@@ -209,13 +210,14 @@ fun vertxOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, tracingOptions, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
+  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterManager, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, tracingOptions, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
 )
 fun VertxOptions(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
   blockedThreadCheckInterval: Long? = null,
   blockedThreadCheckIntervalUnit: TimeUnit? = null,
   clusterHost: String? = null,
+  clusterManager: io.vertx.core.spi.cluster.ClusterManager? = null,
   clusterPingInterval: Long? = null,
   clusterPingReplyInterval: Long? = null,
   clusterPort: Int? = null,
@@ -251,6 +253,9 @@ fun VertxOptions(
   }
   if (clusterHost != null) {
     this.setClusterHost(clusterHost)
+  }
+  if (clusterManager != null) {
+    this.setClusterManager(clusterManager)
   }
   if (clusterPingInterval != null) {
     this.setClusterPingInterval(clusterPingInterval)

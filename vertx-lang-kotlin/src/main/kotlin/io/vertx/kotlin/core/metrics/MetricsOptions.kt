@@ -24,15 +24,20 @@ import io.vertx.core.metrics.MetricsOptions
  * those specific implementations.
  *
  * @param enabled  Set whether metrics will be enabled on the Vert.x instance.
+ * @param factory  Programmatically set the metrics factory to be used when metrics are enabled. <p> Only valid if [io.vertx.core.metrics.MetricsOptions] = true. <p> Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one programmatically you can use this method.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.metrics.MetricsOptions original] using Vert.x codegen.
  */
 fun metricsOptionsOf(
-  enabled: Boolean? = null): MetricsOptions = io.vertx.core.metrics.MetricsOptions().apply {
+  enabled: Boolean? = null,
+  factory: io.vertx.core.spi.VertxMetricsFactory? = null): MetricsOptions = io.vertx.core.metrics.MetricsOptions().apply {
 
   if (enabled != null) {
     this.setEnabled(enabled)
+  }
+  if (factory != null) {
+    this.setFactory(factory)
   }
 }
 
@@ -43,19 +48,24 @@ fun metricsOptionsOf(
  * those specific implementations.
  *
  * @param enabled  Set whether metrics will be enabled on the Vert.x instance.
+ * @param factory  Programmatically set the metrics factory to be used when metrics are enabled. <p> Only valid if [io.vertx.core.metrics.MetricsOptions] = true. <p> Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one programmatically you can use this method.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.metrics.MetricsOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("metricsOptionsOf(enabled)")
+  replaceWith = ReplaceWith("metricsOptionsOf(enabled, factory)")
 )
 fun MetricsOptions(
-  enabled: Boolean? = null): MetricsOptions = io.vertx.core.metrics.MetricsOptions().apply {
+  enabled: Boolean? = null,
+  factory: io.vertx.core.spi.VertxMetricsFactory? = null): MetricsOptions = io.vertx.core.metrics.MetricsOptions().apply {
 
   if (enabled != null) {
     this.setEnabled(enabled)
+  }
+  if (factory != null) {
+    this.setFactory(factory)
   }
 }
 

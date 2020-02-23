@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.client.common
 
 import io.vertx.kafka.client.common.PartitionInfo
-import io.vertx.kafka.client.common.Node
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.client.common.PartitionInfo] objects.

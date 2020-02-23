@@ -16,7 +16,6 @@
 package io.vertx.kotlin.config
 
 import io.vertx.config.ConfigRetrieverOptions
-import io.vertx.config.ConfigStoreOptions
 
 /**
  * A function providing a DSL for building [io.vertx.config.ConfigRetrieverOptions] objects.

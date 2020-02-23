@@ -16,9 +16,6 @@
 package io.vertx.kotlin.ext.auth.jwt
 
 import io.vertx.ext.auth.jwt.JWTAuthOptions
-import io.vertx.ext.auth.KeyStoreOptions
-import io.vertx.ext.auth.PubSecKeyOptions
-import io.vertx.ext.jwt.JWTOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.jwt.JWTAuthOptions] objects.

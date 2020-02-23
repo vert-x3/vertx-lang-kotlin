@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ServiceOptions
-import io.vertx.ext.consul.CheckOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.ServiceOptions] objects.

@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.MemberDescription
-import io.vertx.kafka.admin.MemberAssignment
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.admin.MemberDescription] objects.

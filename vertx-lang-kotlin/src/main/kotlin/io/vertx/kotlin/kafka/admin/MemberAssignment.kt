@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.MemberAssignment
-import io.vertx.kafka.client.common.TopicPartition
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.admin.MemberAssignment] objects.
