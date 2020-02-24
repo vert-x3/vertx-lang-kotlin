@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ServiceList
-import io.vertx.ext.consul.Service
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.ServiceList] objects.

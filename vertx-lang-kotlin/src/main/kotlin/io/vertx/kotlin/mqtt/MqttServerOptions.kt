@@ -17,12 +17,6 @@ package io.vertx.kotlin.mqtt
 
 import io.vertx.mqtt.MqttServerOptions
 import io.vertx.core.http.ClientAuth
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -41,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxMessageSize  Set max MQTT message size
@@ -57,6 +52,7 @@ import java.util.concurrent.TimeUnit
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -66,6 +62,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param timeoutOnConnect  Set the timeout on CONNECT packet
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  *
@@ -84,6 +81,7 @@ fun mqttServerOptionsOf(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxMessageSize: Int? = null,
@@ -100,6 +98,7 @@ fun mqttServerOptionsOf(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -109,6 +108,7 @@ fun mqttServerOptionsOf(
   tcpQuickAck: Boolean? = null,
   timeoutOnConnect: Int? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
@@ -150,6 +150,9 @@ fun mqttServerOptionsOf(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -199,6 +202,9 @@ fun mqttServerOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -225,6 +231,9 @@ fun mqttServerOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -250,6 +259,7 @@ fun mqttServerOptionsOf(
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxMessageSize  Set max MQTT message size
@@ -266,6 +276,7 @@ fun mqttServerOptionsOf(
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -275,6 +286,7 @@ fun mqttServerOptionsOf(
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param timeoutOnConnect  Set the timeout on CONNECT packet
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  *
@@ -283,7 +295,7 @@ fun mqttServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustOptions, trustStoreOptions, useAlpn)")
 )
 fun MqttServerOptions(
   acceptBacklog: Int? = null,
@@ -297,6 +309,7 @@ fun MqttServerOptions(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxMessageSize: Int? = null,
@@ -313,6 +326,7 @@ fun MqttServerOptions(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -322,6 +336,7 @@ fun MqttServerOptions(
   tcpQuickAck: Boolean? = null,
   timeoutOnConnect: Int? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
@@ -363,6 +378,9 @@ fun MqttServerOptions(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -412,6 +430,9 @@ fun MqttServerOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -438,6 +459,9 @@ fun MqttServerOptions(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

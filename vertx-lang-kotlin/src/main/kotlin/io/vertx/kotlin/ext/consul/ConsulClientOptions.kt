@@ -16,15 +16,7 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ConsulClientOptions
-import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -56,6 +48,7 @@ import java.util.concurrent.TimeUnit
  * @param jdkSslEngineOptions 
  * @param keepAlive  Set whether keep alive is enabled on the client
  * @param keepAliveTimeout  Set the keep alive timeout for HTTP/1.x, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -85,6 +78,7 @@ import java.util.concurrent.TimeUnit
  * @param sendUnmaskedFrames  Set true when the client wants to skip frame masking. You may want to set it true on server by server websocket communication: In this case you are by passing RFC6455 protocol. It's false as default.
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -95,6 +89,7 @@ import java.util.concurrent.TimeUnit
  * @param timeout  Sets the amount of time (in milliseconds) after which if the request does not return any data within the timeout period an failure will be passed to the handler and the request will be closed.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
@@ -135,6 +130,7 @@ fun consulClientOptionsOf(
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -164,6 +160,7 @@ fun consulClientOptionsOf(
   sendUnmaskedFrames: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -174,6 +171,7 @@ fun consulClientOptionsOf(
   timeout: Long? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
   tryUsePerFrameWebSocketCompression: Boolean? = null,
@@ -264,6 +262,9 @@ fun consulClientOptionsOf(
   if (keepAliveTimeout != null) {
     this.setKeepAliveTimeout(keepAliveTimeout)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -351,6 +352,9 @@ fun consulClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -380,6 +384,9 @@ fun consulClientOptionsOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -445,6 +452,7 @@ fun consulClientOptionsOf(
  * @param jdkSslEngineOptions 
  * @param keepAlive  Set whether keep alive is enabled on the client
  * @param keepAliveTimeout  Set the keep alive timeout for HTTP/1.x, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -474,6 +482,7 @@ fun consulClientOptionsOf(
  * @param sendUnmaskedFrames  Set true when the client wants to skip frame masking. You may want to set it true on server by server websocket communication: In this case you are by passing RFC6455 protocol. It's false as default.
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -484,6 +493,7 @@ fun consulClientOptionsOf(
  * @param timeout  Sets the amount of time (in milliseconds) after which if the request does not return any data within the timeout period an failure will be passed to the handler and the request will be closed.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
@@ -501,7 +511,7 @@ fun consulClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("consulClientOptionsOf(aclToken, alpnVersions, connectTimeout, crlPaths, crlValues, dc, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeout, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, userAgent, userAgentEnabled, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("consulClientOptionsOf(aclToken, alpnVersions, connectTimeout, crlPaths, crlValues, dc, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyCertOptions, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeout, trafficClass, trustAll, trustOptions, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, userAgent, userAgentEnabled, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
 )
 fun ConsulClientOptions(
   aclToken: String? = null,
@@ -528,6 +538,7 @@ fun ConsulClientOptions(
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -557,6 +568,7 @@ fun ConsulClientOptions(
   sendUnmaskedFrames: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -567,6 +579,7 @@ fun ConsulClientOptions(
   timeout: Long? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
   tryUsePerFrameWebSocketCompression: Boolean? = null,
@@ -657,6 +670,9 @@ fun ConsulClientOptions(
   if (keepAliveTimeout != null) {
     this.setKeepAliveTimeout(keepAliveTimeout)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -744,6 +760,9 @@ fun ConsulClientOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -773,6 +792,9 @@ fun ConsulClientOptions(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.unit.report
 
 import io.vertx.ext.unit.report.ReportingOptions
-import io.vertx.ext.unit.report.ReportOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.unit.report.ReportingOptions] objects.

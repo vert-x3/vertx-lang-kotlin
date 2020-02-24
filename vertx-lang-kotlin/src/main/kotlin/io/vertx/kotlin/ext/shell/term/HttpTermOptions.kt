@@ -17,15 +17,7 @@ package io.vertx.kotlin.ext.shell.term
 
 import io.vertx.ext.shell.term.HttpTermOptions
 import io.vertx.core.http.ClientAuth
-import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -55,6 +47,7 @@ import java.util.concurrent.TimeUnit
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
@@ -80,6 +73,7 @@ import java.util.concurrent.TimeUnit
  * @param sockJSHandlerOptions  The SockJS handler options.
  * @param sockJSPath  Configure the SockJS path, the default value is <code>/term/<star></code>.
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -89,6 +83,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param termJsResource  Set <code>term.js</code> resource to use.
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
@@ -123,6 +118,7 @@ fun httpTermOptionsOf(
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   intputrc: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
@@ -148,6 +144,7 @@ fun httpTermOptionsOf(
   sockJSHandlerOptions: io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions? = null,
   sockJSPath: String? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -157,6 +154,7 @@ fun httpTermOptionsOf(
   tcpQuickAck: Boolean? = null,
   termJsResource: io.vertx.core.buffer.Buffer? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
@@ -237,6 +235,9 @@ fun httpTermOptionsOf(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -312,6 +313,9 @@ fun httpTermOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -338,6 +342,9 @@ fun httpTermOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -389,6 +396,7 @@ fun httpTermOptionsOf(
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param intputrc  The path of the <i>inputrc</i> config.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that  will receive
@@ -414,6 +422,7 @@ fun httpTermOptionsOf(
  * @param sockJSHandlerOptions  The SockJS handler options.
  * @param sockJSPath  Configure the SockJS path, the default value is <code>/term/<star></code>.
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -423,6 +432,7 @@ fun httpTermOptionsOf(
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param termJsResource  Set <code>term.js</code> resource to use.
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
@@ -436,7 +446,7 @@ fun httpTermOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustStoreOptions, useAlpn, vertsShellJsResource, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
+  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustOptions, trustStoreOptions, useAlpn, vertsShellJsResource, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
 )
 fun HttpTermOptions(
   acceptBacklog: Int? = null,
@@ -461,6 +471,7 @@ fun HttpTermOptions(
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   intputrc: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
@@ -486,6 +497,7 @@ fun HttpTermOptions(
   sockJSHandlerOptions: io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions? = null,
   sockJSPath: String? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -495,6 +507,7 @@ fun HttpTermOptions(
   tcpQuickAck: Boolean? = null,
   termJsResource: io.vertx.core.buffer.Buffer? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
@@ -575,6 +588,9 @@ fun HttpTermOptions(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -650,6 +666,9 @@ fun HttpTermOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -676,6 +695,9 @@ fun HttpTermOptions(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

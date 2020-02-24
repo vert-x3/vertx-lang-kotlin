@@ -22,6 +22,7 @@ import io.vertx.rabbitmq.RabbitMQOptions
  *
  * RabbitMQ client options, most
  *
+ * @param addresses  Set multiple addresses for cluster mode.
  * @param automaticRecoveryEnabled  Enables or disables automatic connection recovery.
  * @param connectionRetries  Set the number of connection retries to attempt when connecting, the <code>null</code> value disables it.
  * @param connectionRetryDelay  Set the delay in milliseconds between connection retries.
@@ -42,6 +43,7 @@ import io.vertx.rabbitmq.RabbitMQOptions
  * NOTE: This function has been automatically generated from the [io.vertx.rabbitmq.RabbitMQOptions original] using Vert.x codegen.
  */
 fun rabbitMQOptionsOf(
+  addresses: Iterable<com.rabbitmq.client.Address>? = null,
   automaticRecoveryEnabled: Boolean? = null,
   connectionRetries: Int? = null,
   connectionRetryDelay: Long? = null,
@@ -58,6 +60,9 @@ fun rabbitMQOptionsOf(
   user: String? = null,
   virtualHost: String? = null): RabbitMQOptions = io.vertx.rabbitmq.RabbitMQOptions().apply {
 
+  if (addresses != null) {
+    this.setAddresses(addresses.toList())
+  }
   if (automaticRecoveryEnabled != null) {
     this.setAutomaticRecoveryEnabled(automaticRecoveryEnabled)
   }
@@ -110,6 +115,7 @@ fun rabbitMQOptionsOf(
  *
  * RabbitMQ client options, most
  *
+ * @param addresses  Set multiple addresses for cluster mode.
  * @param automaticRecoveryEnabled  Enables or disables automatic connection recovery.
  * @param connectionRetries  Set the number of connection retries to attempt when connecting, the <code>null</code> value disables it.
  * @param connectionRetryDelay  Set the delay in milliseconds between connection retries.
@@ -131,9 +137,10 @@ fun rabbitMQOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("rabbitMQOptionsOf(automaticRecoveryEnabled, connectionRetries, connectionRetryDelay, connectionTimeout, handshakeTimeout, host, includeProperties, networkRecoveryInterval, password, port, requestedChannelMax, requestedHeartbeat, uri, user, virtualHost)")
+  replaceWith = ReplaceWith("rabbitMQOptionsOf(addresses, automaticRecoveryEnabled, connectionRetries, connectionRetryDelay, connectionTimeout, handshakeTimeout, host, includeProperties, networkRecoveryInterval, password, port, requestedChannelMax, requestedHeartbeat, uri, user, virtualHost)")
 )
 fun RabbitMQOptions(
+  addresses: Iterable<com.rabbitmq.client.Address>? = null,
   automaticRecoveryEnabled: Boolean? = null,
   connectionRetries: Int? = null,
   connectionRetryDelay: Long? = null,
@@ -150,6 +157,9 @@ fun RabbitMQOptions(
   user: String? = null,
   virtualHost: String? = null): RabbitMQOptions = io.vertx.rabbitmq.RabbitMQOptions().apply {
 
+  if (addresses != null) {
+    this.setAddresses(addresses.toList())
+  }
   if (automaticRecoveryEnabled != null) {
     this.setAutomaticRecoveryEnabled(automaticRecoveryEnabled)
   }

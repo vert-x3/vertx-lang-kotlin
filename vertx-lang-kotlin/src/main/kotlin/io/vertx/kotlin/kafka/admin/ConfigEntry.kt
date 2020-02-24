@@ -16,7 +16,6 @@
 package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.ConfigEntry
-import io.vertx.kafka.admin.ConfigSynonym
 import org.apache.kafka.clients.admin.ConfigEntry.ConfigSource
 
 /**

@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.bridge
 
 import io.vertx.ext.bridge.BridgeOptions
-import io.vertx.ext.bridge.PermittedOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.bridge.BridgeOptions] objects.

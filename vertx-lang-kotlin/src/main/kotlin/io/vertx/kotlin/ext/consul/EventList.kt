@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.EventList
-import io.vertx.ext.consul.Event
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.EventList] objects.

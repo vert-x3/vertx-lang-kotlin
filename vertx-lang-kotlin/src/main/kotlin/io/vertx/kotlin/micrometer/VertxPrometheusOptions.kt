@@ -16,7 +16,6 @@
 package io.vertx.kotlin.micrometer
 
 import io.vertx.micrometer.VertxPrometheusOptions
-import io.vertx.core.http.HttpServerOptions
 
 /**
  * A function providing a DSL for building [io.vertx.micrometer.VertxPrometheusOptions] objects.

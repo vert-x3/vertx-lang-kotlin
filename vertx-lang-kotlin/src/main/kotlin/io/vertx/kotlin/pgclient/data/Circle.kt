@@ -16,7 +16,6 @@
 package io.vertx.kotlin.pgclient.data
 
 import io.vertx.pgclient.data.Circle
-import io.vertx.pgclient.data.Point
 
 /**
  * A function providing a DSL for building [io.vertx.pgclient.data.Circle] objects.

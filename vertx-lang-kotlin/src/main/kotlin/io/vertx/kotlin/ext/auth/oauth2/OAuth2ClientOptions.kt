@@ -16,18 +16,8 @@
 package io.vertx.kotlin.ext.auth.oauth2
 
 import io.vertx.ext.auth.oauth2.OAuth2ClientOptions
-import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.core.net.ProxyOptions
-import io.vertx.ext.auth.PubSecKeyOptions
 import io.vertx.ext.auth.oauth2.OAuth2FlowType
-import io.vertx.ext.jwt.JWTOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -66,6 +56,7 @@ import java.util.concurrent.TimeUnit
  * @param jwtOptions 
  * @param keepAlive  Set whether keep alive is enabled on the client
  * @param keepAliveTimeout  Set the keep alive timeout for HTTP/1.x, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -100,6 +91,7 @@ import java.util.concurrent.TimeUnit
  * @param site  Root URL for the provider without trailing slashes
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -111,6 +103,7 @@ import java.util.concurrent.TimeUnit
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
@@ -161,6 +154,7 @@ fun oAuth2ClientOptionsOf(
   jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -195,6 +189,7 @@ fun oAuth2ClientOptionsOf(
   site: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -206,6 +201,7 @@ fun oAuth2ClientOptionsOf(
   tokenPath: String? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
   tryUsePerFrameWebSocketCompression: Boolean? = null,
@@ -320,6 +316,9 @@ fun oAuth2ClientOptionsOf(
   if (keepAliveTimeout != null) {
     this.setKeepAliveTimeout(keepAliveTimeout)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -422,6 +421,9 @@ fun oAuth2ClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -454,6 +456,9 @@ fun oAuth2ClientOptionsOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -535,6 +540,7 @@ fun oAuth2ClientOptionsOf(
  * @param jwtOptions 
  * @param keepAlive  Set whether keep alive is enabled on the client
  * @param keepAliveTimeout  Set the keep alive timeout for HTTP/1.x, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed.
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -569,6 +575,7 @@ fun oAuth2ClientOptionsOf(
  * @param site  Root URL for the provider without trailing slashes
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -580,6 +587,7 @@ fun oAuth2ClientOptionsOf(
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param tryUseCompression  Set whether compression is enabled
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
@@ -600,7 +608,7 @@ fun oAuth2ClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tenant, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, useBasicAuthorizationHeader, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyCertOptions, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tenant, tokenPath, trafficClass, trustAll, trustOptions, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, useBasicAuthorizationHeader, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
 )
 fun OAuth2ClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -634,6 +642,7 @@ fun OAuth2ClientOptions(
   jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -668,6 +677,7 @@ fun OAuth2ClientOptions(
   site: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -679,6 +689,7 @@ fun OAuth2ClientOptions(
   tokenPath: String? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   tryUseCompression: Boolean? = null,
   tryUsePerFrameWebSocketCompression: Boolean? = null,
@@ -793,6 +804,9 @@ fun OAuth2ClientOptions(
   if (keepAliveTimeout != null) {
     this.setKeepAliveTimeout(keepAliveTimeout)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -895,6 +909,9 @@ fun OAuth2ClientOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -927,6 +944,9 @@ fun OAuth2ClientOptions(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

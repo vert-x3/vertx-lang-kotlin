@@ -16,13 +16,6 @@
 package io.vertx.kotlin.pgclient
 
 import io.vertx.pgclient.PgConnectOptions
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
-import io.vertx.core.net.ProxyOptions
 import io.vertx.pgclient.SslMode
 import java.util.concurrent.TimeUnit
 
@@ -42,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.pgclient.PgConnectOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -66,6 +60,7 @@ import java.util.concurrent.TimeUnit
  * @param sendBufferSize  Set the TCP send buffer size
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param sslMode  Set [io.vertx.pgclient.SslMode] for the client, this option can be used to provide different levels of secure protection.
@@ -76,6 +71,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
@@ -96,6 +92,7 @@ fun pgConnectOptionsOf(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -120,6 +117,7 @@ fun pgConnectOptionsOf(
   sendBufferSize: Int? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   sslMode: SslMode? = null,
@@ -130,6 +128,7 @@ fun pgConnectOptionsOf(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   user: String? = null): PgConnectOptions = io.vertx.pgclient.PgConnectOptions().apply {
@@ -175,6 +174,9 @@ fun pgConnectOptionsOf(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -248,6 +250,9 @@ fun pgConnectOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -277,6 +282,9 @@ fun pgConnectOptionsOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -305,6 +313,7 @@ fun pgConnectOptionsOf(
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.pgclient.PgConnectOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -329,6 +338,7 @@ fun pgConnectOptionsOf(
  * @param sendBufferSize  Set the TCP send buffer size
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param sslMode  Set [io.vertx.pgclient.SslMode] for the client, this option can be used to provide different levels of secure protection.
@@ -339,6 +349,7 @@ fun pgConnectOptionsOf(
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
@@ -348,7 +359,7 @@ fun pgConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, user)")
+  replaceWith = ReplaceWith("pgConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipeliningLimit, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, sslMode, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, user)")
 )
 fun PgConnectOptions(
   cachePreparedStatements: Boolean? = null,
@@ -363,6 +374,7 @@ fun PgConnectOptions(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -387,6 +399,7 @@ fun PgConnectOptions(
   sendBufferSize: Int? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   sslMode: SslMode? = null,
@@ -397,6 +410,7 @@ fun PgConnectOptions(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   user: String? = null): PgConnectOptions = io.vertx.pgclient.PgConnectOptions().apply {
@@ -442,6 +456,9 @@ fun PgConnectOptions(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -515,6 +532,9 @@ fun PgConnectOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -544,6 +564,9 @@ fun PgConnectOptions(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

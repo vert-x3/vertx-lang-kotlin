@@ -16,7 +16,6 @@
 package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisOptions
-import io.vertx.core.net.NetClientOptions
 import io.vertx.redis.client.RedisClientType
 import io.vertx.redis.client.RedisRole
 import io.vertx.redis.client.RedisSlaves

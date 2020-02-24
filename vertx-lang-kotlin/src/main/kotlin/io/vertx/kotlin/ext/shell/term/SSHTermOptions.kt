@@ -16,9 +16,6 @@
 package io.vertx.kotlin.ext.shell.term
 
 import io.vertx.ext.shell.term.SSHTermOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PfxOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.shell.term.SSHTermOptions] objects.

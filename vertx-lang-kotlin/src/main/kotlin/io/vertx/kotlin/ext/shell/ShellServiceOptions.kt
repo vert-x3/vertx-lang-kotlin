@@ -16,9 +16,6 @@
 package io.vertx.kotlin.ext.shell
 
 import io.vertx.ext.shell.ShellServiceOptions
-import io.vertx.ext.shell.term.HttpTermOptions
-import io.vertx.ext.shell.term.SSHTermOptions
-import io.vertx.ext.shell.term.TelnetTermOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.shell.ShellServiceOptions] objects.

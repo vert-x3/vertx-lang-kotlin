@@ -82,7 +82,7 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     Set<String> genImports = new TreeSet<>();
     for (PropertyInfo p : model.getPropertyMap().values()) {
       ClassKind propertyKind = p.getType().getKind();
-      if ((propertyKind == ClassKind.ENUM || propertyKind == ClassKind.DATA_OBJECT) && !p.getType().equals(model.getType())) {
+      if ((propertyKind == ClassKind.ENUM) && !p.getType().equals(model.getType())) {
         genImports.add(p.getType().getName());
       }
     }
@@ -251,8 +251,6 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
           //Will not execute
           throw new RuntimeException("err primitive:" + typeName);
       }
-    } else if (typeKind == DATA_OBJECT) {
-      ret = type.getRaw().getName();
     } else if (typeKind == ENUM) {
       ret = type.getSimpleName();
     } else if (typeKind == JSON_OBJECT || typeKind == JSON_ARRAY) {

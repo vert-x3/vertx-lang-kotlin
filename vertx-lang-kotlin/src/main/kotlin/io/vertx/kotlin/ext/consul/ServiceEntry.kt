@@ -16,9 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ServiceEntry
-import io.vertx.ext.consul.Check
-import io.vertx.ext.consul.Node
-import io.vertx.ext.consul.Service
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.ServiceEntry] objects.

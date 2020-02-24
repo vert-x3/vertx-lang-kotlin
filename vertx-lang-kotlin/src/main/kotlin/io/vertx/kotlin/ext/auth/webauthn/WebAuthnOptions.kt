@@ -18,7 +18,6 @@ package io.vertx.kotlin.ext.auth.webauthn
 import io.vertx.ext.auth.webauthn.WebAuthnOptions
 import io.vertx.ext.auth.webauthn.Attestation
 import io.vertx.ext.auth.webauthn.AuthenticatorAttachment
-import io.vertx.ext.auth.webauthn.RelayParty
 import io.vertx.ext.auth.webauthn.UserVerification
 
 fun webAuthnOptionsOf(
