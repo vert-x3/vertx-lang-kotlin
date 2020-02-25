@@ -51,6 +51,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
@@ -73,6 +74,7 @@ import java.util.concurrent.TimeUnit
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -81,6 +83,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
@@ -111,6 +114,7 @@ fun httpServerOptionsOf(
   idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
@@ -133,6 +137,7 @@ fun httpServerOptionsOf(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -141,6 +146,7 @@ fun httpServerOptionsOf(
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
@@ -211,6 +217,9 @@ fun httpServerOptionsOf(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -277,6 +286,9 @@ fun httpServerOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -300,6 +312,9 @@ fun httpServerOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -345,6 +360,7 @@ fun httpServerOptionsOf(
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
@@ -367,6 +383,7 @@ fun httpServerOptionsOf(
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
@@ -375,6 +392,7 @@ fun httpServerOptionsOf(
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
@@ -387,7 +405,7 @@ fun httpServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustStoreOptions, useAlpn, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
+  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustOptions, trustStoreOptions, useAlpn, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
 )
 fun HttpServerOptions(
   acceptBacklog: Int? = null,
@@ -409,6 +427,7 @@ fun HttpServerOptions(
   idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
@@ -431,6 +450,7 @@ fun HttpServerOptions(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -439,6 +459,7 @@ fun HttpServerOptions(
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
@@ -509,6 +530,9 @@ fun HttpServerOptions(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
   }
@@ -575,6 +599,9 @@ fun HttpServerOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -598,6 +625,9 @@ fun HttpServerOptions(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

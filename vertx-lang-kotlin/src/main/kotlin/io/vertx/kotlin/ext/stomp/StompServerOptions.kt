@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxBodyLength  Sets the max body length accepted by the server. 10 Mb by default.
@@ -63,6 +64,7 @@ import java.util.concurrent.TimeUnit
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param supportedVersions  Sets the STOMP protocol versions supported by the server. Versions must be given in the decreasing order.
@@ -75,6 +77,7 @@ import java.util.concurrent.TimeUnit
  * @param trafficClass  Set the value of traffic class
  * @param trailingLine  Sets whether or not an empty line should be appended to the written STOMP frame. This option is disabled by default. This option is not compliant with the STOMP specification, and so is not documented on purpose.
  * @param transactionChunkSize  Sets the chunk size when replaying a transaction. To avoid blocking the event loop for too long, large transactions are split into chunks, replayed one by one. This settings sets the chunk size.
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param websocketBridge  Enables or disables the web socket bridge.
@@ -95,6 +98,7 @@ fun stompServerOptionsOf(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxBodyLength: Int? = null,
@@ -117,6 +121,7 @@ fun stompServerOptionsOf(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   supportedVersions: Iterable<String>? = null,
@@ -129,6 +134,7 @@ fun stompServerOptionsOf(
   trafficClass: Int? = null,
   trailingLine: Boolean? = null,
   transactionChunkSize: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   websocketBridge: Boolean? = null,
@@ -172,6 +178,9 @@ fun stompServerOptionsOf(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -239,6 +248,9 @@ fun stompServerOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -274,6 +286,9 @@ fun stompServerOptionsOf(
   }
   if (transactionChunkSize != null) {
     this.setTransactionChunkSize(transactionChunkSize)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -305,6 +320,7 @@ fun stompServerOptionsOf(
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxBodyLength  Sets the max body length accepted by the server. 10 Mb by default.
@@ -327,6 +343,7 @@ fun stompServerOptionsOf(
  * @param sni  Set whether the server supports Server Name Indiciation
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
+ * @param sslEngineOptions  Set to use SSL engine implementation to use.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param supportedVersions  Sets the STOMP protocol versions supported by the server. Versions must be given in the decreasing order.
@@ -339,6 +356,7 @@ fun stompServerOptionsOf(
  * @param trafficClass  Set the value of traffic class
  * @param trailingLine  Sets whether or not an empty line should be appended to the written STOMP frame. This option is disabled by default. This option is not compliant with the STOMP specification, and so is not documented on purpose.
  * @param transactionChunkSize  Sets the chunk size when replaying a transaction. To avoid blocking the event loop for too long, large transactions are split into chunks, replayed one by one. This settings sets the chunk size.
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param websocketBridge  Enables or disables the web socket bridge.
@@ -349,7 +367,7 @@ fun stompServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
+  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustOptions, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
 )
 fun StompServerOptions(
   acceptBacklog: Int? = null,
@@ -363,6 +381,7 @@ fun StompServerOptions(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxBodyLength: Int? = null,
@@ -385,6 +404,7 @@ fun StompServerOptions(
   sni: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   supportedVersions: Iterable<String>? = null,
@@ -397,6 +417,7 @@ fun StompServerOptions(
   trafficClass: Int? = null,
   trailingLine: Boolean? = null,
   transactionChunkSize: Int? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   websocketBridge: Boolean? = null,
@@ -440,6 +461,9 @@ fun StompServerOptions(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -507,6 +531,9 @@ fun StompServerOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -542,6 +569,9 @@ fun StompServerOptions(
   }
   if (transactionChunkSize != null) {
     this.setTransactionChunkSize(transactionChunkSize)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

@@ -44,6 +44,7 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeout 
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions 
  * @param localAddress 
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -66,6 +67,7 @@ import java.util.concurrent.TimeUnit
  * @param sniServerName 
  * @param soLinger 
  * @param ssl 
+ * @param sslEngineOptions 
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork 
@@ -75,6 +77,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck 
  * @param trafficClass 
  * @param trustAll 
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions 
  * @param useAlpn  Set the ALPN usage.
  * @param username  Sets the username.
@@ -97,6 +100,7 @@ fun amqpClientOptionsOf(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -119,6 +123,7 @@ fun amqpClientOptionsOf(
   sniServerName: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -128,6 +133,7 @@ fun amqpClientOptionsOf(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   username: String? = null,
@@ -179,6 +185,9 @@ fun amqpClientOptionsOf(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -246,6 +255,9 @@ fun amqpClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -272,6 +284,9 @@ fun amqpClientOptionsOf(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)
@@ -306,6 +321,7 @@ fun amqpClientOptionsOf(
  * @param idleTimeout 
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions 
  * @param localAddress 
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -328,6 +344,7 @@ fun amqpClientOptionsOf(
  * @param sniServerName 
  * @param soLinger 
  * @param ssl 
+ * @param sslEngineOptions 
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param tcpCork 
@@ -337,6 +354,7 @@ fun amqpClientOptionsOf(
  * @param tcpQuickAck 
  * @param trafficClass 
  * @param trustAll 
+ * @param trustOptions  Set the trust options.
  * @param trustStoreOptions 
  * @param useAlpn  Set the ALPN usage.
  * @param username  Sets the username.
@@ -347,7 +365,7 @@ fun amqpClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustStoreOptions, useAlpn, username, virtualHost)")
+  replaceWith = ReplaceWith("amqpClientOptionsOf(connectTimeout, containerId, crlPaths, crlValues, enabledCipherSuites, enabledSaslMechanisms, enabledSecureTransportProtocols, heartbeat, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, localAddress, logActivity, maxFrameSize, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, sniServerName, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, username, virtualHost)")
 )
 fun AmqpClientOptions(
   connectTimeout: Int? = null,
@@ -363,6 +381,7 @@ fun AmqpClientOptions(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
@@ -385,6 +404,7 @@ fun AmqpClientOptions(
   sniServerName: String? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
+  sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   tcpCork: Boolean? = null,
@@ -394,6 +414,7 @@ fun AmqpClientOptions(
   tcpQuickAck: Boolean? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
+  trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   username: String? = null,
@@ -445,6 +466,9 @@ fun AmqpClientOptions(
   }
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
@@ -512,6 +536,9 @@ fun AmqpClientOptions(
   if (ssl != null) {
     this.setSsl(ssl)
   }
+  if (sslEngineOptions != null) {
+    this.setSslEngineOptions(sslEngineOptions)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -538,6 +565,9 @@ fun AmqpClientOptions(
   }
   if (trustAll != null) {
     this.setTrustAll(trustAll)
+  }
+  if (trustOptions != null) {
+    this.setTrustOptions(trustOptions)
   }
   if (trustStoreOptions != null) {
     this.setTrustStoreOptions(trustStoreOptions)

@@ -25,11 +25,8 @@ import java.util.concurrent.TimeUnit
  * <p>
  *
  * @param config  Set the JSON configuration that will be passed to the verticle(s) when it's deployed
- * @param extraClasspath  Set any extra classpath to be used when deploying the verticle. <p> Ignored if no isolation group is set.
  * @param ha  Set whether the verticle(s) will be deployed as HA.
  * @param instances  Set the number of instances that should be deployed.
- * @param isolatedClasses  Set the isolated class names.
- * @param isolationGroup  Set the isolation group that will be used when deploying the verticle(s)
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is 
  * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code>
  * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
@@ -41,11 +38,8 @@ import java.util.concurrent.TimeUnit
  */
 fun deploymentOptionsOf(
   config: io.vertx.core.json.JsonObject? = null,
-  extraClasspath: Iterable<String>? = null,
   ha: Boolean? = null,
   instances: Int? = null,
-  isolatedClasses: Iterable<String>? = null,
-  isolationGroup: String? = null,
   maxWorkerExecuteTime: Long? = null,
   maxWorkerExecuteTimeUnit: TimeUnit? = null,
   worker: Boolean? = null,
@@ -55,20 +49,11 @@ fun deploymentOptionsOf(
   if (config != null) {
     this.setConfig(config)
   }
-  if (extraClasspath != null) {
-    this.setExtraClasspath(extraClasspath.toList())
-  }
   if (ha != null) {
     this.setHa(ha)
   }
   if (instances != null) {
     this.setInstances(instances)
-  }
-  if (isolatedClasses != null) {
-    this.setIsolatedClasses(isolatedClasses.toList())
-  }
-  if (isolationGroup != null) {
-    this.setIsolationGroup(isolationGroup)
   }
   if (maxWorkerExecuteTime != null) {
     this.setMaxWorkerExecuteTime(maxWorkerExecuteTime)
@@ -94,11 +79,8 @@ fun deploymentOptionsOf(
  * <p>
  *
  * @param config  Set the JSON configuration that will be passed to the verticle(s) when it's deployed
- * @param extraClasspath  Set any extra classpath to be used when deploying the verticle. <p> Ignored if no isolation group is set.
  * @param ha  Set whether the verticle(s) will be deployed as HA.
  * @param instances  Set the number of instances that should be deployed.
- * @param isolatedClasses  Set the isolated class names.
- * @param isolationGroup  Set the isolation group that will be used when deploying the verticle(s)
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is 
  * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code>
  * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
@@ -110,15 +92,12 @@ fun deploymentOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("deploymentOptionsOf(config, extraClasspath, ha, instances, isolatedClasses, isolationGroup, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, worker, workerPoolName, workerPoolSize)")
+  replaceWith = ReplaceWith("deploymentOptionsOf(config, ha, instances, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, worker, workerPoolName, workerPoolSize)")
 )
 fun DeploymentOptions(
   config: io.vertx.core.json.JsonObject? = null,
-  extraClasspath: Iterable<String>? = null,
   ha: Boolean? = null,
   instances: Int? = null,
-  isolatedClasses: Iterable<String>? = null,
-  isolationGroup: String? = null,
   maxWorkerExecuteTime: Long? = null,
   maxWorkerExecuteTimeUnit: TimeUnit? = null,
   worker: Boolean? = null,
@@ -128,20 +107,11 @@ fun DeploymentOptions(
   if (config != null) {
     this.setConfig(config)
   }
-  if (extraClasspath != null) {
-    this.setExtraClasspath(extraClasspath.toList())
-  }
   if (ha != null) {
     this.setHa(ha)
   }
   if (instances != null) {
     this.setInstances(instances)
-  }
-  if (isolatedClasses != null) {
-    this.setIsolatedClasses(isolatedClasses.toList())
-  }
-  if (isolationGroup != null) {
-    this.setIsolationGroup(isolationGroup)
   }
   if (maxWorkerExecuteTime != null) {
     this.setMaxWorkerExecuteTime(maxWorkerExecuteTime)

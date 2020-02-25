@@ -110,6 +110,23 @@ This event will occur when a client attempts to unregister a handler.
 +++
 |===
 
+[[CanonicalizationAlgorithm]]
+== CanonicalizationAlgorithm
+
+++++
+
+ Canonicalization Algorithm for DKIM.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SIMPLE]]`SIMPLE`|-
+|[[RELAXED]]`RELAXED`|-
+|===
+
 [[CheckStatus]]
 == CheckStatus
 
@@ -214,6 +231,32 @@ For internal usage, don't use it
 +++
 |[[matrix_exploded_array]]`matrix_exploded_array`|+++
 For internal usage, don't use it
++++
+|===
+
+[[CookieSameSite]]
+== CookieSameSite
+
+++++
+ Represents the Cookie SameSite policy to be used. For more info <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies</a>.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|+++
+The browser will send cookies with both cross-site requests and same-site requests.
++++
+|[[STRICT]]`STRICT`|+++
+The browser will only send cookies for same-site requests (requests originating from the site that set the cookie).
+ If the request originated from a different URL than the URL of the current location, none of the cookies tagged
+ with the Strict attribute will be included.
++++
+|[[LAX]]`LAX`|+++
+Same-site cookies are withheld on cross-site subrequests, such as calls to load images or frames, but will be sent
+ when a user navigates to the URL from an external site; for example, by following a link.
 +++
 |===
 
@@ -559,23 +602,6 @@ Will use user defined formatter function.
 ^|Name | Description
 |[[EQUALS]]`EQUALS`|-
 |[[REGEX]]`REGEX`|-
-|===
-
-[[MessageCanonic]]
-== MessageCanonic
-
-++++
-
- Message canonicalization for DKIM.
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[SIMPLE]]`SIMPLE`|-
-|[[RELAXED]]`RELAXED`|-
 |===
 
 [[MetricsDomain]]

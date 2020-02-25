@@ -24,6 +24,7 @@ import io.vertx.ext.consul.CheckOptions
  * Options used to register service.
  *
  * @param address  Set service address
+ * @param checkListOptions  Set checks options of service
  * @param checkOptions  Set check options of service
  * @param id  Set the ID of session
  * @param meta  Specifies arbitrary KV metadata linked to the service instance.
@@ -36,6 +37,7 @@ import io.vertx.ext.consul.CheckOptions
  */
 fun serviceOptionsOf(
   address: String? = null,
+  checkListOptions: Iterable<io.vertx.ext.consul.CheckOptions>? = null,
   checkOptions: io.vertx.ext.consul.CheckOptions? = null,
   id: String? = null,
   meta: Map<String, String>? = null,
@@ -45,6 +47,9 @@ fun serviceOptionsOf(
 
   if (address != null) {
     this.setAddress(address)
+  }
+  if (checkListOptions != null) {
+    this.setCheckListOptions(checkListOptions.toList())
   }
   if (checkOptions != null) {
     this.setCheckOptions(checkOptions)
@@ -72,6 +77,7 @@ fun serviceOptionsOf(
  * Options used to register service.
  *
  * @param address  Set service address
+ * @param checkListOptions  Set checks options of service
  * @param checkOptions  Set check options of service
  * @param id  Set the ID of session
  * @param meta  Specifies arbitrary KV metadata linked to the service instance.
@@ -84,10 +90,11 @@ fun serviceOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("serviceOptionsOf(address, checkOptions, id, meta, name, port, tags)")
+  replaceWith = ReplaceWith("serviceOptionsOf(address, checkListOptions, checkOptions, id, meta, name, port, tags)")
 )
 fun ServiceOptions(
   address: String? = null,
+  checkListOptions: Iterable<io.vertx.ext.consul.CheckOptions>? = null,
   checkOptions: io.vertx.ext.consul.CheckOptions? = null,
   id: String? = null,
   meta: Map<String, String>? = null,
@@ -97,6 +104,9 @@ fun ServiceOptions(
 
   if (address != null) {
     this.setAddress(address)
+  }
+  if (checkListOptions != null) {
+    this.setCheckListOptions(checkListOptions.toList())
   }
   if (checkOptions != null) {
     this.setCheckOptions(checkOptions)

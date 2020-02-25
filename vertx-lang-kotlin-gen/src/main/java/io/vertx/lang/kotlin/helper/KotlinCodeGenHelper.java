@@ -24,7 +24,7 @@ public class KotlinCodeGenHelper {
     ClassTypeInfo rawType = link.getTargetType().getRaw();
     if (rawType.getModule() != null) {
       String label = link.getLabel().trim();
-      if (rawType.getKind() == ClassKind.DATA_OBJECT) {
+      if (rawType.isDataObjectHolder()) {
         return "[" + rawType.getName() + "]";
       } else {
         if (rawType.getKind() == ClassKind.API) {

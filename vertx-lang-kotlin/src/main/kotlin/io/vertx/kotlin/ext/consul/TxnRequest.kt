@@ -22,13 +22,19 @@ import io.vertx.ext.consul.TxnRequest
  *
  * Holds list of operations in transaction
  *
+ * @param operations  Adds operation to this request
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnRequest original] using Vert.x codegen.
  */
 fun txnRequestOf(
-): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
+  operations: Iterable<io.vertx.ext.consul.TxnOperation>? = null): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
 
+  if (operations != null) {
+    for (item in operations) {
+      this.addOperation(item)
+    }
+  }
 }
 
 /**
@@ -36,16 +42,22 @@ fun txnRequestOf(
  *
  * Holds list of operations in transaction
  *
+ * @param operations  Adds operation to this request
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnRequest original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("txnRequestOf()")
+  replaceWith = ReplaceWith("txnRequestOf(operations)")
 )
 fun TxnRequest(
-): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
+  operations: Iterable<io.vertx.ext.consul.TxnOperation>? = null): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
 
+  if (operations != null) {
+    for (item in operations) {
+      this.addOperation(item)
+    }
+  }
 }
 
