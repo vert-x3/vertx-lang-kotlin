@@ -83,19 +83,4 @@
     </pluginManagement>
   </build>
 
-  <profiles>
-    <profile>
-      <id>1.8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <modules>
-        <module>vertx-lang-kotlin-gen</module>
-        <module>vertx-lang-kotlin-compiler</module>
-        <module>vertx-lang-kotlin-coroutines</module>
-        <module>vertx-lang-kotlin</module>
-      </modules>
-    </profile>
-  </profiles>
-
 </project>
