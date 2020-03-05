@@ -1,5 +1,22 @@
 = Enums
 
+[[AclTokenType]]
+== AclTokenType
+
+++++
+ Acl token type is either "client" (meaning the token cannot modify ACL rules) or "management"
+ (meaning the token is allowed to perform all actions).
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[CLIENT]]`CLIENT`|-
+|[[MANAGEMENT]]`MANAGEMENT`|-
+|===
+
 [[ApolloWSMessageType]]
 == ApolloWSMessageType
 
@@ -22,6 +39,31 @@
 |[[DATA]]`DATA`|-
 |[[ERROR]]`ERROR`|-
 |[[COMPLETE]]`COMPLETE`|-
+|===
+
+[[Attestation]]
+== Attestation
+
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|-
+|[[DIRECT]]`DIRECT`|-
+|[[INDIRECT]]`INDIRECT`|-
+|===
+
+[[AuthenticatorAttachment]]
+== AuthenticatorAttachment
+
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[CROSS_PLATFORM]]`CROSS_PLATFORM`|-
+|[[PLATFORM]]`PLATFORM`|-
 |===
 
 [[BridgeEventType]]
@@ -65,6 +107,67 @@ This event will occur when a client successfully registered. The raw message use
 +++
 |[[UNREGISTER]]`UNREGISTER`|+++
 This event will occur when a client attempts to unregister a handler.
++++
+|===
+
+[[CanonicalizationAlgorithm]]
+== CanonicalizationAlgorithm
+
+++++
+
+ Canonicalization Algorithm for DKIM.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SIMPLE]]`SIMPLE`|-
+|[[RELAXED]]`RELAXED`|-
+|===
+
+[[CheckStatus]]
+== CheckStatus
+
+++++
+ Represents an check status.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[PASSING]]`PASSING`|-
+|[[WARNING]]`WARNING`|-
+|[[CRITICAL]]`CRITICAL`|-
+|===
+
+[[CircuitBreakerState]]
+== CircuitBreakerState
+
+++++
+ Circuit breaker states.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[OPEN]]`OPEN`|+++
+The <code>OPEN</code> state. The circuit breaker is executing the fallback, and switches to the 
+ state after the specified time.
++++
+|[[CLOSED]]`CLOSED`|+++
+The <code>CLOSED</code> state. The circuit breaker lets invocations pass and collects the failures. IF the number of
+ failures reach the specified threshold, the cricuit breaker switches to the  state.
++++
+|[[HALF_OPEN]]`HALF_OPEN`|+++
+The <code>HALF_OPEN</code> state. The circuit breaker has been opened, and is now checking the current situation. It
+ lets pass the next invocation and determines from the result (failure or success) if the circuit breaker can
+ be switched to the  state again.
 +++
 |===
 
@@ -128,6 +231,32 @@ For internal usage, don't use it
 +++
 |[[matrix_exploded_array]]`matrix_exploded_array`|+++
 For internal usage, don't use it
++++
+|===
+
+[[CookieSameSite]]
+== CookieSameSite
+
+++++
+ Represents the Cookie SameSite policy to be used. For more info <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies</a>.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[NONE]]`NONE`|+++
+The browser will send cookies with both cross-site requests and same-site requests.
++++
+|[[STRICT]]`STRICT`|+++
+The browser will only send cookies for same-site requests (requests originating from the site that set the cookie).
+ If the request originated from a different URL than the URL of the current location, none of the cookies tagged
+ with the Strict attribute will be included.
++++
+|[[LAX]]`LAX`|+++
+Same-site cookies are withheld on cross-site subrequests, such as calls to load images or frames, but will be sent
+ when a user navigates to the URL from an external site; for example, by following a link.
 +++
 |===
 
@@ -293,11 +422,11 @@ Salt is NOT stored in the database, but defined as external value like applicati
 +++
 |===
 
-[[HttpMethod]]
-== HttpMethod
+[[HealthState]]
+== HealthState
 
 ++++
- Represents an HTTP method
+ Represents an health states.
 ++++
 '''
 
@@ -305,16 +434,10 @@ Salt is NOT stored in the database, but defined as external value like applicati
 [frame="topbot"]
 |===
 ^|Name | Description
-|[[OPTIONS]]`OPTIONS`|-
-|[[GET]]`GET`|-
-|[[HEAD]]`HEAD`|-
-|[[POST]]`POST`|-
-|[[PUT]]`PUT`|-
-|[[DELETE]]`DELETE`|-
-|[[TRACE]]`TRACE`|-
-|[[CONNECT]]`CONNECT`|-
-|[[PATCH]]`PATCH`|-
-|[[OTHER]]`OTHER`|-
+|[[PASSING]]`PASSING`|-
+|[[WARNING]]`WARNING`|-
+|[[CRITICAL]]`CRITICAL`|-
+|[[ANY]]`ANY`|-
 |===
 
 [[HttpVersion]]
@@ -432,6 +555,9 @@ Pool name (used in pools domain)
 |[[TINY]]`TINY`|+++
 <i>method</i> <i>uri</i> <i>status</i> - <i>content-length</i> <i>duration</i>
 +++
+|[[CUSTOM]]`CUSTOM`|+++
+Will use user defined formatter function.
++++
 |===
 
 [[LoginOption]]
@@ -476,23 +602,6 @@ Pool name (used in pools domain)
 ^|Name | Description
 |[[EQUALS]]`EQUALS`|-
 |[[REGEX]]`REGEX`|-
-|===
-
-[[MessageCanonic]]
-== MessageCanonic
-
-++++
-
- Message canonicalization for DKIM.
-++++
-'''
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[SIMPLE]]`SIMPLE`|-
-|[[RELAXED]]`RELAXED`|-
 |===
 
 [[MetricsDomain]]
@@ -1091,6 +1200,19 @@ Slow and old fashioned <a hred="https://developer.mozilla.org/en/DOM/window.post
 |[[XHR]]`XHR`|+++
 Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHttpRequest#Cross-domain_requests">cross domain XHR</a>
 +++
+|===
+
+[[UserVerification]]
+== UserVerification
+
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[REQUIRED]]`REQUIRED`|-
+|[[PREFERRED]]`PREFERRED`|-
+|[[DISCOURAGED]]`DISCOURAGED`|-
 |===
 
 [[WebsocketVersion]]
