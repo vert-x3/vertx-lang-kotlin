@@ -18,12 +18,6 @@ package io.vertx.kotlin.core
 import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.coroutines.awaitResult
 
-suspend fun CompositeFuture.setHandlerAwait(): CompositeFuture {
-  return awaitResult {
-    this.setHandler(it)
-  }
-}
-
 suspend fun CompositeFuture.onCompleteAwait(): CompositeFuture {
   return awaitResult {
     this.onComplete(it)

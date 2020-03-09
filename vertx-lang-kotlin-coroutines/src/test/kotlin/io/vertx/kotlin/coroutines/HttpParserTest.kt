@@ -150,7 +150,7 @@ class HttpParserTest {
     }
     val client = vertx.createHttpClient()
     val req = client.request(HttpMethod.PUT, 8080, "localhost", "/foo")
-      .setHandler(testContext.asyncAssertSuccess())
+      .onComplete(testContext.asyncAssertSuccess())
       .setChunked(true)
     req.write("abc")
     vertx.setTimer(1) {

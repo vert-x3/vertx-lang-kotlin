@@ -21,24 +21,58 @@ import io.vertx.sqlclient.Row
 import io.vertx.sqlclient.RowSet
 import io.vertx.sqlclient.Tuple
 
+/**
+ * Suspending version of method [io.vertx.pgclient.PgPool.preparedQuery]
+ *
+ * @param sql 
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgPool] using Vert.x codegen.
+ */
 suspend fun PgPool.preparedQueryAwait(sql: String): RowSet<Row> {
   return awaitResult {
     this.preparedQuery(sql, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.pgclient.PgPool.query]
+ *
+ * @param sql 
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgPool] using Vert.x codegen.
+ */
 suspend fun PgPool.queryAwait(sql: String): RowSet<Row> {
   return awaitResult {
     this.query(sql, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.pgclient.PgPool.preparedQuery]
+ *
+ * @param sql 
+ * @param arguments 
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgPool] using Vert.x codegen.
+ */
 suspend fun PgPool.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
   return awaitResult {
     this.preparedQuery(sql, arguments, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.pgclient.PgPool.preparedBatch]
+ *
+ * @param sql 
+ * @param batch 
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgPool] using Vert.x codegen.
+ */
 suspend fun PgPool.preparedBatchAwait(sql: String, batch: List<Tuple>): RowSet<Row> {
   return awaitResult {
     this.preparedBatch(sql, batch, it)

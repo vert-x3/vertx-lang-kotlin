@@ -23,24 +23,58 @@ import io.vertx.sqlclient.SqlConnection
 import io.vertx.sqlclient.Transaction
 import io.vertx.sqlclient.Tuple
 
-suspend fun Pool.preparedQueryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, it)
-  }
-}
-
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.query]
+ *
+ * @param sql the query SQL
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
 suspend fun Pool.queryAwait(sql: String): RowSet<Row> {
   return awaitResult {
     this.query(sql, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.preparedQuery]
+ *
+ * @param sql the prepared query SQL
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
+suspend fun Pool.preparedQueryAwait(sql: String): RowSet<Row> {
+  return awaitResult {
+    this.preparedQuery(sql, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.preparedQuery]
+ *
+ * @param sql the prepared query SQL
+ * @param arguments the list of arguments
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
 suspend fun Pool.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
   return awaitResult {
     this.preparedQuery(sql, arguments, it)
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.preparedBatch]
+ *
+ * @param sql the prepared query SQL
+ * @param batch the batch of tuples
+ * @return [RowSet<Row>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
 suspend fun Pool.preparedBatchAwait(sql: String, batch: List<Tuple>): RowSet<Row> {
   return awaitResult {
     this.preparedBatch(sql, batch, it)

@@ -135,7 +135,7 @@ suspend fun <T> Future<T>.await(): T = when {
   succeeded() -> result()
   failed() -> throw cause()
   else -> suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
-    setHandler { asyncResult ->
+    onComplete { asyncResult ->
       if (asyncResult.succeeded()) cont.resume(asyncResult.result() as T)
       else cont.resumeWithException(asyncResult.cause())
     }
