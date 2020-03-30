@@ -20,6 +20,17 @@ import io.vertx.redis.op.BitFieldGetCommand
 import io.vertx.redis.op.BitFieldIncrbyCommand
 import io.vertx.redis.op.BitFieldSetCommand
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldOptions] objects.
+ *
+ *
+ * @param get 
+ * @param incrby 
+ * @param set 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldOptions original] using Vert.x codegen.
+ */
 fun bitFieldOptionsOf(
   get: io.vertx.redis.op.BitFieldGetCommand? = null,
   incrby: io.vertx.redis.op.BitFieldIncrbyCommand? = null,
@@ -36,6 +47,17 @@ fun bitFieldOptionsOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldOptions] objects.
+ *
+ *
+ * @param get 
+ * @param incrby 
+ * @param set 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldOptions original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
   replaceWith = ReplaceWith("bitFieldOptionsOf(get, incrby, set)")

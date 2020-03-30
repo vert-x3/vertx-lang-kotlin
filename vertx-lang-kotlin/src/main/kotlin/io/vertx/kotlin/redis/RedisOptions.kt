@@ -28,25 +28,6 @@ import java.util.concurrent.TimeUnit
 /**
  * A function providing a DSL for building [io.vertx.redis.RedisOptions] objects.
  *
- * This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
- * since it has built the following sensible defaults:
- * <p>
- * * `encoding`: `UTF-8`
- * * `host`: `localhost`
- * * `port`: 6379
- * * `tcpKeepAlive`: true
- * * `tcpNoDelay`: true
- * * `binary`: false
- * <p>
- * However there are two extra properties that have no defaults since they are optional:
- * <p>
- * * `auth`
- * * `select`
- * <p>
- * The usage of this two extra properties is to setup required authentication and optionally the selection of the active
- * database at connection time. If you define this extra properties on every connection to Redis server this client
- * will perform the authentication handshake and database selection, however if you don't do this and call [io.vertx.redis.RedisClient]
- * yourself in case of connection failure the client will not be able to perform the correct authentication handshake.
  *
  * @param address  Set the eventbus address prefix for `PUB/SUB`. * @param address address prefix.
  * @param auth  Set the password for authentication at connection time.
@@ -315,25 +296,6 @@ fun redisOptionsOf(
 /**
  * A function providing a DSL for building [io.vertx.redis.RedisOptions] objects.
  *
- * This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
- * since it has built the following sensible defaults:
- * <p>
- * * `encoding`: `UTF-8`
- * * `host`: `localhost`
- * * `port`: 6379
- * * `tcpKeepAlive`: true
- * * `tcpNoDelay`: true
- * * `binary`: false
- * <p>
- * However there are two extra properties that have no defaults since they are optional:
- * <p>
- * * `auth`
- * * `select`
- * <p>
- * The usage of this two extra properties is to setup required authentication and optionally the selection of the active
- * database at connection time. If you define this extra properties on every connection to Redis server this client
- * will perform the authentication handshake and database selection, however if you don't do this and call [io.vertx.redis.RedisClient]
- * yourself in case of connection failure the client will not be able to perform the correct authentication handshake.
  *
  * @param address  Set the eventbus address prefix for `PUB/SUB`. * @param address address prefix.
  * @param auth  Set the password for authentication at connection time.

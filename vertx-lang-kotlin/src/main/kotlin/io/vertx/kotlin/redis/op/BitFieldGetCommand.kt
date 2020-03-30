@@ -17,6 +17,16 @@ package io.vertx.kotlin.redis.op
 
 import io.vertx.redis.op.BitFieldGetCommand
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldGetCommand] objects.
+ *
+ *
+ * @param offset 
+ * @param type 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldGetCommand original] using Vert.x codegen.
+ */
 fun bitFieldGetCommandOf(
   offset: Long? = null,
   type: String? = null): BitFieldGetCommand = io.vertx.redis.op.BitFieldGetCommand().apply {
@@ -29,6 +39,16 @@ fun bitFieldGetCommandOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldGetCommand] objects.
+ *
+ *
+ * @param offset 
+ * @param type 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldGetCommand original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
   replaceWith = ReplaceWith("bitFieldGetCommandOf(offset, type)")

@@ -252,6 +252,22 @@ suspend fun RabbitMQClient.exchangeBindAwait(destination: String, source: String
 }
 
 /**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.exchangeBind]
+ *
+ * @param destination 
+ * @param source 
+ * @param routingKey 
+ * @param arguments 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.exchangeBindAwait(destination: String, source: String, routingKey: String, arguments: Map<String,Any>): Unit {
+  return awaitResult {
+    this.exchangeBind(destination, source, routingKey, arguments, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.exchangeUnbind]
  *
  * @param destination 
@@ -263,6 +279,22 @@ suspend fun RabbitMQClient.exchangeBindAwait(destination: String, source: String
 suspend fun RabbitMQClient.exchangeUnbindAwait(destination: String, source: String, routingKey: String): Unit {
   return awaitResult {
     this.exchangeUnbind(destination, source, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.exchangeUnbind]
+ *
+ * @param destination 
+ * @param source 
+ * @param routingKey 
+ * @param arguments 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.exchangeUnbindAwait(destination: String, source: String, routingKey: String, arguments: Map<String,Any>): Unit {
+  return awaitResult {
+    this.exchangeUnbind(destination, source, routingKey, arguments, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -356,6 +388,53 @@ suspend fun RabbitMQClient.queueDeleteIfAwait(queue: String, ifUnused: Boolean, 
 suspend fun RabbitMQClient.queueBindAwait(queue: String, exchange: String, routingKey: String): Unit {
   return awaitResult {
     this.queueBind(queue, exchange, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueBind]
+ *
+ * @param queue 
+ * @param exchange 
+ * @param routingKey 
+ * @param arguments 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueBindAwait(queue: String, exchange: String, routingKey: String, arguments: Map<String,Any>): Unit {
+  return awaitResult {
+    this.queueBind(queue, exchange, routingKey, arguments, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueUnbind]
+ *
+ * @param queue 
+ * @param exchange 
+ * @param routingKey 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueUnbindAwait(queue: String, exchange: String, routingKey: String): Unit {
+  return awaitResult {
+    this.queueUnbind(queue, exchange, routingKey, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.queueUnbind]
+ *
+ * @param queue 
+ * @param exchange 
+ * @param routingKey 
+ * @param arguments 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.queueUnbindAwait(queue: String, exchange: String, routingKey: String, arguments: Map<String,Any>): Unit {
+  return awaitResult {
+    this.queueUnbind(queue, exchange, routingKey, arguments, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

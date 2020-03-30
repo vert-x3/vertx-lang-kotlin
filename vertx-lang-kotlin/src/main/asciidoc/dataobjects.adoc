@@ -590,6 +590,9 @@ Sets whether or not the current link is required.
 [[BitFieldGetCommand]]
 == BitFieldGetCommand
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -602,6 +605,9 @@ Sets whether or not the current link is required.
 [[BitFieldIncrbyCommand]]
 == BitFieldIncrbyCommand
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -615,6 +621,9 @@ Sets whether or not the current link is required.
 [[BitFieldOptions]]
 == BitFieldOptions
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -628,6 +637,9 @@ Sets whether or not the current link is required.
 [[BitFieldSetCommand]]
 == BitFieldSetCommand
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -6729,25 +6741,6 @@ Set the topic the record was appended to
 == RedisOptions
 
 ++++
- This object controls the connection setting to the Redis Server. There is no need to specify most of the settings
- since it has built the following sensible defaults:
- <p>
- * `encoding`: `UTF-8`
- * `host`: `localhost`
- * `port`: 6379
- * `tcpKeepAlive`: true
- * `tcpNoDelay`: true
- * `binary`: false
- <p>
- However there are two extra properties that have no defaults since they are optional:
- <p>
- * `auth`
- * `select`
- <p>
- The usage of this two extra properties is to setup required authentication and optionally the selection of the active
- database at connection time. If you define this extra properties on every connection to Redis server this client
- will perform the authentication handshake and database selection, however if you don't do this and call link
- yourself in case of connection failure the client will not be able to perform the correct authentication handshake.
 ++++
 '''
 
@@ -6928,11 +6921,38 @@ Set whether Netty pooled buffers are enabled
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
+|[[connectionString]]`@connectionString`|`String`|+++
+Sets a single connection string (endpoint) to use while connecting to the redis server.
+ Will replace the previously configured connection strings.
+ <p>
+ Does not support rediss (redis over ssl scheme) for now.
++++
+|[[connectionStrings]]`@connectionStrings`|`Array of String`|+++
+Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will
+ consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
+ <p>
+ Does not support rediss (redis over ssl scheme) for now.
++++
+|[[endpoint]]`@endpoint`|`String`|+++
+Sets a single connection string to use while connecting to the redis server.
+ Will replace the previously configured connection strings.
++++
+|[[endpoints]]`@endpoints`|`Array of String`|+++
+Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than
+ 1 element. If more are provided, they are not considered by the client when in single server mode.
++++
 |[[masterName]]`@masterName`|`String`|+++
 Set the master name (only considered in HA mode).
 +++
 |[[maxNestedArrays]]`@maxNestedArrays`|`Number (int)`|+++
 Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
++++
+|[[maxPoolSize]]`@maxPoolSize`|`Number (int)`|+++
+Tune the maximum size of the connection pool. When working with cluster or sentinel
+ this value should be atleast the total number of cluster member (or number of sentinels + 1)
++++
+|[[maxPoolWaiting]]`@maxPoolWaiting`|`Number (int)`|+++
+Tune the maximum waiting requests for a connection from the pool.
 +++
 |[[maxWaitingHandlers]]`@maxWaitingHandlers`|`Number (int)`|+++
 The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
@@ -6941,14 +6961,14 @@ The client will always work on pipeline mode, this means that messages can start
 |[[netClientOptions]]`@netClientOptions`|`link:dataobjects.html#NetClientOptions[NetClientOptions]`|+++
 Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
 +++
-|[[password]]`@password`|`String`|+++
-Set the provided password to be used when establishing a connection to the server.
+|[[poolCleanerInterval]]`@poolCleanerInterval`|`Number (int)`|+++
+Tune how often in milliseconds should the connection pool cleaner execute.
++++
+|[[poolRecycleTimeout]]`@poolRecycleTimeout`|`Number (int)`|+++
+Tune when a connection should be recycled in milliseconds.
 +++
 |[[role]]`@role`|`link:enums.html#RedisRole[RedisRole]`|+++
 Set the role name (only considered in HA mode).
-+++
-|[[select]]`@select`|`Number (Integer)`|+++
-Set the provided database to be selected when establishing a connection to the server.
 +++
 |[[type]]`@type`|`link:enums.html#RedisClientType[RedisClientType]`|+++
 Set the desired client type to be created.
@@ -7351,6 +7371,9 @@ Set list of services
 ^|Name | Type ^| Description
 |[[address]]`@address`|`String`|+++
 Set service address
++++
+|[[checkListOptions]]`@checkListOptions`|`Array of link:dataobjects.html#CheckOptions[CheckOptions]`|+++
+Set checks options of service
 +++
 |[[checkOptions]]`@checkOptions`|`link:dataobjects.html#CheckOptions[CheckOptions]`|+++
 Set check options of service

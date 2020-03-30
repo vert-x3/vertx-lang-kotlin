@@ -17,6 +17,17 @@ package io.vertx.kotlin.redis.op
 
 import io.vertx.redis.op.BitFieldIncrbyCommand
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldIncrbyCommand] objects.
+ *
+ *
+ * @param increment 
+ * @param offset 
+ * @param type 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldIncrbyCommand original] using Vert.x codegen.
+ */
 fun bitFieldIncrbyCommandOf(
   increment: Long? = null,
   offset: Long? = null,
@@ -33,6 +44,17 @@ fun bitFieldIncrbyCommandOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.redis.op.BitFieldIncrbyCommand] objects.
+ *
+ *
+ * @param increment 
+ * @param offset 
+ * @param type 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.redis.op.BitFieldIncrbyCommand original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
   replaceWith = ReplaceWith("bitFieldIncrbyCommandOf(increment, offset, type)")

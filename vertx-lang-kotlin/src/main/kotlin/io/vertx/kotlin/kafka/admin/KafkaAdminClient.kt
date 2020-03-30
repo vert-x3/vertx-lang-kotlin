@@ -72,3 +72,28 @@ suspend fun KafkaAdminClient.listConsumerGroupsAwait(): List<ConsumerGroupListin
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+suspend fun KafkaAdminClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.close]
+ *
+ * @param timeout timeout to wait for closing
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+suspend fun KafkaAdminClient.closeAwait(timeout: Long): Unit {
+  return awaitResult {
+    this.close(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
