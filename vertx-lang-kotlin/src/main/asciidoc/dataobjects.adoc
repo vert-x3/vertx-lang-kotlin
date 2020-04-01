@@ -2400,6 +2400,20 @@ Sets whether or not the HTTP service is using <code>https</code>.
 +++
 |===
 
+[[HttpMethod]]
+== HttpMethod
+
+++++
+ Represents an HTTP method.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|===
+
 [[HttpServerOptions]]
 == HttpServerOptions
 

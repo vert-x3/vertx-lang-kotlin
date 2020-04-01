@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.RequestOptions
+import io.vertx.core.http.HttpMethod
 
 /**
  * A function providing a DSL for building [io.vertx.core.http.RequestOptions] objects.

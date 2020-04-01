@@ -125,7 +125,7 @@ class DataObjectTCKTest {
 
   @Test
   fun testDataObjectWithListAdders() {
-    tck.setDataObjectWithListAdders(dataObjectWithListAddersOf(
+    val dataObjectWithListAddersOf = dataObjectWithListAddersOf(
       booleanValues = listOf(true, false, true),
       shortValues = listOf(0, 520, 1040),
       integerValues = listOf(0, 123456, 654321),
@@ -142,7 +142,8 @@ class DataObjectTCKTest {
       ),
       enumValues = listOf(TestEnum.TIM, TestEnum.JULIEN),
       genEnumValues = listOf(TestGenEnum.BOB, TestGenEnum.LAURA)
-    ))
+    )
+    tck.setDataObjectWithListAdders(dataObjectWithListAddersOf)
   }
 
   @Test

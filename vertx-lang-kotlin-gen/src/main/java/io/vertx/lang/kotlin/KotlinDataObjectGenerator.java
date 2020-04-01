@@ -161,7 +161,11 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
     writer.print(model.getType().getName());
     writer.print("(");
     if (!model.hasEmptyConstructor()) {
-      writer.print("io.vertx.core.json.JsonObject()");
+      if (model.hasJsonConstructor()) {
+        writer.print("io.vertx.core.json.JsonObject()");
+      } else if (model.hasStringConstructor()) {
+        writer.print("String()");
+      }
     }
     writer.println(").apply {");
     writer.println();

@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.WebSocketConnectOptions
+import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.WebsocketVersion
 
 /**
