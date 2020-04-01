@@ -17,18 +17,16 @@ package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedQuery
-import io.vertx.sqlclient.Row
-import io.vertx.sqlclient.RowSet
 import io.vertx.sqlclient.Tuple
 
 /**
  * Suspending version of method [io.vertx.sqlclient.PreparedQuery.execute]
  *
- * @return [RowSet<Row>]
+ * @return [T]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.executeAwait(): RowSet<Row> {
+suspend fun <T> PreparedQuery<T>.executeAwait(): T {
   return awaitResult {
     this.execute(it)
   }
@@ -37,40 +35,28 @@ suspend fun PreparedQuery.executeAwait(): RowSet<Row> {
 /**
  * Suspending version of method [io.vertx.sqlclient.PreparedQuery.execute]
  *
- * @param args the list of arguments
- * @return [RowSet<Row>]
+ * @param tuple 
+ * @return [T]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.executeAwait(args: Tuple): RowSet<Row> {
+suspend fun <T> PreparedQuery<T>.executeAwait(tuple: Tuple): T {
   return awaitResult {
-    this.execute(args, it)
+    this.execute(tuple, it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.sqlclient.PreparedQuery.batch]
+ * Suspending version of method [io.vertx.sqlclient.PreparedQuery.executeBatch]
  *
- * @param argsList the list of tuple for the batch
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
- */
-suspend fun PreparedQuery.batchAwait(argsList: List<Tuple>): RowSet<Row> {
-  return awaitResult {
-    this.batch(argsList, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.sqlclient.PreparedQuery.close]
- *
+ * @param batch the batch of tuples
+ * @return [T]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedQuery] using Vert.x codegen.
  */
-suspend fun PreparedQuery.closeAwait(): Unit {
+suspend fun <T> PreparedQuery<T>.executeBatchAwait(batch: List<Tuple>): T {
   return awaitResult {
-    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.executeBatch(batch, it)
   }
 }
 

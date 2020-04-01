@@ -17,7 +17,7 @@ package io.vertx.kotlin.ext.auth.oauth2.providers
 
 import io.vertx.core.Vertx
 import io.vertx.ext.auth.oauth2.OAuth2Auth
-import io.vertx.ext.auth.oauth2.OAuth2ClientOptions
+import io.vertx.ext.auth.oauth2.OAuth2Options
 import io.vertx.ext.auth.oauth2.providers.AzureADAuth as AzureADAuthVertxAlias
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -31,7 +31,7 @@ object AzureADAuth {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.providers.AzureADAuth] using Vert.x codegen.
    */
-  suspend fun discoverAwait(vertx: Vertx, config: OAuth2ClientOptions): OAuth2Auth {
+  suspend fun discoverAwait(vertx: Vertx, config: OAuth2Options): OAuth2Auth {
     return awaitResult {
       AzureADAuthVertxAlias.discover(vertx, config, it)
     }

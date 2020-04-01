@@ -465,24 +465,6 @@ Specifying a maximum duration for the blocking request. This is limited to 10 mi
 |[[pointToPoint]]`@pointToPoint`|`Boolean`|-
 |===
 
-[[BridgeOptions]]
-== BridgeOptions
-
-++++
- Options for configuring the event bus bridge.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[maxAddressLength]]`@maxAddressLength`|`Number (int)`|-
-|[[maxHandlersPerSocket]]`@maxHandlersPerSocket`|`Number (int)`|-
-|[[pingTimeout]]`@pingTimeout`|`Number (long)`|-
-|[[replyTimeout]]`@replyTimeout`|`Number (long)`|-
-|===
-
 [[BulkOperation]]
 == BulkOperation
 
@@ -5035,6 +5017,77 @@ Set whether the <code>server_no_context_takeover</code> parameter of the WebSock
 +++
 |===
 
+[[OAuth2Options]]
+== OAuth2Options
+
+++++
+ Options describing how an OAuth2  will make connections.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authorizationPath]]`@authorizationPath`|`String`|+++
+Get the Oauth2 authorization resource path. e.g.: /oauth/authorize
++++
+|[[clientID]]`@clientID`|`String`|+++
+Set the provider client id
++++
+|[[clientSecret]]`@clientSecret`|`String`|+++
+Set the provider client secret
++++
+|[[clientSecretParameterName]]`@clientSecretParameterName`|`String`|+++
+Override the HTTP form field name for client secret
++++
+|[[extraParameters]]`@extraParameters`|`Json object`|+++
+Set extra parameters to be sent to the provider on each request
++++
+|[[flow]]`@flow`|`link:enums.html#OAuth2FlowType[OAuth2FlowType]`|-
+|[[headers]]`@headers`|`Json object`|+++
+Set custom headers to be sent with every request to the provider
++++
+|[[introspectionPath]]`@introspectionPath`|`String`|+++
+Set the provider token introspection resource path
++++
+|[[jwkPath]]`@jwkPath`|`String`|-
+|[[logoutPath]]`@logoutPath`|`String`|+++
+Set the provider logout path
++++
+|[[revocationPath]]`@revocationPath`|`String`|+++
+Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
++++
+|[[scopeSeparator]]`@scopeSeparator`|`String`|+++
+Set the provider scope separator
++++
+|[[site]]`@site`|`String`|+++
+Root URL for the provider without trailing slashes
++++
+|[[tenant]]`@tenant`|`String`|+++
+Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs.
+ The tenant should be set prior to any URL as it affects the way the URLs will be stored.
+
+ Some provders may name this differently, for example: `realm`.
++++
+|[[tokenPath]]`@tokenPath`|`String`|+++
+Get the Oauth2 token resource path. e.g.: /oauth/token
++++
+|[[useBasicAuthorizationHeader]]`@useBasicAuthorizationHeader`|`Boolean`|+++
+Flag to use HTTP basic auth header with client id, client secret.
++++
+|[[userAgent]]`@userAgent`|`String`|+++
+Set a custom user agent to use when communicating to a provider
++++
+|[[userInfoParameters]]`@userInfoParameters`|`Json object`|+++
+Set custom parameters to be sent during the userInfo resource request
++++
+|[[userInfoPath]]`@userInfoPath`|`String`|+++
+Set the provider userInfo resource path
++++
+|[[validateIssuer]]`@validateIssuer`|`Boolean`|-
+|===
+
 [[OffsetAndMetadata]]
 == OffsetAndMetadata
 
@@ -6669,6 +6722,24 @@ Set the Shiro auth config.
 |[[type]]`@type`|`link:enums.html#ShiroAuthRealmType[ShiroAuthRealmType]`|+++
 Set the Shiro auth options type.
 +++
+|===
+
+[[SockJSBridgeOptions]]
+== SockJSBridgeOptions
+
+++++
+ Options for configuring the event bus bridge.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[maxAddressLength]]`@maxAddressLength`|`Number (int)`|-
+|[[maxHandlersPerSocket]]`@maxHandlersPerSocket`|`Number (int)`|-
+|[[pingTimeout]]`@pingTimeout`|`Number (long)`|-
+|[[replyTimeout]]`@replyTimeout`|`Number (long)`|-
 |===
 
 [[SockJSHandlerOptions]]

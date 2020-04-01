@@ -21,65 +21,19 @@ import io.vertx.mysqlclient.MySQLAuthOptions
 import io.vertx.mysqlclient.MySQLConnectOptions
 import io.vertx.mysqlclient.MySQLConnection as MySQLConnectionVertxAlias
 import io.vertx.mysqlclient.MySQLSetOption
-import io.vertx.sqlclient.PreparedQuery
-import io.vertx.sqlclient.Row
-import io.vertx.sqlclient.RowSet
-import io.vertx.sqlclient.Tuple
+import io.vertx.sqlclient.PreparedStatement
 
 /**
  * Suspending version of method [io.vertx.mysqlclient.MySQLConnection.prepare]
  *
  * @param sql 
- * @return [PreparedQuery]
+ * @return [PreparedStatement]
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-suspend fun MySQLConnectionVertxAlias.prepareAwait(sql: String): PreparedQuery {
+suspend fun MySQLConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.mysqlclient.MySQLConnection.preparedQuery]
- *
- * @param sql 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
- */
-suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.mysqlclient.MySQLConnection.query]
- *
- * @param sql 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
- */
-suspend fun MySQLConnectionVertxAlias.queryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.query(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.mysqlclient.MySQLConnection.preparedQuery]
- *
- * @param sql 
- * @param arguments 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
- */
-suspend fun MySQLConnectionVertxAlias.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, arguments, it)
   }
 }
 

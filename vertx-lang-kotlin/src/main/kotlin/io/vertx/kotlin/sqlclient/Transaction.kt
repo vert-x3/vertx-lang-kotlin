@@ -16,21 +16,18 @@
 package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
-import io.vertx.sqlclient.PreparedQuery
-import io.vertx.sqlclient.Row
-import io.vertx.sqlclient.RowSet
+import io.vertx.sqlclient.PreparedStatement
 import io.vertx.sqlclient.Transaction
-import io.vertx.sqlclient.Tuple
 
 /**
  * Suspending version of method [io.vertx.sqlclient.Transaction.prepare]
  *
  * @param sql the sql
- * @return [PreparedQuery]
+ * @return [PreparedStatement]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Transaction] using Vert.x codegen.
  */
-suspend fun Transaction.prepareAwait(sql: String): PreparedQuery {
+suspend fun Transaction.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
   }
@@ -57,30 +54,6 @@ suspend fun Transaction.commitAwait(): Unit {
 suspend fun Transaction.rollbackAwait(): Unit {
   return awaitResult {
     this.rollback(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-suspend fun Transaction.queryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.query(sql, it)
-  }
-}
-
-suspend fun Transaction.preparedQueryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, it)
-  }
-}
-
-suspend fun Transaction.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, arguments, it)
-  }
-}
-
-suspend fun Transaction.preparedBatchAwait(sql: String, batch: List<Tuple>): RowSet<Row> {
-  return awaitResult {
-    this.preparedBatch(sql, batch, it)
   }
 }
 

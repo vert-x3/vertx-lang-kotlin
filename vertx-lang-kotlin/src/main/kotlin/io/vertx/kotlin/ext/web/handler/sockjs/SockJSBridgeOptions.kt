@@ -15,43 +15,34 @@
  */
 package io.vertx.kotlin.ext.web.handler.sockjs
 
-import io.vertx.ext.web.handler.sockjs.BridgeOptions
+import io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions
 import io.vertx.ext.bridge.PermittedOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.BridgeOptions] objects.
+ * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions] objects.
  *
  * Options for configuring the event bus bridge.
  *
- * @param inboundPermitted 
- * @param inboundPermitteds 
+ * @param inboundPermitteds  Sets the list of inbound permitted options.
  * @param maxAddressLength 
  * @param maxHandlersPerSocket 
- * @param outboundPermitted 
- * @param outboundPermitteds 
+ * @param outboundPermitteds  Sets the list of outbound permitted options.
  * @param pingTimeout 
  * @param replyTimeout 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.BridgeOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions original] using Vert.x codegen.
  */
-fun bridgeOptionsOf(
-  inboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
+fun sockJSBridgeOptionsOf(
   inboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   maxAddressLength: Int? = null,
   maxHandlersPerSocket: Int? = null,
-  outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
+  replyTimeout: Long? = null): SockJSBridgeOptions = io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions().apply {
 
-  if (inboundPermitted != null) {
-    this.setInboundPermitted(inboundPermitted.toList())
-  }
   if (inboundPermitteds != null) {
-    for (item in inboundPermitteds) {
-      this.addInboundPermitted(item)
-    }
+    this.setInboundPermitteds(inboundPermitteds.toList())
   }
   if (maxAddressLength != null) {
     this.setMaxAddressLength(maxAddressLength)
@@ -59,13 +50,8 @@ fun bridgeOptionsOf(
   if (maxHandlersPerSocket != null) {
     this.setMaxHandlersPerSocket(maxHandlersPerSocket)
   }
-  if (outboundPermitted != null) {
-    this.setOutboundPermitted(outboundPermitted.toList())
-  }
   if (outboundPermitteds != null) {
-    for (item in outboundPermitteds) {
-      this.addOutboundPermitted(item)
-    }
+    this.setOutboundPermitteds(outboundPermitteds.toList())
   }
   if (pingTimeout != null) {
     this.setPingTimeout(pingTimeout)
@@ -76,43 +62,34 @@ fun bridgeOptionsOf(
 }
 
 /**
- * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.BridgeOptions] objects.
+ * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions] objects.
  *
  * Options for configuring the event bus bridge.
  *
- * @param inboundPermitted 
- * @param inboundPermitteds 
+ * @param inboundPermitteds  Sets the list of inbound permitted options.
  * @param maxAddressLength 
  * @param maxHandlersPerSocket 
- * @param outboundPermitted 
- * @param outboundPermitteds 
+ * @param outboundPermitteds  Sets the list of outbound permitted options.
  * @param pingTimeout 
  * @param replyTimeout 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.BridgeOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("bridgeOptionsOf(inboundPermitted, inboundPermitteds, maxAddressLength, maxHandlersPerSocket, outboundPermitted, outboundPermitteds, pingTimeout, replyTimeout)")
+  replaceWith = ReplaceWith("sockJSBridgeOptionsOf(inboundPermitteds, maxAddressLength, maxHandlersPerSocket, outboundPermitteds, pingTimeout, replyTimeout)")
 )
-fun BridgeOptions(
-  inboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
+fun SockJSBridgeOptions(
   inboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   maxAddressLength: Int? = null,
   maxHandlersPerSocket: Int? = null,
-  outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
+  replyTimeout: Long? = null): SockJSBridgeOptions = io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions().apply {
 
-  if (inboundPermitted != null) {
-    this.setInboundPermitted(inboundPermitted.toList())
-  }
   if (inboundPermitteds != null) {
-    for (item in inboundPermitteds) {
-      this.addInboundPermitted(item)
-    }
+    this.setInboundPermitteds(inboundPermitteds.toList())
   }
   if (maxAddressLength != null) {
     this.setMaxAddressLength(maxAddressLength)
@@ -120,13 +97,8 @@ fun BridgeOptions(
   if (maxHandlersPerSocket != null) {
     this.setMaxHandlersPerSocket(maxHandlersPerSocket)
   }
-  if (outboundPermitted != null) {
-    this.setOutboundPermitted(outboundPermitted.toList())
-  }
   if (outboundPermitteds != null) {
-    for (item in outboundPermitteds) {
-      this.addOutboundPermitted(item)
-    }
+    this.setOutboundPermitteds(outboundPermitteds.toList())
   }
   if (pingTimeout != null) {
     this.setPingTimeout(pingTimeout)

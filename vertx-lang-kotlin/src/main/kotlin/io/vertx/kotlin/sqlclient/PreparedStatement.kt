@@ -17,19 +17,16 @@ package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedStatement
-import io.vertx.sqlclient.SqlConnection
 
 /**
- * Suspending version of method [io.vertx.sqlclient.SqlConnection.prepare]
+ * Suspending version of method [io.vertx.sqlclient.PreparedStatement.close]
  *
- * @param sql the sql
- * @return [PreparedStatement]
  *
- * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.PreparedStatement] using Vert.x codegen.
  */
-suspend fun SqlConnection.prepareAwait(sql: String): PreparedStatement {
+suspend fun PreparedStatement.closeAwait(): Unit {
   return awaitResult {
-    this.prepare(sql, it)
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

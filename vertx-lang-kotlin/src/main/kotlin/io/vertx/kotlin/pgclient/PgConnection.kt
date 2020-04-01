@@ -19,80 +19,19 @@ import io.vertx.core.Vertx
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.pgclient.PgConnectOptions
 import io.vertx.pgclient.PgConnection as PgConnectionVertxAlias
-import io.vertx.sqlclient.PreparedQuery
-import io.vertx.sqlclient.Row
-import io.vertx.sqlclient.RowSet
-import io.vertx.sqlclient.Tuple
+import io.vertx.sqlclient.PreparedStatement
 
 /**
  * Suspending version of method [io.vertx.pgclient.PgConnection.prepare]
  *
  * @param sql 
- * @return [PreparedQuery]
+ * @return [PreparedStatement]
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
  */
-suspend fun PgConnectionVertxAlias.prepareAwait(sql: String): PreparedQuery {
+suspend fun PgConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.pgclient.PgConnection.preparedQuery]
- *
- * @param sql 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
- */
-suspend fun PgConnectionVertxAlias.preparedQueryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.pgclient.PgConnection.query]
- *
- * @param sql 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
- */
-suspend fun PgConnectionVertxAlias.queryAwait(sql: String): RowSet<Row> {
-  return awaitResult {
-    this.query(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.pgclient.PgConnection.preparedQuery]
- *
- * @param sql 
- * @param arguments 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
- */
-suspend fun PgConnectionVertxAlias.preparedQueryAwait(sql: String, arguments: Tuple): RowSet<Row> {
-  return awaitResult {
-    this.preparedQuery(sql, arguments, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.pgclient.PgConnection.preparedBatch]
- *
- * @param sql 
- * @param batch 
- * @return [RowSet<Row>]
- *
- * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
- */
-suspend fun PgConnectionVertxAlias.preparedBatchAwait(sql: String, batch: List<Tuple>): RowSet<Row> {
-  return awaitResult {
-    this.preparedBatch(sql, batch, it)
   }
 }
 

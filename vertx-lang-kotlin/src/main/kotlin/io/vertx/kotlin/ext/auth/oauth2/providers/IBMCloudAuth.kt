@@ -18,22 +18,22 @@ package io.vertx.kotlin.ext.auth.oauth2.providers
 import io.vertx.core.Vertx
 import io.vertx.ext.auth.oauth2.OAuth2Auth
 import io.vertx.ext.auth.oauth2.OAuth2Options
-import io.vertx.ext.auth.oauth2.providers.SalesforceAuth as SalesforceAuthVertxAlias
+import io.vertx.ext.auth.oauth2.providers.IBMCloudAuth as IBMCloudAuthVertxAlias
 import io.vertx.kotlin.coroutines.awaitResult
 
-object SalesforceAuth {
+object IBMCloudAuth {
   /**
-   * Suspending version of method [io.vertx.ext.auth.oauth2.providers.SalesforceAuth.discover]
+   * Suspending version of method [io.vertx.ext.auth.oauth2.providers.IBMCloudAuth.discover]
    *
    * @param vertx the vertx instance
    * @param config the initial config
    * @return [OAuth2Auth]
    *
-   * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.providers.SalesforceAuth] using Vert.x codegen.
+   * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.providers.IBMCloudAuth] using Vert.x codegen.
    */
   suspend fun discoverAwait(vertx: Vertx, config: OAuth2Options): OAuth2Auth {
     return awaitResult {
-      SalesforceAuthVertxAlias.discover(vertx, config, it)
+      IBMCloudAuthVertxAlias.discover(vertx, config, it)
     }
   }
 
