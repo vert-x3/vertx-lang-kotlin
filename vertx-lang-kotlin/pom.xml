@@ -320,6 +320,11 @@
       <artifactId>vertx-tcp-eventbus-bridge</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-json-schema</artifactId>
+      <optional>true</optional>
+    </dependency>
 
     <!-- Extra dependencies -->
     <dependency>
@@ -433,7 +438,8 @@
             vertx-health-check,
             vertx-shell,
             vertx-micrometer-metrics,
-            vertx-tcp-eventbus-bridge
+            vertx-tcp-eventbus-bridge,
+            vertx-json-schema
           </includeArtifactIds>
           <classifier>sources</classifier>
           <includeTypes>jar</includeTypes>
