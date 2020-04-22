@@ -438,7 +438,8 @@
             vertx-health-check,
             vertx-shell,
             vertx-micrometer-metrics,
-            vertx-tcp-eventbus-bridge
+            vertx-tcp-eventbus-bridge,
+            vertx-json-schema
           </includeArtifactIds>
           <classifier>sources</classifier>
           <includeTypes>jar</includeTypes>
