@@ -417,7 +417,7 @@
             vertx-web-templ-rocker,
             vertx-web-templ-thymeleaf,
             vertx-web-graphql,
-            vertx-web-validation
+            vertx-web-validation,
             vertx-circuit-breaker,
             vertx-dropwizard-metrics,
             vertx-redis-client,
