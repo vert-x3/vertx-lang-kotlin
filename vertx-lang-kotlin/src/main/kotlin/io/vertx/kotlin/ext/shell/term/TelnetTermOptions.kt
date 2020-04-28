@@ -53,6 +53,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -72,6 +74,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TelnetTermOptions original] using Vert.x codegen.
@@ -100,6 +103,8 @@ fun telnetTermOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -118,7 +123,8 @@ fun telnetTermOptionsOf(
   trafficClass: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
+  useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -195,6 +201,12 @@ fun telnetTermOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -251,6 +263,9 @@ fun telnetTermOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
 }
 
@@ -282,6 +297,8 @@ fun telnetTermOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -301,13 +318,14 @@ fun telnetTermOptionsOf(
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.TelnetTermOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("telnetTermOptionsOf(acceptBacklog, charset, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, inBinary, intputrc, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, openSslEngineOptions, outBinary, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustOptions, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("telnetTermOptionsOf(acceptBacklog, charset, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, inBinary, intputrc, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, openSslEngineOptions, outBinary, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyProtocolTimeout, proxyProtocolTimeoutUnit, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustOptions, trustStoreOptions, useAlpn, useProxyProtocol)")
 )
 fun TelnetTermOptions(
   acceptBacklog: Int? = null,
@@ -333,6 +351,8 @@ fun TelnetTermOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -351,7 +371,8 @@ fun TelnetTermOptions(
   trafficClass: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
+  useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -428,6 +449,12 @@ fun TelnetTermOptions(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -484,6 +511,9 @@ fun TelnetTermOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
 }
 

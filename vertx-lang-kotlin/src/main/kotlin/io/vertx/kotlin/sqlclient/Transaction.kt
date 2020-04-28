@@ -16,22 +16,7 @@
 package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
-import io.vertx.sqlclient.PreparedStatement
 import io.vertx.sqlclient.Transaction
-
-/**
- * Suspending version of method [io.vertx.sqlclient.Transaction.prepare]
- *
- * @param sql the sql
- * @return [PreparedStatement]
- *
- * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Transaction] using Vert.x codegen.
- */
-suspend fun Transaction.prepareAwait(sql: String): PreparedStatement {
-  return awaitResult {
-    this.prepare(sql, it)
-  }
-}
 
 /**
  * Suspending version of method [io.vertx.sqlclient.Transaction.commit]

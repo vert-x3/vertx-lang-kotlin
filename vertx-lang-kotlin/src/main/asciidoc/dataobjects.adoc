@@ -1076,6 +1076,8 @@ Set the default HTTP/2 connection window size. It overrides the initial window
 Set the keep alive timeout for HTTP/2 connections, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[http2MaxPoolSize]]`@http2MaxPoolSize`|`Number (int)`|+++
 Set the maximum pool size for HTTP/2 connections
@@ -1102,6 +1104,8 @@ Set whether keep alive is enabled on the client
 Set the keep alive timeout for HTTP/1.x, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[localAddress]]`@localAddress`|`String`|+++
 Set the local interface to bind for network connections. When the local address is null,
@@ -1700,9 +1704,6 @@ Set the public facing hostname to be used for clustering.
 |[[clusterPublicPort]]`@clusterPublicPort`|`Number (int)`|+++
 See link for an explanation.
 +++
-|[[clustered]]`@clustered`|`Boolean`|+++
-Sets whether or not the event bus is clustered.
-+++
 |[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
 Sets the connect timeout
 +++
@@ -2205,6 +2206,8 @@ Set the default HTTP/2 connection window size. It overrides the initial window
 Set the keep alive timeout for HTTP/2 connections, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[http2MaxPoolSize]]`@http2MaxPoolSize`|`Number (int)`|+++
 Set the maximum pool size for HTTP/2 connections
@@ -2233,6 +2236,8 @@ Set whether keep alive is enabled on the client
 Set the keep alive timeout for HTTP/1.x, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[localAddress]]`@localAddress`|`String`|+++
 Set the local interface to bind for network connections. When the local address is null,
@@ -2534,6 +2539,12 @@ Enable or disable support for WebSocket per-message deflate compression extensio
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -2583,6 +2594,9 @@ Set the value of traffic class
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |[[webSocketAllowServerNoContext]]`@webSocketAllowServerNoContext`|`Boolean`|+++
 Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message
@@ -2729,6 +2743,12 @@ Enable or disable support for WebSocket per-message deflate compression extensio
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -2787,6 +2807,9 @@ Set the value of traffic class
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |[[vertsShellJsResource]]`@vertsShellJsResource`|`Buffer`|+++
 Set <code>vertxshell.js</code> resource to use.
@@ -3347,6 +3370,9 @@ set the hostname to be used for HELO/EHLO and the Message-ID
 +++
 |[[password]]`@password`|`String`|+++
 Set the password for the login.
++++
+|[[pipelining]]`@pipelining`|`Boolean`|+++
+Sets to enable/disable the pipelining capability if SMTP server supports it.
 +++
 |[[port]]`@port`|`Number (int)`|+++
 Set the port of the smtp server.
@@ -4054,6 +4080,12 @@ Set max MQTT message size
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -4106,6 +4138,9 @@ Set the value of traffic class
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |===
 
@@ -4538,6 +4573,12 @@ Set to true to enabled network activity logging: Netty's pipeline is configured 
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -4587,6 +4628,9 @@ Set the value of traffic class
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |===
 
@@ -4829,6 +4873,8 @@ Set the default HTTP/2 connection window size. It overrides the initial window
 Set the keep alive timeout for HTTP/2 connections, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[http2MaxPoolSize]]`@http2MaxPoolSize`|`Number (int)`|+++
 Set the maximum pool size for HTTP/2 connections
@@ -4861,6 +4907,8 @@ Set whether keep alive is enabled on the client
 Set the keep alive timeout for HTTP/1.x, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[localAddress]]`@localAddress`|`String`|+++
 Set the local interface to bind for network connections. When the local address is null,
@@ -6409,6 +6457,23 @@ Set the port
 +++
 |===
 
+[[SchemaRouterOptions]]
+== SchemaRouterOptions
+
+++++
+ Represents the options to resolve external schemas. You can configure auth options to access to external services
+
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authHeaders]]`@authHeaders`|`String`|-
+|[[authQueryParams]]`@authQueryParams`|`String`|-
+|===
+
 [[Service]]
 == Service
 
@@ -7156,6 +7221,12 @@ Sets the maximum of subscriptions a client is allowed to register. If a client e
 |[[port]]`@port`|`Number (int)`|+++
 Sets the port on which the server is going to listen for TCP connection.
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -7226,6 +7297,9 @@ Sets the chunk size when replaying a transaction. To avoid blocking the event lo
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |[[websocketBridge]]`@websocketBridge`|`Boolean`|+++
 Enables or disables the web socket bridge.
@@ -7405,6 +7479,12 @@ Set the telnet connection to negociate binary data format when sending to the cl
 |[[port]]`@port`|`Number (int)`|+++
 Set the port
 +++
+|[[proxyProtocolTimeout]]`@proxyProtocolTimeout`|`Number (long)`|+++
+Set the Proxy protocol timeout, default time unit is seconds.
++++
+|[[proxyProtocolTimeoutUnit]]`@proxyProtocolTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
+Set the Proxy protocol timeout unit. If not specified, default is seconds.
++++
 |[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
 Set the TCP receive buffer size
 +++
@@ -7454,6 +7534,9 @@ Set the value of traffic class
 +++
 |[[useAlpn]]`@useAlpn`|`Boolean`|+++
 Set the ALPN usage.
++++
+|[[useProxyProtocol]]`@useProxyProtocol`|`Boolean`|+++
+Set whether the server uses the HA Proxy protocol
 +++
 |===
 
@@ -7822,9 +7905,6 @@ Set the public facing hostname to be used for clustering.
 |[[clusterPublicPort]]`@clusterPublicPort`|`Number (int)`|+++
 See link for an explanation.
 +++
-|[[clustered]]`@clustered`|`Boolean`|+++
-Set whether or not the Vert.x instance will be clustered.
-+++
 |[[eventLoopPoolSize]]`@eventLoopPoolSize`|`Number (int)`|+++
 Set the number of event loop threads to be used by the Vert.x instance.
 +++
@@ -7997,6 +8077,8 @@ Set the default HTTP/2 connection window size. It overrides the initial window
 Set the keep alive timeout for HTTP/2 connections, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[http2MaxPoolSize]]`@http2MaxPoolSize`|`Number (int)`|+++
 Set the maximum pool size for HTTP/2 connections
@@ -8025,6 +8107,8 @@ Set whether keep alive is enabled on the client
 Set the keep alive timeout for HTTP/1.x, in seconds.
  <p/>
  This value determines how long a connection remains unused in the pool before being evicted and closed.
+ <p/>
+ A timeout of <code>0</code> means there is no timeout.
 +++
 |[[localAddress]]`@localAddress`|`String`|+++
 Set the local interface to bind for network connections. When the local address is null,

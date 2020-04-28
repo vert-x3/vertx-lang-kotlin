@@ -51,6 +51,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -71,6 +73,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
@@ -97,6 +100,8 @@ fun mqttServerOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -116,7 +121,8 @@ fun mqttServerOptionsOf(
   trafficClass: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
+  useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -187,6 +193,12 @@ fun mqttServerOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -246,6 +258,9 @@ fun mqttServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
 }
 
@@ -275,6 +290,8 @@ fun mqttServerOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -295,13 +312,14 @@ fun mqttServerOptionsOf(
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustOptions, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("mqttServerOptionsOf(acceptBacklog, autoClientId, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyProtocolTimeout, proxyProtocolTimeoutUnit, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeoutOnConnect, trafficClass, trustOptions, trustStoreOptions, useAlpn, useProxyProtocol)")
 )
 fun MqttServerOptions(
   acceptBacklog: Int? = null,
@@ -325,6 +343,8 @@ fun MqttServerOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -344,7 +364,8 @@ fun MqttServerOptions(
   trafficClass: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
+  useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -415,6 +436,12 @@ fun MqttServerOptions(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -474,6 +501,9 @@ fun MqttServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
 }
 

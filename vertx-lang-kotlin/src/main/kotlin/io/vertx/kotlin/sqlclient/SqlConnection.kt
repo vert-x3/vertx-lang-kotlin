@@ -18,6 +18,7 @@ package io.vertx.kotlin.sqlclient
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedStatement
 import io.vertx.sqlclient.SqlConnection
+import io.vertx.sqlclient.Transaction
 
 /**
  * Suspending version of method [io.vertx.sqlclient.SqlConnection.prepare]
@@ -30,6 +31,19 @@ import io.vertx.sqlclient.SqlConnection
 suspend fun SqlConnection.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.sqlclient.SqlConnection.begin]
+ *
+ * @return [Transaction]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
+ */
+suspend fun SqlConnection.beginAwait(): Transaction {
+  return awaitResult {
+    this.begin(it)
   }
 }
 

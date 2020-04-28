@@ -67,6 +67,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -86,6 +88,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
  * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
@@ -130,6 +133,8 @@ fun httpServerOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -149,6 +154,7 @@ fun httpServerOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketPreferredClientNoContext: Boolean? = null,
@@ -265,6 +271,12 @@ fun httpServerOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -321,6 +333,9 @@ fun httpServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (webSocketAllowServerNoContext != null) {
     this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)
@@ -376,6 +391,8 @@ fun httpServerOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -395,6 +412,7 @@ fun httpServerOptionsOf(
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
  * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
@@ -405,7 +423,7 @@ fun httpServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustOptions, trustStoreOptions, useAlpn, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
+  replaceWith = ReplaceWith("httpServerOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, proxyProtocolTimeout, proxyProtocolTimeoutUnit, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustOptions, trustStoreOptions, useAlpn, useProxyProtocol, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
 )
 fun HttpServerOptions(
   acceptBacklog: Int? = null,
@@ -443,6 +461,8 @@ fun HttpServerOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -462,6 +482,7 @@ fun HttpServerOptions(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketPreferredClientNoContext: Boolean? = null,
@@ -578,6 +599,12 @@ fun HttpServerOptions(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -634,6 +661,9 @@ fun HttpServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (webSocketAllowServerNoContext != null) {
     this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)

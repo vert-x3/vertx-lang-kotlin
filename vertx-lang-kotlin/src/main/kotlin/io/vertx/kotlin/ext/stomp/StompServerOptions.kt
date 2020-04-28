@@ -55,6 +55,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Sets the port on which the server is going to listen for TCP connection.
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -80,6 +82,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param websocketBridge  Enables or disables the web socket bridge.
  * @param websocketPath  Sets the websocket path. Only frames received on this path would be considered as STOMP frame.
  *
@@ -112,6 +115,8 @@ fun stompServerOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -137,6 +142,7 @@ fun stompServerOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   websocketBridge: Boolean? = null,
   websocketPath: String? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
 
@@ -221,6 +227,12 @@ fun stompServerOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -295,6 +307,9 @@ fun stompServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (websocketBridge != null) {
     this.setWebsocketBridge(websocketBridge)
@@ -334,6 +349,8 @@ fun stompServerOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Sets the port on which the server is going to listen for TCP connection.
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -359,6 +376,7 @@ fun stompServerOptionsOf(
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param websocketBridge  Enables or disables the web socket bridge.
  * @param websocketPath  Sets the websocket path. Only frames received on this path would be considered as STOMP frame.
  *
@@ -367,7 +385,7 @@ fun stompServerOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustOptions, trustStoreOptions, useAlpn, websocketBridge, websocketPath)")
+  replaceWith = ReplaceWith("stompServerOptionsOf(acceptBacklog, clientAuth, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, heartbeat, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxBodyLength, maxFrameInTransaction, maxHeaderLength, maxHeaders, maxSubscriptionsByClient, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyProtocolTimeout, proxyProtocolTimeoutUnit, receiveBufferSize, reuseAddress, reusePort, secured, sendBufferSize, sendErrorOnNoSubscriptions, sni, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, supportedVersions, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, timeFactor, trafficClass, trailingLine, transactionChunkSize, trustOptions, trustStoreOptions, useAlpn, useProxyProtocol, websocketBridge, websocketPath)")
 )
 fun StompServerOptions(
   acceptBacklog: Int? = null,
@@ -395,6 +413,8 @@ fun StompServerOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -420,6 +440,7 @@ fun StompServerOptions(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   websocketBridge: Boolean? = null,
   websocketPath: String? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
 
@@ -504,6 +525,12 @@ fun StompServerOptions(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -578,6 +605,9 @@ fun StompServerOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (websocketBridge != null) {
     this.setWebsocketBridge(websocketBridge)

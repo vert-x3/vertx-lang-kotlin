@@ -21,6 +21,31 @@ import io.vertx.core.http.HttpConnection
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpConnection.shutdown]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
+ */
+suspend fun HttpConnection.shutdownAwait(): Unit {
+  return awaitResult {
+    this.shutdown(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpConnection.shutdown]
+ *
+ * @param timeout 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
+ */
+suspend fun HttpConnection.shutdownAwait(timeout: Long): Unit {
+  return awaitResult {
+    this.shutdown(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpConnection.updateSettings]
  *
  * @param settings the new settings

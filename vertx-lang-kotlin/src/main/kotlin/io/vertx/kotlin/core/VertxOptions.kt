@@ -38,7 +38,6 @@ import java.util.concurrent.TimeUnit
  * @param clusterPort  Set the port to be used for clustering.
  * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. The default value is null which means use the same as the cluster hostname.
  * @param clusterPublicPort  See [io.vertx.core.VertxOptions] for an explanation.
- * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
  * @param fileSystemOptions  Set the file system options
@@ -71,7 +70,6 @@ fun vertxOptionsOf(
   clusterPort: Int? = null,
   clusterPublicHost: String? = null,
   clusterPublicPort: Int? = null,
-  clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
@@ -119,9 +117,6 @@ fun vertxOptionsOf(
   }
   if (clusterPublicPort != null) {
     this.setClusterPublicPort(clusterPublicPort)
-  }
-  if (clustered != null) {
-    this.setClustered(clustered)
   }
   if (eventBusOptions != null) {
     this.setEventBusOptions(eventBusOptions)
@@ -191,7 +186,6 @@ fun vertxOptionsOf(
  * @param clusterPort  Set the port to be used for clustering.
  * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. The default value is null which means use the same as the cluster hostname.
  * @param clusterPublicPort  See [io.vertx.core.VertxOptions] for an explanation.
- * @param clustered  Set whether or not the Vert.x instance will be clustered.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
  * @param fileSystemOptions  Set the file system options
@@ -215,7 +209,7 @@ fun vertxOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterManager, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, clustered, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, tracingOptions, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
+  replaceWith = ReplaceWith("vertxOptionsOf(addressResolverOptions, blockedThreadCheckInterval, blockedThreadCheckIntervalUnit, clusterHost, clusterManager, clusterPingInterval, clusterPingReplyInterval, clusterPort, clusterPublicHost, clusterPublicPort, eventBusOptions, eventLoopPoolSize, fileSystemOptions, haEnabled, haGroup, internalBlockingPoolSize, maxEventLoopExecuteTime, maxEventLoopExecuteTimeUnit, maxWorkerExecuteTime, maxWorkerExecuteTimeUnit, metricsOptions, preferNativeTransport, quorumSize, tracingOptions, warningExceptionTime, warningExceptionTimeUnit, workerPoolSize)")
 )
 fun VertxOptions(
   addressResolverOptions: io.vertx.core.dns.AddressResolverOptions? = null,
@@ -228,7 +222,6 @@ fun VertxOptions(
   clusterPort: Int? = null,
   clusterPublicHost: String? = null,
   clusterPublicPort: Int? = null,
-  clustered: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
@@ -276,9 +269,6 @@ fun VertxOptions(
   }
   if (clusterPublicPort != null) {
     this.setClusterPublicPort(clusterPublicPort)
-  }
-  if (clustered != null) {
-    this.setClustered(clustered)
   }
   if (eventBusOptions != null) {
     this.setEventBusOptions(eventBusOptions)

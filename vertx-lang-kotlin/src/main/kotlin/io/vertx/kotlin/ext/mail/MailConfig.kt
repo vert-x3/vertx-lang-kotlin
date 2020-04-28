@@ -67,6 +67,7 @@ import java.util.concurrent.TimeUnit
  * @param pemTrustOptions  Set the trust options in pem format
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
+ * @param pipelining  Sets to enable/disable the pipelining capability if SMTP server supports it.
  * @param port  Set the port of the smtp server.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
@@ -131,6 +132,7 @@ fun mailConfigOf(
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
+  pipelining: Boolean? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
@@ -262,6 +264,9 @@ fun mailConfigOf(
   }
   if (pfxTrustOptions != null) {
     this.setPfxTrustOptions(pfxTrustOptions)
+  }
+  if (pipelining != null) {
+    this.setPipelining(pipelining)
   }
   if (port != null) {
     this.setPort(port)
@@ -382,6 +387,7 @@ fun mailConfigOf(
  * @param pemTrustOptions  Set the trust options in pem format
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
+ * @param pipelining  Sets to enable/disable the pipelining capability if SMTP server supports it.
  * @param port  Set the port of the smtp server.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
@@ -414,7 +420,7 @@ fun mailConfigOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, connectTimeout, crlPaths, crlValues, disableEsmtp, dkimSignOption, dkimSignOptions, enableDKIM, enabledCipherSuites, enabledSecureTransportProtocols, hostname, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keepAlive, keyCertOptions, keyStore, keyStoreOptions, keyStorePassword, localAddress, logActivity, login, maxPoolSize, metricsName, openSslEngineOptions, ownHostname, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, starttls, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, userAgent, username)")
+  replaceWith = ReplaceWith("mailConfigOf(allowRcptErrors, authMethods, connectTimeout, crlPaths, crlValues, disableEsmtp, dkimSignOption, dkimSignOptions, enableDKIM, enabledCipherSuites, enabledSecureTransportProtocols, hostname, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keepAlive, keyCertOptions, keyStore, keyStoreOptions, keyStorePassword, localAddress, logActivity, login, maxPoolSize, metricsName, openSslEngineOptions, ownHostname, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, port, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, starttls, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, userAgent, username)")
 )
 fun MailConfig(
   allowRcptErrors: Boolean? = null,
@@ -450,6 +456,7 @@ fun MailConfig(
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
+  pipelining: Boolean? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
@@ -581,6 +588,9 @@ fun MailConfig(
   }
   if (pfxTrustOptions != null) {
     this.setPfxTrustOptions(pfxTrustOptions)
+  }
+  if (pipelining != null) {
+    this.setPipelining(pipelining)
   }
   if (port != null) {
     this.setPort(port)

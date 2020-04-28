@@ -1250,6 +1250,18 @@ Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHt
 |[[DISCOURAGED]]`DISCOURAGED`|-
 |===
 
+[[ValidatorPriority]]
+== ValidatorPriority
+
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[MAX_PRIORITY]]`MAX_PRIORITY`|-
+|[[MIN_PRIORITY]]`MIN_PRIORITY`|-
+|===
+
 [[WebsocketVersion]]
 == WebsocketVersion
 

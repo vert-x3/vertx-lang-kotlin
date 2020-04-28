@@ -1340,3 +1340,15 @@ suspend fun HttpClient.webSocketAbsAwait(url: String, headers: MultiMap, version
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+suspend fun HttpClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

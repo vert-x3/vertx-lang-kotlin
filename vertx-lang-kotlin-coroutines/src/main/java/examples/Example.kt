@@ -5,9 +5,9 @@ package examples
 import io.vertx.core.*
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
-import io.vertx.core.eventbus.MessageProducer
 import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.http.HttpServer
+import io.vertx.core.http.HttpServerResponse
 import io.vertx.core.net.NetClient
 import io.vertx.core.net.NetSocket
 import io.vertx.core.parsetools.RecordParser
@@ -300,52 +300,26 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::channel3[]
   }
 
-  private fun readTemperatureSensor(): Double {
-    return 0.0
+  private fun readBuffer(): Buffer {
+    return Buffer.buffer()
   }
 
   // tag::sendChannel[]
-  suspend fun sendChannel() {
-    val stream = vertx.eventBus().publisher<Double>("temperature")
-    val channel = stream.toChannel(vertx)
+  suspend fun sendChannel(httpResponse : HttpServerResponse) {
+    val channel = httpResponse.toChannel(vertx)
 
     while (true) {
-      val temperature = readTemperatureSensor()
+      val buffer = readBuffer()
 
       // Broadcast the temperature
       // Non-blocking but could be suspended
-      channel.send(temperature)
+      channel.send(buffer)
 
       // Wait for one second
       awaitEvent<Long> { vertx.setTimer(1000, it) }
     }
   }
   // end::sendChannel[]
-
-  val stream: MessageProducer<Double> = vertx.eventBus().publisher<Double>("temperature")
-
-  fun broadcastTemperature() {
-    // tag::broadcastTemperature[]
-    // Check we can write in the stream
-    if (stream.writeQueueFull()) {
-
-      // We can't write so we set a drain handler to be called when we can write again
-      stream.drainHandler { broadcastTemperature() }
-    } else {
-
-      // Read temperature
-      val temperature = readTemperatureSensor()
-
-      // Write it to the stream
-      stream.write(temperature)
-
-      // Wait for one second
-      vertx.setTimer(1000) {
-        broadcastTemperature()
-      }
-    }
-    // end::broadcastTemperature[]
-  }
 
   fun delayExample() {
     // tag::delay[]

@@ -21,38 +21,13 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Suspending version of method [io.vertx.core.eventbus.MessageProducer.write]
  *
- * @param data 
+ * @param body the message body
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
  */
-suspend fun <T> MessageProducer<T>.writeAwait(data: T): Unit {
+suspend fun <T> MessageProducer<T>.writeAwait(body: T): Unit {
   return awaitResult {
-    this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.eventbus.MessageProducer.end]
- *
- * @param data 
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
- */
-suspend fun <T> MessageProducer<T>.endAwait(data: T): Unit {
-  return awaitResult {
-    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.eventbus.MessageProducer.end]
- *
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
- */
-suspend fun <T> MessageProducer<T>.endAwait(): Unit {
-  return awaitResult {
-    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.write(body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

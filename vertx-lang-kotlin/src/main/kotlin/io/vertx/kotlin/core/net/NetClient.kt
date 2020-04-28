@@ -80,3 +80,15 @@ suspend fun NetClient.connectAwait(remoteAddress: SocketAddress, serverName: Str
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.net.NetClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
+ */
+suspend fun NetClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

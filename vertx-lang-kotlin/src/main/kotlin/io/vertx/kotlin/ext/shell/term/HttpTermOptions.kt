@@ -71,6 +71,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -94,6 +96,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
@@ -142,6 +145,8 @@ fun httpTermOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -165,6 +170,7 @@ fun httpTermOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
   webSocketAllowServerNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
@@ -291,6 +297,12 @@ fun httpTermOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -359,6 +371,9 @@ fun httpTermOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)
@@ -420,6 +435,8 @@ fun httpTermOptionsOf(
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
+ * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
+ * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -443,6 +460,7 @@ fun httpTermOptionsOf(
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
@@ -454,7 +472,7 @@ fun httpTermOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustOptions, trustStoreOptions, useAlpn, vertsShellJsResource, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
+  replaceWith = ReplaceWith("httpTermOptionsOf(acceptBacklog, acceptUnmaskedFrames, alpnVersions, authOptions, charset, clientAuth, compressionLevel, compressionSupported, crlPaths, crlValues, decoderInitialBufferSize, decompressionSupported, enabledCipherSuites, enabledSecureTransportProtocols, handle100ContinueAutomatically, host, http2ConnectionWindowSize, idleTimeout, idleTimeoutUnit, initialSettings, intputrc, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxWebSocketFrameSize, maxWebSocketMessageSize, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, perFrameWebSocketCompressionSupported, perMessageWebSocketCompressionSupported, pfxKeyCertOptions, pfxTrustOptions, port, proxyProtocolTimeout, proxyProtocolTimeoutUnit, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, shellHtmlResource, sni, soLinger, sockJSHandlerOptions, sockJSPath, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, termJsResource, trafficClass, trustOptions, trustStoreOptions, useAlpn, useProxyProtocol, vertsShellJsResource, webSocketAllowServerNoContext, webSocketCompressionLevel, webSocketPreferredClientNoContext, webSocketSubProtocols)")
 )
 fun HttpTermOptions(
   acceptBacklog: Int? = null,
@@ -495,6 +513,8 @@ fun HttpTermOptions(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  proxyProtocolTimeout: Long? = null,
+  proxyProtocolTimeoutUnit: TimeUnit? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -518,6 +538,7 @@ fun HttpTermOptions(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useProxyProtocol: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
   webSocketAllowServerNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
@@ -644,6 +665,12 @@ fun HttpTermOptions(
   if (port != null) {
     this.setPort(port)
   }
+  if (proxyProtocolTimeout != null) {
+    this.setProxyProtocolTimeout(proxyProtocolTimeout)
+  }
+  if (proxyProtocolTimeoutUnit != null) {
+    this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -712,6 +739,9 @@ fun HttpTermOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useProxyProtocol != null) {
+    this.setUseProxyProtocol(useProxyProtocol)
   }
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)

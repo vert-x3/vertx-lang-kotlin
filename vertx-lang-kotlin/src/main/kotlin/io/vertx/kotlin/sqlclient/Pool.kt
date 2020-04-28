@@ -15,10 +15,12 @@
  */
 package io.vertx.kotlin.sqlclient
 
+import io.vertx.core.Future
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.Pool
+import io.vertx.sqlclient.SqlClient
 import io.vertx.sqlclient.SqlConnection
-import io.vertx.sqlclient.Transaction
+import java.util.function.Function
 
 /**
  * Suspending version of method [io.vertx.sqlclient.Pool.getConnection]
@@ -34,15 +36,16 @@ suspend fun Pool.getConnectionAwait(): SqlConnection {
 }
 
 /**
- * Suspending version of method [io.vertx.sqlclient.Pool.begin]
+ * Suspending version of method [io.vertx.sqlclient.Pool.withTransaction]
  *
- * @return [Transaction]
+ * @param function the code to execute
+ * @return [T]
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-suspend fun Pool.beginAwait(): Transaction {
+suspend fun <T> Pool.withTransactionAwait(function: (SqlClient) -> Future<T>): T {
   return awaitResult {
-    this.begin(it)
+    this.withTransaction(function, it::handle)
   }
 }
 
