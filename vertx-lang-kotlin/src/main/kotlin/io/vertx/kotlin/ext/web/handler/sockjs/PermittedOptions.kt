@@ -21,7 +21,7 @@ import io.vertx.ext.web.handler.sockjs.PermittedOptions
  * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.PermittedOptions] objects.
  *
  * Specify a match to allow for inbound and outbound traffic using the
- * [io.vertx.ext.web.handler.sockjs.BridgeOptions].
+ * [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions].
  *
  * @param address  The exact address the message is being sent to. If you want to allow messages based on an exact address you use this field.
  * @param addressRegex  A regular expression that will be matched against the address. If you want to allow messages based on a regular expression you use this field. If the [io.vertx.ext.bridge.PermittedOptions] value is specified this will be ignored.
@@ -55,7 +55,7 @@ fun permittedOptionsOf(
  * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.PermittedOptions] objects.
  *
  * Specify a match to allow for inbound and outbound traffic using the
- * [io.vertx.ext.web.handler.sockjs.BridgeOptions].
+ * [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions].
  *
  * @param address  The exact address the message is being sent to. If you want to allow messages based on an exact address you use this field.
  * @param addressRegex  A regular expression that will be matched against the address. If you want to allow messages based on a regular expression you use this field. If the [io.vertx.ext.bridge.PermittedOptions] value is specified this will be ignored.

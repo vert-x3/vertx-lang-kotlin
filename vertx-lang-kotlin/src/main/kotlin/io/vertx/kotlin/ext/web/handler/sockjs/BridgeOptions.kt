@@ -21,7 +21,7 @@ import io.vertx.ext.bridge.PermittedOptions
 /**
  * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.BridgeOptions] objects.
  *
- * Options for configuring the event bus bridge.
+ * Deprecated: use [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions] instead.
  *
  * @param inboundPermitted 
  * @param inboundPermitteds 
@@ -43,7 +43,7 @@ fun bridgeOptionsOf(
   outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
+  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions(io.vertx.core.json.JsonObject()).apply {
 
   if (inboundPermitted != null) {
     this.setInboundPermitted(inboundPermitted.toList())
@@ -78,7 +78,7 @@ fun bridgeOptionsOf(
 /**
  * A function providing a DSL for building [io.vertx.ext.web.handler.sockjs.BridgeOptions] objects.
  *
- * Options for configuring the event bus bridge.
+ * Deprecated: use [io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions] instead.
  *
  * @param inboundPermitted 
  * @param inboundPermitteds 
@@ -104,7 +104,7 @@ fun BridgeOptions(
   outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
+  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions(io.vertx.core.json.JsonObject()).apply {
 
   if (inboundPermitted != null) {
     this.setInboundPermitted(inboundPermitted.toList())
