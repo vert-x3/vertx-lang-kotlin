@@ -26,8 +26,8 @@ import io.vertx.redis.client.RedisSlaves
  *
  * Redis Client Configuration options.
  *
- * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
- * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
@@ -116,8 +116,8 @@ fun redisOptionsOf(
  *
  * Redis Client Configuration options.
  *
- * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
- * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).

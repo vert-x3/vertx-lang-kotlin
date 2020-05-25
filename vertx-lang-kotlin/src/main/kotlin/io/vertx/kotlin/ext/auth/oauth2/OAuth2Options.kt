@@ -17,9 +17,9 @@ package io.vertx.kotlin.ext.auth.oauth2
 
 import io.vertx.ext.auth.oauth2.OAuth2Options
 import io.vertx.core.http.HttpClientOptions
+import io.vertx.ext.auth.JWTOptions
 import io.vertx.ext.auth.PubSecKeyOptions
 import io.vertx.ext.auth.oauth2.OAuth2FlowType
-import io.vertx.ext.jwt.JWTOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.oauth2.OAuth2Options] objects.
@@ -64,7 +64,7 @@ fun oAuth2OptionsOf(
   httpClientOptions: io.vertx.core.http.HttpClientOptions? = null,
   introspectionPath: String? = null,
   jwkPath: String? = null,
-  jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
+  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   logoutPath: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
   revocationPath: String? = null,
@@ -196,7 +196,7 @@ fun OAuth2Options(
   httpClientOptions: io.vertx.core.http.HttpClientOptions? = null,
   introspectionPath: String? = null,
   jwkPath: String? = null,
-  jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
+  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   logoutPath: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
   revocationPath: String? = null,

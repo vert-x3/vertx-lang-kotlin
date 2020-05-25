@@ -639,6 +639,22 @@ Will use user defined formatter function.
 |[[REGEX]]`REGEX`|-
 |===
 
+[[MatchType]]
+== MatchType
+
+++++
+ The type of match.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[EQUALS]]`EQUALS`|-
+|[[REGEX]]`REGEX`|-
+|===
+
 [[MetricsDomain]]
 == MetricsDomain
 
@@ -1032,6 +1048,29 @@ List of multiple bulk responses.
 |[[SCROLL_SENSITIVE]]`SCROLL_SENSITIVE`|-
 |===
 
+[[SessionBehavior]]
+== SessionBehavior
+
+++++
+ When a session is invalidated, it is destroyed and can no longer be used. What happens to the associated locks
+ depends on the behavior specified at creation time. Consul supports a release and delete behavior.
+ The release behavior is the default if none is specified.
+ <p>
+ If the release behavior is being used, any of the locks held in association with the session are released,
+ and the ModifyIndex of the key is incremented. Alternatively, if the delete behavior is used,
+ the key corresponding to any of the held locks is simply deleted. This can be used to create ephemeral
+ entries that are automatically deleted by Consul.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[RELEASE]]`RELEASE`|-
+|[[DELETE]]`DELETE`|-
+|===
+
 [[ShiroAuthRealmType]]
 == ShiroAuthRealmType
 
@@ -1235,6 +1274,75 @@ Slow and old fashioned <a hred="https://developer.mozilla.org/en/DOM/window.post
 |[[XHR]]`XHR`|+++
 Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHttpRequest#Cross-domain_requests">cross domain XHR</a>
 +++
+|===
+
+[[TxnKVVerb]]
+== TxnKVVerb
+
+++++
+ Holds type of KV operation in transaction
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SET]]`SET`|+++
+Sets the Key to the given Value
++++
+|[[CAS]]`CAS`|+++
+Sets the Key to the given Value with check-and-set semantics.
+ The Key will only be set if its current modify index matches the supplied Index
++++
+|[[LOCK]]`LOCK`|+++
+Locks the Key with the given Session. The Key will only obtain the lock
+ if the Session is valid, and no other session has it locked
++++
+|[[UNLOCK]]`UNLOCK`|+++
+Unlocks the Key with the given Session. The Key will only release the lock
+ if the Session is valid and currently has it locked
++++
+|[[GET]]`GET`|+++
+Gets the Key during the transaction. This fails the transaction if the Key doesn't exist.
+ The key may not be present in the results if ACLs do not permit it to be read
++++
+|[[GET_TREE]]`GET_TREE`|+++
+Gets all keys with a prefix of Key during the transaction. This does not fail the transaction
+ if the Key doesn't exist. Not all keys may be present in the results if ACLs do not permit them to be read
++++
+|[[CHECK_INDEX]]`CHECK_INDEX`|+++
+Fails the transaction if Key does not have a modify index equal to Index
++++
+|[[CHECK_SESSION]]`CHECK_SESSION`|+++
+Fails the transaction if Key is not currently locked by Session
++++
+|[[DELETE]]`DELETE`|+++
+Deletes the Key
++++
+|[[DELETE_TREE]]`DELETE_TREE`|+++
+Deletes all keys with a prefix ofKey
++++
+|[[DELETE_CAS]]`DELETE_CAS`|+++
+Deletes the Key with check-and-set semantics. The Key will only be deleted
+ if its current modify index matches the supplied Index
++++
+|===
+
+[[TxnOperationType]]
+== TxnOperationType
+
+++++
+ Represents the type of operation in a transaction. KV is the only available operation type,
+ though other types of operations may be added in future versions of Consul to be mixed with key/value operations
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[KV]]`KV`|-
 |===
 
 [[UserVerification]]

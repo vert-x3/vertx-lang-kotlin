@@ -49,3 +49,15 @@ suspend fun <T> Pool.withTransactionAwait(function: (SqlClient) -> Future<T>): T
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
+suspend fun Pool.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

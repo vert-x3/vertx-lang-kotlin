@@ -47,3 +47,15 @@ suspend fun SqlConnection.beginAwait(): Transaction {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.sqlclient.SqlConnection.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
+ */
+suspend fun SqlConnection.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

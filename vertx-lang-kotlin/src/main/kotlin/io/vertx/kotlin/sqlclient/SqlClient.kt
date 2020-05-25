@@ -13,23 +13,20 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.cassandra
+package io.vertx.kotlin.sqlclient
 
-import com.datastax.oss.driver.api.core.cql.Row
-import io.vertx.cassandra.CassandraRowStream
-import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
+import io.vertx.sqlclient.SqlClient
 
 /**
- * Suspending version of method [io.vertx.cassandra.CassandraRowStream.pipeTo]
+ * Suspending version of method [io.vertx.sqlclient.SqlClient.close]
  *
- * @param dst the destination write stream
  *
- * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraRowStream] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlClient] using Vert.x codegen.
  */
-suspend fun CassandraRowStream.pipeToAwait(dst: WriteStream<Row>): Unit {
+suspend fun SqlClient.closeAwait(): Unit {
   return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

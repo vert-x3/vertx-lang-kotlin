@@ -422,20 +422,6 @@ Specifying a maximum duration for the blocking request. This is limited to 10 mi
 +++
 |===
 
-[[Box]]
-== Box
-
-++++
- Rectangular box data type in Postgres represented by pairs of links that are opposite corners of the box.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|===
-
 [[BridgeOptions]]
 == BridgeOptions
 
@@ -671,21 +657,6 @@ Set Time to Live of check.
 |[[near]]`@near`|`String`|+++
 Set node name for sorting the list in ascending order based on the estimated round trip time from that node.
 +++
-|===
-
-[[Circle]]
-== Circle
-
-++++
- Circle data type in Postgres represented by a center link and radius.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[radius]]`@radius`|`Number (double)`|-
 |===
 
 [[CircuitBreakerOptions]]
@@ -1686,6 +1657,14 @@ Set the accept back log.
 |[[clientAuth]]`@clientAuth`|`link:enums.html#ClientAuth[ClientAuth]`|+++
 Set whether client auth is required
 +++
+|[[clusterNodeMetadata]]`@clusterNodeMetadata`|`Json object`|+++
+Set information about this node when Vert.x is clustered.
+ <p>
+ The data may be used by the link to select a node for a given message.
+ For example, it could be used to implement a partioning strategy.
+ <p>
+ The default link does not use the node metadata.
++++
 |[[clusterPingInterval]]`@clusterPingInterval`|`Number (long)`|+++
 Set the value of cluster ping interval, in ms.
 +++
@@ -1947,36 +1926,6 @@ Sets the headers of the frames.
 |[[id]]`@id`|`String`|-
 |[[receipt]]`@receipt`|`String`|-
 |[[transaction]]`@transaction`|`String`|-
-|===
-
-[[Geometry]]
-== Geometry
-
-++++
- Geometry is an abstract class which represents the base of MySQL geometry data type.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|===
-
-[[GeometryCollection]]
-== GeometryCollection
-
-++++
- A GeomCollection is a geometry that is a collection of zero or more geometries of any class.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
 |===
 
 [[GoAway]]
@@ -2912,28 +2861,6 @@ Gets the weighting object for use with a text index
 +++
 |===
 
-[[Interval]]
-== Interval
-
-++++
- Postgres Interval is date and time based
- such as 120 years 3 months 332 days 20 hours 20 minutes 20.999999 seconds
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[days]]`@days`|`Number (int)`|-
-|[[hours]]`@hours`|`Number (int)`|-
-|[[microseconds]]`@microseconds`|`Number (int)`|-
-|[[minutes]]`@minutes`|`Number (int)`|-
-|[[months]]`@months`|`Number (int)`|-
-|[[seconds]]`@seconds`|`Number (int)`|-
-|[[years]]`@years`|`Number (int)`|-
-|===
-
 [[JDBCAuthOptions]]
 == JDBCAuthOptions
 
@@ -3023,6 +2950,36 @@ Set the roles query to use. Use this if you want to override the default
 ^|Name | Type ^| Description
 |[[jwks]]`@jwks`|`Array of Json object`|-
 |[[permissionsClaimKey]]`@permissionsClaimKey`|`String`|-
+|===
+
+[[JWTOptions]]
+== JWTOptions
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[algorithm]]`@algorithm`|`String`|-
+|[[audience]]`@audience`|`Array of String`|-
+|[[audiences]]`@audiences`|`Array of String`|-
+|[[expiresInMinutes]]`@expiresInMinutes`|`Number (int)`|-
+|[[expiresInSeconds]]`@expiresInSeconds`|`Number (int)`|-
+|[[header]]`@header`|`Json object`|-
+|[[ignoreExpiration]]`@ignoreExpiration`|`Boolean`|-
+|[[issuer]]`@issuer`|`String`|-
+|[[leeway]]`@leeway`|`Number (int)`|-
+|[[noTimestamp]]`@noTimestamp`|`Boolean`|-
+|[[permissions]]`@permissions`|`Array of String`|+++
+The permissions of this token.
++++
+|[[scopeDelimiter]]`@scopeDelimiter`|`String`|+++
+
++++
+|[[scopes]]`@scopes`|`Array of String`|+++
+
++++
+|[[subject]]`@subject`|`String`|-
 |===
 
 [[JWTOptions]]
@@ -3206,52 +3163,6 @@ Set the flags. Flags is an value between <code>0</code> and 2<sup>64</sup>-1 tha
 |[[releaseSession]]`@releaseSession`|`String`|+++
 Set session ID for lock release operation.
 +++
-|===
-
-[[Line]]
-== Line
-
-++++
- Line data type in Postgres represented by the linear equation Ax + By + C = 0, where A and B are not both zero.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[a]]`@a`|`Number (double)`|-
-|[[b]]`@b`|`Number (double)`|-
-|[[c]]`@c`|`Number (double)`|-
-|===
-
-[[LineSegment]]
-== LineSegment
-
-++++
- Finite line segment data type in Postgres represented by pairs of links that are the endpoints of the segment.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|===
-
-[[LineString]]
-== LineString
-
-++++
- A LineString is a Curve with linear interpolation between points, it may represents a Line or a LinearRing.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
 |===
 
 [[MailConfig]]
@@ -4173,51 +4084,6 @@ Set whether the server uses the HA Proxy protocol
 +++
 |===
 
-[[MultiLineString]]
-== MultiLineString
-
-++++
- A MultiLineString is a MultiCurve geometry collection composed of LineString elements.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|===
-
-[[MultiPoint]]
-== MultiPoint
-
-++++
- A MultiPoint is a geometry collection composed of Point elements. The points are not connected or ordered in any way.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|===
-
-[[MultiPolygon]]
-== MultiPolygon
-
-++++
- A MultiPolygon is a MultiSurface object composed of Polygon elements.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|===
-
 [[MySQLAuthOptions]]
 == MySQLAuthOptions
 
@@ -4790,295 +4656,6 @@ Set node name for sorting the list in ascending order based on the estimated rou
 +++
 |===
 
-[[OAuth2ClientOptions]]
-== OAuth2ClientOptions
-
-++++
- Options describing how an OAuth2  will make connections.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[alpnVersions]]`@alpnVersions`|`Array of link:enums.html#HttpVersion[HttpVersion]`|+++
-Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiation.
- When the list is empty, the client provides a best effort list according to link:
-
- <ul>
-   <li>: [ "h2", "http/1.1" ]</li>
-   <li>otherwise: [link]</li>
- </ul>
-+++
-|[[authorizationPath]]`@authorizationPath`|`String`|+++
-Get the Oauth2 authorization resource path. e.g.: /oauth/authorize
-+++
-|[[clientID]]`@clientID`|`String`|+++
-Set the provider client id
-+++
-|[[clientSecret]]`@clientSecret`|`String`|+++
-Set the provider client secret
-+++
-|[[clientSecretParameterName]]`@clientSecretParameterName`|`String`|+++
-Override the HTTP form field name for client secret
-+++
-|[[connectTimeout]]`@connectTimeout`|`Number (int)`|+++
-Set the connect timeout
-+++
-|[[crlPaths]]`@crlPaths`|`Array of String`|+++
-Add a CRL path
-+++
-|[[crlValues]]`@crlValues`|`Array of Buffer`|+++
-Add a CRL value
-+++
-|[[decoderInitialBufferSize]]`@decoderInitialBufferSize`|`Number (int)`|+++
-set to <code>initialBufferSizeHttpDecoder</code> the initial buffer of the HttpDecoder.
-+++
-|[[defaultHost]]`@defaultHost`|`String`|+++
-Set the default host name to be used by this client in requests if none is provided when making the request.
-+++
-|[[defaultPort]]`@defaultPort`|`Number (int)`|+++
-Set the default port to be used by this client in requests if none is provided when making the request.
-+++
-|[[enabledCipherSuites]]`@enabledCipherSuites`|`Array of String`|+++
-Add an enabled cipher suite, appended to the ordered suites.
-+++
-|[[enabledSecureTransportProtocols]]`@enabledSecureTransportProtocols`|`Array of String`|+++
-Sets the list of enabled SSL/TLS protocols.
-+++
-|[[extraParameters]]`@extraParameters`|`Json object`|+++
-Set extra parameters to be sent to the provider on each request
-+++
-|[[flow]]`@flow`|`link:enums.html#OAuth2FlowType[OAuth2FlowType]`|-
-|[[forceSni]]`@forceSni`|`Boolean`|+++
-By default, the server name is only sent for Fully Qualified Domain Name (FQDN), setting
- this property to <code>true</code> forces the server name to be always sent.
-+++
-|[[headers]]`@headers`|`Json object`|+++
-Set custom headers to be sent with every request to the provider
-+++
-|[[http2ClearTextUpgrade]]`@http2ClearTextUpgrade`|`Boolean`|+++
-Set to <code>true</code> when an <i>h2c</i> connection is established using an HTTP/1.1 upgrade request, and <code>false</code>
- when an <i>h2c</i> connection is established directly (with prior knowledge).
-+++
-|[[http2ConnectionWindowSize]]`@http2ConnectionWindowSize`|`Number (int)`|+++
-Set the default HTTP/2 connection window size. It overrides the initial window
- size set by , so the connection window size
- is greater than for its streams, in order the data throughput.
- <p/>
- A value of <code>-1</code> reuses the initial window size setting.
-+++
-|[[http2KeepAliveTimeout]]`@http2KeepAliveTimeout`|`Number (int)`|+++
-Set the keep alive timeout for HTTP/2 connections, in seconds.
- <p/>
- This value determines how long a connection remains unused in the pool before being evicted and closed.
- <p/>
- A timeout of <code>0</code> means there is no timeout.
-+++
-|[[http2MaxPoolSize]]`@http2MaxPoolSize`|`Number (int)`|+++
-Set the maximum pool size for HTTP/2 connections
-+++
-|[[http2MultiplexingLimit]]`@http2MultiplexingLimit`|`Number (int)`|+++
-Set a client limit of the number concurrent streams for each HTTP/2 connection, this limits the number
- of streams the client can create for a connection. The effective number of streams for a
- connection is the min of this value and the server's initial settings.
- <p/>
- Setting the value to <code>-1</code> means to use the value sent by the server's initial settings.
- <code>-1</code> is the default value.
-+++
-|[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
-Set the idle timeout, default time unit is seconds. Zero means don't timeout.
- This determines if a connection will timeout and be closed if no data is received within the timeout.
-
- If you want change default time unit, use link
-+++
-|[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
-Set the idle timeout unit. If not specified, default is seconds.
-+++
-|[[introspectionPath]]`@introspectionPath`|`String`|+++
-Set the provider token introspection resource path
-+++
-|[[jwkPath]]`@jwkPath`|`String`|-
-|[[keepAlive]]`@keepAlive`|`Boolean`|+++
-Set whether keep alive is enabled on the client
-+++
-|[[keepAliveTimeout]]`@keepAliveTimeout`|`Number (int)`|+++
-Set the keep alive timeout for HTTP/1.x, in seconds.
- <p/>
- This value determines how long a connection remains unused in the pool before being evicted and closed.
- <p/>
- A timeout of <code>0</code> means there is no timeout.
-+++
-|[[localAddress]]`@localAddress`|`String`|+++
-Set the local interface to bind for network connections. When the local address is null,
- it will pick any local address, the default local address is null.
-+++
-|[[logActivity]]`@logActivity`|`Boolean`|+++
-Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
-+++
-|[[logoutPath]]`@logoutPath`|`String`|+++
-Set the provider logout path
-+++
-|[[maxChunkSize]]`@maxChunkSize`|`Number (int)`|+++
-Set the maximum HTTP chunk size
-+++
-|[[maxHeaderSize]]`@maxHeaderSize`|`Number (int)`|+++
-Set the maximum length of all headers for HTTP/1.x .
-+++
-|[[maxInitialLineLength]]`@maxInitialLineLength`|`Number (int)`|+++
-Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"HTTP/1.1 200 OK"</code>)
-+++
-|[[maxPoolSize]]`@maxPoolSize`|`Number (int)`|+++
-Set the maximum pool size for connections
-+++
-|[[maxRedirects]]`@maxRedirects`|`Number (int)`|+++
-Set to <code>maxRedirects</code> the maximum number of redirection a request can follow.
-+++
-|[[maxWaitQueueSize]]`@maxWaitQueueSize`|`Number (int)`|+++
-Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in
- a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
-+++
-|[[maxWebSocketFrameSize]]`@maxWebSocketFrameSize`|`Number (int)`|+++
-Set the max WebSocket frame size
-+++
-|[[maxWebSocketMessageSize]]`@maxWebSocketMessageSize`|`Number (int)`|+++
-Set the max WebSocket message size
-+++
-|[[metricsName]]`@metricsName`|`String`|+++
-Set the metrics name identifying the reported metrics, useful for grouping metrics
- with the same name.
-+++
-|[[pipelining]]`@pipelining`|`Boolean`|+++
-Set whether pipe-lining is enabled on the client
-+++
-|[[pipeliningLimit]]`@pipeliningLimit`|`Number (int)`|+++
-Set the limit of pending requests a pipe-lined HTTP/1 connection can send.
-+++
-|[[poolCleanerPeriod]]`@poolCleanerPeriod`|`Number (int)`|+++
-Set the connection pool cleaner period in milli seconds, a non positive value disables expiration checks and connections
- will remain in the pool until they are closed.
-+++
-|[[protocolVersion]]`@protocolVersion`|`link:enums.html#HttpVersion[HttpVersion]`|+++
-Set the protocol version.
-+++
-|[[receiveBufferSize]]`@receiveBufferSize`|`Number (int)`|+++
-Set the TCP receive buffer size
-+++
-|[[reuseAddress]]`@reuseAddress`|`Boolean`|+++
-Set the value of reuse address
-+++
-|[[reusePort]]`@reusePort`|`Boolean`|+++
-Set the value of reuse port.
- <p/>
- This is only supported by native transports.
-+++
-|[[revocationPath]]`@revocationPath`|`String`|+++
-Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
-+++
-|[[scopeSeparator]]`@scopeSeparator`|`String`|+++
-Set the provider scope separator
-+++
-|[[sendBufferSize]]`@sendBufferSize`|`Number (int)`|+++
-Set the TCP send buffer size
-+++
-|[[sendUnmaskedFrames]]`@sendUnmaskedFrames`|`Boolean`|+++
-Set <code>true</code> when the client wants to skip frame masking.
- <p>
- You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing
- RFC6455 protocol.
- <p>
- It's <code>false</code> as default.
-+++
-|[[site]]`@site`|`String`|+++
-Root URL for the provider without trailing slashes
-+++
-|[[soLinger]]`@soLinger`|`Number (int)`|+++
-Set whether SO_linger keep alive is enabled
-+++
-|[[ssl]]`@ssl`|`Boolean`|+++
-Set whether SSL/TLS is enabled
-+++
-|[[sslHandshakeTimeout]]`@sslHandshakeTimeout`|`Number (long)`|+++
-Set the SSL handshake timeout, default time unit is seconds.
-+++
-|[[sslHandshakeTimeoutUnit]]`@sslHandshakeTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
-Set the SSL handshake timeout unit. If not specified, default is seconds.
-+++
-|[[tcpCork]]`@tcpCork`|`Boolean`|+++
-Enable the <code>TCP_CORK</code> option - only with linux native transport.
-+++
-|[[tcpFastOpen]]`@tcpFastOpen`|`Boolean`|+++
-Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
-+++
-|[[tcpKeepAlive]]`@tcpKeepAlive`|`Boolean`|+++
-Set whether TCP keep alive is enabled
-+++
-|[[tcpNoDelay]]`@tcpNoDelay`|`Boolean`|+++
-Set whether TCP no delay is enabled
-+++
-|[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
-Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
-+++
-|[[tenant]]`@tenant`|`String`|+++
-Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs.
- The tenant should be set prior to any URL as it affects the way the URLs will be stored.
-
- Some provders may name this differently, for example: `realm`.
-+++
-|[[tokenPath]]`@tokenPath`|`String`|+++
-Get the Oauth2 token resource path. e.g.: /oauth/token
-+++
-|[[trafficClass]]`@trafficClass`|`Number (int)`|+++
-Set the value of traffic class
-+++
-|[[trustAll]]`@trustAll`|`Boolean`|+++
-Set whether all server certificates should be trusted
-+++
-|[[tryUseCompression]]`@tryUseCompression`|`Boolean`|+++
-Set whether compression is enabled
-+++
-|[[tryUsePerFrameWebSocketCompression]]`@tryUsePerFrameWebSocketCompression`|`Boolean`|+++
-Set whether the client will offer the WebSocket per-frame deflate compression extension.
-+++
-|[[tryUsePerMessageWebSocketCompression]]`@tryUsePerMessageWebSocketCompression`|`Boolean`|+++
-Set whether the client will offer the WebSocket per-message deflate compression extension.
-+++
-|[[tryWebSocketDeflateFrameCompression]]`@tryWebSocketDeflateFrameCompression`|`Boolean`|+++
-
-+++
-|[[useAlpn]]`@useAlpn`|`Boolean`|+++
-Set the ALPN usage.
-+++
-|[[useBasicAuthorizationHeader]]`@useBasicAuthorizationHeader`|`Boolean`|+++
-Flag to use HTTP basic auth header with client id, client secret.
-+++
-|[[userAgent]]`@userAgent`|`String`|+++
-Set a custom user agent to use when communicating to a provider
-+++
-|[[userInfoParameters]]`@userInfoParameters`|`Json object`|+++
-Set custom parameters to be sent during the userInfo resource request
-+++
-|[[userInfoPath]]`@userInfoPath`|`String`|+++
-Set the provider userInfo resource path
-+++
-|[[validateIssuer]]`@validateIssuer`|`Boolean`|-
-|[[verifyHost]]`@verifyHost`|`Boolean`|+++
-Set whether hostname verification is enabled
-+++
-|[[webSocketCompressionAllowClientNoContext]]`@webSocketCompressionAllowClientNoContext`|`Boolean`|+++
-Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message
- deflate compression extension will be offered.
-+++
-|[[webSocketCompressionLevel]]`@webSocketCompressionLevel`|`Number (int)`|+++
-Set the WebSocket deflate compression level.
-+++
-|[[webSocketCompressionRequestServerNoContext]]`@webSocketCompressionRequestServerNoContext`|`Boolean`|+++
-Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message
- deflate compression extension will be offered.
-+++
-|===
-
 [[OAuth2Options]]
 == OAuth2Options
 
@@ -5365,23 +4942,6 @@ Set the partition id
 |[[topic]]`@topic`|`String`|+++
 Set the topic name
 +++
-|===
-
-[[Path]]
-== Path
-
-++++
- Path data type in Postgres represented by lists of connected points.
- Paths can be open, where the first and last points in the list are considered not connected,
- or closed, where the first and last points are considered connected.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[open]]`@open`|`Boolean`|-
 |===
 
 [[PemKeyCertOptions]]
@@ -5765,69 +5325,6 @@ Set the process id.
 +++
 |===
 
-[[Point]]
-== Point
-
-++++
- A Point is a geometry that represents a single location in coordinate space.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|[[x]]`@x`|`Number (double)`|-
-|[[y]]`@y`|`Number (double)`|-
-|===
-
-[[Point]]
-== Point
-
-++++
- A Postgresql point.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[x]]`@x`|`Number (double)`|-
-|[[y]]`@y`|`Number (double)`|-
-|===
-
-[[Polygon]]
-== Polygon
-
-++++
- Polygon data type in Postgres represented by lists of points (the vertexes of the polygon).
- Polygons are very similar to closed paths, but are stored differently and have their own set of support routines.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|===
-
-[[Polygon]]
-== Polygon
-
-++++
- A Polygon is a planar Surface representing a multisided geometry. It is defined by a single exterior boundary and zero or more interior boundaries, where each interior boundary defines a hole in the Polygon.
-++++
-'''
-
-[cols=">25%,25%,50%"]
-[frame="topbot"]
-|===
-^|Name | Type ^| Description
-|[[srid]]`@srid`|`Number (long)`|-
-|===
-
 [[PoolOptions]]
 == PoolOptions
 
@@ -6182,14 +5679,10 @@ Set the topic the record was appended to
 |[[connectionString]]`@connectionString`|`String`|+++
 Sets a single connection string (endpoint) to use while connecting to the redis server.
  Will replace the previously configured connection strings.
- <p>
- Does not support rediss (redis over ssl scheme) for now.
 +++
 |[[connectionStrings]]`@connectionStrings`|`Array of String`|+++
 Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will
  consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
- <p>
- Does not support rediss (redis over ssl scheme) for now.
 +++
 |[[endpoint]]`@endpoint`|`String`|+++
 Sets a single connection string to use while connecting to the redis server.
@@ -7643,9 +7136,6 @@ Set the partition id
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[enabled]]`@enabled`|`Boolean`|+++
-Set whether tracing will be enabled on the Vert.x instance.
-+++
 |===
 
 [[TxnError]]
@@ -7882,28 +7372,6 @@ Sets the value of blocked thread check period, in link.
 +++
 |[[blockedThreadCheckIntervalUnit]]`@blockedThreadCheckIntervalUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
 Set the time unit of <code>blockedThreadCheckInterval</code>.
-+++
-|[[clusterHost]]`@clusterHost`|`String`|+++
-Set the hostname to be used for clustering.
-+++
-|[[clusterPingInterval]]`@clusterPingInterval`|`Number (long)`|+++
-Set the value of cluster ping interval, in ms.
-+++
-|[[clusterPingReplyInterval]]`@clusterPingReplyInterval`|`Number (long)`|+++
-Set the value of cluster ping reply interval, in ms.
-+++
-|[[clusterPort]]`@clusterPort`|`Number (int)`|+++
-Set the port to be used for clustering.
-+++
-|[[clusterPublicHost]]`@clusterPublicHost`|`String`|+++
-Set the public facing hostname to be used for clustering.
- Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same
- address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying.
- If this is the case you can specify a public hostname which is different from the hostname the server listens at.
- The default value is null which means use the same as the cluster hostname.
-+++
-|[[clusterPublicPort]]`@clusterPublicPort`|`Number (int)`|+++
-See link for an explanation.
 +++
 |[[eventLoopPoolSize]]`@eventLoopPoolSize`|`Number (int)`|+++
 Set the number of event loop threads to be used by the Vert.x instance.
