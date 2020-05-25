@@ -20,6 +20,7 @@ import io.vertx.codegen.annotations.ModuleGen;
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
+import io.vertx.codegen.format.CamelCase;
 import io.vertx.codegen.type.*;
 import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.core.Handler;
@@ -353,7 +354,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     if (type instanceof VoidTypeInfo) {
       result = "Unit";
     } else if (type instanceof PrimitiveTypeInfo) {
-      result = Case.CAMEL.format(Collections.singletonList(type.getSimpleName()));
+      result = CamelCase.INSTANCE.format(Collections.singletonList(type.getSimpleName()));
     } else if (type.getKind() == ClassKind.BOXED_PRIMITIVE) {
       switch (type.getSimpleName()) {
         case "Integer":
