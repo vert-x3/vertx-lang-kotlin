@@ -123,11 +123,6 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-jwt</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-web-common</artifactId>
       <optional>true</optional>
     </dependency>
@@ -405,7 +400,6 @@
             vertx-auth-oauth2,
             vertx-auth-shiro,
             vertx-auth-webauthn,
-            vertx-jwt,
             vertx-web-common,
             vertx-web-client,
             vertx-web,
