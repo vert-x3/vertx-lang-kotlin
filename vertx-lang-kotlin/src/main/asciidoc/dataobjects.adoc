@@ -2027,6 +2027,30 @@ Initial value of the variables area in the GraphiQL user interface. Defaults to 
 |[[metadata]]`@metadata`|`Json object`|-
 |===
 
+[[HtdigestCredentials]]
+== HtdigestCredentials
+
+++++
+ Credentials specific to the link authentication provider
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[algorithm]]`@algorithm`|`String`|-
+|[[cnonce]]`@cnonce`|`String`|-
+|[[method]]`@method`|`String`|-
+|[[nc]]`@nc`|`String`|-
+|[[nonce]]`@nonce`|`String`|-
+|[[qop]]`@qop`|`String`|-
+|[[realm]]`@realm`|`String`|-
+|[[response]]`@response`|`String`|-
+|[[uri]]`@uri`|`String`|-
+|[[username]]`@username`|`String`|-
+|===
+
 [[HtpasswdAuthOptions]]
 == HtpasswdAuthOptions
 
@@ -2952,34 +2976,19 @@ Set the roles query to use. Use this if you want to override the default
 |[[permissionsClaimKey]]`@permissionsClaimKey`|`String`|-
 |===
 
-[[JWTOptions]]
-== JWTOptions
+[[JWTCredentials]]
+== JWTCredentials
 
+++++
+ Credentials specific to the link provider
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[algorithm]]`@algorithm`|`String`|-
-|[[audience]]`@audience`|`Array of String`|-
-|[[audiences]]`@audiences`|`Array of String`|-
-|[[expiresInMinutes]]`@expiresInMinutes`|`Number (int)`|-
-|[[expiresInSeconds]]`@expiresInSeconds`|`Number (int)`|-
-|[[header]]`@header`|`Json object`|-
-|[[ignoreExpiration]]`@ignoreExpiration`|`Boolean`|-
-|[[issuer]]`@issuer`|`String`|-
-|[[leeway]]`@leeway`|`Number (int)`|-
-|[[noTimestamp]]`@noTimestamp`|`Boolean`|-
-|[[permissions]]`@permissions`|`Array of String`|+++
-The permissions of this token.
-+++
-|[[scopeDelimiter]]`@scopeDelimiter`|`String`|+++
-
-+++
-|[[scopes]]`@scopes`|`Array of String`|+++
-
-+++
-|[[subject]]`@subject`|`String`|-
+|[[jwt]]`@jwt`|`String`|-
 |===
 
 [[JWTOptions]]
@@ -4725,6 +4734,26 @@ Set custom parameters to be sent during the userInfo resource request
 Set the provider userInfo resource path
 +++
 |[[validateIssuer]]`@validateIssuer`|`Boolean`|-
+|===
+
+[[Oauth2Credentials]]
+== Oauth2Credentials
+
+++++
+ Credentials specific to the link provider
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[accessToken]]`@accessToken`|`String`|-
+|[[code]]`@code`|`String`|-
+|[[extra]]`@extra`|`Json object`|-
+|[[password]]`@password`|`String`|-
+|[[redirectUri]]`@redirectUri`|`String`|-
+|[[username]]`@username`|`String`|-
 |===
 
 [[OffsetAndMetadata]]
@@ -7279,6 +7308,22 @@ Get the number of rows updated
 +++
 |===
 
+[[UsernamePasswordCredentials]]
+== UsernamePasswordCredentials
+
+++++
+ Credentials used by any link that requires username and password to perform its authentication
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[password]]`@password`|`String`|-
+|[[username]]`@username`|`String`|-
+|===
+
 [[VertxInfluxDbOptions]]
 == VertxInfluxDbOptions
 
@@ -7446,8 +7491,8 @@ When true, an embedded server will init to expose metrics with Prometheus format
 +++
 |===
 
-[[WebAuthnInfo]]
-== WebAuthnInfo
+[[WebAuthnCredentials]]
+== WebAuthnCredentials
 
 
 [cols=">25%,25%,50%"]

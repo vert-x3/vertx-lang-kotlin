@@ -18,7 +18,22 @@ package io.vertx.kotlin.ext.auth.oauth2
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.auth.User
 import io.vertx.ext.auth.oauth2.OAuth2Auth
+import io.vertx.ext.auth.oauth2.Oauth2Credentials
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.authenticate]
+ *
+ * @param credentials the credentials to use.
+ * @return [User]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
+ */
+suspend fun OAuth2Auth.authenticateAwait(credentials: Oauth2Credentials): User {
+  return awaitResult {
+    this.authenticate(credentials, it)
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.ext.auth.oauth2.OAuth2Auth.jWKSet]

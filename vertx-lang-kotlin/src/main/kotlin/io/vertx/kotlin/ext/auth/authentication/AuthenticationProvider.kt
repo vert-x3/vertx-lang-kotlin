@@ -23,14 +23,14 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Suspending version of method [io.vertx.ext.auth.authentication.AuthenticationProvider.authenticate]
  *
- * @param authInfo The auth information
+ * @param credentials The credentials
  * @return [User]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authentication.AuthenticationProvider] using Vert.x codegen.
  */
-suspend fun AuthenticationProvider.authenticateAwait(authInfo: JsonObject): User {
+suspend fun AuthenticationProvider.authenticateAwait(credentials: JsonObject): User {
   return awaitResult {
-    this.authenticate(authInfo, it)
+    this.authenticate(credentials, it)
   }
 }
 
