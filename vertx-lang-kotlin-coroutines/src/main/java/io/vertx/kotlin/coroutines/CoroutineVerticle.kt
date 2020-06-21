@@ -17,8 +17,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
 import io.vertx.core.json.JsonObject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -35,7 +34,7 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
   private lateinit var vertxInstance: Vertx
   protected lateinit var context: Context
 
-  override val coroutineContext: CoroutineContext by lazy { context.dispatcher() }
+  override val coroutineContext: CoroutineContext by lazy { context.dispatcher() + SupervisorJob() }
 
   override fun init(vertx: Vertx, context: Context) {
     this.vertxInstance = vertx
@@ -59,6 +58,7 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
     launch {
       try {
         stop()
+        this.coroutineContext[Job]?.cancelAndJoin()
         stopFuture?.complete()
       } catch (t: Throwable) {
         stopFuture?.fail(t)
