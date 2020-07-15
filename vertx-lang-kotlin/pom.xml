@@ -5,13 +5,13 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>3.9.2-SNAPSHOT</version>
+    <version>3.9.2</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>vertx-lang-kotlin</artifactId>
-  <version>3.9.2-SNAPSHOT</version>
+  <version>3.9.2</version>
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
