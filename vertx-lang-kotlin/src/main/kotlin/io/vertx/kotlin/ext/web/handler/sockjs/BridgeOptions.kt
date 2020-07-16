@@ -43,7 +43,7 @@ fun bridgeOptionsOf(
   outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions(io.vertx.core.json.JsonObject()).apply {
+  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
 
   if (inboundPermitted != null) {
     this.setInboundPermitted(inboundPermitted.toList())
@@ -104,7 +104,7 @@ fun BridgeOptions(
   outboundPermitted: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   outboundPermitteds: Iterable<io.vertx.ext.bridge.PermittedOptions>? = null,
   pingTimeout: Long? = null,
-  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions(io.vertx.core.json.JsonObject()).apply {
+  replyTimeout: Long? = null): BridgeOptions = io.vertx.ext.web.handler.sockjs.BridgeOptions().apply {
 
   if (inboundPermitted != null) {
     this.setInboundPermitted(inboundPermitted.toList())

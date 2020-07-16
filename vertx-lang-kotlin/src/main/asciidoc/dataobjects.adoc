@@ -1160,6 +1160,29 @@ Set whether Netty pooled buffers are enabled
 +++
 |===
 
+[[ClusterDescription]]
+== ClusterDescription
+
+++++
+ A detailed description of the cluster
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[clusterId]]`@clusterId`|`String`|+++
+Set the cluster ID
++++
+|[[controller]]`@controller`|`link:dataobjects.html#Node[Node]`|+++
+Set the controller node.
++++
+|[[nodes]]`@nodes`|`Array of link:dataobjects.html#Node[Node]`|+++
+Set the nodes belonging to this cluster
++++
+|===
+
 [[Config]]
 == Config
 
@@ -3562,6 +3585,42 @@ The permissions of this token.
 [[JWTOptions]]
 == JWTOptions
 
+++++
+ Options related to creation of new tokens.
+
+ If any expiresInMinutes, audience, subject, issuer are not provided, there is no default.
+ The jwt generated won't include those properties in the payload.
+
+ Generated JWTs will include an iat claim by default unless noTimestamp is specified.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[algorithm]]`@algorithm`|`String`|-
+|[[audience]]`@audience`|`Array of String`|-
+|[[audiences]]`@audiences`|`Array of String`|-
+|[[expiresInMinutes]]`@expiresInMinutes`|`Number (int)`|-
+|[[expiresInSeconds]]`@expiresInSeconds`|`Number (int)`|-
+|[[header]]`@header`|`Json object`|-
+|[[ignoreExpiration]]`@ignoreExpiration`|`Boolean`|-
+|[[issuer]]`@issuer`|`String`|-
+|[[leeway]]`@leeway`|`Number (int)`|-
+|[[noTimestamp]]`@noTimestamp`|`Boolean`|-
+|[[permissions]]`@permissions`|`Array of String`|+++
+The permissions of this token.
++++
+|[[subject]]`@subject`|`String`|-
+|===
+
+[[JWTOptions]]
+== JWTOptions
+
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -3617,7 +3676,7 @@ The permissions of this token.
  <p>
 
  <pre>
- Buffer store = vertx.fileSystem().readFileSync("/mykeystore.jks");
+ Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.jks");
  options.setKeyStore(new JKSOptions().setValue(store).setPassword("foo"));
  </pre>
 ++++
@@ -3809,6 +3868,16 @@ Set TYPE filter
 ^|Name | Type ^| Description
 |[[p1]]`@p1`|`link:dataobjects.html#Point[Point]`|-
 |[[p2]]`@p2`|`link:dataobjects.html#Point[Point]`|-
+|===
+
+[[ListConsumerGroupOffsetsOptions]]
+== ListConsumerGroupOffsetsOptions
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
 |===
 
 [[MailAttachment]]
@@ -4831,6 +4900,8 @@ Set the maximum number of prepared statements that the connection will cache.
 +++
 |[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
 Set the maximum length of prepared statement SQL string that the connection will cache.
+
+ <p> This is an helper setting the link.
 +++
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.
@@ -5982,8 +6053,8 @@ Set the topic name
  Or directly provided as a buffer:<p>
 
  <pre>
- Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
- Buffer cert = vertx.fileSystem().readFileSync("/mycert.pem");
+ Buffer key = vertx.fileSystem().readFileBlocking("/mykey.pem");
+ Buffer cert = vertx.fileSystem().readFileBlocking("/mycert.pem");
  options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyValue(key).setCertValue(cert));
  </pre>
 
@@ -6057,7 +6128,7 @@ Set all the keys as a list of buffer
  <p>
 
  <pre>
- Buffer cert = vertx.fileSystem().readFileSync("/cert.pem");
+ Buffer cert = vertx.fileSystem().readFileBlocking("/cert.pem");
  HttpServerOptions options = new HttpServerOptions();
  options.setPemTrustOptions(new PemTrustOptions().addCertValue(cert));
  </pre>
@@ -6157,7 +6228,7 @@ Declare a specific authority that user must have in order to allow messages
  Or directly provided as a buffer:<p>
 
  <pre>
- Buffer store = vertx.fileSystem().readFileSync("/mykeystore.p12");
+ Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.p12");
  options.setPfxKeyCertOptions(new PfxOptions().setValue(store).setPassword("foo"));
  </pre>
 ++++
@@ -6266,6 +6337,8 @@ Set the maximum number of prepared statements that the connection will cache.
 +++
 |[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
 Set the maximum length of prepared statement SQL string that the connection will cache.
+
+ <p> This is an helper setting the link.
 +++
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.
@@ -7763,6 +7836,8 @@ Set the maximum number of prepared statements that the connection will cache.
 +++
 |[[preparedStatementCacheSqlLimit]]`@preparedStatementCacheSqlLimit`|`Number (int)`|+++
 Set the maximum length of prepared statement SQL string that the connection will cache.
+
+ <p> This is an helper setting the link.
 +++
 |[[properties]]`@properties`|`String`|+++
 Set properties for this client, which will be sent to server at the connection start.

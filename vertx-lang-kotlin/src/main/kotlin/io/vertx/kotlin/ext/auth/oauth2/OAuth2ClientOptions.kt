@@ -25,9 +25,9 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.ext.auth.JWTOptions
 import io.vertx.ext.auth.PubSecKeyOptions
 import io.vertx.ext.auth.oauth2.OAuth2FlowType
-import io.vertx.ext.jwt.JWTOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -165,7 +165,7 @@ fun oAuth2ClientOptionsOf(
   introspectionPath: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   jwkPath: String? = null,
-  jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
+  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
@@ -673,7 +673,7 @@ fun OAuth2ClientOptions(
   introspectionPath: String? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   jwkPath: String? = null,
-  jwtOptions: io.vertx.ext.jwt.JWTOptions? = null,
+  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   keepAlive: Boolean? = null,
   keepAliveTimeout: Int? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,

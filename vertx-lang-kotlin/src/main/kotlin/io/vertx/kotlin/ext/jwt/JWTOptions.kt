@@ -17,6 +17,26 @@ package io.vertx.kotlin.ext.jwt
 
 import io.vertx.ext.jwt.JWTOptions
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.jwt.JWTOptions] objects.
+ *
+ *
+ * @param algorithm 
+ * @param audience 
+ * @param audiences 
+ * @param expiresInMinutes 
+ * @param expiresInSeconds 
+ * @param header 
+ * @param ignoreExpiration 
+ * @param issuer 
+ * @param leeway 
+ * @param noTimestamp 
+ * @param permissions  The permissions of this token.
+ * @param subject 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.jwt.JWTOptions original] using Vert.x codegen.
+ */
 fun jwtOptionsOf(
   algorithm: String? = null,
   audience: Iterable<String>? = null,
@@ -71,6 +91,26 @@ fun jwtOptionsOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.jwt.JWTOptions] objects.
+ *
+ *
+ * @param algorithm 
+ * @param audience 
+ * @param audiences 
+ * @param expiresInMinutes 
+ * @param expiresInSeconds 
+ * @param header 
+ * @param ignoreExpiration 
+ * @param issuer 
+ * @param leeway 
+ * @param noTimestamp 
+ * @param permissions  The permissions of this token.
+ * @param subject 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.jwt.JWTOptions original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
   replaceWith = ReplaceWith("jwtOptionsOf(algorithm, audience, audiences, expiresInMinutes, expiresInSeconds, header, ignoreExpiration, issuer, leeway, noTimestamp, permissions, subject)")

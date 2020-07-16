@@ -24,6 +24,7 @@ import io.vertx.kafka.client.consumer.KafkaConsumerRecords
 import io.vertx.kafka.client.consumer.OffsetAndMetadata
 import io.vertx.kafka.client.consumer.OffsetAndTimestamp
 import io.vertx.kotlin.coroutines.awaitResult
+import java.time.Duration
 
 /**
  * Suspending version of method [io.vertx.kafka.client.consumer.KafkaConsumer.pipeTo]
@@ -371,12 +372,12 @@ suspend fun <K,V> KafkaConsumer<K,V>.endOffsetsAwait(topicPartition: TopicPartit
 /**
  * Suspending version of method [io.vertx.kafka.client.consumer.KafkaConsumer.poll]
  *
- * @param timeout The time, in milliseconds, spent waiting in poll if data is not available in the buffer. If 0, returns immediately with any records that are available currently in the native Kafka consumer's buffer, else returns empty. Must not be negative.
+ * @param timeout The maximum time to block (must not be greater than [java.lang.Long] milliseconds)
  * @return [KafkaConsumerRecords<K,V>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-suspend fun <K,V> KafkaConsumer<K,V>.pollAwait(timeout: Long): KafkaConsumerRecords<K,V> {
+suspend fun <K,V> KafkaConsumer<K,V>.pollAwait(timeout: Duration): KafkaConsumerRecords<K,V> {
   return awaitResult {
     this.poll(timeout, it)
   }
