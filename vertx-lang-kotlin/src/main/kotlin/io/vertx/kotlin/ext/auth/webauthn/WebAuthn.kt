@@ -16,9 +16,7 @@
 package io.vertx.kotlin.ext.auth.webauthn
 
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.auth.User
 import io.vertx.ext.auth.webauthn.WebAuthn
-import io.vertx.ext.auth.webauthn.WebAuthnCredentials
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -46,18 +44,6 @@ suspend fun WebAuthn.createCredentialsOptionsAwait(user: JsonObject): JsonObject
 suspend fun WebAuthn.getCredentialsOptionsAwait(username: String?): JsonObject {
   return awaitResult {
     this.getCredentialsOptions(username, it)
-  }
-}
-
-suspend fun WebAuthn.authenticateAwait(authInfo: WebAuthnCredentials): User {
-  return awaitResult {
-    this.authenticate(authInfo, it)
-  }
-}
-
-suspend fun WebAuthn.authenticateAwait(authInfo: JsonObject): User {
-  return awaitResult {
-    this.authenticate(authInfo, it)
   }
 }
 

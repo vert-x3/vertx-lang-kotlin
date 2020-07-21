@@ -15,11 +15,13 @@
  */
 package io.vertx.kotlin.kafka.admin
 
+import io.vertx.kafka.admin.ClusterDescription
 import io.vertx.kafka.admin.ConsumerGroupDescription
 import io.vertx.kafka.admin.ConsumerGroupListing
 import io.vertx.kafka.admin.KafkaAdminClient
 import io.vertx.kafka.admin.NewTopic
 import io.vertx.kafka.admin.TopicDescription
+import io.vertx.kafka.client.common.TopicPartition
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -99,6 +101,46 @@ suspend fun KafkaAdminClient.listConsumerGroupsAwait(): List<ConsumerGroupListin
 suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>): Map<String,ConsumerGroupDescription> {
   return awaitResult {
     this.describeConsumerGroups(groupIds, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeCluster]
+ *
+ * @return [ClusterDescription]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+suspend fun KafkaAdminClient.describeClusterAwait(): ClusterDescription {
+  return awaitResult {
+    this.describeCluster(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.deleteConsumerGroups]
+ *
+ * @param groupIds the ids of the groups to delete
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+suspend fun KafkaAdminClient.deleteConsumerGroupsAwait(groupIds: List<String>): Unit {
+  return awaitResult {
+    this.deleteConsumerGroups(groupIds, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.deleteConsumerGroupOffsets]
+ *
+ * @param groupId The group id of the group whose offsets will be listed
+ * @param partitions The set of partitions in the consumer group whose offsets will be deleted
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+suspend fun KafkaAdminClient.deleteConsumerGroupOffsetsAwait(groupId: String, partitions: Set<TopicPartition>): Unit {
+  return awaitResult {
+    this.deleteConsumerGroupOffsets(groupId, partitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

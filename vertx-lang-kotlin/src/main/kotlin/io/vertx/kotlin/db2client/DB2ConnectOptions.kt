@@ -13,50 +13,54 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.core.eventbus
+package io.vertx.kotlin.db2client
 
-import io.vertx.core.eventbus.EventBusOptions
-import io.vertx.core.http.ClientAuth
+import io.vertx.db2client.DB2ConnectOptions
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
+import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
 /**
- * A function providing a DSL for building [io.vertx.core.eventbus.EventBusOptions] objects.
+ * A function providing a DSL for building [io.vertx.db2client.DB2ConnectOptions] objects.
  *
- * Options to configure the event bus.
+ * Connect options for configuring [io.vertx.db2client.DB2Connection] or [io.vertx.db2client.DB2Pool].
  *
- * @param acceptBacklog  Set the accept back log.
- * @param clientAuth  Set whether client auth is required
- * @param clusterNodeMetadata  Set information about this node when Vert.x is clustered. <p> The data may be used by the [io.vertx.core.spi.cluster.NodeSelector] to select a node for a given message. For example, it could be used to implement a partioning strategy. <p> The default [io.vertx.core.spi.cluster.NodeSelector] does not use the node metadata.
- * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
- * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
- * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. <p> The default value is null which means use the same as the cluster hostname.
- * @param clusterPublicPort  See [io.vertx.core.eventbus.EventBusOptions] for an explanation.
- * @param connectTimeout  Sets the connect timeout
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
+ * @param database  Specify the default database for the connection.
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
- * @param host  Sets the host. Defaults to <code>null</code>. <p> When the clustered eventbus starts, it tries to bind to the provided <code>host</code>. If <code>host</code> is <code>null</code>, then it tries to bind to the same host as the underlying cluster manager. As a last resort, an address will be picked among the available network interfaces.
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.TCPSSLOptions]
+ * @param host  Specify the host for connecting to the server.
+ * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
+ * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
+ * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
+ * @param password  Specify the user password to be used for the authentication.
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
- * @param port  Sets the port.
+ * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.db2client.DB2ConnectOptions].
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
- * @param reconnectAttempts  Sets the value of reconnect attempts.
- * @param reconnectInterval  Set the reconnect interval.
+ * @param reconnectAttempts  Set the value of reconnect attempts
+ * @param reconnectInterval  Set the reconnect interval
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -71,39 +75,44 @@ import java.util.concurrent.TimeUnit
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
- * @param trustAll  Set whether all server certificates should be trusted.
+ * @param trustAll  Set whether all server certificates should be trusted
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param user  Specify the user account to be used for the authentication.
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.db2client.DB2ConnectOptions original] using Vert.x codegen.
  */
-fun eventBusOptionsOf(
-  acceptBacklog: Int? = null,
-  clientAuth: ClientAuth? = null,
-  clusterNodeMetadata: io.vertx.core.json.JsonObject? = null,
-  clusterPingInterval: Long? = null,
-  clusterPingReplyInterval: Long? = null,
-  clusterPublicHost: String? = null,
-  clusterPublicPort: Int? = null,
+fun db2ConnectOptionsOf(
+  cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
+  database: String? = null,
   enabledCipherSuites: Iterable<String>? = null,
   enabledSecureTransportProtocols: Iterable<String>? = null,
   host: String? = null,
+  hostnameVerificationAlgorithm: String? = null,
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
+  localAddress: String? = null,
   logActivity: Boolean? = null,
+  metricsName: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
+  password: String? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -124,28 +133,11 @@ fun eventBusOptionsOf(
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
+  useAlpn: Boolean? = null,
+  user: String? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
 
-  if (acceptBacklog != null) {
-    this.setAcceptBacklog(acceptBacklog)
-  }
-  if (clientAuth != null) {
-    this.setClientAuth(clientAuth)
-  }
-  if (clusterNodeMetadata != null) {
-    this.setClusterNodeMetadata(clusterNodeMetadata)
-  }
-  if (clusterPingInterval != null) {
-    this.setClusterPingInterval(clusterPingInterval)
-  }
-  if (clusterPingReplyInterval != null) {
-    this.setClusterPingReplyInterval(clusterPingReplyInterval)
-  }
-  if (clusterPublicHost != null) {
-    this.setClusterPublicHost(clusterPublicHost)
-  }
-  if (clusterPublicPort != null) {
-    this.setClusterPublicPort(clusterPublicPort)
+  if (cachePreparedStatements != null) {
+    this.setCachePreparedStatements(cachePreparedStatements)
   }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
@@ -160,6 +152,9 @@ fun eventBusOptionsOf(
       this.addCrlValue(item)
     }
   }
+  if (database != null) {
+    this.setDatabase(database)
+  }
   if (enabledCipherSuites != null) {
     for (item in enabledCipherSuites) {
       this.addEnabledCipherSuite(item)
@@ -171,6 +166,9 @@ fun eventBusOptionsOf(
   if (host != null) {
     this.setHost(host)
   }
+  if (hostnameVerificationAlgorithm != null) {
+    this.setHostnameVerificationAlgorithm(hostnameVerificationAlgorithm)
+  }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
   }
@@ -180,14 +178,26 @@ fun eventBusOptionsOf(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
+  }
+  if (localAddress != null) {
+    this.setLocalAddress(localAddress)
   }
   if (logActivity != null) {
     this.setLogActivity(logActivity)
   }
+  if (metricsName != null) {
+    this.setMetricsName(metricsName)
+  }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (pemKeyCertOptions != null) {
     this.setPemKeyCertOptions(pemKeyCertOptions)
@@ -203,6 +213,18 @@ fun eventBusOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (proxyOptions != null) {
+    this.setProxyOptions(proxyOptions)
   }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
@@ -266,41 +288,48 @@ fun eventBusOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (user != null) {
+    this.setUser(user)
   }
 }
 
 /**
- * A function providing a DSL for building [io.vertx.core.eventbus.EventBusOptions] objects.
+ * A function providing a DSL for building [io.vertx.db2client.DB2ConnectOptions] objects.
  *
- * Options to configure the event bus.
+ * Connect options for configuring [io.vertx.db2client.DB2Connection] or [io.vertx.db2client.DB2Pool].
  *
- * @param acceptBacklog  Set the accept back log.
- * @param clientAuth  Set whether client auth is required
- * @param clusterNodeMetadata  Set information about this node when Vert.x is clustered. <p> The data may be used by the [io.vertx.core.spi.cluster.NodeSelector] to select a node for a given message. For example, it could be used to implement a partioning strategy. <p> The default [io.vertx.core.spi.cluster.NodeSelector] does not use the node metadata.
- * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
- * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
- * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. <p> The default value is null which means use the same as the cluster hostname.
- * @param clusterPublicPort  See [io.vertx.core.eventbus.EventBusOptions] for an explanation.
- * @param connectTimeout  Sets the connect timeout
+ * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
+ * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
+ * @param database  Specify the default database for the connection.
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
- * @param host  Sets the host. Defaults to <code>null</code>. <p> When the clustered eventbus starts, it tries to bind to the provided <code>host</code>. If <code>host</code> is <code>null</code>, then it tries to bind to the same host as the underlying cluster manager. As a last resort, an address will be picked among the available network interfaces.
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.TCPSSLOptions]
+ * @param host  Specify the host for connecting to the server.
+ * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
+ * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
+ * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
+ * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
+ * @param password  Specify the user password to be used for the authentication.
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
- * @param port  Sets the port.
+ * @param port  Specify the port for connecting to the server.
+ * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.db2client.DB2ConnectOptions].
+ * @param properties  Set properties for this client, which will be sent to server at the connection start.
+ * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
- * @param reconnectAttempts  Sets the value of reconnect attempts.
- * @param reconnectInterval  Set the reconnect interval.
+ * @param reconnectAttempts  Set the value of reconnect attempts
+ * @param reconnectInterval  Set the reconnect interval
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -315,43 +344,48 @@ fun eventBusOptionsOf(
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
- * @param trustAll  Set whether all server certificates should be trusted.
+ * @param trustAll  Set whether all server certificates should be trusted
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param user  Specify the user account to be used for the authentication.
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.db2client.DB2ConnectOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("eventBusOptionsOf(acceptBacklog, clientAuth, clusterNodeMetadata, clusterPingInterval, clusterPingReplyInterval, clusterPublicHost, clusterPublicPort, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("db2ConnectOptionsOf(cachePreparedStatements, connectTimeout, crlPaths, crlValues, database, enabledCipherSuites, enabledSecureTransportProtocols, host, hostnameVerificationAlgorithm, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyCertOptions, keyStoreOptions, localAddress, logActivity, metricsName, openSslEngineOptions, password, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, preparedStatementCacheMaxSize, preparedStatementCacheSqlLimit, properties, proxyOptions, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn, user)")
 )
-fun EventBusOptions(
-  acceptBacklog: Int? = null,
-  clientAuth: ClientAuth? = null,
-  clusterNodeMetadata: io.vertx.core.json.JsonObject? = null,
-  clusterPingInterval: Long? = null,
-  clusterPingReplyInterval: Long? = null,
-  clusterPublicHost: String? = null,
-  clusterPublicPort: Int? = null,
+fun DB2ConnectOptions(
+  cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
+  database: String? = null,
   enabledCipherSuites: Iterable<String>? = null,
   enabledSecureTransportProtocols: Iterable<String>? = null,
   host: String? = null,
+  hostnameVerificationAlgorithm: String? = null,
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
+  localAddress: String? = null,
   logActivity: Boolean? = null,
+  metricsName: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
+  password: String? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  preparedStatementCacheMaxSize: Int? = null,
+  preparedStatementCacheSqlLimit: Int? = null,
+  properties: Map<String, String>? = null,
+  proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -372,28 +406,11 @@ fun EventBusOptions(
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
+  useAlpn: Boolean? = null,
+  user: String? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
 
-  if (acceptBacklog != null) {
-    this.setAcceptBacklog(acceptBacklog)
-  }
-  if (clientAuth != null) {
-    this.setClientAuth(clientAuth)
-  }
-  if (clusterNodeMetadata != null) {
-    this.setClusterNodeMetadata(clusterNodeMetadata)
-  }
-  if (clusterPingInterval != null) {
-    this.setClusterPingInterval(clusterPingInterval)
-  }
-  if (clusterPingReplyInterval != null) {
-    this.setClusterPingReplyInterval(clusterPingReplyInterval)
-  }
-  if (clusterPublicHost != null) {
-    this.setClusterPublicHost(clusterPublicHost)
-  }
-  if (clusterPublicPort != null) {
-    this.setClusterPublicPort(clusterPublicPort)
+  if (cachePreparedStatements != null) {
+    this.setCachePreparedStatements(cachePreparedStatements)
   }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
@@ -408,6 +425,9 @@ fun EventBusOptions(
       this.addCrlValue(item)
     }
   }
+  if (database != null) {
+    this.setDatabase(database)
+  }
   if (enabledCipherSuites != null) {
     for (item in enabledCipherSuites) {
       this.addEnabledCipherSuite(item)
@@ -419,6 +439,9 @@ fun EventBusOptions(
   if (host != null) {
     this.setHost(host)
   }
+  if (hostnameVerificationAlgorithm != null) {
+    this.setHostnameVerificationAlgorithm(hostnameVerificationAlgorithm)
+  }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
   }
@@ -428,14 +451,26 @@ fun EventBusOptions(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
+  }
   if (keyStoreOptions != null) {
     this.setKeyStoreOptions(keyStoreOptions)
+  }
+  if (localAddress != null) {
+    this.setLocalAddress(localAddress)
   }
   if (logActivity != null) {
     this.setLogActivity(logActivity)
   }
+  if (metricsName != null) {
+    this.setMetricsName(metricsName)
+  }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (pemKeyCertOptions != null) {
     this.setPemKeyCertOptions(pemKeyCertOptions)
@@ -451,6 +486,18 @@ fun EventBusOptions(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (preparedStatementCacheMaxSize != null) {
+    this.setPreparedStatementCacheMaxSize(preparedStatementCacheMaxSize)
+  }
+  if (preparedStatementCacheSqlLimit != null) {
+    this.setPreparedStatementCacheSqlLimit(preparedStatementCacheSqlLimit)
+  }
+  if (properties != null) {
+    this.setProperties(properties)
+  }
+  if (proxyOptions != null) {
+    this.setProxyOptions(proxyOptions)
   }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
@@ -514,6 +561,9 @@ fun EventBusOptions(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (user != null) {
+    this.setUser(user)
   }
 }
 

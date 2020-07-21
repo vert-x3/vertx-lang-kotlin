@@ -567,6 +567,9 @@ Pool type, such as "worker" or "datasource" (used in pools domain)
 |[[POOL_NAME]]`POOL_NAME`|+++
 Pool name (used in pools domain)
 +++
+|[[NAMESPACE]]`NAMESPACE`|+++
+Client namespace
++++
 |===
 
 [[LoggerFormat]]
@@ -1367,7 +1370,8 @@ Deletes the Key with check-and-set semantics. The Key will only be deleted
 |===
 ^|Name | Description
 |[[MAX_PRIORITY]]`MAX_PRIORITY`|-
-|[[MIN_PRIORITY]]`MIN_PRIORITY`|-
+|[[NORMAL_PRIORITY]]`NORMAL_PRIORITY`|-
+|[[CONTEXTUAL_VALIDATOR]]`CONTEXTUAL_VALIDATOR`|-
 |===
 
 [[WebsocketVersion]]

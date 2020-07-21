@@ -25,15 +25,17 @@ import io.vertx.core.http.WebsocketVersion
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
  * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
+ * @param authority  Set the request authority. <p>For HTTP/2 the  pseudo header otherwise the  header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
  * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
- * @param ssl  Set whether SSL/TLS is enabled
+ * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
+ * @param ssl  Set whether SSL/TLS is enabled.
  * @param subProtocols  Set the WebSocket sub protocols to use.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
- * @param uri  Set the request relative URI
+ * @param uri  Set the request relative URI.
  * @param version  Set the WebSocket version.
  *
  * <p/>
@@ -41,11 +43,13 @@ import io.vertx.core.http.WebsocketVersion
  */
 fun webSocketConnectOptionsOf(
   absoluteURI: String? = null,
+  authority: String? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
   method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
+  server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   subProtocols: Iterable<String>? = null,
   timeout: Long? = null,
@@ -54,6 +58,9 @@ fun webSocketConnectOptionsOf(
 
   if (absoluteURI != null) {
     this.setAbsoluteURI(absoluteURI)
+  }
+  if (authority != null) {
+    this.setAuthority(authority)
   }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)
@@ -71,6 +78,9 @@ fun webSocketConnectOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (server != null) {
+    this.setServer(server)
   }
   if (ssl != null) {
     this.setSsl(ssl)
@@ -95,15 +105,17 @@ fun webSocketConnectOptionsOf(
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
  * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
+ * @param authority  Set the request authority. <p>For HTTP/2 the  pseudo header otherwise the  header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
  * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
- * @param ssl  Set whether SSL/TLS is enabled
+ * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
+ * @param ssl  Set whether SSL/TLS is enabled.
  * @param subProtocols  Set the WebSocket sub protocols to use.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
- * @param uri  Set the request relative URI
+ * @param uri  Set the request relative URI.
  * @param version  Set the WebSocket version.
  *
  * <p/>
@@ -111,15 +123,17 @@ fun webSocketConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webSocketConnectOptionsOf(absoluteURI, followRedirects, headers, host, method, port, ssl, subProtocols, timeout, uri, version)")
+  replaceWith = ReplaceWith("webSocketConnectOptionsOf(absoluteURI, authority, followRedirects, headers, host, method, port, server, ssl, subProtocols, timeout, uri, version)")
 )
 fun WebSocketConnectOptions(
   absoluteURI: String? = null,
+  authority: String? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
   method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
+  server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   subProtocols: Iterable<String>? = null,
   timeout: Long? = null,
@@ -128,6 +142,9 @@ fun WebSocketConnectOptions(
 
   if (absoluteURI != null) {
     this.setAbsoluteURI(absoluteURI)
+  }
+  if (authority != null) {
+    this.setAuthority(authority)
   }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)
@@ -145,6 +162,9 @@ fun WebSocketConnectOptions(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (server != null) {
+    this.setServer(server)
   }
   if (ssl != null) {
     this.setSsl(ssl)

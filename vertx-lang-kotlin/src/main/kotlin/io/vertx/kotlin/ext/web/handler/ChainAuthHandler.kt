@@ -15,7 +15,7 @@
  */
 package io.vertx.kotlin.ext.web.handler
 
-import io.vertx.core.json.JsonObject
+import io.vertx.ext.auth.authentication.Credentials
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.ChainAuthHandler
 import io.vertx.kotlin.coroutines.awaitResult
@@ -24,11 +24,11 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Suspending version of method [io.vertx.ext.web.handler.ChainAuthHandler.parseCredentials]
  *
  * @param context the routing context
- * @return [JsonObject]
+ * @return [Credentials]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.ChainAuthHandler] using Vert.x codegen.
  */
-suspend fun ChainAuthHandler.parseCredentialsAwait(context: RoutingContext): JsonObject {
+suspend fun ChainAuthHandler.parseCredentialsAwait(context: RoutingContext): Credentials {
   return awaitResult {
     this.parseCredentials(context, it)
   }

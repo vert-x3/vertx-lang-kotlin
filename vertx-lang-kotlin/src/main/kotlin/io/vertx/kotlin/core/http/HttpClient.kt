@@ -18,6 +18,7 @@ package io.vertx.kotlin.core.http
 import io.vertx.core.MultiMap
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpClient
+import io.vertx.core.http.HttpClientRequest
 import io.vertx.core.http.HttpClientResponse
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.RequestOptions
@@ -377,6 +378,68 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: B
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, body, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.request]
+ *
+ * @param options the request options
+ * @return [HttpClientRequest]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+suspend fun HttpClient.requestAwait(options: RequestOptions): HttpClientRequest {
+  return awaitResult {
+    this.request(options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.request]
+ *
+ * @param method the HTTP method
+ * @param port the port
+ * @param host the host
+ * @param requestURI the relative URI
+ * @return [HttpClientRequest]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+suspend fun HttpClient.requestAwait(method: HttpMethod, port: Int, host: String, requestURI: String): HttpClientRequest {
+  return awaitResult {
+    this.request(method, port, host, requestURI, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.request]
+ *
+ * @param method the HTTP method
+ * @param host the host
+ * @param requestURI the relative URI
+ * @return [HttpClientRequest]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+suspend fun HttpClient.requestAwait(method: HttpMethod, host: String, requestURI: String): HttpClientRequest {
+  return awaitResult {
+    this.request(method, host, requestURI, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.request]
+ *
+ * @param method the HTTP method
+ * @param requestURI the relative URI
+ * @return [HttpClientRequest]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+suspend fun HttpClient.requestAwait(method: HttpMethod, requestURI: String): HttpClientRequest {
+  return awaitResult {
+    this.request(method, requestURI, it)
   }
 }
 

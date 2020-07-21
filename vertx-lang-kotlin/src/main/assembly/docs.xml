@@ -9,6 +9,10 @@
       <outputDirectory>./</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>${project.basedir}/src/main/asciidoc</directory>
+      <outputDirectory>./</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>${project.build.directory}/kdoc</directory>
       <outputDirectory>./kdoc/</outputDirectory>
     </fileSet>
