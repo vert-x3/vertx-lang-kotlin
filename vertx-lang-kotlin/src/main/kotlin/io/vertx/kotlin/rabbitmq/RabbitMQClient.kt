@@ -20,9 +20,11 @@ import com.rabbitmq.client.AMQP.Queue.DeleteOk
 import com.rabbitmq.client.BasicProperties
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.json.JsonObject
+import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.rabbitmq.QueueOptions
 import io.vertx.rabbitmq.RabbitMQClient
+import io.vertx.rabbitmq.RabbitMQConfirmation
 import io.vertx.rabbitmq.RabbitMQConsumer
 import io.vertx.rabbitmq.RabbitMQMessage
 
@@ -111,6 +113,20 @@ suspend fun RabbitMQClient.basicConsumerAwait(queue: String, options: QueueOptio
 suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, body: Buffer): Unit {
   return awaitResult {
     this.basicPublish(exchange, routingKey, body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.addConfirmListener]
+ *
+ * @param maxQueueSize maximum size of the queue of confirmations
+ * @return [ReadStream<RabbitMQConfirmation>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.addConfirmListenerAwait(maxQueueSize: Int): ReadStream<RabbitMQConfirmation> {
+  return awaitResult {
+    this.addConfirmListener(maxQueueSize, it)
   }
 }
 
@@ -427,6 +443,23 @@ suspend fun RabbitMQClient.stopAwait(): Unit {
 suspend fun RabbitMQClient.basicPublishAwait(exchange: String, routingKey: String, properties: BasicProperties, body: Buffer): Unit {
   return awaitResult {
     this.basicPublish(exchange, routingKey, properties, body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.rabbitmq.RabbitMQClient.basicPublishWithDeliveryTag]
+ *
+ * @param exchange 
+ * @param routingKey 
+ * @param properties 
+ * @param body 
+ * @param deliveryTagHandler callback to capture the deliveryTag for this message. Note that this will be called synchronously in the context of the client before the result is known.
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.rabbitmq.RabbitMQClient] using Vert.x codegen.
+ */
+suspend fun RabbitMQClient.basicPublishWithDeliveryTagAwait(exchange: String, routingKey: String, properties: BasicProperties, body: Buffer, deliveryTagHandler: (Long) -> Unit): Unit {
+  return awaitResult {
+    this.basicPublishWithDeliveryTag(exchange, routingKey, properties, body, deliveryTagHandler, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

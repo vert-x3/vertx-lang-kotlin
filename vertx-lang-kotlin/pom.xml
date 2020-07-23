@@ -298,11 +298,6 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-rabbitmq-client</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-health-check</artifactId>
       <optional>true</optional>
     </dependency>
@@ -435,7 +430,6 @@
             vertx-mysql-client,
             vertx-db2-client,
             vertx-mqtt,
-            vertx-rabbitmq-client,
             vertx-health-check,
             vertx-shell,
             vertx-micrometer-metrics,

@@ -3137,6 +3137,24 @@ Set the roles query to use. Use this if you want to override the default
 +++
 |===
 
+[[JDBCConnectOptions]]
+== JDBCConnectOptions
+
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[connectTimeout]]`@connectTimeout`|`Number (int)`|-
+|[[dataSourceImplementation]]`@dataSourceImplementation`|`String`|-
+|[[database]]`@database`|`String`|-
+|[[idleTimeout]]`@idleTimeout`|`Number (int)`|-
+|[[jdbcUrl]]`@jdbcUrl`|`String`|-
+|[[metricsEnabled]]`@metricsEnabled`|`Boolean`|-
+|[[password]]`@password`|`String`|-
+|[[user]]`@user`|`String`|-
+|===
+
 [[JWTAuthOptions]]
 == JWTAuthOptions
 
@@ -5745,6 +5763,23 @@ The PEM or Secret key buffer
 +++
 |===
 
+[[RabbitMQConfirmation]]
+== RabbitMQConfirmation
+
+++++
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[channelInstance]]`@channelInstance`|`Number (long)`|-
+|[[deliveryTag]]`@deliveryTag`|`Number (long)`|-
+|[[multiple]]`@multiple`|`Boolean`|-
+|[[succeeded]]`@succeeded`|`Boolean`|-
+|===
+
 [[RabbitMQOptions]]
 == RabbitMQOptions
 
@@ -5799,6 +5834,44 @@ Set the AMQP user name to use when connecting to the broker.
 +++
 |[[virtualHost]]`@virtualHost`|`String`|+++
 Set the virtual host to use when connecting to the broker.
++++
+|===
+
+[[RabbitMQPublisherConfirmation]]
+== RabbitMQPublisherConfirmation
+
+++++
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[messageId]]`@messageId`|`String`|-
+|[[succeeded]]`@succeeded`|`Boolean`|-
+|===
+
+[[RabbitMQPublisherOptions]]
+== RabbitMQPublisherOptions
+
+++++
+ RabbitMQ client options, most
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[maxInternalQueueSize]]`@maxInternalQueueSize`|`Number (int)`|+++
+
++++
+|[[reconnectAttempts]]`@reconnectAttempts`|`Number (Integer)`|+++
+Set the number of reconnect attempts to attempt when connecting, the <code>null</code> value disables it.
++++
+|[[reconnectInterval]]`@reconnectInterval`|`Number (long)`|+++
+Set the delay in milliseconds between connection retries.
 +++
 |===
 
