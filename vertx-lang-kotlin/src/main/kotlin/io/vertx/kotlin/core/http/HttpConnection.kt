@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use shutdown returning a future that can yield a result ", replaceWith = ReplaceWith("shutdown().await()"))
 suspend fun HttpConnection.shutdownAwait(): Unit {
   return awaitResult {
     this.shutdown(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,6 +40,7 @@ suspend fun HttpConnection.shutdownAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use shutdown returning a future that can yield a result ", replaceWith = ReplaceWith("shutdown(timeout).await()"))
 suspend fun HttpConnection.shutdownAwait(timeout: Long): Unit {
   return awaitResult {
     this.shutdown(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -52,6 +54,7 @@ suspend fun HttpConnection.shutdownAwait(timeout: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateSettings returning a future that can yield a result ", replaceWith = ReplaceWith("updateSettings(settings).await()"))
 suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
   return awaitResult {
     this.updateSettings(settings, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -66,6 +69,7 @@ suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use ping returning a future that can yield a result ", replaceWith = ReplaceWith("ping(data).await()"))
 suspend fun HttpConnection.pingAwait(data: Buffer): Buffer {
   return awaitResult {
     this.ping(data, it)

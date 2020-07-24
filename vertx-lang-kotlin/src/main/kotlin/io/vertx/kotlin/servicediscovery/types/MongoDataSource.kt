@@ -33,6 +33,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getMongoClient returning a future that can yield a result ", replaceWith = ReplaceWith("getMongoClient(discovery, filter).await()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: JsonObject): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it)
@@ -48,6 +49,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getMongoClient returning a future that can yield a result ", replaceWith = ReplaceWith("getMongoClient(discovery, filter).await()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it::handle)
@@ -64,6 +66,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getMongoClient returning a future that can yield a result ", replaceWith = ReplaceWith("getMongoClient(discovery, filter, consumerConfiguration).await()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: JsonObject, consumerConfiguration: JsonObject): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, consumerConfiguration, it)

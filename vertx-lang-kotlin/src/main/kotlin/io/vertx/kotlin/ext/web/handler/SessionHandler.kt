@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use flush returning a future that can yield a result ", replaceWith = ReplaceWith("flush(ctx).await()"))
 suspend fun SessionHandler.flushAwait(ctx: RoutingContext): Unit {
   return awaitResult {
     this.flush(ctx, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -29,6 +29,7 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executeWithFallback returning a future that can yield a result ", replaceWith = ReplaceWith("executeWithFallback(command, fallback).await()"))
 suspend fun <T> CircuitBreaker.executeWithFallbackAwait(command: (Promise<T>) -> Unit, fallback: (Throwable) -> T): T {
   return awaitResult {
     this.executeWithFallback(command, fallback, it::handle)
@@ -43,6 +44,7 @@ suspend fun <T> CircuitBreaker.executeWithFallbackAwait(command: (Promise<T>) ->
  *
  * NOTE: This function has been automatically generated from [io.vertx.circuitbreaker.CircuitBreaker] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use execute returning a future that can yield a result ", replaceWith = ReplaceWith("execute(command).await()"))
 suspend fun <T> CircuitBreaker.executeAwait(command: (Promise<T>) -> Unit): T {
   return awaitResult {
     this.execute(command, it::handle)

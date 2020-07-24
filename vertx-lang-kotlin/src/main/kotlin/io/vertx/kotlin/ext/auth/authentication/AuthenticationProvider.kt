@@ -29,6 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authentication.AuthenticationProvider] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use authenticate returning a future that can yield a result ", replaceWith = ReplaceWith("authenticate(credentials).await()"))
 suspend fun AuthenticationProvider.authenticateAwait(credentials: JsonObject): User {
   return awaitResult {
     this.authenticate(credentials, it)
@@ -43,6 +44,7 @@ suspend fun AuthenticationProvider.authenticateAwait(credentials: JsonObject): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authentication.AuthenticationProvider] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use authenticate returning a future that can yield a result ", replaceWith = ReplaceWith("authenticate(credentials).await()"))
 suspend fun AuthenticationProvider.authenticateAwait(credentials: Credentials): User {
   return awaitResult {
     this.authenticate(credentials, it)

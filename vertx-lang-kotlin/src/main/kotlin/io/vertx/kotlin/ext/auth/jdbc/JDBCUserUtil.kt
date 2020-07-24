@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.jdbc.JDBCUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createUser returning a future that can yield a result ", replaceWith = ReplaceWith("createUser(username, password).await()"))
 suspend fun JDBCUserUtil.createUserAwait(username: String, password: String): Unit {
   return awaitResult {
     this.createUser(username, password, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -40,6 +41,7 @@ suspend fun JDBCUserUtil.createUserAwait(username: String, password: String): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.jdbc.JDBCUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createHashedUser returning a future that can yield a result ", replaceWith = ReplaceWith("createHashedUser(username, hash).await()"))
 suspend fun JDBCUserUtil.createHashedUserAwait(username: String, hash: String): Unit {
   return awaitResult {
     this.createHashedUser(username, hash, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -54,6 +56,7 @@ suspend fun JDBCUserUtil.createHashedUserAwait(username: String, hash: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.jdbc.JDBCUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createUserRole returning a future that can yield a result ", replaceWith = ReplaceWith("createUserRole(username, role).await()"))
 suspend fun JDBCUserUtil.createUserRoleAwait(username: String, role: String): Unit {
   return awaitResult {
     this.createUserRole(username, role, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -68,6 +71,7 @@ suspend fun JDBCUserUtil.createUserRoleAwait(username: String, role: String): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.jdbc.JDBCUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createRolePermission returning a future that can yield a result ", replaceWith = ReplaceWith("createRolePermission(role, permission).await()"))
 suspend fun JDBCUserUtil.createRolePermissionAwait(role: String, permission: String): Unit {
   return awaitResult {
     this.createRolePermission(role, permission, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

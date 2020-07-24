@@ -33,6 +33,7 @@ object RedisDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.RedisDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getRedisClient returning a future that can yield a result ", replaceWith = ReplaceWith("getRedisClient(discovery, filter).await()"))
   suspend fun getRedisClientAwait(discovery: ServiceDiscovery, filter: JsonObject): Redis {
     return awaitResult {
       RedisDataSourceVertxAlias.getRedisClient(discovery, filter, it)
@@ -48,6 +49,7 @@ object RedisDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.RedisDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getRedisClient returning a future that can yield a result ", replaceWith = ReplaceWith("getRedisClient(discovery, filter).await()"))
   suspend fun getRedisClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): Redis {
     return awaitResult {
       RedisDataSourceVertxAlias.getRedisClient(discovery, filter, it::handle)
@@ -64,6 +66,7 @@ object RedisDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.RedisDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getRedisClient returning a future that can yield a result ", replaceWith = ReplaceWith("getRedisClient(discovery, filter, consumerConfiguration).await()"))
   suspend fun getRedisClientAwait(discovery: ServiceDiscovery, filter: JsonObject, consumerConfiguration: JsonObject): Redis {
     return awaitResult {
       RedisDataSourceVertxAlias.getRedisClient(discovery, filter, consumerConfiguration, it)
@@ -80,6 +83,7 @@ object RedisDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.RedisDataSource] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use getRedisClient returning a future that can yield a result ", replaceWith = ReplaceWith("getRedisClient(discovery, filter, consumerConfiguration).await()"))
   suspend fun getRedisClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, consumerConfiguration: JsonObject): Redis {
     return awaitResult {
       RedisDataSourceVertxAlias.getRedisClient(discovery, filter, consumerConfiguration, it::handle)

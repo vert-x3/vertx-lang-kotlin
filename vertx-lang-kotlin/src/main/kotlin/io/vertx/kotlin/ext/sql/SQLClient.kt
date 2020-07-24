@@ -31,6 +31,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use querySingle returning a future that can yield a result ", replaceWith = ReplaceWith("querySingle(sql).await()"))
 suspend fun SQLClient.querySingleAwait(sql: String): JsonArray? {
   return awaitResult {
     this.querySingle(sql, it)
@@ -46,6 +47,7 @@ suspend fun SQLClient.querySingleAwait(sql: String): JsonArray? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use querySingleWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
 suspend fun SQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
   return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
@@ -59,6 +61,7 @@ suspend fun SQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArr
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getConnection returning a future that can yield a result ", replaceWith = ReplaceWith("getConnection().await()"))
 suspend fun SQLClient.getConnectionAwait(): SQLConnection {
   return awaitResult {
     this.getConnection(it)
@@ -71,6 +74,7 @@ suspend fun SQLClient.getConnectionAwait(): SQLConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
 suspend fun SQLClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -85,6 +89,7 @@ suspend fun SQLClient.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use query returning a future that can yield a result ", replaceWith = ReplaceWith("query(sql).await()"))
 suspend fun SQLClient.queryAwait(sql: String): ResultSet {
   return awaitResult {
     this.query(sql, it)
@@ -99,6 +104,7 @@ suspend fun SQLClient.queryAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStream returning a future that can yield a result ", replaceWith = ReplaceWith("queryStream(sql).await()"))
 suspend fun SQLClient.queryStreamAwait(sql: String): SQLRowStream {
   return awaitResult {
     this.queryStream(sql, it)
@@ -114,6 +120,7 @@ suspend fun SQLClient.queryStreamAwait(sql: String): SQLRowStream {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStreamWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).await()"))
 suspend fun SQLClient.queryStreamWithParamsAwait(sql: String, params: JsonArray): SQLRowStream {
   return awaitResult {
     this.queryStreamWithParams(sql, params, it)
@@ -129,6 +136,7 @@ suspend fun SQLClient.queryStreamWithParamsAwait(sql: String, params: JsonArray)
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryWithParams(sql, arguments).await()"))
 suspend fun SQLClient.queryWithParamsAwait(sql: String, arguments: JsonArray): ResultSet {
   return awaitResult {
     this.queryWithParams(sql, arguments, it)
@@ -143,6 +151,7 @@ suspend fun SQLClient.queryWithParamsAwait(sql: String, arguments: JsonArray): R
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use update returning a future that can yield a result ", replaceWith = ReplaceWith("update(sql).await()"))
 suspend fun SQLClient.updateAwait(sql: String): UpdateResult {
   return awaitResult {
     this.update(sql, it)
@@ -158,6 +167,7 @@ suspend fun SQLClient.updateAwait(sql: String): UpdateResult {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("updateWithParams(sql, params).await()"))
 suspend fun SQLClient.updateWithParamsAwait(sql: String, params: JsonArray): UpdateResult {
   return awaitResult {
     this.updateWithParams(sql, params, it)
@@ -172,6 +182,7 @@ suspend fun SQLClient.updateWithParamsAwait(sql: String, params: JsonArray): Upd
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use call returning a future that can yield a result ", replaceWith = ReplaceWith("call(sql).await()"))
 suspend fun SQLClient.callAwait(sql: String): ResultSet {
   return awaitResult {
     this.call(sql, it)
@@ -188,6 +199,7 @@ suspend fun SQLClient.callAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use callWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).await()"))
 suspend fun SQLClient.callWithParamsAwait(sql: String, params: JsonArray, outputs: JsonArray): ResultSet {
   return awaitResult {
     this.callWithParams(sql, params, outputs, it)

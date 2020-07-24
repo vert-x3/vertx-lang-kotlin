@@ -18,6 +18,7 @@ package io.vertx.kotlin.core
 import io.vertx.core.CompositeFuture
 import io.vertx.kotlin.coroutines.awaitResult
 
+@Deprecated(message = "Instead use onComplete returning a future that can yield a result ", replaceWith = ReplaceWith("onComplete().await()"))
 suspend fun CompositeFuture.onCompleteAwait(): CompositeFuture {
   return awaitResult {
     this.onComplete(it)

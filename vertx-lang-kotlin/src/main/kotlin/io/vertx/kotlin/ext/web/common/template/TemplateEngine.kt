@@ -29,6 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.common.template.TemplateEngine] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use render returning a future that can yield a result ", replaceWith = ReplaceWith("render(context, templateFileName).await()"))
 suspend fun TemplateEngine.renderAwait(context: JsonObject, templateFileName: String): Buffer {
   return awaitResult {
     this.render(context, templateFileName, it)
@@ -44,6 +45,7 @@ suspend fun TemplateEngine.renderAwait(context: JsonObject, templateFileName: St
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.common.template.TemplateEngine] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use render returning a future that can yield a result ", replaceWith = ReplaceWith("render(context, templateFileName).await()"))
 suspend fun TemplateEngine.renderAwait(context: Map<String,Any>, templateFileName: String): Buffer {
   return awaitResult {
     this.render(context, templateFileName, it)

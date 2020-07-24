@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end().await()"))
 suspend fun SockJSSocket.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,6 +40,7 @@ suspend fun SockJSSocket.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end(data).await()"))
 suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -52,18 +54,21 @@ suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future that can yield a result ", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
+@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun SockJSSocket.writeAwait(data: String): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
+@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun SockJSSocket.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
