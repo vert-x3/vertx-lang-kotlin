@@ -21,6 +21,7 @@ import io.vertx.db2client.DB2Connection as DB2ConnectionVertxAlias
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedStatement
 
+@Deprecated(message = "Instead use prepare returning a future that can yield a result ", replaceWith = ReplaceWith("prepare(sql).await()"))
 suspend fun DB2ConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
@@ -33,6 +34,7 @@ suspend fun DB2ConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement
  *
  * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use ping returning a future that can yield a result ", replaceWith = ReplaceWith("ping().await()"))
 suspend fun DB2ConnectionVertxAlias.pingAwait(): Unit {
   return awaitResult {
     this.ping(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -45,6 +47,7 @@ suspend fun DB2ConnectionVertxAlias.pingAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use debug returning a future that can yield a result ", replaceWith = ReplaceWith("debug().await()"))
 suspend fun DB2ConnectionVertxAlias.debugAwait(): Unit {
   return awaitResult {
     this.debug(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -61,6 +64,7 @@ object DB2Connection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, connectOptions).await()"))
   suspend fun connectAwait(vertx: Vertx, connectOptions: DB2ConnectOptions): DB2ConnectionVertxAlias {
     return awaitResult {
       DB2ConnectionVertxAlias.connect(vertx, connectOptions, it)
@@ -76,6 +80,7 @@ object DB2Connection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
   suspend fun connectAwait(vertx: Vertx, connectionUri: String): DB2ConnectionVertxAlias {
     return awaitResult {
       DB2ConnectionVertxAlias.connect(vertx, connectionUri, it)

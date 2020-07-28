@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageConsumer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future that can yield a result ", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun <T> MessageConsumer<T>.pipeToAwait(dst: WriteStream<Message<T>>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,6 +40,7 @@ suspend fun <T> MessageConsumer<T>.pipeToAwait(dst: WriteStream<Message<T>>): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageConsumer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use completionHandler returning a future that can yield a result ", replaceWith = ReplaceWith("completionHandler().await()"))
 suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
   return awaitResult {
     this.completionHandler(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -51,6 +53,7 @@ suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageConsumer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use unregister returning a future that can yield a result ", replaceWith = ReplaceWith("unregister().await()"))
 suspend fun <T> MessageConsumer<T>.unregisterAwait(): Unit {
   return awaitResult {
     this.unregister(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

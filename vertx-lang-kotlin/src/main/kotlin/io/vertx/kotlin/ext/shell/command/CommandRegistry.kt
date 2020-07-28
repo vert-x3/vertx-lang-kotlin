@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerCommand returning a future that can yield a result ", replaceWith = ReplaceWith("registerCommand(command).await()"))
 suspend fun CommandRegistry.registerCommandAwait(command: Command): Command {
   return awaitResult {
     this.registerCommand(command, it)
@@ -41,6 +42,7 @@ suspend fun CommandRegistry.registerCommandAwait(command: Command): Command {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerCommands returning a future that can yield a result ", replaceWith = ReplaceWith("registerCommands(commands).await()"))
 suspend fun CommandRegistry.registerCommandsAwait(commands: List<Command>): List<Command> {
   return awaitResult {
     this.registerCommands(commands, it)
@@ -54,6 +56,7 @@ suspend fun CommandRegistry.registerCommandsAwait(commands: List<Command>): List
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.command.CommandRegistry] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use unregisterCommand returning a future that can yield a result ", replaceWith = ReplaceWith("unregisterCommand(commandName).await()"))
 suspend fun CommandRegistry.unregisterCommandAwait(commandName: String): Unit {
   return awaitResult {
     this.unregisterCommand(commandName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -30,6 +30,7 @@ object OpenAPI3RouterFactory {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use create returning a future that can yield a result ", replaceWith = ReplaceWith("create(vertx, url).await()"))
   suspend fun createAwait(vertx: Vertx, url: String): OpenAPI3RouterFactoryVertxAlias {
     return awaitResult {
       OpenAPI3RouterFactoryVertxAlias.create(vertx, url, it)
@@ -46,6 +47,7 @@ object OpenAPI3RouterFactory {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use create returning a future that can yield a result ", replaceWith = ReplaceWith("create(vertx, url, auth).await()"))
   suspend fun createAwait(vertx: Vertx, url: String, auth: List<JsonObject>): OpenAPI3RouterFactoryVertxAlias {
     return awaitResult {
       OpenAPI3RouterFactoryVertxAlias.create(vertx, url, auth, it)

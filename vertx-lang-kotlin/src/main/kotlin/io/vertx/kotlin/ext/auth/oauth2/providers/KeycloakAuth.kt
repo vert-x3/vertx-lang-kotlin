@@ -31,6 +31,7 @@ object KeycloakAuth {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.providers.KeycloakAuth] using Vert.x codegen.
    */
+  @Deprecated(message = "Instead use discover returning a future that can yield a result ", replaceWith = ReplaceWith("discover(vertx, config).await()"))
   suspend fun discoverAwait(vertx: Vertx, config: OAuth2Options): OAuth2Auth {
     return awaitResult {
       KeycloakAuthVertxAlias.discover(vertx, config, it)

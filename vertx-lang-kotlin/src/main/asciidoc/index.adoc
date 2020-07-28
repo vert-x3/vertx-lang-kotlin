@@ -1,2 +1,146 @@
-== Kotlin extensions for Vert.x
+== Vert.x for Kotlin
+
+If you are using Maven or Gradle, add the following dependency to the _dependencies_ section of your
+project descriptor to access the Vert.x Core API and enable the JavaScript support:
+
+* Maven (in your `pom.xml`):
+
+[source,xml,subs="+attributes"]
+----
+<dependency>
+ <groupId>io.vertx</groupId>
+ <artifactId>vertx-core</artifactId>
+ <version>${maven.version}</version>
+</dependency>
+<dependency>
+  <groupId>io.vertx</groupId>
+  <artifactId>vertx-lang-kotlin</artifactId>
+  <version>${maven.version}</version>
+</dependency>
+----
+
+* Gradle (in your `build.gradle` file):
+
+[source,groovy,subs="+attributes"]
+----
+compile "io.vertx:vertx-core:${maven.version}"
+compile "io.vertx:vertx-lang-kotlin:${maven.version}"
+----
+
+== Verticles
+
+=== Writing Verticles
+
+Writing a Verticle with Kotlin is achieved the same way you write a Java Verticle by
+extending the {@link io.vertx.core.AbstractVerticle}.
+
+Here's an example verticle:
+
+[source, kotlin]
+----
+import io.vertx.core.AbstractVerticle
+
+class MyVerticle : AbstractVerticle() {
+
+  // Called when verticle is deployed
+  override fun start() {
+  }
+
+  // Optional - called when verticle is undeployed
+  override fun stop() {
+  }
+}
+----
+
+Please refer to the Java documentation.
+
+== JSON
+
+Unlike some other languages, Java does not have first class support for http://json.org/[JSON] so we provide
+two classes to make handling JSON in your Vert.x applications a bit easier.
+
+Use the {@link io.vertx.core.json.JsonObject} class to represent JSON objects and the {@link io.vertx.core.json.JsonArray}
+class to represent JSON arrays, you can refer to the Java documentation for more details.
+
+=== Builders
+
+Builders are provided to provide a more fluent JSON construction:
+
+[source, kotlin]
+----
+// The json builder declares a JSON structure
+val result = json {
+
+  // in this structure the obj function can be used
+
+  // takes a vararg of Kotlin pairs
+  obj(
+    "key_1" to 1,
+    "key_2" to 2,
+    "key_3" to 3
+  )
+
+  // or an iterable of Kotlin pairs
+  obj((1..3).map { "key_$it" to it })
+
+  // or a Map<String, Any?>
+  obj(someMap)
+
+  // apply function on object receiver
+  obj {
+    for (i in 1..3) {
+      put("key_$i", i)
+    }
+  }
+}
+----
+
+You can also build JSON arrays:
+
+[source, kotlin]
+----
+// The json builder declares a JSON structure
+val result = json {
+
+  // in this structure the array function can be used
+
+  // takes a vararg of values
+  array("1", "2", "3")
+
+  // or an iterable of values
+  array((1..3).map { "$it" })
+
+  // apply function on array receiver
+  array {
+    for (i in 1..3) {
+      add("$i")
+    }
+  }
+}
+----
+
+Of course it is possible to mix objects and arrays
+
+[source, kotlin]
+----
+// The json builder declares a JSON structure
+val result = json {
+
+  "firstName" to "Dale",
+  "lastName" to "Cooper",
+  "age" to 64,
+  "names" to array("Dale", "Bartholomew")
+}
+----
+
+=== Postscript operator overloading
+
+The Kotlin postscript operator is overloaded for JSON object and array:
+
+[source, kotlin]
+----
+print(someObject["firstName"]);
+print(someArray[4]);
+----
+
 

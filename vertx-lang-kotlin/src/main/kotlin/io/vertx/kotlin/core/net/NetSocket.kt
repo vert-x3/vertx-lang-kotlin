@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end(data).await()"))
 suspend fun NetSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -40,6 +41,7 @@ suspend fun NetSocket.endAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future that can yield a result ", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -53,6 +55,7 @@ suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(str).await()"))
 suspend fun NetSocket.writeAwait(str: String): Unit {
   return awaitResult {
     this.write(str, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -67,6 +70,7 @@ suspend fun NetSocket.writeAwait(str: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(str, enc).await()"))
 suspend fun NetSocket.writeAwait(str: String, enc: String): Unit {
   return awaitResult {
     this.write(str, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -80,6 +84,7 @@ suspend fun NetSocket.writeAwait(str: String, enc: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(message).await()"))
 suspend fun NetSocket.writeAwait(message: Buffer): Unit {
   return awaitResult {
     this.write(message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -93,6 +98,7 @@ suspend fun NetSocket.writeAwait(message: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future that can yield a result ", replaceWith = ReplaceWith("sendFile(filename).await()"))
 suspend fun NetSocket.sendFileAwait(filename: String): Unit {
   return awaitResult {
     this.sendFile(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -107,6 +113,7 @@ suspend fun NetSocket.sendFileAwait(filename: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future that can yield a result ", replaceWith = ReplaceWith("sendFile(filename, offset).await()"))
 suspend fun NetSocket.sendFileAwait(filename: String, offset: Long): Unit {
   return awaitResult {
     this.sendFile(filename, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -122,6 +129,7 @@ suspend fun NetSocket.sendFileAwait(filename: String, offset: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future that can yield a result ", replaceWith = ReplaceWith("sendFile(filename, offset, length).await()"))
 suspend fun NetSocket.sendFileAwait(filename: String, offset: Long, length: Long): Unit {
   return awaitResult {
     this.sendFile(filename, offset, length, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -134,6 +142,7 @@ suspend fun NetSocket.sendFileAwait(filename: String, offset: Long, length: Long
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end().await()"))
 suspend fun NetSocket.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -146,6 +155,7 @@ suspend fun NetSocket.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
 suspend fun NetSocket.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -158,6 +168,7 @@ suspend fun NetSocket.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use upgradeToSsl returning a future that can yield a result ", replaceWith = ReplaceWith("upgradeToSsl().await()"))
 suspend fun NetSocket.upgradeToSslAwait(): Unit {
   return awaitResult {
     this.upgradeToSsl(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -171,6 +182,7 @@ suspend fun NetSocket.upgradeToSslAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use upgradeToSsl returning a future that can yield a result ", replaceWith = ReplaceWith("upgradeToSsl(serverName).await()"))
 suspend fun NetSocket.upgradeToSslAwait(serverName: String): Unit {
   return awaitResult {
     this.upgradeToSsl(serverName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

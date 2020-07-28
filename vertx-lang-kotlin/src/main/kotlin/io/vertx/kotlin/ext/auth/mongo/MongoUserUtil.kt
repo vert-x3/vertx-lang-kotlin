@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createUser returning a future that can yield a result ", replaceWith = ReplaceWith("createUser(username, password).await()"))
 suspend fun MongoUserUtil.createUserAwait(username: String, password: String): String {
   return awaitResult {
     this.createUser(username, password, it)
@@ -42,6 +43,7 @@ suspend fun MongoUserUtil.createUserAwait(username: String, password: String): S
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createHashedUser returning a future that can yield a result ", replaceWith = ReplaceWith("createHashedUser(username, hash).await()"))
 suspend fun MongoUserUtil.createHashedUserAwait(username: String, hash: String): String {
   return awaitResult {
     this.createHashedUser(username, hash, it)
@@ -58,6 +60,7 @@ suspend fun MongoUserUtil.createHashedUserAwait(username: String, hash: String):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createUserRolesAndPermissions returning a future that can yield a result ", replaceWith = ReplaceWith("createUserRolesAndPermissions(username, roles, permissions).await()"))
 suspend fun MongoUserUtil.createUserRolesAndPermissionsAwait(username: String, roles: List<String>, permissions: List<String>): String {
   return awaitResult {
     this.createUserRolesAndPermissions(username, roles, permissions, it)

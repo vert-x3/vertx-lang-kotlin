@@ -36,6 +36,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(options).await()"))
 suspend fun HttpClient.sendAwait(options: RequestOptions): HttpClientResponse {
   return awaitResult {
     this.send(options, it)
@@ -51,6 +52,7 @@ suspend fun HttpClient.sendAwait(options: RequestOptions): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(options, body).await()"))
 suspend fun HttpClient.sendAwait(options: RequestOptions, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(options, body, it)
@@ -66,6 +68,7 @@ suspend fun HttpClient.sendAwait(options: RequestOptions, body: Buffer): HttpCli
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(options, body).await()"))
 suspend fun HttpClient.sendAwait(options: RequestOptions, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(options, body, it)
@@ -84,6 +87,7 @@ suspend fun HttpClient.sendAwait(options: RequestOptions, body: ReadStream<Buffe
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI, headers).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, headers, it)
@@ -103,6 +107,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, headers, body, it)
@@ -122,6 +127,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, headers, body, it)
@@ -139,6 +145,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, it)
@@ -157,6 +164,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, body, it)
@@ -175,6 +183,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, port, host, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, port, host, requestURI, body, it)
@@ -192,6 +201,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, port: Int, host: String, re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI, headers).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, headers, it)
@@ -210,6 +220,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, headers, body, it)
@@ -228,6 +239,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, headers, body, it)
@@ -244,6 +256,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, it)
@@ -261,6 +274,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, body, it)
@@ -278,6 +292,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, host, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, host, requestURI, body, it)
@@ -294,6 +309,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, host: String, requestURI: S
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI, headers).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, headers, it)
@@ -311,6 +327,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, headers, body, it)
@@ -328,6 +345,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI, headers, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, headers, body, it)
@@ -343,6 +361,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, headers
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, it)
@@ -359,6 +378,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String): HttpCl
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, body, it)
@@ -375,6 +395,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: B
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(method, requestURI, body).await()"))
 suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(method, requestURI, body, it)
@@ -389,6 +410,7 @@ suspend fun HttpClient.sendAwait(method: HttpMethod, requestURI: String, body: R
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(options).await()"))
 suspend fun HttpClient.requestAwait(options: RequestOptions): HttpClientRequest {
   return awaitResult {
     this.request(options, it)
@@ -406,6 +428,7 @@ suspend fun HttpClient.requestAwait(options: RequestOptions): HttpClientRequest 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(method, port, host, requestURI).await()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, port: Int, host: String, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, port, host, requestURI, it)
@@ -422,6 +445,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, port: Int, host: String,
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(method, host, requestURI).await()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, host: String, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, host, requestURI, it)
@@ -437,6 +461,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, host: String, requestURI
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(method, requestURI).await()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, requestURI, it)
@@ -454,6 +479,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, requestURI: String): Htt
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(port, host, requestURI, headers).await()"))
 suspend fun HttpClient.getAwait(port: Int, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.get(port, host, requestURI, headers, it)
@@ -470,6 +496,7 @@ suspend fun HttpClient.getAwait(port: Int, host: String, requestURI: String, hea
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(host, requestURI, headers).await()"))
 suspend fun HttpClient.getAwait(host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.get(host, requestURI, headers, it)
@@ -485,6 +512,7 @@ suspend fun HttpClient.getAwait(host: String, requestURI: String, headers: Multi
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(requestURI, headers).await()"))
 suspend fun HttpClient.getAwait(requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.get(requestURI, headers, it)
@@ -499,6 +527,7 @@ suspend fun HttpClient.getAwait(requestURI: String, headers: MultiMap): HttpClie
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(options).await()"))
 suspend fun HttpClient.getAwait(options: RequestOptions): HttpClientResponse {
   return awaitResult {
     this.get(options, it)
@@ -515,6 +544,7 @@ suspend fun HttpClient.getAwait(options: RequestOptions): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(port, host, requestURI).await()"))
 suspend fun HttpClient.getAwait(port: Int, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.get(port, host, requestURI, it)
@@ -530,6 +560,7 @@ suspend fun HttpClient.getAwait(port: Int, host: String, requestURI: String): Ht
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(host, requestURI).await()"))
 suspend fun HttpClient.getAwait(host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.get(host, requestURI, it)
@@ -544,6 +575,7 @@ suspend fun HttpClient.getAwait(host: String, requestURI: String): HttpClientRes
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(requestURI).await()"))
 suspend fun HttpClient.getAwait(requestURI: String): HttpClientResponse {
   return awaitResult {
     this.get(requestURI, it)
@@ -562,6 +594,7 @@ suspend fun HttpClient.getAwait(requestURI: String): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(port, host, requestURI, headers, body, it)
@@ -580,6 +613,7 @@ suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, he
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(port, host, requestURI, headers, body, it)
@@ -597,6 +631,7 @@ suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, he
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(host, requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(host, requestURI, headers, body, it)
@@ -614,6 +649,7 @@ suspend fun HttpClient.postAwait(host: String, requestURI: String, headers: Mult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(host, requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(host, requestURI, headers, body, it)
@@ -630,6 +666,7 @@ suspend fun HttpClient.postAwait(host: String, requestURI: String, headers: Mult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(requestURI, headers, body, it)
@@ -646,6 +683,7 @@ suspend fun HttpClient.postAwait(requestURI: String, headers: MultiMap, body: Bu
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(requestURI, headers, body).await()"))
 suspend fun HttpClient.postAwait(requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(requestURI, headers, body, it)
@@ -661,6 +699,7 @@ suspend fun HttpClient.postAwait(requestURI: String, headers: MultiMap, body: Re
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(options, body).await()"))
 suspend fun HttpClient.postAwait(options: RequestOptions, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(options, body, it)
@@ -676,6 +715,7 @@ suspend fun HttpClient.postAwait(options: RequestOptions, body: Buffer): HttpCli
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(options, body).await()"))
 suspend fun HttpClient.postAwait(options: RequestOptions, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(options, body, it)
@@ -693,6 +733,7 @@ suspend fun HttpClient.postAwait(options: RequestOptions, body: ReadStream<Buffe
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(port, host, requestURI, body).await()"))
 suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(port, host, requestURI, body, it)
@@ -710,6 +751,7 @@ suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, bo
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(port, host, requestURI, body).await()"))
 suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(port, host, requestURI, body, it)
@@ -726,6 +768,7 @@ suspend fun HttpClient.postAwait(port: Int, host: String, requestURI: String, bo
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(host, requestURI, body).await()"))
 suspend fun HttpClient.postAwait(host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(host, requestURI, body, it)
@@ -742,6 +785,7 @@ suspend fun HttpClient.postAwait(host: String, requestURI: String, body: Buffer)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(host, requestURI, body).await()"))
 suspend fun HttpClient.postAwait(host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(host, requestURI, body, it)
@@ -757,6 +801,7 @@ suspend fun HttpClient.postAwait(host: String, requestURI: String, body: ReadStr
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(requestURI, body).await()"))
 suspend fun HttpClient.postAwait(requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.post(requestURI, body, it)
@@ -772,6 +817,7 @@ suspend fun HttpClient.postAwait(requestURI: String, body: Buffer): HttpClientRe
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(requestURI, body).await()"))
 suspend fun HttpClient.postAwait(requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.post(requestURI, body, it)
@@ -790,6 +836,7 @@ suspend fun HttpClient.postAwait(requestURI: String, body: ReadStream<Buffer>): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(port, host, requestURI, headers, body, it)
@@ -808,6 +855,7 @@ suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, hea
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(port, host, requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(port, host, requestURI, headers, body, it)
@@ -825,6 +873,7 @@ suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, hea
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(host, requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(host: String, requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(host, requestURI, headers, body, it)
@@ -842,6 +891,7 @@ suspend fun HttpClient.putAwait(host: String, requestURI: String, headers: Multi
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(host, requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(host: String, requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(host, requestURI, headers, body, it)
@@ -858,6 +908,7 @@ suspend fun HttpClient.putAwait(host: String, requestURI: String, headers: Multi
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(requestURI: String, headers: MultiMap, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(requestURI, headers, body, it)
@@ -874,6 +925,7 @@ suspend fun HttpClient.putAwait(requestURI: String, headers: MultiMap, body: Buf
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(requestURI, headers, body).await()"))
 suspend fun HttpClient.putAwait(requestURI: String, headers: MultiMap, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(requestURI, headers, body, it)
@@ -889,6 +941,7 @@ suspend fun HttpClient.putAwait(requestURI: String, headers: MultiMap, body: Rea
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(options, body).await()"))
 suspend fun HttpClient.putAwait(options: RequestOptions, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(options, body, it)
@@ -904,6 +957,7 @@ suspend fun HttpClient.putAwait(options: RequestOptions, body: Buffer): HttpClie
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(options, body).await()"))
 suspend fun HttpClient.putAwait(options: RequestOptions, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(options, body, it)
@@ -921,6 +975,7 @@ suspend fun HttpClient.putAwait(options: RequestOptions, body: ReadStream<Buffer
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(port, host, requestURI, body).await()"))
 suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(port, host, requestURI, body, it)
@@ -938,6 +993,7 @@ suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, bod
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(port, host, requestURI, body).await()"))
 suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(port, host, requestURI, body, it)
@@ -954,6 +1010,7 @@ suspend fun HttpClient.putAwait(port: Int, host: String, requestURI: String, bod
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(host, requestURI, body).await()"))
 suspend fun HttpClient.putAwait(host: String, requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(host, requestURI, body, it)
@@ -970,6 +1027,7 @@ suspend fun HttpClient.putAwait(host: String, requestURI: String, body: Buffer):
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(host, requestURI, body).await()"))
 suspend fun HttpClient.putAwait(host: String, requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(host, requestURI, body, it)
@@ -985,6 +1043,7 @@ suspend fun HttpClient.putAwait(host: String, requestURI: String, body: ReadStre
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(requestURI, body).await()"))
 suspend fun HttpClient.putAwait(requestURI: String, body: Buffer): HttpClientResponse {
   return awaitResult {
     this.put(requestURI, body, it)
@@ -1000,6 +1059,7 @@ suspend fun HttpClient.putAwait(requestURI: String, body: Buffer): HttpClientRes
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(requestURI, body).await()"))
 suspend fun HttpClient.putAwait(requestURI: String, body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.put(requestURI, body, it)
@@ -1017,6 +1077,7 @@ suspend fun HttpClient.putAwait(requestURI: String, body: ReadStream<Buffer>): H
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(port, host, requestURI, headers).await()"))
 suspend fun HttpClient.headAwait(port: Int, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.head(port, host, requestURI, headers, it)
@@ -1033,6 +1094,7 @@ suspend fun HttpClient.headAwait(port: Int, host: String, requestURI: String, he
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(host, requestURI, headers).await()"))
 suspend fun HttpClient.headAwait(host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.head(host, requestURI, headers, it)
@@ -1048,6 +1110,7 @@ suspend fun HttpClient.headAwait(host: String, requestURI: String, headers: Mult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(requestURI, headers).await()"))
 suspend fun HttpClient.headAwait(requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.head(requestURI, headers, it)
@@ -1062,6 +1125,7 @@ suspend fun HttpClient.headAwait(requestURI: String, headers: MultiMap): HttpCli
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(options).await()"))
 suspend fun HttpClient.headAwait(options: RequestOptions): HttpClientResponse {
   return awaitResult {
     this.head(options, it)
@@ -1078,6 +1142,7 @@ suspend fun HttpClient.headAwait(options: RequestOptions): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(port, host, requestURI).await()"))
 suspend fun HttpClient.headAwait(port: Int, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.head(port, host, requestURI, it)
@@ -1093,6 +1158,7 @@ suspend fun HttpClient.headAwait(port: Int, host: String, requestURI: String): H
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(host, requestURI).await()"))
 suspend fun HttpClient.headAwait(host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.head(host, requestURI, it)
@@ -1107,6 +1173,7 @@ suspend fun HttpClient.headAwait(host: String, requestURI: String): HttpClientRe
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use head returning a future that can yield a result ", replaceWith = ReplaceWith("head(requestURI).await()"))
 suspend fun HttpClient.headAwait(requestURI: String): HttpClientResponse {
   return awaitResult {
     this.head(requestURI, it)
@@ -1124,6 +1191,7 @@ suspend fun HttpClient.headAwait(requestURI: String): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(port, host, requestURI, headers).await()"))
 suspend fun HttpClient.optionsAwait(port: Int, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.options(port, host, requestURI, headers, it)
@@ -1140,6 +1208,7 @@ suspend fun HttpClient.optionsAwait(port: Int, host: String, requestURI: String,
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(host, requestURI, headers).await()"))
 suspend fun HttpClient.optionsAwait(host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.options(host, requestURI, headers, it)
@@ -1155,6 +1224,7 @@ suspend fun HttpClient.optionsAwait(host: String, requestURI: String, headers: M
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(requestURI, headers).await()"))
 suspend fun HttpClient.optionsAwait(requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.options(requestURI, headers, it)
@@ -1169,6 +1239,7 @@ suspend fun HttpClient.optionsAwait(requestURI: String, headers: MultiMap): Http
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(options).await()"))
 suspend fun HttpClient.optionsAwait(options: RequestOptions): HttpClientResponse {
   return awaitResult {
     this.options(options, it)
@@ -1185,6 +1256,7 @@ suspend fun HttpClient.optionsAwait(options: RequestOptions): HttpClientResponse
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(port, host, requestURI).await()"))
 suspend fun HttpClient.optionsAwait(port: Int, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.options(port, host, requestURI, it)
@@ -1200,6 +1272,7 @@ suspend fun HttpClient.optionsAwait(port: Int, host: String, requestURI: String)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(host, requestURI).await()"))
 suspend fun HttpClient.optionsAwait(host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.options(host, requestURI, it)
@@ -1214,6 +1287,7 @@ suspend fun HttpClient.optionsAwait(host: String, requestURI: String): HttpClien
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use options returning a future that can yield a result ", replaceWith = ReplaceWith("options(requestURI).await()"))
 suspend fun HttpClient.optionsAwait(requestURI: String): HttpClientResponse {
   return awaitResult {
     this.options(requestURI, it)
@@ -1231,6 +1305,7 @@ suspend fun HttpClient.optionsAwait(requestURI: String): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(port, host, requestURI, headers).await()"))
 suspend fun HttpClient.deleteAwait(port: Int, host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.delete(port, host, requestURI, headers, it)
@@ -1247,6 +1322,7 @@ suspend fun HttpClient.deleteAwait(port: Int, host: String, requestURI: String, 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(host, requestURI, headers).await()"))
 suspend fun HttpClient.deleteAwait(host: String, requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.delete(host, requestURI, headers, it)
@@ -1262,6 +1338,7 @@ suspend fun HttpClient.deleteAwait(host: String, requestURI: String, headers: Mu
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(requestURI, headers).await()"))
 suspend fun HttpClient.deleteAwait(requestURI: String, headers: MultiMap): HttpClientResponse {
   return awaitResult {
     this.delete(requestURI, headers, it)
@@ -1276,6 +1353,7 @@ suspend fun HttpClient.deleteAwait(requestURI: String, headers: MultiMap): HttpC
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(options).await()"))
 suspend fun HttpClient.deleteAwait(options: RequestOptions): HttpClientResponse {
   return awaitResult {
     this.delete(options, it)
@@ -1292,6 +1370,7 @@ suspend fun HttpClient.deleteAwait(options: RequestOptions): HttpClientResponse 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(port, host, requestURI).await()"))
 suspend fun HttpClient.deleteAwait(port: Int, host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.delete(port, host, requestURI, it)
@@ -1307,6 +1386,7 @@ suspend fun HttpClient.deleteAwait(port: Int, host: String, requestURI: String):
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(host, requestURI).await()"))
 suspend fun HttpClient.deleteAwait(host: String, requestURI: String): HttpClientResponse {
   return awaitResult {
     this.delete(host, requestURI, it)
@@ -1321,6 +1401,7 @@ suspend fun HttpClient.deleteAwait(host: String, requestURI: String): HttpClient
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(requestURI).await()"))
 suspend fun HttpClient.deleteAwait(requestURI: String): HttpClientResponse {
   return awaitResult {
     this.delete(requestURI, it)
@@ -1337,6 +1418,7 @@ suspend fun HttpClient.deleteAwait(requestURI: String): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use webSocket returning a future that can yield a result ", replaceWith = ReplaceWith("webSocket(port, host, requestURI).await()"))
 suspend fun HttpClient.webSocketAwait(port: Int, host: String, requestURI: String): WebSocket {
   return awaitResult {
     this.webSocket(port, host, requestURI, it)
@@ -1352,6 +1434,7 @@ suspend fun HttpClient.webSocketAwait(port: Int, host: String, requestURI: Strin
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use webSocket returning a future that can yield a result ", replaceWith = ReplaceWith("webSocket(host, requestURI).await()"))
 suspend fun HttpClient.webSocketAwait(host: String, requestURI: String): WebSocket {
   return awaitResult {
     this.webSocket(host, requestURI, it)
@@ -1366,6 +1449,7 @@ suspend fun HttpClient.webSocketAwait(host: String, requestURI: String): WebSock
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use webSocket returning a future that can yield a result ", replaceWith = ReplaceWith("webSocket(requestURI).await()"))
 suspend fun HttpClient.webSocketAwait(requestURI: String): WebSocket {
   return awaitResult {
     this.webSocket(requestURI, it)
@@ -1380,6 +1464,7 @@ suspend fun HttpClient.webSocketAwait(requestURI: String): WebSocket {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use webSocket returning a future that can yield a result ", replaceWith = ReplaceWith("webSocket(options).await()"))
 suspend fun HttpClient.webSocketAwait(options: WebSocketConnectOptions): WebSocket {
   return awaitResult {
     this.webSocket(options, it)
@@ -1397,6 +1482,7 @@ suspend fun HttpClient.webSocketAwait(options: WebSocketConnectOptions): WebSock
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use webSocketAbs returning a future that can yield a result ", replaceWith = ReplaceWith("webSocketAbs(url, headers, version, subProtocols).await()"))
 suspend fun HttpClient.webSocketAbsAwait(url: String, headers: MultiMap, version: WebsocketVersion, subProtocols: List<String>): WebSocket {
   return awaitResult {
     this.webSocketAbs(url, headers, version, subProtocols, it)
@@ -1409,6 +1495,7 @@ suspend fun HttpClient.webSocketAbsAwait(url: String, headers: MultiMap, version
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
 suspend fun HttpClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

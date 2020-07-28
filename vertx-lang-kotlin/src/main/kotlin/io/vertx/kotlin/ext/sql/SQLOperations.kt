@@ -30,6 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use query returning a future that can yield a result ", replaceWith = ReplaceWith("query(sql).await()"))
 suspend fun SQLOperations.queryAwait(sql: String): ResultSet {
   return awaitResult {
     this.query(sql, it)
@@ -45,6 +46,7 @@ suspend fun SQLOperations.queryAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryWithParams(sql, params).await()"))
 suspend fun SQLOperations.queryWithParamsAwait(sql: String, params: JsonArray): ResultSet {
   return awaitResult {
     this.queryWithParams(sql, params, it)
@@ -59,6 +61,7 @@ suspend fun SQLOperations.queryWithParamsAwait(sql: String, params: JsonArray): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStream returning a future that can yield a result ", replaceWith = ReplaceWith("queryStream(sql).await()"))
 suspend fun SQLOperations.queryStreamAwait(sql: String): SQLRowStream {
   return awaitResult {
     this.queryStream(sql, it)
@@ -74,6 +77,7 @@ suspend fun SQLOperations.queryStreamAwait(sql: String): SQLRowStream {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStreamWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).await()"))
 suspend fun SQLOperations.queryStreamWithParamsAwait(sql: String, params: JsonArray): SQLRowStream {
   return awaitResult {
     this.queryStreamWithParams(sql, params, it)
@@ -88,6 +92,7 @@ suspend fun SQLOperations.queryStreamWithParamsAwait(sql: String, params: JsonAr
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use querySingle returning a future that can yield a result ", replaceWith = ReplaceWith("querySingle(sql).await()"))
 suspend fun SQLOperations.querySingleAwait(sql: String): JsonArray? {
   return awaitResult {
     this.querySingle(sql, it)
@@ -103,6 +108,7 @@ suspend fun SQLOperations.querySingleAwait(sql: String): JsonArray? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use querySingleWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
 suspend fun SQLOperations.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
   return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
@@ -117,6 +123,7 @@ suspend fun SQLOperations.querySingleWithParamsAwait(sql: String, arguments: Jso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use update returning a future that can yield a result ", replaceWith = ReplaceWith("update(sql).await()"))
 suspend fun SQLOperations.updateAwait(sql: String): UpdateResult {
   return awaitResult {
     this.update(sql, it)
@@ -132,6 +139,7 @@ suspend fun SQLOperations.updateAwait(sql: String): UpdateResult {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("updateWithParams(sql, params).await()"))
 suspend fun SQLOperations.updateWithParamsAwait(sql: String, params: JsonArray): UpdateResult {
   return awaitResult {
     this.updateWithParams(sql, params, it)
@@ -146,6 +154,7 @@ suspend fun SQLOperations.updateWithParamsAwait(sql: String, params: JsonArray):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use call returning a future that can yield a result ", replaceWith = ReplaceWith("call(sql).await()"))
 suspend fun SQLOperations.callAwait(sql: String): ResultSet {
   return awaitResult {
     this.call(sql, it)
@@ -162,6 +171,7 @@ suspend fun SQLOperations.callAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLOperations] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use callWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).await()"))
 suspend fun SQLOperations.callWithParamsAwait(sql: String, params: JsonArray, outputs: JsonArray): ResultSet {
   return awaitResult {
     this.callWithParams(sql, params, outputs, it)

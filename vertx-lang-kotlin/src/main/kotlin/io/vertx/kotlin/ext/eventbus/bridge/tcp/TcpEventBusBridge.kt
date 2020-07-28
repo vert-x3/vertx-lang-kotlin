@@ -25,6 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen().await()"))
 suspend fun TcpEventBusBridge.listenAwait(): TcpEventBusBridge {
   return awaitResult {
     this.listen(it)
@@ -40,6 +41,7 @@ suspend fun TcpEventBusBridge.listenAwait(): TcpEventBusBridge {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port, address).await()"))
 suspend fun TcpEventBusBridge.listenAwait(port: Int, address: String): TcpEventBusBridge {
   return awaitResult {
     this.listen(port, address, it)
@@ -54,6 +56,7 @@ suspend fun TcpEventBusBridge.listenAwait(port: Int, address: String): TcpEventB
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port).await()"))
 suspend fun TcpEventBusBridge.listenAwait(port: Int): TcpEventBusBridge {
   return awaitResult {
     this.listen(port, it)
@@ -66,6 +69,7 @@ suspend fun TcpEventBusBridge.listenAwait(port: Int): TcpEventBusBridge {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.eventbus.bridge.tcp.TcpEventBusBridge] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
 suspend fun TcpEventBusBridge.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -25,6 +25,7 @@ import io.vertx.sqlclient.Query
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Query] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use execute returning a future that can yield a result ", replaceWith = ReplaceWith("execute().await()"))
 suspend fun <T> Query<T>.executeAwait(): T {
   return awaitResult {
     this.execute(it)

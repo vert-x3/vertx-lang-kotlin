@@ -28,6 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executeBlocking returning a future that can yield a result ", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
 suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit, ordered: Boolean): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, ordered, it::handle)
@@ -42,6 +43,7 @@ suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: (Promis
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executeBlocking returning a future that can yield a result ", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
 suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, it::handle)
