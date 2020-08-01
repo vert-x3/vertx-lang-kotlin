@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get().await()"))
+@Deprecated(message = "Instead use get returning a future and chain with await()", replaceWith = ReplaceWith("get().await()"))
 suspend fun Counter.getAwait(): Long {
   return awaitResult {
     this.get(it)
@@ -39,7 +39,7 @@ suspend fun Counter.getAwait(): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use incrementAndGet returning a future that can yield a result ", replaceWith = ReplaceWith("incrementAndGet().await()"))
+@Deprecated(message = "Instead use incrementAndGet returning a future and chain with await()", replaceWith = ReplaceWith("incrementAndGet().await()"))
 suspend fun Counter.incrementAndGetAwait(): Long {
   return awaitResult {
     this.incrementAndGet(it)
@@ -53,7 +53,7 @@ suspend fun Counter.incrementAndGetAwait(): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getAndIncrement returning a future that can yield a result ", replaceWith = ReplaceWith("getAndIncrement().await()"))
+@Deprecated(message = "Instead use getAndIncrement returning a future and chain with await()", replaceWith = ReplaceWith("getAndIncrement().await()"))
 suspend fun Counter.getAndIncrementAwait(): Long {
   return awaitResult {
     this.getAndIncrement(it)
@@ -67,7 +67,7 @@ suspend fun Counter.getAndIncrementAwait(): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use decrementAndGet returning a future that can yield a result ", replaceWith = ReplaceWith("decrementAndGet().await()"))
+@Deprecated(message = "Instead use decrementAndGet returning a future and chain with await()", replaceWith = ReplaceWith("decrementAndGet().await()"))
 suspend fun Counter.decrementAndGetAwait(): Long {
   return awaitResult {
     this.decrementAndGet(it)
@@ -82,7 +82,7 @@ suspend fun Counter.decrementAndGetAwait(): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use addAndGet returning a future that can yield a result ", replaceWith = ReplaceWith("addAndGet(value).await()"))
+@Deprecated(message = "Instead use addAndGet returning a future and chain with await()", replaceWith = ReplaceWith("addAndGet(value).await()"))
 suspend fun Counter.addAndGetAwait(value: Long): Long {
   return awaitResult {
     this.addAndGet(value, it)
@@ -97,7 +97,7 @@ suspend fun Counter.addAndGetAwait(value: Long): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getAndAdd returning a future that can yield a result ", replaceWith = ReplaceWith("getAndAdd(value).await()"))
+@Deprecated(message = "Instead use getAndAdd returning a future and chain with await()", replaceWith = ReplaceWith("getAndAdd(value).await()"))
 suspend fun Counter.getAndAddAwait(value: Long): Long {
   return awaitResult {
     this.getAndAdd(value, it)
@@ -113,7 +113,7 @@ suspend fun Counter.getAndAddAwait(value: Long): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.Counter] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use compareAndSet returning a future that can yield a result ", replaceWith = ReplaceWith("compareAndSet(expected, value).await()"))
+@Deprecated(message = "Instead use compareAndSet returning a future and chain with await()", replaceWith = ReplaceWith("compareAndSet(expected, value).await()"))
 suspend fun Counter.compareAndSetAwait(expected: Long, value: Long): Boolean {
   return awaitResult {
     this.compareAndSet(expected, value, it)

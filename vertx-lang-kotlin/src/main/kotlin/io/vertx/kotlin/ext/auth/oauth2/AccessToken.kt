@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use refresh returning a future that can yield a result ", replaceWith = ReplaceWith("refresh().await()"))
+@Deprecated(message = "Instead use refresh returning a future and chain with await()", replaceWith = ReplaceWith("refresh().await()"))
 suspend fun AccessToken.refreshAwait(): Unit {
   return awaitResult {
     this.refresh(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun AccessToken.refreshAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use revoke returning a future that can yield a result ", replaceWith = ReplaceWith("revoke(token_type).await()"))
+@Deprecated(message = "Instead use revoke returning a future and chain with await()", replaceWith = ReplaceWith("revoke(token_type).await()"))
 suspend fun AccessToken.revokeAwait(token_type: String): Unit {
   return awaitResult {
     this.revoke(token_type, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -55,7 +55,7 @@ suspend fun AccessToken.revokeAwait(token_type: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use logout returning a future that can yield a result ", replaceWith = ReplaceWith("logout().await()"))
+@Deprecated(message = "Instead use logout returning a future and chain with await()", replaceWith = ReplaceWith("logout().await()"))
 suspend fun AccessToken.logoutAwait(): Unit {
   return awaitResult {
     this.logout(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -68,7 +68,7 @@ suspend fun AccessToken.logoutAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use introspect returning a future that can yield a result ", replaceWith = ReplaceWith("introspect().await()"))
+@Deprecated(message = "Instead use introspect returning a future and chain with await()", replaceWith = ReplaceWith("introspect().await()"))
 suspend fun AccessToken.introspectAwait(): Unit {
   return awaitResult {
     this.introspect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -82,7 +82,7 @@ suspend fun AccessToken.introspectAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use introspect returning a future that can yield a result ", replaceWith = ReplaceWith("introspect(tokenType).await()"))
+@Deprecated(message = "Instead use introspect returning a future and chain with await()", replaceWith = ReplaceWith("introspect(tokenType).await()"))
 suspend fun AccessToken.introspectAwait(tokenType: String): Unit {
   return awaitResult {
     this.introspect(tokenType, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -96,7 +96,7 @@ suspend fun AccessToken.introspectAwait(tokenType: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use userInfo returning a future that can yield a result ", replaceWith = ReplaceWith("userInfo().await()"))
+@Deprecated(message = "Instead use userInfo returning a future and chain with await()", replaceWith = ReplaceWith("userInfo().await()"))
 suspend fun AccessToken.userInfoAwait(): JsonObject {
   return awaitResult {
     this.userInfo(it)
@@ -111,7 +111,7 @@ suspend fun AccessToken.userInfoAwait(): JsonObject {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fetch returning a future that can yield a result ", replaceWith = ReplaceWith("fetch(resource).await()"))
+@Deprecated(message = "Instead use fetch returning a future and chain with await()", replaceWith = ReplaceWith("fetch(resource).await()"))
 suspend fun AccessToken.fetchAwait(resource: String): OAuth2Response {
   return awaitResult {
     this.fetch(resource, it)
@@ -129,7 +129,7 @@ suspend fun AccessToken.fetchAwait(resource: String): OAuth2Response {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.AccessToken] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fetch returning a future that can yield a result ", replaceWith = ReplaceWith("fetch(method, resource, headers, payload).await()"))
+@Deprecated(message = "Instead use fetch returning a future and chain with await()", replaceWith = ReplaceWith("fetch(method, resource, headers, payload).await()"))
 suspend fun AccessToken.fetchAwait(method: HttpMethod, resource: String, headers: JsonObject, payload: Buffer): OAuth2Response {
   return awaitResult {
     this.fetch(method, resource, headers, payload, it)

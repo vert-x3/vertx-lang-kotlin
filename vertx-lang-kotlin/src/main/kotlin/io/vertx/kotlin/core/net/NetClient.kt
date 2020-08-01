@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(port, host).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host).await()"))
 suspend fun NetClient.connectAwait(port: Int, host: String): NetSocket {
   return awaitResult {
     this.connect(port, host, it)
@@ -46,7 +46,7 @@ suspend fun NetClient.connectAwait(port: Int, host: String): NetSocket {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(port, host, serverName).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host, serverName).await()"))
 suspend fun NetClient.connectAwait(port: Int, host: String, serverName: String): NetSocket {
   return awaitResult {
     this.connect(port, host, serverName, it)
@@ -61,7 +61,7 @@ suspend fun NetClient.connectAwait(port: Int, host: String, serverName: String):
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(remoteAddress).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(remoteAddress).await()"))
 suspend fun NetClient.connectAwait(remoteAddress: SocketAddress): NetSocket {
   return awaitResult {
     this.connect(remoteAddress, it)
@@ -77,7 +77,7 @@ suspend fun NetClient.connectAwait(remoteAddress: SocketAddress): NetSocket {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(remoteAddress, serverName).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(remoteAddress, serverName).await()"))
 suspend fun NetClient.connectAwait(remoteAddress: SocketAddress, serverName: String): NetSocket {
   return awaitResult {
     this.connect(remoteAddress, serverName, it)
@@ -90,7 +90,7 @@ suspend fun NetClient.connectAwait(remoteAddress: SocketAddress, serverName: Str
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun NetClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -28,7 +28,7 @@ import io.vertx.sqlclient.Transaction
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use prepare returning a future that can yield a result ", replaceWith = ReplaceWith("prepare(sql).await()"))
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(sql).await()"))
 suspend fun SqlConnection.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
@@ -42,7 +42,7 @@ suspend fun SqlConnection.prepareAwait(sql: String): PreparedStatement {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use begin returning a future that can yield a result ", replaceWith = ReplaceWith("begin().await()"))
+@Deprecated(message = "Instead use begin returning a future and chain with await()", replaceWith = ReplaceWith("begin().await()"))
 suspend fun SqlConnection.beginAwait(): Transaction {
   return awaitResult {
     this.begin(it)
@@ -55,7 +55,7 @@ suspend fun SqlConnection.beginAwait(): Transaction {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun SqlConnection.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

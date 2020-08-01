@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.jdbc.JDBCClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingle returning a future that can yield a result ", replaceWith = ReplaceWith("querySingle(sql).await()"))
+@Deprecated(message = "Instead use querySingle returning a future and chain with await()", replaceWith = ReplaceWith("querySingle(sql).await()"))
 suspend fun JDBCClient.querySingleAwait(sql: String): JsonArray? {
   return awaitResult {
     this.querySingle(sql, it)
@@ -43,7 +43,7 @@ suspend fun JDBCClient.querySingleAwait(sql: String): JsonArray? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.jdbc.JDBCClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingleWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
+@Deprecated(message = "Instead use querySingleWithParams returning a future and chain with await()", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
 suspend fun JDBCClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
   return awaitResult {
     this.querySingleWithParams(sql, arguments, it)

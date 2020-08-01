@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(k).await()"))
+@Deprecated(message = "Instead use get returning a future and chain with await()", replaceWith = ReplaceWith("get(k).await()"))
 suspend fun <K,V> AsyncMap<K,V>.getAwait(k: K): V? {
   return awaitResult {
     this.get(k, it)
@@ -41,7 +41,7 @@ suspend fun <K,V> AsyncMap<K,V>.getAwait(k: K): V? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(k, v).await()"))
+@Deprecated(message = "Instead use put returning a future and chain with await()", replaceWith = ReplaceWith("put(k, v).await()"))
 suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V): Unit {
   return awaitResult {
     this.put(k, v, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -57,7 +57,7 @@ suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use put returning a future that can yield a result ", replaceWith = ReplaceWith("put(k, v, ttl).await()"))
+@Deprecated(message = "Instead use put returning a future and chain with await()", replaceWith = ReplaceWith("put(k, v, ttl).await()"))
 suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V, ttl: Long): Unit {
   return awaitResult {
     this.put(k, v, ttl, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -73,7 +73,7 @@ suspend fun <K,V> AsyncMap<K,V>.putAwait(k: K, v: V, ttl: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use putIfAbsent returning a future that can yield a result ", replaceWith = ReplaceWith("putIfAbsent(k, v).await()"))
+@Deprecated(message = "Instead use putIfAbsent returning a future and chain with await()", replaceWith = ReplaceWith("putIfAbsent(k, v).await()"))
 suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V): V? {
   return awaitResult {
     this.putIfAbsent(k, v, it)
@@ -90,7 +90,7 @@ suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V): V? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use putIfAbsent returning a future that can yield a result ", replaceWith = ReplaceWith("putIfAbsent(k, v, ttl).await()"))
+@Deprecated(message = "Instead use putIfAbsent returning a future and chain with await()", replaceWith = ReplaceWith("putIfAbsent(k, v, ttl).await()"))
 suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V, ttl: Long): V? {
   return awaitResult {
     this.putIfAbsent(k, v, ttl, it)
@@ -105,7 +105,7 @@ suspend fun <K,V> AsyncMap<K,V>.putIfAbsentAwait(k: K, v: V, ttl: Long): V? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use remove returning a future that can yield a result ", replaceWith = ReplaceWith("remove(k).await()"))
+@Deprecated(message = "Instead use remove returning a future and chain with await()", replaceWith = ReplaceWith("remove(k).await()"))
 suspend fun <K,V> AsyncMap<K,V>.removeAwait(k: K): V? {
   return awaitResult {
     this.remove(k, it)
@@ -121,7 +121,7 @@ suspend fun <K,V> AsyncMap<K,V>.removeAwait(k: K): V? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use removeIfPresent returning a future that can yield a result ", replaceWith = ReplaceWith("removeIfPresent(k, v).await()"))
+@Deprecated(message = "Instead use removeIfPresent returning a future and chain with await()", replaceWith = ReplaceWith("removeIfPresent(k, v).await()"))
 suspend fun <K,V> AsyncMap<K,V>.removeIfPresentAwait(k: K, v: V): Boolean {
   return awaitResult {
     this.removeIfPresent(k, v, it)
@@ -137,7 +137,7 @@ suspend fun <K,V> AsyncMap<K,V>.removeIfPresentAwait(k: K, v: V): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replace returning a future that can yield a result ", replaceWith = ReplaceWith("replace(k, v).await()"))
+@Deprecated(message = "Instead use replace returning a future and chain with await()", replaceWith = ReplaceWith("replace(k, v).await()"))
 suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V): V? {
   return awaitResult {
     this.replace(k, v, it)
@@ -154,7 +154,7 @@ suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V): V? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replaceIfPresent returning a future that can yield a result ", replaceWith = ReplaceWith("replaceIfPresent(k, oldValue, newValue).await()"))
+@Deprecated(message = "Instead use replaceIfPresent returning a future and chain with await()", replaceWith = ReplaceWith("replaceIfPresent(k, oldValue, newValue).await()"))
 suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValue: V): Boolean {
   return awaitResult {
     this.replaceIfPresent(k, oldValue, newValue, it)
@@ -167,7 +167,7 @@ suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValu
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use clear returning a future that can yield a result ", replaceWith = ReplaceWith("clear().await()"))
+@Deprecated(message = "Instead use clear returning a future and chain with await()", replaceWith = ReplaceWith("clear().await()"))
 suspend fun <K,V> AsyncMap<K,V>.clearAwait(): Unit {
   return awaitResult {
     this.clear(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -181,7 +181,7 @@ suspend fun <K,V> AsyncMap<K,V>.clearAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use size returning a future that can yield a result ", replaceWith = ReplaceWith("size().await()"))
+@Deprecated(message = "Instead use size returning a future and chain with await()", replaceWith = ReplaceWith("size().await()"))
 suspend fun <K,V> AsyncMap<K,V>.sizeAwait(): Int {
   return awaitResult {
     this.size(it)

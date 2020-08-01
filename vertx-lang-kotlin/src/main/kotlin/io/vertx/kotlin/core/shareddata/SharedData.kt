@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getClusterWideMap returning a future that can yield a result ", replaceWith = ReplaceWith("getClusterWideMap(name).await()"))
+@Deprecated(message = "Instead use getClusterWideMap returning a future and chain with await()", replaceWith = ReplaceWith("getClusterWideMap(name).await()"))
 suspend fun <K,V> SharedData.getClusterWideMapAwait(name: String): AsyncMap<K,V> {
   return awaitResult {
     this.getClusterWideMap(name, it)
@@ -44,7 +44,7 @@ suspend fun <K,V> SharedData.getClusterWideMapAwait(name: String): AsyncMap<K,V>
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getAsyncMap returning a future that can yield a result ", replaceWith = ReplaceWith("getAsyncMap(name).await()"))
+@Deprecated(message = "Instead use getAsyncMap returning a future and chain with await()", replaceWith = ReplaceWith("getAsyncMap(name).await()"))
 suspend fun <K,V> SharedData.getAsyncMapAwait(name: String): AsyncMap<K,V> {
   return awaitResult {
     this.getAsyncMap(name, it)
@@ -59,7 +59,7 @@ suspend fun <K,V> SharedData.getAsyncMapAwait(name: String): AsyncMap<K,V> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLocalAsyncMap returning a future that can yield a result ", replaceWith = ReplaceWith("getLocalAsyncMap(name).await()"))
+@Deprecated(message = "Instead use getLocalAsyncMap returning a future and chain with await()", replaceWith = ReplaceWith("getLocalAsyncMap(name).await()"))
 suspend fun <K,V> SharedData.getLocalAsyncMapAwait(name: String): AsyncMap<K,V> {
   return awaitResult {
     this.getLocalAsyncMap(name, it)
@@ -74,7 +74,7 @@ suspend fun <K,V> SharedData.getLocalAsyncMapAwait(name: String): AsyncMap<K,V> 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLock returning a future that can yield a result ", replaceWith = ReplaceWith("getLock(name).await()"))
+@Deprecated(message = "Instead use getLock returning a future and chain with await()", replaceWith = ReplaceWith("getLock(name).await()"))
 suspend fun SharedData.getLockAwait(name: String): Lock {
   return awaitResult {
     this.getLock(name, it)
@@ -90,7 +90,7 @@ suspend fun SharedData.getLockAwait(name: String): Lock {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLockWithTimeout returning a future that can yield a result ", replaceWith = ReplaceWith("getLockWithTimeout(name, timeout).await()"))
+@Deprecated(message = "Instead use getLockWithTimeout returning a future and chain with await()", replaceWith = ReplaceWith("getLockWithTimeout(name, timeout).await()"))
 suspend fun SharedData.getLockWithTimeoutAwait(name: String, timeout: Long): Lock {
   return awaitResult {
     this.getLockWithTimeout(name, timeout, it)
@@ -105,7 +105,7 @@ suspend fun SharedData.getLockWithTimeoutAwait(name: String, timeout: Long): Loc
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLocalLock returning a future that can yield a result ", replaceWith = ReplaceWith("getLocalLock(name).await()"))
+@Deprecated(message = "Instead use getLocalLock returning a future and chain with await()", replaceWith = ReplaceWith("getLocalLock(name).await()"))
 suspend fun SharedData.getLocalLockAwait(name: String): Lock {
   return awaitResult {
     this.getLocalLock(name, it)
@@ -121,7 +121,7 @@ suspend fun SharedData.getLocalLockAwait(name: String): Lock {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLocalLockWithTimeout returning a future that can yield a result ", replaceWith = ReplaceWith("getLocalLockWithTimeout(name, timeout).await()"))
+@Deprecated(message = "Instead use getLocalLockWithTimeout returning a future and chain with await()", replaceWith = ReplaceWith("getLocalLockWithTimeout(name, timeout).await()"))
 suspend fun SharedData.getLocalLockWithTimeoutAwait(name: String, timeout: Long): Lock {
   return awaitResult {
     this.getLocalLockWithTimeout(name, timeout, it)
@@ -136,7 +136,7 @@ suspend fun SharedData.getLocalLockWithTimeoutAwait(name: String, timeout: Long)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getCounter returning a future that can yield a result ", replaceWith = ReplaceWith("getCounter(name).await()"))
+@Deprecated(message = "Instead use getCounter returning a future and chain with await()", replaceWith = ReplaceWith("getCounter(name).await()"))
 suspend fun SharedData.getCounterAwait(name: String): Counter {
   return awaitResult {
     this.getCounter(name, it)
@@ -151,7 +151,7 @@ suspend fun SharedData.getCounterAwait(name: String): Counter {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.SharedData] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getLocalCounter returning a future that can yield a result ", replaceWith = ReplaceWith("getLocalCounter(name).await()"))
+@Deprecated(message = "Instead use getLocalCounter returning a future and chain with await()", replaceWith = ReplaceWith("getLocalCounter(name).await()"))
 suspend fun SharedData.getLocalCounterAwait(name: String): Counter {
   return awaitResult {
     this.getLocalCounter(name, it)

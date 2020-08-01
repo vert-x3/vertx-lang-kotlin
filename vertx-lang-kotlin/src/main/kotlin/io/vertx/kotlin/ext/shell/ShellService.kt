@@ -24,7 +24,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.ShellService] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use start returning a future that can yield a result ", replaceWith = ReplaceWith("start().await()"))
+@Deprecated(message = "Instead use start returning a future and chain with await()", replaceWith = ReplaceWith("start().await()"))
 suspend fun ShellService.startAwait(): Unit {
   return awaitResult {
     this.start(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -37,7 +37,7 @@ suspend fun ShellService.startAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.ShellService] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use stop returning a future that can yield a result ", replaceWith = ReplaceWith("stop().await()"))
+@Deprecated(message = "Instead use stop returning a future and chain with await()", replaceWith = ReplaceWith("stop().await()"))
 suspend fun ShellService.stopAwait(): Unit {
   return awaitResult {
     this.stop(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

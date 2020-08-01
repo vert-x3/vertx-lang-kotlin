@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
 suspend fun StompServer.listenAwait(): StompServer {
   return awaitResult {
     this.listen(it)
@@ -40,7 +40,7 @@ suspend fun StompServer.listenAwait(): StompServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
 suspend fun StompServer.listenAwait(port: Int): StompServer {
   return awaitResult {
     this.listen(port, it)
@@ -56,7 +56,7 @@ suspend fun StompServer.listenAwait(port: Int): StompServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
 suspend fun StompServer.listenAwait(port: Int, host: String): StompServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -69,7 +69,7 @@ suspend fun StompServer.listenAwait(port: Int, host: String): StompServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun StompServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

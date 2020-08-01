@@ -20,6 +20,21 @@ import io.vertx.redis.client.RedisAPI
 import io.vertx.redis.client.Response
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.acl]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use acl returning a future and chain with await()", replaceWith = ReplaceWith("acl(args).await()"))
+suspend fun RedisAPI.aclAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.acl(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.append]
  *
  * @param arg0 
@@ -28,7 +43,7 @@ import io.vertx.redis.client.Response
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use append returning a future that can yield a result ", replaceWith = ReplaceWith("append(arg0, arg1).await()"))
+@Deprecated(message = "Instead use append returning a future and chain with await()", replaceWith = ReplaceWith("append(arg0, arg1).await()"))
 suspend fun RedisAPI.appendAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.append(arg0, arg1, it)
@@ -42,7 +57,7 @@ suspend fun RedisAPI.appendAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use asking returning a future that can yield a result ", replaceWith = ReplaceWith("asking().await()"))
+@Deprecated(message = "Instead use asking returning a future and chain with await()", replaceWith = ReplaceWith("asking().await()"))
 suspend fun RedisAPI.askingAwait(): Response? {
   return awaitResult {
     this.asking(it)
@@ -52,15 +67,15 @@ suspend fun RedisAPI.askingAwait(): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.auth]
  *
- * @param arg0 
+ * @param args 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use auth returning a future that can yield a result ", replaceWith = ReplaceWith("auth(arg0).await()"))
-suspend fun RedisAPI.authAwait(arg0: String): Response? {
+@Deprecated(message = "Instead use auth returning a future and chain with await()", replaceWith = ReplaceWith("auth(args).await()"))
+suspend fun RedisAPI.authAwait(args: List<String>): Response? {
   return awaitResult {
-    this.auth(arg0, it)
+    this.auth(args, it)
   }
 }
 
@@ -71,7 +86,7 @@ suspend fun RedisAPI.authAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bgrewriteaof returning a future that can yield a result ", replaceWith = ReplaceWith("bgrewriteaof().await()"))
+@Deprecated(message = "Instead use bgrewriteaof returning a future and chain with await()", replaceWith = ReplaceWith("bgrewriteaof().await()"))
 suspend fun RedisAPI.bgrewriteaofAwait(): Response? {
   return awaitResult {
     this.bgrewriteaof(it)
@@ -86,7 +101,7 @@ suspend fun RedisAPI.bgrewriteaofAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bgsave returning a future that can yield a result ", replaceWith = ReplaceWith("bgsave(args).await()"))
+@Deprecated(message = "Instead use bgsave returning a future and chain with await()", replaceWith = ReplaceWith("bgsave(args).await()"))
 suspend fun RedisAPI.bgsaveAwait(args: List<String>): Response? {
   return awaitResult {
     this.bgsave(args, it)
@@ -101,7 +116,7 @@ suspend fun RedisAPI.bgsaveAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bitcount returning a future that can yield a result ", replaceWith = ReplaceWith("bitcount(args).await()"))
+@Deprecated(message = "Instead use bitcount returning a future and chain with await()", replaceWith = ReplaceWith("bitcount(args).await()"))
 suspend fun RedisAPI.bitcountAwait(args: List<String>): Response? {
   return awaitResult {
     this.bitcount(args, it)
@@ -116,10 +131,25 @@ suspend fun RedisAPI.bitcountAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bitfield returning a future that can yield a result ", replaceWith = ReplaceWith("bitfield(args).await()"))
+@Deprecated(message = "Instead use bitfield returning a future and chain with await()", replaceWith = ReplaceWith("bitfield(args).await()"))
 suspend fun RedisAPI.bitfieldAwait(args: List<String>): Response? {
   return awaitResult {
     this.bitfield(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.bitfieldRo]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use bitfieldRo returning a future and chain with await()", replaceWith = ReplaceWith("bitfieldRo(args).await()"))
+suspend fun RedisAPI.bitfieldRoAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.bitfieldRo(args, it)
   }
 }
 
@@ -131,7 +161,7 @@ suspend fun RedisAPI.bitfieldAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bitop returning a future that can yield a result ", replaceWith = ReplaceWith("bitop(args).await()"))
+@Deprecated(message = "Instead use bitop returning a future and chain with await()", replaceWith = ReplaceWith("bitop(args).await()"))
 suspend fun RedisAPI.bitopAwait(args: List<String>): Response? {
   return awaitResult {
     this.bitop(args, it)
@@ -146,7 +176,7 @@ suspend fun RedisAPI.bitopAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bitpos returning a future that can yield a result ", replaceWith = ReplaceWith("bitpos(args).await()"))
+@Deprecated(message = "Instead use bitpos returning a future and chain with await()", replaceWith = ReplaceWith("bitpos(args).await()"))
 suspend fun RedisAPI.bitposAwait(args: List<String>): Response? {
   return awaitResult {
     this.bitpos(args, it)
@@ -161,7 +191,7 @@ suspend fun RedisAPI.bitposAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use blpop returning a future that can yield a result ", replaceWith = ReplaceWith("blpop(args).await()"))
+@Deprecated(message = "Instead use blpop returning a future and chain with await()", replaceWith = ReplaceWith("blpop(args).await()"))
 suspend fun RedisAPI.blpopAwait(args: List<String>): Response? {
   return awaitResult {
     this.blpop(args, it)
@@ -176,7 +206,7 @@ suspend fun RedisAPI.blpopAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use brpop returning a future that can yield a result ", replaceWith = ReplaceWith("brpop(args).await()"))
+@Deprecated(message = "Instead use brpop returning a future and chain with await()", replaceWith = ReplaceWith("brpop(args).await()"))
 suspend fun RedisAPI.brpopAwait(args: List<String>): Response? {
   return awaitResult {
     this.brpop(args, it)
@@ -193,7 +223,7 @@ suspend fun RedisAPI.brpopAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use brpoplpush returning a future that can yield a result ", replaceWith = ReplaceWith("brpoplpush(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use brpoplpush returning a future and chain with await()", replaceWith = ReplaceWith("brpoplpush(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.brpoplpushAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.brpoplpush(arg0, arg1, arg2, it)
@@ -208,7 +238,7 @@ suspend fun RedisAPI.brpoplpushAwait(arg0: String, arg1: String, arg2: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bzpopmax returning a future that can yield a result ", replaceWith = ReplaceWith("bzpopmax(args).await()"))
+@Deprecated(message = "Instead use bzpopmax returning a future and chain with await()", replaceWith = ReplaceWith("bzpopmax(args).await()"))
 suspend fun RedisAPI.bzpopmaxAwait(args: List<String>): Response? {
   return awaitResult {
     this.bzpopmax(args, it)
@@ -223,7 +253,7 @@ suspend fun RedisAPI.bzpopmaxAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use bzpopmin returning a future that can yield a result ", replaceWith = ReplaceWith("bzpopmin(args).await()"))
+@Deprecated(message = "Instead use bzpopmin returning a future and chain with await()", replaceWith = ReplaceWith("bzpopmin(args).await()"))
 suspend fun RedisAPI.bzpopminAwait(args: List<String>): Response? {
   return awaitResult {
     this.bzpopmin(args, it)
@@ -238,7 +268,7 @@ suspend fun RedisAPI.bzpopminAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use client returning a future that can yield a result ", replaceWith = ReplaceWith("client(args).await()"))
+@Deprecated(message = "Instead use client returning a future and chain with await()", replaceWith = ReplaceWith("client(args).await()"))
 suspend fun RedisAPI.clientAwait(args: List<String>): Response? {
   return awaitResult {
     this.client(args, it)
@@ -253,7 +283,7 @@ suspend fun RedisAPI.clientAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use cluster returning a future that can yield a result ", replaceWith = ReplaceWith("cluster(args).await()"))
+@Deprecated(message = "Instead use cluster returning a future and chain with await()", replaceWith = ReplaceWith("cluster(args).await()"))
 suspend fun RedisAPI.clusterAwait(args: List<String>): Response? {
   return awaitResult {
     this.cluster(args, it)
@@ -263,14 +293,15 @@ suspend fun RedisAPI.clusterAwait(args: List<String>): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.command]
  *
+ * @param args 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use command returning a future that can yield a result ", replaceWith = ReplaceWith("command().await()"))
-suspend fun RedisAPI.commandAwait(): Response? {
+@Deprecated(message = "Instead use command returning a future and chain with await()", replaceWith = ReplaceWith("command(args).await()"))
+suspend fun RedisAPI.commandAwait(args: List<String>): Response? {
   return awaitResult {
-    this.command(it)
+    this.command(args, it)
   }
 }
 
@@ -282,7 +313,7 @@ suspend fun RedisAPI.commandAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use config returning a future that can yield a result ", replaceWith = ReplaceWith("config(args).await()"))
+@Deprecated(message = "Instead use config returning a future and chain with await()", replaceWith = ReplaceWith("config(args).await()"))
 suspend fun RedisAPI.configAwait(args: List<String>): Response? {
   return awaitResult {
     this.config(args, it)
@@ -296,7 +327,7 @@ suspend fun RedisAPI.configAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use dbsize returning a future that can yield a result ", replaceWith = ReplaceWith("dbsize().await()"))
+@Deprecated(message = "Instead use dbsize returning a future and chain with await()", replaceWith = ReplaceWith("dbsize().await()"))
 suspend fun RedisAPI.dbsizeAwait(): Response? {
   return awaitResult {
     this.dbsize(it)
@@ -311,7 +342,7 @@ suspend fun RedisAPI.dbsizeAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use debug returning a future that can yield a result ", replaceWith = ReplaceWith("debug(args).await()"))
+@Deprecated(message = "Instead use debug returning a future and chain with await()", replaceWith = ReplaceWith("debug(args).await()"))
 suspend fun RedisAPI.debugAwait(args: List<String>): Response? {
   return awaitResult {
     this.debug(args, it)
@@ -326,7 +357,7 @@ suspend fun RedisAPI.debugAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use decr returning a future that can yield a result ", replaceWith = ReplaceWith("decr(arg0).await()"))
+@Deprecated(message = "Instead use decr returning a future and chain with await()", replaceWith = ReplaceWith("decr(arg0).await()"))
 suspend fun RedisAPI.decrAwait(arg0: String): Response? {
   return awaitResult {
     this.decr(arg0, it)
@@ -342,7 +373,7 @@ suspend fun RedisAPI.decrAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use decrby returning a future that can yield a result ", replaceWith = ReplaceWith("decrby(arg0, arg1).await()"))
+@Deprecated(message = "Instead use decrby returning a future and chain with await()", replaceWith = ReplaceWith("decrby(arg0, arg1).await()"))
 suspend fun RedisAPI.decrbyAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.decrby(arg0, arg1, it)
@@ -357,7 +388,7 @@ suspend fun RedisAPI.decrbyAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use del returning a future that can yield a result ", replaceWith = ReplaceWith("del(args).await()"))
+@Deprecated(message = "Instead use del returning a future and chain with await()", replaceWith = ReplaceWith("del(args).await()"))
 suspend fun RedisAPI.delAwait(args: List<String>): Response? {
   return awaitResult {
     this.del(args, it)
@@ -371,7 +402,7 @@ suspend fun RedisAPI.delAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use discard returning a future that can yield a result ", replaceWith = ReplaceWith("discard().await()"))
+@Deprecated(message = "Instead use discard returning a future and chain with await()", replaceWith = ReplaceWith("discard().await()"))
 suspend fun RedisAPI.discardAwait(): Response? {
   return awaitResult {
     this.discard(it)
@@ -386,7 +417,7 @@ suspend fun RedisAPI.discardAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use dump returning a future that can yield a result ", replaceWith = ReplaceWith("dump(arg0).await()"))
+@Deprecated(message = "Instead use dump returning a future and chain with await()", replaceWith = ReplaceWith("dump(arg0).await()"))
 suspend fun RedisAPI.dumpAwait(arg0: String): Response? {
   return awaitResult {
     this.dump(arg0, it)
@@ -401,7 +432,7 @@ suspend fun RedisAPI.dumpAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use echo returning a future that can yield a result ", replaceWith = ReplaceWith("echo(arg0).await()"))
+@Deprecated(message = "Instead use echo returning a future and chain with await()", replaceWith = ReplaceWith("echo(arg0).await()"))
 suspend fun RedisAPI.echoAwait(arg0: String): Response? {
   return awaitResult {
     this.echo(arg0, it)
@@ -416,7 +447,7 @@ suspend fun RedisAPI.echoAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use eval returning a future that can yield a result ", replaceWith = ReplaceWith("eval(args).await()"))
+@Deprecated(message = "Instead use eval returning a future and chain with await()", replaceWith = ReplaceWith("eval(args).await()"))
 suspend fun RedisAPI.evalAwait(args: List<String>): Response? {
   return awaitResult {
     this.eval(args, it)
@@ -431,7 +462,7 @@ suspend fun RedisAPI.evalAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use evalsha returning a future that can yield a result ", replaceWith = ReplaceWith("evalsha(args).await()"))
+@Deprecated(message = "Instead use evalsha returning a future and chain with await()", replaceWith = ReplaceWith("evalsha(args).await()"))
 suspend fun RedisAPI.evalshaAwait(args: List<String>): Response? {
   return awaitResult {
     this.evalsha(args, it)
@@ -445,7 +476,7 @@ suspend fun RedisAPI.evalshaAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use exec returning a future that can yield a result ", replaceWith = ReplaceWith("exec().await()"))
+@Deprecated(message = "Instead use exec returning a future and chain with await()", replaceWith = ReplaceWith("exec().await()"))
 suspend fun RedisAPI.execAwait(): Response? {
   return awaitResult {
     this.exec(it)
@@ -460,7 +491,7 @@ suspend fun RedisAPI.execAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use exists returning a future that can yield a result ", replaceWith = ReplaceWith("exists(args).await()"))
+@Deprecated(message = "Instead use exists returning a future and chain with await()", replaceWith = ReplaceWith("exists(args).await()"))
 suspend fun RedisAPI.existsAwait(args: List<String>): Response? {
   return awaitResult {
     this.exists(args, it)
@@ -476,7 +507,7 @@ suspend fun RedisAPI.existsAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use expire returning a future that can yield a result ", replaceWith = ReplaceWith("expire(arg0, arg1).await()"))
+@Deprecated(message = "Instead use expire returning a future and chain with await()", replaceWith = ReplaceWith("expire(arg0, arg1).await()"))
 suspend fun RedisAPI.expireAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.expire(arg0, arg1, it)
@@ -492,7 +523,7 @@ suspend fun RedisAPI.expireAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use expireat returning a future that can yield a result ", replaceWith = ReplaceWith("expireat(arg0, arg1).await()"))
+@Deprecated(message = "Instead use expireat returning a future and chain with await()", replaceWith = ReplaceWith("expireat(arg0, arg1).await()"))
 suspend fun RedisAPI.expireatAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.expireat(arg0, arg1, it)
@@ -507,7 +538,7 @@ suspend fun RedisAPI.expireatAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use flushall returning a future that can yield a result ", replaceWith = ReplaceWith("flushall(args).await()"))
+@Deprecated(message = "Instead use flushall returning a future and chain with await()", replaceWith = ReplaceWith("flushall(args).await()"))
 suspend fun RedisAPI.flushallAwait(args: List<String>): Response? {
   return awaitResult {
     this.flushall(args, it)
@@ -522,7 +553,7 @@ suspend fun RedisAPI.flushallAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use flushdb returning a future that can yield a result ", replaceWith = ReplaceWith("flushdb(args).await()"))
+@Deprecated(message = "Instead use flushdb returning a future and chain with await()", replaceWith = ReplaceWith("flushdb(args).await()"))
 suspend fun RedisAPI.flushdbAwait(args: List<String>): Response? {
   return awaitResult {
     this.flushdb(args, it)
@@ -537,7 +568,7 @@ suspend fun RedisAPI.flushdbAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use geoadd returning a future that can yield a result ", replaceWith = ReplaceWith("geoadd(args).await()"))
+@Deprecated(message = "Instead use geoadd returning a future and chain with await()", replaceWith = ReplaceWith("geoadd(args).await()"))
 suspend fun RedisAPI.geoaddAwait(args: List<String>): Response? {
   return awaitResult {
     this.geoadd(args, it)
@@ -552,7 +583,7 @@ suspend fun RedisAPI.geoaddAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use geodist returning a future that can yield a result ", replaceWith = ReplaceWith("geodist(args).await()"))
+@Deprecated(message = "Instead use geodist returning a future and chain with await()", replaceWith = ReplaceWith("geodist(args).await()"))
 suspend fun RedisAPI.geodistAwait(args: List<String>): Response? {
   return awaitResult {
     this.geodist(args, it)
@@ -567,7 +598,7 @@ suspend fun RedisAPI.geodistAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use geohash returning a future that can yield a result ", replaceWith = ReplaceWith("geohash(args).await()"))
+@Deprecated(message = "Instead use geohash returning a future and chain with await()", replaceWith = ReplaceWith("geohash(args).await()"))
 suspend fun RedisAPI.geohashAwait(args: List<String>): Response? {
   return awaitResult {
     this.geohash(args, it)
@@ -582,7 +613,7 @@ suspend fun RedisAPI.geohashAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use geopos returning a future that can yield a result ", replaceWith = ReplaceWith("geopos(args).await()"))
+@Deprecated(message = "Instead use geopos returning a future and chain with await()", replaceWith = ReplaceWith("geopos(args).await()"))
 suspend fun RedisAPI.geoposAwait(args: List<String>): Response? {
   return awaitResult {
     this.geopos(args, it)
@@ -597,7 +628,7 @@ suspend fun RedisAPI.geoposAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use georadius returning a future that can yield a result ", replaceWith = ReplaceWith("georadius(args).await()"))
+@Deprecated(message = "Instead use georadius returning a future and chain with await()", replaceWith = ReplaceWith("georadius(args).await()"))
 suspend fun RedisAPI.georadiusAwait(args: List<String>): Response? {
   return awaitResult {
     this.georadius(args, it)
@@ -612,7 +643,7 @@ suspend fun RedisAPI.georadiusAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use georadiusRo returning a future that can yield a result ", replaceWith = ReplaceWith("georadiusRo(args).await()"))
+@Deprecated(message = "Instead use georadiusRo returning a future and chain with await()", replaceWith = ReplaceWith("georadiusRo(args).await()"))
 suspend fun RedisAPI.georadiusRoAwait(args: List<String>): Response? {
   return awaitResult {
     this.georadiusRo(args, it)
@@ -627,7 +658,7 @@ suspend fun RedisAPI.georadiusRoAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use georadiusbymember returning a future that can yield a result ", replaceWith = ReplaceWith("georadiusbymember(args).await()"))
+@Deprecated(message = "Instead use georadiusbymember returning a future and chain with await()", replaceWith = ReplaceWith("georadiusbymember(args).await()"))
 suspend fun RedisAPI.georadiusbymemberAwait(args: List<String>): Response? {
   return awaitResult {
     this.georadiusbymember(args, it)
@@ -642,7 +673,7 @@ suspend fun RedisAPI.georadiusbymemberAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use georadiusbymemberRo returning a future that can yield a result ", replaceWith = ReplaceWith("georadiusbymemberRo(args).await()"))
+@Deprecated(message = "Instead use georadiusbymemberRo returning a future and chain with await()", replaceWith = ReplaceWith("georadiusbymemberRo(args).await()"))
 suspend fun RedisAPI.georadiusbymemberRoAwait(args: List<String>): Response? {
   return awaitResult {
     this.georadiusbymemberRo(args, it)
@@ -657,7 +688,7 @@ suspend fun RedisAPI.georadiusbymemberRoAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use get returning a future that can yield a result ", replaceWith = ReplaceWith("get(arg0).await()"))
+@Deprecated(message = "Instead use get returning a future and chain with await()", replaceWith = ReplaceWith("get(arg0).await()"))
 suspend fun RedisAPI.getAwait(arg0: String): Response? {
   return awaitResult {
     this.get(arg0, it)
@@ -673,7 +704,7 @@ suspend fun RedisAPI.getAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getbit returning a future that can yield a result ", replaceWith = ReplaceWith("getbit(arg0, arg1).await()"))
+@Deprecated(message = "Instead use getbit returning a future and chain with await()", replaceWith = ReplaceWith("getbit(arg0, arg1).await()"))
 suspend fun RedisAPI.getbitAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.getbit(arg0, arg1, it)
@@ -690,7 +721,7 @@ suspend fun RedisAPI.getbitAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getrange returning a future that can yield a result ", replaceWith = ReplaceWith("getrange(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use getrange returning a future and chain with await()", replaceWith = ReplaceWith("getrange(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.getrangeAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.getrange(arg0, arg1, arg2, it)
@@ -706,7 +737,7 @@ suspend fun RedisAPI.getrangeAwait(arg0: String, arg1: String, arg2: String): Re
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getset returning a future that can yield a result ", replaceWith = ReplaceWith("getset(arg0, arg1).await()"))
+@Deprecated(message = "Instead use getset returning a future and chain with await()", replaceWith = ReplaceWith("getset(arg0, arg1).await()"))
 suspend fun RedisAPI.getsetAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.getset(arg0, arg1, it)
@@ -721,10 +752,25 @@ suspend fun RedisAPI.getsetAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hdel returning a future that can yield a result ", replaceWith = ReplaceWith("hdel(args).await()"))
+@Deprecated(message = "Instead use hdel returning a future and chain with await()", replaceWith = ReplaceWith("hdel(args).await()"))
 suspend fun RedisAPI.hdelAwait(args: List<String>): Response? {
   return awaitResult {
     this.hdel(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.hello]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use hello returning a future and chain with await()", replaceWith = ReplaceWith("hello(args).await()"))
+suspend fun RedisAPI.helloAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.hello(args, it)
   }
 }
 
@@ -737,7 +783,7 @@ suspend fun RedisAPI.hdelAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hexists returning a future that can yield a result ", replaceWith = ReplaceWith("hexists(arg0, arg1).await()"))
+@Deprecated(message = "Instead use hexists returning a future and chain with await()", replaceWith = ReplaceWith("hexists(arg0, arg1).await()"))
 suspend fun RedisAPI.hexistsAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.hexists(arg0, arg1, it)
@@ -753,7 +799,7 @@ suspend fun RedisAPI.hexistsAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hget returning a future that can yield a result ", replaceWith = ReplaceWith("hget(arg0, arg1).await()"))
+@Deprecated(message = "Instead use hget returning a future and chain with await()", replaceWith = ReplaceWith("hget(arg0, arg1).await()"))
 suspend fun RedisAPI.hgetAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.hget(arg0, arg1, it)
@@ -768,7 +814,7 @@ suspend fun RedisAPI.hgetAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hgetall returning a future that can yield a result ", replaceWith = ReplaceWith("hgetall(arg0).await()"))
+@Deprecated(message = "Instead use hgetall returning a future and chain with await()", replaceWith = ReplaceWith("hgetall(arg0).await()"))
 suspend fun RedisAPI.hgetallAwait(arg0: String): Response? {
   return awaitResult {
     this.hgetall(arg0, it)
@@ -785,7 +831,7 @@ suspend fun RedisAPI.hgetallAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hincrby returning a future that can yield a result ", replaceWith = ReplaceWith("hincrby(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use hincrby returning a future and chain with await()", replaceWith = ReplaceWith("hincrby(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.hincrbyAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.hincrby(arg0, arg1, arg2, it)
@@ -802,7 +848,7 @@ suspend fun RedisAPI.hincrbyAwait(arg0: String, arg1: String, arg2: String): Res
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hincrbyfloat returning a future that can yield a result ", replaceWith = ReplaceWith("hincrbyfloat(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use hincrbyfloat returning a future and chain with await()", replaceWith = ReplaceWith("hincrbyfloat(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.hincrbyfloatAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.hincrbyfloat(arg0, arg1, arg2, it)
@@ -817,7 +863,7 @@ suspend fun RedisAPI.hincrbyfloatAwait(arg0: String, arg1: String, arg2: String)
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hkeys returning a future that can yield a result ", replaceWith = ReplaceWith("hkeys(arg0).await()"))
+@Deprecated(message = "Instead use hkeys returning a future and chain with await()", replaceWith = ReplaceWith("hkeys(arg0).await()"))
 suspend fun RedisAPI.hkeysAwait(arg0: String): Response? {
   return awaitResult {
     this.hkeys(arg0, it)
@@ -832,7 +878,7 @@ suspend fun RedisAPI.hkeysAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hlen returning a future that can yield a result ", replaceWith = ReplaceWith("hlen(arg0).await()"))
+@Deprecated(message = "Instead use hlen returning a future and chain with await()", replaceWith = ReplaceWith("hlen(arg0).await()"))
 suspend fun RedisAPI.hlenAwait(arg0: String): Response? {
   return awaitResult {
     this.hlen(arg0, it)
@@ -847,7 +893,7 @@ suspend fun RedisAPI.hlenAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hmget returning a future that can yield a result ", replaceWith = ReplaceWith("hmget(args).await()"))
+@Deprecated(message = "Instead use hmget returning a future and chain with await()", replaceWith = ReplaceWith("hmget(args).await()"))
 suspend fun RedisAPI.hmgetAwait(args: List<String>): Response? {
   return awaitResult {
     this.hmget(args, it)
@@ -862,7 +908,7 @@ suspend fun RedisAPI.hmgetAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hmset returning a future that can yield a result ", replaceWith = ReplaceWith("hmset(args).await()"))
+@Deprecated(message = "Instead use hmset returning a future and chain with await()", replaceWith = ReplaceWith("hmset(args).await()"))
 suspend fun RedisAPI.hmsetAwait(args: List<String>): Response? {
   return awaitResult {
     this.hmset(args, it)
@@ -877,7 +923,7 @@ suspend fun RedisAPI.hmsetAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use host returning a future that can yield a result ", replaceWith = ReplaceWith("host(args).await()"))
+@Deprecated(message = "Instead use host returning a future and chain with await()", replaceWith = ReplaceWith("host(args).await()"))
 suspend fun RedisAPI.hostAwait(args: List<String>): Response? {
   return awaitResult {
     this.host(args, it)
@@ -892,7 +938,7 @@ suspend fun RedisAPI.hostAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hscan returning a future that can yield a result ", replaceWith = ReplaceWith("hscan(args).await()"))
+@Deprecated(message = "Instead use hscan returning a future and chain with await()", replaceWith = ReplaceWith("hscan(args).await()"))
 suspend fun RedisAPI.hscanAwait(args: List<String>): Response? {
   return awaitResult {
     this.hscan(args, it)
@@ -907,7 +953,7 @@ suspend fun RedisAPI.hscanAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hset returning a future that can yield a result ", replaceWith = ReplaceWith("hset(args).await()"))
+@Deprecated(message = "Instead use hset returning a future and chain with await()", replaceWith = ReplaceWith("hset(args).await()"))
 suspend fun RedisAPI.hsetAwait(args: List<String>): Response? {
   return awaitResult {
     this.hset(args, it)
@@ -924,7 +970,7 @@ suspend fun RedisAPI.hsetAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hsetnx returning a future that can yield a result ", replaceWith = ReplaceWith("hsetnx(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use hsetnx returning a future and chain with await()", replaceWith = ReplaceWith("hsetnx(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.hsetnxAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.hsetnx(arg0, arg1, arg2, it)
@@ -940,7 +986,7 @@ suspend fun RedisAPI.hsetnxAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hstrlen returning a future that can yield a result ", replaceWith = ReplaceWith("hstrlen(arg0, arg1).await()"))
+@Deprecated(message = "Instead use hstrlen returning a future and chain with await()", replaceWith = ReplaceWith("hstrlen(arg0, arg1).await()"))
 suspend fun RedisAPI.hstrlenAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.hstrlen(arg0, arg1, it)
@@ -955,7 +1001,7 @@ suspend fun RedisAPI.hstrlenAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use hvals returning a future that can yield a result ", replaceWith = ReplaceWith("hvals(arg0).await()"))
+@Deprecated(message = "Instead use hvals returning a future and chain with await()", replaceWith = ReplaceWith("hvals(arg0).await()"))
 suspend fun RedisAPI.hvalsAwait(arg0: String): Response? {
   return awaitResult {
     this.hvals(arg0, it)
@@ -970,7 +1016,7 @@ suspend fun RedisAPI.hvalsAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use incr returning a future that can yield a result ", replaceWith = ReplaceWith("incr(arg0).await()"))
+@Deprecated(message = "Instead use incr returning a future and chain with await()", replaceWith = ReplaceWith("incr(arg0).await()"))
 suspend fun RedisAPI.incrAwait(arg0: String): Response? {
   return awaitResult {
     this.incr(arg0, it)
@@ -986,7 +1032,7 @@ suspend fun RedisAPI.incrAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use incrby returning a future that can yield a result ", replaceWith = ReplaceWith("incrby(arg0, arg1).await()"))
+@Deprecated(message = "Instead use incrby returning a future and chain with await()", replaceWith = ReplaceWith("incrby(arg0, arg1).await()"))
 suspend fun RedisAPI.incrbyAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.incrby(arg0, arg1, it)
@@ -1002,7 +1048,7 @@ suspend fun RedisAPI.incrbyAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use incrbyfloat returning a future that can yield a result ", replaceWith = ReplaceWith("incrbyfloat(arg0, arg1).await()"))
+@Deprecated(message = "Instead use incrbyfloat returning a future and chain with await()", replaceWith = ReplaceWith("incrbyfloat(arg0, arg1).await()"))
 suspend fun RedisAPI.incrbyfloatAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.incrbyfloat(arg0, arg1, it)
@@ -1017,7 +1063,7 @@ suspend fun RedisAPI.incrbyfloatAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use info returning a future that can yield a result ", replaceWith = ReplaceWith("info(args).await()"))
+@Deprecated(message = "Instead use info returning a future and chain with await()", replaceWith = ReplaceWith("info(args).await()"))
 suspend fun RedisAPI.infoAwait(args: List<String>): Response? {
   return awaitResult {
     this.info(args, it)
@@ -1032,7 +1078,7 @@ suspend fun RedisAPI.infoAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use keys returning a future that can yield a result ", replaceWith = ReplaceWith("keys(arg0).await()"))
+@Deprecated(message = "Instead use keys returning a future and chain with await()", replaceWith = ReplaceWith("keys(arg0).await()"))
 suspend fun RedisAPI.keysAwait(arg0: String): Response? {
   return awaitResult {
     this.keys(arg0, it)
@@ -1046,7 +1092,7 @@ suspend fun RedisAPI.keysAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lastsave returning a future that can yield a result ", replaceWith = ReplaceWith("lastsave().await()"))
+@Deprecated(message = "Instead use lastsave returning a future and chain with await()", replaceWith = ReplaceWith("lastsave().await()"))
 suspend fun RedisAPI.lastsaveAwait(): Response? {
   return awaitResult {
     this.lastsave(it)
@@ -1061,7 +1107,7 @@ suspend fun RedisAPI.lastsaveAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use latency returning a future that can yield a result ", replaceWith = ReplaceWith("latency(args).await()"))
+@Deprecated(message = "Instead use latency returning a future and chain with await()", replaceWith = ReplaceWith("latency(args).await()"))
 suspend fun RedisAPI.latencyAwait(args: List<String>): Response? {
   return awaitResult {
     this.latency(args, it)
@@ -1077,7 +1123,7 @@ suspend fun RedisAPI.latencyAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lindex returning a future that can yield a result ", replaceWith = ReplaceWith("lindex(arg0, arg1).await()"))
+@Deprecated(message = "Instead use lindex returning a future and chain with await()", replaceWith = ReplaceWith("lindex(arg0, arg1).await()"))
 suspend fun RedisAPI.lindexAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.lindex(arg0, arg1, it)
@@ -1095,7 +1141,7 @@ suspend fun RedisAPI.lindexAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use linsert returning a future that can yield a result ", replaceWith = ReplaceWith("linsert(arg0, arg1, arg2, arg3).await()"))
+@Deprecated(message = "Instead use linsert returning a future and chain with await()", replaceWith = ReplaceWith("linsert(arg0, arg1, arg2, arg3).await()"))
 suspend fun RedisAPI.linsertAwait(arg0: String, arg1: String, arg2: String, arg3: String): Response? {
   return awaitResult {
     this.linsert(arg0, arg1, arg2, arg3, it)
@@ -1110,7 +1156,7 @@ suspend fun RedisAPI.linsertAwait(arg0: String, arg1: String, arg2: String, arg3
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use llen returning a future that can yield a result ", replaceWith = ReplaceWith("llen(arg0).await()"))
+@Deprecated(message = "Instead use llen returning a future and chain with await()", replaceWith = ReplaceWith("llen(arg0).await()"))
 suspend fun RedisAPI.llenAwait(arg0: String): Response? {
   return awaitResult {
     this.llen(arg0, it)
@@ -1125,7 +1171,7 @@ suspend fun RedisAPI.llenAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lolwut returning a future that can yield a result ", replaceWith = ReplaceWith("lolwut(args).await()"))
+@Deprecated(message = "Instead use lolwut returning a future and chain with await()", replaceWith = ReplaceWith("lolwut(args).await()"))
 suspend fun RedisAPI.lolwutAwait(args: List<String>): Response? {
   return awaitResult {
     this.lolwut(args, it)
@@ -1140,7 +1186,7 @@ suspend fun RedisAPI.lolwutAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lpop returning a future that can yield a result ", replaceWith = ReplaceWith("lpop(arg0).await()"))
+@Deprecated(message = "Instead use lpop returning a future and chain with await()", replaceWith = ReplaceWith("lpop(arg0).await()"))
 suspend fun RedisAPI.lpopAwait(arg0: String): Response? {
   return awaitResult {
     this.lpop(arg0, it)
@@ -1155,7 +1201,7 @@ suspend fun RedisAPI.lpopAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lpush returning a future that can yield a result ", replaceWith = ReplaceWith("lpush(args).await()"))
+@Deprecated(message = "Instead use lpush returning a future and chain with await()", replaceWith = ReplaceWith("lpush(args).await()"))
 suspend fun RedisAPI.lpushAwait(args: List<String>): Response? {
   return awaitResult {
     this.lpush(args, it)
@@ -1170,7 +1216,7 @@ suspend fun RedisAPI.lpushAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lpushx returning a future that can yield a result ", replaceWith = ReplaceWith("lpushx(args).await()"))
+@Deprecated(message = "Instead use lpushx returning a future and chain with await()", replaceWith = ReplaceWith("lpushx(args).await()"))
 suspend fun RedisAPI.lpushxAwait(args: List<String>): Response? {
   return awaitResult {
     this.lpushx(args, it)
@@ -1187,7 +1233,7 @@ suspend fun RedisAPI.lpushxAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lrange returning a future that can yield a result ", replaceWith = ReplaceWith("lrange(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use lrange returning a future and chain with await()", replaceWith = ReplaceWith("lrange(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.lrangeAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.lrange(arg0, arg1, arg2, it)
@@ -1204,7 +1250,7 @@ suspend fun RedisAPI.lrangeAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lrem returning a future that can yield a result ", replaceWith = ReplaceWith("lrem(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use lrem returning a future and chain with await()", replaceWith = ReplaceWith("lrem(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.lremAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.lrem(arg0, arg1, arg2, it)
@@ -1221,7 +1267,7 @@ suspend fun RedisAPI.lremAwait(arg0: String, arg1: String, arg2: String): Respon
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lset returning a future that can yield a result ", replaceWith = ReplaceWith("lset(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use lset returning a future and chain with await()", replaceWith = ReplaceWith("lset(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.lsetAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.lset(arg0, arg1, arg2, it)
@@ -1238,7 +1284,7 @@ suspend fun RedisAPI.lsetAwait(arg0: String, arg1: String, arg2: String): Respon
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ltrim returning a future that can yield a result ", replaceWith = ReplaceWith("ltrim(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use ltrim returning a future and chain with await()", replaceWith = ReplaceWith("ltrim(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.ltrimAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.ltrim(arg0, arg1, arg2, it)
@@ -1253,7 +1299,7 @@ suspend fun RedisAPI.ltrimAwait(arg0: String, arg1: String, arg2: String): Respo
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use memory returning a future that can yield a result ", replaceWith = ReplaceWith("memory(args).await()"))
+@Deprecated(message = "Instead use memory returning a future and chain with await()", replaceWith = ReplaceWith("memory(args).await()"))
 suspend fun RedisAPI.memoryAwait(args: List<String>): Response? {
   return awaitResult {
     this.memory(args, it)
@@ -1268,7 +1314,7 @@ suspend fun RedisAPI.memoryAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mget returning a future that can yield a result ", replaceWith = ReplaceWith("mget(args).await()"))
+@Deprecated(message = "Instead use mget returning a future and chain with await()", replaceWith = ReplaceWith("mget(args).await()"))
 suspend fun RedisAPI.mgetAwait(args: List<String>): Response? {
   return awaitResult {
     this.mget(args, it)
@@ -1283,7 +1329,7 @@ suspend fun RedisAPI.mgetAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use migrate returning a future that can yield a result ", replaceWith = ReplaceWith("migrate(args).await()"))
+@Deprecated(message = "Instead use migrate returning a future and chain with await()", replaceWith = ReplaceWith("migrate(args).await()"))
 suspend fun RedisAPI.migrateAwait(args: List<String>): Response? {
   return awaitResult {
     this.migrate(args, it)
@@ -1298,7 +1344,7 @@ suspend fun RedisAPI.migrateAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use module returning a future that can yield a result ", replaceWith = ReplaceWith("module(args).await()"))
+@Deprecated(message = "Instead use module returning a future and chain with await()", replaceWith = ReplaceWith("module(args).await()"))
 suspend fun RedisAPI.moduleAwait(args: List<String>): Response? {
   return awaitResult {
     this.module(args, it)
@@ -1312,7 +1358,7 @@ suspend fun RedisAPI.moduleAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use monitor returning a future that can yield a result ", replaceWith = ReplaceWith("monitor().await()"))
+@Deprecated(message = "Instead use monitor returning a future and chain with await()", replaceWith = ReplaceWith("monitor().await()"))
 suspend fun RedisAPI.monitorAwait(): Response? {
   return awaitResult {
     this.monitor(it)
@@ -1328,7 +1374,7 @@ suspend fun RedisAPI.monitorAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use move returning a future that can yield a result ", replaceWith = ReplaceWith("move(arg0, arg1).await()"))
+@Deprecated(message = "Instead use move returning a future and chain with await()", replaceWith = ReplaceWith("move(arg0, arg1).await()"))
 suspend fun RedisAPI.moveAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.move(arg0, arg1, it)
@@ -1343,7 +1389,7 @@ suspend fun RedisAPI.moveAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mset returning a future that can yield a result ", replaceWith = ReplaceWith("mset(args).await()"))
+@Deprecated(message = "Instead use mset returning a future and chain with await()", replaceWith = ReplaceWith("mset(args).await()"))
 suspend fun RedisAPI.msetAwait(args: List<String>): Response? {
   return awaitResult {
     this.mset(args, it)
@@ -1358,7 +1404,7 @@ suspend fun RedisAPI.msetAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use msetnx returning a future that can yield a result ", replaceWith = ReplaceWith("msetnx(args).await()"))
+@Deprecated(message = "Instead use msetnx returning a future and chain with await()", replaceWith = ReplaceWith("msetnx(args).await()"))
 suspend fun RedisAPI.msetnxAwait(args: List<String>): Response? {
   return awaitResult {
     this.msetnx(args, it)
@@ -1372,7 +1418,7 @@ suspend fun RedisAPI.msetnxAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use multi returning a future that can yield a result ", replaceWith = ReplaceWith("multi().await()"))
+@Deprecated(message = "Instead use multi returning a future and chain with await()", replaceWith = ReplaceWith("multi().await()"))
 suspend fun RedisAPI.multiAwait(): Response? {
   return awaitResult {
     this.multi(it)
@@ -1387,7 +1433,7 @@ suspend fun RedisAPI.multiAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use object returning a future that can yield a result ", replaceWith = ReplaceWith("object(args).await()"))
+@Deprecated(message = "Instead use object returning a future and chain with await()", replaceWith = ReplaceWith("object(args).await()"))
 suspend fun RedisAPI.objectAwait(args: List<String>): Response? {
   return awaitResult {
     this.`object`(args, it)
@@ -1402,7 +1448,7 @@ suspend fun RedisAPI.objectAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use persist returning a future that can yield a result ", replaceWith = ReplaceWith("persist(arg0).await()"))
+@Deprecated(message = "Instead use persist returning a future and chain with await()", replaceWith = ReplaceWith("persist(arg0).await()"))
 suspend fun RedisAPI.persistAwait(arg0: String): Response? {
   return awaitResult {
     this.persist(arg0, it)
@@ -1418,7 +1464,7 @@ suspend fun RedisAPI.persistAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pexpire returning a future that can yield a result ", replaceWith = ReplaceWith("pexpire(arg0, arg1).await()"))
+@Deprecated(message = "Instead use pexpire returning a future and chain with await()", replaceWith = ReplaceWith("pexpire(arg0, arg1).await()"))
 suspend fun RedisAPI.pexpireAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.pexpire(arg0, arg1, it)
@@ -1434,7 +1480,7 @@ suspend fun RedisAPI.pexpireAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pexpireat returning a future that can yield a result ", replaceWith = ReplaceWith("pexpireat(arg0, arg1).await()"))
+@Deprecated(message = "Instead use pexpireat returning a future and chain with await()", replaceWith = ReplaceWith("pexpireat(arg0, arg1).await()"))
 suspend fun RedisAPI.pexpireatAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.pexpireat(arg0, arg1, it)
@@ -1449,7 +1495,7 @@ suspend fun RedisAPI.pexpireatAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfadd returning a future that can yield a result ", replaceWith = ReplaceWith("pfadd(args).await()"))
+@Deprecated(message = "Instead use pfadd returning a future and chain with await()", replaceWith = ReplaceWith("pfadd(args).await()"))
 suspend fun RedisAPI.pfaddAwait(args: List<String>): Response? {
   return awaitResult {
     this.pfadd(args, it)
@@ -1464,7 +1510,7 @@ suspend fun RedisAPI.pfaddAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfcount returning a future that can yield a result ", replaceWith = ReplaceWith("pfcount(args).await()"))
+@Deprecated(message = "Instead use pfcount returning a future and chain with await()", replaceWith = ReplaceWith("pfcount(args).await()"))
 suspend fun RedisAPI.pfcountAwait(args: List<String>): Response? {
   return awaitResult {
     this.pfcount(args, it)
@@ -1479,7 +1525,7 @@ suspend fun RedisAPI.pfcountAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfdebug returning a future that can yield a result ", replaceWith = ReplaceWith("pfdebug(args).await()"))
+@Deprecated(message = "Instead use pfdebug returning a future and chain with await()", replaceWith = ReplaceWith("pfdebug(args).await()"))
 suspend fun RedisAPI.pfdebugAwait(args: List<String>): Response? {
   return awaitResult {
     this.pfdebug(args, it)
@@ -1494,7 +1540,7 @@ suspend fun RedisAPI.pfdebugAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfmerge returning a future that can yield a result ", replaceWith = ReplaceWith("pfmerge(args).await()"))
+@Deprecated(message = "Instead use pfmerge returning a future and chain with await()", replaceWith = ReplaceWith("pfmerge(args).await()"))
 suspend fun RedisAPI.pfmergeAwait(args: List<String>): Response? {
   return awaitResult {
     this.pfmerge(args, it)
@@ -1508,7 +1554,7 @@ suspend fun RedisAPI.pfmergeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfselftest returning a future that can yield a result ", replaceWith = ReplaceWith("pfselftest().await()"))
+@Deprecated(message = "Instead use pfselftest returning a future and chain with await()", replaceWith = ReplaceWith("pfselftest().await()"))
 suspend fun RedisAPI.pfselftestAwait(): Response? {
   return awaitResult {
     this.pfselftest(it)
@@ -1523,7 +1569,7 @@ suspend fun RedisAPI.pfselftestAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ping returning a future that can yield a result ", replaceWith = ReplaceWith("ping(args).await()"))
+@Deprecated(message = "Instead use ping returning a future and chain with await()", replaceWith = ReplaceWith("ping(args).await()"))
 suspend fun RedisAPI.pingAwait(args: List<String>): Response? {
   return awaitResult {
     this.ping(args, it)
@@ -1538,7 +1584,7 @@ suspend fun RedisAPI.pingAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use post returning a future that can yield a result ", replaceWith = ReplaceWith("post(args).await()"))
+@Deprecated(message = "Instead use post returning a future and chain with await()", replaceWith = ReplaceWith("post(args).await()"))
 suspend fun RedisAPI.postAwait(args: List<String>): Response? {
   return awaitResult {
     this.post(args, it)
@@ -1555,7 +1601,7 @@ suspend fun RedisAPI.postAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use psetex returning a future that can yield a result ", replaceWith = ReplaceWith("psetex(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use psetex returning a future and chain with await()", replaceWith = ReplaceWith("psetex(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.psetexAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.psetex(arg0, arg1, arg2, it)
@@ -1570,7 +1616,7 @@ suspend fun RedisAPI.psetexAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use psubscribe returning a future that can yield a result ", replaceWith = ReplaceWith("psubscribe(args).await()"))
+@Deprecated(message = "Instead use psubscribe returning a future and chain with await()", replaceWith = ReplaceWith("psubscribe(args).await()"))
 suspend fun RedisAPI.psubscribeAwait(args: List<String>): Response? {
   return awaitResult {
     this.psubscribe(args, it)
@@ -1586,7 +1632,7 @@ suspend fun RedisAPI.psubscribeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use psync returning a future that can yield a result ", replaceWith = ReplaceWith("psync(arg0, arg1).await()"))
+@Deprecated(message = "Instead use psync returning a future and chain with await()", replaceWith = ReplaceWith("psync(arg0, arg1).await()"))
 suspend fun RedisAPI.psyncAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.psync(arg0, arg1, it)
@@ -1601,7 +1647,7 @@ suspend fun RedisAPI.psyncAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pttl returning a future that can yield a result ", replaceWith = ReplaceWith("pttl(arg0).await()"))
+@Deprecated(message = "Instead use pttl returning a future and chain with await()", replaceWith = ReplaceWith("pttl(arg0).await()"))
 suspend fun RedisAPI.pttlAwait(arg0: String): Response? {
   return awaitResult {
     this.pttl(arg0, it)
@@ -1617,7 +1663,7 @@ suspend fun RedisAPI.pttlAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use publish returning a future that can yield a result ", replaceWith = ReplaceWith("publish(arg0, arg1).await()"))
+@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(arg0, arg1).await()"))
 suspend fun RedisAPI.publishAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.publish(arg0, arg1, it)
@@ -1632,7 +1678,7 @@ suspend fun RedisAPI.publishAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pubsub returning a future that can yield a result ", replaceWith = ReplaceWith("pubsub(args).await()"))
+@Deprecated(message = "Instead use pubsub returning a future and chain with await()", replaceWith = ReplaceWith("pubsub(args).await()"))
 suspend fun RedisAPI.pubsubAwait(args: List<String>): Response? {
   return awaitResult {
     this.pubsub(args, it)
@@ -1647,7 +1693,7 @@ suspend fun RedisAPI.pubsubAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use punsubscribe returning a future that can yield a result ", replaceWith = ReplaceWith("punsubscribe(args).await()"))
+@Deprecated(message = "Instead use punsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("punsubscribe(args).await()"))
 suspend fun RedisAPI.punsubscribeAwait(args: List<String>): Response? {
   return awaitResult {
     this.punsubscribe(args, it)
@@ -1661,7 +1707,7 @@ suspend fun RedisAPI.punsubscribeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use randomkey returning a future that can yield a result ", replaceWith = ReplaceWith("randomkey().await()"))
+@Deprecated(message = "Instead use randomkey returning a future and chain with await()", replaceWith = ReplaceWith("randomkey().await()"))
 suspend fun RedisAPI.randomkeyAwait(): Response? {
   return awaitResult {
     this.randomkey(it)
@@ -1675,7 +1721,7 @@ suspend fun RedisAPI.randomkeyAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readonly returning a future that can yield a result ", replaceWith = ReplaceWith("readonly().await()"))
+@Deprecated(message = "Instead use readonly returning a future and chain with await()", replaceWith = ReplaceWith("readonly().await()"))
 suspend fun RedisAPI.readonlyAwait(): Response? {
   return awaitResult {
     this.readonly(it)
@@ -1689,7 +1735,7 @@ suspend fun RedisAPI.readonlyAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readwrite returning a future that can yield a result ", replaceWith = ReplaceWith("readwrite().await()"))
+@Deprecated(message = "Instead use readwrite returning a future and chain with await()", replaceWith = ReplaceWith("readwrite().await()"))
 suspend fun RedisAPI.readwriteAwait(): Response? {
   return awaitResult {
     this.readwrite(it)
@@ -1705,7 +1751,7 @@ suspend fun RedisAPI.readwriteAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rename returning a future that can yield a result ", replaceWith = ReplaceWith("rename(arg0, arg1).await()"))
+@Deprecated(message = "Instead use rename returning a future and chain with await()", replaceWith = ReplaceWith("rename(arg0, arg1).await()"))
 suspend fun RedisAPI.renameAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.rename(arg0, arg1, it)
@@ -1721,7 +1767,7 @@ suspend fun RedisAPI.renameAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use renamenx returning a future that can yield a result ", replaceWith = ReplaceWith("renamenx(arg0, arg1).await()"))
+@Deprecated(message = "Instead use renamenx returning a future and chain with await()", replaceWith = ReplaceWith("renamenx(arg0, arg1).await()"))
 suspend fun RedisAPI.renamenxAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.renamenx(arg0, arg1, it)
@@ -1736,7 +1782,7 @@ suspend fun RedisAPI.renamenxAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replconf returning a future that can yield a result ", replaceWith = ReplaceWith("replconf(args).await()"))
+@Deprecated(message = "Instead use replconf returning a future and chain with await()", replaceWith = ReplaceWith("replconf(args).await()"))
 suspend fun RedisAPI.replconfAwait(args: List<String>): Response? {
   return awaitResult {
     this.replconf(args, it)
@@ -1752,7 +1798,7 @@ suspend fun RedisAPI.replconfAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replicaof returning a future that can yield a result ", replaceWith = ReplaceWith("replicaof(arg0, arg1).await()"))
+@Deprecated(message = "Instead use replicaof returning a future and chain with await()", replaceWith = ReplaceWith("replicaof(arg0, arg1).await()"))
 suspend fun RedisAPI.replicaofAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.replicaof(arg0, arg1, it)
@@ -1767,7 +1813,7 @@ suspend fun RedisAPI.replicaofAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use restore returning a future that can yield a result ", replaceWith = ReplaceWith("restore(args).await()"))
+@Deprecated(message = "Instead use restore returning a future and chain with await()", replaceWith = ReplaceWith("restore(args).await()"))
 suspend fun RedisAPI.restoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.restore(args, it)
@@ -1782,7 +1828,7 @@ suspend fun RedisAPI.restoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use restoreAsking returning a future that can yield a result ", replaceWith = ReplaceWith("restoreAsking(args).await()"))
+@Deprecated(message = "Instead use restoreAsking returning a future and chain with await()", replaceWith = ReplaceWith("restoreAsking(args).await()"))
 suspend fun RedisAPI.restoreAskingAwait(args: List<String>): Response? {
   return awaitResult {
     this.restoreAsking(args, it)
@@ -1796,7 +1842,7 @@ suspend fun RedisAPI.restoreAskingAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use role returning a future that can yield a result ", replaceWith = ReplaceWith("role().await()"))
+@Deprecated(message = "Instead use role returning a future and chain with await()", replaceWith = ReplaceWith("role().await()"))
 suspend fun RedisAPI.roleAwait(): Response? {
   return awaitResult {
     this.role(it)
@@ -1811,7 +1857,7 @@ suspend fun RedisAPI.roleAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rpop returning a future that can yield a result ", replaceWith = ReplaceWith("rpop(arg0).await()"))
+@Deprecated(message = "Instead use rpop returning a future and chain with await()", replaceWith = ReplaceWith("rpop(arg0).await()"))
 suspend fun RedisAPI.rpopAwait(arg0: String): Response? {
   return awaitResult {
     this.rpop(arg0, it)
@@ -1827,7 +1873,7 @@ suspend fun RedisAPI.rpopAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rpoplpush returning a future that can yield a result ", replaceWith = ReplaceWith("rpoplpush(arg0, arg1).await()"))
+@Deprecated(message = "Instead use rpoplpush returning a future and chain with await()", replaceWith = ReplaceWith("rpoplpush(arg0, arg1).await()"))
 suspend fun RedisAPI.rpoplpushAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.rpoplpush(arg0, arg1, it)
@@ -1842,7 +1888,7 @@ suspend fun RedisAPI.rpoplpushAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rpush returning a future that can yield a result ", replaceWith = ReplaceWith("rpush(args).await()"))
+@Deprecated(message = "Instead use rpush returning a future and chain with await()", replaceWith = ReplaceWith("rpush(args).await()"))
 suspend fun RedisAPI.rpushAwait(args: List<String>): Response? {
   return awaitResult {
     this.rpush(args, it)
@@ -1857,7 +1903,7 @@ suspend fun RedisAPI.rpushAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rpushx returning a future that can yield a result ", replaceWith = ReplaceWith("rpushx(args).await()"))
+@Deprecated(message = "Instead use rpushx returning a future and chain with await()", replaceWith = ReplaceWith("rpushx(args).await()"))
 suspend fun RedisAPI.rpushxAwait(args: List<String>): Response? {
   return awaitResult {
     this.rpushx(args, it)
@@ -1872,7 +1918,7 @@ suspend fun RedisAPI.rpushxAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sadd returning a future that can yield a result ", replaceWith = ReplaceWith("sadd(args).await()"))
+@Deprecated(message = "Instead use sadd returning a future and chain with await()", replaceWith = ReplaceWith("sadd(args).await()"))
 suspend fun RedisAPI.saddAwait(args: List<String>): Response? {
   return awaitResult {
     this.sadd(args, it)
@@ -1886,7 +1932,7 @@ suspend fun RedisAPI.saddAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use save returning a future that can yield a result ", replaceWith = ReplaceWith("save().await()"))
+@Deprecated(message = "Instead use save returning a future and chain with await()", replaceWith = ReplaceWith("save().await()"))
 suspend fun RedisAPI.saveAwait(): Response? {
   return awaitResult {
     this.save(it)
@@ -1901,7 +1947,7 @@ suspend fun RedisAPI.saveAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use scan returning a future that can yield a result ", replaceWith = ReplaceWith("scan(args).await()"))
+@Deprecated(message = "Instead use scan returning a future and chain with await()", replaceWith = ReplaceWith("scan(args).await()"))
 suspend fun RedisAPI.scanAwait(args: List<String>): Response? {
   return awaitResult {
     this.scan(args, it)
@@ -1916,7 +1962,7 @@ suspend fun RedisAPI.scanAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use scard returning a future that can yield a result ", replaceWith = ReplaceWith("scard(arg0).await()"))
+@Deprecated(message = "Instead use scard returning a future and chain with await()", replaceWith = ReplaceWith("scard(arg0).await()"))
 suspend fun RedisAPI.scardAwait(arg0: String): Response? {
   return awaitResult {
     this.scard(arg0, it)
@@ -1931,7 +1977,7 @@ suspend fun RedisAPI.scardAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use script returning a future that can yield a result ", replaceWith = ReplaceWith("script(args).await()"))
+@Deprecated(message = "Instead use script returning a future and chain with await()", replaceWith = ReplaceWith("script(args).await()"))
 suspend fun RedisAPI.scriptAwait(args: List<String>): Response? {
   return awaitResult {
     this.script(args, it)
@@ -1946,7 +1992,7 @@ suspend fun RedisAPI.scriptAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sdiff returning a future that can yield a result ", replaceWith = ReplaceWith("sdiff(args).await()"))
+@Deprecated(message = "Instead use sdiff returning a future and chain with await()", replaceWith = ReplaceWith("sdiff(args).await()"))
 suspend fun RedisAPI.sdiffAwait(args: List<String>): Response? {
   return awaitResult {
     this.sdiff(args, it)
@@ -1961,7 +2007,7 @@ suspend fun RedisAPI.sdiffAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sdiffstore returning a future that can yield a result ", replaceWith = ReplaceWith("sdiffstore(args).await()"))
+@Deprecated(message = "Instead use sdiffstore returning a future and chain with await()", replaceWith = ReplaceWith("sdiffstore(args).await()"))
 suspend fun RedisAPI.sdiffstoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.sdiffstore(args, it)
@@ -1976,7 +2022,7 @@ suspend fun RedisAPI.sdiffstoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use select returning a future that can yield a result ", replaceWith = ReplaceWith("select(arg0).await()"))
+@Deprecated(message = "Instead use select returning a future and chain with await()", replaceWith = ReplaceWith("select(arg0).await()"))
 suspend fun RedisAPI.selectAwait(arg0: String): Response? {
   return awaitResult {
     this.select(arg0, it)
@@ -1991,7 +2037,7 @@ suspend fun RedisAPI.selectAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use set returning a future that can yield a result ", replaceWith = ReplaceWith("set(args).await()"))
+@Deprecated(message = "Instead use set returning a future and chain with await()", replaceWith = ReplaceWith("set(args).await()"))
 suspend fun RedisAPI.setAwait(args: List<String>): Response? {
   return awaitResult {
     this.set(args, it)
@@ -2008,7 +2054,7 @@ suspend fun RedisAPI.setAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setbit returning a future that can yield a result ", replaceWith = ReplaceWith("setbit(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use setbit returning a future and chain with await()", replaceWith = ReplaceWith("setbit(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.setbitAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.setbit(arg0, arg1, arg2, it)
@@ -2025,7 +2071,7 @@ suspend fun RedisAPI.setbitAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setex returning a future that can yield a result ", replaceWith = ReplaceWith("setex(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use setex returning a future and chain with await()", replaceWith = ReplaceWith("setex(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.setexAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.setex(arg0, arg1, arg2, it)
@@ -2041,7 +2087,7 @@ suspend fun RedisAPI.setexAwait(arg0: String, arg1: String, arg2: String): Respo
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setnx returning a future that can yield a result ", replaceWith = ReplaceWith("setnx(arg0, arg1).await()"))
+@Deprecated(message = "Instead use setnx returning a future and chain with await()", replaceWith = ReplaceWith("setnx(arg0, arg1).await()"))
 suspend fun RedisAPI.setnxAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.setnx(arg0, arg1, it)
@@ -2058,7 +2104,7 @@ suspend fun RedisAPI.setnxAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setrange returning a future that can yield a result ", replaceWith = ReplaceWith("setrange(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use setrange returning a future and chain with await()", replaceWith = ReplaceWith("setrange(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.setrangeAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.setrange(arg0, arg1, arg2, it)
@@ -2073,7 +2119,7 @@ suspend fun RedisAPI.setrangeAwait(arg0: String, arg1: String, arg2: String): Re
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use shutdown returning a future that can yield a result ", replaceWith = ReplaceWith("shutdown(args).await()"))
+@Deprecated(message = "Instead use shutdown returning a future and chain with await()", replaceWith = ReplaceWith("shutdown(args).await()"))
 suspend fun RedisAPI.shutdownAwait(args: List<String>): Response? {
   return awaitResult {
     this.shutdown(args, it)
@@ -2088,7 +2134,7 @@ suspend fun RedisAPI.shutdownAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sinter returning a future that can yield a result ", replaceWith = ReplaceWith("sinter(args).await()"))
+@Deprecated(message = "Instead use sinter returning a future and chain with await()", replaceWith = ReplaceWith("sinter(args).await()"))
 suspend fun RedisAPI.sinterAwait(args: List<String>): Response? {
   return awaitResult {
     this.sinter(args, it)
@@ -2103,7 +2149,7 @@ suspend fun RedisAPI.sinterAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sinterstore returning a future that can yield a result ", replaceWith = ReplaceWith("sinterstore(args).await()"))
+@Deprecated(message = "Instead use sinterstore returning a future and chain with await()", replaceWith = ReplaceWith("sinterstore(args).await()"))
 suspend fun RedisAPI.sinterstoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.sinterstore(args, it)
@@ -2119,7 +2165,7 @@ suspend fun RedisAPI.sinterstoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sismember returning a future that can yield a result ", replaceWith = ReplaceWith("sismember(arg0, arg1).await()"))
+@Deprecated(message = "Instead use sismember returning a future and chain with await()", replaceWith = ReplaceWith("sismember(arg0, arg1).await()"))
 suspend fun RedisAPI.sismemberAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.sismember(arg0, arg1, it)
@@ -2135,7 +2181,7 @@ suspend fun RedisAPI.sismemberAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use slaveof returning a future that can yield a result ", replaceWith = ReplaceWith("slaveof(arg0, arg1).await()"))
+@Deprecated(message = "Instead use slaveof returning a future and chain with await()", replaceWith = ReplaceWith("slaveof(arg0, arg1).await()"))
 suspend fun RedisAPI.slaveofAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.slaveof(arg0, arg1, it)
@@ -2150,7 +2196,7 @@ suspend fun RedisAPI.slaveofAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use slowlog returning a future that can yield a result ", replaceWith = ReplaceWith("slowlog(args).await()"))
+@Deprecated(message = "Instead use slowlog returning a future and chain with await()", replaceWith = ReplaceWith("slowlog(args).await()"))
 suspend fun RedisAPI.slowlogAwait(args: List<String>): Response? {
   return awaitResult {
     this.slowlog(args, it)
@@ -2165,7 +2211,7 @@ suspend fun RedisAPI.slowlogAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use smembers returning a future that can yield a result ", replaceWith = ReplaceWith("smembers(arg0).await()"))
+@Deprecated(message = "Instead use smembers returning a future and chain with await()", replaceWith = ReplaceWith("smembers(arg0).await()"))
 suspend fun RedisAPI.smembersAwait(arg0: String): Response? {
   return awaitResult {
     this.smembers(arg0, it)
@@ -2182,7 +2228,7 @@ suspend fun RedisAPI.smembersAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use smove returning a future that can yield a result ", replaceWith = ReplaceWith("smove(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use smove returning a future and chain with await()", replaceWith = ReplaceWith("smove(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.smoveAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.smove(arg0, arg1, arg2, it)
@@ -2197,7 +2243,7 @@ suspend fun RedisAPI.smoveAwait(arg0: String, arg1: String, arg2: String): Respo
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sort returning a future that can yield a result ", replaceWith = ReplaceWith("sort(args).await()"))
+@Deprecated(message = "Instead use sort returning a future and chain with await()", replaceWith = ReplaceWith("sort(args).await()"))
 suspend fun RedisAPI.sortAwait(args: List<String>): Response? {
   return awaitResult {
     this.sort(args, it)
@@ -2212,7 +2258,7 @@ suspend fun RedisAPI.sortAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use spop returning a future that can yield a result ", replaceWith = ReplaceWith("spop(args).await()"))
+@Deprecated(message = "Instead use spop returning a future and chain with await()", replaceWith = ReplaceWith("spop(args).await()"))
 suspend fun RedisAPI.spopAwait(args: List<String>): Response? {
   return awaitResult {
     this.spop(args, it)
@@ -2227,7 +2273,7 @@ suspend fun RedisAPI.spopAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use srandmember returning a future that can yield a result ", replaceWith = ReplaceWith("srandmember(args).await()"))
+@Deprecated(message = "Instead use srandmember returning a future and chain with await()", replaceWith = ReplaceWith("srandmember(args).await()"))
 suspend fun RedisAPI.srandmemberAwait(args: List<String>): Response? {
   return awaitResult {
     this.srandmember(args, it)
@@ -2242,7 +2288,7 @@ suspend fun RedisAPI.srandmemberAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use srem returning a future that can yield a result ", replaceWith = ReplaceWith("srem(args).await()"))
+@Deprecated(message = "Instead use srem returning a future and chain with await()", replaceWith = ReplaceWith("srem(args).await()"))
 suspend fun RedisAPI.sremAwait(args: List<String>): Response? {
   return awaitResult {
     this.srem(args, it)
@@ -2257,10 +2303,25 @@ suspend fun RedisAPI.sremAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sscan returning a future that can yield a result ", replaceWith = ReplaceWith("sscan(args).await()"))
+@Deprecated(message = "Instead use sscan returning a future and chain with await()", replaceWith = ReplaceWith("sscan(args).await()"))
 suspend fun RedisAPI.sscanAwait(args: List<String>): Response? {
   return awaitResult {
     this.sscan(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.stralgo]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use stralgo returning a future and chain with await()", replaceWith = ReplaceWith("stralgo(args).await()"))
+suspend fun RedisAPI.stralgoAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.stralgo(args, it)
   }
 }
 
@@ -2272,7 +2333,7 @@ suspend fun RedisAPI.sscanAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use strlen returning a future that can yield a result ", replaceWith = ReplaceWith("strlen(arg0).await()"))
+@Deprecated(message = "Instead use strlen returning a future and chain with await()", replaceWith = ReplaceWith("strlen(arg0).await()"))
 suspend fun RedisAPI.strlenAwait(arg0: String): Response? {
   return awaitResult {
     this.strlen(arg0, it)
@@ -2287,7 +2348,7 @@ suspend fun RedisAPI.strlenAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscribe returning a future that can yield a result ", replaceWith = ReplaceWith("subscribe(args).await()"))
+@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(args).await()"))
 suspend fun RedisAPI.subscribeAwait(args: List<String>): Response? {
   return awaitResult {
     this.subscribe(args, it)
@@ -2304,7 +2365,7 @@ suspend fun RedisAPI.subscribeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use substr returning a future that can yield a result ", replaceWith = ReplaceWith("substr(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use substr returning a future and chain with await()", replaceWith = ReplaceWith("substr(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.substrAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.substr(arg0, arg1, arg2, it)
@@ -2319,7 +2380,7 @@ suspend fun RedisAPI.substrAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sunion returning a future that can yield a result ", replaceWith = ReplaceWith("sunion(args).await()"))
+@Deprecated(message = "Instead use sunion returning a future and chain with await()", replaceWith = ReplaceWith("sunion(args).await()"))
 suspend fun RedisAPI.sunionAwait(args: List<String>): Response? {
   return awaitResult {
     this.sunion(args, it)
@@ -2334,7 +2395,7 @@ suspend fun RedisAPI.sunionAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sunionstore returning a future that can yield a result ", replaceWith = ReplaceWith("sunionstore(args).await()"))
+@Deprecated(message = "Instead use sunionstore returning a future and chain with await()", replaceWith = ReplaceWith("sunionstore(args).await()"))
 suspend fun RedisAPI.sunionstoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.sunionstore(args, it)
@@ -2350,7 +2411,7 @@ suspend fun RedisAPI.sunionstoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use swapdb returning a future that can yield a result ", replaceWith = ReplaceWith("swapdb(arg0, arg1).await()"))
+@Deprecated(message = "Instead use swapdb returning a future and chain with await()", replaceWith = ReplaceWith("swapdb(arg0, arg1).await()"))
 suspend fun RedisAPI.swapdbAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.swapdb(arg0, arg1, it)
@@ -2364,7 +2425,7 @@ suspend fun RedisAPI.swapdbAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sync returning a future that can yield a result ", replaceWith = ReplaceWith("sync().await()"))
+@Deprecated(message = "Instead use sync returning a future and chain with await()", replaceWith = ReplaceWith("sync().await()"))
 suspend fun RedisAPI.syncAwait(): Response? {
   return awaitResult {
     this.sync(it)
@@ -2378,7 +2439,7 @@ suspend fun RedisAPI.syncAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use time returning a future that can yield a result ", replaceWith = ReplaceWith("time().await()"))
+@Deprecated(message = "Instead use time returning a future and chain with await()", replaceWith = ReplaceWith("time().await()"))
 suspend fun RedisAPI.timeAwait(): Response? {
   return awaitResult {
     this.time(it)
@@ -2393,7 +2454,7 @@ suspend fun RedisAPI.timeAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use touch returning a future that can yield a result ", replaceWith = ReplaceWith("touch(args).await()"))
+@Deprecated(message = "Instead use touch returning a future and chain with await()", replaceWith = ReplaceWith("touch(args).await()"))
 suspend fun RedisAPI.touchAwait(args: List<String>): Response? {
   return awaitResult {
     this.touch(args, it)
@@ -2408,7 +2469,7 @@ suspend fun RedisAPI.touchAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ttl returning a future that can yield a result ", replaceWith = ReplaceWith("ttl(arg0).await()"))
+@Deprecated(message = "Instead use ttl returning a future and chain with await()", replaceWith = ReplaceWith("ttl(arg0).await()"))
 suspend fun RedisAPI.ttlAwait(arg0: String): Response? {
   return awaitResult {
     this.ttl(arg0, it)
@@ -2423,7 +2484,7 @@ suspend fun RedisAPI.ttlAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use type returning a future that can yield a result ", replaceWith = ReplaceWith("type(arg0).await()"))
+@Deprecated(message = "Instead use type returning a future and chain with await()", replaceWith = ReplaceWith("type(arg0).await()"))
 suspend fun RedisAPI.typeAwait(arg0: String): Response? {
   return awaitResult {
     this.type(arg0, it)
@@ -2438,7 +2499,7 @@ suspend fun RedisAPI.typeAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unlink returning a future that can yield a result ", replaceWith = ReplaceWith("unlink(args).await()"))
+@Deprecated(message = "Instead use unlink returning a future and chain with await()", replaceWith = ReplaceWith("unlink(args).await()"))
 suspend fun RedisAPI.unlinkAwait(args: List<String>): Response? {
   return awaitResult {
     this.unlink(args, it)
@@ -2453,7 +2514,7 @@ suspend fun RedisAPI.unlinkAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unsubscribe returning a future that can yield a result ", replaceWith = ReplaceWith("unsubscribe(args).await()"))
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe(args).await()"))
 suspend fun RedisAPI.unsubscribeAwait(args: List<String>): Response? {
   return awaitResult {
     this.unsubscribe(args, it)
@@ -2467,7 +2528,7 @@ suspend fun RedisAPI.unsubscribeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unwatch returning a future that can yield a result ", replaceWith = ReplaceWith("unwatch().await()"))
+@Deprecated(message = "Instead use unwatch returning a future and chain with await()", replaceWith = ReplaceWith("unwatch().await()"))
 suspend fun RedisAPI.unwatchAwait(): Response? {
   return awaitResult {
     this.unwatch(it)
@@ -2483,7 +2544,7 @@ suspend fun RedisAPI.unwatchAwait(): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use wait returning a future that can yield a result ", replaceWith = ReplaceWith("wait(arg0, arg1).await()"))
+@Deprecated(message = "Instead use wait returning a future and chain with await()", replaceWith = ReplaceWith("wait(arg0, arg1).await()"))
 suspend fun RedisAPI.waitAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.wait(arg0, arg1, it)
@@ -2498,7 +2559,7 @@ suspend fun RedisAPI.waitAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use watch returning a future that can yield a result ", replaceWith = ReplaceWith("watch(args).await()"))
+@Deprecated(message = "Instead use watch returning a future and chain with await()", replaceWith = ReplaceWith("watch(args).await()"))
 suspend fun RedisAPI.watchAwait(args: List<String>): Response? {
   return awaitResult {
     this.watch(args, it)
@@ -2513,7 +2574,7 @@ suspend fun RedisAPI.watchAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xack returning a future that can yield a result ", replaceWith = ReplaceWith("xack(args).await()"))
+@Deprecated(message = "Instead use xack returning a future and chain with await()", replaceWith = ReplaceWith("xack(args).await()"))
 suspend fun RedisAPI.xackAwait(args: List<String>): Response? {
   return awaitResult {
     this.xack(args, it)
@@ -2528,7 +2589,7 @@ suspend fun RedisAPI.xackAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xadd returning a future that can yield a result ", replaceWith = ReplaceWith("xadd(args).await()"))
+@Deprecated(message = "Instead use xadd returning a future and chain with await()", replaceWith = ReplaceWith("xadd(args).await()"))
 suspend fun RedisAPI.xaddAwait(args: List<String>): Response? {
   return awaitResult {
     this.xadd(args, it)
@@ -2543,7 +2604,7 @@ suspend fun RedisAPI.xaddAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xclaim returning a future that can yield a result ", replaceWith = ReplaceWith("xclaim(args).await()"))
+@Deprecated(message = "Instead use xclaim returning a future and chain with await()", replaceWith = ReplaceWith("xclaim(args).await()"))
 suspend fun RedisAPI.xclaimAwait(args: List<String>): Response? {
   return awaitResult {
     this.xclaim(args, it)
@@ -2558,7 +2619,7 @@ suspend fun RedisAPI.xclaimAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xdel returning a future that can yield a result ", replaceWith = ReplaceWith("xdel(args).await()"))
+@Deprecated(message = "Instead use xdel returning a future and chain with await()", replaceWith = ReplaceWith("xdel(args).await()"))
 suspend fun RedisAPI.xdelAwait(args: List<String>): Response? {
   return awaitResult {
     this.xdel(args, it)
@@ -2573,7 +2634,7 @@ suspend fun RedisAPI.xdelAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xgroup returning a future that can yield a result ", replaceWith = ReplaceWith("xgroup(args).await()"))
+@Deprecated(message = "Instead use xgroup returning a future and chain with await()", replaceWith = ReplaceWith("xgroup(args).await()"))
 suspend fun RedisAPI.xgroupAwait(args: List<String>): Response? {
   return awaitResult {
     this.xgroup(args, it)
@@ -2588,7 +2649,7 @@ suspend fun RedisAPI.xgroupAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xinfo returning a future that can yield a result ", replaceWith = ReplaceWith("xinfo(args).await()"))
+@Deprecated(message = "Instead use xinfo returning a future and chain with await()", replaceWith = ReplaceWith("xinfo(args).await()"))
 suspend fun RedisAPI.xinfoAwait(args: List<String>): Response? {
   return awaitResult {
     this.xinfo(args, it)
@@ -2603,7 +2664,7 @@ suspend fun RedisAPI.xinfoAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xlen returning a future that can yield a result ", replaceWith = ReplaceWith("xlen(arg0).await()"))
+@Deprecated(message = "Instead use xlen returning a future and chain with await()", replaceWith = ReplaceWith("xlen(arg0).await()"))
 suspend fun RedisAPI.xlenAwait(arg0: String): Response? {
   return awaitResult {
     this.xlen(arg0, it)
@@ -2618,7 +2679,7 @@ suspend fun RedisAPI.xlenAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xpending returning a future that can yield a result ", replaceWith = ReplaceWith("xpending(args).await()"))
+@Deprecated(message = "Instead use xpending returning a future and chain with await()", replaceWith = ReplaceWith("xpending(args).await()"))
 suspend fun RedisAPI.xpendingAwait(args: List<String>): Response? {
   return awaitResult {
     this.xpending(args, it)
@@ -2633,7 +2694,7 @@ suspend fun RedisAPI.xpendingAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xrange returning a future that can yield a result ", replaceWith = ReplaceWith("xrange(args).await()"))
+@Deprecated(message = "Instead use xrange returning a future and chain with await()", replaceWith = ReplaceWith("xrange(args).await()"))
 suspend fun RedisAPI.xrangeAwait(args: List<String>): Response? {
   return awaitResult {
     this.xrange(args, it)
@@ -2648,7 +2709,7 @@ suspend fun RedisAPI.xrangeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xread returning a future that can yield a result ", replaceWith = ReplaceWith("xread(args).await()"))
+@Deprecated(message = "Instead use xread returning a future and chain with await()", replaceWith = ReplaceWith("xread(args).await()"))
 suspend fun RedisAPI.xreadAwait(args: List<String>): Response? {
   return awaitResult {
     this.xread(args, it)
@@ -2663,7 +2724,7 @@ suspend fun RedisAPI.xreadAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xreadgroup returning a future that can yield a result ", replaceWith = ReplaceWith("xreadgroup(args).await()"))
+@Deprecated(message = "Instead use xreadgroup returning a future and chain with await()", replaceWith = ReplaceWith("xreadgroup(args).await()"))
 suspend fun RedisAPI.xreadgroupAwait(args: List<String>): Response? {
   return awaitResult {
     this.xreadgroup(args, it)
@@ -2678,7 +2739,7 @@ suspend fun RedisAPI.xreadgroupAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xrevrange returning a future that can yield a result ", replaceWith = ReplaceWith("xrevrange(args).await()"))
+@Deprecated(message = "Instead use xrevrange returning a future and chain with await()", replaceWith = ReplaceWith("xrevrange(args).await()"))
 suspend fun RedisAPI.xrevrangeAwait(args: List<String>): Response? {
   return awaitResult {
     this.xrevrange(args, it)
@@ -2694,7 +2755,7 @@ suspend fun RedisAPI.xrevrangeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xsetid returning a future that can yield a result ", replaceWith = ReplaceWith("xsetid(arg0, arg1).await()"))
+@Deprecated(message = "Instead use xsetid returning a future and chain with await()", replaceWith = ReplaceWith("xsetid(arg0, arg1).await()"))
 suspend fun RedisAPI.xsetidAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.xsetid(arg0, arg1, it)
@@ -2709,7 +2770,7 @@ suspend fun RedisAPI.xsetidAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use xtrim returning a future that can yield a result ", replaceWith = ReplaceWith("xtrim(args).await()"))
+@Deprecated(message = "Instead use xtrim returning a future and chain with await()", replaceWith = ReplaceWith("xtrim(args).await()"))
 suspend fun RedisAPI.xtrimAwait(args: List<String>): Response? {
   return awaitResult {
     this.xtrim(args, it)
@@ -2724,7 +2785,7 @@ suspend fun RedisAPI.xtrimAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zadd returning a future that can yield a result ", replaceWith = ReplaceWith("zadd(args).await()"))
+@Deprecated(message = "Instead use zadd returning a future and chain with await()", replaceWith = ReplaceWith("zadd(args).await()"))
 suspend fun RedisAPI.zaddAwait(args: List<String>): Response? {
   return awaitResult {
     this.zadd(args, it)
@@ -2739,7 +2800,7 @@ suspend fun RedisAPI.zaddAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zcard returning a future that can yield a result ", replaceWith = ReplaceWith("zcard(arg0).await()"))
+@Deprecated(message = "Instead use zcard returning a future and chain with await()", replaceWith = ReplaceWith("zcard(arg0).await()"))
 suspend fun RedisAPI.zcardAwait(arg0: String): Response? {
   return awaitResult {
     this.zcard(arg0, it)
@@ -2756,7 +2817,7 @@ suspend fun RedisAPI.zcardAwait(arg0: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zcount returning a future that can yield a result ", replaceWith = ReplaceWith("zcount(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zcount returning a future and chain with await()", replaceWith = ReplaceWith("zcount(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zcountAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zcount(arg0, arg1, arg2, it)
@@ -2773,7 +2834,7 @@ suspend fun RedisAPI.zcountAwait(arg0: String, arg1: String, arg2: String): Resp
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zincrby returning a future that can yield a result ", replaceWith = ReplaceWith("zincrby(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zincrby returning a future and chain with await()", replaceWith = ReplaceWith("zincrby(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zincrbyAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zincrby(arg0, arg1, arg2, it)
@@ -2788,7 +2849,7 @@ suspend fun RedisAPI.zincrbyAwait(arg0: String, arg1: String, arg2: String): Res
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zinterstore returning a future that can yield a result ", replaceWith = ReplaceWith("zinterstore(args).await()"))
+@Deprecated(message = "Instead use zinterstore returning a future and chain with await()", replaceWith = ReplaceWith("zinterstore(args).await()"))
 suspend fun RedisAPI.zinterstoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.zinterstore(args, it)
@@ -2805,7 +2866,7 @@ suspend fun RedisAPI.zinterstoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zlexcount returning a future that can yield a result ", replaceWith = ReplaceWith("zlexcount(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zlexcount returning a future and chain with await()", replaceWith = ReplaceWith("zlexcount(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zlexcountAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zlexcount(arg0, arg1, arg2, it)
@@ -2820,7 +2881,7 @@ suspend fun RedisAPI.zlexcountAwait(arg0: String, arg1: String, arg2: String): R
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zpopmax returning a future that can yield a result ", replaceWith = ReplaceWith("zpopmax(args).await()"))
+@Deprecated(message = "Instead use zpopmax returning a future and chain with await()", replaceWith = ReplaceWith("zpopmax(args).await()"))
 suspend fun RedisAPI.zpopmaxAwait(args: List<String>): Response? {
   return awaitResult {
     this.zpopmax(args, it)
@@ -2835,7 +2896,7 @@ suspend fun RedisAPI.zpopmaxAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zpopmin returning a future that can yield a result ", replaceWith = ReplaceWith("zpopmin(args).await()"))
+@Deprecated(message = "Instead use zpopmin returning a future and chain with await()", replaceWith = ReplaceWith("zpopmin(args).await()"))
 suspend fun RedisAPI.zpopminAwait(args: List<String>): Response? {
   return awaitResult {
     this.zpopmin(args, it)
@@ -2850,7 +2911,7 @@ suspend fun RedisAPI.zpopminAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrange returning a future that can yield a result ", replaceWith = ReplaceWith("zrange(args).await()"))
+@Deprecated(message = "Instead use zrange returning a future and chain with await()", replaceWith = ReplaceWith("zrange(args).await()"))
 suspend fun RedisAPI.zrangeAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrange(args, it)
@@ -2865,7 +2926,7 @@ suspend fun RedisAPI.zrangeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrangebylex returning a future that can yield a result ", replaceWith = ReplaceWith("zrangebylex(args).await()"))
+@Deprecated(message = "Instead use zrangebylex returning a future and chain with await()", replaceWith = ReplaceWith("zrangebylex(args).await()"))
 suspend fun RedisAPI.zrangebylexAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrangebylex(args, it)
@@ -2880,7 +2941,7 @@ suspend fun RedisAPI.zrangebylexAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrangebyscore returning a future that can yield a result ", replaceWith = ReplaceWith("zrangebyscore(args).await()"))
+@Deprecated(message = "Instead use zrangebyscore returning a future and chain with await()", replaceWith = ReplaceWith("zrangebyscore(args).await()"))
 suspend fun RedisAPI.zrangebyscoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrangebyscore(args, it)
@@ -2896,7 +2957,7 @@ suspend fun RedisAPI.zrangebyscoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrank returning a future that can yield a result ", replaceWith = ReplaceWith("zrank(arg0, arg1).await()"))
+@Deprecated(message = "Instead use zrank returning a future and chain with await()", replaceWith = ReplaceWith("zrank(arg0, arg1).await()"))
 suspend fun RedisAPI.zrankAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.zrank(arg0, arg1, it)
@@ -2911,7 +2972,7 @@ suspend fun RedisAPI.zrankAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrem returning a future that can yield a result ", replaceWith = ReplaceWith("zrem(args).await()"))
+@Deprecated(message = "Instead use zrem returning a future and chain with await()", replaceWith = ReplaceWith("zrem(args).await()"))
 suspend fun RedisAPI.zremAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrem(args, it)
@@ -2928,7 +2989,7 @@ suspend fun RedisAPI.zremAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zremrangebylex returning a future that can yield a result ", replaceWith = ReplaceWith("zremrangebylex(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zremrangebylex returning a future and chain with await()", replaceWith = ReplaceWith("zremrangebylex(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zremrangebylexAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zremrangebylex(arg0, arg1, arg2, it)
@@ -2945,7 +3006,7 @@ suspend fun RedisAPI.zremrangebylexAwait(arg0: String, arg1: String, arg2: Strin
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zremrangebyrank returning a future that can yield a result ", replaceWith = ReplaceWith("zremrangebyrank(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zremrangebyrank returning a future and chain with await()", replaceWith = ReplaceWith("zremrangebyrank(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zremrangebyrankAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zremrangebyrank(arg0, arg1, arg2, it)
@@ -2962,7 +3023,7 @@ suspend fun RedisAPI.zremrangebyrankAwait(arg0: String, arg1: String, arg2: Stri
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zremrangebyscore returning a future that can yield a result ", replaceWith = ReplaceWith("zremrangebyscore(arg0, arg1, arg2).await()"))
+@Deprecated(message = "Instead use zremrangebyscore returning a future and chain with await()", replaceWith = ReplaceWith("zremrangebyscore(arg0, arg1, arg2).await()"))
 suspend fun RedisAPI.zremrangebyscoreAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zremrangebyscore(arg0, arg1, arg2, it)
@@ -2977,7 +3038,7 @@ suspend fun RedisAPI.zremrangebyscoreAwait(arg0: String, arg1: String, arg2: Str
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrevrange returning a future that can yield a result ", replaceWith = ReplaceWith("zrevrange(args).await()"))
+@Deprecated(message = "Instead use zrevrange returning a future and chain with await()", replaceWith = ReplaceWith("zrevrange(args).await()"))
 suspend fun RedisAPI.zrevrangeAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrevrange(args, it)
@@ -2992,7 +3053,7 @@ suspend fun RedisAPI.zrevrangeAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrevrangebylex returning a future that can yield a result ", replaceWith = ReplaceWith("zrevrangebylex(args).await()"))
+@Deprecated(message = "Instead use zrevrangebylex returning a future and chain with await()", replaceWith = ReplaceWith("zrevrangebylex(args).await()"))
 suspend fun RedisAPI.zrevrangebylexAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrevrangebylex(args, it)
@@ -3007,7 +3068,7 @@ suspend fun RedisAPI.zrevrangebylexAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrevrangebyscore returning a future that can yield a result ", replaceWith = ReplaceWith("zrevrangebyscore(args).await()"))
+@Deprecated(message = "Instead use zrevrangebyscore returning a future and chain with await()", replaceWith = ReplaceWith("zrevrangebyscore(args).await()"))
 suspend fun RedisAPI.zrevrangebyscoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrevrangebyscore(args, it)
@@ -3023,7 +3084,7 @@ suspend fun RedisAPI.zrevrangebyscoreAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zrevrank returning a future that can yield a result ", replaceWith = ReplaceWith("zrevrank(arg0, arg1).await()"))
+@Deprecated(message = "Instead use zrevrank returning a future and chain with await()", replaceWith = ReplaceWith("zrevrank(arg0, arg1).await()"))
 suspend fun RedisAPI.zrevrankAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.zrevrank(arg0, arg1, it)
@@ -3038,7 +3099,7 @@ suspend fun RedisAPI.zrevrankAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zscan returning a future that can yield a result ", replaceWith = ReplaceWith("zscan(args).await()"))
+@Deprecated(message = "Instead use zscan returning a future and chain with await()", replaceWith = ReplaceWith("zscan(args).await()"))
 suspend fun RedisAPI.zscanAwait(args: List<String>): Response? {
   return awaitResult {
     this.zscan(args, it)
@@ -3054,7 +3115,7 @@ suspend fun RedisAPI.zscanAwait(args: List<String>): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zscore returning a future that can yield a result ", replaceWith = ReplaceWith("zscore(arg0, arg1).await()"))
+@Deprecated(message = "Instead use zscore returning a future and chain with await()", replaceWith = ReplaceWith("zscore(arg0, arg1).await()"))
 suspend fun RedisAPI.zscoreAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.zscore(arg0, arg1, it)
@@ -3069,7 +3130,7 @@ suspend fun RedisAPI.zscoreAwait(arg0: String, arg1: String): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use zunionstore returning a future that can yield a result ", replaceWith = ReplaceWith("zunionstore(args).await()"))
+@Deprecated(message = "Instead use zunionstore returning a future and chain with await()", replaceWith = ReplaceWith("zunionstore(args).await()"))
 suspend fun RedisAPI.zunionstoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.zunionstore(args, it)

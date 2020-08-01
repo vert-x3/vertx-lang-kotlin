@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(data).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,7 +39,7 @@ suspend fun AmqpSender.writeAwait(data: AmqpMessage): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
 suspend fun AmqpSender.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -53,7 +53,7 @@ suspend fun AmqpSender.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end(data).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(data).await()"))
 suspend fun AmqpSender.endAwait(data: AmqpMessage): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -67,7 +67,7 @@ suspend fun AmqpSender.endAwait(data: AmqpMessage): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendWithAck returning a future that can yield a result ", replaceWith = ReplaceWith("sendWithAck(message).await()"))
+@Deprecated(message = "Instead use sendWithAck returning a future and chain with await()", replaceWith = ReplaceWith("sendWithAck(message).await()"))
 suspend fun AmqpSender.sendWithAckAwait(message: AmqpMessage): Unit {
   return awaitResult {
     this.sendWithAck(message, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -80,7 +80,7 @@ suspend fun AmqpSender.sendWithAckAwait(message: AmqpMessage): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpSender] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun AmqpSender.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

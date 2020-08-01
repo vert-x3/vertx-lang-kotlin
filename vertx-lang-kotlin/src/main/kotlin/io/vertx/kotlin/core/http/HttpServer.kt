@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
 suspend fun HttpServer.listenAwait(port: Int, host: String): HttpServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -43,7 +43,7 @@ suspend fun HttpServer.listenAwait(port: Int, host: String): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(address).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(address).await()"))
 suspend fun HttpServer.listenAwait(address: SocketAddress): HttpServer {
   return awaitResult {
     this.listen(address, it)
@@ -58,7 +58,7 @@ suspend fun HttpServer.listenAwait(address: SocketAddress): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
 suspend fun HttpServer.listenAwait(port: Int): HttpServer {
   return awaitResult {
     this.listen(port, it)
@@ -72,7 +72,7 @@ suspend fun HttpServer.listenAwait(port: Int): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
 suspend fun HttpServer.listenAwait(): HttpServer {
   return awaitResult {
     this.listen(it)
@@ -85,7 +85,7 @@ suspend fun HttpServer.listenAwait(): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun HttpServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

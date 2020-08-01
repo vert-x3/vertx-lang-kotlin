@@ -25,7 +25,6 @@ import io.vertx.core.http.WebsocketVersion
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
  * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
- * @param authority  Set the request authority. <p>For HTTP/2 the  pseudo header otherwise the  header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
@@ -43,7 +42,6 @@ import io.vertx.core.http.WebsocketVersion
  */
 fun webSocketConnectOptionsOf(
   absoluteURI: String? = null,
-  authority: String? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
@@ -58,9 +56,6 @@ fun webSocketConnectOptionsOf(
 
   if (absoluteURI != null) {
     this.setAbsoluteURI(absoluteURI)
-  }
-  if (authority != null) {
-    this.setAuthority(authority)
   }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)
@@ -105,7 +100,6 @@ fun webSocketConnectOptionsOf(
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
  * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
- * @param authority  Set the request authority. <p>For HTTP/2 the  pseudo header otherwise the  header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
@@ -123,11 +117,10 @@ fun webSocketConnectOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webSocketConnectOptionsOf(absoluteURI, authority, followRedirects, headers, host, method, port, server, ssl, subProtocols, timeout, uri, version)")
+  replaceWith = ReplaceWith("webSocketConnectOptionsOf(absoluteURI, followRedirects, headers, host, method, port, server, ssl, subProtocols, timeout, uri, version)")
 )
 fun WebSocketConnectOptions(
   absoluteURI: String? = null,
-  authority: String? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
@@ -142,9 +135,6 @@ fun WebSocketConnectOptions(
 
   if (absoluteURI != null) {
     this.setAbsoluteURI(absoluteURI)
-  }
-  if (authority != null) {
-    this.setAuthority(authority)
   }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)

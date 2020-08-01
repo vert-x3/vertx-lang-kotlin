@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mail.MailClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendMail returning a future that can yield a result ", replaceWith = ReplaceWith("sendMail(email).await()"))
+@Deprecated(message = "Instead use sendMail returning a future and chain with await()", replaceWith = ReplaceWith("sendMail(email).await()"))
 suspend fun MailClient.sendMailAwait(email: MailMessage): MailResult {
   return awaitResult {
     this.sendMail(email, it)

@@ -29,7 +29,7 @@ import io.vertx.sqlclient.PreparedStatement
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use prepare returning a future that can yield a result ", replaceWith = ReplaceWith("prepare(sql).await()"))
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(sql).await()"))
 suspend fun PgConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
@@ -46,7 +46,7 @@ object PgConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, options).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, options).await()"))
   suspend fun connectAwait(vertx: Vertx, options: PgConnectOptions): PgConnectionVertxAlias {
     return awaitResult {
       PgConnectionVertxAlias.connect(vertx, options, it)
@@ -61,7 +61,7 @@ object PgConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx).await()"))
   suspend fun connectAwait(vertx: Vertx): PgConnectionVertxAlias {
     return awaitResult {
       PgConnectionVertxAlias.connect(vertx, it)
@@ -77,7 +77,7 @@ object PgConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.pgclient.PgConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
   suspend fun connectAwait(vertx: Vertx, connectionUri: String): PgConnectionVertxAlias {
     return awaitResult {
       PgConnectionVertxAlias.connect(vertx, connectionUri, it)

@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(address, message).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(address, message).await()"))
 suspend fun <T> EventBus.requestAwait(address: String, message: Any?): Message<T> {
   return awaitResult {
     this.request(address, message, it)
@@ -46,7 +46,7 @@ suspend fun <T> EventBus.requestAwait(address: String, message: Any?): Message<T
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.EventBus] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future that can yield a result ", replaceWith = ReplaceWith("request(address, message, options).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(address, message, options).await()"))
 suspend fun <T> EventBus.requestAwait(address: String, message: Any?, options: DeliveryOptions): Message<T> {
   return awaitResult {
     this.request(address, message, options, it)

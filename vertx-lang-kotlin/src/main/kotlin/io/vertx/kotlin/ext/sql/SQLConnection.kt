@@ -31,7 +31,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingle returning a future that can yield a result ", replaceWith = ReplaceWith("querySingle(sql).await()"))
+@Deprecated(message = "Instead use querySingle returning a future and chain with await()", replaceWith = ReplaceWith("querySingle(sql).await()"))
 suspend fun SQLConnection.querySingleAwait(sql: String): JsonArray? {
   return awaitResult {
     this.querySingle(sql, it)
@@ -47,7 +47,7 @@ suspend fun SQLConnection.querySingleAwait(sql: String): JsonArray? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingleWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
+@Deprecated(message = "Instead use querySingleWithParams returning a future and chain with await()", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
 suspend fun SQLConnection.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
   return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
@@ -61,7 +61,7 @@ suspend fun SQLConnection.querySingleWithParamsAwait(sql: String, arguments: Jso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setAutoCommit returning a future that can yield a result ", replaceWith = ReplaceWith("setAutoCommit(autoCommit).await()"))
+@Deprecated(message = "Instead use setAutoCommit returning a future and chain with await()", replaceWith = ReplaceWith("setAutoCommit(autoCommit).await()"))
 suspend fun SQLConnection.setAutoCommitAwait(autoCommit: Boolean): Unit {
   return awaitResult {
     this.setAutoCommit(autoCommit, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -75,7 +75,7 @@ suspend fun SQLConnection.setAutoCommitAwait(autoCommit: Boolean): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use execute returning a future that can yield a result ", replaceWith = ReplaceWith("execute(sql).await()"))
+@Deprecated(message = "Instead use execute returning a future and chain with await()", replaceWith = ReplaceWith("execute(sql).await()"))
 suspend fun SQLConnection.executeAwait(sql: String): Unit {
   return awaitResult {
     this.execute(sql, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -90,7 +90,7 @@ suspend fun SQLConnection.executeAwait(sql: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use query returning a future that can yield a result ", replaceWith = ReplaceWith("query(sql).await()"))
+@Deprecated(message = "Instead use query returning a future and chain with await()", replaceWith = ReplaceWith("query(sql).await()"))
 suspend fun SQLConnection.queryAwait(sql: String): ResultSet {
   return awaitResult {
     this.query(sql, it)
@@ -105,7 +105,7 @@ suspend fun SQLConnection.queryAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryStream returning a future that can yield a result ", replaceWith = ReplaceWith("queryStream(sql).await()"))
+@Deprecated(message = "Instead use queryStream returning a future and chain with await()", replaceWith = ReplaceWith("queryStream(sql).await()"))
 suspend fun SQLConnection.queryStreamAwait(sql: String): SQLRowStream {
   return awaitResult {
     this.queryStream(sql, it)
@@ -121,7 +121,7 @@ suspend fun SQLConnection.queryStreamAwait(sql: String): SQLRowStream {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryWithParams(sql, params).await()"))
+@Deprecated(message = "Instead use queryWithParams returning a future and chain with await()", replaceWith = ReplaceWith("queryWithParams(sql, params).await()"))
 suspend fun SQLConnection.queryWithParamsAwait(sql: String, params: JsonArray): ResultSet {
   return awaitResult {
     this.queryWithParams(sql, params, it)
@@ -137,7 +137,7 @@ suspend fun SQLConnection.queryWithParamsAwait(sql: String, params: JsonArray): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryStreamWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).await()"))
+@Deprecated(message = "Instead use queryStreamWithParams returning a future and chain with await()", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).await()"))
 suspend fun SQLConnection.queryStreamWithParamsAwait(sql: String, params: JsonArray): SQLRowStream {
   return awaitResult {
     this.queryStreamWithParams(sql, params, it)
@@ -152,7 +152,7 @@ suspend fun SQLConnection.queryStreamWithParamsAwait(sql: String, params: JsonAr
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use update returning a future that can yield a result ", replaceWith = ReplaceWith("update(sql).await()"))
+@Deprecated(message = "Instead use update returning a future and chain with await()", replaceWith = ReplaceWith("update(sql).await()"))
 suspend fun SQLConnection.updateAwait(sql: String): UpdateResult {
   return awaitResult {
     this.update(sql, it)
@@ -168,7 +168,7 @@ suspend fun SQLConnection.updateAwait(sql: String): UpdateResult {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("updateWithParams(sql, params).await()"))
+@Deprecated(message = "Instead use updateWithParams returning a future and chain with await()", replaceWith = ReplaceWith("updateWithParams(sql, params).await()"))
 suspend fun SQLConnection.updateWithParamsAwait(sql: String, params: JsonArray): UpdateResult {
   return awaitResult {
     this.updateWithParams(sql, params, it)
@@ -183,7 +183,7 @@ suspend fun SQLConnection.updateWithParamsAwait(sql: String, params: JsonArray):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use call returning a future that can yield a result ", replaceWith = ReplaceWith("call(sql).await()"))
+@Deprecated(message = "Instead use call returning a future and chain with await()", replaceWith = ReplaceWith("call(sql).await()"))
 suspend fun SQLConnection.callAwait(sql: String): ResultSet {
   return awaitResult {
     this.call(sql, it)
@@ -200,7 +200,7 @@ suspend fun SQLConnection.callAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use callWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).await()"))
+@Deprecated(message = "Instead use callWithParams returning a future and chain with await()", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).await()"))
 suspend fun SQLConnection.callWithParamsAwait(sql: String, params: JsonArray, outputs: JsonArray): ResultSet {
   return awaitResult {
     this.callWithParams(sql, params, outputs, it)
@@ -213,7 +213,7 @@ suspend fun SQLConnection.callWithParamsAwait(sql: String, params: JsonArray, ou
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun SQLConnection.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -226,7 +226,7 @@ suspend fun SQLConnection.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use commit returning a future that can yield a result ", replaceWith = ReplaceWith("commit().await()"))
+@Deprecated(message = "Instead use commit returning a future and chain with await()", replaceWith = ReplaceWith("commit().await()"))
 suspend fun SQLConnection.commitAwait(): Unit {
   return awaitResult {
     this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -239,7 +239,7 @@ suspend fun SQLConnection.commitAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rollback returning a future that can yield a result ", replaceWith = ReplaceWith("rollback().await()"))
+@Deprecated(message = "Instead use rollback returning a future and chain with await()", replaceWith = ReplaceWith("rollback().await()"))
 suspend fun SQLConnection.rollbackAwait(): Unit {
   return awaitResult {
     this.rollback(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -254,7 +254,7 @@ suspend fun SQLConnection.rollbackAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use batch returning a future that can yield a result ", replaceWith = ReplaceWith("batch(sqlStatements).await()"))
+@Deprecated(message = "Instead use batch returning a future and chain with await()", replaceWith = ReplaceWith("batch(sqlStatements).await()"))
 suspend fun SQLConnection.batchAwait(sqlStatements: List<String>): List<Int> {
   return awaitResult {
     this.batch(sqlStatements, it)
@@ -270,7 +270,7 @@ suspend fun SQLConnection.batchAwait(sqlStatements: List<String>): List<Int> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use batchWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("batchWithParams(sqlStatement, args).await()"))
+@Deprecated(message = "Instead use batchWithParams returning a future and chain with await()", replaceWith = ReplaceWith("batchWithParams(sqlStatement, args).await()"))
 suspend fun SQLConnection.batchWithParamsAwait(sqlStatement: String, args: List<JsonArray>): List<Int> {
   return awaitResult {
     this.batchWithParams(sqlStatement, args, it)
@@ -287,7 +287,7 @@ suspend fun SQLConnection.batchWithParamsAwait(sqlStatement: String, args: List<
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use batchCallableWithParams returning a future that can yield a result ", replaceWith = ReplaceWith("batchCallableWithParams(sqlStatement, inArgs, outArgs).await()"))
+@Deprecated(message = "Instead use batchCallableWithParams returning a future and chain with await()", replaceWith = ReplaceWith("batchCallableWithParams(sqlStatement, inArgs, outArgs).await()"))
 suspend fun SQLConnection.batchCallableWithParamsAwait(sqlStatement: String, inArgs: List<JsonArray>, outArgs: List<JsonArray>): List<Int> {
   return awaitResult {
     this.batchCallableWithParams(sqlStatement, inArgs, outArgs, it)
@@ -301,7 +301,7 @@ suspend fun SQLConnection.batchCallableWithParamsAwait(sqlStatement: String, inA
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setTransactionIsolation returning a future that can yield a result ", replaceWith = ReplaceWith("setTransactionIsolation(isolation).await()"))
+@Deprecated(message = "Instead use setTransactionIsolation returning a future and chain with await()", replaceWith = ReplaceWith("setTransactionIsolation(isolation).await()"))
 suspend fun SQLConnection.setTransactionIsolationAwait(isolation: TransactionIsolation): Unit {
   return awaitResult {
     this.setTransactionIsolation(isolation, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -315,7 +315,7 @@ suspend fun SQLConnection.setTransactionIsolationAwait(isolation: TransactionIso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getTransactionIsolation returning a future that can yield a result ", replaceWith = ReplaceWith("getTransactionIsolation().await()"))
+@Deprecated(message = "Instead use getTransactionIsolation returning a future and chain with await()", replaceWith = ReplaceWith("getTransactionIsolation().await()"))
 suspend fun SQLConnection.getTransactionIsolationAwait(): TransactionIsolation {
   return awaitResult {
     this.getTransactionIsolation(it)

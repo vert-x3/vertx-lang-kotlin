@@ -24,7 +24,7 @@ import io.vertx.sqlclient.Transaction
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Transaction] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use commit returning a future that can yield a result ", replaceWith = ReplaceWith("commit().await()"))
+@Deprecated(message = "Instead use commit returning a future and chain with await()", replaceWith = ReplaceWith("commit().await()"))
 suspend fun Transaction.commitAwait(): Unit {
   return awaitResult {
     this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -37,7 +37,7 @@ suspend fun Transaction.commitAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Transaction] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rollback returning a future that can yield a result ", replaceWith = ReplaceWith("rollback().await()"))
+@Deprecated(message = "Instead use rollback returning a future and chain with await()", replaceWith = ReplaceWith("rollback().await()"))
 suspend fun Transaction.rollbackAwait(): Unit {
   return awaitResult {
     this.rollback(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -31,7 +31,7 @@ import io.vertx.sqlclient.PreparedStatement
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use prepare returning a future that can yield a result ", replaceWith = ReplaceWith("prepare(sql).await()"))
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(sql).await()"))
 suspend fun MySQLConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
@@ -44,7 +44,7 @@ suspend fun MySQLConnectionVertxAlias.prepareAwait(sql: String): PreparedStateme
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ping returning a future that can yield a result ", replaceWith = ReplaceWith("ping().await()"))
+@Deprecated(message = "Instead use ping returning a future and chain with await()", replaceWith = ReplaceWith("ping().await()"))
 suspend fun MySQLConnectionVertxAlias.pingAwait(): Unit {
   return awaitResult {
     this.ping(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -58,7 +58,7 @@ suspend fun MySQLConnectionVertxAlias.pingAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use specifySchema returning a future that can yield a result ", replaceWith = ReplaceWith("specifySchema(schemaName).await()"))
+@Deprecated(message = "Instead use specifySchema returning a future and chain with await()", replaceWith = ReplaceWith("specifySchema(schemaName).await()"))
 suspend fun MySQLConnectionVertxAlias.specifySchemaAwait(schemaName: String): Unit {
   return awaitResult {
     this.specifySchema(schemaName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -72,7 +72,7 @@ suspend fun MySQLConnectionVertxAlias.specifySchemaAwait(schemaName: String): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getInternalStatistics returning a future that can yield a result ", replaceWith = ReplaceWith("getInternalStatistics().await()"))
+@Deprecated(message = "Instead use getInternalStatistics returning a future and chain with await()", replaceWith = ReplaceWith("getInternalStatistics().await()"))
 suspend fun MySQLConnectionVertxAlias.getInternalStatisticsAwait(): String {
   return awaitResult {
     this.getInternalStatistics(it)
@@ -86,7 +86,7 @@ suspend fun MySQLConnectionVertxAlias.getInternalStatisticsAwait(): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setOption returning a future that can yield a result ", replaceWith = ReplaceWith("setOption(option).await()"))
+@Deprecated(message = "Instead use setOption returning a future and chain with await()", replaceWith = ReplaceWith("setOption(option).await()"))
 suspend fun MySQLConnectionVertxAlias.setOptionAwait(option: MySQLSetOption): Unit {
   return awaitResult {
     this.setOption(option, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -99,7 +99,7 @@ suspend fun MySQLConnectionVertxAlias.setOptionAwait(option: MySQLSetOption): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use resetConnection returning a future that can yield a result ", replaceWith = ReplaceWith("resetConnection().await()"))
+@Deprecated(message = "Instead use resetConnection returning a future and chain with await()", replaceWith = ReplaceWith("resetConnection().await()"))
 suspend fun MySQLConnectionVertxAlias.resetConnectionAwait(): Unit {
   return awaitResult {
     this.resetConnection(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -112,7 +112,7 @@ suspend fun MySQLConnectionVertxAlias.resetConnectionAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use debug returning a future that can yield a result ", replaceWith = ReplaceWith("debug().await()"))
+@Deprecated(message = "Instead use debug returning a future and chain with await()", replaceWith = ReplaceWith("debug().await()"))
 suspend fun MySQLConnectionVertxAlias.debugAwait(): Unit {
   return awaitResult {
     this.debug(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -126,7 +126,7 @@ suspend fun MySQLConnectionVertxAlias.debugAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use changeUser returning a future that can yield a result ", replaceWith = ReplaceWith("changeUser(options).await()"))
+@Deprecated(message = "Instead use changeUser returning a future and chain with await()", replaceWith = ReplaceWith("changeUser(options).await()"))
 suspend fun MySQLConnectionVertxAlias.changeUserAwait(options: MySQLAuthOptions): Unit {
   return awaitResult {
     this.changeUser(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -143,7 +143,7 @@ object MySQLConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, connectOptions).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectOptions).await()"))
   suspend fun connectAwait(vertx: Vertx, connectOptions: MySQLConnectOptions): MySQLConnectionVertxAlias {
     return awaitResult {
       MySQLConnectionVertxAlias.connect(vertx, connectOptions, it)
@@ -159,7 +159,7 @@ object MySQLConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.mysqlclient.MySQLConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
   suspend fun connectAwait(vertx: Vertx, connectionUri: String): MySQLConnectionVertxAlias {
     return awaitResult {
       MySQLConnectionVertxAlias.connect(vertx, connectionUri, it)

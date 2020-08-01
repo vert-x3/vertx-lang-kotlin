@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(port, host).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host).await()"))
 suspend fun StompClient.connectAwait(port: Int, host: String): StompClientConnection {
   return awaitResult {
     this.connect(port, host, it)
@@ -44,7 +44,7 @@ suspend fun StompClient.connectAwait(port: Int, host: String): StompClientConnec
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(net).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(net).await()"))
 suspend fun StompClient.connectAwait(net: NetClient): StompClientConnection {
   return awaitResult {
     this.connect(net, it)
@@ -61,7 +61,7 @@ suspend fun StompClient.connectAwait(net: NetClient): StompClientConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect(port, host, net).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host, net).await()"))
 suspend fun StompClient.connectAwait(port: Int, host: String, net: NetClient): StompClientConnection {
   return awaitResult {
     this.connect(port, host, net, it)
@@ -75,7 +75,7 @@ suspend fun StompClient.connectAwait(port: Int, host: String, net: NetClient): S
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future that can yield a result ", replaceWith = ReplaceWith("connect().await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
 suspend fun StompClient.connectAwait(): StompClientConnection {
   return awaitResult {
     this.connect(it)

@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future that can yield a result ", replaceWith = ReplaceWith("write(data).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -41,7 +41,7 @@ suspend fun <K,V> KafkaProducer<K,V>.writeAwait(data: KafkaProducerRecord<K,V>):
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -55,35 +55,35 @@ suspend fun <K,V> KafkaProducer<K,V>.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future that can yield a result ", replaceWith = ReplaceWith("end(data).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(data).await()"))
 suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use initTransactions returning a future that can yield a result ", replaceWith = ReplaceWith("initTransactions().await()"))
+@Deprecated(message = "Instead use initTransactions returning a future and chain with await()", replaceWith = ReplaceWith("initTransactions().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.initTransactionsAwait(): Unit {
   return awaitResult {
     this.initTransactions(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use beginTransaction returning a future that can yield a result ", replaceWith = ReplaceWith("beginTransaction().await()"))
+@Deprecated(message = "Instead use beginTransaction returning a future and chain with await()", replaceWith = ReplaceWith("beginTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.beginTransactionAwait(): Unit {
   return awaitResult {
     this.beginTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use commitTransaction returning a future that can yield a result ", replaceWith = ReplaceWith("commitTransaction().await()"))
+@Deprecated(message = "Instead use commitTransaction returning a future and chain with await()", replaceWith = ReplaceWith("commitTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.commitTransactionAwait(): Unit {
   return awaitResult {
     this.commitTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use abortTransaction returning a future that can yield a result ", replaceWith = ReplaceWith("abortTransaction().await()"))
+@Deprecated(message = "Instead use abortTransaction returning a future and chain with await()", replaceWith = ReplaceWith("abortTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.abortTransactionAwait(): Unit {
   return awaitResult {
     this.abortTransaction(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -98,7 +98,7 @@ suspend fun <K,V> KafkaProducer<K,V>.abortTransactionAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future that can yield a result ", replaceWith = ReplaceWith("send(record).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(record).await()"))
 suspend fun <K,V> KafkaProducer<K,V>.sendAwait(record: KafkaProducerRecord<K,V>): RecordMetadata {
   return awaitResult {
     this.send(record, it)
@@ -113,7 +113,7 @@ suspend fun <K,V> KafkaProducer<K,V>.sendAwait(record: KafkaProducerRecord<K,V>)
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use partitionsFor returning a future that can yield a result ", replaceWith = ReplaceWith("partitionsFor(topic).await()"))
+@Deprecated(message = "Instead use partitionsFor returning a future and chain with await()", replaceWith = ReplaceWith("partitionsFor(topic).await()"))
 suspend fun <K,V> KafkaProducer<K,V>.partitionsForAwait(topic: String): List<PartitionInfo> {
   return awaitResult {
     this.partitionsFor(topic, it)
@@ -126,7 +126,7 @@ suspend fun <K,V> KafkaProducer<K,V>.partitionsForAwait(topic: String): List<Par
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use flush returning a future that can yield a result ", replaceWith = ReplaceWith("flush().await()"))
+@Deprecated(message = "Instead use flush returning a future and chain with await()", replaceWith = ReplaceWith("flush().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.flushAwait(): Unit {
   return awaitResult {
     this.flush(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -139,7 +139,7 @@ suspend fun <K,V> KafkaProducer<K,V>.flushAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -153,7 +153,7 @@ suspend fun <K,V> KafkaProducer<K,V>.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close(timeout).await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close(timeout).await()"))
 suspend fun <K,V> KafkaProducer<K,V>.closeAwait(timeout: Long): Unit {
   return awaitResult {
     this.close(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -29,7 +29,7 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getConnection returning a future that can yield a result ", replaceWith = ReplaceWith("getConnection().await()"))
+@Deprecated(message = "Instead use getConnection returning a future and chain with await()", replaceWith = ReplaceWith("getConnection().await()"))
 suspend fun Pool.getConnectionAwait(): SqlConnection {
   return awaitResult {
     this.getConnection(it)
@@ -44,7 +44,7 @@ suspend fun Pool.getConnectionAwait(): SqlConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use withTransaction returning a future that can yield a result ", replaceWith = ReplaceWith("withTransaction(function).await()"))
+@Deprecated(message = "Instead use withTransaction returning a future and chain with await()", replaceWith = ReplaceWith("withTransaction(function).await()"))
 suspend fun <T> Pool.withTransactionAwait(function: (SqlClient) -> Future<T>): T {
   return awaitResult {
     this.withTransaction(function, it::handle)
@@ -57,7 +57,7 @@ suspend fun <T> Pool.withTransactionAwait(function: (SqlClient) -> Future<T>): T
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun Pool.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

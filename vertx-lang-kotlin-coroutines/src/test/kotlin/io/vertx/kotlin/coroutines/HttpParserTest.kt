@@ -121,7 +121,11 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.get(8080, "localhost", "/foo", testContext.asyncAssertSuccess())
+    client.request(HttpMethod.GET, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
+      request.send(testContext.asyncAssertSuccess() { response ->
+
+      });
+    })
   }
 
   @Test
@@ -135,7 +139,11 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.put(8080, "localhost", "/foo", Buffer.buffer("abc123"), testContext.asyncAssertSuccess())
+    client.request(HttpMethod.GET, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
+      request.send(Buffer.buffer("abc123"), testContext.asyncAssertSuccess() { response ->
+
+      });
+    })
   }
 
   @Test

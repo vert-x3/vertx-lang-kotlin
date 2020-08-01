@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.healthchecks.HealthChecks] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use invoke returning a future that can yield a result ", replaceWith = ReplaceWith("invoke(name).await()"))
+@Deprecated(message = "Instead use invoke returning a future and chain with await()", replaceWith = ReplaceWith("invoke(name).await()"))
 suspend fun HealthChecks.invokeAwait(name: String): JsonObject {
   return awaitResult {
     this.invoke(name, it)
@@ -42,7 +42,7 @@ suspend fun HealthChecks.invokeAwait(name: String): JsonObject {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.healthchecks.HealthChecks] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use checkStatus returning a future that can yield a result ", replaceWith = ReplaceWith("checkStatus().await()"))
+@Deprecated(message = "Instead use checkStatus returning a future and chain with await()", replaceWith = ReplaceWith("checkStatus().await()"))
 suspend fun HealthChecks.checkStatusAwait(): CheckResult {
   return awaitResult {
     this.checkStatus(it)
@@ -57,7 +57,7 @@ suspend fun HealthChecks.checkStatusAwait(): CheckResult {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.healthchecks.HealthChecks] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use checkStatus returning a future that can yield a result ", replaceWith = ReplaceWith("checkStatus(name).await()"))
+@Deprecated(message = "Instead use checkStatus returning a future and chain with await()", replaceWith = ReplaceWith("checkStatus(name).await()"))
 suspend fun HealthChecks.checkStatusAwait(name: String): CheckResult {
   return awaitResult {
     this.checkStatus(name, it)

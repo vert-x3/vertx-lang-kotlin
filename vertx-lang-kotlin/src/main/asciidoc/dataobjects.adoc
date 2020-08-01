@@ -5052,6 +5052,9 @@ Set whether session cache is enabled in open SSL session server context
 [[OperationRequest]]
 == OperationRequest
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -5071,6 +5074,9 @@ Get request principal user as routingContext.user().principal(), null if no user
 [[OperationResponse]]
 == OperationResponse
 
+++++
+++++
+'''
 
 [cols=">25%,25%,50%"]
 [frame="topbot"]
@@ -5849,6 +5855,9 @@ Tune the maximum waiting requests for a connection from the pool.
 The client will always work on pipeline mode, this means that messages can start queueing. You can control how much
  backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
 +++
+|[[password]]`@password`|`String`|+++
+Set the default password for cluster/sentinel connections.
++++
 |[[poolCleanerInterval]]`@poolCleanerInterval`|`Number (int)`|+++
 Tune how often in milliseconds should the connection pool cleaner execute.
 +++
@@ -5932,11 +5941,6 @@ Set the current reporter name.
 |[[absoluteURI]]`@absoluteURI`|`String`|+++
 Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>,
  <code>port</code> and <code>uri</code> fields.
-+++
-|[[authority]]`@authority`|`String`|+++
-Set the request authority.
-
- <p>For HTTP/2 the  pseudo header otherwise the  header.
 +++
 |[[followRedirects]]`@followRedirects`|`Boolean`|+++
 Set whether to follow HTTP redirect
@@ -7912,11 +7916,6 @@ Set whether the <code>server_no_context_takeover</code> parameter of the WebSock
 |[[absoluteURI]]`@absoluteURI`|`String`|+++
 Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>,
  <code>port</code> and <code>uri</code> fields.
-+++
-|[[authority]]`@authority`|`String`|+++
-Set the request authority.
-
- <p>For HTTP/2 the  pseudo header otherwise the  header.
 +++
 |[[followRedirects]]`@followRedirects`|`Boolean`|+++
 Set whether to follow HTTP redirect

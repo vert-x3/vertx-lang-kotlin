@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.ChainAuthHandler] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use parseCredentials returning a future that can yield a result ", replaceWith = ReplaceWith("parseCredentials(context).await()"))
+@Deprecated(message = "Instead use parseCredentials returning a future and chain with await()", replaceWith = ReplaceWith("parseCredentials(context).await()"))
 suspend fun ChainAuthHandler.parseCredentialsAwait(context: RoutingContext): Credentials {
   return awaitResult {
     this.parseCredentials(context, it)

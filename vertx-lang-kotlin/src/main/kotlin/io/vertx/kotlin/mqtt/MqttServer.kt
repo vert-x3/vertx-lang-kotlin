@@ -27,7 +27,7 @@ import io.vertx.mqtt.MqttServer
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
 suspend fun MqttServer.listenAwait(port: Int, host: String): MqttServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -42,7 +42,7 @@ suspend fun MqttServer.listenAwait(port: Int, host: String): MqttServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen(port).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
 suspend fun MqttServer.listenAwait(port: Int): MqttServer {
   return awaitResult {
     this.listen(port, it)
@@ -56,7 +56,7 @@ suspend fun MqttServer.listenAwait(port: Int): MqttServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
 suspend fun MqttServer.listenAwait(): MqttServer {
   return awaitResult {
     this.listen(it)
@@ -69,7 +69,7 @@ suspend fun MqttServer.listenAwait(): MqttServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun MqttServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

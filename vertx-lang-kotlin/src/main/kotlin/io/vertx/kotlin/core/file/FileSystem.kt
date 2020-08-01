@@ -32,7 +32,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use copy returning a future that can yield a result ", replaceWith = ReplaceWith("copy(from, to).await()"))
+@Deprecated(message = "Instead use copy returning a future and chain with await()", replaceWith = ReplaceWith("copy(from, to).await()"))
 suspend fun FileSystem.copyAwait(from: String, to: String): Unit {
   return awaitResult {
     this.copy(from, to, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -48,7 +48,7 @@ suspend fun FileSystem.copyAwait(from: String, to: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use copy returning a future that can yield a result ", replaceWith = ReplaceWith("copy(from, to, options).await()"))
+@Deprecated(message = "Instead use copy returning a future and chain with await()", replaceWith = ReplaceWith("copy(from, to, options).await()"))
 suspend fun FileSystem.copyAwait(from: String, to: String, options: CopyOptions): Unit {
   return awaitResult {
     this.copy(from, to, options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -64,7 +64,7 @@ suspend fun FileSystem.copyAwait(from: String, to: String, options: CopyOptions)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use copyRecursive returning a future that can yield a result ", replaceWith = ReplaceWith("copyRecursive(from, to, recursive).await()"))
+@Deprecated(message = "Instead use copyRecursive returning a future and chain with await()", replaceWith = ReplaceWith("copyRecursive(from, to, recursive).await()"))
 suspend fun FileSystem.copyRecursiveAwait(from: String, to: String, recursive: Boolean): Unit {
   return awaitResult {
     this.copyRecursive(from, to, recursive, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -79,7 +79,7 @@ suspend fun FileSystem.copyRecursiveAwait(from: String, to: String, recursive: B
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use move returning a future that can yield a result ", replaceWith = ReplaceWith("move(from, to).await()"))
+@Deprecated(message = "Instead use move returning a future and chain with await()", replaceWith = ReplaceWith("move(from, to).await()"))
 suspend fun FileSystem.moveAwait(from: String, to: String): Unit {
   return awaitResult {
     this.move(from, to, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -95,7 +95,7 @@ suspend fun FileSystem.moveAwait(from: String, to: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use move returning a future that can yield a result ", replaceWith = ReplaceWith("move(from, to, options).await()"))
+@Deprecated(message = "Instead use move returning a future and chain with await()", replaceWith = ReplaceWith("move(from, to, options).await()"))
 suspend fun FileSystem.moveAwait(from: String, to: String, options: CopyOptions): Unit {
   return awaitResult {
     this.move(from, to, options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -110,7 +110,7 @@ suspend fun FileSystem.moveAwait(from: String, to: String, options: CopyOptions)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use truncate returning a future that can yield a result ", replaceWith = ReplaceWith("truncate(path, len).await()"))
+@Deprecated(message = "Instead use truncate returning a future and chain with await()", replaceWith = ReplaceWith("truncate(path, len).await()"))
 suspend fun FileSystem.truncateAwait(path: String, len: Long): Unit {
   return awaitResult {
     this.truncate(path, len, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -125,7 +125,7 @@ suspend fun FileSystem.truncateAwait(path: String, len: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use chmod returning a future that can yield a result ", replaceWith = ReplaceWith("chmod(path, perms).await()"))
+@Deprecated(message = "Instead use chmod returning a future and chain with await()", replaceWith = ReplaceWith("chmod(path, perms).await()"))
 suspend fun FileSystem.chmodAwait(path: String, perms: String): Unit {
   return awaitResult {
     this.chmod(path, perms, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -141,7 +141,7 @@ suspend fun FileSystem.chmodAwait(path: String, perms: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use chmodRecursive returning a future that can yield a result ", replaceWith = ReplaceWith("chmodRecursive(path, perms, dirPerms).await()"))
+@Deprecated(message = "Instead use chmodRecursive returning a future and chain with await()", replaceWith = ReplaceWith("chmodRecursive(path, perms, dirPerms).await()"))
 suspend fun FileSystem.chmodRecursiveAwait(path: String, perms: String, dirPerms: String): Unit {
   return awaitResult {
     this.chmodRecursive(path, perms, dirPerms, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -157,7 +157,7 @@ suspend fun FileSystem.chmodRecursiveAwait(path: String, perms: String, dirPerms
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use chown returning a future that can yield a result ", replaceWith = ReplaceWith("chown(path, user, group).await()"))
+@Deprecated(message = "Instead use chown returning a future and chain with await()", replaceWith = ReplaceWith("chown(path, user, group).await()"))
 suspend fun FileSystem.chownAwait(path: String, user: String?, group: String?): Unit {
   return awaitResult {
     this.chown(path, user, group, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -172,7 +172,7 @@ suspend fun FileSystem.chownAwait(path: String, user: String?, group: String?): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use props returning a future that can yield a result ", replaceWith = ReplaceWith("props(path).await()"))
+@Deprecated(message = "Instead use props returning a future and chain with await()", replaceWith = ReplaceWith("props(path).await()"))
 suspend fun FileSystem.propsAwait(path: String): FileProps {
   return awaitResult {
     this.props(path, it)
@@ -187,7 +187,7 @@ suspend fun FileSystem.propsAwait(path: String): FileProps {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lprops returning a future that can yield a result ", replaceWith = ReplaceWith("lprops(path).await()"))
+@Deprecated(message = "Instead use lprops returning a future and chain with await()", replaceWith = ReplaceWith("lprops(path).await()"))
 suspend fun FileSystem.lpropsAwait(path: String): FileProps {
   return awaitResult {
     this.lprops(path, it)
@@ -202,7 +202,7 @@ suspend fun FileSystem.lpropsAwait(path: String): FileProps {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use link returning a future that can yield a result ", replaceWith = ReplaceWith("link(link, existing).await()"))
+@Deprecated(message = "Instead use link returning a future and chain with await()", replaceWith = ReplaceWith("link(link, existing).await()"))
 suspend fun FileSystem.linkAwait(link: String, existing: String): Unit {
   return awaitResult {
     this.link(link, existing, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -217,7 +217,7 @@ suspend fun FileSystem.linkAwait(link: String, existing: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use symlink returning a future that can yield a result ", replaceWith = ReplaceWith("symlink(link, existing).await()"))
+@Deprecated(message = "Instead use symlink returning a future and chain with await()", replaceWith = ReplaceWith("symlink(link, existing).await()"))
 suspend fun FileSystem.symlinkAwait(link: String, existing: String): Unit {
   return awaitResult {
     this.symlink(link, existing, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -231,7 +231,7 @@ suspend fun FileSystem.symlinkAwait(link: String, existing: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unlink returning a future that can yield a result ", replaceWith = ReplaceWith("unlink(link).await()"))
+@Deprecated(message = "Instead use unlink returning a future and chain with await()", replaceWith = ReplaceWith("unlink(link).await()"))
 suspend fun FileSystem.unlinkAwait(link: String): Unit {
   return awaitResult {
     this.unlink(link, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -246,7 +246,7 @@ suspend fun FileSystem.unlinkAwait(link: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readSymlink returning a future that can yield a result ", replaceWith = ReplaceWith("readSymlink(link).await()"))
+@Deprecated(message = "Instead use readSymlink returning a future and chain with await()", replaceWith = ReplaceWith("readSymlink(link).await()"))
 suspend fun FileSystem.readSymlinkAwait(link: String): String {
   return awaitResult {
     this.readSymlink(link, it)
@@ -260,7 +260,7 @@ suspend fun FileSystem.readSymlinkAwait(link: String): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use delete returning a future that can yield a result ", replaceWith = ReplaceWith("delete(path).await()"))
+@Deprecated(message = "Instead use delete returning a future and chain with await()", replaceWith = ReplaceWith("delete(path).await()"))
 suspend fun FileSystem.deleteAwait(path: String): Unit {
   return awaitResult {
     this.delete(path, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -275,7 +275,7 @@ suspend fun FileSystem.deleteAwait(path: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteRecursive returning a future that can yield a result ", replaceWith = ReplaceWith("deleteRecursive(path, recursive).await()"))
+@Deprecated(message = "Instead use deleteRecursive returning a future and chain with await()", replaceWith = ReplaceWith("deleteRecursive(path, recursive).await()"))
 suspend fun FileSystem.deleteRecursiveAwait(path: String, recursive: Boolean): Unit {
   return awaitResult {
     this.deleteRecursive(path, recursive, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -289,7 +289,7 @@ suspend fun FileSystem.deleteRecursiveAwait(path: String, recursive: Boolean): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mkdir returning a future that can yield a result ", replaceWith = ReplaceWith("mkdir(path).await()"))
+@Deprecated(message = "Instead use mkdir returning a future and chain with await()", replaceWith = ReplaceWith("mkdir(path).await()"))
 suspend fun FileSystem.mkdirAwait(path: String): Unit {
   return awaitResult {
     this.mkdir(path, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -304,7 +304,7 @@ suspend fun FileSystem.mkdirAwait(path: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mkdir returning a future that can yield a result ", replaceWith = ReplaceWith("mkdir(path, perms).await()"))
+@Deprecated(message = "Instead use mkdir returning a future and chain with await()", replaceWith = ReplaceWith("mkdir(path, perms).await()"))
 suspend fun FileSystem.mkdirAwait(path: String, perms: String): Unit {
   return awaitResult {
     this.mkdir(path, perms, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -318,7 +318,7 @@ suspend fun FileSystem.mkdirAwait(path: String, perms: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mkdirs returning a future that can yield a result ", replaceWith = ReplaceWith("mkdirs(path).await()"))
+@Deprecated(message = "Instead use mkdirs returning a future and chain with await()", replaceWith = ReplaceWith("mkdirs(path).await()"))
 suspend fun FileSystem.mkdirsAwait(path: String): Unit {
   return awaitResult {
     this.mkdirs(path, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -333,7 +333,7 @@ suspend fun FileSystem.mkdirsAwait(path: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use mkdirs returning a future that can yield a result ", replaceWith = ReplaceWith("mkdirs(path, perms).await()"))
+@Deprecated(message = "Instead use mkdirs returning a future and chain with await()", replaceWith = ReplaceWith("mkdirs(path, perms).await()"))
 suspend fun FileSystem.mkdirsAwait(path: String, perms: String): Unit {
   return awaitResult {
     this.mkdirs(path, perms, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -348,7 +348,7 @@ suspend fun FileSystem.mkdirsAwait(path: String, perms: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readDir returning a future that can yield a result ", replaceWith = ReplaceWith("readDir(path).await()"))
+@Deprecated(message = "Instead use readDir returning a future and chain with await()", replaceWith = ReplaceWith("readDir(path).await()"))
 suspend fun FileSystem.readDirAwait(path: String): List<String> {
   return awaitResult {
     this.readDir(path, it)
@@ -364,7 +364,7 @@ suspend fun FileSystem.readDirAwait(path: String): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readDir returning a future that can yield a result ", replaceWith = ReplaceWith("readDir(path, filter).await()"))
+@Deprecated(message = "Instead use readDir returning a future and chain with await()", replaceWith = ReplaceWith("readDir(path, filter).await()"))
 suspend fun FileSystem.readDirAwait(path: String, filter: String): List<String> {
   return awaitResult {
     this.readDir(path, filter, it)
@@ -379,7 +379,7 @@ suspend fun FileSystem.readDirAwait(path: String, filter: String): List<String> 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use readFile returning a future that can yield a result ", replaceWith = ReplaceWith("readFile(path).await()"))
+@Deprecated(message = "Instead use readFile returning a future and chain with await()", replaceWith = ReplaceWith("readFile(path).await()"))
 suspend fun FileSystem.readFileAwait(path: String): Buffer {
   return awaitResult {
     this.readFile(path, it)
@@ -394,7 +394,7 @@ suspend fun FileSystem.readFileAwait(path: String): Buffer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use writeFile returning a future that can yield a result ", replaceWith = ReplaceWith("writeFile(path, data).await()"))
+@Deprecated(message = "Instead use writeFile returning a future and chain with await()", replaceWith = ReplaceWith("writeFile(path, data).await()"))
 suspend fun FileSystem.writeFileAwait(path: String, data: Buffer): Unit {
   return awaitResult {
     this.writeFile(path, data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -410,7 +410,7 @@ suspend fun FileSystem.writeFileAwait(path: String, data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use open returning a future that can yield a result ", replaceWith = ReplaceWith("open(path, options).await()"))
+@Deprecated(message = "Instead use open returning a future and chain with await()", replaceWith = ReplaceWith("open(path, options).await()"))
 suspend fun FileSystem.openAwait(path: String, options: OpenOptions): AsyncFile {
   return awaitResult {
     this.open(path, options, it)
@@ -424,7 +424,7 @@ suspend fun FileSystem.openAwait(path: String, options: OpenOptions): AsyncFile 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createFile returning a future that can yield a result ", replaceWith = ReplaceWith("createFile(path).await()"))
+@Deprecated(message = "Instead use createFile returning a future and chain with await()", replaceWith = ReplaceWith("createFile(path).await()"))
 suspend fun FileSystem.createFileAwait(path: String): Unit {
   return awaitResult {
     this.createFile(path, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -439,7 +439,7 @@ suspend fun FileSystem.createFileAwait(path: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createFile returning a future that can yield a result ", replaceWith = ReplaceWith("createFile(path, perms).await()"))
+@Deprecated(message = "Instead use createFile returning a future and chain with await()", replaceWith = ReplaceWith("createFile(path, perms).await()"))
 suspend fun FileSystem.createFileAwait(path: String, perms: String): Unit {
   return awaitResult {
     this.createFile(path, perms, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -454,7 +454,7 @@ suspend fun FileSystem.createFileAwait(path: String, perms: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use exists returning a future that can yield a result ", replaceWith = ReplaceWith("exists(path).await()"))
+@Deprecated(message = "Instead use exists returning a future and chain with await()", replaceWith = ReplaceWith("exists(path).await()"))
 suspend fun FileSystem.existsAwait(path: String): Boolean {
   return awaitResult {
     this.exists(path, it)
@@ -469,7 +469,7 @@ suspend fun FileSystem.existsAwait(path: String): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fsProps returning a future that can yield a result ", replaceWith = ReplaceWith("fsProps(path).await()"))
+@Deprecated(message = "Instead use fsProps returning a future and chain with await()", replaceWith = ReplaceWith("fsProps(path).await()"))
 suspend fun FileSystem.fsPropsAwait(path: String): FileSystemProps {
   return awaitResult {
     this.fsProps(path, it)
@@ -484,7 +484,7 @@ suspend fun FileSystem.fsPropsAwait(path: String): FileSystemProps {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempDirectory returning a future that can yield a result ", replaceWith = ReplaceWith("createTempDirectory(prefix).await()"))
+@Deprecated(message = "Instead use createTempDirectory returning a future and chain with await()", replaceWith = ReplaceWith("createTempDirectory(prefix).await()"))
 suspend fun FileSystem.createTempDirectoryAwait(prefix: String): String {
   return awaitResult {
     this.createTempDirectory(prefix, it)
@@ -500,7 +500,7 @@ suspend fun FileSystem.createTempDirectoryAwait(prefix: String): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempDirectory returning a future that can yield a result ", replaceWith = ReplaceWith("createTempDirectory(prefix, perms).await()"))
+@Deprecated(message = "Instead use createTempDirectory returning a future and chain with await()", replaceWith = ReplaceWith("createTempDirectory(prefix, perms).await()"))
 suspend fun FileSystem.createTempDirectoryAwait(prefix: String, perms: String): String {
   return awaitResult {
     this.createTempDirectory(prefix, perms, it)
@@ -517,7 +517,7 @@ suspend fun FileSystem.createTempDirectoryAwait(prefix: String, perms: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempDirectory returning a future that can yield a result ", replaceWith = ReplaceWith("createTempDirectory(dir, prefix, perms).await()"))
+@Deprecated(message = "Instead use createTempDirectory returning a future and chain with await()", replaceWith = ReplaceWith("createTempDirectory(dir, prefix, perms).await()"))
 suspend fun FileSystem.createTempDirectoryAwait(dir: String, prefix: String, perms: String): String {
   return awaitResult {
     this.createTempDirectory(dir, prefix, perms, it)
@@ -533,7 +533,7 @@ suspend fun FileSystem.createTempDirectoryAwait(dir: String, prefix: String, per
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempFile returning a future that can yield a result ", replaceWith = ReplaceWith("createTempFile(prefix, suffix).await()"))
+@Deprecated(message = "Instead use createTempFile returning a future and chain with await()", replaceWith = ReplaceWith("createTempFile(prefix, suffix).await()"))
 suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String): String {
   return awaitResult {
     this.createTempFile(prefix, suffix, it)
@@ -550,7 +550,7 @@ suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String): Stri
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempFile returning a future that can yield a result ", replaceWith = ReplaceWith("createTempFile(prefix, suffix, perms).await()"))
+@Deprecated(message = "Instead use createTempFile returning a future and chain with await()", replaceWith = ReplaceWith("createTempFile(prefix, suffix, perms).await()"))
 suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String, perms: String): String {
   return awaitResult {
     this.createTempFile(prefix, suffix, perms, it)
@@ -568,7 +568,7 @@ suspend fun FileSystem.createTempFileAwait(prefix: String, suffix: String, perms
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTempFile returning a future that can yield a result ", replaceWith = ReplaceWith("createTempFile(dir, prefix, suffix, perms).await()"))
+@Deprecated(message = "Instead use createTempFile returning a future and chain with await()", replaceWith = ReplaceWith("createTempFile(dir, prefix, suffix, perms).await()"))
 suspend fun FileSystem.createTempFileAwait(dir: String, prefix: String, suffix: String, perms: String): String {
   return awaitResult {
     this.createTempFile(dir, prefix, suffix, perms, it)

@@ -24,7 +24,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.term.TermServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future that can yield a result ", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
 suspend fun TermServer.listenAwait(): Unit {
   return awaitResult {
     this.listen(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -37,7 +37,7 @@ suspend fun TermServer.listenAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.shell.term.TermServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future that can yield a result ", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun TermServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
