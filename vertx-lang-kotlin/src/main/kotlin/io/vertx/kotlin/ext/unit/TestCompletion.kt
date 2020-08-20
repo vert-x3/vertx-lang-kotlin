@@ -25,6 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.unit.TestCompletion] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use handler returning a future and chain with await()", replaceWith = ReplaceWith("handler().await()"))
 suspend fun TestCompletion.handlerAwait(): Unit? {
   return awaitResult {
     this.handler(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

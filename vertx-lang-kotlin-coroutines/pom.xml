@@ -13,6 +13,7 @@
   <properties>
     <!-- Files are copied there as it contains the examples -->
     <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>
+    <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>
   </properties>
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>

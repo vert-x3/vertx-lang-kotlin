@@ -20,6 +20,7 @@ import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx
 import io.vertx.core.http.HttpClientOptions
+import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
@@ -104,12 +105,16 @@ class VertxCoroutineTest {
     server.listen { res ->
       assertTrue(res.succeeded())
       val client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
-      client.get("/somepath") { ar ->
-        assertTrue(ar.succeeded())
-        val resp = ar.result()
-        assertTrue(resp.statusCode() == 200)
-        client.close()
-        server.close { async.complete() }
+      client.request(HttpMethod.GET, "/somepath") { ar1 ->
+        assertTrue(ar1.succeeded())
+        val req = ar1.result()
+        req.send { ar2 ->
+          assertTrue(ar2.succeeded())
+          val resp = ar2.result()
+          assertTrue(resp.statusCode() == 200)
+          client.close()
+          server.close { async.complete() }
+        }
       }
     }
   }

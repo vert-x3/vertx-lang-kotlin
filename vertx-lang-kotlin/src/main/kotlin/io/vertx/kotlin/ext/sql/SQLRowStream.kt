@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun SQLRowStream.pipeToAwait(dst: WriteStream<JsonArray>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,6 +40,7 @@ suspend fun SQLRowStream.pipeToAwait(dst: WriteStream<JsonArray>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun SQLRowStream.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

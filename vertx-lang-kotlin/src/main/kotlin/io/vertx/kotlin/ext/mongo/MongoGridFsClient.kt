@@ -31,24 +31,28 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use delete returning a future and chain with await()", replaceWith = ReplaceWith("delete(id).await()"))
 suspend fun MongoGridFsClient.deleteAwait(id: String): Unit {
   return awaitResult {
     this.delete(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
+@Deprecated(message = "Instead use downloadByFileName returning a future and chain with await()", replaceWith = ReplaceWith("downloadByFileName(stream, fileName).await()"))
 suspend fun MongoGridFsClient.downloadByFileNameAwait(stream: WriteStream<Buffer>, fileName: String): Long {
   return awaitResult {
     this.downloadByFileName(stream, fileName, it)
   }
 }
 
+@Deprecated(message = "Instead use downloadByFileNameWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("downloadByFileNameWithOptions(stream, fileName, options).await()"))
 suspend fun MongoGridFsClient.downloadByFileNameWithOptionsAwait(stream: WriteStream<Buffer>, fileName: String, options: GridFsDownloadOptions): Long {
   return awaitResult {
     this.downloadByFileNameWithOptions(stream, fileName, options, it)
   }
 }
 
+@Deprecated(message = "Instead use downloadById returning a future and chain with await()", replaceWith = ReplaceWith("downloadById(stream, id).await()"))
 suspend fun MongoGridFsClient.downloadByIdAwait(stream: WriteStream<Buffer>, id: String): Long {
   return awaitResult {
     this.downloadById(stream, id, it)
@@ -63,6 +67,7 @@ suspend fun MongoGridFsClient.downloadByIdAwait(stream: WriteStream<Buffer>, id:
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use downloadFile returning a future and chain with await()", replaceWith = ReplaceWith("downloadFile(fileName).await()"))
 suspend fun MongoGridFsClient.downloadFileAwait(fileName: String): Long {
   return awaitResult {
     this.downloadFile(fileName, it)
@@ -78,6 +83,7 @@ suspend fun MongoGridFsClient.downloadFileAwait(fileName: String): Long {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use downloadFileAs returning a future and chain with await()", replaceWith = ReplaceWith("downloadFileAs(fileName, newFileName).await()"))
 suspend fun MongoGridFsClient.downloadFileAsAwait(fileName: String, newFileName: String): Long {
   return awaitResult {
     this.downloadFileAs(fileName, newFileName, it)
@@ -93,6 +99,7 @@ suspend fun MongoGridFsClient.downloadFileAsAwait(fileName: String, newFileName:
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use downloadFileByID returning a future and chain with await()", replaceWith = ReplaceWith("downloadFileByID(id, fileName).await()"))
 suspend fun MongoGridFsClient.downloadFileByIDAwait(id: String, fileName: String): Long {
   return awaitResult {
     this.downloadFileByID(id, fileName, it)
@@ -105,6 +112,7 @@ suspend fun MongoGridFsClient.downloadFileByIDAwait(id: String, fileName: String
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use drop returning a future and chain with await()", replaceWith = ReplaceWith("drop().await()"))
 suspend fun MongoGridFsClient.dropAwait(): Unit {
   return awaitResult {
     this.drop(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -118,6 +126,7 @@ suspend fun MongoGridFsClient.dropAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findAllIds returning a future and chain with await()", replaceWith = ReplaceWith("findAllIds().await()"))
 suspend fun MongoGridFsClient.findAllIdsAwait(): List<String> {
   return awaitResult {
     this.findAllIds(it)
@@ -132,18 +141,21 @@ suspend fun MongoGridFsClient.findAllIdsAwait(): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findIds returning a future and chain with await()", replaceWith = ReplaceWith("findIds(query).await()"))
 suspend fun MongoGridFsClient.findIdsAwait(query: JsonObject): List<String> {
   return awaitResult {
     this.findIds(query, it)
   }
 }
 
+@Deprecated(message = "Instead use uploadByFileName returning a future and chain with await()", replaceWith = ReplaceWith("uploadByFileName(stream, fileName).await()"))
 suspend fun MongoGridFsClient.uploadByFileNameAwait(stream: ReadStream<Buffer>, fileName: String): String {
   return awaitResult {
     this.uploadByFileName(stream, fileName, it)
   }
 }
 
+@Deprecated(message = "Instead use uploadByFileNameWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("uploadByFileNameWithOptions(stream, fileName, options).await()"))
 suspend fun MongoGridFsClient.uploadByFileNameWithOptionsAwait(stream: ReadStream<Buffer>, fileName: String, options: GridFsUploadOptions): String {
   return awaitResult {
     this.uploadByFileNameWithOptions(stream, fileName, options, it)
@@ -158,6 +170,7 @@ suspend fun MongoGridFsClient.uploadByFileNameWithOptionsAwait(stream: ReadStrea
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use uploadFile returning a future and chain with await()", replaceWith = ReplaceWith("uploadFile(fileName).await()"))
 suspend fun MongoGridFsClient.uploadFileAwait(fileName: String): String {
   return awaitResult {
     this.uploadFile(fileName, it)
@@ -173,6 +186,7 @@ suspend fun MongoGridFsClient.uploadFileAwait(fileName: String): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoGridFsClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use uploadFileWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("uploadFileWithOptions(fileName, options).await()"))
 suspend fun MongoGridFsClient.uploadFileWithOptionsAwait(fileName: String, options: GridFsUploadOptions): String {
   return awaitResult {
     this.uploadFileWithOptions(fileName, options, it)

@@ -31,6 +31,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use execute returning a future and chain with await()", replaceWith = ReplaceWith("execute(query).await()"))
 suspend fun CassandraClient.executeAwait(query: String): ResultSet {
   return awaitResult {
     this.execute(query, it)
@@ -45,6 +46,7 @@ suspend fun CassandraClient.executeAwait(query: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStream returning a future and chain with await()", replaceWith = ReplaceWith("queryStream(sql).await()"))
 suspend fun CassandraClient.queryStreamAwait(sql: String): CassandraRowStream {
   return awaitResult {
     this.queryStream(sql, it)
@@ -57,6 +59,7 @@ suspend fun CassandraClient.queryStreamAwait(sql: String): CassandraRowStream {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun CassandraClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -71,6 +74,7 @@ suspend fun CassandraClient.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executeWithFullFetch returning a future and chain with await()", replaceWith = ReplaceWith("executeWithFullFetch(query).await()"))
 suspend fun CassandraClient.executeWithFullFetchAwait(query: String): List<Row> {
   return awaitResult {
     this.executeWithFullFetch(query, it)
@@ -85,6 +89,7 @@ suspend fun CassandraClient.executeWithFullFetchAwait(query: String): List<Row> 
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executeWithFullFetch returning a future and chain with await()", replaceWith = ReplaceWith("executeWithFullFetch(statement).await()"))
 suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement<*>): List<Row> {
   return awaitResult {
     this.executeWithFullFetch(statement, it)
@@ -99,6 +104,7 @@ suspend fun CassandraClient.executeWithFullFetchAwait(statement: Statement<*>): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use execute returning a future and chain with await()", replaceWith = ReplaceWith("execute(statement).await()"))
 suspend fun CassandraClient.executeAwait(statement: Statement<*>): ResultSet {
   return awaitResult {
     this.execute(statement, it)
@@ -113,6 +119,7 @@ suspend fun CassandraClient.executeAwait(statement: Statement<*>): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(query).await()"))
 suspend fun CassandraClient.prepareAwait(query: String): PreparedStatement {
   return awaitResult {
     this.prepare(query, it)
@@ -127,6 +134,7 @@ suspend fun CassandraClient.prepareAwait(query: String): PreparedStatement {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use queryStream returning a future and chain with await()", replaceWith = ReplaceWith("queryStream(statement).await()"))
 suspend fun CassandraClient.queryStreamAwait(statement: Statement<*>): CassandraRowStream {
   return awaitResult {
     this.queryStream(statement, it)

@@ -30,6 +30,7 @@ import io.vertx.mqtt.messages.MqttConnAckMessage
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host).await()"))
 suspend fun MqttClient.connectAwait(port: Int, host: String): MqttConnAckMessage {
   return awaitResult {
     this.connect(port, host, it)
@@ -46,6 +47,7 @@ suspend fun MqttClient.connectAwait(port: Int, host: String): MqttConnAckMessage
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host, serverName).await()"))
 suspend fun MqttClient.connectAwait(port: Int, host: String, serverName: String): MqttConnAckMessage {
   return awaitResult {
     this.connect(port, host, serverName, it)
@@ -58,6 +60,7 @@ suspend fun MqttClient.connectAwait(port: Int, host: String, serverName: String)
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use disconnect returning a future and chain with await()", replaceWith = ReplaceWith("disconnect().await()"))
 suspend fun MqttClient.disconnectAwait(): Unit {
   return awaitResult {
     this.disconnect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -76,6 +79,7 @@ suspend fun MqttClient.disconnectAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain).await()"))
 suspend fun MqttClient.publishAwait(topic: String, payload: Buffer, qosLevel: MqttQoS, isDup: Boolean, isRetain: Boolean): Int {
   return awaitResult {
     this.publish(topic, payload, qosLevel, isDup, isRetain, it)
@@ -91,6 +95,7 @@ suspend fun MqttClient.publishAwait(topic: String, payload: Buffer, qosLevel: Mq
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(topic, qos).await()"))
 suspend fun MqttClient.subscribeAwait(topic: String, qos: Int): Int {
   return awaitResult {
     this.subscribe(topic, qos, it)
@@ -105,6 +110,7 @@ suspend fun MqttClient.subscribeAwait(topic: String, qos: Int): Int {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(topics).await()"))
 suspend fun MqttClient.subscribeAwait(topics: Map<String,Int>): Int {
   return awaitResult {
     this.subscribe(topics, it)
@@ -119,6 +125,7 @@ suspend fun MqttClient.subscribeAwait(topics: Map<String,Int>): Int {
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe(topic).await()"))
 suspend fun MqttClient.unsubscribeAwait(topic: String): Int {
   return awaitResult {
     this.unsubscribe(topic, it)

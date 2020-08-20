@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.streams.Pipe] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use to returning a future and chain with await()", replaceWith = ReplaceWith("to(dst).await()"))
 suspend fun <T> Pipe<T>.toAwait(dst: WriteStream<T>): Unit {
   return awaitResult {
     this.to(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

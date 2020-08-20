@@ -40,6 +40,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use save returning a future and chain with await()", replaceWith = ReplaceWith("save(collection, document).await()"))
 suspend fun MongoClient.saveAwait(collection: String, document: JsonObject): String? {
   return awaitResult {
     this.save(collection, document, it)
@@ -56,6 +57,7 @@ suspend fun MongoClient.saveAwait(collection: String, document: JsonObject): Str
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use saveWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("saveWithOptions(collection, document, writeOption).await()"))
 suspend fun MongoClient.saveWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption?): String? {
   return awaitResult {
     this.saveWithOptions(collection, document, writeOption, it)
@@ -71,6 +73,7 @@ suspend fun MongoClient.saveWithOptionsAwait(collection: String, document: JsonO
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use insert returning a future and chain with await()", replaceWith = ReplaceWith("insert(collection, document).await()"))
 suspend fun MongoClient.insertAwait(collection: String, document: JsonObject): String? {
   return awaitResult {
     this.insert(collection, document, it)
@@ -87,6 +90,7 @@ suspend fun MongoClient.insertAwait(collection: String, document: JsonObject): S
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use insertWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("insertWithOptions(collection, document, writeOption).await()"))
 suspend fun MongoClient.insertWithOptionsAwait(collection: String, document: JsonObject, writeOption: WriteOption?): String? {
   return awaitResult {
     this.insertWithOptions(collection, document, writeOption, it)
@@ -103,6 +107,7 @@ suspend fun MongoClient.insertWithOptionsAwait(collection: String, document: Jso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateCollection returning a future and chain with await()", replaceWith = ReplaceWith("updateCollection(collection, query, update).await()"))
 suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObject, update: JsonObject): MongoClientUpdateResult? {
   return awaitResult {
     this.updateCollection(collection, query, update, it)
@@ -120,6 +125,7 @@ suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObj
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateCollectionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateCollectionWithOptions(collection, query, update, options).await()"))
 suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, query: JsonObject, update: JsonObject, options: UpdateOptions): MongoClientUpdateResult? {
   return awaitResult {
     this.updateCollectionWithOptions(collection, query, update, options, it)
@@ -136,6 +142,7 @@ suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, que
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use replaceDocuments returning a future and chain with await()", replaceWith = ReplaceWith("replaceDocuments(collection, query, replace).await()"))
 suspend fun MongoClient.replaceDocumentsAwait(collection: String, query: JsonObject, replace: JsonObject): MongoClientUpdateResult? {
   return awaitResult {
     this.replaceDocuments(collection, query, replace, it)
@@ -153,6 +160,7 @@ suspend fun MongoClient.replaceDocumentsAwait(collection: String, query: JsonObj
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use replaceDocumentsWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("replaceDocumentsWithOptions(collection, query, replace, options).await()"))
 suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection: String, query: JsonObject, replace: JsonObject, options: UpdateOptions): MongoClientUpdateResult? {
   return awaitResult {
     this.replaceDocumentsWithOptions(collection, query, replace, options, it)
@@ -168,6 +176,7 @@ suspend fun MongoClient.replaceDocumentsWithOptionsAwait(collection: String, que
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use bulkWrite returning a future and chain with await()", replaceWith = ReplaceWith("bulkWrite(collection, operations).await()"))
 suspend fun MongoClient.bulkWriteAwait(collection: String, operations: List<BulkOperation>): MongoClientBulkWriteResult? {
   return awaitResult {
     this.bulkWrite(collection, operations, it)
@@ -184,6 +193,7 @@ suspend fun MongoClient.bulkWriteAwait(collection: String, operations: List<Bulk
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use bulkWriteWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("bulkWriteWithOptions(collection, operations, bulkWriteOptions).await()"))
 suspend fun MongoClient.bulkWriteWithOptionsAwait(collection: String, operations: List<BulkOperation>, bulkWriteOptions: BulkWriteOptions): MongoClientBulkWriteResult? {
   return awaitResult {
     this.bulkWriteWithOptions(collection, operations, bulkWriteOptions, it)
@@ -199,6 +209,7 @@ suspend fun MongoClient.bulkWriteWithOptionsAwait(collection: String, operations
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use find returning a future and chain with await()", replaceWith = ReplaceWith("find(collection, query).await()"))
 suspend fun MongoClient.findAwait(collection: String, query: JsonObject): List<JsonObject> {
   return awaitResult {
     this.find(collection, query, it)
@@ -215,6 +226,7 @@ suspend fun MongoClient.findAwait(collection: String, query: JsonObject): List<J
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("findWithOptions(collection, query, options).await()"))
 suspend fun MongoClient.findWithOptionsAwait(collection: String, query: JsonObject, options: FindOptions): List<JsonObject> {
   return awaitResult {
     this.findWithOptions(collection, query, options, it)
@@ -231,6 +243,7 @@ suspend fun MongoClient.findWithOptionsAwait(collection: String, query: JsonObje
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOne returning a future and chain with await()", replaceWith = ReplaceWith("findOne(collection, query, fields).await()"))
 suspend fun MongoClient.findOneAwait(collection: String, query: JsonObject, fields: JsonObject?): JsonObject? {
   return awaitResult {
     this.findOne(collection, query, fields, it)
@@ -247,6 +260,7 @@ suspend fun MongoClient.findOneAwait(collection: String, query: JsonObject, fiel
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndUpdate returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndUpdate(collection, query, update).await()"))
 suspend fun MongoClient.findOneAndUpdateAwait(collection: String, query: JsonObject, update: JsonObject): JsonObject? {
   return awaitResult {
     this.findOneAndUpdate(collection, query, update, it)
@@ -265,6 +279,7 @@ suspend fun MongoClient.findOneAndUpdateAwait(collection: String, query: JsonObj
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndUpdateWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndUpdateWithOptions(collection, query, update, findOptions, updateOptions).await()"))
 suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection: String, query: JsonObject, update: JsonObject, findOptions: FindOptions, updateOptions: UpdateOptions): JsonObject? {
   return awaitResult {
     this.findOneAndUpdateWithOptions(collection, query, update, findOptions, updateOptions, it)
@@ -281,6 +296,7 @@ suspend fun MongoClient.findOneAndUpdateWithOptionsAwait(collection: String, que
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndReplace returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndReplace(collection, query, replace).await()"))
 suspend fun MongoClient.findOneAndReplaceAwait(collection: String, query: JsonObject, replace: JsonObject): JsonObject? {
   return awaitResult {
     this.findOneAndReplace(collection, query, replace, it)
@@ -299,6 +315,7 @@ suspend fun MongoClient.findOneAndReplaceAwait(collection: String, query: JsonOb
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndReplaceWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndReplaceWithOptions(collection, query, replace, findOptions, updateOptions).await()"))
 suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection: String, query: JsonObject, replace: JsonObject, findOptions: FindOptions, updateOptions: UpdateOptions): JsonObject? {
   return awaitResult {
     this.findOneAndReplaceWithOptions(collection, query, replace, findOptions, updateOptions, it)
@@ -314,6 +331,7 @@ suspend fun MongoClient.findOneAndReplaceWithOptionsAwait(collection: String, qu
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndDelete returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndDelete(collection, query).await()"))
 suspend fun MongoClient.findOneAndDeleteAwait(collection: String, query: JsonObject): JsonObject? {
   return awaitResult {
     this.findOneAndDelete(collection, query, it)
@@ -330,6 +348,7 @@ suspend fun MongoClient.findOneAndDeleteAwait(collection: String, query: JsonObj
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use findOneAndDeleteWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("findOneAndDeleteWithOptions(collection, query, findOptions).await()"))
 suspend fun MongoClient.findOneAndDeleteWithOptionsAwait(collection: String, query: JsonObject, findOptions: FindOptions): JsonObject? {
   return awaitResult {
     this.findOneAndDeleteWithOptions(collection, query, findOptions, it)
@@ -345,6 +364,7 @@ suspend fun MongoClient.findOneAndDeleteWithOptionsAwait(collection: String, que
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use count returning a future and chain with await()", replaceWith = ReplaceWith("count(collection, query).await()"))
 suspend fun MongoClient.countAwait(collection: String, query: JsonObject): Long {
   return awaitResult {
     this.count(collection, query, it)
@@ -360,6 +380,7 @@ suspend fun MongoClient.countAwait(collection: String, query: JsonObject): Long 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use removeDocuments returning a future and chain with await()", replaceWith = ReplaceWith("removeDocuments(collection, query).await()"))
 suspend fun MongoClient.removeDocumentsAwait(collection: String, query: JsonObject): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocuments(collection, query, it)
@@ -376,6 +397,7 @@ suspend fun MongoClient.removeDocumentsAwait(collection: String, query: JsonObje
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use removeDocumentsWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("removeDocumentsWithOptions(collection, query, writeOption).await()"))
 suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption?): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentsWithOptions(collection, query, writeOption, it)
@@ -391,6 +413,7 @@ suspend fun MongoClient.removeDocumentsWithOptionsAwait(collection: String, quer
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use removeDocument returning a future and chain with await()", replaceWith = ReplaceWith("removeDocument(collection, query).await()"))
 suspend fun MongoClient.removeDocumentAwait(collection: String, query: JsonObject): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocument(collection, query, it)
@@ -407,6 +430,7 @@ suspend fun MongoClient.removeDocumentAwait(collection: String, query: JsonObjec
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use removeDocumentWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("removeDocumentWithOptions(collection, query, writeOption).await()"))
 suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query: JsonObject, writeOption: WriteOption?): MongoClientDeleteResult? {
   return awaitResult {
     this.removeDocumentWithOptions(collection, query, writeOption, it)
@@ -420,6 +444,7 @@ suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createCollection returning a future and chain with await()", replaceWith = ReplaceWith("createCollection(collectionName).await()"))
 suspend fun MongoClient.createCollectionAwait(collectionName: String): Unit {
   return awaitResult {
     this.createCollection(collectionName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -433,6 +458,7 @@ suspend fun MongoClient.createCollectionAwait(collectionName: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getCollections returning a future and chain with await()", replaceWith = ReplaceWith("getCollections().await()"))
 suspend fun MongoClient.getCollectionsAwait(): List<String> {
   return awaitResult {
     this.getCollections(it)
@@ -446,6 +472,7 @@ suspend fun MongoClient.getCollectionsAwait(): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use dropCollection returning a future and chain with await()", replaceWith = ReplaceWith("dropCollection(collection).await()"))
 suspend fun MongoClient.dropCollectionAwait(collection: String): Unit {
   return awaitResult {
     this.dropCollection(collection, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -460,6 +487,7 @@ suspend fun MongoClient.dropCollectionAwait(collection: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createIndex returning a future and chain with await()", replaceWith = ReplaceWith("createIndex(collection, key).await()"))
 suspend fun MongoClient.createIndexAwait(collection: String, key: JsonObject): Unit {
   return awaitResult {
     this.createIndex(collection, key, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -475,6 +503,7 @@ suspend fun MongoClient.createIndexAwait(collection: String, key: JsonObject): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createIndexWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("createIndexWithOptions(collection, key, options).await()"))
 suspend fun MongoClient.createIndexWithOptionsAwait(collection: String, key: JsonObject, options: IndexOptions): Unit {
   return awaitResult {
     this.createIndexWithOptions(collection, key, options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -489,6 +518,7 @@ suspend fun MongoClient.createIndexWithOptionsAwait(collection: String, key: Jso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createIndexes returning a future and chain with await()", replaceWith = ReplaceWith("createIndexes(collection, indexes).await()"))
 suspend fun MongoClient.createIndexesAwait(collection: String, indexes: List<IndexModel>): Unit {
   return awaitResult {
     this.createIndexes(collection, indexes, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -503,6 +533,7 @@ suspend fun MongoClient.createIndexesAwait(collection: String, indexes: List<Ind
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listIndexes returning a future and chain with await()", replaceWith = ReplaceWith("listIndexes(collection).await()"))
 suspend fun MongoClient.listIndexesAwait(collection: String): JsonArray {
   return awaitResult {
     this.listIndexes(collection, it)
@@ -517,6 +548,7 @@ suspend fun MongoClient.listIndexesAwait(collection: String): JsonArray {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use dropIndex returning a future and chain with await()", replaceWith = ReplaceWith("dropIndex(collection, indexName).await()"))
 suspend fun MongoClient.dropIndexAwait(collection: String, indexName: String): Unit {
   return awaitResult {
     this.dropIndex(collection, indexName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -532,6 +564,7 @@ suspend fun MongoClient.dropIndexAwait(collection: String, indexName: String): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use runCommand returning a future and chain with await()", replaceWith = ReplaceWith("runCommand(commandName, command).await()"))
 suspend fun MongoClient.runCommandAwait(commandName: String, command: JsonObject): JsonObject? {
   return awaitResult {
     this.runCommand(commandName, command, it)
@@ -548,6 +581,7 @@ suspend fun MongoClient.runCommandAwait(commandName: String, command: JsonObject
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use distinct returning a future and chain with await()", replaceWith = ReplaceWith("distinct(collection, fieldName, resultClassname).await()"))
 suspend fun MongoClient.distinctAwait(collection: String, fieldName: String, resultClassname: String): JsonArray {
   return awaitResult {
     this.distinct(collection, fieldName, resultClassname, it)
@@ -565,6 +599,7 @@ suspend fun MongoClient.distinctAwait(collection: String, fieldName: String, res
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use distinctWithQuery returning a future and chain with await()", replaceWith = ReplaceWith("distinctWithQuery(collection, fieldName, resultClassname, query).await()"))
 suspend fun MongoClient.distinctWithQueryAwait(collection: String, fieldName: String, resultClassname: String, query: JsonObject): JsonArray {
   return awaitResult {
     this.distinctWithQuery(collection, fieldName, resultClassname, query, it)
@@ -578,6 +613,7 @@ suspend fun MongoClient.distinctWithQueryAwait(collection: String, fieldName: St
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createDefaultGridFsBucketService returning a future and chain with await()", replaceWith = ReplaceWith("createDefaultGridFsBucketService().await()"))
 suspend fun MongoClient.createDefaultGridFsBucketServiceAwait(): MongoGridFsClient {
   return awaitResult {
     this.createDefaultGridFsBucketService(it)
@@ -592,6 +628,7 @@ suspend fun MongoClient.createDefaultGridFsBucketServiceAwait(): MongoGridFsClie
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createGridFsBucketService returning a future and chain with await()", replaceWith = ReplaceWith("createGridFsBucketService(bucketName).await()"))
 suspend fun MongoClient.createGridFsBucketServiceAwait(bucketName: String): MongoGridFsClient {
   return awaitResult {
     this.createGridFsBucketService(bucketName, it)
@@ -604,6 +641,7 @@ suspend fun MongoClient.createGridFsBucketServiceAwait(bucketName: String): Mong
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun MongoClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

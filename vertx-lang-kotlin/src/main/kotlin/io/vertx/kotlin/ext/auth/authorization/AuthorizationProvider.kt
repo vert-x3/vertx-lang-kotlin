@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authorization.AuthorizationProvider] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getAuthorizations returning a future and chain with await()", replaceWith = ReplaceWith("getAuthorizations(user).await()"))
 suspend fun AuthorizationProvider.getAuthorizationsAwait(user: User): Unit {
   return awaitResult {
     this.getAuthorizations(user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

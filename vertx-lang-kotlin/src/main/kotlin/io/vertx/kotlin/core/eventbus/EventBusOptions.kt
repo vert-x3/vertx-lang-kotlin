@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param acceptBacklog  Set the accept back log.
  * @param clientAuth  Set whether client auth is required
+ * @param clusterNodeMetadata  Set information about this node when Vert.x is clustered. <p> The data may be used by the [io.vertx.core.spi.cluster.NodeSelector] to select a node for a given message. For example, it could be used to implement a partioning strategy. <p> The default [io.vertx.core.spi.cluster.NodeSelector] does not use the node metadata.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
  * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
  * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. <p> The default value is null which means use the same as the cluster hostname.
@@ -41,7 +42,7 @@ import java.util.concurrent.TimeUnit
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
- * @param host  Sets the host.
+ * @param host  Sets the host. Defaults to <code>null</code>. <p> When the clustered eventbus starts, it tries to bind to the provided <code>host</code>. If <code>host</code> is <code>null</code>, then it tries to bind to the same host as the underlying cluster manager. As a last resort, an address will be picked among the available network interfaces.
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.TCPSSLOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
@@ -81,6 +82,7 @@ import java.util.concurrent.TimeUnit
 fun eventBusOptionsOf(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clusterNodeMetadata: io.vertx.core.json.JsonObject? = null,
   clusterPingInterval: Long? = null,
   clusterPingReplyInterval: Long? = null,
   clusterPublicHost: String? = null,
@@ -129,6 +131,9 @@ fun eventBusOptionsOf(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clusterNodeMetadata != null) {
+    this.setClusterNodeMetadata(clusterNodeMetadata)
   }
   if (clusterPingInterval != null) {
     this.setClusterPingInterval(clusterPingInterval)
@@ -271,6 +276,7 @@ fun eventBusOptionsOf(
  *
  * @param acceptBacklog  Set the accept back log.
  * @param clientAuth  Set whether client auth is required
+ * @param clusterNodeMetadata  Set information about this node when Vert.x is clustered. <p> The data may be used by the [io.vertx.core.spi.cluster.NodeSelector] to select a node for a given message. For example, it could be used to implement a partioning strategy. <p> The default [io.vertx.core.spi.cluster.NodeSelector] does not use the node metadata.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
  * @param clusterPingReplyInterval  Set the value of cluster ping reply interval, in ms.
  * @param clusterPublicHost  Set the public facing hostname to be used for clustering. Sometimes, e.g. when running on certain clouds, the local address the server listens on for clustering is not the same address that other nodes connect to it at, as the OS / cloud infrastructure does some kind of proxying. If this is the case you can specify a public hostname which is different from the hostname the server listens at. <p> The default value is null which means use the same as the cluster hostname.
@@ -280,7 +286,7 @@ fun eventBusOptionsOf(
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
- * @param host  Sets the host.
+ * @param host  Sets the host. Defaults to <code>null</code>. <p> When the clustered eventbus starts, it tries to bind to the provided <code>host</code>. If <code>host</code> is <code>null</code>, then it tries to bind to the same host as the underlying cluster manager. As a last resort, an address will be picked among the available network interfaces.
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.TCPSSLOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
@@ -319,11 +325,12 @@ fun eventBusOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("eventBusOptionsOf(acceptBacklog, clientAuth, clusterPingInterval, clusterPingReplyInterval, clusterPublicHost, clusterPublicPort, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn)")
+  replaceWith = ReplaceWith("eventBusOptionsOf(acceptBacklog, clientAuth, clusterNodeMetadata, clusterPingInterval, clusterPingReplyInterval, clusterPublicHost, clusterPublicPort, connectTimeout, crlPaths, crlValues, enabledCipherSuites, enabledSecureTransportProtocols, host, idleTimeout, idleTimeoutUnit, jdkSslEngineOptions, keyStoreOptions, logActivity, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, port, receiveBufferSize, reconnectAttempts, reconnectInterval, reuseAddress, reusePort, sendBufferSize, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, useAlpn)")
 )
 fun EventBusOptions(
   acceptBacklog: Int? = null,
   clientAuth: ClientAuth? = null,
+  clusterNodeMetadata: io.vertx.core.json.JsonObject? = null,
   clusterPingInterval: Long? = null,
   clusterPingReplyInterval: Long? = null,
   clusterPublicHost: String? = null,
@@ -372,6 +379,9 @@ fun EventBusOptions(
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)
+  }
+  if (clusterNodeMetadata != null) {
+    this.setClusterNodeMetadata(clusterNodeMetadata)
   }
   if (clusterPingInterval != null) {
     this.setClusterPingInterval(clusterPingInterval)

@@ -31,6 +31,7 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerServiceImporter returning a future and chain with await()", replaceWith = ReplaceWith("registerServiceImporter(importer, configuration).await()"))
 suspend fun ServiceDiscovery.registerServiceImporterAwait(importer: ServiceImporter, configuration: JsonObject): Unit {
   return awaitResult {
     this.registerServiceImporter(importer, configuration, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -45,6 +46,7 @@ suspend fun ServiceDiscovery.registerServiceImporterAwait(importer: ServiceImpor
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerServiceExporter returning a future and chain with await()", replaceWith = ReplaceWith("registerServiceExporter(exporter, configuration).await()"))
 suspend fun ServiceDiscovery.registerServiceExporterAwait(exporter: ServiceExporter, configuration: JsonObject): Unit {
   return awaitResult {
     this.registerServiceExporter(exporter, configuration, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -59,6 +61,7 @@ suspend fun ServiceDiscovery.registerServiceExporterAwait(exporter: ServiceExpor
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(record).await()"))
 suspend fun ServiceDiscovery.publishAwait(record: Record): Record {
   return awaitResult {
     this.publish(record, it)
@@ -72,6 +75,7 @@ suspend fun ServiceDiscovery.publishAwait(record: Record): Record {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use unpublish returning a future and chain with await()", replaceWith = ReplaceWith("unpublish(id).await()"))
 suspend fun ServiceDiscovery.unpublishAwait(id: String): Unit {
   return awaitResult {
     this.unpublish(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -86,6 +90,7 @@ suspend fun ServiceDiscovery.unpublishAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecord returning a future and chain with await()", replaceWith = ReplaceWith("getRecord(filter).await()"))
 suspend fun ServiceDiscovery.getRecordAwait(filter: JsonObject): Record? {
   return awaitResult {
     this.getRecord(filter, it)
@@ -100,6 +105,7 @@ suspend fun ServiceDiscovery.getRecordAwait(filter: JsonObject): Record? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecord returning a future and chain with await()", replaceWith = ReplaceWith("getRecord(filter).await()"))
 suspend fun ServiceDiscovery.getRecordAwait(filter: (Record) -> Boolean): Record? {
   return awaitResult {
     this.getRecord(filter, it::handle)
@@ -115,6 +121,7 @@ suspend fun ServiceDiscovery.getRecordAwait(filter: (Record) -> Boolean): Record
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecord returning a future and chain with await()", replaceWith = ReplaceWith("getRecord(filter, includeOutOfService).await()"))
 suspend fun ServiceDiscovery.getRecordAwait(filter: (Record) -> Boolean, includeOutOfService: Boolean): Record? {
   return awaitResult {
     this.getRecord(filter, includeOutOfService, it::handle)
@@ -129,6 +136,7 @@ suspend fun ServiceDiscovery.getRecordAwait(filter: (Record) -> Boolean, include
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecords returning a future and chain with await()", replaceWith = ReplaceWith("getRecords(filter).await()"))
 suspend fun ServiceDiscovery.getRecordsAwait(filter: JsonObject): List<Record> {
   return awaitResult {
     this.getRecords(filter, it)
@@ -143,6 +151,7 @@ suspend fun ServiceDiscovery.getRecordsAwait(filter: JsonObject): List<Record> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecords returning a future and chain with await()", replaceWith = ReplaceWith("getRecords(filter).await()"))
 suspend fun ServiceDiscovery.getRecordsAwait(filter: (Record) -> Boolean): List<Record> {
   return awaitResult {
     this.getRecords(filter, it::handle)
@@ -158,6 +167,7 @@ suspend fun ServiceDiscovery.getRecordsAwait(filter: (Record) -> Boolean): List<
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getRecords returning a future and chain with await()", replaceWith = ReplaceWith("getRecords(filter, includeOutOfService).await()"))
 suspend fun ServiceDiscovery.getRecordsAwait(filter: (Record) -> Boolean, includeOutOfService: Boolean): List<Record> {
   return awaitResult {
     this.getRecords(filter, includeOutOfService, it::handle)
@@ -172,6 +182,7 @@ suspend fun ServiceDiscovery.getRecordsAwait(filter: (Record) -> Boolean, includ
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use update returning a future and chain with await()", replaceWith = ReplaceWith("update(record).await()"))
 suspend fun ServiceDiscovery.updateAwait(record: Record): Record {
   return awaitResult {
     this.update(record, it)
