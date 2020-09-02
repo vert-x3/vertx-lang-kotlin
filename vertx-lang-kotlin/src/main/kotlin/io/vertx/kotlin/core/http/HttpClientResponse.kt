@@ -48,3 +48,16 @@ suspend fun HttpClientResponse.bodyAwait(): Buffer {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClientResponse.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+suspend fun HttpClientResponse.endAwait(): Unit {
+  return awaitResult {
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

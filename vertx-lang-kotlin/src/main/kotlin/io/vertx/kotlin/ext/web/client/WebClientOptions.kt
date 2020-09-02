@@ -102,6 +102,7 @@ import java.util.concurrent.TimeUnit
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
+ * @param webSocketClosingTimeout  Set the amount of time a client WebSocket will wait until it closes the TCP connection after receiving a close frame. <p> When a WebSocket is closed, the server should close the TCP connection. This timeout will close the TCP connection on the client when it expires. <p> Set <code>0L</code> or a negative value to disable.
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
@@ -181,6 +182,7 @@ fun webClientOptionsOf(
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
+  webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketCompressionRequestServerNoContext: Boolean? = null): WebClientOptions = io.vertx.ext.web.client.WebClientOptions().apply {
@@ -403,6 +405,9 @@ fun webClientOptionsOf(
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
+  }
+  if (webSocketClosingTimeout != null) {
+    this.setWebSocketClosingTimeout(webSocketClosingTimeout)
   }
   if (webSocketCompressionAllowClientNoContext != null) {
     this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)
@@ -490,6 +495,7 @@ fun webClientOptionsOf(
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
+ * @param webSocketClosingTimeout  Set the amount of time a client WebSocket will wait until it closes the TCP connection after receiving a close frame. <p> When a WebSocket is closed, the server should close the TCP connection. This timeout will close the TCP connection on the client when it expires. <p> Set <code>0L</code> or a negative value to disable.
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
@@ -499,7 +505,7 @@ fun webClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyCertOptions, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, userAgent, userAgentEnabled, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("webClientOptionsOf(alpnVersions, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, followRedirects, forceSni, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, jdkSslEngineOptions, keepAlive, keepAliveTimeout, keyCertOptions, keyStoreOptions, localAddress, logActivity, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, receiveBufferSize, reuseAddress, reusePort, sendBufferSize, sendUnmaskedFrames, soLinger, ssl, sslEngineOptions, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, trafficClass, trustAll, trustOptions, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerMessageWebSocketCompression, useAlpn, userAgent, userAgentEnabled, verifyHost, webSocketClosingTimeout, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext)")
 )
 fun WebClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -573,6 +579,7 @@ fun WebClientOptions(
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
+  webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketCompressionRequestServerNoContext: Boolean? = null): WebClientOptions = io.vertx.ext.web.client.WebClientOptions().apply {
@@ -795,6 +802,9 @@ fun WebClientOptions(
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
+  }
+  if (webSocketClosingTimeout != null) {
+    this.setWebSocketClosingTimeout(webSocketClosingTimeout)
   }
   if (webSocketCompressionAllowClientNoContext != null) {
     this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)

@@ -34,3 +34,16 @@ suspend fun HttpServerRequest.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerRequest.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+suspend fun HttpServerRequest.endAwait(): Unit {
+  return awaitResult {
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

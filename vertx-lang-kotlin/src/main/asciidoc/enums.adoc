@@ -542,6 +542,9 @@ Remote address in client-host or host-client connections (used in net and http d
 |[[HTTP_PATH]]`HTTP_PATH`|+++
 Path of the URI for client or server requests (used in http domain)
 +++
+|[[HTTP_ROUTE]]`HTTP_ROUTE`|+++
+Route as provided by routing modules to the http requests
++++
 |[[HTTP_METHOD]]`HTTP_METHOD`|+++
 Method (GET, POST, PUT, etc.) of an HTTP requests (used in http domain)
 +++
@@ -549,8 +552,8 @@ Method (GET, POST, PUT, etc.) of an HTTP requests (used in http domain)
 HTTP response code (used in http domain)
 +++
 |[[CLASS_NAME]]`CLASS_NAME`|+++
-Class name. When used in error counters (in net, http, datagram and eventbus domains) it relates to an exception that occurred.
- When used in verticle domain, it relates to the verticle class name.
+Class name. When used in error counters (in net, http, datagram and eventbus domains) it relates to an exception
+ that occurred. When used in verticle domain, it relates to the verticle class name.
 +++
 |[[EB_ADDRESS]]`EB_ADDRESS`|+++
 Event bus address
@@ -1007,14 +1010,23 @@ C String simple String.
 |[[ERROR]]`ERROR`|+++
 C String simple String representing an error.
 +++
-|[[INTEGER]]`INTEGER`|+++
-64 bit integer value.
+|[[BOOLEAN]]`BOOLEAN`|+++
+boolean value.
++++
+|[[NUMBER]]`NUMBER`|+++
+numeric value.
 +++
 |[[BULK]]`BULK`|+++
 byte array value.
 +++
+|[[PUSH]]`PUSH`|+++
+Push message
++++
+|[[ATTRIBUTE]]`ATTRIBUTE`|+++
+Attribute message
++++
 |[[MULTI]]`MULTI`|+++
-List of multiple bulk responses.
+List of multiple bulk responses (List, Set, Map).
 +++
 |===
 
