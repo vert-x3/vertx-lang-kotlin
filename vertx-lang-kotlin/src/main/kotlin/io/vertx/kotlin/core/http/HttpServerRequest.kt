@@ -17,6 +17,8 @@ package io.vertx.kotlin.core.http
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpServerRequest
+import io.vertx.core.http.ServerWebSocket
+import io.vertx.core.net.NetSocket
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -30,6 +32,32 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun HttpServerRequest.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerRequest.toNetSocket]
+ *
+ * @return [NetSocket]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
+ */
+suspend fun HttpServerRequest.toNetSocketAwait(): NetSocket {
+  return awaitResult {
+    this.toNetSocket(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerRequest.toWebSocket]
+ *
+ * @return [ServerWebSocket]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
+ */
+suspend fun HttpServerRequest.toWebSocketAwait(): ServerWebSocket {
+  return awaitResult {
+    this.toWebSocket(it)
   }
 }
 

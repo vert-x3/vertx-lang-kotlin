@@ -126,6 +126,7 @@ import java.util.concurrent.TimeUnit
  * @param userInfoPath  Set the provider userInfo resource path
  * @param validateIssuer 
  * @param verifyHost  Set whether hostname verification is enabled
+ * @param webSocketClosingTimeout  Set the amount of time a client WebSocket will wait until it closes the TCP connection after receiving a close frame. <p> When a WebSocket is closed, the server should close the TCP connection. This timeout will close the TCP connection on the client when it expires. <p> Set <code>0L</code> or a negative value to disable.
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
@@ -228,6 +229,7 @@ fun oAuth2ClientOptionsOf(
   userInfoPath: String? = null,
   validateIssuer: Boolean? = null,
   verifyHost: Boolean? = null,
+  webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketCompressionRequestServerNoContext: Boolean? = null,
@@ -513,6 +515,9 @@ fun oAuth2ClientOptionsOf(
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
+  }
+  if (webSocketClosingTimeout != null) {
+    this.setWebSocketClosingTimeout(webSocketClosingTimeout)
   }
   if (webSocketCompressionAllowClientNoContext != null) {
     this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)
@@ -630,6 +635,7 @@ fun oAuth2ClientOptionsOf(
  * @param userInfoPath  Set the provider userInfo resource path
  * @param validateIssuer 
  * @param verifyHost  Set whether hostname verification is enabled
+ * @param webSocketClosingTimeout  Set the amount of time a client WebSocket will wait until it closes the TCP connection after receiving a close frame. <p> When a WebSocket is closed, the server should close the TCP connection. This timeout will close the TCP connection on the client when it expires. <p> Set <code>0L</code> or a negative value to disable.
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
@@ -642,7 +648,7 @@ fun oAuth2ClientOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebSocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, usePooledBuffers, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
+  replaceWith = ReplaceWith("oAuth2ClientOptionsOf(alpnVersions, authorizationPath, clientID, clientSecret, clientSecretParameterName, connectTimeout, crlPaths, crlValues, decoderInitialBufferSize, defaultHost, defaultPort, enabledCipherSuites, enabledSecureTransportProtocols, extraParameters, flow, forceSni, headers, http2ClearTextUpgrade, http2ConnectionWindowSize, http2KeepAliveTimeout, http2MaxPoolSize, http2MultiplexingLimit, idleTimeout, idleTimeoutUnit, initialSettings, introspectionPath, jdkSslEngineOptions, jwkPath, jwtOptions, keepAlive, keepAliveTimeout, keyStoreOptions, localAddress, logActivity, logoutPath, maxChunkSize, maxHeaderSize, maxInitialLineLength, maxPoolSize, maxRedirects, maxWaitQueueSize, maxWebSocketFrameSize, maxWebSocketMessageSize, maxWebsocketFrameSize, maxWebsocketMessageSize, metricsName, openSslEngineOptions, pemKeyCertOptions, pemTrustOptions, pfxKeyCertOptions, pfxTrustOptions, pipelining, pipeliningLimit, poolCleanerPeriod, protocolVersion, proxyOptions, pubSecKeys, receiveBufferSize, reuseAddress, reusePort, revocationPath, scopeSeparator, sendBufferSize, sendUnmaskedFrames, site, soLinger, ssl, sslHandshakeTimeout, sslHandshakeTimeoutUnit, tcpCork, tcpFastOpen, tcpKeepAlive, tcpNoDelay, tcpQuickAck, tokenPath, trafficClass, trustAll, trustStoreOptions, tryUseCompression, tryUsePerFrameWebSocketCompression, tryUsePerFrameWebsocketCompression, tryUsePerMessageWebSocketCompression, tryUsePerMessageWebsocketCompression, useAlpn, useBasicAuthorizationHeader, usePooledBuffers, userAgent, userInfoParameters, userInfoPath, validateIssuer, verifyHost, webSocketClosingTimeout, webSocketCompressionAllowClientNoContext, webSocketCompressionLevel, webSocketCompressionRequestServerNoContext, websocketCompressionAllowClientNoContext, websocketCompressionLevel, websocketCompressionRequestServerNoContext)")
 )
 fun OAuth2ClientOptions(
   alpnVersions: Iterable<HttpVersion>? = null,
@@ -736,6 +742,7 @@ fun OAuth2ClientOptions(
   userInfoPath: String? = null,
   validateIssuer: Boolean? = null,
   verifyHost: Boolean? = null,
+  webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketCompressionRequestServerNoContext: Boolean? = null,
@@ -1021,6 +1028,9 @@ fun OAuth2ClientOptions(
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
+  }
+  if (webSocketClosingTimeout != null) {
+    this.setWebSocketClosingTimeout(webSocketClosingTimeout)
   }
   if (webSocketCompressionAllowClientNoContext != null) {
     this.setWebSocketCompressionAllowClientNoContext(webSocketCompressionAllowClientNoContext)
