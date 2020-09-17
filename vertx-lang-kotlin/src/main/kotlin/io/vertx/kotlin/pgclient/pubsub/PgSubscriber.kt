@@ -24,6 +24,7 @@ import io.vertx.pgclient.pubsub.PgSubscriber
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.pubsub.PgSubscriber] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
 suspend fun PgSubscriber.connectAwait(): Unit {
   return awaitResult {
     this.connect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -26,8 +26,8 @@ import io.vertx.redis.client.RedisSlaves
  *
  * Redis Client Configuration options.
  *
- * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
- * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
@@ -36,6 +36,7 @@ import io.vertx.redis.client.RedisSlaves
  * @param maxPoolWaiting  Tune the maximum waiting requests for a connection from the pool.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
+ * @param password  Set the default password for cluster/sentinel connections.
  * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute.
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
@@ -56,6 +57,7 @@ fun redisOptionsOf(
   maxPoolWaiting: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
+  password: String? = null,
   poolCleanerInterval: Int? = null,
   poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
@@ -93,6 +95,9 @@ fun redisOptionsOf(
   }
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (poolCleanerInterval != null) {
     this.setPoolCleanerInterval(poolCleanerInterval)
@@ -116,8 +121,8 @@ fun redisOptionsOf(
  *
  * Redis Client Configuration options.
  *
- * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings. <p> Does not support rediss (redis over ssl scheme) for now.
- * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode. <p> Does not support rediss (redis over ssl scheme) for now.
+ * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings.
+ * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param masterName  Set the master name (only considered in HA mode).
@@ -126,6 +131,7 @@ fun redisOptionsOf(
  * @param maxPoolWaiting  Tune the maximum waiting requests for a connection from the pool.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
+ * @param password  Set the default password for cluster/sentinel connections.
  * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute.
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
@@ -137,7 +143,7 @@ fun redisOptionsOf(
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("redisOptionsOf(connectionString, connectionStrings, endpoint, endpoints, masterName, maxNestedArrays, maxPoolSize, maxPoolWaiting, maxWaitingHandlers, netClientOptions, poolCleanerInterval, poolRecycleTimeout, role, type, useSlave)")
+  replaceWith = ReplaceWith("redisOptionsOf(connectionString, connectionStrings, endpoint, endpoints, masterName, maxNestedArrays, maxPoolSize, maxPoolWaiting, maxWaitingHandlers, netClientOptions, password, poolCleanerInterval, poolRecycleTimeout, role, type, useSlave)")
 )
 fun RedisOptions(
   connectionString: String? = null,
@@ -150,6 +156,7 @@ fun RedisOptions(
   maxPoolWaiting: Int? = null,
   maxWaitingHandlers: Int? = null,
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
+  password: String? = null,
   poolCleanerInterval: Int? = null,
   poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
@@ -187,6 +194,9 @@ fun RedisOptions(
   }
   if (netClientOptions != null) {
     this.setNetClientOptions(netClientOptions)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (poolCleanerInterval != null) {
     this.setPoolCleanerInterval(poolCleanerInterval)

@@ -18,19 +18,36 @@ package io.vertx.kotlin.ext.auth.authentication
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.auth.User
 import io.vertx.ext.auth.authentication.AuthenticationProvider
+import io.vertx.ext.auth.authentication.Credentials
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
  * Suspending version of method [io.vertx.ext.auth.authentication.AuthenticationProvider.authenticate]
  *
- * @param authInfo The auth information
+ * @param credentials The credentials
  * @return [User]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authentication.AuthenticationProvider] using Vert.x codegen.
  */
-suspend fun AuthenticationProvider.authenticateAwait(authInfo: JsonObject): User {
+@Deprecated(message = "Instead use authenticate returning a future and chain with await()", replaceWith = ReplaceWith("authenticate(credentials).await()"))
+suspend fun AuthenticationProvider.authenticateAwait(credentials: JsonObject): User {
   return awaitResult {
-    this.authenticate(authInfo, it)
+    this.authenticate(credentials, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.auth.authentication.AuthenticationProvider.authenticate]
+ *
+ * @param credentials The credentials
+ * @return [User]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.authentication.AuthenticationProvider] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use authenticate returning a future and chain with await()", replaceWith = ReplaceWith("authenticate(credentials).await()"))
+suspend fun AuthenticationProvider.authenticateAwait(credentials: Credentials): User {
+  return awaitResult {
+    this.authenticate(credentials, it)
   }
 }
 

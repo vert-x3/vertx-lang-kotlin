@@ -28,6 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -40,6 +41,7 @@ suspend fun HttpServerResponse.writeAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
 suspend fun HttpServerResponse.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -54,6 +56,7 @@ suspend fun HttpServerResponse.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(chunk, enc).await()"))
 suspend fun HttpServerResponse.writeAwait(chunk: String, enc: String): Unit {
   return awaitResult {
     this.write(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -67,6 +70,7 @@ suspend fun HttpServerResponse.writeAwait(chunk: String, enc: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(chunk).await()"))
 suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
   return awaitResult {
     this.write(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -80,6 +84,7 @@ suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk).await()"))
 suspend fun HttpServerResponse.endAwait(chunk: String): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -94,6 +99,7 @@ suspend fun HttpServerResponse.endAwait(chunk: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk, enc).await()"))
 suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
   return awaitResult {
     this.end(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -107,6 +113,7 @@ suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk).await()"))
 suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -120,6 +127,7 @@ suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future and chain with await()", replaceWith = ReplaceWith("sendFile(filename).await()"))
 suspend fun HttpServerResponse.sendFileAwait(filename: String): Unit {
   return awaitResult {
     this.sendFile(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -134,6 +142,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future and chain with await()", replaceWith = ReplaceWith("sendFile(filename, offset).await()"))
 suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long): Unit {
   return awaitResult {
     this.sendFile(filename, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -149,6 +158,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use sendFile returning a future and chain with await()", replaceWith = ReplaceWith("sendFile(filename, offset, length).await()"))
 suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long, length: Long): Unit {
   return awaitResult {
     this.sendFile(filename, offset, length, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -165,6 +175,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long, len
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use push returning a future and chain with await()", replaceWith = ReplaceWith("push(method, host, path).await()"))
 suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: String, path: String): HttpServerResponse {
   return awaitResult {
     this.push(method, host, path, it)
@@ -181,6 +192,7 @@ suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: String, path:
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use push returning a future and chain with await()", replaceWith = ReplaceWith("push(method, path, headers).await()"))
 suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String, headers: MultiMap): HttpServerResponse {
   return awaitResult {
     this.push(method, path, headers, it)
@@ -196,6 +208,7 @@ suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String, heade
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use push returning a future and chain with await()", replaceWith = ReplaceWith("push(method, path).await()"))
 suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String): HttpServerResponse {
   return awaitResult {
     this.push(method, path, it)
@@ -213,6 +226,7 @@ suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String): Http
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use push returning a future and chain with await()", replaceWith = ReplaceWith("push(method, host, path, headers).await()"))
 suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: String, path: String, headers: MultiMap): HttpServerResponse {
   return awaitResult {
     this.push(method, host, path, headers, it)

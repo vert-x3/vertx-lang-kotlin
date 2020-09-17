@@ -36,7 +36,7 @@ import io.vertx.core.net.JksOptions
  * <p>
  *
  * <pre>
- * Buffer store = vertx.fileSystem().readFileSync("/mykeystore.jks");
+ * Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.jks");
  * options.setKeyStore(new JKSOptions().setValue(store).setPassword("foo"));
  * </pre>
  *
@@ -82,7 +82,7 @@ fun jksOptionsOf(
  * <p>
  *
  * <pre>
- * Buffer store = vertx.fileSystem().readFileSync("/mykeystore.jks");
+ * Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.jks");
  * options.setKeyStore(new JKSOptions().setValue(store).setPassword("foo"));
  * </pre>
  *

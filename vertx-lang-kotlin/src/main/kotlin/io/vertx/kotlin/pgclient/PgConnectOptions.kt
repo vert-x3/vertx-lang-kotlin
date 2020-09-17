@@ -56,7 +56,7 @@ import java.util.concurrent.TimeUnit
  * @param pipeliningLimit 
  * @param port  Specify the port for connecting to the server.
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
- * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.pgclient.PgConnectOptions].
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
@@ -334,7 +334,7 @@ fun pgConnectOptionsOf(
  * @param pipeliningLimit 
  * @param port  Specify the port for connecting to the server.
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
- * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache.
+ * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.pgclient.PgConnectOptions].
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size

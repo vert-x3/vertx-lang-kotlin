@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.CredentialStore] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getUserCredentialsByName returning a future and chain with await()", replaceWith = ReplaceWith("getUserCredentialsByName(username).await()"))
 suspend fun CredentialStore.getUserCredentialsByNameAwait(username: String): List<JsonObject> {
   return awaitResult {
     this.getUserCredentialsByName(username, it)
@@ -41,6 +42,7 @@ suspend fun CredentialStore.getUserCredentialsByNameAwait(username: String): Lis
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.CredentialStore] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getUserCredentialsById returning a future and chain with await()", replaceWith = ReplaceWith("getUserCredentialsById(rawId).await()"))
 suspend fun CredentialStore.getUserCredentialsByIdAwait(rawId: String): List<JsonObject> {
   return awaitResult {
     this.getUserCredentialsById(rawId, it)
@@ -56,6 +58,7 @@ suspend fun CredentialStore.getUserCredentialsByIdAwait(rawId: String): List<Jso
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.CredentialStore] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateUserCredential returning a future and chain with await()", replaceWith = ReplaceWith("updateUserCredential(id, data, upsert).await()"))
 suspend fun CredentialStore.updateUserCredentialAwait(id: String, data: JsonObject, upsert: Boolean): Unit {
   return awaitResult {
     this.updateUserCredential(id, data, upsert, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

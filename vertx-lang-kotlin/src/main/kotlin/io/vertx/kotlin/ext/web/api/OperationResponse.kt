@@ -17,6 +17,18 @@ package io.vertx.kotlin.ext.web.api
 
 import io.vertx.ext.web.api.OperationResponse
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.web.api.OperationResponse] objects.
+ *
+ *
+ * @param headers 
+ * @param payload 
+ * @param statusCode 
+ * @param statusMessage 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.OperationResponse original] using Vert.x codegen.
+ */
 fun operationResponseOf(
   headers: io.vertx.core.MultiMap? = null,
   payload: io.vertx.core.buffer.Buffer? = null,
@@ -37,6 +49,18 @@ fun operationResponseOf(
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.web.api.OperationResponse] objects.
+ *
+ *
+ * @param headers 
+ * @param payload 
+ * @param statusCode 
+ * @param statusMessage 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.OperationResponse original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
   replaceWith = ReplaceWith("operationResponseOf(headers, payload, statusCode, statusMessage)")

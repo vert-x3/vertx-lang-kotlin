@@ -20,6 +20,7 @@ import io.vertx.codegen.annotations.ModuleGen;
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
+import io.vertx.codegen.format.CamelCase;
 import io.vertx.codegen.type.*;
 import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.core.Handler;
@@ -252,6 +253,16 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     Boolean isNullable,
     CodeWriter writer
   ) {
+    writer.print("@Deprecated(message = \"Instead use ");
+    writer.print(method.getName());
+    writer.print(" returning a future and chain with await()\", replaceWith = ReplaceWith(\"");
+    writer.print(method.getName());
+    writer.print(method.getParams()
+      .stream()
+      .limit(method.getParams().size() - 1)
+      .map(ParamInfo::getName).collect(Collectors
+      .joining(", ", "(", ").await()")));
+    writer.println("\"))");
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {
       String typeParamInfo = Stream
@@ -353,7 +364,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
     if (type instanceof VoidTypeInfo) {
       result = "Unit";
     } else if (type instanceof PrimitiveTypeInfo) {
-      result = Case.CAMEL.format(Collections.singletonList(type.getSimpleName()));
+      result = CamelCase.INSTANCE.format(Collections.singletonList(type.getSimpleName()));
     } else if (type.getKind() == ClassKind.BOXED_PRIMITIVE) {
       switch (type.getSimpleName()) {
         case "Integer":

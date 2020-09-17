@@ -28,6 +28,7 @@ import io.vertx.sqlclient.RowSet
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Cursor] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use read returning a future and chain with await()", replaceWith = ReplaceWith("read(count).await()"))
 suspend fun Cursor.readAwait(count: Int): RowSet<Row> {
   return awaitResult {
     this.read(count, it)
@@ -40,6 +41,7 @@ suspend fun Cursor.readAwait(count: Int): RowSet<Row> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Cursor] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun Cursor.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

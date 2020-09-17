@@ -23,19 +23,14 @@ import io.vertx.core.tracing.TracingOptions
  * Vert.x tracing base configuration, this class can be extended by provider implementations to configure
  * those specific implementations.
  *
- * @param enabled  Set whether tracing will be enabled on the Vert.x instance.
- * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Only valid if [io.vertx.core.tracing.TracingOptions] = true. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
+ * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.tracing.TracingOptions original] using Vert.x codegen.
  */
 fun tracingOptionsOf(
-  enabled: Boolean? = null,
   factory: io.vertx.core.spi.VertxTracerFactory? = null): TracingOptions = io.vertx.core.tracing.TracingOptions().apply {
 
-  if (enabled != null) {
-    this.setEnabled(enabled)
-  }
   if (factory != null) {
     this.setFactory(factory)
   }
@@ -47,23 +42,18 @@ fun tracingOptionsOf(
  * Vert.x tracing base configuration, this class can be extended by provider implementations to configure
  * those specific implementations.
  *
- * @param enabled  Set whether tracing will be enabled on the Vert.x instance.
- * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Only valid if [io.vertx.core.tracing.TracingOptions] = true. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
+ * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.tracing.TracingOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("tracingOptionsOf(enabled, factory)")
+  replaceWith = ReplaceWith("tracingOptionsOf(factory)")
 )
 fun TracingOptions(
-  enabled: Boolean? = null,
   factory: io.vertx.core.spi.VertxTracerFactory? = null): TracingOptions = io.vertx.core.tracing.TracingOptions().apply {
 
-  if (enabled != null) {
-    this.setEnabled(enabled)
-  }
   if (factory != null) {
     this.setFactory(factory)
   }

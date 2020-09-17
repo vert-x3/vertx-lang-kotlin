@@ -26,6 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
 suspend fun NetServer.listenAwait(): NetServer {
   return awaitResult {
     this.listen(it)
@@ -41,6 +42,7 @@ suspend fun NetServer.listenAwait(): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
 suspend fun NetServer.listenAwait(port: Int, host: String): NetServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -55,6 +57,7 @@ suspend fun NetServer.listenAwait(port: Int, host: String): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
 suspend fun NetServer.listenAwait(port: Int): NetServer {
   return awaitResult {
     this.listen(port, it)
@@ -69,6 +72,7 @@ suspend fun NetServer.listenAwait(port: Int): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(localAddress).await()"))
 suspend fun NetServer.listenAwait(localAddress: SocketAddress): NetServer {
   return awaitResult {
     this.listen(localAddress, it)
@@ -81,6 +85,7 @@ suspend fun NetServer.listenAwait(localAddress: SocketAddress): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun NetServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

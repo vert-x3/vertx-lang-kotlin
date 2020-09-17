@@ -27,9 +27,23 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun HttpServerRequest.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerRequest.end]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+suspend fun HttpServerRequest.endAwait(): Unit {
+  return awaitResult {
+    this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

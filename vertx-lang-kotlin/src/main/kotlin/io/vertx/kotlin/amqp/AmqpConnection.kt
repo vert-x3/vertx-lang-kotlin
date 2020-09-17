@@ -28,6 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun AmqpConnection.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,6 +43,7 @@ suspend fun AmqpConnection.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createReceiver returning a future and chain with await()", replaceWith = ReplaceWith("createReceiver(address).await()"))
 suspend fun AmqpConnection.createReceiverAwait(address: String): AmqpReceiver {
   return awaitResult {
     this.createReceiver(address, it)
@@ -57,6 +59,7 @@ suspend fun AmqpConnection.createReceiverAwait(address: String): AmqpReceiver {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createReceiver returning a future and chain with await()", replaceWith = ReplaceWith("createReceiver(address, receiverOptions).await()"))
 suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions: AmqpReceiverOptions): AmqpReceiver {
   return awaitResult {
     this.createReceiver(address, receiverOptions, it)
@@ -70,6 +73,7 @@ suspend fun AmqpConnection.createReceiverAwait(address: String, receiverOptions:
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createDynamicReceiver returning a future and chain with await()", replaceWith = ReplaceWith("createDynamicReceiver().await()"))
 suspend fun AmqpConnection.createDynamicReceiverAwait(): AmqpReceiver {
   return awaitResult {
     this.createDynamicReceiver(it)
@@ -84,6 +88,7 @@ suspend fun AmqpConnection.createDynamicReceiverAwait(): AmqpReceiver {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createSender returning a future and chain with await()", replaceWith = ReplaceWith("createSender(address).await()"))
 suspend fun AmqpConnection.createSenderAwait(address: String): AmqpSender {
   return awaitResult {
     this.createSender(address, it)
@@ -99,6 +104,7 @@ suspend fun AmqpConnection.createSenderAwait(address: String): AmqpSender {
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createSender returning a future and chain with await()", replaceWith = ReplaceWith("createSender(address, options).await()"))
 suspend fun AmqpConnection.createSenderAwait(address: String, options: AmqpSenderOptions): AmqpSender {
   return awaitResult {
     this.createSender(address, options, it)
@@ -112,6 +118,7 @@ suspend fun AmqpConnection.createSenderAwait(address: String, options: AmqpSende
  *
  * NOTE: This function has been automatically generated from [io.vertx.amqp.AmqpConnection] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createAnonymousSender returning a future and chain with await()", replaceWith = ReplaceWith("createAnonymousSender().await()"))
 suspend fun AmqpConnection.createAnonymousSenderAwait(): AmqpSender {
   return awaitResult {
     this.createAnonymousSender(it)

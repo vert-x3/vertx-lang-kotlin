@@ -542,6 +542,9 @@ Remote address in client-host or host-client connections (used in net and http d
 |[[HTTP_PATH]]`HTTP_PATH`|+++
 Path of the URI for client or server requests (used in http domain)
 +++
+|[[HTTP_ROUTE]]`HTTP_ROUTE`|+++
+Route as provided by routing modules to the http requests
++++
 |[[HTTP_METHOD]]`HTTP_METHOD`|+++
 Method (GET, POST, PUT, etc.) of an HTTP requests (used in http domain)
 +++
@@ -549,8 +552,8 @@ Method (GET, POST, PUT, etc.) of an HTTP requests (used in http domain)
 HTTP response code (used in http domain)
 +++
 |[[CLASS_NAME]]`CLASS_NAME`|+++
-Class name. When used in error counters (in net, http, datagram and eventbus domains) it relates to an exception that occurred.
- When used in verticle domain, it relates to the verticle class name.
+Class name. When used in error counters (in net, http, datagram and eventbus domains) it relates to an exception
+ that occurred. When used in verticle domain, it relates to the verticle class name.
 +++
 |[[EB_ADDRESS]]`EB_ADDRESS`|+++
 Event bus address
@@ -566,6 +569,9 @@ Pool type, such as "worker" or "datasource" (used in pools domain)
 +++
 |[[POOL_NAME]]`POOL_NAME`|+++
 Pool name (used in pools domain)
++++
+|[[NAMESPACE]]`NAMESPACE`|+++
+Client namespace
 +++
 |===
 
@@ -621,6 +627,22 @@ Will use user defined formatter function.
 |[[NONE]]`NONE`|-
 |[[REQUIRED]]`REQUIRED`|-
 |[[XOAUTH2]]`XOAUTH2`|-
+|===
+
+[[MatchType]]
+== MatchType
+
+++++
+ The type of match.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[EQUALS]]`EQUALS`|-
+|[[REGEX]]`REGEX`|-
 |===
 
 [[MatchType]]
@@ -988,14 +1010,23 @@ C String simple String.
 |[[ERROR]]`ERROR`|+++
 C String simple String representing an error.
 +++
-|[[INTEGER]]`INTEGER`|+++
-64 bit integer value.
+|[[BOOLEAN]]`BOOLEAN`|+++
+boolean value.
++++
+|[[NUMBER]]`NUMBER`|+++
+numeric value.
 +++
 |[[BULK]]`BULK`|+++
 byte array value.
 +++
+|[[PUSH]]`PUSH`|+++
+Push message
++++
+|[[ATTRIBUTE]]`ATTRIBUTE`|+++
+Attribute message
++++
 |[[MULTI]]`MULTI`|+++
-List of multiple bulk responses.
+List of multiple bulk responses (List, Set, Map).
 +++
 |===
 
@@ -1030,6 +1061,29 @@ List of multiple bulk responses.
 |[[FORWARD_ONLY]]`FORWARD_ONLY`|-
 |[[SCROLL_INSENSITIVE]]`SCROLL_INSENSITIVE`|-
 |[[SCROLL_SENSITIVE]]`SCROLL_SENSITIVE`|-
+|===
+
+[[SessionBehavior]]
+== SessionBehavior
+
+++++
+ When a session is invalidated, it is destroyed and can no longer be used. What happens to the associated locks
+ depends on the behavior specified at creation time. Consul supports a release and delete behavior.
+ The release behavior is the default if none is specified.
+ <p>
+ If the release behavior is being used, any of the locks held in association with the session are released,
+ and the ModifyIndex of the key is incremented. Alternatively, if the delete behavior is used,
+ the key corresponding to any of the held locks is simply deleted. This can be used to create ephemeral
+ entries that are automatically deleted by Consul.
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[RELEASE]]`RELEASE`|-
+|[[DELETE]]`DELETE`|-
 |===
 
 [[ShiroAuthRealmType]]
@@ -1237,6 +1291,75 @@ Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHt
 +++
 |===
 
+[[TxnKVVerb]]
+== TxnKVVerb
+
+++++
+ Holds type of KV operation in transaction
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[SET]]`SET`|+++
+Sets the Key to the given Value
++++
+|[[CAS]]`CAS`|+++
+Sets the Key to the given Value with check-and-set semantics.
+ The Key will only be set if its current modify index matches the supplied Index
++++
+|[[LOCK]]`LOCK`|+++
+Locks the Key with the given Session. The Key will only obtain the lock
+ if the Session is valid, and no other session has it locked
++++
+|[[UNLOCK]]`UNLOCK`|+++
+Unlocks the Key with the given Session. The Key will only release the lock
+ if the Session is valid and currently has it locked
++++
+|[[GET]]`GET`|+++
+Gets the Key during the transaction. This fails the transaction if the Key doesn't exist.
+ The key may not be present in the results if ACLs do not permit it to be read
++++
+|[[GET_TREE]]`GET_TREE`|+++
+Gets all keys with a prefix of Key during the transaction. This does not fail the transaction
+ if the Key doesn't exist. Not all keys may be present in the results if ACLs do not permit them to be read
++++
+|[[CHECK_INDEX]]`CHECK_INDEX`|+++
+Fails the transaction if Key does not have a modify index equal to Index
++++
+|[[CHECK_SESSION]]`CHECK_SESSION`|+++
+Fails the transaction if Key is not currently locked by Session
++++
+|[[DELETE]]`DELETE`|+++
+Deletes the Key
++++
+|[[DELETE_TREE]]`DELETE_TREE`|+++
+Deletes all keys with a prefix ofKey
++++
+|[[DELETE_CAS]]`DELETE_CAS`|+++
+Deletes the Key with check-and-set semantics. The Key will only be deleted
+ if its current modify index matches the supplied Index
++++
+|===
+
+[[TxnOperationType]]
+== TxnOperationType
+
+++++
+ Represents the type of operation in a transaction. KV is the only available operation type,
+ though other types of operations may be added in future versions of Consul to be mixed with key/value operations
+++++
+'''
+
+[cols=">25%,75%"]
+[frame="topbot"]
+|===
+^|Name | Description
+|[[KV]]`KV`|-
+|===
+
 [[UserVerification]]
 == UserVerification
 
@@ -1259,7 +1382,8 @@ Long-polling using <a hred="https://secure.wikimedia.org/wikipedia/en/wiki/XMLHt
 |===
 ^|Name | Description
 |[[MAX_PRIORITY]]`MAX_PRIORITY`|-
-|[[MIN_PRIORITY]]`MIN_PRIORITY`|-
+|[[NORMAL_PRIORITY]]`NORMAL_PRIORITY`|-
+|[[CONTEXTUAL_VALIDATOR]]`CONTEXTUAL_VALIDATOR`|-
 |===
 
 [[WebsocketVersion]]

@@ -29,6 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompServerHandler] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use onAuthenticationRequest returning a future and chain with await()", replaceWith = ReplaceWith("onAuthenticationRequest(connection, login, passcode).await()"))
 suspend fun StompServerHandler.onAuthenticationRequestAwait(connection: StompServerConnection, login: String, passcode: String): Boolean {
   return awaitResult {
     this.onAuthenticationRequest(connection, login, passcode, it)

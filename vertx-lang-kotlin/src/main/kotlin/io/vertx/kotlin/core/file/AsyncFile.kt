@@ -27,6 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
 suspend fun AsyncFile.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,6 +40,7 @@ suspend fun AsyncFile.writeAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
 suspend fun AsyncFile.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -52,6 +54,7 @@ suspend fun AsyncFile.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(data).await()"))
 suspend fun AsyncFile.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -65,6 +68,7 @@ suspend fun AsyncFile.endAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
 suspend fun AsyncFile.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -77,6 +81,7 @@ suspend fun AsyncFile.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
 suspend fun AsyncFile.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -91,6 +96,7 @@ suspend fun AsyncFile.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(buffer, position).await()"))
 suspend fun AsyncFile.writeAwait(buffer: Buffer, position: Long): Unit {
   return awaitResult {
     this.write(buffer, position, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -108,6 +114,7 @@ suspend fun AsyncFile.writeAwait(buffer: Buffer, position: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use read returning a future and chain with await()", replaceWith = ReplaceWith("read(buffer, offset, position, length).await()"))
 suspend fun AsyncFile.readAwait(buffer: Buffer, offset: Int, position: Long, length: Int): Buffer {
   return awaitResult {
     this.read(buffer, offset, position, length, it)
@@ -120,6 +127,7 @@ suspend fun AsyncFile.readAwait(buffer: Buffer, offset: Int, position: Long, len
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use flush returning a future and chain with await()", replaceWith = ReplaceWith("flush().await()"))
 suspend fun AsyncFile.flushAwait(): Unit {
   return awaitResult {
     this.flush(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -121,7 +121,11 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.get(8080, "localhost", "/foo", testContext.asyncAssertSuccess())
+    client.request(HttpMethod.GET, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
+      request.send(testContext.asyncAssertSuccess() { response ->
+
+      });
+    })
   }
 
   @Test
@@ -135,7 +139,11 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.put(8080, "localhost", "/foo", Buffer.buffer("abc123"), testContext.asyncAssertSuccess())
+    client.request(HttpMethod.GET, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
+      request.send(Buffer.buffer("abc123"), testContext.asyncAssertSuccess() { response ->
+
+      });
+    })
   }
 
   @Test
@@ -149,13 +157,14 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    val req = client.request(HttpMethod.PUT, 8080, "localhost", "/foo")
-      .onComplete(testContext.asyncAssertSuccess())
-      .setChunked(true)
-    req.write("abc")
-    vertx.setTimer(1) {
-      req.write("123")
-      req.end()
-    }
+    client.request(HttpMethod.PUT, 8080, "localhost", "/foo")
+      .onComplete(testContext.asyncAssertSuccess() { req ->
+        req.setChunked(true)
+        req.write("abc")
+        vertx.setTimer(1) {
+          req.write("123")
+          req.end()
+        }
+      })
   }
 }

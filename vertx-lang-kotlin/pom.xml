@@ -14,10 +14,7 @@
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
-    <graphql.java.major.version>14</graphql.java.major.version>
-    <graphql.java.version>${graphql.java.major.version}.0</graphql.java.version>
-    <datastax-driver.minor.version>3.5</datastax-driver.minor.version>
-    <datastax-driver.version>${datastax-driver.minor.version}.0</datastax-driver.version>
+    <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>
   </properties>
 
   <dependencies>
@@ -47,11 +44,6 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-unit</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-sql-common</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -118,11 +110,6 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-auth-webauthn</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-jwt</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -302,7 +289,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-rabbitmq-client</artifactId>
+      <artifactId>vertx-db2-client</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -391,7 +378,6 @@
             vertx-core,
             vertx-unit,
             vertx-bridge-common,
-            vertx-sql-common,
             vertx-mongo-client,
             vertx-cassandra-client,
             vertx-jdbc-client,
@@ -404,7 +390,6 @@
             vertx-auth-oauth2,
             vertx-auth-shiro,
             vertx-auth-webauthn,
-            vertx-jwt,
             vertx-web-common,
             vertx-web-client,
             vertx-web,
@@ -439,8 +424,8 @@
             vertx-sql-client,
             vertx-pg-client,
             vertx-mysql-client,
+            vertx-db2-client,
             vertx-mqtt,
-            vertx-rabbitmq-client,
             vertx-health-check,
             vertx-shell,
             vertx-micrometer-metrics,
@@ -463,66 +448,6 @@
               <excludes>**/impl/**/*.java,io/vertx/groovy/**,io/vertx/reactivex/**,io/vertx/rxjava/**,examples/override/**</excludes>
               <outputDirectory>${project.build.directory}/sources/java</outputDirectory>
             </configuration>
-          </execution>
-
-          <!-- Unpack asciidoc sources to target/asciidoc-sources -->
-          <execution>
-            <id>unpack-asciidoc</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>unpack-dependencies</goal>
-            </goals>
-            <configuration>
-              <includes>*.adoc</includes>
-              <outputDirectory>${project.build.directory}/sources/asciidoc</outputDirectory>
-              <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
-              <stripVersion>true</stripVersion>
-              <stripClassifier>true</stripClassifier>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <!-- Remove the -source-jar suffix in unpacked asciidoc -->
-          <execution>
-            <id>rename-asciidoc</id>
-            <phase>generate-sources</phase>
-            <configuration>
-              <target name="Remove the -source-jar prefix in unpackage asciidoc">
-                <move todir="${project.build.directory}/sources/asciidoc">
-                  <fileset dir="${project.build.directory}/sources/asciidoc">
-                    <include name="**/*"/>
-                  </fileset>
-                  <mapper type="regexp" from="^(.*)-sources-jar(.*)$" to="\1${asciidoc.path}\2"/>
-                </move>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <!-- Copy asciidoc override -->
-          <execution>
-            <id>copy-asciidoc-override</id>
-            <phase>generate-sources</phase>
-            <configuration>
-              <target name="Copy asciidoc override">
-                <copy todir="${project.build.directory}/sources/asciidoc">
-                  <fileset dir="${project.basedir}/src/main/docoverride">
-                    <include name="**/*"/>
-                  </fileset>
-                </copy>
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
@@ -567,19 +492,16 @@
             </goals>
             <phase>generate-sources</phase>
             <configuration>
-              <sourceDirectory>${project.build.directory}/sources/java</sourceDirectory>
+              <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <processors>
-                <processor>io.vertx.docgen.DocGenProcessor</processor>
+                <processor>io.vertx.docgen.JavaDocGenProcessor</processor>
               </processors>
               <optionMap>
-                <docgen.source>${project.build.directory}/sources/asciidoc</docgen.source>
+                <docgen.source>${project.basedir}/src/main/asciidoc</docgen.source>
                 <docgen.output>${project.build.directory}/asciidoc</docgen.output>
                 <maven.groupId>${project.groupId}</maven.groupId>
                 <maven.artifactId>${project.artifactId}</maven.artifactId>
                 <maven.version>${project.version}</maven.version>
-                <graphql.java.doc.version>v${graphql.java.major.version}</graphql.java.doc.version>
-                <datastax.driver.minor.version>${datastax-driver.minor.version}</datastax.driver.minor.version>
-                <datastax.driver.version>${datastax-driver.version}</datastax.driver.version>
               </optionMap>
             </configuration>
           </execution>
@@ -614,12 +536,12 @@
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.8.2</version>
+            <version>2.13.3</version>
           </dependency>
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.8.2</version>
+            <version>2.13.3</version>
           </dependency>
           <dependency>
             <groupId>org.slf4j</groupId>

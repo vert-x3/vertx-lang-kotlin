@@ -27,6 +27,7 @@ import io.vertx.servicediscovery.spi.ServicePublisher
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(record).await()"))
 suspend fun ServicePublisher.publishAwait(record: Record): Record {
   return awaitResult {
     this.publish(record, it)
@@ -40,6 +41,7 @@ suspend fun ServicePublisher.publishAwait(record: Record): Record {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use unpublish returning a future and chain with await()", replaceWith = ReplaceWith("unpublish(id).await()"))
 suspend fun ServicePublisher.unpublishAwait(id: String): Unit {
   return awaitResult {
     this.unpublish(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -54,6 +56,7 @@ suspend fun ServicePublisher.unpublishAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.spi.ServicePublisher] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use update returning a future and chain with await()", replaceWith = ReplaceWith("update(record).await()"))
 suspend fun ServicePublisher.updateAwait(record: Record): Record {
   return awaitResult {
     this.update(record, it)

@@ -25,6 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Future] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use onComplete returning a future and chain with await()", replaceWith = ReplaceWith("onComplete().await()"))
 suspend fun <T> Future<T>.onCompleteAwait(): T {
   return awaitResult {
     this.onComplete(it)

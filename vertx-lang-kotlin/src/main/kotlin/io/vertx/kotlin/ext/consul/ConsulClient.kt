@@ -59,6 +59,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use agentInfo returning a future and chain with await()", replaceWith = ReplaceWith("agentInfo().await()"))
 suspend fun ConsulClient.agentInfoAwait(): JsonObject {
   return awaitResult {
     this.agentInfo(it)
@@ -72,6 +73,7 @@ suspend fun ConsulClient.agentInfoAwait(): JsonObject {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use coordinateNodes returning a future and chain with await()", replaceWith = ReplaceWith("coordinateNodes().await()"))
 suspend fun ConsulClient.coordinateNodesAwait(): CoordinateList {
   return awaitResult {
     this.coordinateNodes(it)
@@ -86,6 +88,7 @@ suspend fun ConsulClient.coordinateNodesAwait(): CoordinateList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use coordinateNodesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("coordinateNodesWithOptions(options).await()"))
 suspend fun ConsulClient.coordinateNodesWithOptionsAwait(options: BlockingQueryOptions): CoordinateList {
   return awaitResult {
     this.coordinateNodesWithOptions(options, it)
@@ -99,6 +102,7 @@ suspend fun ConsulClient.coordinateNodesWithOptionsAwait(options: BlockingQueryO
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use coordinateDatacenters returning a future and chain with await()", replaceWith = ReplaceWith("coordinateDatacenters().await()"))
 suspend fun ConsulClient.coordinateDatacentersAwait(): List<DcCoordinates> {
   return awaitResult {
     this.coordinateDatacenters(it)
@@ -113,6 +117,7 @@ suspend fun ConsulClient.coordinateDatacentersAwait(): List<DcCoordinates> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getKeys returning a future and chain with await()", replaceWith = ReplaceWith("getKeys(keyPrefix).await()"))
 suspend fun ConsulClient.getKeysAwait(keyPrefix: String): List<String> {
   return awaitResult {
     this.getKeys(keyPrefix, it)
@@ -128,6 +133,7 @@ suspend fun ConsulClient.getKeysAwait(keyPrefix: String): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getKeysWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("getKeysWithOptions(keyPrefix, options).await()"))
 suspend fun ConsulClient.getKeysWithOptionsAwait(keyPrefix: String, options: BlockingQueryOptions): List<String> {
   return awaitResult {
     this.getKeysWithOptions(keyPrefix, options, it)
@@ -142,6 +148,7 @@ suspend fun ConsulClient.getKeysWithOptionsAwait(keyPrefix: String, options: Blo
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getValue returning a future and chain with await()", replaceWith = ReplaceWith("getValue(key).await()"))
 suspend fun ConsulClient.getValueAwait(key: String): KeyValue {
   return awaitResult {
     this.getValue(key, it)
@@ -157,6 +164,7 @@ suspend fun ConsulClient.getValueAwait(key: String): KeyValue {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getValueWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("getValueWithOptions(key, options).await()"))
 suspend fun ConsulClient.getValueWithOptionsAwait(key: String, options: BlockingQueryOptions): KeyValue {
   return awaitResult {
     this.getValueWithOptions(key, options, it)
@@ -170,6 +178,7 @@ suspend fun ConsulClient.getValueWithOptionsAwait(key: String, options: Blocking
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use deleteValue returning a future and chain with await()", replaceWith = ReplaceWith("deleteValue(key).await()"))
 suspend fun ConsulClient.deleteValueAwait(key: String): Unit {
   return awaitResult {
     this.deleteValue(key, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -184,6 +193,7 @@ suspend fun ConsulClient.deleteValueAwait(key: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getValues returning a future and chain with await()", replaceWith = ReplaceWith("getValues(keyPrefix).await()"))
 suspend fun ConsulClient.getValuesAwait(keyPrefix: String): KeyValueList {
   return awaitResult {
     this.getValues(keyPrefix, it)
@@ -199,6 +209,7 @@ suspend fun ConsulClient.getValuesAwait(keyPrefix: String): KeyValueList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getValuesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("getValuesWithOptions(keyPrefix, options).await()"))
 suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix: String, options: BlockingQueryOptions): KeyValueList {
   return awaitResult {
     this.getValuesWithOptions(keyPrefix, options, it)
@@ -212,6 +223,7 @@ suspend fun ConsulClient.getValuesWithOptionsAwait(keyPrefix: String, options: B
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use deleteValues returning a future and chain with await()", replaceWith = ReplaceWith("deleteValues(keyPrefix).await()"))
 suspend fun ConsulClient.deleteValuesAwait(keyPrefix: String): Unit {
   return awaitResult {
     this.deleteValues(keyPrefix, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -227,6 +239,7 @@ suspend fun ConsulClient.deleteValuesAwait(keyPrefix: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use putValue returning a future and chain with await()", replaceWith = ReplaceWith("putValue(key, value).await()"))
 suspend fun ConsulClient.putValueAwait(key: String, value: String): Boolean {
   return awaitResult {
     this.putValue(key, value, it)
@@ -243,6 +256,7 @@ suspend fun ConsulClient.putValueAwait(key: String, value: String): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use putValueWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("putValueWithOptions(key, value, options).await()"))
 suspend fun ConsulClient.putValueWithOptionsAwait(key: String, value: String, options: KeyValueOptions): Boolean {
   return awaitResult {
     this.putValueWithOptions(key, value, options, it)
@@ -257,6 +271,7 @@ suspend fun ConsulClient.putValueWithOptionsAwait(key: String, value: String, op
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use transaction returning a future and chain with await()", replaceWith = ReplaceWith("transaction(request).await()"))
 suspend fun ConsulClient.transactionAwait(request: TxnRequest): TxnResponse {
   return awaitResult {
     this.transaction(request, it)
@@ -271,6 +286,7 @@ suspend fun ConsulClient.transactionAwait(request: TxnRequest): TxnResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createAclToken returning a future and chain with await()", replaceWith = ReplaceWith("createAclToken(token).await()"))
 suspend fun ConsulClient.createAclTokenAwait(token: AclToken): String {
   return awaitResult {
     this.createAclToken(token, it)
@@ -285,6 +301,7 @@ suspend fun ConsulClient.createAclTokenAwait(token: AclToken): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateAclToken returning a future and chain with await()", replaceWith = ReplaceWith("updateAclToken(token).await()"))
 suspend fun ConsulClient.updateAclTokenAwait(token: AclToken): String {
   return awaitResult {
     this.updateAclToken(token, it)
@@ -299,6 +316,7 @@ suspend fun ConsulClient.updateAclTokenAwait(token: AclToken): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use cloneAclToken returning a future and chain with await()", replaceWith = ReplaceWith("cloneAclToken(id).await()"))
 suspend fun ConsulClient.cloneAclTokenAwait(id: String): String {
   return awaitResult {
     this.cloneAclToken(id, it)
@@ -312,6 +330,7 @@ suspend fun ConsulClient.cloneAclTokenAwait(id: String): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listAclTokens returning a future and chain with await()", replaceWith = ReplaceWith("listAclTokens().await()"))
 suspend fun ConsulClient.listAclTokensAwait(): List<AclToken> {
   return awaitResult {
     this.listAclTokens(it)
@@ -326,6 +345,7 @@ suspend fun ConsulClient.listAclTokensAwait(): List<AclToken> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use infoAclToken returning a future and chain with await()", replaceWith = ReplaceWith("infoAclToken(id).await()"))
 suspend fun ConsulClient.infoAclTokenAwait(id: String): AclToken {
   return awaitResult {
     this.infoAclToken(id, it)
@@ -339,6 +359,7 @@ suspend fun ConsulClient.infoAclTokenAwait(id: String): AclToken {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use destroyAclToken returning a future and chain with await()", replaceWith = ReplaceWith("destroyAclToken(id).await()"))
 suspend fun ConsulClient.destroyAclTokenAwait(id: String): Unit {
   return awaitResult {
     this.destroyAclToken(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -353,6 +374,7 @@ suspend fun ConsulClient.destroyAclTokenAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use fireEvent returning a future and chain with await()", replaceWith = ReplaceWith("fireEvent(name).await()"))
 suspend fun ConsulClient.fireEventAwait(name: String): Event {
   return awaitResult {
     this.fireEvent(name, it)
@@ -368,6 +390,7 @@ suspend fun ConsulClient.fireEventAwait(name: String): Event {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use fireEventWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("fireEventWithOptions(name, options).await()"))
 suspend fun ConsulClient.fireEventWithOptionsAwait(name: String, options: EventOptions): Event {
   return awaitResult {
     this.fireEventWithOptions(name, options, it)
@@ -381,6 +404,7 @@ suspend fun ConsulClient.fireEventWithOptionsAwait(name: String, options: EventO
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listEvents returning a future and chain with await()", replaceWith = ReplaceWith("listEvents().await()"))
 suspend fun ConsulClient.listEventsAwait(): EventList {
   return awaitResult {
     this.listEvents(it)
@@ -395,6 +419,7 @@ suspend fun ConsulClient.listEventsAwait(): EventList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listEventsWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("listEventsWithOptions(options).await()"))
 suspend fun ConsulClient.listEventsWithOptionsAwait(options: EventListOptions): EventList {
   return awaitResult {
     this.listEventsWithOptions(options, it)
@@ -408,6 +433,7 @@ suspend fun ConsulClient.listEventsWithOptionsAwait(options: EventListOptions): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerService returning a future and chain with await()", replaceWith = ReplaceWith("registerService(serviceOptions).await()"))
 suspend fun ConsulClient.registerServiceAwait(serviceOptions: ServiceOptions): Unit {
   return awaitResult {
     this.registerService(serviceOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -421,6 +447,7 @@ suspend fun ConsulClient.registerServiceAwait(serviceOptions: ServiceOptions): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use maintenanceService returning a future and chain with await()", replaceWith = ReplaceWith("maintenanceService(maintenanceOptions).await()"))
 suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions: MaintenanceOptions): Unit {
   return awaitResult {
     this.maintenanceService(maintenanceOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -434,6 +461,7 @@ suspend fun ConsulClient.maintenanceServiceAwait(maintenanceOptions: Maintenance
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use deregisterService returning a future and chain with await()", replaceWith = ReplaceWith("deregisterService(id).await()"))
 suspend fun ConsulClient.deregisterServiceAwait(id: String): Unit {
   return awaitResult {
     this.deregisterService(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -448,6 +476,7 @@ suspend fun ConsulClient.deregisterServiceAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogServiceNodes returning a future and chain with await()", replaceWith = ReplaceWith("catalogServiceNodes(service).await()"))
 suspend fun ConsulClient.catalogServiceNodesAwait(service: String): ServiceList {
   return awaitResult {
     this.catalogServiceNodes(service, it)
@@ -463,6 +492,7 @@ suspend fun ConsulClient.catalogServiceNodesAwait(service: String): ServiceList 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogServiceNodesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("catalogServiceNodesWithOptions(service, options).await()"))
 suspend fun ConsulClient.catalogServiceNodesWithOptionsAwait(service: String, options: ServiceQueryOptions): ServiceList {
   return awaitResult {
     this.catalogServiceNodesWithOptions(service, options, it)
@@ -476,6 +506,7 @@ suspend fun ConsulClient.catalogServiceNodesWithOptionsAwait(service: String, op
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogDatacenters returning a future and chain with await()", replaceWith = ReplaceWith("catalogDatacenters().await()"))
 suspend fun ConsulClient.catalogDatacentersAwait(): List<String> {
   return awaitResult {
     this.catalogDatacenters(it)
@@ -489,6 +520,7 @@ suspend fun ConsulClient.catalogDatacentersAwait(): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogNodes returning a future and chain with await()", replaceWith = ReplaceWith("catalogNodes().await()"))
 suspend fun ConsulClient.catalogNodesAwait(): NodeList {
   return awaitResult {
     this.catalogNodes(it)
@@ -503,6 +535,7 @@ suspend fun ConsulClient.catalogNodesAwait(): NodeList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogNodesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("catalogNodesWithOptions(options).await()"))
 suspend fun ConsulClient.catalogNodesWithOptionsAwait(options: NodeQueryOptions): NodeList {
   return awaitResult {
     this.catalogNodesWithOptions(options, it)
@@ -517,6 +550,7 @@ suspend fun ConsulClient.catalogNodesWithOptionsAwait(options: NodeQueryOptions)
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthChecks returning a future and chain with await()", replaceWith = ReplaceWith("healthChecks(service).await()"))
 suspend fun ConsulClient.healthChecksAwait(service: String): CheckList {
   return awaitResult {
     this.healthChecks(service, it)
@@ -532,6 +566,7 @@ suspend fun ConsulClient.healthChecksAwait(service: String): CheckList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthChecksWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("healthChecksWithOptions(service, options).await()"))
 suspend fun ConsulClient.healthChecksWithOptionsAwait(service: String, options: CheckQueryOptions): CheckList {
   return awaitResult {
     this.healthChecksWithOptions(service, options, it)
@@ -546,6 +581,7 @@ suspend fun ConsulClient.healthChecksWithOptionsAwait(service: String, options: 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthState returning a future and chain with await()", replaceWith = ReplaceWith("healthState(healthState).await()"))
 suspend fun ConsulClient.healthStateAwait(healthState: HealthState): CheckList {
   return awaitResult {
     this.healthState(healthState, it)
@@ -561,6 +597,7 @@ suspend fun ConsulClient.healthStateAwait(healthState: HealthState): CheckList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthStateWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("healthStateWithOptions(healthState, options).await()"))
 suspend fun ConsulClient.healthStateWithOptionsAwait(healthState: HealthState, options: CheckQueryOptions): CheckList {
   return awaitResult {
     this.healthStateWithOptions(healthState, options, it)
@@ -576,6 +613,7 @@ suspend fun ConsulClient.healthStateWithOptionsAwait(healthState: HealthState, o
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthServiceNodes returning a future and chain with await()", replaceWith = ReplaceWith("healthServiceNodes(service, passing).await()"))
 suspend fun ConsulClient.healthServiceNodesAwait(service: String, passing: Boolean): ServiceEntryList {
   return awaitResult {
     this.healthServiceNodes(service, passing, it)
@@ -592,6 +630,7 @@ suspend fun ConsulClient.healthServiceNodesAwait(service: String, passing: Boole
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use healthServiceNodesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("healthServiceNodesWithOptions(service, passing, options).await()"))
 suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service: String, passing: Boolean, options: ServiceQueryOptions): ServiceEntryList {
   return awaitResult {
     this.healthServiceNodesWithOptions(service, passing, options, it)
@@ -605,6 +644,7 @@ suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service: String, pas
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogServices returning a future and chain with await()", replaceWith = ReplaceWith("catalogServices().await()"))
 suspend fun ConsulClient.catalogServicesAwait(): ServiceList {
   return awaitResult {
     this.catalogServices(it)
@@ -619,6 +659,7 @@ suspend fun ConsulClient.catalogServicesAwait(): ServiceList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogServicesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("catalogServicesWithOptions(options).await()"))
 suspend fun ConsulClient.catalogServicesWithOptionsAwait(options: BlockingQueryOptions): ServiceList {
   return awaitResult {
     this.catalogServicesWithOptions(options, it)
@@ -633,6 +674,7 @@ suspend fun ConsulClient.catalogServicesWithOptionsAwait(options: BlockingQueryO
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogNodeServices returning a future and chain with await()", replaceWith = ReplaceWith("catalogNodeServices(node).await()"))
 suspend fun ConsulClient.catalogNodeServicesAwait(node: String): ServiceList {
   return awaitResult {
     this.catalogNodeServices(node, it)
@@ -648,6 +690,7 @@ suspend fun ConsulClient.catalogNodeServicesAwait(node: String): ServiceList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use catalogNodeServicesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("catalogNodeServicesWithOptions(node, options).await()"))
 suspend fun ConsulClient.catalogNodeServicesWithOptionsAwait(node: String, options: BlockingQueryOptions): ServiceList {
   return awaitResult {
     this.catalogNodeServicesWithOptions(node, options, it)
@@ -661,6 +704,7 @@ suspend fun ConsulClient.catalogNodeServicesWithOptionsAwait(node: String, optio
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use localServices returning a future and chain with await()", replaceWith = ReplaceWith("localServices().await()"))
 suspend fun ConsulClient.localServicesAwait(): List<Service> {
   return awaitResult {
     this.localServices(it)
@@ -674,6 +718,7 @@ suspend fun ConsulClient.localServicesAwait(): List<Service> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use localChecks returning a future and chain with await()", replaceWith = ReplaceWith("localChecks().await()"))
 suspend fun ConsulClient.localChecksAwait(): List<Check> {
   return awaitResult {
     this.localChecks(it)
@@ -687,6 +732,7 @@ suspend fun ConsulClient.localChecksAwait(): List<Check> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use registerCheck returning a future and chain with await()", replaceWith = ReplaceWith("registerCheck(checkOptions).await()"))
 suspend fun ConsulClient.registerCheckAwait(checkOptions: CheckOptions): Unit {
   return awaitResult {
     this.registerCheck(checkOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -700,6 +746,7 @@ suspend fun ConsulClient.registerCheckAwait(checkOptions: CheckOptions): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use deregisterCheck returning a future and chain with await()", replaceWith = ReplaceWith("deregisterCheck(checkId).await()"))
 suspend fun ConsulClient.deregisterCheckAwait(checkId: String): Unit {
   return awaitResult {
     this.deregisterCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -713,6 +760,7 @@ suspend fun ConsulClient.deregisterCheckAwait(checkId: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use passCheck returning a future and chain with await()", replaceWith = ReplaceWith("passCheck(checkId).await()"))
 suspend fun ConsulClient.passCheckAwait(checkId: String): Unit {
   return awaitResult {
     this.passCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -727,6 +775,7 @@ suspend fun ConsulClient.passCheckAwait(checkId: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use passCheckWithNote returning a future and chain with await()", replaceWith = ReplaceWith("passCheckWithNote(checkId, note).await()"))
 suspend fun ConsulClient.passCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
     this.passCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -740,6 +789,7 @@ suspend fun ConsulClient.passCheckWithNoteAwait(checkId: String, note: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use warnCheck returning a future and chain with await()", replaceWith = ReplaceWith("warnCheck(checkId).await()"))
 suspend fun ConsulClient.warnCheckAwait(checkId: String): Unit {
   return awaitResult {
     this.warnCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -754,6 +804,7 @@ suspend fun ConsulClient.warnCheckAwait(checkId: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use warnCheckWithNote returning a future and chain with await()", replaceWith = ReplaceWith("warnCheckWithNote(checkId, note).await()"))
 suspend fun ConsulClient.warnCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
     this.warnCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -767,6 +818,7 @@ suspend fun ConsulClient.warnCheckWithNoteAwait(checkId: String, note: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use failCheck returning a future and chain with await()", replaceWith = ReplaceWith("failCheck(checkId).await()"))
 suspend fun ConsulClient.failCheckAwait(checkId: String): Unit {
   return awaitResult {
     this.failCheck(checkId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -781,6 +833,7 @@ suspend fun ConsulClient.failCheckAwait(checkId: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use failCheckWithNote returning a future and chain with await()", replaceWith = ReplaceWith("failCheckWithNote(checkId, note).await()"))
 suspend fun ConsulClient.failCheckWithNoteAwait(checkId: String, note: String): Unit {
   return awaitResult {
     this.failCheckWithNote(checkId, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -795,6 +848,7 @@ suspend fun ConsulClient.failCheckWithNoteAwait(checkId: String, note: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateCheck returning a future and chain with await()", replaceWith = ReplaceWith("updateCheck(checkId, status).await()"))
 suspend fun ConsulClient.updateCheckAwait(checkId: String, status: CheckStatus): Unit {
   return awaitResult {
     this.updateCheck(checkId, status, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -810,6 +864,7 @@ suspend fun ConsulClient.updateCheckAwait(checkId: String, status: CheckStatus):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updateCheckWithNote returning a future and chain with await()", replaceWith = ReplaceWith("updateCheckWithNote(checkId, status, note).await()"))
 suspend fun ConsulClient.updateCheckWithNoteAwait(checkId: String, status: CheckStatus, note: String): Unit {
   return awaitResult {
     this.updateCheckWithNote(checkId, status, note, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -823,6 +878,7 @@ suspend fun ConsulClient.updateCheckWithNoteAwait(checkId: String, status: Check
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use leaderStatus returning a future and chain with await()", replaceWith = ReplaceWith("leaderStatus().await()"))
 suspend fun ConsulClient.leaderStatusAwait(): String {
   return awaitResult {
     this.leaderStatus(it)
@@ -836,6 +892,7 @@ suspend fun ConsulClient.leaderStatusAwait(): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use peersStatus returning a future and chain with await()", replaceWith = ReplaceWith("peersStatus().await()"))
 suspend fun ConsulClient.peersStatusAwait(): List<String> {
   return awaitResult {
     this.peersStatus(it)
@@ -849,6 +906,7 @@ suspend fun ConsulClient.peersStatusAwait(): List<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createSession returning a future and chain with await()", replaceWith = ReplaceWith("createSession().await()"))
 suspend fun ConsulClient.createSessionAwait(): String {
   return awaitResult {
     this.createSession(it)
@@ -863,6 +921,7 @@ suspend fun ConsulClient.createSessionAwait(): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createSessionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("createSessionWithOptions(options).await()"))
 suspend fun ConsulClient.createSessionWithOptionsAwait(options: SessionOptions): String {
   return awaitResult {
     this.createSessionWithOptions(options, it)
@@ -877,6 +936,7 @@ suspend fun ConsulClient.createSessionWithOptionsAwait(options: SessionOptions):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use infoSession returning a future and chain with await()", replaceWith = ReplaceWith("infoSession(id).await()"))
 suspend fun ConsulClient.infoSessionAwait(id: String): Session {
   return awaitResult {
     this.infoSession(id, it)
@@ -892,6 +952,7 @@ suspend fun ConsulClient.infoSessionAwait(id: String): Session {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use infoSessionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("infoSessionWithOptions(id, options).await()"))
 suspend fun ConsulClient.infoSessionWithOptionsAwait(id: String, options: BlockingQueryOptions): Session {
   return awaitResult {
     this.infoSessionWithOptions(id, options, it)
@@ -906,6 +967,7 @@ suspend fun ConsulClient.infoSessionWithOptionsAwait(id: String, options: Blocki
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use renewSession returning a future and chain with await()", replaceWith = ReplaceWith("renewSession(id).await()"))
 suspend fun ConsulClient.renewSessionAwait(id: String): Session {
   return awaitResult {
     this.renewSession(id, it)
@@ -919,6 +981,7 @@ suspend fun ConsulClient.renewSessionAwait(id: String): Session {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listSessions returning a future and chain with await()", replaceWith = ReplaceWith("listSessions().await()"))
 suspend fun ConsulClient.listSessionsAwait(): SessionList {
   return awaitResult {
     this.listSessions(it)
@@ -933,6 +996,7 @@ suspend fun ConsulClient.listSessionsAwait(): SessionList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listSessionsWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("listSessionsWithOptions(options).await()"))
 suspend fun ConsulClient.listSessionsWithOptionsAwait(options: BlockingQueryOptions): SessionList {
   return awaitResult {
     this.listSessionsWithOptions(options, it)
@@ -947,6 +1011,7 @@ suspend fun ConsulClient.listSessionsWithOptionsAwait(options: BlockingQueryOpti
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listNodeSessions returning a future and chain with await()", replaceWith = ReplaceWith("listNodeSessions(nodeId).await()"))
 suspend fun ConsulClient.listNodeSessionsAwait(nodeId: String): SessionList {
   return awaitResult {
     this.listNodeSessions(nodeId, it)
@@ -962,6 +1027,7 @@ suspend fun ConsulClient.listNodeSessionsAwait(nodeId: String): SessionList {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use listNodeSessionsWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("listNodeSessionsWithOptions(nodeId, options).await()"))
 suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId: String, options: BlockingQueryOptions): SessionList {
   return awaitResult {
     this.listNodeSessionsWithOptions(nodeId, options, it)
@@ -975,6 +1041,7 @@ suspend fun ConsulClient.listNodeSessionsWithOptionsAwait(nodeId: String, option
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use destroySession returning a future and chain with await()", replaceWith = ReplaceWith("destroySession(id).await()"))
 suspend fun ConsulClient.destroySessionAwait(id: String): Unit {
   return awaitResult {
     this.destroySession(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -989,6 +1056,7 @@ suspend fun ConsulClient.destroySessionAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createPreparedQuery returning a future and chain with await()", replaceWith = ReplaceWith("createPreparedQuery(definition).await()"))
 suspend fun ConsulClient.createPreparedQueryAwait(definition: PreparedQueryDefinition): String {
   return awaitResult {
     this.createPreparedQuery(definition, it)
@@ -1003,6 +1071,7 @@ suspend fun ConsulClient.createPreparedQueryAwait(definition: PreparedQueryDefin
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getPreparedQuery returning a future and chain with await()", replaceWith = ReplaceWith("getPreparedQuery(id).await()"))
 suspend fun ConsulClient.getPreparedQueryAwait(id: String): PreparedQueryDefinition {
   return awaitResult {
     this.getPreparedQuery(id, it)
@@ -1016,6 +1085,7 @@ suspend fun ConsulClient.getPreparedQueryAwait(id: String): PreparedQueryDefinit
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use getAllPreparedQueries returning a future and chain with await()", replaceWith = ReplaceWith("getAllPreparedQueries().await()"))
 suspend fun ConsulClient.getAllPreparedQueriesAwait(): List<PreparedQueryDefinition> {
   return awaitResult {
     this.getAllPreparedQueries(it)
@@ -1029,6 +1099,7 @@ suspend fun ConsulClient.getAllPreparedQueriesAwait(): List<PreparedQueryDefinit
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use updatePreparedQuery returning a future and chain with await()", replaceWith = ReplaceWith("updatePreparedQuery(definition).await()"))
 suspend fun ConsulClient.updatePreparedQueryAwait(definition: PreparedQueryDefinition): Unit {
   return awaitResult {
     this.updatePreparedQuery(definition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -1042,6 +1113,7 @@ suspend fun ConsulClient.updatePreparedQueryAwait(definition: PreparedQueryDefin
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use deletePreparedQuery returning a future and chain with await()", replaceWith = ReplaceWith("deletePreparedQuery(id).await()"))
 suspend fun ConsulClient.deletePreparedQueryAwait(id: String): Unit {
   return awaitResult {
     this.deletePreparedQuery(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -1056,6 +1128,7 @@ suspend fun ConsulClient.deletePreparedQueryAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executePreparedQuery returning a future and chain with await()", replaceWith = ReplaceWith("executePreparedQuery(query).await()"))
 suspend fun ConsulClient.executePreparedQueryAwait(query: String): PreparedQueryExecuteResponse {
   return awaitResult {
     this.executePreparedQuery(query, it)
@@ -1071,6 +1144,7 @@ suspend fun ConsulClient.executePreparedQueryAwait(query: String): PreparedQuery
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use executePreparedQueryWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("executePreparedQueryWithOptions(query, options).await()"))
 suspend fun ConsulClient.executePreparedQueryWithOptionsAwait(query: String, options: PreparedQueryExecuteOptions): PreparedQueryExecuteResponse {
   return awaitResult {
     this.executePreparedQueryWithOptions(query, options, it)

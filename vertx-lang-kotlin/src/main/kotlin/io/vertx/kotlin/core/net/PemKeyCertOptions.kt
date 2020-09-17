@@ -69,8 +69,8 @@ import io.vertx.core.net.PemKeyCertOptions
  * Or directly provided as a buffer:<p>
  *
  * <pre>
- * Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
- * Buffer cert = vertx.fileSystem().readFileSync("/mycert.pem");
+ * Buffer key = vertx.fileSystem().readFileBlocking("/mykey.pem");
+ * Buffer cert = vertx.fileSystem().readFileBlocking("/mycert.pem");
  * options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyValue(key).setCertValue(cert));
  * </pre>
  *
@@ -183,8 +183,8 @@ fun pemKeyCertOptionsOf(
  * Or directly provided as a buffer:<p>
  *
  * <pre>
- * Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
- * Buffer cert = vertx.fileSystem().readFileSync("/mycert.pem");
+ * Buffer key = vertx.fileSystem().readFileBlocking("/mykey.pem");
+ * Buffer cert = vertx.fileSystem().readFileBlocking("/mycert.pem");
  * options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyValue(key).setCertValue(cert));
  * </pre>
  *

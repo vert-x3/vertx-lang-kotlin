@@ -29,9 +29,10 @@ import io.vertx.core.http.HttpMethod
  * @param host  Set the host name to be used by the client request.
  * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
- * @param ssl  Set whether SSL/TLS is enabled
+ * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
+ * @param ssl  Set whether SSL/TLS is enabled.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
- * @param uri  Set the request relative URI
+ * @param uri  Set the request relative URI.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.RequestOptions original] using Vert.x codegen.
@@ -43,6 +44,7 @@ fun requestOptionsOf(
   host: String? = null,
   method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
+  server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   timeout: Long? = null,
   uri: String? = null): RequestOptions = io.vertx.core.http.RequestOptions().apply {
@@ -66,6 +68,9 @@ fun requestOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (server != null) {
+    this.setServer(server)
   }
   if (ssl != null) {
     this.setSsl(ssl)
@@ -89,16 +94,17 @@ fun requestOptionsOf(
  * @param host  Set the host name to be used by the client request.
  * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
- * @param ssl  Set whether SSL/TLS is enabled
+ * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
+ * @param ssl  Set whether SSL/TLS is enabled.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
- * @param uri  Set the request relative URI
+ * @param uri  Set the request relative URI.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.RequestOptions original] using Vert.x codegen.
  */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("requestOptionsOf(absoluteURI, followRedirects, headers, host, method, port, ssl, timeout, uri)")
+  replaceWith = ReplaceWith("requestOptionsOf(absoluteURI, followRedirects, headers, host, method, port, server, ssl, timeout, uri)")
 )
 fun RequestOptions(
   absoluteURI: String? = null,
@@ -107,6 +113,7 @@ fun RequestOptions(
   host: String? = null,
   method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
+  server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   timeout: Long? = null,
   uri: String? = null): RequestOptions = io.vertx.core.http.RequestOptions().apply {
@@ -130,6 +137,9 @@ fun RequestOptions(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (server != null) {
+    this.setServer(server)
   }
   if (ssl != null) {
     this.setSsl(ssl)

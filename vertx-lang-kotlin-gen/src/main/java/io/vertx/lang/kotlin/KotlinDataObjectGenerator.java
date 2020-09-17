@@ -15,7 +15,6 @@
  */
 package io.vertx.lang.kotlin;
 
-import io.vertx.codegen.Case;
 import io.vertx.codegen.DataObjectModel;
 import io.vertx.codegen.PropertyInfo;
 import io.vertx.codegen.PropertyKind;
@@ -23,6 +22,7 @@ import io.vertx.codegen.annotations.DataObject;
 import io.vertx.codegen.annotations.ModuleGen;
 import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
+import io.vertx.codegen.format.LowerCamelCase;
 import io.vertx.codegen.type.ClassKind;
 import io.vertx.codegen.type.ClassTypeInfo;
 import io.vertx.codegen.type.TypeInfo;
@@ -119,7 +119,7 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   }
 
   private String generateFun(DataObjectModel model, CodeWriter writer) {
-    String functionName = model.getType().getSimpleName(Case.LOWER_CAMEL) + "Of";
+    String functionName = model.getType().getSimpleName(LowerCamelCase.INSTANCE) + "Of";
     generateFunction(functionName, model, writer);
     return functionName;
   }

@@ -18,7 +18,6 @@ package io.vertx.kotlin.micrometer
 import io.vertx.micrometer.MicrometerMetricsOptions
 import io.vertx.micrometer.Label
 import io.vertx.micrometer.Match
-import io.vertx.micrometer.MetricsDomain
 import io.vertx.micrometer.VertxInfluxDbOptions
 import io.vertx.micrometer.VertxJmxMetricsOptions
 import io.vertx.micrometer.VertxPrometheusOptions
@@ -48,7 +47,7 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.MicrometerMetricsOptions original] using Vert.x codegen.
  */
 fun micrometerMetricsOptionsOf(
-  disabledMetricsCategories: Iterable<MetricsDomain>? = null,
+  disabledMetricsCategories: Iterable<String>? = null,
   enabled: Boolean? = null,
   factory: io.vertx.core.spi.VertxMetricsFactory? = null,
   influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,
@@ -130,7 +129,7 @@ fun micrometerMetricsOptionsOf(
   replaceWith = ReplaceWith("micrometerMetricsOptionsOf(disabledMetricsCategories, enabled, factory, influxDbOptions, jmxMetricsOptions, jvmMetricsEnabled, labelMatches, labelMatchs, labels, micrometerRegistry, prometheusOptions, registryName)")
 )
 fun MicrometerMetricsOptions(
-  disabledMetricsCategories: Iterable<MetricsDomain>? = null,
+  disabledMetricsCategories: Iterable<String>? = null,
   enabled: Boolean? = null,
   factory: io.vertx.core.spi.VertxMetricsFactory? = null,
   influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,
