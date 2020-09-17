@@ -18,7 +18,6 @@ package io.vertx.kotlin.core.http
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpClientRequest
 import io.vertx.core.http.HttpClientResponse
-import io.vertx.core.net.NetSocket
 import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -75,6 +74,20 @@ suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
 suspend fun HttpClientRequest.sendHeadAwait(): Unit {
   return awaitResult {
     this.sendHead(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClientRequest.connect]
+ *
+ * @return [HttpClientResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
+suspend fun HttpClientRequest.connectAwait(): HttpClientResponse {
+  return awaitResult {
+    this.connect(it)
   }
 }
 
@@ -190,20 +203,6 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.http.HttpClientRequest.netSocket]
- *
- * @return [NetSocket]
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use netSocket returning a future and chain with await()", replaceWith = ReplaceWith("netSocket().await()"))
-suspend fun HttpClientRequest.netSocketAwait(): NetSocket {
-  return awaitResult {
-    this.netSocket(it)
   }
 }
 

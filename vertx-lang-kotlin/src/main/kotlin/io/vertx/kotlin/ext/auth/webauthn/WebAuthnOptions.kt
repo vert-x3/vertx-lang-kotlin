@@ -18,19 +18,40 @@ package io.vertx.kotlin.ext.auth.webauthn
 import io.vertx.ext.auth.webauthn.WebAuthnOptions
 import io.vertx.ext.auth.webauthn.Attestation
 import io.vertx.ext.auth.webauthn.AuthenticatorAttachment
-import io.vertx.ext.auth.webauthn.RelayParty
+import io.vertx.ext.auth.webauthn.AuthenticatorTransport
+import io.vertx.ext.auth.webauthn.PublicKeyCredential
+import io.vertx.ext.auth.webauthn.RelyingParty
 import io.vertx.ext.auth.webauthn.UserVerification
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.auth.webauthn.WebAuthnOptions] objects.
+ *
+ * Configuration for the webauthn object
+ *
+ * @param attestation 
+ * @param authenticatorAttachment 
+ * @param challengeLength 
+ * @param extensions 
+ * @param pubKeyCredParams 
+ * @param relyingParty 
+ * @param requireResidentKey 
+ * @param timeout 
+ * @param transports 
+ * @param userVerification 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.WebAuthnOptions original] using Vert.x codegen.
+ */
 fun webAuthnOptionsOf(
   attestation: Attestation? = null,
   authenticatorAttachment: AuthenticatorAttachment? = null,
   challengeLength: Int? = null,
-  origin: String? = null,
-  pubKeyCredParams: Iterable<String>? = null,
-  relayParty: io.vertx.ext.auth.webauthn.RelayParty? = null,
+  extensions: io.vertx.core.json.JsonObject? = null,
+  pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
+  relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
   requireResidentKey: Boolean? = null,
-  timeout: Int? = null,
-  transports: Iterable<String>? = null,
+  timeout: Long? = null,
+  transports: Iterable<AuthenticatorTransport>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
 
   if (attestation != null) {
@@ -42,14 +63,14 @@ fun webAuthnOptionsOf(
   if (challengeLength != null) {
     this.setChallengeLength(challengeLength)
   }
-  if (origin != null) {
-    this.setOrigin(origin)
+  if (extensions != null) {
+    this.setExtensions(extensions)
   }
   if (pubKeyCredParams != null) {
-    this.setPubKeyCredParams(pubKeyCredParams.toSet())
+    this.setPubKeyCredParams(pubKeyCredParams.toList())
   }
-  if (relayParty != null) {
-    this.setRelayParty(relayParty)
+  if (relyingParty != null) {
+    this.setRelyingParty(relyingParty)
   }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
@@ -58,27 +79,46 @@ fun webAuthnOptionsOf(
     this.setTimeout(timeout)
   }
   if (transports != null) {
-    this.setTransports(transports.toSet())
+    this.setTransports(transports.toList())
   }
   if (userVerification != null) {
     this.setUserVerification(userVerification)
   }
 }
 
+/**
+ * A function providing a DSL for building [io.vertx.ext.auth.webauthn.WebAuthnOptions] objects.
+ *
+ * Configuration for the webauthn object
+ *
+ * @param attestation 
+ * @param authenticatorAttachment 
+ * @param challengeLength 
+ * @param extensions 
+ * @param pubKeyCredParams 
+ * @param relyingParty 
+ * @param requireResidentKey 
+ * @param timeout 
+ * @param transports 
+ * @param userVerification 
+ *
+ * <p/>
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.WebAuthnOptions original] using Vert.x codegen.
+ */
 @Deprecated(
   message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webAuthnOptionsOf(attestation, authenticatorAttachment, challengeLength, origin, pubKeyCredParams, relayParty, requireResidentKey, timeout, transports, userVerification)")
+  replaceWith = ReplaceWith("webAuthnOptionsOf(attestation, authenticatorAttachment, challengeLength, extensions, pubKeyCredParams, relyingParty, requireResidentKey, timeout, transports, userVerification)")
 )
 fun WebAuthnOptions(
   attestation: Attestation? = null,
   authenticatorAttachment: AuthenticatorAttachment? = null,
   challengeLength: Int? = null,
-  origin: String? = null,
-  pubKeyCredParams: Iterable<String>? = null,
-  relayParty: io.vertx.ext.auth.webauthn.RelayParty? = null,
+  extensions: io.vertx.core.json.JsonObject? = null,
+  pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
+  relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
   requireResidentKey: Boolean? = null,
-  timeout: Int? = null,
-  transports: Iterable<String>? = null,
+  timeout: Long? = null,
+  transports: Iterable<AuthenticatorTransport>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
 
   if (attestation != null) {
@@ -90,14 +130,14 @@ fun WebAuthnOptions(
   if (challengeLength != null) {
     this.setChallengeLength(challengeLength)
   }
-  if (origin != null) {
-    this.setOrigin(origin)
+  if (extensions != null) {
+    this.setExtensions(extensions)
   }
   if (pubKeyCredParams != null) {
-    this.setPubKeyCredParams(pubKeyCredParams.toSet())
+    this.setPubKeyCredParams(pubKeyCredParams.toList())
   }
-  if (relayParty != null) {
-    this.setRelayParty(relayParty)
+  if (relyingParty != null) {
+    this.setRelyingParty(relyingParty)
   }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
@@ -106,7 +146,7 @@ fun WebAuthnOptions(
     this.setTimeout(timeout)
   }
   if (transports != null) {
-    this.setTransports(transports.toSet())
+    this.setTransports(transports.toList())
   }
   if (userVerification != null) {
     this.setUserVerification(userVerification)
