@@ -114,6 +114,21 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-properties</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-ldap</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-sql-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-web-common</artifactId>
       <optional>true</optional>
     </dependency>
@@ -390,6 +405,9 @@
             vertx-auth-oauth2,
             vertx-auth-shiro,
             vertx-auth-webauthn,
+            vertx-auth-properties,
+            vertx-auth-ldap,
+            vertx-auth-sql-client,
             vertx-web-common,
             vertx-web-client,
             vertx-web,
