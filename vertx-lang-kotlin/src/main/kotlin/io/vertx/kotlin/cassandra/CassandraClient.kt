@@ -17,6 +17,7 @@ package io.vertx.kotlin.cassandra
 
 import com.datastax.oss.driver.api.core.cql.PreparedStatement
 import com.datastax.oss.driver.api.core.cql.Row
+import com.datastax.oss.driver.api.core.cql.SimpleStatement
 import com.datastax.oss.driver.api.core.cql.Statement
 import io.vertx.cassandra.CassandraClient
 import io.vertx.cassandra.CassandraRowStream
@@ -123,6 +124,21 @@ suspend fun CassandraClient.executeAwait(statement: Statement<*>): ResultSet {
 suspend fun CassandraClient.prepareAwait(query: String): PreparedStatement {
   return awaitResult {
     this.prepare(query, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.prepare]
+ *
+ * @param statement the statement to prepare
+ * @return [PreparedStatement]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(statement).await()"))
+suspend fun CassandraClient.prepareAwait(statement: SimpleStatement): PreparedStatement {
+  return awaitResult {
+    this.prepare(statement, it)
   }
 }
 

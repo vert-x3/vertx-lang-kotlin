@@ -19,6 +19,7 @@ import io.vertx.core.MultiMap
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerResponse
+import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -117,6 +118,61 @@ suspend fun HttpServerResponse.endAwait(chunk: String, enc: String): Unit {
 suspend fun HttpServerResponse.endAwait(chunk: Buffer): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.send]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send().await()"))
+suspend fun HttpServerResponse.sendAwait(): Unit {
+  return awaitResult {
+    this.send(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.send]
+ *
+ * @param body 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+suspend fun HttpServerResponse.sendAwait(body: String): Unit {
+  return awaitResult {
+    this.send(body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.send]
+ *
+ * @param body 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+suspend fun HttpServerResponse.sendAwait(body: Buffer): Unit {
+  return awaitResult {
+    this.send(body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.send]
+ *
+ * @param body 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+suspend fun HttpServerResponse.sendAwait(body: ReadStream<Buffer>): Unit {
+  return awaitResult {
+    this.send(body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

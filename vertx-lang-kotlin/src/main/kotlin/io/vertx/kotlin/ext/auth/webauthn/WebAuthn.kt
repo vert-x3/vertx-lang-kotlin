@@ -22,7 +22,7 @@ import io.vertx.kotlin.coroutines.awaitResult
 /**
  * Suspending version of method [io.vertx.ext.auth.webauthn.WebAuthn.createCredentialsOptions]
  *
- * @param user - the user object with username, displayName
+ * @param user - the user object with name and optionally displayName and icon
  * @return [JsonObject]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.WebAuthn] using Vert.x codegen.
@@ -37,15 +37,15 @@ suspend fun WebAuthn.createCredentialsOptionsAwait(user: JsonObject): JsonObject
 /**
  * Suspending version of method [io.vertx.ext.auth.webauthn.WebAuthn.getCredentialsOptions]
  *
- * @param username the unique user identified
+ * @param name the unique user identified
  * @return [JsonObject]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.WebAuthn] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getCredentialsOptions returning a future and chain with await()", replaceWith = ReplaceWith("getCredentialsOptions(username).await()"))
-suspend fun WebAuthn.getCredentialsOptionsAwait(username: String?): JsonObject {
+@Deprecated(message = "Instead use getCredentialsOptions returning a future and chain with await()", replaceWith = ReplaceWith("getCredentialsOptions(name).await()"))
+suspend fun WebAuthn.getCredentialsOptionsAwait(name: String?): JsonObject {
   return awaitResult {
-    this.getCredentialsOptions(username, it)
+    this.getCredentialsOptions(name, it)
   }
 }
 

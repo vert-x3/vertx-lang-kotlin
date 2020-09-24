@@ -23,10 +23,10 @@ import io.vertx.amqp.AmqpReceiverOptions
  * Configures the AMQP Receiver.
  *
  * @param autoAcknowledgement  Sets the auto-acknowledgement. When enabled (default), the messages are automatically acknowledged. If set to <code>false</code>, the messages must be acknowledged explicitly using [io.vertx.amqp.AmqpMessage], [io.vertx.amqp.AmqpMessage] and [io.vertx.amqp.AmqpMessage].
- * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
- * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
+ * @param capabilities  Sets the list of capabilities to be set on the receiver source terminus.
+ * @param capabilitys  Adds a capability to be set on the receiver source terminus.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
+ * @param dynamic  Sets whether the Source terminus to be used should specify it is 'dynamic', requesting the peer creates a node and names it with a generated address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
  * @param linkName 
  * @param maxBufferedMessages  Sets the max buffered messages. This message can be used to configure the initial credit of a receiver.
  * @param qos  Sets the local QOS config.
@@ -78,10 +78,10 @@ fun amqpReceiverOptionsOf(
  * Configures the AMQP Receiver.
  *
  * @param autoAcknowledgement  Sets the auto-acknowledgement. When enabled (default), the messages are automatically acknowledged. If set to <code>false</code>, the messages must be acknowledged explicitly using [io.vertx.amqp.AmqpMessage], [io.vertx.amqp.AmqpMessage] and [io.vertx.amqp.AmqpMessage].
- * @param capabilities  Sets the list of desired capabilities A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
- * @param capabilitys  Adds a desired capability. A registry of commonly defined source capabilities and their meanings is maintained at <a href="http://www.amqp.org/specification/1.0/source-capabilities">AMQP Source Capabilities</a>.
+ * @param capabilities  Sets the list of capabilities to be set on the receiver source terminus.
+ * @param capabilitys  Adds a capability to be set on the receiver source terminus.
  * @param durable  Sets the durability. <p> Passing <code>true</code> sets the expiry policy of the source to <code>NEVER</code> and the durability of the source to <code>UNSETTLED_STATE</code>.
- * @param dynamic  Sets whether the link remote terminus to be used should indicate it is 'dynamic', requesting the peer names it with a dynamic address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
+ * @param dynamic  Sets whether the Source terminus to be used should specify it is 'dynamic', requesting the peer creates a node and names it with a generated address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
  * @param linkName 
  * @param maxBufferedMessages  Sets the max buffered messages. This message can be used to configure the initial credit of a receiver.
  * @param qos  Sets the local QOS config.
