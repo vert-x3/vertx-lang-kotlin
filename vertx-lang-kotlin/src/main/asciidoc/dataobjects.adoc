@@ -3391,6 +3391,36 @@ Set session ID for lock release operation.
 +++
 |===
 
+[[LdapAuthenticationOptions]]
+== LdapAuthenticationOptions
+
+++++
+ Ldap auth configuration options
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authenticationMechanism]]`@authenticationMechanism`|`String`|+++
+sets the authentication mechanism. default to 'simple' if not set
++++
+|[[authenticationQuery]]`@authenticationQuery`|`String`|+++
+Set the query to use to authenticate a user. This is used to determine the
+ actual lookup to use when looking up a user with a particular id. An example
+ is `uid={0},ou=users,dc=foo,dc=com` - Note that the element `{0}` is
+ substituted with the user id to create the actual lookup.
++++
+|[[referral]]`@referral`|`String`|+++
+Set the referral property. Default to 'follow' if not set
++++
+|[[url]]`@url`|`String`|+++
+Set the url to the LDAP server. The url must start with `ldap://` and a port
+ must be specified.
++++
+|===
+
 [[ListConsumerGroupOffsetsOptions]]
 == ListConsumerGroupOffsetsOptions
 
@@ -6528,6 +6558,46 @@ Set the Shiro auth options type.
 |[[libraryURL]]`@libraryURL`|`String`|-
 |[[maxBytesStreaming]]`@maxBytesStreaming`|`Number (int)`|-
 |[[sessionTimeout]]`@sessionTimeout`|`Number (long)`|-
+|===
+
+[[SqlAuthenticationOptions]]
+== SqlAuthenticationOptions
+
+++++
+ Options configuring JDBC authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[authenticationQuery]]`@authenticationQuery`|`String`|+++
+Set the authentication query to use. Use this if you want to override the
+ default authentication query.
++++
+|===
+
+[[SqlAuthorizationOptions]]
+== SqlAuthorizationOptions
+
+++++
+ Options configuring JDBC authentication.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[permissionsQuery]]`@permissionsQuery`|`String`|+++
+Set the permissions query to use. Use this if you want to override the
+ default permissions query.
++++
+|[[rolesQuery]]`@rolesQuery`|`String`|+++
+Set the roles query to use. Use this if you want to override the default
+ roles query.
++++
 |===
 
 [[SqlConnectOptions]]

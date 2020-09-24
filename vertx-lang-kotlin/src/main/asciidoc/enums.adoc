@@ -944,10 +944,12 @@ SOCSK5 tcp proxy
 |[[PS256]]`PS256`|-
 |[[PS384]]`PS384`|-
 |[[PS512]]`PS512`|-
+|[[ES256K]]`ES256K`|-
 |[[RS256]]`RS256`|-
 |[[RS384]]`RS384`|-
 |[[RS512]]`RS512`|-
 |[[RS1]]`RS1`|-
+|[[EdDSA]]`EdDSA`|-
 |===
 
 [[RedisClientType]]
