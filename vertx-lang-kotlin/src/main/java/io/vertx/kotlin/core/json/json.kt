@@ -45,38 +45,12 @@ fun jsonObjectOf(vararg fields: Pair<String, Any?>): JsonObject {
 }
 
 /**
- * A function providing a DSL for building [io.vertx.core.json.JsonObject]
- *
- * @param fields key:value pairs to create the instance
- * @return [JsonObject]
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("jsonObjectOf(*fields)")
-)
-fun JsonObject(vararg fields: Pair<String, Any?>): JsonObject {
-  return jsonObjectOf(*fields)
-}
-
-/**
  * A function providing a DSL for building [io.vertx.core.json.JsonArray]
  *
  * @param values objects that should be part of the array
  * @return [JsonArray]
  */
 fun jsonArrayOf(vararg values: Any?): JsonArray = io.vertx.core.json.JsonArray(arrayListOf(*values))
-
-/**
- * A function providing a DSL for building [io.vertx.core.json.JsonArray]
- *
- * @param values objects that should be part of the array
- * @return [JsonArray]
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("jsonArrayOf(*values)")
-)
-fun JsonArray(vararg values: Any?): JsonArray = jsonArrayOf(*values)
 
 /**
  * The json builder for creating [io.vertx.core.json.JsonObject] or [io.vertx.core.json.JsonArray]

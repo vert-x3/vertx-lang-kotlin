@@ -25,15 +25,3 @@ fun offsetSpecOf(
   }
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("offsetSpecOf(spec)")
-)
-fun OffsetSpec(
-  spec: Long? = null): OffsetSpec = io.vertx.kafka.admin.OffsetSpec(io.vertx.core.json.JsonObject()).apply {
-
-  if (spec != null) {
-    this.setSpec(spec)
-  }
-}
-

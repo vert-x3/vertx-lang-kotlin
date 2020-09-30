@@ -40,30 +40,3 @@ fun usernamePasswordCredentialsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.auth.authentication.UsernamePasswordCredentials] objects.
- *
- * Credentials used by any [io.vertx.ext.auth.authentication.AuthenticationProvider] that requires tokens, for example JWT, Oauth2, OpenId Connect
- *
- * @param password 
- * @param username 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.authentication.UsernamePasswordCredentials original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("usernamePasswordCredentialsOf(password, username)")
-)
-fun UsernamePasswordCredentials(
-  password: String? = null,
-  username: String? = null): UsernamePasswordCredentials = io.vertx.ext.auth.authentication.UsernamePasswordCredentials(io.vertx.core.json.JsonObject()).apply {
-
-  if (password != null) {
-    this.setPassword(password)
-  }
-  if (username != null) {
-    this.setUsername(username)
-  }
-}
-

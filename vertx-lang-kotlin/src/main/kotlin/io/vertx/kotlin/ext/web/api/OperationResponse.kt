@@ -49,39 +49,3 @@ fun operationResponseOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.web.api.OperationResponse] objects.
- *
- *
- * @param headers 
- * @param payload 
- * @param statusCode 
- * @param statusMessage 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.OperationResponse original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("operationResponseOf(headers, payload, statusCode, statusMessage)")
-)
-fun OperationResponse(
-  headers: io.vertx.core.MultiMap? = null,
-  payload: io.vertx.core.buffer.Buffer? = null,
-  statusCode: Int? = null,
-  statusMessage: String? = null): OperationResponse = io.vertx.ext.web.api.OperationResponse().apply {
-
-  if (headers != null) {
-    this.setHeaders(headers)
-  }
-  if (payload != null) {
-    this.setPayload(payload)
-  }
-  if (statusCode != null) {
-    this.setStatusCode(statusCode)
-  }
-  if (statusMessage != null) {
-    this.setStatusMessage(statusMessage)
-  }
-}
-

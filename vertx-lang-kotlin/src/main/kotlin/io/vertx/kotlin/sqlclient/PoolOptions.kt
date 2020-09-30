@@ -40,30 +40,3 @@ fun poolOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.sqlclient.PoolOptions] objects.
- *
- * The options for configuring a connection pool.
- *
- * @param maxSize  Set the maximum pool size
- * @param maxWaitQueueSize  Set the maximum connection request allowed in the wait queue, any requests beyond the max size will result in an failure.  If the value is set to a negative number then the queue will be unbounded.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.sqlclient.PoolOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("poolOptionsOf(maxSize, maxWaitQueueSize)")
-)
-fun PoolOptions(
-  maxSize: Int? = null,
-  maxWaitQueueSize: Int? = null): PoolOptions = io.vertx.sqlclient.PoolOptions().apply {
-
-  if (maxSize != null) {
-    this.setMaxSize(maxSize)
-  }
-  if (maxWaitQueueSize != null) {
-    this.setMaxWaitQueueSize(maxWaitQueueSize)
-  }
-}
-

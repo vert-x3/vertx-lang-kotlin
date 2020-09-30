@@ -45,35 +45,3 @@ fun oauth2CredentialsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.auth.oauth2.Oauth2Credentials] objects.
- *
- * Credentials specific to the [io.vertx.ext.auth.oauth2.OAuth2Auth] provider
- *
- * @param code 
- * @param extra 
- * @param redirectUri 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.Oauth2Credentials original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("oauth2CredentialsOf(code, extra, redirectUri)")
-)
-fun Oauth2Credentials(
-  code: String? = null,
-  extra: io.vertx.core.json.JsonObject? = null,
-  redirectUri: String? = null): Oauth2Credentials = io.vertx.ext.auth.oauth2.Oauth2Credentials().apply {
-
-  if (code != null) {
-    this.setCode(code)
-  }
-  if (extra != null) {
-    this.setExtra(extra)
-  }
-  if (redirectUri != null) {
-    this.setRedirectUri(redirectUri)
-  }
-}
-

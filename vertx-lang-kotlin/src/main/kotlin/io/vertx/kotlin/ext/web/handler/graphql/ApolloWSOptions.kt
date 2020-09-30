@@ -35,25 +35,3 @@ fun apolloWSOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.web.handler.graphql.ApolloWSOptions] objects.
- *
- * Options for configuring the [io.vertx.ext.web.handler.graphql.ApolloWSHandler].
- *
- * @param keepAlive  Set the interval in milliseconds to send <code>KEEPALIVE</code> messages to all clients. Defaults to <code>30000</code>.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.graphql.ApolloWSOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("apolloWSOptionsOf(keepAlive)")
-)
-fun ApolloWSOptions(
-  keepAlive: Long? = null): ApolloWSOptions = io.vertx.ext.web.handler.graphql.ApolloWSOptions().apply {
-
-  if (keepAlive != null) {
-    this.setKeepAlive(keepAlive)
-  }
-}
-

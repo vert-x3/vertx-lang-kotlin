@@ -45,35 +45,3 @@ fun relyingPartyOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.auth.webauthn.RelyingParty] objects.
- *
- * Data object representing a Relying party (your server)
- *
- * @param icon 
- * @param id 
- * @param name 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.RelyingParty original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("relyingPartyOf(icon, id, name)")
-)
-fun RelyingParty(
-  icon: String? = null,
-  id: String? = null,
-  name: String? = null): RelyingParty = io.vertx.ext.auth.webauthn.RelyingParty().apply {
-
-  if (icon != null) {
-    this.setIcon(icon)
-  }
-  if (id != null) {
-    this.setId(id)
-  }
-  if (name != null) {
-    this.setName(name)
-  }
-}
-

@@ -45,34 +45,3 @@ fun checkResultOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.healthchecks.CheckResult] objects.
- *
- *
- * @param checks 
- * @param id 
- * @param status 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.healthchecks.CheckResult original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("checkResultOf(checks, id, status)")
-)
-fun CheckResult(
-  checks: Iterable<io.vertx.ext.healthchecks.CheckResult>? = null,
-  id: String? = null,
-  status: io.vertx.ext.healthchecks.Status? = null): CheckResult = io.vertx.ext.healthchecks.CheckResult().apply {
-
-  if (checks != null) {
-    this.setChecks(checks.toList())
-  }
-  if (id != null) {
-    this.setId(id)
-  }
-  if (status != null) {
-    this.setStatus(status)
-  }
-}
-

@@ -31,21 +31,3 @@ fun schemaRouterOptionsOf(
 
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.json.schema.SchemaRouterOptions] objects.
- *
- * Represents the options to resolve external schemas. You can configure auth options to access to external services
- *
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.json.schema.SchemaRouterOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("schemaRouterOptionsOf()")
-)
-fun SchemaRouterOptions(
-): SchemaRouterOptions = io.vertx.ext.json.schema.SchemaRouterOptions().apply {
-
-}
-

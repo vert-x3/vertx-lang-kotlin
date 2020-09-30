@@ -23,12 +23,3 @@ fun indexModelOf(
 
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("indexModelOf()")
-)
-fun IndexModel(
-): IndexModel = io.vertx.ext.mongo.IndexModel(io.vertx.core.json.JsonObject()).apply {
-
-}
-

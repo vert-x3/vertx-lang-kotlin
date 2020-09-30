@@ -36,26 +36,3 @@ fun tracingOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.core.tracing.TracingOptions] objects.
- *
- * Vert.x tracing base configuration, this class can be extended by provider implementations to configure
- * those specific implementations.
- *
- * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.tracing.TracingOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("tracingOptionsOf(factory)")
-)
-fun TracingOptions(
-  factory: io.vertx.core.spi.VertxTracerFactory? = null): TracingOptions = io.vertx.core.tracing.TracingOptions().apply {
-
-  if (factory != null) {
-    this.setFactory(factory)
-  }
-}
-

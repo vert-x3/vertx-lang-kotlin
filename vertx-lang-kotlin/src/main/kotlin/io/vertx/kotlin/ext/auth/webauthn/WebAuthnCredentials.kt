@@ -41,31 +41,3 @@ fun webAuthnCredentialsOf(
   }
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("webAuthnCredentialsOf(challenge, domain, origin, username, webauthn)")
-)
-fun WebAuthnCredentials(
-  challenge: String? = null,
-  domain: String? = null,
-  origin: String? = null,
-  username: String? = null,
-  webauthn: io.vertx.core.json.JsonObject? = null): WebAuthnCredentials = io.vertx.ext.auth.webauthn.WebAuthnCredentials().apply {
-
-  if (challenge != null) {
-    this.setChallenge(challenge)
-  }
-  if (domain != null) {
-    this.setDomain(domain)
-  }
-  if (origin != null) {
-    this.setOrigin(origin)
-  }
-  if (username != null) {
-    this.setUsername(username)
-  }
-  if (webauthn != null) {
-    this.setWebauthn(webauthn)
-  }
-}
-

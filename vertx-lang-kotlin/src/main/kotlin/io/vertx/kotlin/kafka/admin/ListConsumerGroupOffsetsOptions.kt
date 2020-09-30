@@ -22,12 +22,3 @@ fun listConsumerGroupOffsetsOptionsOf(
 
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("listConsumerGroupOffsetsOptionsOf()")
-)
-fun ListConsumerGroupOffsetsOptions(
-): ListConsumerGroupOffsetsOptions = io.vertx.kafka.admin.ListConsumerGroupOffsetsOptions().apply {
-
-}
-

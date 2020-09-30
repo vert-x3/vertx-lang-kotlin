@@ -33,23 +33,3 @@ fun listOffsetsResultInfoOf(
   }
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("listOffsetsResultInfoOf(leaderEpoch, offset, timestamp)")
-)
-fun ListOffsetsResultInfo(
-  leaderEpoch: Int? = null,
-  offset: Long? = null,
-  timestamp: Long? = null): ListOffsetsResultInfo = io.vertx.kafka.admin.ListOffsetsResultInfo(io.vertx.core.json.JsonObject()).apply {
-
-  if (leaderEpoch != null) {
-    this.setLeaderEpoch(leaderEpoch)
-  }
-  if (offset != null) {
-    this.setOffset(offset)
-  }
-  if (timestamp != null) {
-    this.setTimestamp(timestamp)
-  }
-}
-

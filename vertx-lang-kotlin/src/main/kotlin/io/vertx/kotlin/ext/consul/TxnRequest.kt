@@ -37,27 +37,3 @@ fun txnRequestOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.consul.TxnRequest] objects.
- *
- * Holds list of operations in transaction
- *
- * @param operations  Adds operation to this request
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnRequest original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("txnRequestOf(operations)")
-)
-fun TxnRequest(
-  operations: Iterable<io.vertx.ext.consul.TxnOperation>? = null): TxnRequest = io.vertx.ext.consul.TxnRequest().apply {
-
-  if (operations != null) {
-    for (item in operations) {
-      this.addOperation(item)
-    }
-  }
-}
-

@@ -80,7 +80,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   }
 
   @ObsoleteCoroutinesApi
-  @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
+  @Deprecated(level = DeprecationLevel.HIDDEN, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
   override fun cancel(cause: Throwable?): Boolean {
     channel.cancel(CancellationException(message = null, cause = cause))
     return true

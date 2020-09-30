@@ -49,39 +49,3 @@ fun operationRequestOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.web.api.OperationRequest] objects.
- *
- *
- * @param extra  Get extra payload
- * @param headers  Get request headers
- * @param params  Get request parsedParameters as JSON
- * @param user  Get request principal user as routingContext.user().principal(), null if no user is authenticated
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.api.OperationRequest original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("operationRequestOf(extra, headers, params, user)")
-)
-fun OperationRequest(
-  extra: io.vertx.core.json.JsonObject? = null,
-  headers: io.vertx.core.MultiMap? = null,
-  params: io.vertx.core.json.JsonObject? = null,
-  user: io.vertx.core.json.JsonObject? = null): OperationRequest = io.vertx.ext.web.api.OperationRequest().apply {
-
-  if (extra != null) {
-    this.setExtra(extra)
-  }
-  if (headers != null) {
-    this.setHeaders(headers)
-  }
-  if (params != null) {
-    this.setParams(params)
-  }
-  if (user != null) {
-    this.setUser(user)
-  }
-}
-

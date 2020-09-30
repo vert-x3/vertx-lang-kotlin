@@ -35,25 +35,3 @@ fun gridFsDownloadOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.mongo.GridFsDownloadOptions] objects.
- *
- * Options used to configure downloads from GridFS.
- *
- * @param revision 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.GridFsDownloadOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("gridFsDownloadOptionsOf(revision)")
-)
-fun GridFsDownloadOptions(
-  revision: Int? = null): GridFsDownloadOptions = io.vertx.ext.mongo.GridFsDownloadOptions().apply {
-
-  if (revision != null) {
-    this.setRevision(revision)
-  }
-}
-

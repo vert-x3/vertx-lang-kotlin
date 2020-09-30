@@ -31,21 +31,3 @@ fun httpMethodOf(
 
 }
 
-/**
- * A function providing a DSL for building [io.vertx.core.http.HttpMethod] objects.
- *
- * Represents an HTTP method.
- *
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpMethod original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("httpMethodOf()")
-)
-fun HttpMethod(
-): HttpMethod = io.vertx.core.http.HttpMethod(String()).apply {
-
-}
-

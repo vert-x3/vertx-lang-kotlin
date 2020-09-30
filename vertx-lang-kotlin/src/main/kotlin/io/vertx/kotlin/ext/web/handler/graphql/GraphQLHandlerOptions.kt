@@ -40,30 +40,3 @@ fun graphQLHandlerOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions] objects.
- *
- * Options for configuring the [io.vertx.ext.web.handler.graphql.GraphQLHandler].
- *
- * @param requestBatchingEnabled  Whether request batching should be enabled. Defaults to <code>false</code>.
- * @param requestMultipartEnabled  Whether request multipart should be enabled. Defaults to <code>false</code>.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("graphQLHandlerOptionsOf(requestBatchingEnabled, requestMultipartEnabled)")
-)
-fun GraphQLHandlerOptions(
-  requestBatchingEnabled: Boolean? = null,
-  requestMultipartEnabled: Boolean? = null): GraphQLHandlerOptions = io.vertx.ext.web.handler.graphql.GraphQLHandlerOptions().apply {
-
-  if (requestBatchingEnabled != null) {
-    this.setRequestBatchingEnabled(requestBatchingEnabled)
-  }
-  if (requestMultipartEnabled != null) {
-    this.setRequestMultipartEnabled(requestMultipartEnabled)
-  }
-}
-

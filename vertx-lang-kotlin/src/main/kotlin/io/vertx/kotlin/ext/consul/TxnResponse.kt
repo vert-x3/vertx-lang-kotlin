@@ -45,34 +45,3 @@ fun txnResponseOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.consul.TxnResponse] objects.
- *
- * Holds results of transaction
- *
- * @param errors  Adds error to this response
- * @param results  Adds result to this response
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.TxnResponse original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("txnResponseOf(errors, results)")
-)
-fun TxnResponse(
-  errors: Iterable<io.vertx.ext.consul.TxnError>? = null,
-  results: Iterable<io.vertx.ext.consul.TxnResult>? = null): TxnResponse = io.vertx.ext.consul.TxnResponse().apply {
-
-  if (errors != null) {
-    for (item in errors) {
-      this.addError(item)
-    }
-  }
-  if (results != null) {
-    for (item in results) {
-      this.addResult(item)
-    }
-  }
-}
-

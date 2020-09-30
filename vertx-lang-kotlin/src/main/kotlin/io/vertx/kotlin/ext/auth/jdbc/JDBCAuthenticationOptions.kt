@@ -35,25 +35,3 @@ fun jdbcAuthenticationOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.auth.jdbc.JDBCAuthenticationOptions] objects.
- *
- * Options configuring JDBC authentication.
- *
- * @param authenticationQuery  Set the authentication query to use. Use this if you want to override the default authentication query.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jdbc.JDBCAuthenticationOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("jdbcAuthenticationOptionsOf(authenticationQuery)")
-)
-fun JDBCAuthenticationOptions(
-  authenticationQuery: String? = null): JDBCAuthenticationOptions = io.vertx.ext.auth.jdbc.JDBCAuthenticationOptions().apply {
-
-  if (authenticationQuery != null) {
-    this.setAuthenticationQuery(authenticationQuery)
-  }
-}
-

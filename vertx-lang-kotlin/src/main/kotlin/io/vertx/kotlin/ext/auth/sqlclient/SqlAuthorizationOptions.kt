@@ -40,30 +40,3 @@ fun sqlAuthorizationOptionsOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions] objects.
- *
- * Options configuring JDBC authentication.
- *
- * @param permissionsQuery  Set the permissions query to use. Use this if you want to override the default permissions query.
- * @param rolesQuery  Set the roles query to use. Use this if you want to override the default roles query.
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("sqlAuthorizationOptionsOf(permissionsQuery, rolesQuery)")
-)
-fun SqlAuthorizationOptions(
-  permissionsQuery: String? = null,
-  rolesQuery: String? = null): SqlAuthorizationOptions = io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions().apply {
-
-  if (permissionsQuery != null) {
-    this.setPermissionsQuery(permissionsQuery)
-  }
-  if (rolesQuery != null) {
-    this.setRolesQuery(rolesQuery)
-  }
-}
-

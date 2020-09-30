@@ -29,19 +29,3 @@ fun gridFsUploadOptionsOf(
   }
 }
 
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("gridFsUploadOptionsOf(chunkSizeBytes, metadata)")
-)
-fun GridFsUploadOptions(
-  chunkSizeBytes: Int? = null,
-  metadata: io.vertx.core.json.JsonObject? = null): GridFsUploadOptions = io.vertx.ext.mongo.GridFsUploadOptions().apply {
-
-  if (chunkSizeBytes != null) {
-    this.setChunkSizeBytes(chunkSizeBytes)
-  }
-  if (metadata != null) {
-    this.setMetadata(metadata)
-  }
-}
-

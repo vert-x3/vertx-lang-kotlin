@@ -46,35 +46,3 @@ fun clusterDescriptionOf(
   }
 }
 
-/**
- * A function providing a DSL for building [io.vertx.kafka.admin.ClusterDescription] objects.
- *
- * A detailed description of the cluster
- *
- * @param clusterId  Set the cluster ID
- * @param controller  Set the controller node.
- * @param nodes  Set the nodes belonging to this cluster
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ClusterDescription original] using Vert.x codegen.
- */
-@Deprecated(
-  message = "This function will be removed in a future version",
-  replaceWith = ReplaceWith("clusterDescriptionOf(clusterId, controller, nodes)")
-)
-fun ClusterDescription(
-  clusterId: String? = null,
-  controller: io.vertx.kafka.client.common.Node? = null,
-  nodes: Iterable<io.vertx.kafka.client.common.Node>? = null): ClusterDescription = io.vertx.kafka.admin.ClusterDescription().apply {
-
-  if (clusterId != null) {
-    this.setClusterId(clusterId)
-  }
-  if (controller != null) {
-    this.setController(controller)
-  }
-  if (nodes != null) {
-    this.setNodes(nodes.toList())
-  }
-}
-
