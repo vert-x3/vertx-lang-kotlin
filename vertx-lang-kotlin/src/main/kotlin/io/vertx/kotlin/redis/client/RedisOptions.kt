@@ -18,8 +18,8 @@ package io.vertx.kotlin.redis.client
 import io.vertx.redis.client.RedisOptions
 import io.vertx.core.net.NetClientOptions
 import io.vertx.redis.client.RedisClientType
+import io.vertx.redis.client.RedisReplicas
 import io.vertx.redis.client.RedisRole
-import io.vertx.redis.client.RedisSlaves
 
 /**
  * A function providing a DSL for building [io.vertx.redis.client.RedisOptions] objects.
@@ -41,7 +41,7 @@ import io.vertx.redis.client.RedisSlaves
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
  * @param type  Set the desired client type to be created.
- * @param useSlave  Set whether or not to use slave nodes (only considered in Cluster mode).
+ * @param useReplicas  Set whether or not to use replica nodes (only considered in Cluster mode).
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.client.RedisOptions original] using Vert.x codegen.
@@ -62,7 +62,7 @@ fun redisOptionsOf(
   poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
   type: RedisClientType? = null,
-  useSlave: RedisSlaves? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
+  useReplicas: RedisReplicas? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
   if (connectionString != null) {
     this.setConnectionString(connectionString)
@@ -111,8 +111,8 @@ fun redisOptionsOf(
   if (type != null) {
     this.setType(type)
   }
-  if (useSlave != null) {
-    this.setUseSlave(useSlave)
+  if (useReplicas != null) {
+    this.setUseReplicas(useReplicas)
   }
 }
 

@@ -119,6 +119,8 @@ include::Example.kt[tags=streamExample]
 
 == Awaiting the completion of Vert.x asynchronous results
 
+Vert.x 4 provides futures and `Future` has an `await()` suspending method latching the asynchronous result.
+
 The `await` extension method on instances of Vert.x asynchronous results suspend coroutines until they have completed, in
 which case the method returns the corresponding `AsyncResult<T>` object.
 
@@ -129,23 +131,16 @@ include::Example.kt[tags=awaitingFuture]
 
 == Suspending extension methods
 
-Since `3.6.0`, Vert.x generates suspending extension methods for all its asynchronous methods.
+Vert.x 3 generated extension methods to simplify writing coroutines with Vert.x asynchronous APIs. It relieved
+the user from using the idiomatic `awaitResult` and makes the code more natural and readable.
 
-It relieves the user from using the idiomatic `awaitResult` and makes the code more natural and readable.
+Since Vert.x 4 provides a future based API, such extension methods still exists for compatibility but
+are _deprecated_.
 
 [source,kotlin,indent=0]
 ----
 include::Example.kt[tags=generatedSuspendingExtensionMethod]
 ----
-
-Each asynchronous method has a suspending counterpart, e.g `xyz(1, 2, handler)` => `xyzAwait(1, 2)`.
-
-Such extensions are provided by the `io.vertx:vertx-lang-kotlin` dependency and covers the Vert.x stack:
-
-- vertx-web
-- vertx-jdbc-client
-- vertx-cassandra-client
-- etc...
 
 == Channels
 

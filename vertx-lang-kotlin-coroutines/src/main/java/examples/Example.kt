@@ -60,7 +60,7 @@ class ExampleVerticle : CoroutineVerticle() {
       awaitEventExample()
       streamExample()
       handlerAndCoroutineExample()
-      awaitingFuture()
+      awaitingFuture(Future.succeededFuture("hello"))
       generatedSuspendingExtensionMethod()
     }
   }
@@ -134,16 +134,17 @@ class ExampleVerticle : CoroutineVerticle() {
   // end::streamExample[]
 
   // tag::awaitingFuture[]
-  suspend fun awaitingFuture() {
-    val httpServerPromise = Promise.promise<HttpServer>()
-    vertx.createHttpServer()
+  suspend fun awaitingFuture(anotherFuture: Future<String>) {
+    // Getting a future
+    val httpServerFuture = vertx.createHttpServer()
       .requestHandler { req -> req.response().end("Hello!") }
-      .listen(8000, httpServerPromise)
+      .listen(8000)
 
-    val httpServer = httpServerPromise.future().await()
+    val httpServer = httpServerFuture.await()
     println("HTTP server port: ${httpServer.actualPort()}")
 
-    val result = CompositeFuture.all(httpServerPromise.future(), httpServerPromise.future()).await()
+    // It also works for composite futures
+    val result = CompositeFuture.all(httpServerFuture, anotherFuture).await()
     if (result.succeeded()) {
       println("The server is now running!")
     } else {
@@ -154,17 +155,9 @@ class ExampleVerticle : CoroutineVerticle() {
 
   // tag::generatedSuspendingExtensionMethod[]
   suspend fun generatedSuspendingExtensionMethod() {
-    // Suspending extension method
-    // This function has been automatically generated from the [io.vertx.core.net.NetClient original] using Vert.x codegen.
-    suspend fun NetClient.connectAwait(port : Int, host : String) : NetSocket {
-      return awaitResult{
-        this.connect(port, host, it)
-      }
-    }
-
     // Use the extension instead of wrapping with awaitResult
-    val client = vertx.createNetClient();
-    val socket = client.connectAwait(1234, "localhost");
+    val client = vertx.createNetClient()
+    val socket = client.connect(1234, "localhost").await()
   }
   // end::generatedSuspendingExtensionMethod[]
 

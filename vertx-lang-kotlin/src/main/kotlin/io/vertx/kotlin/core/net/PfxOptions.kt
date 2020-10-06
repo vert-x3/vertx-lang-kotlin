@@ -21,28 +21,10 @@ import io.vertx.core.net.PfxOptions
  * A function providing a DSL for building [io.vertx.core.net.PfxOptions] objects.
  *
  * Key or trust store options configuring private key and/or certificates based on PKCS#12 files.
- * <p>
- * When used as a key store, it should point to a store containing a private key and its certificate.
- * When used as a trust store, it should point to a store containing a list of accepted certificates.
- * <p>
  *
- * The store can either be loaded by Vert.x from the filesystem:
- * <p>
- * <pre>
- * HttpServerOptions options = new HttpServerOptions();
- * options.setPfxKeyCertOptions(new PfxOptions().setPath("/mykeystore.p12").setPassword("foo"));
- * </pre>
- *
- * Or directly provided as a buffer:<p>
- *
- * <pre>
- * Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.p12");
- * options.setPfxKeyCertOptions(new PfxOptions().setValue(store).setPassword("foo"));
- * </pre>
- *
- * @param password  Set the password
- * @param path  Set the path
- * @param value  Set the store as a buffer
+ * @param password  Set the password for the key store
+ * @param path  Set the path to the key store
+ * @param value  Set the key store as a buffer
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.PfxOptions original] using Vert.x codegen.

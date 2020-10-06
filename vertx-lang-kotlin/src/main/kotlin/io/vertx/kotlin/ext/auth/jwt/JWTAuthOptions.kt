@@ -17,7 +17,6 @@ package io.vertx.kotlin.ext.auth.jwt
 
 import io.vertx.ext.auth.jwt.JWTAuthOptions
 import io.vertx.ext.auth.JWTOptions
-import io.vertx.ext.auth.KeyStoreOptions
 import io.vertx.ext.auth.PubSecKeyOptions
 
 /**
@@ -37,7 +36,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
 fun jwtAuthOptionsOf(
   jwks: Iterable<io.vertx.core.json.JsonObject>? = null,
   jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
-  keyStore: io.vertx.ext.auth.KeyStoreOptions? = null,
+  keyStore: io.vertx.core.net.KeyStoreOptions? = null,
   permissionsClaimKey: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null): JWTAuthOptions = io.vertx.ext.auth.jwt.JWTAuthOptions().apply {
 

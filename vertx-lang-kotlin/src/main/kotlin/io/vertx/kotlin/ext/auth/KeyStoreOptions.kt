@@ -21,11 +21,16 @@ import io.vertx.ext.auth.KeyStoreOptions
  * A function providing a DSL for building [io.vertx.ext.auth.KeyStoreOptions] objects.
  *
  * Options describing how an JWT KeyStore should behave.
+ * This is an extended version core's [io.vertx.core.net.KeyStoreOptions].
  *
- * @param password 
+ * This extension sets the default type to the runtime keystore type (for compatibility, reasons)
+ * plus it allows the configuration of password per key using [io.vertx.ext.auth.KeyStoreOptions].
+ *
+ * @param password  Set the password for the key store
  * @param passwordProtection 
- * @param path 
+ * @param path  Set the path to the key store
  * @param type 
+ * @param value  Set the key store as a buffer
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.KeyStoreOptions original] using Vert.x codegen.
@@ -34,7 +39,8 @@ fun keyStoreOptionsOf(
   password: String? = null,
   passwordProtection: Map<String, String>? = null,
   path: String? = null,
-  type: String? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
+  type: String? = null,
+  value: io.vertx.core.buffer.Buffer? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
 
   if (password != null) {
     this.setPassword(password)
@@ -47,6 +53,9 @@ fun keyStoreOptionsOf(
   }
   if (type != null) {
     this.setType(type)
+  }
+  if (value != null) {
+    this.setValue(value)
   }
 }
 

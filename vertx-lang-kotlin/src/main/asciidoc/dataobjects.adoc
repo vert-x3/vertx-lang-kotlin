@@ -3257,24 +3257,6 @@ The permissions of this token.
 
 ++++
  Key or trust store options configuring private key and/or certificates based on Java Keystore files.
- <p>
- When used as a key store, it should point to a store containing a private key and its certificate.
- When used as a trust store, it should point to a store containing a list of trusted certificates.
- <p>
- The store can either be loaded by Vert.x from the filesystem:
- <p>
- <pre>
- HttpServerOptions options = HttpServerOptions.httpServerOptions();
- options.setKeyStore(new JKSOptions().setPath("/mykeystore.jks").setPassword("foo"));
- </pre>
-
- Or directly provided as a buffer:
- <p>
-
- <pre>
- Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.jks");
- options.setKeyStore(new JKSOptions().setValue(store).setPassword("foo"));
- </pre>
 ++++
 '''
 
@@ -3288,6 +3270,7 @@ Set the password for the key store
 |[[path]]`@path`|`String`|+++
 Set the path to the key store
 +++
+|[[type]]`@type`|`String`|-
 |[[value]]`@value`|`Buffer`|+++
 Set the key store as a buffer
 +++
@@ -3298,6 +3281,10 @@ Set the key store as a buffer
 
 ++++
  Options describing how an JWT KeyStore should behave.
+ This is an extended version core's link.
+
+ This extension sets the default type to the runtime keystore type (for compatibility, reasons)
+ plus it allows the configuration of password per key using link.
 ++++
 '''
 
@@ -3305,10 +3292,17 @@ Set the key store as a buffer
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[password]]`@password`|`String`|-
+|[[password]]`@password`|`String`|+++
+Set the password for the key store
++++
 |[[passwordProtection]]`@passwordProtection`|`String`|-
-|[[path]]`@path`|`String`|-
+|[[path]]`@path`|`String`|+++
+Set the path to the key store
++++
 |[[type]]`@type`|`String`|-
+|[[value]]`@value`|`Buffer`|+++
+Set the key store as a buffer
++++
 |===
 
 [[KeyValue]]
@@ -5456,24 +5450,6 @@ Declare a specific authority that user must have in order to allow messages
 
 ++++
  Key or trust store options configuring private key and/or certificates based on PKCS#12 files.
- <p>
- When used as a key store, it should point to a store containing a private key and its certificate.
- When used as a trust store, it should point to a store containing a list of accepted certificates.
- <p>
-
- The store can either be loaded by Vert.x from the filesystem:
- <p>
- <pre>
- HttpServerOptions options = new HttpServerOptions();
- options.setPfxKeyCertOptions(new PfxOptions().setPath("/mykeystore.p12").setPassword("foo"));
- </pre>
-
- Or directly provided as a buffer:<p>
-
- <pre>
- Buffer store = vertx.fileSystem().readFileBlocking("/mykeystore.p12");
- options.setPfxKeyCertOptions(new PfxOptions().setValue(store).setPassword("foo"));
- </pre>
 ++++
 '''
 
@@ -5482,13 +5458,14 @@ Declare a specific authority that user must have in order to allow messages
 |===
 ^|Name | Type ^| Description
 |[[password]]`@password`|`String`|+++
-Set the password
+Set the password for the key store
 +++
 |[[path]]`@path`|`String`|+++
-Set the path
+Set the path to the key store
 +++
+|[[type]]`@type`|`String`|-
 |[[value]]`@value`|`Buffer`|+++
-Set the store as a buffer
+Set the key store as a buffer
 +++
 |===
 
@@ -5976,8 +5953,8 @@ Set the role name (only considered in HA mode).
 |[[type]]`@type`|`link:enums.html#RedisClientType[RedisClientType]`|+++
 Set the desired client type to be created.
 +++
-|[[useSlave]]`@useSlave`|`link:enums.html#RedisSlaves[RedisSlaves]`|+++
-Set whether or not to use slave nodes (only considered in Cluster mode).
+|[[useReplicas]]`@useReplicas`|`link:enums.html#RedisReplicas[RedisReplicas]`|+++
+Set whether or not to use replica nodes (only considered in Cluster mode).
 +++
 |===
 
