@@ -313,6 +313,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-db2-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-mysql-postgresql-client</artifactId>
       <optional>true</optional>
     </dependency>
@@ -452,6 +457,7 @@
             vertx-sql-client,
             vertx-pg-client,
             vertx-mysql-client,
+            vertx-db2-client,
             vertx-mqtt,
             vertx-mysql-postgresql-client,
             vertx-rabbitmq-client,
