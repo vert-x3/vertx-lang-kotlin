@@ -3282,7 +3282,7 @@ Set the key store as a buffer
 ++++
  Options describing how an JWT KeyStore should behave.
  This is an extended version core's link.
-
+ <p>
  This extension sets the default type to the runtime keystore type (for compatibility, reasons)
  plus it allows the configuration of password per key using link.
 ++++
@@ -3292,17 +3292,10 @@ Set the key store as a buffer
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[password]]`@password`|`String`|+++
-Set the password for the key store
-+++
+|[[password]]`@password`|`String`|-
 |[[passwordProtection]]`@passwordProtection`|`String`|-
-|[[path]]`@path`|`String`|+++
-Set the path to the key store
-+++
+|[[path]]`@path`|`String`|-
 |[[type]]`@type`|`String`|-
-|[[value]]`@value`|`Buffer`|+++
-Set the key store as a buffer
-+++
 |===
 
 [[KeyValue]]
