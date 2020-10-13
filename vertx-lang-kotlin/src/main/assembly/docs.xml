@@ -13,6 +13,13 @@
       <outputDirectory>./</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>${project.basedir}/src/main/java</directory>
+      <outputDirectory>./</outputDirectory>
+      <includes>
+        <include>examples/BuilderExample.kt</include>
+      </includes>
+    </fileSet>
+    <fileSet>
       <directory>${project.build.directory}/kdoc</directory>
       <outputDirectory>./kdoc/</outputDirectory>
     </fileSet>

@@ -782,6 +782,30 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-asciidoc</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/docs</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/src/main/java</directory>
+                  <includes>
+                    <include>examples/BuilderExample.kt</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- Run it to preview docs : mvn asciidoctor:process-asciidoc -->
       <plugin>
         <groupId>org.asciidoctor</groupId>
