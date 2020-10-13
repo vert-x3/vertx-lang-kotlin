@@ -54,6 +54,25 @@ class MyVerticle : AbstractVerticle() {
 
 Please refer to the Java documentation.
 
+== Data Objects builders
+
+Data Objects play an essential role in the Vert.x stack (a Data Object is a type that can be converted to/from JSON).
+
+For example, Vert.x modules often use Data Objects for the configuration of servers:
+
+[source,kotlin]
+----
+include::examples/BuilderExample.kt[tags=Classic]
+----
+
+While the above construct is valid, there is a more idiomatic way of configuring Data Objects.
+In Kotlin, all Data Objects have a builder method suffixed with `Of`:
+
+[source,kotlin]
+----
+include::examples/BuilderExample.kt[tags=Builder]
+----
+
 == JSON
 
 Unlike some other languages, Java does not have first class support for http://json.org/[JSON] so we provide
