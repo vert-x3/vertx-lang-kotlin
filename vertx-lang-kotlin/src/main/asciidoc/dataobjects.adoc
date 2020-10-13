@@ -2250,6 +2250,7 @@ Initial value of the variables area in the GraphiQL user interface. Defaults to 
 |[[nc]]`@nc`|`String`|-
 |[[nonce]]`@nonce`|`String`|-
 |[[opaque]]`@opaque`|`String`|-
+|[[password]]`@password`|`String`|-
 |[[qop]]`@qop`|`String`|-
 |[[realm]]`@realm`|`String`|-
 |[[response]]`@response`|`String`|-

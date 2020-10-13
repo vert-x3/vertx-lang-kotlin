@@ -28,6 +28,7 @@ import io.vertx.ext.auth.htdigest.HtdigestCredentials
  * @param nc 
  * @param nonce 
  * @param opaque 
+ * @param password 
  * @param qop 
  * @param realm 
  * @param response 
@@ -44,6 +45,7 @@ fun htdigestCredentialsOf(
   nc: String? = null,
   nonce: String? = null,
   opaque: String? = null,
+  password: String? = null,
   qop: String? = null,
   realm: String? = null,
   response: String? = null,
@@ -67,6 +69,9 @@ fun htdigestCredentialsOf(
   }
   if (opaque != null) {
     this.setOpaque(opaque)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (qop != null) {
     this.setQop(qop)
