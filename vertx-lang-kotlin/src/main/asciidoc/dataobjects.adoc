@@ -4683,8 +4683,11 @@ Do the same thing as link. Use it instead.
 Set the idle timeout unit. If not specified, default is seconds.
 +++
 |[[jdkSslEngineOptions]]`@jdkSslEngineOptions`|`link:dataobjects.html#JdkSSLEngineOptions[JdkSSLEngineOptions]`|-
+|[[keepAliveInterval]]`@keepAliveInterval`|`Number (int)`|+++
+Set the keep alive interval in seconds
++++
 |[[keepAliveTimeSeconds]]`@keepAliveTimeSeconds`|`Number (int)`|+++
-Set the keep alive timeout in seconds
+
 +++
 |[[keyStoreOptions]]`@keyStoreOptions`|`link:dataobjects.html#JksOptions[JksOptions]`|+++
 Set the key/cert options in jks format, aka Java keystore.
