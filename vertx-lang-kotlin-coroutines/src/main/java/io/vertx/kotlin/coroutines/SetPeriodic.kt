@@ -2,7 +2,6 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Vertx
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
  * @return the unique ID of the timer
  */
 fun Vertx.setPeriodicAwait(delay: Long, handler: suspend (Long) -> Unit): Long {
-  val coroutineScope = CoroutineScope(Dispatchers.Default)
+  val coroutineScope = CoroutineScope(this.dispatcher())
   return this.setPeriodic(delay) { timerId ->
     coroutineScope.launch {
       handler(timerId)
