@@ -22,13 +22,13 @@ import io.vertx.core.eventbus.ReplyFailure
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.ArrayList
-import java.util.Collections
+import java.util.*
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
@@ -46,6 +46,22 @@ class EventBusTest {
   @After
   fun after(testContext: TestContext) {
     vertx.close(testContext.asyncAssertSuccess())
+  }
+
+
+  @Test
+  fun `test EventBus consumer supports suspending functions`(testContext: TestContext) {
+    val async = testContext.async()
+    val bus = vertx.eventBus()
+    bus.consumerAwait<String>("some-address") {
+      // Making sure that we have some kind of suspending function here
+      delay(10)
+      async.complete()
+    }
+
+    bus.send("some-address", "some message")
+
+    async.awaitSuccess(1000)
   }
 
   @Test
