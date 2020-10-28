@@ -26,6 +26,11 @@ fun Vertx.coEventBus(): CoroutineEventBus {
   return CoroutineEventBusImpl(this)
 }
 
+/**
+ * Proxy around Vert.x [EventBus] that provides support for suspending functions
+ *
+ * @author [Alexey Soshin](https://github.com/alexeysoshin)
+ */
 abstract class CoroutineEventBus(protected val eventBus: EventBus) : EventBus by eventBus {
   abstract fun <T> consumer(address: String, function: suspend (Message<T>) -> Unit): CoroutineMessageConsumer<T>
   abstract override fun <T> consumer(address: String): CoroutineMessageConsumer<T>

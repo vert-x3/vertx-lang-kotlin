@@ -20,7 +20,11 @@ import io.vertx.core.eventbus.MessageConsumer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
+/**
+ * Proxy around Vert.x [MessageConsumer] that provides support for suspending functions
+ *
+ * @author [Alexey Soshin](https://github.com/alexeysoshin)
+ */
 abstract class CoroutineMessageConsumer<T>(consumer: MessageConsumer<T>) : MessageConsumer<T> by consumer {
   abstract fun handler(function: suspend (Message<T>) -> Unit): CoroutineMessageConsumer<T>
 }
