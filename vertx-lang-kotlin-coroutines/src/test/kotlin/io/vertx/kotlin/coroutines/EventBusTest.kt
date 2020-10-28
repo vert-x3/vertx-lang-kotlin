@@ -66,15 +66,10 @@ class EventBusTest {
 
   @Test
   fun `test EventBus consumer supports suspending functions`(testContext: TestContext) {
-    val async = testContext.async(2)
+    val async = testContext.async(1)
     val bus: CoroutineEventBus = vertx.coEventBus()
     bus.consumer<String>("some-address").handler {
       // Making sure that we have some kind of suspending function here
-      delay(10)
-      async.countDown()
-    }.exceptionHandler {
-      delay(10)
-    }.completionHandler {
       delay(10)
       async.countDown()
     }
