@@ -52,8 +52,8 @@ class EventBusTest {
   @Test
   fun `test EventBus consumer supports suspending functions`(testContext: TestContext) {
     val async = testContext.async()
-    val bus = vertx.eventBus()
-    bus.consumerAwait<String>("some-address") {
+    val bus = vertx.coEventBus()
+    bus.consumer<String>("some-address") {
       // Making sure that we have some kind of suspending function here
       delay(10)
       async.complete()
@@ -176,3 +176,4 @@ class EventBusTest {
     }
   }
 }
+
