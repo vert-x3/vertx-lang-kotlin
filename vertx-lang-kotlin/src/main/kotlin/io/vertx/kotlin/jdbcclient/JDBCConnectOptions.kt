@@ -16,6 +16,7 @@
 package io.vertx.kotlin.jdbcclient
 
 import io.vertx.jdbcclient.JDBCConnectOptions
+import io.vertx.core.tracing.TracingPolicy
 
 fun jdbcConnectOptionsOf(
   connectTimeout: Int? = null,
@@ -25,6 +26,7 @@ fun jdbcConnectOptionsOf(
   jdbcUrl: String? = null,
   metricsEnabled: Boolean? = null,
   password: String? = null,
+  tracingPolicy: TracingPolicy? = null,
   user: String? = null): JDBCConnectOptions = io.vertx.jdbcclient.JDBCConnectOptions().apply {
 
   if (connectTimeout != null) {
@@ -47,6 +49,9 @@ fun jdbcConnectOptionsOf(
   }
   if (password != null) {
     this.setPassword(password)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
   }
   if (user != null) {
     this.setUser(user)

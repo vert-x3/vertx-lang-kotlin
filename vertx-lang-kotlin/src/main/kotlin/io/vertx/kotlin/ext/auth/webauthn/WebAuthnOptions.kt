@@ -35,6 +35,8 @@ import io.vertx.ext.auth.webauthn.UserVerification
  * @param pubKeyCredParams 
  * @param relyingParty 
  * @param requireResidentKey 
+ * @param rootCertificates 
+ * @param rootCrls 
  * @param timeout 
  * @param transports 
  * @param userVerification 
@@ -50,6 +52,8 @@ fun webAuthnOptionsOf(
   pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
   relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
   requireResidentKey: Boolean? = null,
+  rootCertificates: Map<String, String>? = null,
+  rootCrls: Iterable<String>? = null,
   timeout: Long? = null,
   transports: Iterable<AuthenticatorTransport>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
@@ -74,6 +78,12 @@ fun webAuthnOptionsOf(
   }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
+  }
+  if (rootCertificates != null) {
+    this.setRootCertificates(rootCertificates)
+  }
+  if (rootCrls != null) {
+    this.setRootCrls(rootCrls.toList())
   }
   if (timeout != null) {
     this.setTimeout(timeout)

@@ -25,6 +25,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.core.tracing.TracingPolicy
 import java.util.concurrent.TimeUnit
 
 /**
@@ -95,6 +96,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param timeout  Sets the amount of time (in milliseconds) after which if the request does not return any data within the timeout period an failure will be passed to the handler and the request will be closed.
+ * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustOptions  Set the trust options.
@@ -178,6 +180,7 @@ fun consulClientOptionsOf(
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   timeout: Long? = null,
+  tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
@@ -388,6 +391,9 @@ fun consulClientOptionsOf(
   }
   if (timeout != null) {
     this.setTimeout(timeout)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)

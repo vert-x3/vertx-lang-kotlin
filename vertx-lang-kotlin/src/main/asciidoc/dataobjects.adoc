@@ -1231,6 +1231,9 @@ Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 Sets the amount of time (in milliseconds) after which if the request does not return any data
  within the timeout period an failure will be passed to the handler and the request will be closed.
 +++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
++++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
 +++
@@ -1524,6 +1527,9 @@ Set whether TCP no delay is enabled
 +++
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
 +++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
@@ -2517,6 +2523,9 @@ Set whether TCP no delay is enabled
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 +++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
++++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
 +++
@@ -2777,6 +2786,9 @@ Set whether TCP no delay is enabled
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 +++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the server behavior when Vert.x has tracing enabled.
++++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
 +++
@@ -2990,6 +3002,9 @@ Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 |[[termJsResource]]`@termJsResource`|`Buffer`|+++
 Set <code>term.js</code> resource to use.
 +++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the server behavior when Vert.x has tracing enabled.
++++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
 +++
@@ -3190,6 +3205,9 @@ Set the roles query to use. Use this if you want to override the default
 |[[jdbcUrl]]`@jdbcUrl`|`String`|-
 |[[metricsEnabled]]`@metricsEnabled`|`Boolean`|-
 |[[password]]`@password`|`String`|-
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
++++
 |[[user]]`@user`|`String`|-
 |===
 
@@ -3274,6 +3292,27 @@ Set the path to the key store
 |[[type]]`@type`|`String`|-
 |[[value]]`@value`|`Buffer`|+++
 Set the key store as a buffer
++++
+|===
+
+[[KafkaClientOptions]]
+== KafkaClientOptions
+
+++++
+ Generic KafkaClient options.
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[tracePeerAddress]]`@tracePeerAddress`|`String`|+++
+Set the Kafka address to show in trace tags.
+ Or leave it unset to automatically pick up bootstrap server from config instead.
++++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the Kafka tracing policy.
 +++
 |===
 
@@ -3818,6 +3857,59 @@ Set the host where the group member is running
 +++
 |===
 
+[[MetricsNaming]]
+== MetricsNaming
+
+++++
+ Options for naming all metrics
+++++
+'''
+
+[cols=">25%,25%,50%"]
+[frame="topbot"]
+|===
+^|Name | Type ^| Description
+|[[clientProcessingPending]]`@clientProcessingPending`|`String`|-
+|[[clientProcessingTime]]`@clientProcessingTime`|`String`|-
+|[[clientQueuePending]]`@clientQueuePending`|`String`|-
+|[[clientQueueTime]]`@clientQueueTime`|`String`|-
+|[[clientResetsCount]]`@clientResetsCount`|`String`|-
+|[[datagramBytesRead]]`@datagramBytesRead`|`String`|-
+|[[datagramBytesWritten]]`@datagramBytesWritten`|`String`|-
+|[[datagramErrorCount]]`@datagramErrorCount`|`String`|-
+|[[ebBytesRead]]`@ebBytesRead`|`String`|-
+|[[ebBytesWritten]]`@ebBytesWritten`|`String`|-
+|[[ebDelivered]]`@ebDelivered`|`String`|-
+|[[ebDiscarded]]`@ebDiscarded`|`String`|-
+|[[ebHandlers]]`@ebHandlers`|`String`|-
+|[[ebPending]]`@ebPending`|`String`|-
+|[[ebProcessed]]`@ebProcessed`|`String`|-
+|[[ebPublished]]`@ebPublished`|`String`|-
+|[[ebReceived]]`@ebReceived`|`String`|-
+|[[ebReplyFailures]]`@ebReplyFailures`|`String`|-
+|[[ebSent]]`@ebSent`|`String`|-
+|[[httpActiveRequests]]`@httpActiveRequests`|`String`|-
+|[[httpActiveWsConnections]]`@httpActiveWsConnections`|`String`|-
+|[[httpQueuePending]]`@httpQueuePending`|`String`|-
+|[[httpQueueTime]]`@httpQueueTime`|`String`|-
+|[[httpRequestBytes]]`@httpRequestBytes`|`String`|-
+|[[httpRequestResetsCount]]`@httpRequestResetsCount`|`String`|-
+|[[httpRequestsCount]]`@httpRequestsCount`|`String`|-
+|[[httpResponseBytes]]`@httpResponseBytes`|`String`|-
+|[[httpResponseTime]]`@httpResponseTime`|`String`|-
+|[[httpResponsesCount]]`@httpResponsesCount`|`String`|-
+|[[netActiveConnections]]`@netActiveConnections`|`String`|-
+|[[netBytesRead]]`@netBytesRead`|`String`|-
+|[[netBytesWritten]]`@netBytesWritten`|`String`|-
+|[[netErrorCount]]`@netErrorCount`|`String`|-
+|[[poolCompleted]]`@poolCompleted`|`String`|-
+|[[poolInUse]]`@poolInUse`|`String`|-
+|[[poolQueuePending]]`@poolQueuePending`|`String`|-
+|[[poolQueueTime]]`@poolQueueTime`|`String`|-
+|[[poolUsage]]`@poolUsage`|`String`|-
+|[[poolUsageRatio]]`@poolUsageRatio`|`String`|-
+|===
+
 [[MetricsOptions]]
 == MetricsOptions
 
@@ -4113,13 +4205,13 @@ Set the hostname verification algorithm interval
  To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
 +++
 |[[idleTimeout]]`@idleTimeout`|`Number (int)`|+++
-Do the same thing as link. Use it instead.
+Do the same thing as link (int)}. Use it instead.
 +++
 |[[idleTimeoutUnit]]`@idleTimeoutUnit`|`link:enums.html#TimeUnit[TimeUnit]`|+++
 Set the idle timeout unit. If not specified, default is seconds.
 +++
-|[[keepAliveTimeSeconds]]`@keepAliveTimeSeconds`|`Number (int)`|+++
-Set the keep alive timeout in seconds
+|[[keepAliveInterval]]`@keepAliveInterval`|`Number (int)`|+++
+Set the keep alive interval in seconds
 +++
 |[[localAddress]]`@localAddress`|`String`|+++
 Set the local interface to bind for network connections. When the local address is null,
@@ -4350,7 +4442,7 @@ Set whether the server uses the HA Proxy protocol
 |[[willFlag]]`@willFlag`|`Boolean`|+++
 
 +++
-|[[willMessage]]`@willMessage`|`String`|+++
+|[[willMessage]]`@willMessage`|`Buffer`|+++
 
 +++
 |[[willQos]]`@willQos`|`Number (int)`|+++
@@ -4543,6 +4635,9 @@ Set whether TCP no delay is enabled
 +++
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
 +++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
@@ -5590,6 +5685,9 @@ Set whether TCP no delay is enabled
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
 +++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
++++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
 +++
@@ -6143,6 +6241,7 @@ If true, when you call link the factory will mount for every path
 |[[catalog]]`@catalog`|`String`|-
 |[[fetchDirection]]`@fetchDirection`|`link:enums.html#FetchDirection[FetchDirection]`|-
 |[[fetchSize]]`@fetchSize`|`Number (int)`|-
+|[[maxRows]]`@maxRows`|`Number (int)`|-
 |[[queryTimeout]]`@queryTimeout`|`Number (int)`|-
 |[[readOnly]]`@readOnly`|`Boolean`|-
 |[[resultSetConcurrency]]`@resultSetConcurrency`|`link:enums.html#ResultSetConcurrency[ResultSetConcurrency]`|-
@@ -6766,6 +6865,9 @@ Set whether TCP no delay is enabled
 +++
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
 +++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class
@@ -7822,6 +7924,8 @@ When true, an embedded server will init to expose metrics with Prometheus format
 |[[extensions]]`@extensions`|`Json object`|-
 |[[pubKeyCredParams]]`@pubKeyCredParams`|`Array of link:enums.html#PublicKeyCredential[PublicKeyCredential]`|-
 |[[requireResidentKey]]`@requireResidentKey`|`Boolean`|-
+|[[rootCertificates]]`@rootCertificates`|`String`|-
+|[[rootCrls]]`@rootCrls`|`Array of String`|-
 |[[timeout]]`@timeout`|`Number (Long)`|-
 |[[transports]]`@transports`|`Array of link:enums.html#AuthenticatorTransport[AuthenticatorTransport]`|-
 |[[userVerification]]`@userVerification`|`link:enums.html#UserVerification[UserVerification]`|-
@@ -8023,6 +8127,9 @@ Set whether TCP no delay is enabled
 +++
 |[[tcpQuickAck]]`@tcpQuickAck`|`Boolean`|+++
 Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
++++
+|[[tracingPolicy]]`@tracingPolicy`|`link:enums.html#TracingPolicy[TracingPolicy]`|+++
+Set the tracing policy for the client behavior when Vert.x has tracing enabled.
 +++
 |[[trafficClass]]`@trafficClass`|`Number (int)`|+++
 Set the value of traffic class

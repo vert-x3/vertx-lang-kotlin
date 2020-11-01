@@ -18,6 +18,7 @@ package io.vertx.kotlin.micrometer
 import io.vertx.micrometer.MicrometerMetricsOptions
 import io.vertx.micrometer.Label
 import io.vertx.micrometer.Match
+import io.vertx.micrometer.MetricsNaming
 import io.vertx.micrometer.VertxInfluxDbOptions
 import io.vertx.micrometer.VertxJmxMetricsOptions
 import io.vertx.micrometer.VertxPrometheusOptions
@@ -39,6 +40,7 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * @param labelMatches  Set a list of rules for label matching.
  * @param labelMatchs  Add a rule for label matching.
  * @param labels  Sets enabled labels. These labels can be fine-tuned later on using Micrometer's Meter filters (see http://micrometer.io/docs/concepts#_meter_filters)
+ * @param metricsNaming  <code>MetricsNaming</code> is a structure that holds names of all metrics, each one can be changed individually. For instance, to retrieve compatibility with the names used in Vert.x 3.x, use <code>setMetricsNaming(MetricsNaming.v3Names())</code>
  * @param micrometerRegistry  Programmatically set the Micrometer MeterRegistry to be used by Vert.x. This is useful in several scenarios, such as: <ul>   <li>if there is already a MeterRegistry used in the application that should be used by Vert.x as well.</li>   <li>to define some backend configuration that is not covered in this module (example: reporting to non-covered backends such as New Relic)</li>   <li>to use Micrometer's CompositeRegistry</li> </ul> This setter is mutually exclusive with setInfluxDbOptions/setPrometheusOptions/setJmxMetricsOptions and takes precedence over them.
  * @param prometheusOptions  Set Prometheus options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param registryName  Set a name for the metrics registry, so that a new registry will be created and associated with this name. If <code>registryName</code> is not provided (or null), a default registry will be used. If the same name is given to several Vert.x instances (within the same JVM), they will share the same registry.
@@ -56,6 +58,7 @@ fun micrometerMetricsOptionsOf(
   labelMatches: Iterable<io.vertx.micrometer.Match>? = null,
   labelMatchs: Iterable<io.vertx.micrometer.Match>? = null,
   labels: Iterable<Label>? = null,
+  metricsNaming: io.vertx.micrometer.MetricsNaming? = null,
   micrometerRegistry: io.micrometer.core.instrument.MeterRegistry? = null,
   prometheusOptions: io.vertx.micrometer.VertxPrometheusOptions? = null,
   registryName: String? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
@@ -88,6 +91,9 @@ fun micrometerMetricsOptionsOf(
   }
   if (labels != null) {
     this.setLabels(labels.toSet())
+  }
+  if (metricsNaming != null) {
+    this.setMetricsNaming(metricsNaming)
   }
   if (micrometerRegistry != null) {
     this.setMicrometerRegistry(micrometerRegistry)

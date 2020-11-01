@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit
  * Options for configuring a verticle deployment.
  * <p>
  *
+ * @param classLoader  Set the classloader to use for deploying the Verticle. <p> The <code>VerticleFactory</code> will use this classloader for creating the Verticle and the Verticle [io.vertx.core.Context] will set this classloader as context classloader for the tasks execution on context. <p> By default no classloader is required and the deployment will use the current thread context classloader.
  * @param config  Set the JSON configuration that will be passed to the verticle(s) when it's deployed
  * @param ha  Set whether the verticle(s) will be deployed as HA.
  * @param instances  Set the number of instances that should be deployed.
@@ -37,6 +38,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.core.DeploymentOptions original] using Vert.x codegen.
  */
 fun deploymentOptionsOf(
+  classLoader: java.lang.ClassLoader? = null,
   config: io.vertx.core.json.JsonObject? = null,
   ha: Boolean? = null,
   instances: Int? = null,
@@ -46,6 +48,9 @@ fun deploymentOptionsOf(
   workerPoolName: String? = null,
   workerPoolSize: Int? = null): DeploymentOptions = io.vertx.core.DeploymentOptions().apply {
 
+  if (classLoader != null) {
+    this.setClassLoader(classLoader)
+  }
   if (config != null) {
     this.setConfig(config)
   }

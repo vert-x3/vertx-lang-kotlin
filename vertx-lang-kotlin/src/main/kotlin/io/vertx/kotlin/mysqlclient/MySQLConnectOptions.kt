@@ -23,6 +23,7 @@ import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.core.tracing.TracingPolicy
 import io.vertx.mysqlclient.SslMode
 import java.util.concurrent.TimeUnit
 
@@ -81,6 +82,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
+ * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustOptions  Set the trust options.
@@ -143,6 +145,7 @@ fun mySQLConnectOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
@@ -306,6 +309,9 @@ fun mySQLConnectOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)

@@ -41,10 +41,10 @@ import java.util.concurrent.TimeUnit
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Do the same thing as [io.vertx.mqtt.MqttClientOptions]. Use it instead.
+ * @param idleTimeout  Do the same thing as [io.vertx.mqtt.MqttClientOptions] (int)}. Use it instead.
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
- * @param keepAliveTimeSeconds  Set the keep alive timeout in seconds
+ * @param keepAliveInterval  Set the keep alive interval in seconds
  * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
@@ -105,7 +105,7 @@ fun mqttClientOptionsOf(
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
-  keepAliveTimeSeconds: Int? = null,
+  keepAliveInterval: Int? = null,
   keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
@@ -196,8 +196,8 @@ fun mqttClientOptionsOf(
   if (jdkSslEngineOptions != null) {
     this.setJdkSslEngineOptions(jdkSslEngineOptions)
   }
-  if (keepAliveTimeSeconds != null) {
-    this.setKeepAliveTimeSeconds(keepAliveTimeSeconds)
+  if (keepAliveInterval != null) {
+    this.setKeepAliveInterval(keepAliveInterval)
   }
   if (keyCertOptions != null) {
     this.setKeyCertOptions(keyCertOptions)

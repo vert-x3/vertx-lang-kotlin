@@ -25,6 +25,7 @@ import io.vertx.core.net.OpenSSLEngineOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
+import io.vertx.core.tracing.TracingPolicy
 import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
 import java.util.concurrent.TimeUnit
 
@@ -92,6 +93,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param termJsResource  Set <code>term.js</code> resource to use.
+ * @param tracingPolicy  Set the tracing policy for the server behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
@@ -166,6 +168,7 @@ fun httpTermOptionsOf(
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   termJsResource: io.vertx.core.buffer.Buffer? = null,
+  tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
@@ -359,6 +362,9 @@ fun httpTermOptionsOf(
   }
   if (termJsResource != null) {
     this.setTermJsResource(termJsResource)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)

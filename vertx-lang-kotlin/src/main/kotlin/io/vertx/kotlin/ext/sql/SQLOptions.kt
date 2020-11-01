@@ -31,6 +31,7 @@ import io.vertx.ext.sql.TransactionIsolation
  * @param catalog 
  * @param fetchDirection 
  * @param fetchSize 
+ * @param maxRows 
  * @param queryTimeout 
  * @param readOnly 
  * @param resultSetConcurrency 
@@ -47,6 +48,7 @@ fun sqlOptionsOf(
   catalog: String? = null,
   fetchDirection: FetchDirection? = null,
   fetchSize: Int? = null,
+  maxRows: Int? = null,
   queryTimeout: Int? = null,
   readOnly: Boolean? = null,
   resultSetConcurrency: ResultSetConcurrency? = null,
@@ -68,6 +70,9 @@ fun sqlOptionsOf(
   }
   if (fetchSize != null) {
     this.setFetchSize(fetchSize)
+  }
+  if (maxRows != null) {
+    this.setMaxRows(maxRows)
   }
   if (queryTimeout != null) {
     this.setQueryTimeout(queryTimeout)
