@@ -92,6 +92,20 @@ suspend fun HttpClientRequest.connectAwait(): HttpClientResponse {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpClientRequest.response]
+ *
+ * @return [HttpClientResponse]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use response returning a future and chain with await()", replaceWith = ReplaceWith("response().await()"))
+suspend fun HttpClientRequest.responseAwait(): HttpClientResponse {
+  return awaitResult {
+    this.response(it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpClientRequest.send]
  *
  * @return [HttpClientResponse]
@@ -203,13 +217,6 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-@Deprecated(message = "Instead use onComplete returning a future and chain with await()", replaceWith = ReplaceWith("onComplete().await()"))
-suspend fun HttpClientRequest.onCompleteAwait(): HttpClientResponse {
-  return awaitResult {
-    this.onComplete(it)
   }
 }
 

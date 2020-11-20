@@ -44,3 +44,16 @@ suspend fun Transaction.rollbackAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.sqlclient.Transaction.completion]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Transaction] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use completion returning a future and chain with await()", replaceWith = ReplaceWith("completion().await()"))
+suspend fun Transaction.completionAwait(): Unit {
+  return awaitResult {
+    this.completion(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

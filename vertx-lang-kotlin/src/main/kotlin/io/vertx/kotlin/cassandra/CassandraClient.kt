@@ -19,6 +19,7 @@ import com.datastax.oss.driver.api.core.cql.PreparedStatement
 import com.datastax.oss.driver.api.core.cql.Row
 import com.datastax.oss.driver.api.core.cql.SimpleStatement
 import com.datastax.oss.driver.api.core.cql.Statement
+import com.datastax.oss.driver.api.core.metadata.Metadata
 import io.vertx.cassandra.CassandraClient
 import io.vertx.cassandra.CassandraRowStream
 import io.vertx.cassandra.ResultSet
@@ -154,6 +155,20 @@ suspend fun CassandraClient.prepareAwait(statement: SimpleStatement): PreparedSt
 suspend fun CassandraClient.queryStreamAwait(statement: Statement<*>): CassandraRowStream {
   return awaitResult {
     this.queryStream(statement, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.cassandra.CassandraClient.metadata]
+ *
+ * @return [Metadata]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.cassandra.CassandraClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use metadata returning a future and chain with await()", replaceWith = ReplaceWith("metadata().await()"))
+suspend fun CassandraClient.metadataAwait(): Metadata {
+  return awaitResult {
+    this.metadata(it)
   }
 }
 

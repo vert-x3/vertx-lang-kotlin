@@ -50,3 +50,16 @@ suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: (Promis
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.WorkerExecutor.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun WorkerExecutor.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

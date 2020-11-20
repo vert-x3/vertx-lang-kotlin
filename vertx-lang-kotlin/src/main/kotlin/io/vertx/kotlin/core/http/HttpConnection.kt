@@ -48,6 +48,19 @@ suspend fun HttpConnection.shutdownAwait(timeout: Long): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpConnection.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun HttpConnection.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpConnection.updateSettings]
  *
  * @param settings the new settings

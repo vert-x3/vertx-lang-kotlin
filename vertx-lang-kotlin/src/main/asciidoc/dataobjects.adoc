@@ -3332,10 +3332,17 @@ Set the Kafka tracing policy.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[password]]`@password`|`String`|-
+|[[password]]`@password`|`String`|+++
+Set the password for the key store
++++
 |[[passwordProtection]]`@passwordProtection`|`String`|-
-|[[path]]`@path`|`String`|-
+|[[path]]`@path`|`String`|+++
+Set the path to the key store
++++
 |[[type]]`@type`|`String`|-
+|[[value]]`@value`|`Buffer`|+++
+Set the key store as a buffer
++++
 |===
 
 [[KeyValue]]

@@ -34,3 +34,17 @@ suspend fun HttpServerFileUpload.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServerFileUpload.streamToFileSystem]
+ *
+ * @param filename the name of the file
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerFileUpload] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use streamToFileSystem returning a future and chain with await()", replaceWith = ReplaceWith("streamToFileSystem(filename).await()"))
+suspend fun HttpServerFileUpload.streamToFileSystemAwait(filename: String): Unit {
+  return awaitResult {
+    this.streamToFileSystem(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

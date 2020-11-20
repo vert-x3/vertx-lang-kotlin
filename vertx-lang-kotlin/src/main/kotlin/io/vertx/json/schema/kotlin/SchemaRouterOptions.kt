@@ -13,21 +13,21 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.ext.json.schema.kotlin
+package io.vertx.json.schema.kotlin
 
-import io.vertx.ext.json.schema.SchemaRouterOptions
+import io.vertx.json.schema.SchemaRouterOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.json.schema.SchemaRouterOptions] objects.
+ * A function providing a DSL for building [io.vertx.json.schema.SchemaRouterOptions] objects.
  *
  * Represents the options to resolve external schemas. You can configure auth options to access to external services
  *
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.json.schema.SchemaRouterOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.json.schema.SchemaRouterOptions original] using Vert.x codegen.
  */
 fun schemaRouterOptionsOf(
-): SchemaRouterOptions = io.vertx.ext.json.schema.SchemaRouterOptions().apply {
+): SchemaRouterOptions = io.vertx.json.schema.SchemaRouterOptions().apply {
 
 }
 

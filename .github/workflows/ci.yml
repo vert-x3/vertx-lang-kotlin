@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        jdk: [8, 11]
+        jdk: [8]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/cache@v2

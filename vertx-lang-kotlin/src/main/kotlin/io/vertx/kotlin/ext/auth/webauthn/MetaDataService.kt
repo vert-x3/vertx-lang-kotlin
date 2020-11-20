@@ -13,22 +13,23 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.core
+package io.vertx.kotlin.ext.auth.webauthn
 
-import io.vertx.core.Future
+import io.vertx.ext.auth.webauthn.MetaDataService
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.Future.onComplete]
+ * Suspending version of method [io.vertx.ext.auth.webauthn.MetaDataService.fetchTOC]
  *
- * @return [T]
+ * @param url the url to the TOC
+ * @return [Boolean]
  *
- * NOTE: This function has been automatically generated from [io.vertx.core.Future] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.MetaDataService] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use onComplete returning a future and chain with await()", replaceWith = ReplaceWith("onComplete().await()"))
-suspend fun <T> Future<T>.onCompleteAwait(): T {
+@Deprecated(message = "Instead use fetchTOC returning a future and chain with await()", replaceWith = ReplaceWith("fetchTOC(url).await()"))
+suspend fun MetaDataService.fetchTOCAwait(url: String): Boolean {
   return awaitResult {
-    this.onComplete(it)
+    this.fetchTOC(url, it)
   }
 }
 
