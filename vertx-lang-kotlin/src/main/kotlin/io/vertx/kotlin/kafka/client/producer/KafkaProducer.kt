@@ -62,6 +62,12 @@ suspend fun <K,V> KafkaProducer<K,V>.endAwait(data: KafkaProducerRecord<K,V>): U
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.initTransactions]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
 @Deprecated(message = "Instead use initTransactions returning a future and chain with await()", replaceWith = ReplaceWith("initTransactions().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.initTransactionsAwait(): Unit {
   return awaitResult {
@@ -69,6 +75,12 @@ suspend fun <K,V> KafkaProducer<K,V>.initTransactionsAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.beginTransaction]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
 @Deprecated(message = "Instead use beginTransaction returning a future and chain with await()", replaceWith = ReplaceWith("beginTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.beginTransactionAwait(): Unit {
   return awaitResult {
@@ -76,6 +88,12 @@ suspend fun <K,V> KafkaProducer<K,V>.beginTransactionAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.commitTransaction]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
 @Deprecated(message = "Instead use commitTransaction returning a future and chain with await()", replaceWith = ReplaceWith("commitTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.commitTransactionAwait(): Unit {
   return awaitResult {
@@ -83,6 +101,12 @@ suspend fun <K,V> KafkaProducer<K,V>.commitTransactionAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.kafka.client.producer.KafkaProducer.abortTransaction]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.client.producer.KafkaProducer] using Vert.x codegen.
+ */
 @Deprecated(message = "Instead use abortTransaction returning a future and chain with await()", replaceWith = ReplaceWith("abortTransaction().await()"))
 suspend fun <K,V> KafkaProducer<K,V>.abortTransactionAwait(): Unit {
   return awaitResult {

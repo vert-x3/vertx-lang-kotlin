@@ -69,6 +69,7 @@ import java.util.concurrent.TimeUnit
  * @param maxWaitQueueSize  Set the maximum requests allowed in the wait queue, any requests beyond the max size will result in a ConnectionPoolTooBusyException.  If the value is set to a negative number then the queue will be unbounded.
  * @param maxWebSocketFrameSize  Set the max websocket frame size
  * @param maxWebSocketMessageSize  Set the max websocket message size
+ * @param maxWebSockets  Set the max number of WebSockets per endpoint.
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -153,6 +154,7 @@ fun consulClientOptionsOf(
   maxWaitQueueSize: Int? = null,
   maxWebSocketFrameSize: Int? = null,
   maxWebSocketMessageSize: Int? = null,
+  maxWebSockets: Int? = null,
   metricsName: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
@@ -310,6 +312,9 @@ fun consulClientOptionsOf(
   }
   if (maxWebSocketMessageSize != null) {
     this.setMaxWebSocketMessageSize(maxWebSocketMessageSize)
+  }
+  if (maxWebSockets != null) {
+    this.setMaxWebSockets(maxWebSockets)
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)

@@ -26,11 +26,12 @@ import io.vertx.ext.auth.KeyStoreOptions
  * This extension sets the default type to the runtime keystore type (for compatibility, reasons)
  * plus it allows the configuration of password per key using [io.vertx.ext.auth.KeyStoreOptions].
  *
- * @param password  Set the password for the key store
+ * @param password 
  * @param passwordProtection 
- * @param path  Set the path to the key store
+ * @param path 
+ * @param provider 
  * @param type 
- * @param value  Set the key store as a buffer
+ * @param value 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.KeyStoreOptions original] using Vert.x codegen.
@@ -39,6 +40,7 @@ fun keyStoreOptionsOf(
   password: String? = null,
   passwordProtection: Map<String, String>? = null,
   path: String? = null,
+  provider: String? = null,
   type: String? = null,
   value: io.vertx.core.buffer.Buffer? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
 
@@ -50,6 +52,9 @@ fun keyStoreOptionsOf(
   }
   if (path != null) {
     this.setPath(path)
+  }
+  if (provider != null) {
+    this.setProvider(provider)
   }
   if (type != null) {
     this.setType(type)

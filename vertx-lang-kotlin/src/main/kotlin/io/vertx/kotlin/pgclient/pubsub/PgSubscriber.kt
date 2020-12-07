@@ -31,3 +31,16 @@ suspend fun PgSubscriber.connectAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.pgclient.pubsub.PgSubscriber.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.pgclient.pubsub.PgSubscriber] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun PgSubscriber.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

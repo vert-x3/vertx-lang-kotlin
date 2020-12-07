@@ -24,6 +24,7 @@ import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
 import io.vertx.core.tracing.TracingPolicy
+import io.vertx.mysqlclient.MySQLAuthenticationPlugin
 import io.vertx.mysqlclient.SslMode
 import java.util.concurrent.TimeUnit
 
@@ -32,6 +33,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
+ * @param authenticationPlugin  Set the default [io.vertx.mysqlclient.MySQLAuthenticationPlugin] for the client, the option will take effect at the connection start.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param characterEncoding  Set the Java charset for encoding string values, this value is UTF-8 by default.
  * @param charset  Set the charset for the connection.
@@ -95,6 +97,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.mysqlclient.MySQLConnectOptions original] using Vert.x codegen.
  */
 fun mySQLConnectOptionsOf(
+  authenticationPlugin: MySQLAuthenticationPlugin? = null,
   cachePreparedStatements: Boolean? = null,
   characterEncoding: String? = null,
   charset: String? = null,
@@ -154,6 +157,9 @@ fun mySQLConnectOptionsOf(
   useAlpn: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
+  if (authenticationPlugin != null) {
+    this.setAuthenticationPlugin(authenticationPlugin)
+  }
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
   }
