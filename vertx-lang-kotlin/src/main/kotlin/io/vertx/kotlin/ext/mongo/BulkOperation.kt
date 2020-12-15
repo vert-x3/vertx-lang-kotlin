@@ -16,7 +16,7 @@
 package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.BulkOperation
-import io.vertx.ext.mongo.BulkOperation.BulkOperationType
+import io.vertx.ext.mongo.BulkOperationType
 
 /**
  * A function providing a DSL for building [io.vertx.ext.mongo.BulkOperation] objects.

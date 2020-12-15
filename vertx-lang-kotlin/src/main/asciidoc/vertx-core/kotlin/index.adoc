@@ -62,7 +62,10 @@ For example, Vert.x modules often use Data Objects for the configuration of serv
 
 [source,kotlin]
 ----
-include::examples/BuilderExample.kt[tags=Classic]
+val classic: HttpServerOptions = HttpServerOptions()
+  .setIdleTimeout(5)
+  .setIdleTimeoutUnit(TimeUnit.MINUTES)
+  .setLogActivity(true)
 ----
 
 While the above construct is valid, there is a more idiomatic way of configuring Data Objects.
@@ -70,7 +73,7 @@ In Kotlin, all Data Objects have a builder method suffixed with `Of`:
 
 [source,kotlin]
 ----
-include::examples/BuilderExample.kt[tags=Builder]
+val options = httpServerOptionsOf(idleTimeout = 5, idleTimeoutUnit = TimeUnit.MINUTES, logActivity = true)
 ----
 
 == JSON

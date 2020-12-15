@@ -16,7 +16,7 @@
 package io.vertx.kotlin.ext.stomp
 
 import io.vertx.ext.stomp.Frame
-import io.vertx.ext.stomp.Frame.Command
+import io.vertx.ext.stomp.Command
 
 /**
  * A function providing a DSL for building [io.vertx.ext.stomp.Frame] objects.

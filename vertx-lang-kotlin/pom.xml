@@ -634,6 +634,7 @@
         </executions>
       </plugin>
 
+      <!--
       <plugin>
         <groupId>org.jetbrains.dokka</groupId>
         <artifactId>dokka-maven-plugin</artifactId>
@@ -691,6 +692,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
 
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
