@@ -254,7 +254,7 @@ Vert.x integration has been designed to be fully interoperable with Kotlin corou
 
 == RxJava interoperability
 
-The module `vertx-lang-kotlin-coroutines` does not have specific integration with RxJava however Kotlin coroutines
-provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutines`.
+The module `vertx-lang-kotlin-coroutines` does not have specific integration with RxJava.
+However, Kotlin coroutines provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutines`.
 
-You can read about it in the https://github.com/Kotlin/kotlinx.coroutines/blob/master/reactive/coroutines-guide-reactive.md[Guide to reactive streams with coroutines]
+You can read more about it in https://github.com/Kotlin/kotlinx.coroutines/tree/master/reactive[Coroutines for reactive streams].
