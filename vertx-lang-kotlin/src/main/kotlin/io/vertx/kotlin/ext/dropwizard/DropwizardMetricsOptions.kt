@@ -33,6 +33,7 @@ import io.vertx.ext.dropwizard.Match
  * @param monitoredEventBusHandlers  Add a monitored event bus handler.
  * @param monitoredHttpClientEndpoints  Add an monitored http client endpoint.
  * @param monitoredHttpClientUris  Add an monitored http client uri.
+ * @param monitoredHttpServerRoutes  Add an monitored http server route.
  * @param monitoredHttpServerUris  Add an monitored http server uri.
  * @param registryName  Set the name used for registering the metrics in the Dropwizard shared registry.
  *
@@ -50,6 +51,7 @@ fun dropwizardMetricsOptionsOf(
   monitoredEventBusHandlers: Iterable<io.vertx.ext.dropwizard.Match>? = null,
   monitoredHttpClientEndpoints: Iterable<io.vertx.ext.dropwizard.Match>? = null,
   monitoredHttpClientUris: Iterable<io.vertx.ext.dropwizard.Match>? = null,
+  monitoredHttpServerRoutes: Iterable<io.vertx.ext.dropwizard.Match>? = null,
   monitoredHttpServerUris: Iterable<io.vertx.ext.dropwizard.Match>? = null,
   registryName: String? = null): DropwizardMetricsOptions = io.vertx.ext.dropwizard.DropwizardMetricsOptions().apply {
 
@@ -87,6 +89,11 @@ fun dropwizardMetricsOptionsOf(
   if (monitoredHttpClientUris != null) {
     for (item in monitoredHttpClientUris) {
       this.addMonitoredHttpClientUri(item)
+    }
+  }
+  if (monitoredHttpServerRoutes != null) {
+    for (item in monitoredHttpServerRoutes) {
+      this.addMonitoredHttpServerRoute(item)
     }
   }
   if (monitoredHttpServerUris != null) {

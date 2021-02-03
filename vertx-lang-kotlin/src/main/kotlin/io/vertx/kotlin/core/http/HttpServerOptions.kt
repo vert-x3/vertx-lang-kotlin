@@ -92,6 +92,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketClosingTimeout  Set the amount of time a server WebSocket will wait until it closes the TCP connection after sending a close frame. <p> When a server closes a WebSocket, it should wait the client close frame to close the TCP connection. This timeout will close the TCP connection on the server when it expires. When the TCP connection is closed receiving the close frame, the [io.vertx.core.http.WebSocket] instead of the [io.vertx.core.http.WebSocket] will be called. <p> Set to <code>0L</code> closes the TCP connection immediately after sending the close frame. <p> Set to a negative value to disable it.
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
  * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketSubProtocols  Set the WebSocket list of sub-protocol supported by the server.
@@ -159,6 +160,7 @@ fun httpServerOptionsOf(
   useAlpn: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
+  webSocketClosingTimeout: Int? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketPreferredClientNoContext: Boolean? = null,
   webSocketSubProtocols: Iterable<String>? = null): HttpServerOptions = io.vertx.core.http.HttpServerOptions().apply {
@@ -345,6 +347,9 @@ fun httpServerOptionsOf(
   }
   if (webSocketAllowServerNoContext != null) {
     this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)
+  }
+  if (webSocketClosingTimeout != null) {
+    this.setWebSocketClosingTimeout(webSocketClosingTimeout)
   }
   if (webSocketCompressionLevel != null) {
     this.setWebSocketCompressionLevel(webSocketCompressionLevel)

@@ -42,9 +42,9 @@ import java.util.concurrent.TimeUnit
  * @param host  Sets the host.
  * @param hostnameVerificationAlgorithm 
  * @param idleTimeout 
- * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
+ * @param idleTimeoutUnit 
  * @param jdkSslEngineOptions 
- * @param keyCertOptions  Set the key/cert options.
+ * @param keyCertOptions 
  * @param keyStoreOptions 
  * @param localAddress 
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -68,8 +68,8 @@ import java.util.concurrent.TimeUnit
  * @param soLinger 
  * @param ssl 
  * @param sslEngineOptions 
- * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
- * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
+ * @param sslHandshakeTimeout 
+ * @param sslHandshakeTimeoutUnit 
  * @param tcpCork 
  * @param tcpFastOpen 
  * @param tcpKeepAlive 
@@ -77,7 +77,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpQuickAck 
  * @param trafficClass 
  * @param trustAll 
- * @param trustOptions  Set the trust options.
+ * @param trustOptions 
  * @param trustStoreOptions 
  * @param useAlpn  Set the ALPN usage.
  * @param username  Sets the username.

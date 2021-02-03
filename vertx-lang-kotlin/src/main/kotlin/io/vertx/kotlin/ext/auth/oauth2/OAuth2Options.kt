@@ -29,7 +29,6 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param authorizationPath  Get the Oauth2 authorization resource path. e.g.: /oauth/authorize
  * @param clientID  Set the provider client id
  * @param clientSecret  Set the provider client secret
- * @param clientSecretParameterName  Override the HTTP form field name for client secret
  * @param extraParameters  Set extra parameters to be sent to the provider on each request
  * @param flow 
  * @param headers  Set custom headers to be sent with every request to the provider
@@ -44,7 +43,6 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param site  Root URL for the provider without trailing slashes
  * @param tenant  Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs. The tenant should be set prior to any URL as it affects the way the URLs will be stored. Some provders may name this differently, for example: `realm`.
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
- * @param useBasicAuthorizationHeader  Flag to use HTTP basic auth header with client id, client secret.
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
@@ -57,7 +55,6 @@ fun oAuth2OptionsOf(
   authorizationPath: String? = null,
   clientID: String? = null,
   clientSecret: String? = null,
-  clientSecretParameterName: String? = null,
   extraParameters: io.vertx.core.json.JsonObject? = null,
   flow: OAuth2FlowType? = null,
   headers: io.vertx.core.json.JsonObject? = null,
@@ -72,7 +69,6 @@ fun oAuth2OptionsOf(
   site: String? = null,
   tenant: String? = null,
   tokenPath: String? = null,
-  useBasicAuthorizationHeader: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -86,9 +82,6 @@ fun oAuth2OptionsOf(
   }
   if (clientSecret != null) {
     this.setClientSecret(clientSecret)
-  }
-  if (clientSecretParameterName != null) {
-    this.setClientSecretParameterName(clientSecretParameterName)
   }
   if (extraParameters != null) {
     this.setExtraParameters(extraParameters)
@@ -131,9 +124,6 @@ fun oAuth2OptionsOf(
   }
   if (tokenPath != null) {
     this.setTokenPath(tokenPath)
-  }
-  if (useBasicAuthorizationHeader != null) {
-    this.setUseBasicAuthorizationHeader(useBasicAuthorizationHeader)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)

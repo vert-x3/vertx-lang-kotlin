@@ -33,3 +33,18 @@ suspend fun SessionHandler.flushAwait(ctx: RoutingContext): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.ext.web.handler.SessionHandler.flush]
+ *
+ * @param ctx the current context
+ * @param ignoreStatus flush regardless of response status code
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use flush returning a future and chain with await()", replaceWith = ReplaceWith("flush(ctx, ignoreStatus).await()"))
+suspend fun SessionHandler.flushAwait(ctx: RoutingContext, ignoreStatus: Boolean): Unit {
+  return awaitResult {
+    this.flush(ctx, ignoreStatus, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

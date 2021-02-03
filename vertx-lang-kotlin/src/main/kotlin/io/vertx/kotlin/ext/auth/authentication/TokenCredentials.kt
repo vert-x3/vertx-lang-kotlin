@@ -23,14 +23,19 @@ import io.vertx.ext.auth.authentication.TokenCredentials
  * Credentials used by any [io.vertx.ext.auth.authentication.AuthenticationProvider] that requires Tokens, such as OAuth2 or JWT
  * to perform its authentication
  *
+ * @param scopes 
  * @param token 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.authentication.TokenCredentials original] using Vert.x codegen.
  */
 fun tokenCredentialsOf(
+  scopes: Iterable<String>? = null,
   token: String? = null): TokenCredentials = io.vertx.ext.auth.authentication.TokenCredentials(io.vertx.core.json.JsonObject()).apply {
 
+  if (scopes != null) {
+    this.setScopes(scopes.toList())
+  }
   if (token != null) {
     this.setToken(token)
   }

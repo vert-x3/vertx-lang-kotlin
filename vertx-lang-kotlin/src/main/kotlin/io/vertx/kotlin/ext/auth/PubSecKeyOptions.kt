@@ -23,7 +23,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  * Options describing Key stored in PEM format.
  *
  * @param algorithm 
- * @param buffer  The PEM or Secret key buffer
+ * @param buffer  The PEM or Secret key buffer. When working with secret materials, the material is expected to be encoded in <code>UTF-8</code>. PEM files are expected to be <code>US_ASCII</code> as the format uses a base64 encoding for the payload.
  * @param certificate 
  * @param id 
  * @param publicKey 
@@ -35,7 +35,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  */
 fun pubSecKeyOptionsOf(
   algorithm: String? = null,
-  buffer: String? = null,
+  buffer: io.vertx.core.buffer.Buffer? = null,
   certificate: Boolean? = null,
   id: String? = null,
   publicKey: String? = null,

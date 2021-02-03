@@ -74,6 +74,7 @@ import java.util.concurrent.TimeUnit
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
+ * @param useWebSocket  enable mqtt over websocket
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttServerOptions original] using Vert.x codegen.
@@ -122,7 +123,8 @@ fun mqttServerOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useProxyProtocol: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
+  useProxyProtocol: Boolean? = null,
+  useWebSocket: Boolean? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -261,6 +263,9 @@ fun mqttServerOptionsOf(
   }
   if (useProxyProtocol != null) {
     this.setUseProxyProtocol(useProxyProtocol)
+  }
+  if (useWebSocket != null) {
+    this.setUseWebSocket(useWebSocket)
   }
 }
 
