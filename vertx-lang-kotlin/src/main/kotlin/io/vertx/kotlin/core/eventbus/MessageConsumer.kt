@@ -40,7 +40,7 @@ suspend fun <T> MessageConsumer<T>.pipeToAwait(dst: WriteStream<Message<T>>): Un
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use completionHandler returning a future and chain with await()", replaceWith = ReplaceWith("completionHandler().await()"))
+@Deprecated(message = "Instead use completion returning a future and chain with await()", replaceWith = ReplaceWith("registrationCompletion().await()"))
 suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
   return awaitResult {
     this.completionHandler(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
