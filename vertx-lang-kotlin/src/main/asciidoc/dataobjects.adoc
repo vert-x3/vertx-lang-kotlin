@@ -85,6 +85,9 @@ Set the DNS queries <i>Recursion Desired</i> flag value.
 Set to <code>true</code> to enable round-robin selection of the dns server to use. It spreads the query load
  among the servers and avoids all lookup to hit the first server of the list.
 +++
+|[[roundRobinInetAddress]]`@roundRobinInetAddress`|`Boolean`|+++
+Set to <code>true</code> to enable round-robin inet address selection of the ip address to use.
++++
 |[[searchDomains]]`@searchDomains`|`Array of String`|+++
 Set the lists of DNS search domains.
  <p/>
@@ -3176,6 +3179,9 @@ Set to true to enabled network activity logging: Netty's pipeline is configured 
 |[[maxChunkSize]]`@maxChunkSize`|`Number (int)`|+++
 Set the maximum HTTP chunk size that link will receive
 +++
+|[[maxFormAttributeSize]]`@maxFormAttributeSize`|`Number (int)`|+++
+Set the maximum size of a form attribute. Set to <code>-1</code> to allow unlimited length
++++
 |[[maxHeaderSize]]`@maxHeaderSize`|`Number (int)`|+++
 Set the maximum length of all headers for HTTP/1.x .
 +++
@@ -3438,6 +3444,9 @@ Set to true to enabled network activity logging: Netty's pipeline is configured 
 +++
 |[[maxChunkSize]]`@maxChunkSize`|`Number (int)`|+++
 Set the maximum HTTP chunk size that  will receive
++++
+|[[maxFormAttributeSize]]`@maxFormAttributeSize`|`Number (int)`|+++
+Set the maximum size of a form attribute. Set to <code>-1</code> to allow unlimited length
 +++
 |[[maxHeaderSize]]`@maxHeaderSize`|`Number (int)`|+++
 Set the maximum length of all headers for HTTP/1.x .
@@ -7407,9 +7416,6 @@ Replace the current list of reporters with a new one.
 [frame="topbot"]
 |===
 ^|Name | Type ^| Description
-|[[headers]]`@headers`|`String`|+++
-Add a request header.
-+++
 |[[host]]`@host`|`String`|+++
 Set the host name to be used by the client request.
 +++
