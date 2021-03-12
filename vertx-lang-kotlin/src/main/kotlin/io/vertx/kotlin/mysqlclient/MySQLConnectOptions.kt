@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param authenticationPlugin  Set the default [io.vertx.mysqlclient.MySQLAuthenticationPlugin] for the client, the option will take effect at the connection start.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param characterEncoding  Set the Java charset for encoding string values, this value is UTF-8 by default.
@@ -97,6 +98,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.mysqlclient.MySQLConnectOptions original] using Vert.x codegen.
  */
 fun mySQLConnectOptionsOf(
+  applicationLayerProtocols: Iterable<String>? = null,
   authenticationPlugin: MySQLAuthenticationPlugin? = null,
   cachePreparedStatements: Boolean? = null,
   characterEncoding: String? = null,
@@ -157,6 +159,9 @@ fun mySQLConnectOptionsOf(
   useAlpn: Boolean? = null,
   user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
   if (authenticationPlugin != null) {
     this.setAuthenticationPlugin(authenticationPlugin)
   }

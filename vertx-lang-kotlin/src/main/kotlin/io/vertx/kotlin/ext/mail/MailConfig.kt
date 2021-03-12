@@ -35,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * port, security options, login options and login/password
  *
  * @param allowRcptErrors  set if sending allows rcpt errors <p> if true, the mail will be sent to the recipients that the server accepted, if any <p>
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param authMethods  set string of allowed auth methods. if set only these methods will be used if the server supports them. If null or empty all supported methods may be used
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -60,6 +61,7 @@ import java.util.concurrent.TimeUnit
  * @param login  Set the login mode for the connection. <p> Either DISABLED, OPTIONAL or REQUIRED
  * @param maxPoolSize  set the max allowed number of open connections to the mail server if not set the default is 10
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
+ * @param multiPartOnly  Sets to encode multipart only or not. When sets to <code>true</code>, the mail message will be encoded as multipart even for simple mails without attachments, see https://github.com/vert-x3/vertx-mail-client/issues/161.
  * @param openSslEngineOptions 
  * @param ownHostname  set the hostname to be used for HELO/EHLO and the Message-ID
  * @param password  Set the password for the login.
@@ -100,6 +102,7 @@ import java.util.concurrent.TimeUnit
  */
 fun mailConfigOf(
   allowRcptErrors: Boolean? = null,
+  applicationLayerProtocols: Iterable<String>? = null,
   authMethods: String? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -125,6 +128,7 @@ fun mailConfigOf(
   login: LoginOption? = null,
   maxPoolSize: Int? = null,
   metricsName: String? = null,
+  multiPartOnly: Boolean? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   ownHostname: String? = null,
   password: String? = null,
@@ -162,6 +166,9 @@ fun mailConfigOf(
 
   if (allowRcptErrors != null) {
     this.setAllowRcptErrors(allowRcptErrors)
+  }
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }
   if (authMethods != null) {
     this.setAuthMethods(authMethods)
@@ -243,6 +250,9 @@ fun mailConfigOf(
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
+  }
+  if (multiPartOnly != null) {
+    this.setMultiPartOnly(multiPartOnly)
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)

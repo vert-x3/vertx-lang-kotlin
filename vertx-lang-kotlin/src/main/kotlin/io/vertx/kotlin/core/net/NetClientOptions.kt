@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit
  *
  * Options for configuring a [io.vertx.core.net.NetClient].
  *
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -76,6 +77,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClientOptions original] using Vert.x codegen.
  */
 fun netClientOptionsOf(
+  applicationLayerProtocols: Iterable<String>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -118,6 +120,9 @@ fun netClientOptionsOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
   }

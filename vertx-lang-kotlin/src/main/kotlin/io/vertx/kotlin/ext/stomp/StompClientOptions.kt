@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * underlying NET client.
  *
  * @param acceptedVersions  Sets the list of STOMP protocol versions accepted by the client. The list must be ordered from the lowest version to the highest. By default the following list is used: <code>1.0, 1.1, 1.2</code>
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param autoComputeContentLength  Sets whether or not the automatic computation of the <code>content-length</code> header is enabled. If enabled, the <code>content-length</code> header is set in all frame with a body that do not explicitly set the header. The option is enabled by default.
  * @param bypassHostHeader  Sets whether or not the <code>host</code> header must be dropped from the <code>CONNECT/STOMP</code> frame. Server may be picky about this header (such as RabbitMQ that does not support it). Options disabled by default.
  * @param connectTimeout  Set the connect timeout
@@ -89,6 +90,7 @@ import java.util.concurrent.TimeUnit
  */
 fun stompClientOptionsOf(
   acceptedVersions: Iterable<String>? = null,
+  applicationLayerProtocols: Iterable<String>? = null,
   autoComputeContentLength: Boolean? = null,
   bypassHostHeader: Boolean? = null,
   connectTimeout: Int? = null,
@@ -143,6 +145,9 @@ fun stompClientOptionsOf(
 
   if (acceptedVersions != null) {
     this.setAcceptedVersions(acceptedVersions.toList())
+  }
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }
   if (autoComputeContentLength != null) {
     this.setAutoComputeContentLength(autoComputeContentLength)

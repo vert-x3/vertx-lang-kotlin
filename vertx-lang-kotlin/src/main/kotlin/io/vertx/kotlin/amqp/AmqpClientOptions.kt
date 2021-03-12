@@ -31,7 +31,9 @@ import java.util.concurrent.TimeUnit
  * Configures the AMQP Client.
  * You can also configure the underlying Proton instance. Refer to  for details.
  *
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param connectTimeout 
+ * @param connectionHostname  Explicitly override the hostname value used for the AMQP Open frame. The host connected to as per [io.vertx.amqp.AmqpClientOptions] will be used in the Open frame by default.
  * @param containerId  Sets the container id.
  * @param crlPaths 
  * @param crlValues 
@@ -87,7 +89,9 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
  */
 fun amqpClientOptionsOf(
+  applicationLayerProtocols: Iterable<String>? = null,
   connectTimeout: Int? = null,
+  connectionHostname: String? = null,
   containerId: String? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -139,8 +143,14 @@ fun amqpClientOptionsOf(
   username: String? = null,
   virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)
+  }
+  if (connectionHostname != null) {
+    this.setConnectionHostname(connectionHostname)
   }
   if (containerId != null) {
     this.setContainerId(containerId)

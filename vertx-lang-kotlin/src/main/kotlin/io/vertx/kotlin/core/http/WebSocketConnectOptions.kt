@@ -16,7 +16,6 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.WebSocketConnectOptions
-import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.WebsocketVersion
 
 /**
@@ -28,7 +27,6 @@ import io.vertx.core.http.WebsocketVersion
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
- * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
  * @param ssl  Set whether SSL/TLS is enabled.
@@ -45,7 +43,6 @@ fun webSocketConnectOptionsOf(
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
-  method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
   server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
@@ -67,9 +64,6 @@ fun webSocketConnectOptionsOf(
   }
   if (host != null) {
     this.setHost(host)
-  }
-  if (method != null) {
-    this.setMethod(method)
   }
   if (port != null) {
     this.setPort(port)

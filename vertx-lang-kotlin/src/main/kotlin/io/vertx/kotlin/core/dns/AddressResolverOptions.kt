@@ -34,6 +34,7 @@ import io.vertx.core.dns.AddressResolverOptions
  * @param queryTimeout  Set the query timeout in milliseconds, i.e the amount of time after a query is considered to be failed.
  * @param rdFlag  Set the DNS queries <i>Recursion Desired</i> flag value.
  * @param rotateServers  Set to <code>true</code> to enable round-robin selection of the dns server to use. It spreads the query load among the servers and avoids all lookup to hit the first server of the list.
+ * @param roundRobinInetAddress  Set to <code>true</code> to enable round-robin inet address selection of the ip address to use.
  * @param searchDomains  Set the lists of DNS search domains. <p/> When the search domain list is null, the effective search domain list will be populated using the system DNS search domains.
  * @param servers  Set the list of DNS server addresses, an address is the IP  of the dns server, followed by an optional colon and a port, e.g <code>8.8.8.8</code> or {code 192.168.0.1:40000}. When the list is empty, the resolver will use the list of the system DNS server addresses from the environment, if that list cannot be retrieved it will use Google's public DNS servers <code>"8.8.8.8"</code> and <code>"8.8.4.4"</code>.
  *
@@ -52,6 +53,7 @@ fun addressResolverOptionsOf(
   queryTimeout: Long? = null,
   rdFlag: Boolean? = null,
   rotateServers: Boolean? = null,
+  roundRobinInetAddress: Boolean? = null,
   searchDomains: Iterable<String>? = null,
   servers: Iterable<String>? = null): AddressResolverOptions = io.vertx.core.dns.AddressResolverOptions().apply {
 
@@ -87,6 +89,9 @@ fun addressResolverOptionsOf(
   }
   if (rotateServers != null) {
     this.setRotateServers(rotateServers)
+  }
+  if (roundRobinInetAddress != null) {
+    this.setRoundRobinInetAddress(roundRobinInetAddress)
   }
   if (searchDomains != null) {
     this.setSearchDomains(searchDomains.toList())

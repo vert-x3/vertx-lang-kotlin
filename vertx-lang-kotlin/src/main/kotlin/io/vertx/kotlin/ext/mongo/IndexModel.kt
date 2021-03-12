@@ -19,7 +19,14 @@ import io.vertx.ext.mongo.IndexModel
 import io.vertx.ext.mongo.IndexOptions
 
 fun indexModelOf(
-): IndexModel = io.vertx.ext.mongo.IndexModel(io.vertx.core.json.JsonObject()).apply {
+  key: io.vertx.core.json.JsonObject? = null,
+  options: io.vertx.ext.mongo.IndexOptions? = null): IndexModel = io.vertx.ext.mongo.IndexModel().apply {
 
+  if (key != null) {
+    this.setKey(key)
+  }
+  if (options != null) {
+    this.setOptions(options)
+  }
 }
 

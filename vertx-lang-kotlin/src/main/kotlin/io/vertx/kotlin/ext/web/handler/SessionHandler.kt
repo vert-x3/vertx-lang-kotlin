@@ -15,6 +15,7 @@
  */
 package io.vertx.kotlin.ext.web.handler
 
+import io.vertx.ext.auth.User
 import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.SessionHandler
 import io.vertx.kotlin.coroutines.awaitResult
@@ -45,6 +46,21 @@ suspend fun SessionHandler.flushAwait(ctx: RoutingContext): Unit {
 suspend fun SessionHandler.flushAwait(ctx: RoutingContext, ignoreStatus: Boolean): Unit {
   return awaitResult {
     this.flush(ctx, ignoreStatus, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.web.handler.SessionHandler.setUser]
+ *
+ * @param context the routing context
+ * @param user the user
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use setUser returning a future and chain with await()", replaceWith = ReplaceWith("setUser(context, user).await()"))
+suspend fun SessionHandler.setUserAwait(context: RoutingContext, user: User): Unit {
+  return awaitResult {
+    this.setUser(context, user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

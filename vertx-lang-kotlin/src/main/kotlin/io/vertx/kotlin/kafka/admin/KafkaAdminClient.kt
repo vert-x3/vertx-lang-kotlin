@@ -141,7 +141,7 @@ suspend fun KafkaAdminClient.deleteConsumerGroupsAwait(groupIds: List<String>): 
 /**
  * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.deleteConsumerGroupOffsets]
  *
- * @param groupId The group id of the group whose offsets will be listed
+ * @param groupId The group id of the group whose offsets will be deleted
  * @param partitions The set of partitions in the consumer group whose offsets will be deleted
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.

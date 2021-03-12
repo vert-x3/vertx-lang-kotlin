@@ -56,6 +56,7 @@ import java.util.concurrent.TimeUnit
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
+ * @param maxFormAttributeSize  Set the maximum size of a form attribute. Set to <code>-1</code> to allow unlimited length
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
@@ -124,6 +125,7 @@ fun httpServerOptionsOf(
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
+  maxFormAttributeSize: Int? = null,
   maxHeaderSize: Int? = null,
   maxInitialLineLength: Int? = null,
   maxWebSocketFrameSize: Int? = null,
@@ -239,6 +241,9 @@ fun httpServerOptionsOf(
   }
   if (maxChunkSize != null) {
     this.setMaxChunkSize(maxChunkSize)
+  }
+  if (maxFormAttributeSize != null) {
+    this.setMaxFormAttributeSize(maxFormAttributeSize)
   }
   if (maxHeaderSize != null) {
     this.setMaxHeaderSize(maxHeaderSize)

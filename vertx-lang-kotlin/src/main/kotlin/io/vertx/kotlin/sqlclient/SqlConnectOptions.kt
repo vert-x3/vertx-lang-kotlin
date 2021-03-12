@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.sqlclient.SqlConnection] or [io.vertx.sqlclient.Pool].
  *
+ * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -87,6 +88,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.sqlclient.SqlConnectOptions original] using Vert.x codegen.
  */
 fun sqlConnectOptionsOf(
+  applicationLayerProtocols: Iterable<String>? = null,
   cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -139,6 +141,9 @@ fun sqlConnectOptionsOf(
   useAlpn: Boolean? = null,
   user: String? = null): SqlConnectOptions = io.vertx.sqlclient.SqlConnectOptions().apply {
 
+  if (applicationLayerProtocols != null) {
+    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
   if (cachePreparedStatements != null) {
     this.setCachePreparedStatements(cachePreparedStatements)
   }
