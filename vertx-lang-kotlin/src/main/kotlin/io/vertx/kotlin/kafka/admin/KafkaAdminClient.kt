@@ -19,6 +19,7 @@ import io.vertx.kafka.admin.ClusterDescription
 import io.vertx.kafka.admin.ConsumerGroupDescription
 import io.vertx.kafka.admin.ConsumerGroupListing
 import io.vertx.kafka.admin.KafkaAdminClient
+import io.vertx.kafka.admin.NewPartitions
 import io.vertx.kafka.admin.NewTopic
 import io.vertx.kafka.admin.TopicDescription
 import io.vertx.kafka.client.common.TopicPartition
@@ -78,6 +79,20 @@ suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
 suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames: List<String>): Unit {
   return awaitResult {
     this.deleteTopics(topicNames, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.createPartitions]
+ *
+ * @param partitions partitions to create
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use createPartitions returning a future and chain with await()", replaceWith = ReplaceWith("createPartitions(partitions).await()"))
+suspend fun KafkaAdminClient.createPartitionsAwait(partitions: Map<String,NewPartitions>): Unit {
+  return awaitResult {
+    this.createPartitions(partitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
