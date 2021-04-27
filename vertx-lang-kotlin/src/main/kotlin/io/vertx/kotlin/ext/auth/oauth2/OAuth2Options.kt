@@ -27,7 +27,10 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * Options describing how an OAuth2  will make connections.
  *
  * @param authorizationPath  Get the Oauth2 authorization resource path. e.g.: /oauth/authorize
- * @param clientID  Set the provider client id
+ * @param clientAssertion 
+ * @param clientAssertionType 
+ * @param clientID 
+ * @param clientId  Set the provider client id
  * @param clientSecret  Set the provider client secret
  * @param extraParameters  Set extra parameters to be sent to the provider on each request
  * @param flow 
@@ -53,7 +56,10 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  */
 fun oAuth2OptionsOf(
   authorizationPath: String? = null,
+  clientAssertion: String? = null,
+  clientAssertionType: String? = null,
   clientID: String? = null,
+  clientId: String? = null,
   clientSecret: String? = null,
   extraParameters: io.vertx.core.json.JsonObject? = null,
   flow: OAuth2FlowType? = null,
@@ -77,8 +83,17 @@ fun oAuth2OptionsOf(
   if (authorizationPath != null) {
     this.setAuthorizationPath(authorizationPath)
   }
+  if (clientAssertion != null) {
+    this.setClientAssertion(clientAssertion)
+  }
+  if (clientAssertionType != null) {
+    this.setClientAssertionType(clientAssertionType)
+  }
   if (clientID != null) {
     this.setClientID(clientID)
+  }
+  if (clientId != null) {
+    this.setClientId(clientId)
   }
   if (clientSecret != null) {
     this.setClientSecret(clientSecret)

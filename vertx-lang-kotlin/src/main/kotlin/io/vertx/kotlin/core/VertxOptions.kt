@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit
  * @param metricsOptions  Set the metrics options
  * @param preferNativeTransport  Set wether to prefer the native transport to the JDK transport.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
- * @param tracingOptions 
+ * @param tracingOptions  Set the tracing options
  * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace. in [io.vertx.core.VertxOptions]. The default value of [io.vertx.core.VertxOptions] is 
  * @param warningExceptionTimeUnit  Set the time unit of <code>warningExceptionTime</code>.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.

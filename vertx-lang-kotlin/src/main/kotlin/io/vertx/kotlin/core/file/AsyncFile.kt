@@ -134,3 +134,17 @@ suspend fun AsyncFile.flushAwait(): Unit {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.file.AsyncFile.size]
+ *
+ * @return [Long]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use size returning a future and chain with await()", replaceWith = ReplaceWith("size().await()"))
+suspend fun AsyncFile.sizeAwait(): Long {
+  return awaitResult {
+    this.size(it)
+  }
+}
+

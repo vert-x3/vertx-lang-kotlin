@@ -35,6 +35,7 @@ import io.vertx.ext.consul.KeyValue
 import io.vertx.ext.consul.KeyValueList
 import io.vertx.ext.consul.KeyValueOptions
 import io.vertx.ext.consul.MaintenanceOptions
+import io.vertx.ext.consul.Node
 import io.vertx.ext.consul.NodeList
 import io.vertx.ext.consul.NodeQueryOptions
 import io.vertx.ext.consul.PreparedQueryDefinition
@@ -1148,6 +1149,36 @@ suspend fun ConsulClient.executePreparedQueryAwait(query: String): PreparedQuery
 suspend fun ConsulClient.executePreparedQueryWithOptionsAwait(query: String, options: PreparedQueryExecuteOptions): PreparedQueryExecuteResponse {
   return awaitResult {
     this.executePreparedQueryWithOptions(query, options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.registerCatalogService]
+ *
+ * @param nodeOptions the options of new node
+ * @param serviceOptions the options of new service
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use registerCatalogService returning a future and chain with await()", replaceWith = ReplaceWith("registerCatalogService(nodeOptions, serviceOptions).await()"))
+suspend fun ConsulClient.registerCatalogServiceAwait(nodeOptions: Node, serviceOptions: ServiceOptions): Unit {
+  return awaitResult {
+    this.registerCatalogService(nodeOptions, serviceOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deregisterCatalogService]
+ *
+ * @param nodeId the ID of node
+ * @param serviceId the ID of the service to de-registered; if it is null, the node itself will be de-registered (as well as the entities that belongs to that node)
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use deregisterCatalogService returning a future and chain with await()", replaceWith = ReplaceWith("deregisterCatalogService(nodeId, serviceId).await()"))
+suspend fun ConsulClient.deregisterCatalogServiceAwait(nodeId: String, serviceId: String): Unit {
+  return awaitResult {
+    this.deregisterCatalogService(nodeId, serviceId, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

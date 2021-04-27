@@ -22,8 +22,11 @@ import io.vertx.ext.consul.Node
  *
  *
  * @param address  Set node address
+ * @param datacenter  Set node datacenter
+ * @param id  Set node id
  * @param lanAddress  Set node lan address
  * @param name  Set node name
+ * @param nodeMeta  Set node meta
  * @param wanAddress  Set node wan address
  *
  * <p/>
@@ -31,18 +34,30 @@ import io.vertx.ext.consul.Node
  */
 fun nodeOf(
   address: String? = null,
+  datacenter: String? = null,
+  id: String? = null,
   lanAddress: String? = null,
   name: String? = null,
+  nodeMeta: Map<String, String>? = null,
   wanAddress: String? = null): Node = io.vertx.ext.consul.Node().apply {
 
   if (address != null) {
     this.setAddress(address)
+  }
+  if (datacenter != null) {
+    this.setDatacenter(datacenter)
+  }
+  if (id != null) {
+    this.setId(id)
   }
   if (lanAddress != null) {
     this.setLanAddress(lanAddress)
   }
   if (name != null) {
     this.setName(name)
+  }
+  if (nodeMeta != null) {
+    this.setNodeMeta(nodeMeta)
   }
   if (wanAddress != null) {
     this.setWanAddress(wanAddress)

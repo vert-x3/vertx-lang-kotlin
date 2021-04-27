@@ -145,6 +145,23 @@ suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V): V? {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.replace]
+ *
+ * @param k the key
+ * @param v the new value
+ * @param ttl The time to live (in ms) for the entry
+ * @return [V?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use replace returning a future and chain with await()", replaceWith = ReplaceWith("replace(k, v, ttl).await()"))
+suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V, ttl: Long): V? {
+  return awaitResult {
+    this.replace(k, v, ttl, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.shareddata.AsyncMap.replaceIfPresent]
  *
  * @param k the key
@@ -158,6 +175,24 @@ suspend fun <K,V> AsyncMap<K,V>.replaceAwait(k: K, v: V): V? {
 suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValue: V): Boolean {
   return awaitResult {
     this.replaceIfPresent(k, oldValue, newValue, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.replaceIfPresent]
+ *
+ * @param k the key
+ * @param oldValue the existing value
+ * @param newValue the new value
+ * @param ttl The time to live (in ms) for the entry
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use replaceIfPresent returning a future and chain with await()", replaceWith = ReplaceWith("replaceIfPresent(k, oldValue, newValue, ttl).await()"))
+suspend fun <K,V> AsyncMap<K,V>.replaceIfPresentAwait(k: K, oldValue: V, newValue: V, ttl: Long): Boolean {
+  return awaitResult {
+    this.replaceIfPresent(k, oldValue, newValue, ttl, it)
   }
 }
 

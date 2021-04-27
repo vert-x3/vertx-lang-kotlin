@@ -22,26 +22,51 @@ import io.vertx.ext.auth.oauth2.Oauth2Credentials
  *
  * Credentials specific to the [io.vertx.ext.auth.oauth2.OAuth2Auth] provider
  *
+ * @param assertion 
  * @param code 
- * @param extra 
+ * @param codeVerifier 
+ * @param jwt 
+ * @param password 
  * @param redirectUri 
+ * @param scopes 
+ * @param username 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.Oauth2Credentials original] using Vert.x codegen.
  */
 fun oauth2CredentialsOf(
+  assertion: String? = null,
   code: String? = null,
-  extra: io.vertx.core.json.JsonObject? = null,
-  redirectUri: String? = null): Oauth2Credentials = io.vertx.ext.auth.oauth2.Oauth2Credentials().apply {
+  codeVerifier: String? = null,
+  jwt: io.vertx.core.json.JsonObject? = null,
+  password: String? = null,
+  redirectUri: String? = null,
+  scopes: Iterable<String>? = null,
+  username: String? = null): Oauth2Credentials = io.vertx.ext.auth.oauth2.Oauth2Credentials().apply {
 
+  if (assertion != null) {
+    this.setAssertion(assertion)
+  }
   if (code != null) {
     this.setCode(code)
   }
-  if (extra != null) {
-    this.setExtra(extra)
+  if (codeVerifier != null) {
+    this.setCodeVerifier(codeVerifier)
+  }
+  if (jwt != null) {
+    this.setJwt(jwt)
+  }
+  if (password != null) {
+    this.setPassword(password)
   }
   if (redirectUri != null) {
     this.setRedirectUri(redirectUri)
+  }
+  if (scopes != null) {
+    this.setScopes(scopes.toList())
+  }
+  if (username != null) {
+    this.setUsername(username)
   }
 }
 

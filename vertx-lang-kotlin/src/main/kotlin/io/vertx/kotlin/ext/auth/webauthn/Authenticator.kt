@@ -16,14 +16,18 @@
 package io.vertx.kotlin.ext.auth.webauthn
 
 import io.vertx.ext.auth.webauthn.Authenticator
+import io.vertx.ext.auth.webauthn.AttestationCertificates
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.webauthn.Authenticator] objects.
  *
  * Data Object representing an authenticator at rest.
  *
+ * @param aaguid 
+ * @param attestationCertificates 
  * @param counter 
  * @param credID 
+ * @param fmt 
  * @param publicKey 
  * @param type 
  * @param userName 
@@ -32,17 +36,29 @@ import io.vertx.ext.auth.webauthn.Authenticator
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.Authenticator original] using Vert.x codegen.
  */
 fun authenticatorOf(
+  aaguid: String? = null,
+  attestationCertificates: io.vertx.ext.auth.webauthn.AttestationCertificates? = null,
   counter: Long? = null,
   credID: String? = null,
+  fmt: String? = null,
   publicKey: String? = null,
   type: String? = null,
   userName: String? = null): Authenticator = io.vertx.ext.auth.webauthn.Authenticator().apply {
 
+  if (aaguid != null) {
+    this.setAaguid(aaguid)
+  }
+  if (attestationCertificates != null) {
+    this.setAttestationCertificates(attestationCertificates)
+  }
   if (counter != null) {
     this.setCounter(counter)
   }
   if (credID != null) {
     this.setCredID(credID)
+  }
+  if (fmt != null) {
+    this.setFmt(fmt)
   }
   if (publicKey != null) {
     this.setPublicKey(publicKey)
