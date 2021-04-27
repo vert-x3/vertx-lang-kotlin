@@ -314,6 +314,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-mssql-client</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-sql-client-templates</artifactId>
       <optional>true</optional>
     </dependency>
@@ -454,6 +459,7 @@
             vertx-pg-client,
             vertx-mysql-client,
             vertx-db2-client,
+            vertx-mssql-client,
             vertx-sql-client-templates,
             vertx-mqtt,
             vertx-health-check,
