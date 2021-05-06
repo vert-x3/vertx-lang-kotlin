@@ -52,6 +52,8 @@ import java.util.concurrent.TimeUnit
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
+ * @param keepAliveTimeout  Set the keep alive timeout for SMTP connection, Defaults in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed. <p/> A timeout of <code>0</code> means there is no timeout.
+ * @param keepAliveTimeoutUnit  Sets <code>TimeUnit</code> of keeping connections in the pool alive.
  * @param keyCertOptions  Set the key/cert options.
  * @param keyStore  get the key store filename to be used when opening SMTP connections <p> if not set, an options object will be created based on other settings (ssl and trustAll)
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
@@ -70,6 +72,8 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param pipelining  Sets to enable/disable the pipelining capability if SMTP server supports it.
+ * @param poolCleanerPeriod  Set the connection pool cleaner period, defaults in milli seconds, a non positive value disables expiration checks and connections will remain in the pool until they are closed.
+ * @param poolCleanerPeriodUnit  Sets the <code>TimeUnit</code> of pool cleaning period.
  * @param port  Set the port of the smtp server.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param receiveBufferSize  Set the TCP receive buffer size
@@ -119,6 +123,8 @@ fun mailConfigOf(
   idleTimeoutUnit: TimeUnit? = null,
   jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
   keepAlive: Boolean? = null,
+  keepAliveTimeout: Int? = null,
+  keepAliveTimeoutUnit: TimeUnit? = null,
   keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStore: String? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
@@ -137,6 +143,8 @@ fun mailConfigOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   pipelining: Boolean? = null,
+  poolCleanerPeriod: Int? = null,
+  poolCleanerPeriodUnit: TimeUnit? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   receiveBufferSize: Int? = null,
@@ -224,6 +232,12 @@ fun mailConfigOf(
   if (keepAlive != null) {
     this.setKeepAlive(keepAlive)
   }
+  if (keepAliveTimeout != null) {
+    this.setKeepAliveTimeout(keepAliveTimeout)
+  }
+  if (keepAliveTimeoutUnit != null) {
+    this.setKeepAliveTimeoutUnit(keepAliveTimeoutUnit)
+  }
   if (keyCertOptions != null) {
     this.setKeyCertOptions(keyCertOptions)
   }
@@ -277,6 +291,12 @@ fun mailConfigOf(
   }
   if (pipelining != null) {
     this.setPipelining(pipelining)
+  }
+  if (poolCleanerPeriod != null) {
+    this.setPoolCleanerPeriod(poolCleanerPeriod)
+  }
+  if (poolCleanerPeriodUnit != null) {
+    this.setPoolCleanerPeriodUnit(poolCleanerPeriodUnit)
   }
   if (port != null) {
     this.setPort(port)

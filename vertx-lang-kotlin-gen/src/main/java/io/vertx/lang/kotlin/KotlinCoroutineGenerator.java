@@ -117,7 +117,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
       }
       if (m.getKind() == MethodKind.HANDLER) {
         imports.add("io.vertx.kotlin.coroutines.awaitEvent");
-      } else if (m.getKind() == MethodKind.FUTURE) {
+      } else if (m.getKind() == MethodKind.CALLBACK) {
         imports.add("io.vertx.kotlin.coroutines.awaitResult");
       }
     });
@@ -403,7 +403,7 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
 
   private boolean generateFilter(MethodInfo it) {
     MethodKind methodKind = it.getKind();
-    return !it.isDeprecated() && (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.FUTURE;
+    return !it.isDeprecated() && (it.isFluent() || it.getReturnType().isVoid()) && methodKind == MethodKind.CALLBACK;
   }
 
   /**

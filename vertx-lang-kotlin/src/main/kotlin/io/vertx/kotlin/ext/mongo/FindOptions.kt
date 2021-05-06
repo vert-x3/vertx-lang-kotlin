@@ -24,6 +24,7 @@ import io.vertx.ext.mongo.FindOptions
  *
  * @param batchSize  Set the batch size for methods loading found data in batches.
  * @param fields  Set the fields
+ * @param hint  Set the hint
  * @param limit  Set the limit
  * @param skip  Set the skip
  * @param sort  Set the sort document
@@ -34,6 +35,7 @@ import io.vertx.ext.mongo.FindOptions
 fun findOptionsOf(
   batchSize: Int? = null,
   fields: io.vertx.core.json.JsonObject? = null,
+  hint: String? = null,
   limit: Int? = null,
   skip: Int? = null,
   sort: io.vertx.core.json.JsonObject? = null): FindOptions = io.vertx.ext.mongo.FindOptions().apply {
@@ -43,6 +45,9 @@ fun findOptionsOf(
   }
   if (fields != null) {
     this.setFields(fields)
+  }
+  if (hint != null) {
+    this.setHint(hint)
   }
   if (limit != null) {
     this.setLimit(limit)
