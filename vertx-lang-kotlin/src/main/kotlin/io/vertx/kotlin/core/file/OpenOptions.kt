@@ -26,7 +26,7 @@ import io.vertx.core.file.OpenOptions
  * @param create  Set whether the file should be created if it does not already exist.
  * @param createNew  Set whether the file should be created and fail if it does exist already.
  * @param deleteOnClose  Set whether the file should be deleted when it's closed, or the JVM is shutdown.
- * @param dsync  Set whether every write to the file's content  ill be written synchronously to the underlying hardware.
+ * @param dsync  Set whether every write to the file's content will be written synchronously to the underlying hardware.
  * @param perms  Set the permissions string
  * @param read  Set whether the file is to be opened for reading
  * @param sparse  Set whether a hint should be provided that the file to created is sparse
