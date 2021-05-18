@@ -46,60 +46,72 @@
 
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>generate-something</id>
+      <activation>
+        <jdk>[8,16)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile</id>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <phase>compile</phase>
+                <configuration>
+                  <sourceDirs>
+                    <sourceDir>src/main/java</sourceDir>
+                    <sourceDir>target/generated-sources/kotlin</sourceDir>
+                  </sourceDirs>
+                </configuration>
+              </execution>
+              <execution>
+                <id>test-kapt</id>
+                <goals>
+                  <goal>test-kapt</goal>
+                </goals>
+                <configuration>
+                  <annotationProcessors>
+                    <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+                  </annotationProcessors>
+                  <annotationProcessorArgs>
+                    <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
+                  </annotationProcessorArgs>
+                  <sourceDirs>
+                    <sourceDir>src/test/kotlin</sourceDir>
+                    <sourceDir>${project.build.directory}/sources/vertx-codegen</sourceDir>
+                  </sourceDirs>
+                </configuration>
+              </execution>
+              <execution>
+                <id>>test-compile</id>
+                <goals>
+                  <goal>test-compile</goal>
+                </goals>
+                <phase>test-compile</phase>
+                <configuration>
+                  <sourceDirs>
+                    <sourceDir>src/test/kotlin</sourceDir>
+                    <!-- We need this because test-kapt does not store the generated Kotlin source at the right location -->
+                    <sourceDir>${project.build.directory}/generated-sources/kaptKotlin</sourceDir>
+                  </sourceDirs>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
-
-      <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <phase>compile</phase>
-            <configuration>
-              <sourceDirs>
-                <sourceDir>src/main/java</sourceDir>
-                <sourceDir>target/generated-sources/kotlin</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>test-kapt</id>
-            <goals>
-              <goal>test-kapt</goal>
-            </goals>
-            <configuration>
-              <annotationProcessors>
-                <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
-              </annotationProcessors>
-              <annotationProcessorArgs>
-                <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
-              </annotationProcessorArgs>
-              <sourceDirs>
-                <sourceDir>src/test/kotlin</sourceDir>
-                <sourceDir>${project.build.directory}/sources/vertx-codegen</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>>test-compile</id>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-            <phase>test-compile</phase>
-            <configuration>
-              <sourceDirs>
-                <sourceDir>src/test/kotlin</sourceDir>
-                <!-- We need this because test-kapt does not store the generated Kotlin source at the right location -->
-                <sourceDir>${project.build.directory}/generated-sources/kaptKotlin</sourceDir>
-              </sourceDirs>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
 
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -124,8 +136,5 @@
 
     </plugins>
   </build>
-
-  <profiles>
-  </profiles>
 
 </project>

@@ -63,20 +63,22 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.receive()
   }
 
-  @ObsoleteCoroutinesApi
-  override suspend fun receiveOrNull(): T? {
-    return channel.receiveOrNull()
-  }
-
   override val onReceive: SelectClause1<T>
     get() = channel.onReceive
 
-  @ExperimentalCoroutinesApi
-  override val onReceiveOrNull: SelectClause1<T?>
-    get() = channel.onReceiveOrNull
+  override val onReceiveCatching: SelectClause1<ChannelResult<T>>
+    get() = channel.onReceiveCatching
 
   override fun handle(event: T) {
     launch { channel.send(event) }
+  }
+
+  override suspend fun receiveCatching(): ChannelResult<T> {
+    return channel.receiveCatching()
+  }
+
+  override fun tryReceive(): ChannelResult<T> {
+    return channel.tryReceive()
   }
 
   @ObsoleteCoroutinesApi
@@ -91,17 +93,8 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   }
 
   @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
-  override fun cancel(): Unit {
+  override fun cancel() {
     return channel.cancel()
-  }
-
-  @InternalCoroutinesApi
-  override val onReceiveOrClosed: SelectClause1<ValueOrClosed<T>>
-    get() = channel.onReceiveOrClosed
-
-  @InternalCoroutinesApi
-  override suspend fun receiveOrClosed(): ValueOrClosed<T> {
-    return channel.receiveOrClosed()
   }
 }
 
@@ -144,6 +137,7 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
                                    context: Context) : Channel<T> by channel, CoroutineScope {
 
   override val coroutineContext: CoroutineContext = context.dispatcher()
+
   fun subscribe() {
     stream.endHandler {
       close()
@@ -208,18 +202,25 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
 
     launch {
       while (true) {
-        val elt = channel.receiveOrNull()
-        if (stream.writeQueueFull()) {
-          stream.drainHandler {
-            if (dispatch(elt)) {
-              subscribe()
+        val res = channel.receiveCatching()
+        if (res.isSuccess) {
+          val elt = res.getOrNull();
+          if (stream.writeQueueFull()) {
+            stream.drainHandler {
+              if (dispatch(elt)) {
+                subscribe()
+              }
+            }
+            break
+          } else {
+            if (!dispatch(elt)) {
+              break
             }
           }
+        } else if (res.isClosed) {
           break
         } else {
-          if (!dispatch(elt)) {
-            break
-          }
+          // Can it happen?
         }
       }
     }
