@@ -45,6 +45,7 @@ class RxTest {
     vertx.close()
   }
 
+/*
   @Test
   fun `test flowable`(testContext: TestContext) {
     val async = testContext.async()
@@ -68,6 +69,7 @@ class RxTest {
       vertx.eventBus().send("the-address", i)
     }
   }
+ */
 
   @Test
   fun `test await`(testContext: TestContext) {
