@@ -53,6 +53,7 @@ import java.util.concurrent.TimeUnit
  * @param maxInflightQueue  Set max count of unacknowledged messages
  * @param maxMessageSize  Set max MQTT message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
+ * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
  * @param openSslEngineOptions 
  * @param password  Set the password
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -115,6 +116,7 @@ fun mqttClientOptionsOf(
   maxInflightQueue: Int? = null,
   maxMessageSize: Int? = null,
   metricsName: String? = null,
+  nonProxyHosts: Iterable<String>? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   password: String? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
@@ -224,6 +226,9 @@ fun mqttClientOptionsOf(
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
+  }
+  if (nonProxyHosts != null) {
+    this.setNonProxyHosts(nonProxyHosts.toList())
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)

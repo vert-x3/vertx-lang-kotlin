@@ -17,6 +17,7 @@ package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.WebSocketConnectOptions
 import io.vertx.core.http.WebsocketVersion
+import io.vertx.core.net.ProxyOptions
 
 /**
  * A function providing a DSL for building [io.vertx.core.http.WebSocketConnectOptions] objects.
@@ -28,6 +29,7 @@ import io.vertx.core.http.WebsocketVersion
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
  * @param port  Set the port to be used by the client request.
+ * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param subProtocols  Set the WebSocket sub protocols to use.
@@ -44,6 +46,7 @@ fun webSocketConnectOptionsOf(
   headers: Map<String, String>? = null,
   host: String? = null,
   port: Int? = null,
+  proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   subProtocols: Iterable<String>? = null,
@@ -67,6 +70,9 @@ fun webSocketConnectOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (proxyOptions != null) {
+    this.setProxyOptions(proxyOptions)
   }
   if (server != null) {
     this.setServer(server)

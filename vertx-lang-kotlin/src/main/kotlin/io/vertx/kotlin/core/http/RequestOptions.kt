@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.RequestOptions
+import io.vertx.core.net.ProxyOptions
 
 /**
  * A function providing a DSL for building [io.vertx.core.http.RequestOptions] objects.
@@ -26,6 +27,7 @@ import io.vertx.core.http.RequestOptions
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param host  Set the host name to be used by the client request.
  * @param port  Set the port to be used by the client request.
+ * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
@@ -39,6 +41,7 @@ fun requestOptionsOf(
   followRedirects: Boolean? = null,
   host: String? = null,
   port: Int? = null,
+  proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   timeout: Long? = null,
@@ -55,6 +58,9 @@ fun requestOptionsOf(
   }
   if (port != null) {
     this.setPort(port)
+  }
+  if (proxyOptions != null) {
+    this.setProxyOptions(proxyOptions)
   }
   if (server != null) {
     this.setServer(server)
