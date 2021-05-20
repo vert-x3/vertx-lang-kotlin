@@ -38,6 +38,7 @@ import io.vertx.redis.client.RedisRole
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
  * @param password  Set the default password for cluster/sentinel connections.
  * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
+ * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param role  Set the role name (only considered in HA mode).
  * @param type  Set the desired client type to be created.
  * @param useReplicas  Set whether or not to use replica nodes (only considered in Cluster mode).
@@ -58,6 +59,7 @@ fun redisOptionsOf(
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
   password: String? = null,
   poolCleanerInterval: Int? = null,
+  poolRecycleTimeout: Int? = null,
   role: RedisRole? = null,
   type: RedisClientType? = null,
   useReplicas: RedisReplicas? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
@@ -99,6 +101,9 @@ fun redisOptionsOf(
   }
   if (poolCleanerInterval != null) {
     this.setPoolCleanerInterval(poolCleanerInterval)
+  }
+  if (poolRecycleTimeout != null) {
+    this.setPoolRecycleTimeout(poolRecycleTimeout)
   }
   if (role != null) {
     this.setRole(role)

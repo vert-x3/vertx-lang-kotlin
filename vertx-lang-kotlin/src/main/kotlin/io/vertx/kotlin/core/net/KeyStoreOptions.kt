@@ -49,6 +49,7 @@ import io.vertx.core.net.KeyStoreOptions
  * options.setKeyCertOptions(new JksOptions().setPath("/mykeystore.jks").setPassword("foo"));
  * </pre>
  *
+ * @param alias  Set the alias for a server certificate when the keystore has more than one.
  * @param password  Set the password for the key store
  * @param path  Set the path to the key store
  * @param provider  Set the store provider.
@@ -59,12 +60,16 @@ import io.vertx.core.net.KeyStoreOptions
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.KeyStoreOptions original] using Vert.x codegen.
  */
 fun keyStoreOptionsOf(
+  alias: String? = null,
   password: String? = null,
   path: String? = null,
   provider: String? = null,
   type: String? = null,
   value: io.vertx.core.buffer.Buffer? = null): KeyStoreOptions = io.vertx.core.net.KeyStoreOptions().apply {
 
+  if (alias != null) {
+    this.setAlias(alias)
+  }
   if (password != null) {
     this.setPassword(password)
   }
