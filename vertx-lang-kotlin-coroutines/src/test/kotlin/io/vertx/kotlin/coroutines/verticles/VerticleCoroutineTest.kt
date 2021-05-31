@@ -64,7 +64,7 @@ class VerticleCoroutineTest {
   }
 
   @Test
-  fun `test in Worker context`(testContext: TestContext) {
+  fun `test if undeploy cancels child jobs`(testContext: TestContext) {
     val async = testContext.async()
     val verticle = JobVerticle()
 
@@ -72,6 +72,7 @@ class VerticleCoroutineTest {
       // Deploy the verticle
       val deploymentId = vertx.deployVerticle(verticle).await()
 
+      delay(500)
       println("Asserting jobs")
       // Wait for the jobs to start.
       testContext.assertTrue(verticle.jobs.isNotEmpty())
@@ -80,7 +81,7 @@ class VerticleCoroutineTest {
         testContext.assertTrue(it.isActive)
       }
 
-
+      delay(2000)
       // Cancel the verticle.
       println("Cancelling the verticle...")
       vertx.undeploy(deploymentId).await()
@@ -90,6 +91,41 @@ class VerticleCoroutineTest {
         testContext.assertTrue(it.isCancelled)
       }
 
+      delay(2000)
+      println("complete...")
+      async.complete()
+    }
+  }
+
+  @Test
+  fun `test if undeploy with explicit cleanup cancels child jobs`(testContext: TestContext) {
+    val async = testContext.async()
+    val verticle = JobWithExplicitCleanupVerticle()
+
+    GlobalScope.launch(vertx.dispatcher()) {
+      // Deploy the verticle
+      val deploymentId = vertx.deployVerticle(verticle).await()
+
+      delay(500)
+      println("Asserting jobs")
+      // Wait for the jobs to start.
+      testContext.assertTrue(verticle.jobs.isNotEmpty())
+      println("Asserting jobs active")
+      verticle.jobs.forEach {
+        testContext.assertTrue(it.isActive)
+      }
+
+      delay(2000)
+      // Cancel the verticle.
+      println("Cancelling the verticle...")
+      vertx.undeploy(deploymentId).await()
+
+      println("Jobs should be cancelled...")
+      verticle.jobs.forEach {
+        testContext.assertTrue(it.isCancelled)
+      }
+
+      delay(2000)
       println("complete...")
       async.complete()
     }

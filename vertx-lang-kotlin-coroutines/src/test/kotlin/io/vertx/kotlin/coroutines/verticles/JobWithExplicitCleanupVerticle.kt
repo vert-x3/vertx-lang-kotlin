@@ -5,7 +5,7 @@ import io.vertx.kotlin.coroutines.CoroutineVerticle
 import io.vertx.kotlin.coroutines.await
 import kotlinx.coroutines.*
 
-class JobVerticle : CoroutineVerticle() {
+class JobWithExplicitCleanupVerticle : CoroutineVerticle() {
 
   lateinit var job: Job
   val jobs: MutableList<Job> = mutableListOf()
