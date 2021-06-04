@@ -17,11 +17,11 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import io.vertx.reactivex.core.Vertx
+import io.vertx.rxjava3.core.Vertx
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.openSubscription
-import kotlinx.coroutines.rx2.await
+import kotlinx.coroutines.rx3.await
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

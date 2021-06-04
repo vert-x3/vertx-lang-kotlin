@@ -12,7 +12,7 @@ small number of kernel threads, which in turns unlocks great scalability.
 
 The non-blocking nature of Vert.x leads to asynchronous APIs. Asynchronous APIs can take various forms including
 callbacks, promises, fibers or reactive extensions. Vert.x uses the callback style for the core APIs but it
-also supports other models like RxJava 1 and 2.
+also supports other models like RxJava.
 
 In some cases, programming using asynchronous APIs can be more challenging than using a classic / sequential style
 of code, in particular with several operations need to be done in sequence. Also, error propagation is often more
