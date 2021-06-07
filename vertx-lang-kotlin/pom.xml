@@ -471,7 +471,7 @@
             </goals>
             <configuration>
               <includes>io/vertx/**/*.java,examples/**/*.java</includes>
-              <excludes>**/impl/**/*.java,io/vertx/groovy/**,io/vertx/reactivex/**,io/vertx/rxjava/**,examples/override/**</excludes>
+              <excludes>**/impl/**/*.java,io/vertx/groovy/**,io/vertx/reactivex/**,io/vertx/rxjava/**,io/vertx/rxjava3/**,examples/override/**</excludes>
               <outputDirectory>${project.build.directory}/sources/java</outputDirectory>
             </configuration>
           </execution>
