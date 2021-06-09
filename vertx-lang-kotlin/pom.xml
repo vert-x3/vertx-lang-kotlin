@@ -742,13 +742,13 @@
               <url>http://netty.io/4.1/api/</url>
             </link>
             <link>
-              <url>http://fasterxml.github.com/jackson-annotations/javadoc/2.9/</url>
+              <url>https://fasterxml.github.com/jackson-annotations/javadoc/2.9/</url>
             </link>
             <link>
-              <url>http://fasterxml.github.io/jackson-core/javadoc/2.9/</url>
+              <url>https://fasterxml.github.io/jackson-core/javadoc/2.9/</url>
             </link>
             <link>
-              <url>http://fasterxml.github.io/jackson-databind/javadoc/2.9/</url>
+              <url>https://fasterxml.github.io/jackson-databind/javadoc/2.9/</url>
             </link>
             <link>
               <url>http://www.grpc.io/grpc-java/javadoc/</url>
