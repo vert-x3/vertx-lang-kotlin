@@ -77,7 +77,7 @@ suspend fun AmqpClient.createReceiverAwait(address: String): AmqpReceiver {
 @Deprecated(message = "Instead use createReceiver returning a future and chain with await()", replaceWith = ReplaceWith("createReceiver(address, receiverOptions).await()"))
 suspend fun AmqpClient.createReceiverAwait(address: String, receiverOptions: AmqpReceiverOptions): AmqpReceiver {
   return awaitResult {
-    this.createReceiver(address, receiverOptions, it)
+    this.createReceiver(address, receiverOptions, null,  it)
   }
 }
 
