@@ -15,6 +15,7 @@
  */
 package io.vertx.kotlin.core.json
 
+import io.vertx.core.json.impl.JsonUtil
 import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
 import java.time.Instant
@@ -35,7 +36,7 @@ fun jsonObjectOf(vararg fields: Pair<String, Any?>): JsonObject {
             // @See io.vertx.core.json.JsonObject.put(java.lang.String, java.time.Instant)
             it.second is Instant -> return@map (Pair(it.first, DateTimeFormatter.ISO_INSTANT.format(it.second as Instant)))
             // @See   io.vertx.core.json.JsonObject.put(java.lang.String, byte[])
-            it.second is ByteArray -> return@map(Pair(it.first, Base64.getEncoder().encodeToString(it.second as ByteArray)))
+            it.second is ByteArray -> return@map(Pair(it.first, JsonUtil.BASE64_ENCODER.encodeToString(it.second as ByteArray)))
             else -> return@map it
         }
 
