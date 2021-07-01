@@ -65,6 +65,7 @@ import java.util.concurrent.TimeUnit
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param multiPartOnly  Sets to encode multipart only or not. When sets to <code>true</code>, the mail message will be encoded as multipart even for simple mails without attachments, see https://github.com/vert-x3/vertx-mail-client/issues/161.
  * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
+ * @param ntDomain  Sets the domain used on NTLM authentication
  * @param openSslEngineOptions 
  * @param ownHostname  set the hostname to be used for HELO/EHLO and the Message-ID
  * @param password  Set the password for the login.
@@ -101,6 +102,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
  * @param username  Set the username for the login.
+ * @param workstation  Sets the workstation used on NTLM authentication
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailConfig original] using Vert.x codegen.
@@ -137,6 +139,7 @@ fun mailConfigOf(
   metricsName: String? = null,
   multiPartOnly: Boolean? = null,
   nonProxyHosts: Iterable<String>? = null,
+  ntDomain: String? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   ownHostname: String? = null,
   password: String? = null,
@@ -172,7 +175,8 @@ fun mailConfigOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   userAgent: String? = null,
-  username: String? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
+  username: String? = null,
+  workstation: String? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
 
   if (allowRcptErrors != null) {
     this.setAllowRcptErrors(allowRcptErrors)
@@ -272,6 +276,9 @@ fun mailConfigOf(
   }
   if (nonProxyHosts != null) {
     this.setNonProxyHosts(nonProxyHosts.toList())
+  }
+  if (ntDomain != null) {
+    this.setNtDomain(ntDomain)
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
@@ -380,6 +387,9 @@ fun mailConfigOf(
   }
   if (username != null) {
     this.setUsername(username)
+  }
+  if (workstation != null) {
+    this.setWorkstation(workstation)
   }
 }
 

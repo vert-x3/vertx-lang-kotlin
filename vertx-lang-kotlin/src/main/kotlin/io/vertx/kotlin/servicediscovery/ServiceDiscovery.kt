@@ -100,6 +100,21 @@ suspend fun ServiceDiscovery.getRecordAwait(filter: JsonObject): Record? {
 /**
  * Suspending version of method [io.vertx.servicediscovery.ServiceDiscovery.getRecord]
  *
+ * @param id the registration id
+ * @return [Record?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.ServiceDiscovery] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use getRecord returning a future and chain with await()", replaceWith = ReplaceWith("getRecord(id).await()"))
+suspend fun ServiceDiscovery.getRecordAwait(id: String): Record? {
+  return awaitResult {
+    this.getRecord(id, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.servicediscovery.ServiceDiscovery.getRecord]
+ *
  * @param filter the filter, must not be <code>null</code>. To return all records, use a function accepting all records
  * @return [Record?]
  *

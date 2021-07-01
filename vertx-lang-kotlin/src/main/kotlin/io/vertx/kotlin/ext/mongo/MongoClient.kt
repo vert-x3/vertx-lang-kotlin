@@ -115,6 +115,23 @@ suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObj
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.updateCollection]
+ *
+ * @param collection the collection
+ * @param query query used to match the documents
+ * @param update used to describe how the documents will be updated
+ * @return [MongoClientUpdateResult?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateCollection returning a future and chain with await()", replaceWith = ReplaceWith("updateCollection(collection, query, update).await()"))
+suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObject, update: JsonArray): MongoClientUpdateResult? {
+  return awaitResult {
+    this.updateCollection(collection, query, update, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.mongo.MongoClient.updateCollectionWithOptions]
  *
  * @param collection the collection
@@ -127,6 +144,24 @@ suspend fun MongoClient.updateCollectionAwait(collection: String, query: JsonObj
  */
 @Deprecated(message = "Instead use updateCollectionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateCollectionWithOptions(collection, query, update, options).await()"))
 suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, query: JsonObject, update: JsonObject, options: UpdateOptions): MongoClientUpdateResult? {
+  return awaitResult {
+    this.updateCollectionWithOptions(collection, query, update, options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.updateCollectionWithOptions]
+ *
+ * @param collection the collection
+ * @param query query used to match the documents
+ * @param update aggregation pipeline used to describe how documents will be updated
+ * @param options options to configure the update
+ * @return [MongoClientUpdateResult?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateCollectionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateCollectionWithOptions(collection, query, update, options).await()"))
+suspend fun MongoClient.updateCollectionWithOptionsAwait(collection: String, query: JsonObject, update: JsonArray, options: UpdateOptions): MongoClientUpdateResult? {
   return awaitResult {
     this.updateCollectionWithOptions(collection, query, update, options, it)
   }

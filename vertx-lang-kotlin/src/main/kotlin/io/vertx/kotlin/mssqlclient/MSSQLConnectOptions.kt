@@ -51,6 +51,7 @@ import java.util.concurrent.TimeUnit
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
  * @param openSslEngineOptions 
+ * @param packetSize  Set the desired size (in bytes) for TDS packets. <p> The client will use the value as a parameter in the LOGIN7 packet. The server may or may not accept it.
  * @param password  Specify the user password to be used for the authentication.
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
@@ -110,6 +111,7 @@ fun mssqlConnectOptionsOf(
   metricsName: String? = null,
   nonProxyHosts: Iterable<String>? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
+  packetSize: Int? = null,
   password: String? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
@@ -210,6 +212,9 @@ fun mssqlConnectOptionsOf(
   }
   if (openSslEngineOptions != null) {
     this.setOpenSslEngineOptions(openSslEngineOptions)
+  }
+  if (packetSize != null) {
+    this.setPacketSize(packetSize)
   }
   if (password != null) {
     this.setPassword(password)
