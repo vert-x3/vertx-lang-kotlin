@@ -210,7 +210,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long): Un
  *
  * @param filename path to the file to serve
  * @param offset the offset to serve from
- * @param length the length to serve to
+ * @param length length the number of bytes to send
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */

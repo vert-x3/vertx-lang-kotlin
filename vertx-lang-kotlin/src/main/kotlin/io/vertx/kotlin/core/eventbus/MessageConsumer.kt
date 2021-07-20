@@ -48,6 +48,20 @@ suspend fun <T> MessageConsumer<T>.completionHandlerAwait(): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.eventbus.MessageConsumer.registration]
+ *
+ * @return [MessageConsumer<T>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageConsumer] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use registration returning a future and chain with await()", replaceWith = ReplaceWith("registration().await()"))
+suspend fun <T> MessageConsumer<T>.registrationAwait(): MessageConsumer<T> {
+  return awaitResult {
+    this.registration(it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.eventbus.MessageConsumer.unregister]
  *
  *

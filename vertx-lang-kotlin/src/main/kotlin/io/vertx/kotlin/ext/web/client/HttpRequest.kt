@@ -100,6 +100,22 @@ suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap): HttpResponse<T> {
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.web.client.HttpRequest.sendForm]
+ *
+ * @param body the body
+ * @param charset 
+ * @return [HttpResponse<T>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use sendForm returning a future and chain with await()", replaceWith = ReplaceWith("sendForm(body, charset).await()"))
+suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap, charset: String): HttpResponse<T> {
+  return awaitResult {
+    this.sendForm(body, charset, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.web.client.HttpRequest.sendMultipartForm]
  *
  * @param body the body

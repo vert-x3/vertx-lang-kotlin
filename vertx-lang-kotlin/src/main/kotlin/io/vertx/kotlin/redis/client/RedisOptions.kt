@@ -38,7 +38,9 @@ import io.vertx.redis.client.RedisRole
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
  * @param password  Set the default password for cluster/sentinel connections.
  * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
+ * @param poolName  Set a user defined pool name (for metrics reporting).
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
+ * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param role  Set the role name (only considered in HA mode).
  * @param type  Set the desired client type to be created.
  * @param useReplicas  Set whether or not to use replica nodes (only considered in Cluster mode).
@@ -59,7 +61,9 @@ fun redisOptionsOf(
   netClientOptions: io.vertx.core.net.NetClientOptions? = null,
   password: String? = null,
   poolCleanerInterval: Int? = null,
+  poolName: String? = null,
   poolRecycleTimeout: Int? = null,
+  protocolNegotiation: Boolean? = null,
   role: RedisRole? = null,
   type: RedisClientType? = null,
   useReplicas: RedisReplicas? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
@@ -102,8 +106,14 @@ fun redisOptionsOf(
   if (poolCleanerInterval != null) {
     this.setPoolCleanerInterval(poolCleanerInterval)
   }
+  if (poolName != null) {
+    this.setPoolName(poolName)
+  }
   if (poolRecycleTimeout != null) {
     this.setPoolRecycleTimeout(poolRecycleTimeout)
+  }
+  if (protocolNegotiation != null) {
+    this.setProtocolNegotiation(protocolNegotiation)
   }
   if (role != null) {
     this.setRole(role)

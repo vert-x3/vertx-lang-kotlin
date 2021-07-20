@@ -50,6 +50,7 @@ import io.vertx.core.net.KeyStoreOptions
  * </pre>
  *
  * @param alias  Set the alias for a server certificate when the keystore has more than one.
+ * @param aliasPassword  Set the password for the server certificate designated by [io.vertx.core.net.KeyStoreOptionsBase].
  * @param password  Set the password for the key store
  * @param path  Set the path to the key store
  * @param provider  Set the store provider.
@@ -61,6 +62,7 @@ import io.vertx.core.net.KeyStoreOptions
  */
 fun keyStoreOptionsOf(
   alias: String? = null,
+  aliasPassword: String? = null,
   password: String? = null,
   path: String? = null,
   provider: String? = null,
@@ -69,6 +71,9 @@ fun keyStoreOptionsOf(
 
   if (alias != null) {
     this.setAlias(alias)
+  }
+  if (aliasPassword != null) {
+    this.setAliasPassword(aliasPassword)
   }
   if (password != null) {
     this.setPassword(password)
