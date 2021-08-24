@@ -16,6 +16,7 @@
 package io.vertx.kotlin.sqlclient
 
 import io.vertx.kotlin.coroutines.awaitResult
+import io.vertx.sqlclient.PrepareOptions
 import io.vertx.sqlclient.PreparedStatement
 import io.vertx.sqlclient.SqlConnection
 import io.vertx.sqlclient.Transaction
@@ -32,6 +33,22 @@ import io.vertx.sqlclient.Transaction
 suspend fun SqlConnection.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.sqlclient.SqlConnection.prepare]
+ *
+ * @param sql the sql
+ * @param options 
+ * @return [PreparedStatement]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.SqlConnection] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(sql, options).await()"))
+suspend fun SqlConnection.prepareAwait(sql: String, options: PrepareOptions): PreparedStatement {
+  return awaitResult {
+    this.prepare(sql, options, it)
   }
 }
 

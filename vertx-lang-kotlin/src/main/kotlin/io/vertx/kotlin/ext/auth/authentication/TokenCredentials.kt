@@ -31,7 +31,7 @@ import io.vertx.ext.auth.authentication.TokenCredentials
  */
 fun tokenCredentialsOf(
   scopes: Iterable<String>? = null,
-  token: String? = null): TokenCredentials = io.vertx.ext.auth.authentication.TokenCredentials(io.vertx.core.json.JsonObject()).apply {
+  token: String? = null): TokenCredentials = io.vertx.ext.auth.authentication.TokenCredentials().apply {
 
   if (scopes != null) {
     this.setScopes(scopes.toList())

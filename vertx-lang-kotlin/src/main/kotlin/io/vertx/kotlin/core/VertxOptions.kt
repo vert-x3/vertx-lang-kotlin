@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
  * @param blockedThreadCheckIntervalUnit  Set the time unit of <code>blockedThreadCheckInterval</code>.
  * @param clusterManager  Programmatically set the cluster manager to be used when clustering. <p> Only valid if clustered = true. <p> Normally Vert.x will look on the classpath for a cluster manager, but if you want to set one programmatically you can use this method.
+ * @param disableTCCL  Configures whether Vert.x sets the [io.vertx.core.Context] classloader as the thread context classloader on actions executed on that [io.vertx.core.Context]. When a [io.vertx.core.Context] is created the current thread classloader is captured and associated with this classloader. Likewise when a Verticle is created, the Verticle's [io.vertx.core.Context] classloader is set to the current thread classloader unless this classloader is overriden by [io.vertx.core.DeploymentOptions]. This setting overrides the (legacy) system property <code>vertx.disableTCCL</code> and provides control at the Vertx instance level.
  * @param eventBusOptions  Sets the event bus configuration to configure the host, port, ssl...
  * @param eventLoopPoolSize  Set the number of event loop threads to be used by the Vert.x instance.
  * @param fileSystemOptions  Set the file system options
@@ -58,6 +59,7 @@ fun vertxOptionsOf(
   blockedThreadCheckInterval: Long? = null,
   blockedThreadCheckIntervalUnit: TimeUnit? = null,
   clusterManager: io.vertx.core.spi.cluster.ClusterManager? = null,
+  disableTCCL: Boolean? = null,
   eventBusOptions: io.vertx.core.eventbus.EventBusOptions? = null,
   eventLoopPoolSize: Int? = null,
   fileSystemOptions: io.vertx.core.file.FileSystemOptions? = null,
@@ -87,6 +89,9 @@ fun vertxOptionsOf(
   }
   if (clusterManager != null) {
     this.setClusterManager(clusterManager)
+  }
+  if (disableTCCL != null) {
+    this.setDisableTCCL(disableTCCL)
   }
   if (eventBusOptions != null) {
     this.setEventBusOptions(eventBusOptions)

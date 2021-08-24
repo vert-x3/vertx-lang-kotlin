@@ -184,6 +184,25 @@ suspend fun RedisAPI.bitposAwait(args: List<String>): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.blmove]
+ *
+ * @param arg0 
+ * @param arg1 
+ * @param arg2 
+ * @param arg3 
+ * @param arg4 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use blmove returning a future and chain with await()", replaceWith = ReplaceWith("blmove(arg0, arg1, arg2, arg3, arg4).await()"))
+suspend fun RedisAPI.blmoveAwait(arg0: String, arg1: String, arg2: String, arg3: String, arg4: String): Response? {
+  return awaitResult {
+    this.blmove(arg0, arg1, arg2, arg3, arg4, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.blpop]
  *
  * @param args 
@@ -317,6 +336,21 @@ suspend fun RedisAPI.commandAwait(args: List<String>): Response? {
 suspend fun RedisAPI.configAwait(args: List<String>): Response? {
   return awaitResult {
     this.config(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.copy]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use copy returning a future and chain with await()", replaceWith = ReplaceWith("copy(args).await()"))
+suspend fun RedisAPI.copyAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.copy(args, it)
   }
 }
 
@@ -531,6 +565,21 @@ suspend fun RedisAPI.expireatAwait(arg0: String, arg1: String): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.failover]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use failover returning a future and chain with await()", replaceWith = ReplaceWith("failover(args).await()"))
+suspend fun RedisAPI.failoverAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.failover(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.flushall]
  *
  * @param args 
@@ -681,6 +730,36 @@ suspend fun RedisAPI.georadiusbymemberRoAwait(args: List<String>): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.geosearch]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use geosearch returning a future and chain with await()", replaceWith = ReplaceWith("geosearch(args).await()"))
+suspend fun RedisAPI.geosearchAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.geosearch(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.geosearchstore]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use geosearchstore returning a future and chain with await()", replaceWith = ReplaceWith("geosearchstore(args).await()"))
+suspend fun RedisAPI.geosearchstoreAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.geosearchstore(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.get]
  *
  * @param arg0 
@@ -708,6 +787,36 @@ suspend fun RedisAPI.getAwait(arg0: String): Response? {
 suspend fun RedisAPI.getbitAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.getbit(arg0, arg1, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.getdel]
+ *
+ * @param arg0 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use getdel returning a future and chain with await()", replaceWith = ReplaceWith("getdel(arg0).await()"))
+suspend fun RedisAPI.getdelAwait(arg0: String): Response? {
+  return awaitResult {
+    this.getdel(arg0, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.getex]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use getex returning a future and chain with await()", replaceWith = ReplaceWith("getex(args).await()"))
+suspend fun RedisAPI.getexAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.getex(args, it)
   }
 }
 
@@ -927,6 +1036,21 @@ suspend fun RedisAPI.hmsetAwait(args: List<String>): Response? {
 suspend fun RedisAPI.hostAwait(args: List<String>): Response? {
   return awaitResult {
     this.host(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.hrandfield]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use hrandfield returning a future and chain with await()", replaceWith = ReplaceWith("hrandfield(args).await()"))
+suspend fun RedisAPI.hrandfieldAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.hrandfield(args, it)
   }
 }
 
@@ -1164,6 +1288,24 @@ suspend fun RedisAPI.llenAwait(arg0: String): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.lmove]
+ *
+ * @param arg0 
+ * @param arg1 
+ * @param arg2 
+ * @param arg3 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use lmove returning a future and chain with await()", replaceWith = ReplaceWith("lmove(arg0, arg1, arg2, arg3).await()"))
+suspend fun RedisAPI.lmoveAwait(arg0: String, arg1: String, arg2: String, arg3: String): Response? {
+  return awaitResult {
+    this.lmove(arg0, arg1, arg2, arg3, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.lolwut]
  *
  * @param args 
@@ -1181,15 +1323,30 @@ suspend fun RedisAPI.lolwutAwait(args: List<String>): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.lpop]
  *
- * @param arg0 
+ * @param args 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use lpop returning a future and chain with await()", replaceWith = ReplaceWith("lpop(arg0).await()"))
-suspend fun RedisAPI.lpopAwait(arg0: String): Response? {
+@Deprecated(message = "Instead use lpop returning a future and chain with await()", replaceWith = ReplaceWith("lpop(args).await()"))
+suspend fun RedisAPI.lpopAwait(args: List<String>): Response? {
   return awaitResult {
-    this.lpop(arg0, it)
+    this.lpop(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.lpos]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use lpos returning a future and chain with await()", replaceWith = ReplaceWith("lpos(args).await()"))
+suspend fun RedisAPI.lposAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.lpos(args, it)
   }
 }
 
@@ -1626,16 +1783,15 @@ suspend fun RedisAPI.psubscribeAwait(args: List<String>): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.psync]
  *
- * @param arg0 
- * @param arg1 
+ * @param args 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use psync returning a future and chain with await()", replaceWith = ReplaceWith("psync(arg0, arg1).await()"))
-suspend fun RedisAPI.psyncAwait(arg0: String, arg1: String): Response? {
+@Deprecated(message = "Instead use psync returning a future and chain with await()", replaceWith = ReplaceWith("psync(args).await()"))
+suspend fun RedisAPI.psyncAwait(args: List<String>): Response? {
   return awaitResult {
-    this.psync(arg0, arg1, it)
+    this.psync(args, it)
   }
 }
 
@@ -1806,6 +1962,20 @@ suspend fun RedisAPI.replicaofAwait(arg0: String, arg1: String): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.reset]
+ *
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use reset returning a future and chain with await()", replaceWith = ReplaceWith("reset().await()"))
+suspend fun RedisAPI.resetAwait(): Response? {
+  return awaitResult {
+    this.reset(it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.restore]
  *
  * @param args 
@@ -1852,15 +2022,15 @@ suspend fun RedisAPI.roleAwait(): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.rpop]
  *
- * @param arg0 
+ * @param args 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use rpop returning a future and chain with await()", replaceWith = ReplaceWith("rpop(arg0).await()"))
-suspend fun RedisAPI.rpopAwait(arg0: String): Response? {
+@Deprecated(message = "Instead use rpop returning a future and chain with await()", replaceWith = ReplaceWith("rpop(args).await()"))
+suspend fun RedisAPI.rpopAwait(args: List<String>): Response? {
   return awaitResult {
-    this.rpop(arg0, it)
+    this.rpop(args, it)
   }
 }
 
@@ -2215,6 +2385,21 @@ suspend fun RedisAPI.slowlogAwait(args: List<String>): Response? {
 suspend fun RedisAPI.smembersAwait(arg0: String): Response? {
   return awaitResult {
     this.smembers(arg0, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.smismember]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use smismember returning a future and chain with await()", replaceWith = ReplaceWith("smismember(args).await()"))
+suspend fun RedisAPI.smismemberAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.smismember(args, it)
   }
 }
 
@@ -2597,6 +2782,21 @@ suspend fun RedisAPI.xaddAwait(args: List<String>): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.xautoclaim]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use xautoclaim returning a future and chain with await()", replaceWith = ReplaceWith("xautoclaim(args).await()"))
+suspend fun RedisAPI.xautoclaimAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.xautoclaim(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.xclaim]
  *
  * @param args 
@@ -2825,6 +3025,36 @@ suspend fun RedisAPI.zcountAwait(arg0: String, arg1: String, arg2: String): Resp
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zdiff]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zdiff returning a future and chain with await()", replaceWith = ReplaceWith("zdiff(args).await()"))
+suspend fun RedisAPI.zdiffAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zdiff(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zdiffstore]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zdiffstore returning a future and chain with await()", replaceWith = ReplaceWith("zdiffstore(args).await()"))
+suspend fun RedisAPI.zdiffstoreAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zdiffstore(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.zincrby]
  *
  * @param arg0 
@@ -2838,6 +3068,21 @@ suspend fun RedisAPI.zcountAwait(arg0: String, arg1: String, arg2: String): Resp
 suspend fun RedisAPI.zincrbyAwait(arg0: String, arg1: String, arg2: String): Response? {
   return awaitResult {
     this.zincrby(arg0, arg1, arg2, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zinter]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zinter returning a future and chain with await()", replaceWith = ReplaceWith("zinter(args).await()"))
+suspend fun RedisAPI.zinterAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zinter(args, it)
   }
 }
 
@@ -2874,6 +3119,21 @@ suspend fun RedisAPI.zlexcountAwait(arg0: String, arg1: String, arg2: String): R
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zmscore]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zmscore returning a future and chain with await()", replaceWith = ReplaceWith("zmscore(args).await()"))
+suspend fun RedisAPI.zmscoreAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zmscore(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.zpopmax]
  *
  * @param args 
@@ -2900,6 +3160,21 @@ suspend fun RedisAPI.zpopmaxAwait(args: List<String>): Response? {
 suspend fun RedisAPI.zpopminAwait(args: List<String>): Response? {
   return awaitResult {
     this.zpopmin(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zrandmember]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zrandmember returning a future and chain with await()", replaceWith = ReplaceWith("zrandmember(args).await()"))
+suspend fun RedisAPI.zrandmemberAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zrandmember(args, it)
   }
 }
 
@@ -2945,6 +3220,21 @@ suspend fun RedisAPI.zrangebylexAwait(args: List<String>): Response? {
 suspend fun RedisAPI.zrangebyscoreAwait(args: List<String>): Response? {
   return awaitResult {
     this.zrangebyscore(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zrangestore]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zrangestore returning a future and chain with await()", replaceWith = ReplaceWith("zrangestore(args).await()"))
+suspend fun RedisAPI.zrangestoreAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zrangestore(args, it)
   }
 }
 
@@ -3119,6 +3409,21 @@ suspend fun RedisAPI.zscanAwait(args: List<String>): Response? {
 suspend fun RedisAPI.zscoreAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
     this.zscore(arg0, arg1, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.zunion]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use zunion returning a future and chain with await()", replaceWith = ReplaceWith("zunion(args).await()"))
+suspend fun RedisAPI.zunionAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.zunion(args, it)
   }
 }
 

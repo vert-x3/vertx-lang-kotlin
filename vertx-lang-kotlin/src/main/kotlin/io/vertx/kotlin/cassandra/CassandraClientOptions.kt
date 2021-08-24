@@ -16,6 +16,7 @@
 package io.vertx.kotlin.cassandra
 
 import io.vertx.cassandra.CassandraClientOptions
+import io.vertx.core.tracing.TracingPolicy
 
 /**
  * A function providing a DSL for building [io.vertx.cassandra.CassandraClientOptions] objects.
@@ -24,13 +25,19 @@ import io.vertx.cassandra.CassandraClientOptions
  *
  * @param contactPoints  Adds a contact point to use for the initial connection to the cluster
  * @param keyspace  Set the keyspace to use when creating the Cassandra session. Defaults to <code>null</code>.
+ * @param password  Set the password for plaintext authentication. Defaults to <code>null</code>.
+ * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
+ * @param username  Set the username for plaintext authentication. Defaults to <code>null</code>.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.cassandra.CassandraClientOptions original] using Vert.x codegen.
  */
 fun cassandraClientOptionsOf(
   contactPoints: Map<String, Int>? = null,
-  keyspace: String? = null): CassandraClientOptions = io.vertx.cassandra.CassandraClientOptions().apply {
+  keyspace: String? = null,
+  password: String? = null,
+  tracingPolicy: TracingPolicy? = null,
+  username: String? = null): CassandraClientOptions = io.vertx.cassandra.CassandraClientOptions().apply {
 
   if (contactPoints != null) {
     for (item in contactPoints) {
@@ -39,6 +46,15 @@ fun cassandraClientOptionsOf(
   }
   if (keyspace != null) {
     this.setKeyspace(keyspace)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
+  }
+  if (username != null) {
+    this.setUsername(username)
   }
 }
 
