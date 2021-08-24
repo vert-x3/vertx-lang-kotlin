@@ -5,12 +5,12 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>4.2.0.Beta1</version>
+    <version>4.2.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>vertx-lang-kotlin</artifactId>
-  <version>4.2.0.Beta1</version>
+  <version>4.2.0-SNAPSHOT</version>
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
@@ -347,13 +347,13 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-gen</artifactId>
-      <version>4.2.0.Beta1</version>
+      <version>4.2.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
-      <version>4.2.0.Beta1</version>
+      <version>4.2.0-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
     <dependency>
