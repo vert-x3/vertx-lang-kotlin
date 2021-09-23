@@ -42,8 +42,10 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param logoutPath  Set the provider logout path
  * @param pubSecKeys  The provider PubSec key options
  * @param revocationPath  Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
+ * @param rotateJWKs  Enable/Disable the JWKs rotation.
  * @param scopeSeparator  Set the provider scope separator
  * @param site  Root URL for the provider without trailing slashes
+ * @param supportedGrantTypes  The provider supported grant types
  * @param tenant  Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs. The tenant should be set prior to any URL as it affects the way the URLs will be stored. Some provders may name this differently, for example: `realm`.
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
  * @param userAgent  Set a custom user agent to use when communicating to a provider
@@ -71,8 +73,10 @@ fun oAuth2OptionsOf(
   logoutPath: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
   revocationPath: String? = null,
+  rotateJWKs: Boolean? = null,
   scopeSeparator: String? = null,
   site: String? = null,
+  supportedGrantTypes: Iterable<String>? = null,
   tenant: String? = null,
   tokenPath: String? = null,
   userAgent: String? = null,
@@ -128,11 +132,17 @@ fun oAuth2OptionsOf(
   if (revocationPath != null) {
     this.setRevocationPath(revocationPath)
   }
+  if (rotateJWKs != null) {
+    this.setRotateJWKs(rotateJWKs)
+  }
   if (scopeSeparator != null) {
     this.setScopeSeparator(scopeSeparator)
   }
   if (site != null) {
     this.setSite(site)
+  }
+  if (supportedGrantTypes != null) {
+    this.setSupportedGrantTypes(supportedGrantTypes.toList())
   }
   if (tenant != null) {
     this.setTenant(tenant)

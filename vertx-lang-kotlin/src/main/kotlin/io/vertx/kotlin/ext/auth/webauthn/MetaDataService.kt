@@ -33,3 +33,17 @@ suspend fun MetaDataService.fetchTOCAwait(url: String): Boolean {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.ext.auth.webauthn.MetaDataService.fetchTOC]
+ *
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.MetaDataService] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use fetchTOC returning a future and chain with await()", replaceWith = ReplaceWith("fetchTOC().await()"))
+suspend fun MetaDataService.fetchTOCAwait(): Boolean {
+  return awaitResult {
+    this.fetchTOC(it)
+  }
+}
+

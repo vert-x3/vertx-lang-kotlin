@@ -36,7 +36,7 @@ import io.vertx.ext.auth.webauthn.UserVerification
  * @param relyingParty 
  * @param requireResidentKey 
  * @param rootCertificates 
- * @param rootCrls 
+ * @param rootCrls  Load a CRL, for example MDS3 certificate should use http://crl.globalsign.net/Root.crl
  * @param timeout 
  * @param transports 
  * @param userVerification 
