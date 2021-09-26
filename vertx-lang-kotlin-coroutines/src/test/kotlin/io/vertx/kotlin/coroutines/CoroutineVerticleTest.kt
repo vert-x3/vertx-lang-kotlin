@@ -9,6 +9,9 @@ import java.time.Duration
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
+/**
+ * @author <a href="mailto:cyber-barrista@protonmail.com">Daniil Chalov</a>
+ */
 class CoroutineVerticleTest {
   private lateinit var vertx: Vertx
 

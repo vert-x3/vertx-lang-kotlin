@@ -31,6 +31,7 @@ import kotlin.coroutines.CoroutineContext
  *
  * @author <a href="http://www.streamis.me">Stream Liu</a>
  * @author [Guido Pio Mariotti](https://github.com/gmariotti)
+ * @author [Daniil Chalov](https://github.com/cyber-barrista)
  */
 abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
