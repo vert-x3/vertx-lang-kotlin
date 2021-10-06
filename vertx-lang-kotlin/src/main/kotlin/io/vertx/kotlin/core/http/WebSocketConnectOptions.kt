@@ -25,6 +25,7 @@ import io.vertx.core.net.ProxyOptions
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
  * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
+ * @param allowOriginHeader  Set whether to add the <code>origin</code> header to the WebSocket handshake request, enabled by default. <p> Set to <code>false</code> when a server does not accept WebSocket with an origin header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
@@ -42,6 +43,7 @@ import io.vertx.core.net.ProxyOptions
  */
 fun webSocketConnectOptionsOf(
   absoluteURI: String? = null,
+  allowOriginHeader: Boolean? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
@@ -56,6 +58,9 @@ fun webSocketConnectOptionsOf(
 
   if (absoluteURI != null) {
     this.setAbsoluteURI(absoluteURI)
+  }
+  if (allowOriginHeader != null) {
+    this.setAllowOriginHeader(allowOriginHeader)
   }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)
