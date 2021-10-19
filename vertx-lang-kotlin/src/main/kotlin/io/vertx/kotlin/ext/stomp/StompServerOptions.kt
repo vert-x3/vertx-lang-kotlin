@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param heartbeat  Sets the heartbeat configuration.
  * @param host  Set the host
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -57,6 +57,7 @@ import java.util.concurrent.TimeUnit
  * @param port  Sets the port on which the server is going to listen for TCP connection.
  * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
  * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -85,6 +86,7 @@ import java.util.concurrent.TimeUnit
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param websocketBridge  Enables or disables the web socket bridge.
  * @param websocketPath  Sets the websocket path. Only frames received on this path would be considered as STOMP frame.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompServerOptions original] using Vert.x codegen.
@@ -117,6 +119,7 @@ fun stompServerOptionsOf(
   port: Int? = null,
   proxyProtocolTimeout: Long? = null,
   proxyProtocolTimeoutUnit: TimeUnit? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -144,7 +147,8 @@ fun stompServerOptionsOf(
   useAlpn: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   websocketBridge: Boolean? = null,
-  websocketPath: String? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
+  websocketPath: String? = null,
+  writeIdleTimeout: Int? = null): StompServerOptions = io.vertx.ext.stomp.StompServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -233,6 +237,9 @@ fun stompServerOptionsOf(
   if (proxyProtocolTimeoutUnit != null) {
     this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -316,6 +323,9 @@ fun stompServerOptionsOf(
   }
   if (websocketPath != null) {
     this.setWebsocketPath(websocketPath)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

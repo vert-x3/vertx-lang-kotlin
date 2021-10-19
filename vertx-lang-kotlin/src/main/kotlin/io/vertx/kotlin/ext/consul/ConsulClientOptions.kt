@@ -82,6 +82,7 @@ import java.util.concurrent.TimeUnit
  * @param poolCleanerPeriod  Set the connection pool cleaner period in milli seconds, a non positive value disables expiration checks and connections will remain in the pool until they are closed.
  * @param protocolVersion  Set the protocol version.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.consul.ConsulClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -114,6 +115,7 @@ import java.util.concurrent.TimeUnit
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.ext.consul.ConsulClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ConsulClientOptions original] using Vert.x codegen.
@@ -168,6 +170,7 @@ fun consulClientOptionsOf(
   poolCleanerPeriod: Int? = null,
   protocolVersion: HttpVersion? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -199,7 +202,8 @@ fun consulClientOptionsOf(
   webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
-  webSocketCompressionRequestServerNoContext: Boolean? = null): ConsulClientOptions = io.vertx.ext.consul.ConsulClientOptions().apply {
+  webSocketCompressionRequestServerNoContext: Boolean? = null,
+  writeIdleTimeout: Int? = null): ConsulClientOptions = io.vertx.ext.consul.ConsulClientOptions().apply {
 
   if (aclToken != null) {
     this.setAclToken(aclToken)
@@ -354,6 +358,9 @@ fun consulClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -449,6 +456,9 @@ fun consulClientOptionsOf(
   }
   if (webSocketCompressionRequestServerNoContext != null) {
     this.setWebSocketCompressionRequestServerNoContext(webSocketCompressionRequestServerNoContext)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

@@ -61,6 +61,7 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -88,6 +89,7 @@ import java.util.concurrent.TimeUnit
  * @param willQoS  Set the QoS level for the will message
  * @param willRetain  Set if the will message must be retained
  * @param willTopic  Set the topic on which the will message will be published
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mqtt.MqttClientOptions original] using Vert.x codegen.
@@ -124,6 +126,7 @@ fun mqttClientOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -150,7 +153,8 @@ fun mqttClientOptionsOf(
   willMessage: String? = null,
   willQoS: Int? = null,
   willRetain: Boolean? = null,
-  willTopic: String? = null): MqttClientOptions = io.vertx.mqtt.MqttClientOptions().apply {
+  willTopic: String? = null,
+  writeIdleTimeout: Int? = null): MqttClientOptions = io.vertx.mqtt.MqttClientOptions().apply {
 
   if (ackTimeout != null) {
     this.setAckTimeout(ackTimeout)
@@ -251,6 +255,9 @@ fun mqttClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -331,6 +338,9 @@ fun mqttClientOptionsOf(
   }
   if (willTopic != null) {
     this.setWillTopic(willTopic)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

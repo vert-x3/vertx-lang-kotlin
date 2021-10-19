@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param host  Specify the host for connecting to the server.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -61,6 +61,7 @@ import java.util.concurrent.TimeUnit
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.db2client.DB2ConnectOptions].
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -84,6 +85,7 @@ import java.util.concurrent.TimeUnit
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.db2client.DB2ConnectOptions original] using Vert.x codegen.
@@ -119,6 +121,7 @@ fun db2ConnectOptionsOf(
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -141,7 +144,8 @@ fun db2ConnectOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  user: String? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
+  user: String? = null,
+  writeIdleTimeout: Int? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
 
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
@@ -239,6 +243,9 @@ fun db2ConnectOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -307,6 +314,9 @@ fun db2ConnectOptionsOf(
   }
   if (user != null) {
     this.setUser(user)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

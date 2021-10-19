@@ -65,3 +65,16 @@ suspend fun RedisConnection.batchAwait(commands: List<Request>): List<Response?>
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisConnection.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun RedisConnection.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

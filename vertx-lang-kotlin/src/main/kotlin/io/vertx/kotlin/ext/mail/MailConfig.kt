@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostname  Set the hostname of the smtp server.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keepAlive  set if connection pool is enabled default is true <p> if the connection pooling is disabled, the max number of sockets is enforced nevertheless <p>
@@ -78,6 +78,7 @@ import java.util.concurrent.TimeUnit
  * @param poolCleanerPeriodUnit  Sets the <code>TimeUnit</code> of pool cleaning period.
  * @param port  Set the port of the smtp server.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -103,6 +104,7 @@ import java.util.concurrent.TimeUnit
  * @param userAgent  Sets the Mail User Agent(MUA) name.<p> It is used to generate the boundary in case of MultiPart email and the Message-ID. If <code>null</code> is set, DEFAULT_USER_AGENT is used.</p>
  * @param username  Set the username for the login.
  * @param workstation  Sets the workstation used on NTLM authentication
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.ext.mail.MailConfig]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailConfig original] using Vert.x codegen.
@@ -152,6 +154,7 @@ fun mailConfigOf(
   poolCleanerPeriodUnit: TimeUnit? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -176,7 +179,8 @@ fun mailConfigOf(
   useAlpn: Boolean? = null,
   userAgent: String? = null,
   username: String? = null,
-  workstation: String? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
+  workstation: String? = null,
+  writeIdleTimeout: Int? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
 
   if (allowRcptErrors != null) {
     this.setAllowRcptErrors(allowRcptErrors)
@@ -316,6 +320,9 @@ fun mailConfigOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -390,6 +397,9 @@ fun mailConfigOf(
   }
   if (workstation != null) {
     this.setWorkstation(workstation)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

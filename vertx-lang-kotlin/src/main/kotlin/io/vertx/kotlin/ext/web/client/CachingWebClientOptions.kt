@@ -52,7 +52,7 @@ import java.util.concurrent.TimeUnit
  * @param http2KeepAliveTimeout  Set the keep alive timeout for HTTP/2 connections, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed. <p/> A timeout of <code>0</code> means there is no timeout.
  * @param http2MaxPoolSize  Set the maximum pool size for HTTP/2 connections
  * @param http2MultiplexingLimit  Set a client limit of the number concurrent streams for each HTTP/2 connection, this limits the number of streams the client can create for a connection. The effective number of streams for a connection is the min of this value and the server's initial settings. <p/> Setting the value to <code>-1</code> means to use the value sent by the server's initial settings. <code>-1</code> is the default value.
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.web.client.CachingWebClientOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.ext.web.client.CachingWebClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediately sent by to the server when the client connects.
  * @param jdkSslEngineOptions 
@@ -83,6 +83,7 @@ import java.util.concurrent.TimeUnit
  * @param poolCleanerPeriod  Set the connection pool cleaner period in milli seconds, a non positive value disables expiration checks and connections will remain in the pool until they are closed.
  * @param protocolVersion  Set the protocol version.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.web.client.CachingWebClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -114,6 +115,7 @@ import java.util.concurrent.TimeUnit
  * @param webSocketCompressionAllowClientNoContext  Set whether the <code>client_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
  * @param webSocketCompressionLevel  Set the WebSocket deflate compression level.
  * @param webSocketCompressionRequestServerNoContext  Set whether the <code>server_no_context_takeover</code> parameter of the WebSocket per-message deflate compression extension will be offered.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.ext.web.client.CachingWebClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.CachingWebClientOptions original] using Vert.x codegen.
@@ -169,6 +171,7 @@ fun cachingWebClientOptionsOf(
   poolCleanerPeriod: Int? = null,
   protocolVersion: HttpVersion? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -199,7 +202,8 @@ fun cachingWebClientOptionsOf(
   webSocketClosingTimeout: Int? = null,
   webSocketCompressionAllowClientNoContext: Boolean? = null,
   webSocketCompressionLevel: Int? = null,
-  webSocketCompressionRequestServerNoContext: Boolean? = null): CachingWebClientOptions = io.vertx.ext.web.client.CachingWebClientOptions().apply {
+  webSocketCompressionRequestServerNoContext: Boolean? = null,
+  writeIdleTimeout: Int? = null): CachingWebClientOptions = io.vertx.ext.web.client.CachingWebClientOptions().apply {
 
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
@@ -357,6 +361,9 @@ fun cachingWebClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -449,6 +456,9 @@ fun cachingWebClientOptionsOf(
   }
   if (webSocketCompressionRequestServerNoContext != null) {
     this.setWebSocketCompressionRequestServerNoContext(webSocketCompressionRequestServerNoContext)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

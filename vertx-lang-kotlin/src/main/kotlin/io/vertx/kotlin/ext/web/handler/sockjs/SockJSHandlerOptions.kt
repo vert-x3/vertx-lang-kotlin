@@ -28,6 +28,7 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
  * @param libraryURL  Transports which don't support cross-domain communication natively use an iframe trick. A simple page is served from the SockJS server (using its foreign domain) and is placed in an invisible iframe. <p> Code run from this iframe doesn't need to worry about cross-domain issues, as it's being run from domain local to the SockJS server. This iframe also does need to load SockJS javascript client library, and this option lets you specify its URL.
  * @param localWriteHandler  Whether the <code>writeHandler</code> should be local only or cluster-wide. <p> Defaults to <code>true</code>.
  * @param maxBytesStreaming  Most streaming transports save responses on the client side and don't free memory used by delivered messages. Such transports need to be garbage-collected once in a while. <p> This setting controls the maximum number of bytes that can be sent over a single HTTP streaming request before it will be closed. After that the client needs to open new request. Setting this value to one effectively disables streaming and will make streaming transports to behave like polling transports. <p> Defaults to 128K.
+ * @param origin  Set the origin to be verified before a websocket upgrade happens. <p> Defaults to <code>null</code>.
  * @param registerWriteHandler  Whether a <code>writeHandler</code> should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param sessionTimeout  Set the delay before the server sends a <code>close</code> event when a client receiving connection has not been seen for a while. <p> Defaults to 5 seconds.
  *
@@ -41,6 +42,7 @@ fun sockJSHandlerOptionsOf(
   libraryURL: String? = null,
   localWriteHandler: Boolean? = null,
   maxBytesStreaming: Int? = null,
+  origin: String? = null,
   registerWriteHandler: Boolean? = null,
   sessionTimeout: Long? = null): SockJSHandlerOptions = io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions().apply {
 
@@ -63,6 +65,9 @@ fun sockJSHandlerOptionsOf(
   }
   if (maxBytesStreaming != null) {
     this.setMaxBytesStreaming(maxBytesStreaming)
+  }
+  if (origin != null) {
+    this.setOrigin(origin)
   }
   if (registerWriteHandler != null) {
     this.setRegisterWriteHandler(registerWriteHandler)

@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit
  * @param handle100ContinueAutomatically  Set whether 100 Continue should be handled automatically
  * @param host  Set the host
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by [io.vertx.core.http.Http2Settings], so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param jdkSslEngineOptions 
@@ -71,6 +71,7 @@ import java.util.concurrent.TimeUnit
  * @param port  Set the port
  * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
  * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -97,6 +98,7 @@ import java.util.concurrent.TimeUnit
  * @param webSocketCompressionLevel  Set the WebSocket compression level.
  * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketSubProtocols  Set the WebSocket list of sub-protocol supported by the server.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerOptions original] using Vert.x codegen.
@@ -140,6 +142,7 @@ fun httpServerOptionsOf(
   port: Int? = null,
   proxyProtocolTimeout: Long? = null,
   proxyProtocolTimeoutUnit: TimeUnit? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -165,7 +168,8 @@ fun httpServerOptionsOf(
   webSocketClosingTimeout: Int? = null,
   webSocketCompressionLevel: Int? = null,
   webSocketPreferredClientNoContext: Boolean? = null,
-  webSocketSubProtocols: Iterable<String>? = null): HttpServerOptions = io.vertx.core.http.HttpServerOptions().apply {
+  webSocketSubProtocols: Iterable<String>? = null,
+  writeIdleTimeout: Int? = null): HttpServerOptions = io.vertx.core.http.HttpServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -287,6 +291,9 @@ fun httpServerOptionsOf(
   if (proxyProtocolTimeoutUnit != null) {
     this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -364,6 +371,9 @@ fun httpServerOptionsOf(
   }
   if (webSocketSubProtocols != null) {
     this.setWebSocketSubProtocols(webSocketSubProtocols.toList())
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param host  Specify the host for connecting to the server.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.mysqlclient.MySQLConnectOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.mysqlclient.MySQLConnectOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -67,6 +67,7 @@ import java.util.concurrent.TimeUnit
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.mysqlclient.MySQLConnectOptions].
  * @param properties  Set properties for this client, which will be sent to server at the connection start.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.mysqlclient.MySQLConnectOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -94,6 +95,7 @@ import java.util.concurrent.TimeUnit
  * @param useAffectedRows  Sets how affected rows are calculated on update/delete/insert, if set to <code>true</code> an update that effectively does not change any data returns zero affected rows. See <a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-affected-rows.html">mysql-affected-rows</a> for details.
  * @param useAlpn  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.mysqlclient.MySQLConnectOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.mysqlclient.MySQLConnectOptions original] using Vert.x codegen.
@@ -133,6 +135,7 @@ fun mySQLConnectOptionsOf(
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -159,7 +162,8 @@ fun mySQLConnectOptionsOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAffectedRows: Boolean? = null,
   useAlpn: Boolean? = null,
-  user: String? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
+  user: String? = null,
+  writeIdleTimeout: Int? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
@@ -269,6 +273,9 @@ fun mySQLConnectOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -349,6 +356,9 @@ fun mySQLConnectOptionsOf(
   }
   if (user != null) {
     this.setUser(user)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

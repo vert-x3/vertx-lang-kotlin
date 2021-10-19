@@ -61,6 +61,7 @@ import java.util.concurrent.TimeUnit
  * @param pfxTrustOptions 
  * @param port  Sets the port.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.amqp.AmqpClientOptions]
  * @param receiveBufferSize 
  * @param reconnectAttempts 
  * @param reconnectInterval 
@@ -85,6 +86,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param username  Sets the username.
  * @param virtualHost 
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.amqp.AmqpClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
@@ -120,6 +122,7 @@ fun amqpClientOptionsOf(
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -143,7 +146,8 @@ fun amqpClientOptionsOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   username: String? = null,
-  virtualHost: String? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
+  virtualHost: String? = null,
+  writeIdleTimeout: Int? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
@@ -243,6 +247,9 @@ fun amqpClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -314,6 +321,9 @@ fun amqpClientOptionsOf(
   }
   if (virtualHost != null) {
     this.setVirtualHost(virtualHost)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

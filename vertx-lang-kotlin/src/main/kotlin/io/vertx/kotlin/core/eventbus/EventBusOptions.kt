@@ -43,7 +43,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param host  Sets the host. Defaults to <code>null</code>. <p> When the clustered eventbus starts, it tries to bind to the provided <code>host</code>. If <code>host</code> is <code>null</code>, then it tries to bind to the same host as the underlying cluster manager. As a last resort, an address will be picked among the available network interfaces.
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.TCPSSLOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.eventbus.EventBusOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
@@ -54,6 +54,7 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Sets the port.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.eventbus.EventBusOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Sets the value of reconnect attempts.
  * @param reconnectInterval  Set the reconnect interval.
@@ -75,6 +76,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.eventbus.EventBusOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.eventbus.EventBusOptions original] using Vert.x codegen.
@@ -104,6 +106,7 @@ fun eventBusOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -124,7 +127,8 @@ fun eventBusOptionsOf(
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
+  useAlpn: Boolean? = null,
+  writeIdleTimeout: Int? = null): EventBusOptions = io.vertx.core.eventbus.EventBusOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -204,6 +208,9 @@ fun eventBusOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -266,6 +273,9 @@ fun eventBusOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

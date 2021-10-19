@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param host  Set the host
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -51,6 +51,7 @@ import java.util.concurrent.TimeUnit
  * @param port  Set the port
  * @param proxyProtocolTimeout  Set the Proxy protocol timeout, default time unit is seconds.
  * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -71,6 +72,7 @@ import java.util.concurrent.TimeUnit
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetServerOptions original] using Vert.x codegen.
@@ -97,6 +99,7 @@ fun netServerOptionsOf(
   port: Int? = null,
   proxyProtocolTimeout: Long? = null,
   proxyProtocolTimeoutUnit: TimeUnit? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -116,7 +119,8 @@ fun netServerOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useProxyProtocol: Boolean? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
+  useProxyProtocol: Boolean? = null,
+  writeIdleTimeout: Int? = null): NetServerOptions = io.vertx.core.net.NetServerOptions().apply {
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
@@ -187,6 +191,9 @@ fun netServerOptionsOf(
   if (proxyProtocolTimeoutUnit != null) {
     this.setProxyProtocolTimeoutUnit(proxyProtocolTimeoutUnit)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -246,6 +253,9 @@ fun netServerOptionsOf(
   }
   if (useProxyProtocol != null) {
     this.setUseProxyProtocol(useProxyProtocol)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

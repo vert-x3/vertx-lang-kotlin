@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -52,6 +52,7 @@ import java.util.concurrent.TimeUnit
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -73,6 +74,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClientOptions original] using Vert.x codegen.
@@ -100,6 +102,7 @@ fun netClientOptionsOf(
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -120,7 +123,8 @@ fun netClientOptionsOf(
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  useAlpn: Boolean? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
+  useAlpn: Boolean? = null,
+  writeIdleTimeout: Int? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
@@ -194,6 +198,9 @@ fun netClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -256,6 +263,9 @@ fun netClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 

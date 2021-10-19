@@ -43,7 +43,7 @@ import java.util.concurrent.TimeUnit
  * @param heartbeat  Sets the heartbeat configuration.
  * @param host  Sets the STOMP server host. <code>0.0.0.0</code> by default.
  * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval To disable hostname verification, set hostnameVerificationAlgorithm to an empty String
- * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
+ * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param jdkSslEngineOptions 
  * @param keyCertOptions  Set the key/cert options.
@@ -61,6 +61,7 @@ import java.util.concurrent.TimeUnit
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Sets the STOMP server port. <code>61613</code> by default.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
+ * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
@@ -85,6 +86,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param useStompFrame  Sets whether or not the connection is made using the <code>STOMP</code> command instead of the <code>CONNECT</code> command. The <code>STOMP</code> command has been introduced in the 1.2 version of the protocol to ease the network analysis (as <code>CONNECT</code> is also used by HTTP. To be compliant with server not implementing the 1.2 specification, this option should be disabled. This option is disabled by default.
  * @param virtualHost  Sets the virtual host that will be used as "host" header value in the `CONNECT` frame.
+ * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.StompClientOptions original] using Vert.x codegen.
@@ -120,6 +122,7 @@ fun stompClientOptionsOf(
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
@@ -143,7 +146,8 @@ fun stompClientOptionsOf(
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
   useStompFrame: Boolean? = null,
-  virtualHost: String? = null): StompClientOptions = io.vertx.ext.stomp.StompClientOptions().apply {
+  virtualHost: String? = null,
+  writeIdleTimeout: Int? = null): StompClientOptions = io.vertx.ext.stomp.StompClientOptions().apply {
 
   if (acceptedVersions != null) {
     this.setAcceptedVersions(acceptedVersions.toList())
@@ -241,6 +245,9 @@ fun stompClientOptionsOf(
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
   }
+  if (readIdleTimeout != null) {
+    this.setReadIdleTimeout(readIdleTimeout)
+  }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
   }
@@ -312,6 +319,9 @@ fun stompClientOptionsOf(
   }
   if (virtualHost != null) {
     this.setVirtualHost(virtualHost)
+  }
+  if (writeIdleTimeout != null) {
+    this.setWriteIdleTimeout(writeIdleTimeout)
   }
 }
 
