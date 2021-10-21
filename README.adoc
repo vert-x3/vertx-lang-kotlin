@@ -20,7 +20,7 @@ Kotlin extensions are developed in this link:vertx-lang-kotlin/src/main/java/io/
 
 For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, etc...
 
-Extensions needs to be tested and link:vertx-lang-kotlin/src/main/asciidoc/index.adoc[documented].
+Extensions needs to be tested and link:vertx-lang-kotlin/src/main/asciidoc/vertx-core/kotlin/index.adoc[documented].
 
 === Bumping Kotlin version
 
