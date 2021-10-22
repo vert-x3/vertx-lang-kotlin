@@ -21,8 +21,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.coroutines.version>1.5.0</kotlin.coroutines.version>
-    <kotlin.version>1.5.10</kotlin.version>
+    <kotlin.coroutines.version>1.5.2</kotlin.coroutines.version>
+    <kotlin.version>1.5.31</kotlin.version>
     <junit.version>4.13.2</junit.version>
     <stack.version>4.2.0-SNAPSHOT</stack.version>
   </properties>
