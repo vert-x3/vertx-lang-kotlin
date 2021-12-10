@@ -15,6 +15,7 @@
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
     <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>
+    <log4j2.version>2.15.0</log4j2.version>
   </properties>
 
   <dependencies>
@@ -567,12 +568,12 @@
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.13.3</version>
+            <version>${log4j2.version}</version>
           </dependency>
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.13.3</version>
+            <version>${log4j2.version}</version>
           </dependency>
           <dependency>
             <groupId>org.slf4j</groupId>
