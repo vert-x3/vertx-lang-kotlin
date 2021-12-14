@@ -5,7 +5,7 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>4.1.7</version>
+    <version>4.1.8-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -26,7 +26,7 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
-      <version>4.1.7</version>
+      <version>4.1.8-SNAPSHOT</version>
       <optional>true</optional>
     </dependency>
 
