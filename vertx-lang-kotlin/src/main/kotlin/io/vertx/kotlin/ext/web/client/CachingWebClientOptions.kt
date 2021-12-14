@@ -72,6 +72,7 @@ import java.util.concurrent.TimeUnit
  * @param maxWebSocketMessageSize  Set the max WebSocket message size
  * @param maxWebSockets  Set the max number of WebSockets per endpoint.
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
+ * @param name  Set the client name, used when the client is shared, otherwise ignored.
  * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
@@ -81,6 +82,7 @@ import java.util.concurrent.TimeUnit
  * @param pipelining  Set whether pipe-lining is enabled on the client
  * @param pipeliningLimit  Set the limit of pending requests a pipe-lined HTTP/1 connection can send.
  * @param poolCleanerPeriod  Set the connection pool cleaner period in milli seconds, a non positive value disables expiration checks and connections will remain in the pool until they are closed.
+ * @param poolEventLoopSize  Set the number of event-loop the pool use. <ul>   <li>when the size is <code>0</code>, the client pool will use the current event-loop</li>   <li>otherwise the client will create and use its own event loop</li> </ul> The default size is <code>0</code>.
  * @param protocolVersion  Set the protocol version.
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
  * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.ext.web.client.CachingWebClientOptions]
@@ -89,6 +91,7 @@ import java.util.concurrent.TimeUnit
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendUnmaskedFrames  Set <code>true</code> when the client wants to skip frame masking. <p> You may want to set it <code>true</code> on server by server WebSocket communication: in this case you are by passing RFC6455 protocol. <p> It's <code>false</code> as default.
+ * @param shared  Set to <code>true</code> to share the client. <p> There can be multiple shared clients distinguished by [io.vertx.core.http.HttpClientOptions], when no specific name is set, the [io.vertx.core.http.HttpClientOptions] is used.
  * @param soLinger  Set whether SO_linger keep alive is enabled
  * @param ssl  Set whether SSL/TLS is enabled
  * @param sslEngineOptions  Set to use SSL engine implementation to use.
@@ -160,6 +163,7 @@ fun cachingWebClientOptionsOf(
   maxWebSocketMessageSize: Int? = null,
   maxWebSockets: Int? = null,
   metricsName: String? = null,
+  name: String? = null,
   nonProxyHosts: Iterable<String>? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
@@ -169,6 +173,7 @@ fun cachingWebClientOptionsOf(
   pipelining: Boolean? = null,
   pipeliningLimit: Int? = null,
   poolCleanerPeriod: Int? = null,
+  poolEventLoopSize: Int? = null,
   protocolVersion: HttpVersion? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   readIdleTimeout: Int? = null,
@@ -177,6 +182,7 @@ fun cachingWebClientOptionsOf(
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
   sendUnmaskedFrames: Boolean? = null,
+  shared: Boolean? = null,
   soLinger: Int? = null,
   ssl: Boolean? = null,
   sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
@@ -328,6 +334,9 @@ fun cachingWebClientOptionsOf(
   if (metricsName != null) {
     this.setMetricsName(metricsName)
   }
+  if (name != null) {
+    this.setName(name)
+  }
   if (nonProxyHosts != null) {
     this.setNonProxyHosts(nonProxyHosts.toList())
   }
@@ -355,6 +364,9 @@ fun cachingWebClientOptionsOf(
   if (poolCleanerPeriod != null) {
     this.setPoolCleanerPeriod(poolCleanerPeriod)
   }
+  if (poolEventLoopSize != null) {
+    this.setPoolEventLoopSize(poolEventLoopSize)
+  }
   if (protocolVersion != null) {
     this.setProtocolVersion(protocolVersion)
   }
@@ -378,6 +390,9 @@ fun cachingWebClientOptionsOf(
   }
   if (sendUnmaskedFrames != null) {
     this.setSendUnmaskedFrames(sendUnmaskedFrames)
+  }
+  if (shared != null) {
+    this.setShared(shared)
   }
   if (soLinger != null) {
     this.setSoLinger(soLinger)

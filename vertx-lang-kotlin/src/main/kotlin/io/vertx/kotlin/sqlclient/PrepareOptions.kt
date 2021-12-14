@@ -21,7 +21,7 @@ import io.vertx.sqlclient.PrepareOptions
  * A function providing a DSL for building [io.vertx.sqlclient.PrepareOptions] objects.
  *
  * Options for preparing a statement.
- *
+ * <p>
  * Currently empty, custom options might be used by implementations to customize specific behavior.
  *
  *

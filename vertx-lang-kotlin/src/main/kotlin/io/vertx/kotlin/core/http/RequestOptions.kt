@@ -31,6 +31,7 @@ import io.vertx.core.net.ProxyOptions
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
+ * @param traceOperation  Override the operation the tracer use for this request. When no operation is set, the HTTP method is used instead.
  * @param uri  Set the request relative URI.
  *
  * <p/>
@@ -45,6 +46,7 @@ fun requestOptionsOf(
   server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   timeout: Long? = null,
+  traceOperation: String? = null,
   uri: String? = null): RequestOptions = io.vertx.core.http.RequestOptions().apply {
 
   if (absoluteURI != null) {
@@ -70,6 +72,9 @@ fun requestOptionsOf(
   }
   if (timeout != null) {
     this.setTimeout(timeout)
+  }
+  if (traceOperation != null) {
+    this.setTraceOperation(traceOperation)
   }
   if (uri != null) {
     this.setURI(uri)

@@ -29,7 +29,9 @@ import io.vertx.amqp.AmqpReceiverOptions
  * @param dynamic  Sets whether the Source terminus to be used should specify it is 'dynamic', requesting the peer creates a node and names it with a generated address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpReceiver] method on the [io.vertx.amqp.AmqpReceiver] received once opened.
  * @param linkName 
  * @param maxBufferedMessages  Sets the max buffered messages. This message can be used to configure the initial credit of a receiver.
+ * @param noLocal  Sets whether this receiver should not receive messages that were sent using the same underlying connection. Used to determine whether to define an "apache.org:no-local-filter:list" filter on the source terminus, requesting that the server filters which messages are delivered to the receiver so that they do not include messages sent on the same underlying connection (if supported by the server in question).
  * @param qos  Sets the local QOS config.
+ * @param selector  Sets a message selector string. Used to define an "apache.org:selector-filter:string" filter on the source terminus, using SQL-based syntax to request the server filters which messages are delivered to the receiver (if supported by the server in question). Precise functionality supported and syntax needed can vary depending on the server.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpReceiverOptions original] using Vert.x codegen.
@@ -42,7 +44,9 @@ fun amqpReceiverOptionsOf(
   dynamic: Boolean? = null,
   linkName: String? = null,
   maxBufferedMessages: Int? = null,
-  qos: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
+  noLocal: Boolean? = null,
+  qos: String? = null,
+  selector: String? = null): AmqpReceiverOptions = io.vertx.amqp.AmqpReceiverOptions().apply {
 
   if (autoAcknowledgement != null) {
     this.setAutoAcknowledgement(autoAcknowledgement)
@@ -67,8 +71,14 @@ fun amqpReceiverOptionsOf(
   if (maxBufferedMessages != null) {
     this.setMaxBufferedMessages(maxBufferedMessages)
   }
+  if (noLocal != null) {
+    this.setNoLocal(noLocal)
+  }
   if (qos != null) {
     this.setQos(qos)
+  }
+  if (selector != null) {
+    this.setSelector(selector)
   }
 }
 

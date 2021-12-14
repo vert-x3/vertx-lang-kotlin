@@ -35,6 +35,7 @@ import io.vertx.core.net.ProxyOptions
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param subProtocols  Set the WebSocket sub protocols to use.
  * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
+ * @param traceOperation  Override the operation the tracer use for this request. When no operation is set, the HTTP method is used instead.
  * @param uri  Set the request relative URI.
  * @param version  Set the WebSocket version.
  *
@@ -53,6 +54,7 @@ fun webSocketConnectOptionsOf(
   ssl: Boolean? = null,
   subProtocols: Iterable<String>? = null,
   timeout: Long? = null,
+  traceOperation: String? = null,
   uri: String? = null,
   version: WebsocketVersion? = null): WebSocketConnectOptions = io.vertx.core.http.WebSocketConnectOptions().apply {
 
@@ -90,6 +92,9 @@ fun webSocketConnectOptionsOf(
   }
   if (timeout != null) {
     this.setTimeout(timeout)
+  }
+  if (traceOperation != null) {
+    this.setTraceOperation(traceOperation)
   }
   if (uri != null) {
     this.setURI(uri)
