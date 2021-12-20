@@ -15,7 +15,7 @@
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
     <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>
-    <log4j2.version>2.15.0</log4j2.version>
+    <log4j2.version>2.17.0</log4j2.version>
   </properties>
 
   <dependencies>
