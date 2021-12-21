@@ -17,12 +17,14 @@ package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.BulkOperation
 import io.vertx.ext.mongo.BulkOperationType
+import io.vertx.ext.mongo.CollationOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.mongo.BulkOperation] objects.
  *
  * Contains all data needed for one operation of a bulk write operation.
  *
+ * @param collation 
  * @param document  Sets the document, used by insert, replace, and update operations
  * @param filter  Sets the filter document, used by replace, update, and delete operations
  * @param multi  Sets the multi flag, used by update and delete operations
@@ -33,12 +35,16 @@ import io.vertx.ext.mongo.BulkOperationType
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.BulkOperation original] using Vert.x codegen.
  */
 fun bulkOperationOf(
+  collation: io.vertx.ext.mongo.CollationOptions? = null,
   document: io.vertx.core.json.JsonObject? = null,
   filter: io.vertx.core.json.JsonObject? = null,
   multi: Boolean? = null,
   type: BulkOperationType? = null,
   upsert: Boolean? = null): BulkOperation = io.vertx.ext.mongo.BulkOperation(io.vertx.core.json.JsonObject()).apply {
 
+  if (collation != null) {
+    this.setCollation(collation)
+  }
   if (document != null) {
     this.setDocument(document)
   }

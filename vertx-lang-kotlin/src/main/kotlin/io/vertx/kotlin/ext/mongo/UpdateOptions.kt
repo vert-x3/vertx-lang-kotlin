@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.UpdateOptions
+import io.vertx.ext.mongo.CollationOptions
 import io.vertx.ext.mongo.WriteOption
 
 /**
@@ -24,6 +25,7 @@ import io.vertx.ext.mongo.WriteOption
  * Options for configuring updates.
  *
  * @param arrayFilters  Set the arrayFilters option
+ * @param collation  Collation options
  * @param multi  Set whether multi is enabled
  * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
  * @param upsert  Set whether upsert is enabled
@@ -34,6 +36,7 @@ import io.vertx.ext.mongo.WriteOption
  */
 fun updateOptionsOf(
   arrayFilters: io.vertx.core.json.JsonArray? = null,
+  collation: io.vertx.ext.mongo.CollationOptions? = null,
   multi: Boolean? = null,
   returningNewDocument: Boolean? = null,
   upsert: Boolean? = null,
@@ -41,6 +44,9 @@ fun updateOptionsOf(
 
   if (arrayFilters != null) {
     this.setArrayFilters(arrayFilters)
+  }
+  if (collation != null) {
+    this.setCollation(collation)
   }
   if (multi != null) {
     this.setMulti(multi)

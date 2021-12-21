@@ -19,6 +19,8 @@ import io.vertx.core.json.JsonArray
 import io.vertx.core.json.JsonObject
 import io.vertx.ext.mongo.BulkOperation
 import io.vertx.ext.mongo.BulkWriteOptions
+import io.vertx.ext.mongo.CountOptions
+import io.vertx.ext.mongo.CreateCollectionOptions
 import io.vertx.ext.mongo.FindOptions
 import io.vertx.ext.mongo.IndexModel
 import io.vertx.ext.mongo.IndexOptions
@@ -407,6 +409,23 @@ suspend fun MongoClient.countAwait(collection: String, query: JsonObject): Long 
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.countWithOptions]
+ *
+ * @param collection the collection
+ * @param query query used to match documents
+ * @param countOptions 
+ * @return [Long]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use countWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("countWithOptions(collection, query, countOptions).await()"))
+suspend fun MongoClient.countWithOptionsAwait(collection: String, query: JsonObject, countOptions: CountOptions): Long {
+  return awaitResult {
+    this.countWithOptions(collection, query, countOptions, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.mongo.MongoClient.removeDocuments]
  *
  * @param collection the collection
@@ -483,6 +502,21 @@ suspend fun MongoClient.removeDocumentWithOptionsAwait(collection: String, query
 suspend fun MongoClient.createCollectionAwait(collectionName: String): Unit {
   return awaitResult {
     this.createCollection(collectionName, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.createCollectionWithOptions]
+ *
+ * @param collectionName the name of the collection
+ * @param collectionOptions options of the collection
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use createCollectionWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("createCollectionWithOptions(collectionName, collectionOptions).await()"))
+suspend fun MongoClient.createCollectionWithOptionsAwait(collectionName: String, collectionOptions: CreateCollectionOptions): Unit {
+  return awaitResult {
+    this.createCollectionWithOptions(collectionName, collectionOptions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.FindOptions
+import io.vertx.ext.mongo.CollationOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.mongo.FindOptions] objects.
@@ -23,6 +24,7 @@ import io.vertx.ext.mongo.FindOptions
  * Options used to configure find operations.
  *
  * @param batchSize  Set the batch size for methods loading found data in batches.
+ * @param collation  Set the collation
  * @param fields  Set the fields
  * @param hint  Set the hint
  * @param limit  Set the limit
@@ -34,6 +36,7 @@ import io.vertx.ext.mongo.FindOptions
  */
 fun findOptionsOf(
   batchSize: Int? = null,
+  collation: io.vertx.ext.mongo.CollationOptions? = null,
   fields: io.vertx.core.json.JsonObject? = null,
   hint: String? = null,
   limit: Int? = null,
@@ -42,6 +45,9 @@ fun findOptionsOf(
 
   if (batchSize != null) {
     this.setBatchSize(batchSize)
+  }
+  if (collation != null) {
+    this.setCollation(collation)
   }
   if (fields != null) {
     this.setFields(fields)
