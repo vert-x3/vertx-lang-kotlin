@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.web.client
 
 import io.vertx.ext.web.client.WebClientOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
 import io.vertx.core.net.JdkSSLEngineOptions
@@ -32,6 +33,7 @@ import java.util.concurrent.TimeUnit
  * A function providing a DSL for building [io.vertx.ext.web.client.WebClientOptions] objects.
  *
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiation. When the list is empty, the client provides a best effort list according to [io.vertx.ext.web.client.WebClientOptions]: <ul>   <li>: [ "h2", "http/1.1" ]</li>   <li>otherwise: [[io.vertx.core.http.HttpClientOptions]]</li> </ul>
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -120,6 +122,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.WebClientOptions original] using Vert.x codegen.
  */
 fun webClientOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -204,6 +207,9 @@ fun webClientOptionsOf(
   webSocketCompressionRequestServerNoContext: Boolean? = null,
   writeIdleTimeout: Int? = null): WebClientOptions = io.vertx.ext.web.client.WebClientOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
   }

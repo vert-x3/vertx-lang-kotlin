@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.NetClientOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -30,6 +31,7 @@ import java.util.concurrent.TimeUnit
  *
  * Options for configuring a [io.vertx.core.net.NetClient].
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -80,6 +82,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.NetClientOptions original] using Vert.x codegen.
  */
 fun netClientOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -126,6 +129,9 @@ fun netClientOptionsOf(
   useAlpn: Boolean? = null,
   writeIdleTimeout: Int? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

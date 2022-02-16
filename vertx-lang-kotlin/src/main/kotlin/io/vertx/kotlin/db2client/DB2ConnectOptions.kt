@@ -16,6 +16,7 @@
 package io.vertx.kotlin.db2client
 
 import io.vertx.db2client.DB2ConnectOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.db2client.DB2Connection] or [io.vertx.db2client.DB2Pool].
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
@@ -91,6 +93,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.db2client.DB2ConnectOptions original] using Vert.x codegen.
  */
 fun db2ConnectOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
@@ -147,6 +150,9 @@ fun db2ConnectOptionsOf(
   user: String? = null,
   writeIdleTimeout: Int? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

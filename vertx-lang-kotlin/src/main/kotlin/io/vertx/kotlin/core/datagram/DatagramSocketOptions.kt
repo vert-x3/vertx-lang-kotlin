@@ -16,12 +16,14 @@
 package io.vertx.kotlin.core.datagram
 
 import io.vertx.core.datagram.DatagramSocketOptions
+import io.netty.handler.logging.ByteBufFormat
 
 /**
  * A function providing a DSL for building [io.vertx.core.datagram.DatagramSocketOptions] objects.
  *
  * Options used to configure a datagram socket.
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param broadcast  Set if the socket can send or receive broadcast packets
  * @param ipV6  Set if IP v6 should be used
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
@@ -38,6 +40,7 @@ import io.vertx.core.datagram.DatagramSocketOptions
  * NOTE: This function has been automatically generated from the [io.vertx.core.datagram.DatagramSocketOptions original] using Vert.x codegen.
  */
 fun datagramSocketOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   broadcast: Boolean? = null,
   ipV6: Boolean? = null,
   logActivity: Boolean? = null,
@@ -50,6 +53,9 @@ fun datagramSocketOptionsOf(
   sendBufferSize: Int? = null,
   trafficClass: Int? = null): DatagramSocketOptions = io.vertx.core.datagram.DatagramSocketOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (broadcast != null) {
     this.setBroadcast(broadcast)
   }

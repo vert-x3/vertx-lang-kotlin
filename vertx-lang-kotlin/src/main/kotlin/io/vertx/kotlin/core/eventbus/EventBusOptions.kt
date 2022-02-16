@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.eventbus
 
 import io.vertx.core.eventbus.EventBusOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Options to configure the event bus.
  *
  * @param acceptBacklog  Set the accept back log.
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param clientAuth  Set whether client auth is required
  * @param clusterNodeMetadata  Set information about this node when Vert.x is clustered. <p> The data may be used by the [io.vertx.core.spi.cluster.NodeSelector] to select a node for a given message. For example, it could be used to implement a partioning strategy. <p> The default [io.vertx.core.spi.cluster.NodeSelector] does not use the node metadata.
  * @param clusterPingInterval  Set the value of cluster ping interval, in ms.
@@ -83,6 +85,7 @@ import java.util.concurrent.TimeUnit
  */
 fun eventBusOptionsOf(
   acceptBacklog: Int? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   clientAuth: ClientAuth? = null,
   clusterNodeMetadata: io.vertx.core.json.JsonObject? = null,
   clusterPingInterval: Long? = null,
@@ -132,6 +135,9 @@ fun eventBusOptionsOf(
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)

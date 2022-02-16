@@ -16,14 +16,16 @@
 package io.vertx.kotlin.core.dns
 
 import io.vertx.core.dns.DnsClientOptions
+import io.netty.handler.logging.ByteBufFormat
 
 /**
  * A function providing a DSL for building [io.vertx.core.dns.DnsClientOptions] objects.
  *
  * Configuration options for Vert.x DNS client.
  *
+ * @param activityLogFormat  Set the value of Netty's logging handler's data format:  Netty's pipeline is configured for logging on Netty's logger.
  * @param host  Set the host name to be used by this client in requests.
- * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
+ * @param logActivity  Set to true to enable network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param port  Set the port to be used by this client in requests.
  * @param queryTimeout  Set the query timeout in milliseconds, i.e the amount of time after a query is considered to be failed.
  * @param recursionDesired  Set whether or not recursion is desired
@@ -32,12 +34,16 @@ import io.vertx.core.dns.DnsClientOptions
  * NOTE: This function has been automatically generated from the [io.vertx.core.dns.DnsClientOptions original] using Vert.x codegen.
  */
 fun dnsClientOptionsOf(
+  activityLogFormat: ByteBufFormat? = null,
   host: String? = null,
   logActivity: Boolean? = null,
   port: Int? = null,
   queryTimeout: Long? = null,
   recursionDesired: Boolean? = null): DnsClientOptions = io.vertx.core.dns.DnsClientOptions().apply {
 
+  if (activityLogFormat != null) {
+    this.setActivityLogFormat(activityLogFormat)
+  }
   if (host != null) {
     this.setHost(host)
   }

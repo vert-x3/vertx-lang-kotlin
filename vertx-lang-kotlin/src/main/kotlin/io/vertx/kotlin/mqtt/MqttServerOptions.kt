@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mqtt
 
 import io.vertx.mqtt.MqttServerOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Represents options used by the MQTT server
  *
  * @param acceptBacklog  Set the accept back log
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param autoClientId  Set if clientid should be auto-generated when it's "zero-bytes"
  * @param clientAuth  Set whether client auth is required
  * @param crlPaths  Add a CRL path
@@ -83,6 +85,7 @@ import java.util.concurrent.TimeUnit
  */
 fun mqttServerOptionsOf(
   acceptBacklog: Int? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   autoClientId: Boolean? = null,
   clientAuth: ClientAuth? = null,
   crlPaths: Iterable<String>? = null,
@@ -132,6 +135,9 @@ fun mqttServerOptionsOf(
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (autoClientId != null) {
     this.setAutoClientId(autoClientId)

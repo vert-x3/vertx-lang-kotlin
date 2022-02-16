@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.mail
 
 import io.vertx.ext.mail.MailConfig
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -34,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * represents the configuration of a mail service with mail server hostname,
  * port, security options, login options and login/password
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param allowRcptErrors  set if sending allows rcpt errors <p> if true, the mail will be sent to the recipients that the server accepted, if any <p>
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param authMethods  set string of allowed auth methods. if set only these methods will be used if the server supports them. If null or empty all supported methods may be used
@@ -110,6 +112,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailConfig original] using Vert.x codegen.
  */
 fun mailConfigOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   allowRcptErrors: Boolean? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   authMethods: String? = null,
@@ -182,6 +185,9 @@ fun mailConfigOf(
   workstation: String? = null,
   writeIdleTimeout: Int? = null): MailConfig = io.vertx.ext.mail.MailConfig().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (allowRcptErrors != null) {
     this.setAllowRcptErrors(allowRcptErrors)
   }

@@ -16,6 +16,7 @@
 package io.vertx.kotlin.pgclient
 
 import io.vertx.pgclient.PgConnectOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * A function providing a DSL for building [io.vertx.pgclient.PgConnectOptions] objects.
  *
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
@@ -93,6 +95,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.pgclient.PgConnectOptions original] using Vert.x codegen.
  */
 fun pgConnectOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
@@ -151,6 +154,9 @@ fun pgConnectOptionsOf(
   user: String? = null,
   writeIdleTimeout: Int? = null): PgConnectOptions = io.vertx.pgclient.PgConnectOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

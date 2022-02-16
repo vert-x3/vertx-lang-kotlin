@@ -21,6 +21,7 @@ import io.vertx.ext.mongo.BulkOperation
 import io.vertx.ext.mongo.BulkWriteOptions
 import io.vertx.ext.mongo.CountOptions
 import io.vertx.ext.mongo.CreateCollectionOptions
+import io.vertx.ext.mongo.DistinctOptions
 import io.vertx.ext.mongo.FindOptions
 import io.vertx.ext.mongo.IndexModel
 import io.vertx.ext.mongo.IndexOptions
@@ -658,6 +659,24 @@ suspend fun MongoClient.distinctAwait(collection: String, fieldName: String, res
 }
 
 /**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.distinct]
+ *
+ * @param collection the collection
+ * @param fieldName the field name
+ * @param resultClassname 
+ * @param distinctOptions options (e.g. collation)
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use distinct returning a future and chain with await()", replaceWith = ReplaceWith("distinct(collection, fieldName, resultClassname, distinctOptions).await()"))
+suspend fun MongoClient.distinctAwait(collection: String, fieldName: String, resultClassname: String, distinctOptions: DistinctOptions): JsonArray {
+  return awaitResult {
+    this.distinct(collection, fieldName, resultClassname, distinctOptions, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.mongo.MongoClient.distinctWithQuery]
  *
  * @param collection the collection
@@ -672,6 +691,25 @@ suspend fun MongoClient.distinctAwait(collection: String, fieldName: String, res
 suspend fun MongoClient.distinctWithQueryAwait(collection: String, fieldName: String, resultClassname: String, query: JsonObject): JsonArray {
   return awaitResult {
     this.distinctWithQuery(collection, fieldName, resultClassname, query, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.mongo.MongoClient.distinctWithQuery]
+ *
+ * @param collection the collection
+ * @param fieldName the field name
+ * @param resultClassname 
+ * @param query the query
+ * @param distinctOptions options (e.g. collation)
+ * @return [JsonArray]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mongo.MongoClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use distinctWithQuery returning a future and chain with await()", replaceWith = ReplaceWith("distinctWithQuery(collection, fieldName, resultClassname, query, distinctOptions).await()"))
+suspend fun MongoClient.distinctWithQueryAwait(collection: String, fieldName: String, resultClassname: String, query: JsonObject, distinctOptions: DistinctOptions): JsonArray {
+  return awaitResult {
+    this.distinctWithQuery(collection, fieldName, resultClassname, query, distinctOptions, it)
   }
 }
 

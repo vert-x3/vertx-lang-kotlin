@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.CollationOptions
+import com.mongodb.client.model.CollationStrength
 
 /**
  * A function providing a DSL for building [io.vertx.ext.mongo.CollationOptions] objects.
@@ -38,7 +39,7 @@ fun collationOptionsOf(
   locale: String? = null,
   normalization: Boolean? = null,
   numericOrdering: Boolean? = null,
-  strength: Int? = null): CollationOptions = io.vertx.ext.mongo.CollationOptions().apply {
+  strength: CollationStrength? = null): CollationOptions = io.vertx.ext.mongo.CollationOptions().apply {
 
   if (backwards != null) {
     this.setBackwards(backwards)

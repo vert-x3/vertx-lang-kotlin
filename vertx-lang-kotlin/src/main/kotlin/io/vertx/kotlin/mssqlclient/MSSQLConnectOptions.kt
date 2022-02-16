@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mssqlclient
 
 import io.vertx.mssqlclient.MSSQLConnectOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.mssqlclient.MSSQLConnection].
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
  * @param connectTimeout  Set the connect timeout
@@ -93,6 +95,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.mssqlclient.MSSQLConnectOptions original] using Vert.x codegen.
  */
 fun mssqlConnectOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   cachePreparedStatements: Boolean? = null,
   connectTimeout: Int? = null,
@@ -151,6 +154,9 @@ fun mssqlConnectOptionsOf(
   user: String? = null,
   writeIdleTimeout: Int? = null): MSSQLConnectOptions = io.vertx.mssqlclient.MSSQLConnectOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

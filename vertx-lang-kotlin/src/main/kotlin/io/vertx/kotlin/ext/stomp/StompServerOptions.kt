@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.stomp
 
 import io.vertx.ext.stomp.StompServerOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * STOMP Server options. You can also configure the Net Server used by the STOMP server from these options.
  *
  * @param acceptBacklog  Set the accept back log
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param clientAuth  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -93,6 +95,7 @@ import java.util.concurrent.TimeUnit
  */
 fun stompServerOptionsOf(
   acceptBacklog: Int? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   clientAuth: ClientAuth? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -152,6 +155,9 @@ fun stompServerOptionsOf(
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)

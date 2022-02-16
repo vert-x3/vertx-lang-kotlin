@@ -16,6 +16,7 @@
 package io.vertx.kotlin.amqp
 
 import io.vertx.amqp.AmqpClientOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Configures the AMQP Client.
  * You can also configure the underlying Proton instance. Refer to  for details.
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param connectTimeout 
  * @param connectionHostname  Explicitly override the hostname value used for the AMQP Open frame. The host connected to as per [io.vertx.amqp.AmqpClientOptions] will be used in the Open frame by default.
@@ -92,6 +94,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
  */
 fun amqpClientOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   connectTimeout: Int? = null,
   connectionHostname: String? = null,
@@ -149,6 +152,9 @@ fun amqpClientOptionsOf(
   virtualHost: String? = null,
   writeIdleTimeout: Int? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

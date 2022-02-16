@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mysqlclient
 
 import io.vertx.mysqlclient.MySQLConnectOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
 import io.vertx.core.net.OpenSSLEngineOptions
@@ -33,6 +34,7 @@ import java.util.concurrent.TimeUnit
  *
  * Connect options for configuring [io.vertx.mysqlclient.MySQLConnection] or [io.vertx.mysqlclient.MySQLPool].
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
  * @param authenticationPlugin  Set the default [io.vertx.mysqlclient.MySQLAuthenticationPlugin] for the client, the option will take effect at the connection start.
  * @param cachePreparedStatements  Set whether prepared statements cache should be enabled.
@@ -101,6 +103,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.mysqlclient.MySQLConnectOptions original] using Vert.x codegen.
  */
 fun mySQLConnectOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
   authenticationPlugin: MySQLAuthenticationPlugin? = null,
   cachePreparedStatements: Boolean? = null,
@@ -165,6 +168,9 @@ fun mySQLConnectOptionsOf(
   user: String? = null,
   writeIdleTimeout: Int? = null): MySQLConnectOptions = io.vertx.mysqlclient.MySQLConnectOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
   }

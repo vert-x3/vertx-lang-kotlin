@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.NetServerOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Options for configuring a [io.vertx.core.net.NetServer].
  *
  * @param acceptBacklog  Set the accept back log
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param clientAuth  Set whether client auth is required
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
@@ -79,6 +81,7 @@ import java.util.concurrent.TimeUnit
  */
 fun netServerOptionsOf(
   acceptBacklog: Int? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   clientAuth: ClientAuth? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
@@ -124,6 +127,9 @@ fun netServerOptionsOf(
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (clientAuth != null) {
     this.setClientAuth(clientAuth)

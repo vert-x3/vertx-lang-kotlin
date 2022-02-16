@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.shell.term
 
 import io.vertx.ext.shell.term.HttpTermOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
@@ -36,6 +37,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param acceptBacklog  Set the accept back log
  * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param authOptions  Set the auth options.
  * @param charset  Set the charset used for encoding / decoding text data from/to SockJS
@@ -115,6 +117,7 @@ import java.util.concurrent.TimeUnit
 fun httpTermOptionsOf(
   acceptBacklog: Int? = null,
   acceptUnmaskedFrames: Boolean? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   authOptions: io.vertx.core.json.JsonObject? = null,
   charset: String? = null,
@@ -193,6 +196,9 @@ fun httpTermOptionsOf(
   }
   if (acceptUnmaskedFrames != null) {
     this.setAcceptUnmaskedFrames(acceptUnmaskedFrames)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())

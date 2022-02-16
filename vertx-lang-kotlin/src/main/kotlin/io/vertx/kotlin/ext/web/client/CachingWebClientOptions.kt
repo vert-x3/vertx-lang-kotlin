@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.web.client
 
 import io.vertx.ext.web.client.CachingWebClientOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpVersion
@@ -33,6 +34,7 @@ import java.util.concurrent.TimeUnit
  * A function providing a DSL for building [io.vertx.ext.web.client.CachingWebClientOptions] objects.
  *
  *
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiation. When the list is empty, the client provides a best effort list according to [io.vertx.ext.web.client.CachingWebClientOptions]: <ul>   <li>: [ "h2", "http/1.1" ]</li>   <li>otherwise: [[io.vertx.core.http.HttpClientOptions]]</li> </ul>
  * @param cachedMethods  Configure the HTTP methods that can be cached.
  * @param cachedStatusCodes  Configure the status codes that can be cached.
@@ -124,6 +126,7 @@ import java.util.concurrent.TimeUnit
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.CachingWebClientOptions original] using Vert.x codegen.
  */
 fun cachingWebClientOptionsOf(
+  activityLogDataFormat: ByteBufFormat? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   cachedMethods: Iterable<io.vertx.core.http.HttpMethod>? = null,
   cachedStatusCodes: Iterable<Int>? = null,
@@ -211,6 +214,9 @@ fun cachingWebClientOptionsOf(
   webSocketCompressionRequestServerNoContext: Boolean? = null,
   writeIdleTimeout: Int? = null): CachingWebClientOptions = io.vertx.ext.web.client.CachingWebClientOptions().apply {
 
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
+  }
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
   }

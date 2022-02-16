@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.shell.term
 
 import io.vertx.ext.shell.term.TelnetTermOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * Telnet terminal options configuration, extends [io.vertx.core.net.NetServerOptions].
  *
  * @param acceptBacklog  Set the accept back log
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param charset  Set the charset to use when binary mode is active, see [io.vertx.ext.shell.term.TelnetTermOptions] and [io.vertx.ext.shell.term.TelnetTermOptions].
  * @param clientAuth  Set whether client auth is required
  * @param crlPaths  Add a CRL path
@@ -83,6 +85,7 @@ import java.util.concurrent.TimeUnit
  */
 fun telnetTermOptionsOf(
   acceptBacklog: Int? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   charset: String? = null,
   clientAuth: ClientAuth? = null,
   crlPaths: Iterable<String>? = null,
@@ -132,6 +135,9 @@ fun telnetTermOptionsOf(
 
   if (acceptBacklog != null) {
     this.setAcceptBacklog(acceptBacklog)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (charset != null) {
     this.setCharset(charset)

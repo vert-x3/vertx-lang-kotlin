@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ConsulClientOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
 import io.vertx.core.net.JdkSSLEngineOptions
@@ -34,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * Options used to create Consul client.
  *
  * @param aclToken  Set the ACL token. When provided, the client will use this token when making requests to the Consul by providing the "?token" query parameter. When not provided, the empty token, which maps to the 'anonymous' ACL policy, is used.
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiation. When the list is empty, the client provides a best effort list according to [io.vertx.ext.consul.ConsulClientOptions]: <ul>   <li>: [ "h2", "http/1.1" ]</li>   <li>otherwise: [[io.vertx.core.http.HttpClientOptions]]</li> </ul>
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
@@ -125,6 +127,7 @@ import java.util.concurrent.TimeUnit
  */
 fun consulClientOptionsOf(
   aclToken: String? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
@@ -213,6 +216,9 @@ fun consulClientOptionsOf(
 
   if (aclToken != null) {
     this.setAclToken(aclToken)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())

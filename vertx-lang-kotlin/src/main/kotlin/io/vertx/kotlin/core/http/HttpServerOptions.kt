@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.HttpServerOptions
+import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.http.ClientAuth
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
@@ -35,6 +36,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param acceptBacklog  Set the accept back log
  * @param acceptUnmaskedFrames  Set <code>true</code> when the server accepts unmasked frame. As default Server doesn't accept unmasked frame, you can bypass this behaviour (RFC 6455) setting <code>true</code>. It's set to <code>false</code> as default.
+ * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param clientAuth  Set whether client auth is required
  * @param compressionLevel  This method allows to set the compression level to be used in http1.x/2 response bodies when compression support is turned on (@see setCompressionSupported) and the client advertises to support <code>deflate/gzip</code> compression in the <code>Accept-Encoding</code> header default value is : 6 (Netty legacy) The compression level determines how much the data is compressed on a scale from 1 to 9, where '9' is trying to achieve the maximum compression ratio while '1' instead is giving priority to speed instead of compression ratio using some algorithm optimizations and skipping pedantic loops that usually gives just little improvements While one can think that best value is always the maximum compression ratio, there's a trade-off to consider: the most compressed level requires the most computational work to compress/decompress data, e.g. more dictionary lookups and loops. E.g. you have it set fairly high on a high-volume website, you may experience performance degradation and latency on resource serving due to CPU overload, and, however - as the computational work is required also client side while decompressing - setting an higher compression level can result in an overall higher page load time especially nowadays when many clients are handled mobile devices with a low CPU profile. see also: http://www.gzip.org/algorithm.txt
@@ -106,6 +108,7 @@ import java.util.concurrent.TimeUnit
 fun httpServerOptionsOf(
   acceptBacklog: Int? = null,
   acceptUnmaskedFrames: Boolean? = null,
+  activityLogDataFormat: ByteBufFormat? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   clientAuth: ClientAuth? = null,
   compressionLevel: Int? = null,
@@ -176,6 +179,9 @@ fun httpServerOptionsOf(
   }
   if (acceptUnmaskedFrames != null) {
     this.setAcceptUnmaskedFrames(acceptUnmaskedFrames)
+  }
+  if (activityLogDataFormat != null) {
+    this.setActivityLogDataFormat(activityLogDataFormat)
   }
   if (alpnVersions != null) {
     this.setAlpnVersions(alpnVersions.toList())
