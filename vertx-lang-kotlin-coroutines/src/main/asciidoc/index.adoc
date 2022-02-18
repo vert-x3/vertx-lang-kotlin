@@ -24,9 +24,6 @@ its current kernel thread so that another coroutine can process events.
 
 `vertx-lang-kotlin-coroutines` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
 
-NOTE: `vertx-lang-kotlin-coroutines` currently only works with Kotlin and will be out of the https://kotlinlang.org/docs/reference/coroutines.html#experimental-status-of-coroutines[experimental] status
-in Kotlin 1.3
-
 == Running a coroutine from a Vert.x context
 
 Having imported `io.vertx.kotlin.coroutines.VertxCoroutine`, the `GlobalScope.launch` method allows to run a block of code as a
@@ -47,7 +44,7 @@ More details are given in the next sections on handlers, events and stream of ev
 == Extending CoroutineVerticle
 
 You can deploy your code as instances of `io.vertx.kotlin.coroutines.CoroutineVerticle`, a specialized type of verticle
-for Kotlin coroutines. The `CoroutineVerticle` class implements the `kotlinx.coroutines.experimental.CoroutineScope` interface,
+for Kotlin coroutines. The `CoroutineVerticle` class implements the `kotlinx.coroutines.CoroutineScope` interface,
 making all coroutines builder methods bounded by default to the verticle context. You should override the suspending `start()`
 and (optionally) the suspending `stop()` methods of the verticle:
 
@@ -250,7 +247,7 @@ inside the scope, all the others, defined inside that scope, will be cancelled t
 
 Vert.x integration has been designed to be fully interoperable with Kotlin coroutines
 
-* `kotlinx.coroutines.experimental.sync.Mutex` are executed on the event loop thread when using the vertx dispatcher
+* `kotlinx.coroutines.sync.Mutex` are executed on the event loop thread when using the vertx dispatcher
 
 == RxJava interoperability
 
