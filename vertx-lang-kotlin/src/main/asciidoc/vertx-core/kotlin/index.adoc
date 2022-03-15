@@ -147,11 +147,12 @@ Of course it is possible to mix objects and arrays
 ----
 // The json builder declares a JSON structure
 val result = json {
-
-  "firstName" to "Dale",
-  "lastName" to "Cooper",
-  "age" to 64,
-  "names" to array("Dale", "Bartholomew")
+      obj(
+        "firstName" to "Dale",
+        "lastName" to "Cooper",
+        "age" to 64,
+        "names" to array("Dale", "Bartholomew")
+      )
 }
 ----
 
