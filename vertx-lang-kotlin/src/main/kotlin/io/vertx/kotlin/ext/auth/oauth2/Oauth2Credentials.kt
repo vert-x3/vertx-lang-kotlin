@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.auth.oauth2
 
 import io.vertx.ext.auth.oauth2.Oauth2Credentials
+import io.vertx.ext.auth.oauth2.OAuth2FlowType
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.oauth2.Oauth2Credentials] objects.
@@ -25,6 +26,7 @@ import io.vertx.ext.auth.oauth2.Oauth2Credentials
  * @param assertion 
  * @param code 
  * @param codeVerifier 
+ * @param flow 
  * @param jwt 
  * @param password 
  * @param redirectUri 
@@ -38,6 +40,7 @@ fun oauth2CredentialsOf(
   assertion: String? = null,
   code: String? = null,
   codeVerifier: String? = null,
+  flow: OAuth2FlowType? = null,
   jwt: io.vertx.core.json.JsonObject? = null,
   password: String? = null,
   redirectUri: String? = null,
@@ -52,6 +55,9 @@ fun oauth2CredentialsOf(
   }
   if (codeVerifier != null) {
     this.setCodeVerifier(codeVerifier)
+  }
+  if (flow != null) {
+    this.setFlow(flow)
   }
   if (jwt != null) {
     this.setJwt(jwt)
