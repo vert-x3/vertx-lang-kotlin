@@ -27,6 +27,8 @@ import io.vertx.ext.mongo.CollationOptions
  * @param collation 
  * @param document  Sets the document, used by insert, replace, and update operations
  * @param filter  Sets the filter document, used by replace, update, and delete operations
+ * @param hint  Sets the operation hint
+ * @param hintString  Sets the operation hint string
  * @param multi  Sets the multi flag, used by update and delete operations
  * @param type  Sets the operation type
  * @param upsert  Sets the upsert flag, used by update and replace operations
@@ -38,6 +40,8 @@ fun bulkOperationOf(
   collation: io.vertx.ext.mongo.CollationOptions? = null,
   document: io.vertx.core.json.JsonObject? = null,
   filter: io.vertx.core.json.JsonObject? = null,
+  hint: io.vertx.core.json.JsonObject? = null,
+  hintString: String? = null,
   multi: Boolean? = null,
   type: BulkOperationType? = null,
   upsert: Boolean? = null): BulkOperation = io.vertx.ext.mongo.BulkOperation(io.vertx.core.json.JsonObject()).apply {
@@ -50,6 +54,12 @@ fun bulkOperationOf(
   }
   if (filter != null) {
     this.setFilter(filter)
+  }
+  if (hint != null) {
+    this.setHint(hint)
+  }
+  if (hintString != null) {
+    this.setHintString(hintString)
   }
   if (multi != null) {
     this.setMulti(multi)

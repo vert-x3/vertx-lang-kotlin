@@ -20,7 +20,6 @@ import io.vertx.ext.auth.jdbc.JDBCAuthorizationOptions
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.jdbc.JDBCAuthorizationOptions] objects.
  *
- * Options configuring JDBC authentication.
  *
  * @param permissionsQuery  Set the permissions query to use. Use this if you want to override the default permissions query.
  * @param rolesQuery  Set the roles query to use. Use this if you want to override the default roles query.

@@ -223,3 +223,31 @@ suspend fun <K,V> AsyncMap<K,V>.sizeAwait(): Int {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.keys]
+ *
+ * @return [Set<K>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use keys returning a future and chain with await()", replaceWith = ReplaceWith("keys().await()"))
+suspend fun <K,V> AsyncMap<K,V>.keysAwait(): Set<K> {
+  return awaitResult {
+    this.keys(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.shareddata.AsyncMap.values]
+ *
+ * @return [List<V>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.shareddata.AsyncMap] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use values returning a future and chain with await()", replaceWith = ReplaceWith("values().await()"))
+suspend fun <K,V> AsyncMap<K,V>.valuesAwait(): List<V> {
+  return awaitResult {
+    this.values(it)
+  }
+}
+

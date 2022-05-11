@@ -64,6 +64,7 @@ import java.util.concurrent.TimeUnit
  * @param pemTrustOptions  Set the trust options in pem format
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
+ * @param pipeliningLimit  Set the pipelining limit count.
  * @param port  Specify the port for connecting to the server.
  * @param preparedStatementCacheMaxSize  Set the maximum number of prepared statements that the connection will cache.
  * @param preparedStatementCacheSqlLimit  Set the maximum length of prepared statement SQL string that the connection will cache. <p> This is an helper setting the [io.vertx.mysqlclient.MySQLConnectOptions].
@@ -133,6 +134,7 @@ fun mySQLConnectOptionsOf(
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
+  pipeliningLimit: Int? = null,
   port: Int? = null,
   preparedStatementCacheMaxSize: Int? = null,
   preparedStatementCacheSqlLimit: Int? = null,
@@ -263,6 +265,9 @@ fun mySQLConnectOptionsOf(
   }
   if (pfxTrustOptions != null) {
     this.setPfxTrustOptions(pfxTrustOptions)
+  }
+  if (pipeliningLimit != null) {
+    this.setPipeliningLimit(pipeliningLimit)
   }
   if (port != null) {
     this.setPort(port)

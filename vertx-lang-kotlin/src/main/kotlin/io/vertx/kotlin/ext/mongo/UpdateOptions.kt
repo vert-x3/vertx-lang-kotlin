@@ -26,6 +26,8 @@ import io.vertx.ext.mongo.WriteOption
  *
  * @param arrayFilters  Set the arrayFilters option
  * @param collation  Collation options
+ * @param hint  Set the hint.
+ * @param hintString  Set the hint string.
  * @param multi  Set whether multi is enabled
  * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
  * @param upsert  Set whether upsert is enabled
@@ -37,6 +39,8 @@ import io.vertx.ext.mongo.WriteOption
 fun updateOptionsOf(
   arrayFilters: io.vertx.core.json.JsonArray? = null,
   collation: io.vertx.ext.mongo.CollationOptions? = null,
+  hint: io.vertx.core.json.JsonObject? = null,
+  hintString: String? = null,
   multi: Boolean? = null,
   returningNewDocument: Boolean? = null,
   upsert: Boolean? = null,
@@ -47,6 +51,12 @@ fun updateOptionsOf(
   }
   if (collation != null) {
     this.setCollation(collation)
+  }
+  if (hint != null) {
+    this.setHint(hint)
+  }
+  if (hintString != null) {
+    this.setHintString(hintString)
   }
   if (multi != null) {
     this.setMulti(multi)

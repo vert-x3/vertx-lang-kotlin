@@ -20,7 +20,6 @@ import io.vertx.ext.auth.jdbc.JDBCAuthenticationOptions
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.jdbc.JDBCAuthenticationOptions] objects.
  *
- * Options configuring JDBC authentication.
  *
  * @param authenticationQuery  Set the authentication query to use. Use this if you want to override the default authentication query.
  *

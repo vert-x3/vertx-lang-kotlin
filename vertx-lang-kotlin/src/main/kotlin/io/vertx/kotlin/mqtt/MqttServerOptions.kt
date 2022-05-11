@@ -78,6 +78,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param useWebSocket  enable mqtt over websocket
+ * @param webSocketMaxFrameSize  Set the WebSocket max frame size. <p> This should be used when WebSocket transport is used and [io.vertx.mqtt.MqttServerOptions] is larger than the WebSocket frame size
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  *
  * <p/>
@@ -131,6 +132,7 @@ fun mqttServerOptionsOf(
   useAlpn: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   useWebSocket: Boolean? = null,
+  webSocketMaxFrameSize: Int? = null,
   writeIdleTimeout: Int? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
@@ -279,6 +281,9 @@ fun mqttServerOptionsOf(
   }
   if (useWebSocket != null) {
     this.setUseWebSocket(useWebSocket)
+  }
+  if (webSocketMaxFrameSize != null) {
+    this.setWebSocketMaxFrameSize(webSocketMaxFrameSize)
   }
   if (writeIdleTimeout != null) {
     this.setWriteIdleTimeout(writeIdleTimeout)

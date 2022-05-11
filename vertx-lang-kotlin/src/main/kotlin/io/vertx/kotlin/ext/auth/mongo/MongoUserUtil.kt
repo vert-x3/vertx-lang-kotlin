@@ -22,7 +22,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  * Suspending version of method [io.vertx.ext.auth.mongo.MongoUserUtil.createUser]
  *
  * @param username the username to be set
- * @param password the passsword in clear text, will be adapted following the definitions of the defined strategy
+ * @param password the password in clear text, will be adapted following the definitions of the defined strategy
  * @return [String]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.

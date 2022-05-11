@@ -17,6 +17,7 @@ package io.vertx.kotlin.core.file
 
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.file.AsyncFile
+import io.vertx.core.file.AsyncFileLock
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -145,6 +146,37 @@ suspend fun AsyncFile.flushAwait(): Unit {
 suspend fun AsyncFile.sizeAwait(): Long {
   return awaitResult {
     this.size(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.file.AsyncFile.lock]
+ *
+ * @return [AsyncFileLock]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use lock returning a future and chain with await()", replaceWith = ReplaceWith("lock().await()"))
+suspend fun AsyncFile.lockAwait(): AsyncFileLock {
+  return awaitResult {
+    this.lock(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.file.AsyncFile.lock]
+ *
+ * @param position 
+ * @param size 
+ * @param shared 
+ * @return [AsyncFileLock]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFile] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use lock returning a future and chain with await()", replaceWith = ReplaceWith("lock(position, size, shared).await()"))
+suspend fun AsyncFile.lockAwait(position: Long, size: Long, shared: Boolean): AsyncFileLock {
+  return awaitResult {
+    this.lock(position, size, shared, it)
   }
 }
 

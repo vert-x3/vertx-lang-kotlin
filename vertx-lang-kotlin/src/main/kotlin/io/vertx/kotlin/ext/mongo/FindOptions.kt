@@ -27,6 +27,7 @@ import io.vertx.ext.mongo.CollationOptions
  * @param collation  Set the collation
  * @param fields  Set the fields
  * @param hint  Set the hint
+ * @param hintString  Set the hint string
  * @param limit  Set the limit
  * @param skip  Set the skip
  * @param sort  Set the sort document
@@ -38,7 +39,8 @@ fun findOptionsOf(
   batchSize: Int? = null,
   collation: io.vertx.ext.mongo.CollationOptions? = null,
   fields: io.vertx.core.json.JsonObject? = null,
-  hint: String? = null,
+  hint: io.vertx.core.json.JsonObject? = null,
+  hintString: String? = null,
   limit: Int? = null,
   skip: Int? = null,
   sort: io.vertx.core.json.JsonObject? = null): FindOptions = io.vertx.ext.mongo.FindOptions().apply {
@@ -54,6 +56,9 @@ fun findOptionsOf(
   }
   if (hint != null) {
     this.setHint(hint)
+  }
+  if (hintString != null) {
+    this.setHintString(hintString)
   }
   if (limit != null) {
     this.setLimit(limit)
