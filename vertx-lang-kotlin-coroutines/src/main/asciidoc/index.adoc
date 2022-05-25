@@ -141,11 +141,11 @@ include::Example.kt[tags=generatedSuspendingExtensionMethod]
 
 == Channels
 
-Channels are similar to Java `BlockingQueue` except that they do not block and instead suspend the coroutine
-instead of blocking:
+Channels are similar to Java `BlockingQueue` except that they suspend the coroutine
+instead of blocking the thread:
 
 - sending a value to full channel suspends the coroutine
-- receving a value from an empty channels also suspends the coroutine
+- receiving a value from an empty channel also suspends the coroutine
 
 Vert.x `ReadStream` and `WriteStream` can be adapted to channels with the `toChannel` extension method.
 
