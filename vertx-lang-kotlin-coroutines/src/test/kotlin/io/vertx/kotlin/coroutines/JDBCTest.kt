@@ -18,13 +18,13 @@ class JDBCTest: JDBCClientTestBase() {
     @BeforeClass
     @JvmStatic
     fun createDb() {
-      resetDb()
+      resetDb(JDBCClientTestBase::class.java)
     }
   }
 
   override fun setUp() {
     super.setUp()
-    client = JDBCClient.create(vertx, DBConfigs.hsqldb())
+    client = JDBCClient.create(vertx, DBConfigs.hsqldb(JDBCClientTestBase::class.java))
   }
 
   // https://github.com/vert-x3/vertx-jdbc-client/issues/253
