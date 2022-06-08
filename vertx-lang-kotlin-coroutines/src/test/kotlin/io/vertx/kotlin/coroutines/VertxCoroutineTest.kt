@@ -15,32 +15,26 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.Context
-import io.vertx.core.Future
-import io.vertx.core.Promise
-import io.vertx.core.Vertx
+import io.vertx.core.*
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
+import io.vertx.core.impl.NoStackTraceThrowable
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeout
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertSame
-import org.junit.Assert.assertTrue
-import org.junit.Assert.fail
+import kotlinx.coroutines.*
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.random.Random
+import kotlin.system.measureTimeMillis
 
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
@@ -415,5 +409,80 @@ class VertxCoroutineTest {
       testContext.assertEquals(cause, failure)
       async.complete()
     }
+  }
+
+  class DummyVerticle : AbstractVerticle()
+
+  suspend fun assertClosed(vertx: Vertx) =
+    assertThrows<NoStackTraceThrowable> {
+      vertx.deployVerticle(DummyVerticle()).await()
+    }
+
+  @Test
+  fun `test use`() = runTest {
+    val vertx = Vertx.vertx()
+    vertx.use {
+      assertDoesNotThrow {
+        vertx.deployVerticle(DummyVerticle()).await()
+      }
+    }
+
+    assertClosed(vertx)
+  }
+
+  @Test
+  fun `test use with a throwable thrown inside`() = runTest {
+    val vertx = Vertx.vertx()
+    assertThrows<Throwable> {
+      vertx.use {
+        throw Throwable()
+      }
+    }
+
+    assertClosed(vertx)
+  }
+
+  companion object {
+    const val DEFAULT_SLEEP_OR_DELAY_DURATION = 1000L
+    private val resultValue = Random.nextInt()
+  }
+
+  @Test
+  fun `test awaitExecuteBlocking`() = runTest {
+    // Somehow a new Vertx instance has to be created for `Thread.sleep` to work without blocking the event loop forever.
+    Vertx.vertx().use { vertx ->
+      assertTrue(measureTimeMillis {
+        assertEquals(resultValue, vertx.awaitExecuteBlocking {
+          Thread.sleep(DEFAULT_SLEEP_OR_DELAY_DURATION)
+          resultValue
+        })
+      } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
+    }
+  }
+
+  @Test
+  fun `test awaitSuspendExecuteBlocking`() = runTest {
+    assertTrue(measureTimeMillis {
+      assertEquals(resultValue, vertx.awaitSuspendExecuteBlocking {
+        delay(DEFAULT_SLEEP_OR_DELAY_DURATION)
+        resultValue
+      })
+    } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
+  }
+
+  @Test
+  fun `test coroutineToFuture`() = runTest {
+    assertTrue(measureTimeMillis {
+      coroutineToFuture {
+        delay(DEFAULT_SLEEP_OR_DELAY_DURATION)
+      }.await()
+    } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
+
+    assertTrue(measureTimeMillis {
+      coroutineToFuture {
+        @Suppress("BlockingMethodInNonBlockingContext")
+        Thread.sleep(DEFAULT_SLEEP_OR_DELAY_DURATION)
+      }.await()
+    } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
   }
 }
