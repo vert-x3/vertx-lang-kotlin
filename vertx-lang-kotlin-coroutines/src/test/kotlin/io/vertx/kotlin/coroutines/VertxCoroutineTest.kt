@@ -28,8 +28,6 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
 import org.junit.runner.RunWith
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -413,30 +411,34 @@ class VertxCoroutineTest {
 
   class DummyVerticle : AbstractVerticle()
 
-  suspend fun assertClosed(vertx: Vertx) =
-    assertThrows<NoStackTraceThrowable> {
+  suspend fun assertClosed(vertx: Vertx) {
+    try {
       vertx.deployVerticle(DummyVerticle()).await()
+      fail()
+    } catch (_: NoStackTraceThrowable) {
     }
+  }
 
   @Test
   fun `test use`() = runTest {
     val vertx = Vertx.vertx()
     vertx.use {
-      assertDoesNotThrow {
-        vertx.deployVerticle(DummyVerticle()).await()
-      }
+      vertx.deployVerticle(DummyVerticle()).await()
     }
 
     assertClosed(vertx)
   }
 
+  private class SomeThrowable : Throwable()
+
   @Test
   fun `test use with a throwable thrown inside`() = runTest {
     val vertx = Vertx.vertx()
-    assertThrows<Throwable> {
+    try {
       vertx.use {
-        throw Throwable()
+        throw SomeThrowable()
       }
+    } catch (_: SomeThrowable) {
     }
 
     assertClosed(vertx)
