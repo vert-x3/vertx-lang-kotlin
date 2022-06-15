@@ -381,14 +381,17 @@ class VertxCoroutineTest {
   }
 
   private fun `test awaitBlocking or awaitBlockingSuspend`(
-    testContext: TestContext, callAwaitBlocking: suspend (isOnWorkerThread: AtomicBoolean) -> String
+    testContext: TestContext, callAwaitBlocking: suspend (block: () -> String) -> String
   ) {
     val async = testContext.async()
     val isOnWorkerThread = AtomicBoolean()
     GlobalScope.launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       val thread = Thread.currentThread()
-      val result = callAwaitBlocking(isOnWorkerThread)
+      val result = callAwaitBlocking {
+        isOnWorkerThread.set(Context.isOnWorkerThread())
+        "the-string"
+      }
       testContext.assertEquals(thread, Thread.currentThread())
       testContext.assertEquals(ctx, Vertx.currentContext())
       testContext.assertEquals("the-string", result)
@@ -399,24 +402,18 @@ class VertxCoroutineTest {
 
   @Test
   fun `test awaitBlocking`(testContext: TestContext) =
-    `test awaitBlocking or awaitBlockingSuspend`(testContext) { isOnWorkerThread ->
-      awaitBlocking {
-        isOnWorkerThread.set(Context.isOnWorkerThread())
-        "the-string"
-      }
+    `test awaitBlocking or awaitBlockingSuspend`(testContext) { block ->
+      awaitBlocking(block)
     }
 
   @Test
   fun `test awaitBlockingSuspend`(testContext: TestContext) =
-    `test awaitBlocking or awaitBlockingSuspend`(testContext) { isOnWorkerThread ->
-      awaitBlockingSuspend {
-        isOnWorkerThread.set(Context.isOnWorkerThread())
-        "the-string"
-      }
+    `test awaitBlocking or awaitBlockingSuspend`(testContext) { block ->
+      awaitBlockingSuspend { block() }
     }
 
   private fun `test failure of awaitBlocking or awaitBlockingSuspend`(
-    testContext: TestContext, callAwaitBlocking: suspend (cause: Exception) -> String
+    testContext: TestContext, callAwaitBlocking: suspend (block: () -> String) -> String
   ) {
     val async = testContext.async()
     GlobalScope.launch(vertx.dispatcher()) {
@@ -425,7 +422,9 @@ class VertxCoroutineTest {
       val thread = Thread.currentThread()
       var failure: Throwable? = null
       try {
-        callAwaitBlocking(cause)
+        callAwaitBlocking {
+          throw cause
+        }
       } catch (e: Exception) {
         failure = e
       }
@@ -438,18 +437,14 @@ class VertxCoroutineTest {
 
   @Test
   fun `test failure of awaitBlocking`(testContext: TestContext) =
-    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { cause ->
-      awaitBlocking<String> {
-        throw cause
-      }
+    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { block ->
+      awaitBlocking(block)
     }
 
   @Test
   fun `test failure of awaitBlockingSuspend`(testContext: TestContext) =
-    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { cause ->
-      awaitBlockingSuspend<String> {
-        throw cause
-      }
+    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { block ->
+      awaitBlockingSuspend { block() }
     }
 
   class DummyVerticle : AbstractVerticle()
