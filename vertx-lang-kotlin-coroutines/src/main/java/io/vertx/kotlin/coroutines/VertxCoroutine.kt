@@ -15,10 +15,27 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.*
+import io.vertx.core.AsyncResult
+import io.vertx.core.Context
 import io.vertx.core.Future
-import kotlinx.coroutines.*
-import java.util.concurrent.*
+import io.vertx.core.Handler
+import io.vertx.core.Promise
+import io.vertx.core.Vertx
+import io.vertx.core.impl.EventLoopContext
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Runnable
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import java.util.concurrent.AbstractExecutorService
+import java.util.concurrent.Callable
+import java.util.concurrent.Delayed
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -110,8 +127,32 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit): T {
 suspend fun <T> awaitBlocking(block: () -> T): T {
   return awaitResult { handler ->
     val ctx = Vertx.currentContext()
-    ctx.executeBlocking<T>({ fut ->
-      fut.complete(block())
+    ctx.executeBlocking<T>({ promise ->
+      promise.complete(block())
+    }, { ar ->
+      handler.handle(ar)
+    })
+  }
+}
+
+/**
+ * Like [awaitBlocking] but takes a Coroutine `suspend` [block].
+ */
+suspend fun <T> awaitBlockingSuspend(block: suspend () -> T): T {
+  return awaitResult { handler ->
+    val ctx = Vertx.currentContext()
+    ctx.executeBlocking<T>({ promise ->
+      val workerDispatcher = (ctx as EventLoopContext).workerPool().executor().asCoroutineDispatcher()
+      CoroutineScope(workerDispatcher).launch {
+        val prev = ctx.beginDispatch()
+        try {
+          promise.complete(block())
+        } catch (t: Throwable) {
+          promise.fail(t)
+        } finally {
+          ctx.endDispatch(prev)
+        }
+      }
     }, { ar ->
       handler.handle(ar)
     })
@@ -173,28 +214,6 @@ suspend inline fun <R> Vertx.use(block: (Vertx) -> R): R =
     throw t
   } finally {
     close().await()
-  }
-
-/**
- * Execute [blockingCode] that returns the a [T] instance with [Vertx.executeBlocking]
- * and awaits its completion.
- *
- * Compared to [Vertx.executeBlocking]'s `blockingCodeHandler` argument,
- * [blockingCode] returns the result when the operation completes instead of calling [Promise.complete].
- */
-suspend fun <T> Vertx.awaitExecuteBlocking(blockingCode: () -> T): T =
-  executeBlocking<T> {
-    it.complete(blockingCode())
-  }.await()
-
-/**
- * Like [awaitExecuteBlocking] but [blockingCode] is a suspend function.
- */
-suspend fun <T> Vertx.awaitSuspendExecuteBlocking(blockingCode: suspend () -> T): T =
-  coroutineScope {
-    executeBlocking<T> {
-      launch { it.complete(blockingCode()) }
-    }.await()
   }
 
 /**

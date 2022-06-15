@@ -15,7 +15,11 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.*
+import io.vertx.core.AbstractVerticle
+import io.vertx.core.Context
+import io.vertx.core.Future
+import io.vertx.core.Promise
+import io.vertx.core.Vertx
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
@@ -23,15 +27,23 @@ import io.vertx.core.impl.NoStackTraceThrowable
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.*
-import org.junit.Assert.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertSame
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
 /**
@@ -368,17 +380,15 @@ class VertxCoroutineTest {
     }
   }
 
-  @Test
-  fun `test awaitBlocking`(testContext: TestContext) {
+  private fun `test awaitBlocking or awaitBlockingSuspend`(
+    testContext: TestContext, callAwaitBlocking: suspend (isOnWorkerThread: AtomicBoolean) -> String
+  ) {
     val async = testContext.async()
     val isOnWorkerThread = AtomicBoolean()
     GlobalScope.launch(vertx.dispatcher()) {
       val ctx = Vertx.currentContext()
       val thread = Thread.currentThread()
-      val result = awaitBlocking {
-        isOnWorkerThread.set(Context.isOnWorkerThread())
-        "the-string"
-      }
+      val result = callAwaitBlocking(isOnWorkerThread)
       testContext.assertEquals(thread, Thread.currentThread())
       testContext.assertEquals(ctx, Vertx.currentContext())
       testContext.assertEquals("the-string", result)
@@ -388,7 +398,26 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun `test failure of awaitBlocking`(testContext: TestContext) {
+  fun `test awaitBlocking`(testContext: TestContext) =
+    `test awaitBlocking or awaitBlockingSuspend`(testContext) { isOnWorkerThread ->
+      awaitBlocking {
+        isOnWorkerThread.set(Context.isOnWorkerThread())
+        "the-string"
+      }
+    }
+
+  @Test
+  fun `test awaitBlockingSuspend`(testContext: TestContext) =
+    `test awaitBlocking or awaitBlockingSuspend`(testContext) { isOnWorkerThread ->
+      awaitBlockingSuspend {
+        isOnWorkerThread.set(Context.isOnWorkerThread())
+        "the-string"
+      }
+    }
+
+  private fun `test failure of awaitBlocking or awaitBlockingSuspend`(
+    testContext: TestContext, callAwaitBlocking: suspend (cause: Exception) -> String
+  ) {
     val async = testContext.async()
     GlobalScope.launch(vertx.dispatcher()) {
       val cause = Exception()
@@ -396,9 +425,7 @@ class VertxCoroutineTest {
       val thread = Thread.currentThread()
       var failure: Throwable? = null
       try {
-        awaitBlocking<String> {
-          throw cause
-        }
+        callAwaitBlocking(cause)
       } catch (e: Exception) {
         failure = e
       }
@@ -408,6 +435,22 @@ class VertxCoroutineTest {
       async.complete()
     }
   }
+
+  @Test
+  fun `test failure of awaitBlocking`(testContext: TestContext) =
+    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { cause ->
+      awaitBlocking<String> {
+        throw cause
+      }
+    }
+
+  @Test
+  fun `test failure of awaitBlockingSuspend`(testContext: TestContext) =
+    `test failure of awaitBlocking or awaitBlockingSuspend`(testContext) { cause ->
+      awaitBlockingSuspend<String> {
+        throw cause
+      }
+    }
 
   class DummyVerticle : AbstractVerticle()
 
@@ -446,30 +489,6 @@ class VertxCoroutineTest {
 
   companion object {
     const val DEFAULT_SLEEP_OR_DELAY_DURATION = 1000L
-    private val resultValue = Random.nextInt()
-  }
-
-  @Test
-  fun `test awaitExecuteBlocking`() = runTest {
-    // Somehow a new Vertx instance has to be created for `Thread.sleep` to work without blocking the event loop forever.
-    Vertx.vertx().use { vertx ->
-      assertTrue(measureTimeMillis {
-        assertEquals(resultValue, vertx.awaitExecuteBlocking {
-          Thread.sleep(DEFAULT_SLEEP_OR_DELAY_DURATION)
-          resultValue
-        })
-      } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
-    }
-  }
-
-  @Test
-  fun `test awaitSuspendExecuteBlocking`() = runTest {
-    assertTrue(measureTimeMillis {
-      assertEquals(resultValue, vertx.awaitSuspendExecuteBlocking {
-        delay(DEFAULT_SLEEP_OR_DELAY_DURATION)
-        resultValue
-      })
-    } >= DEFAULT_SLEEP_OR_DELAY_DURATION)
   }
 
   @Test
