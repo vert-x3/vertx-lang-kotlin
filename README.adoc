@@ -2,8 +2,8 @@
 
 image:https://github.com/vert-x3/vertx-lang-kotlin/workflows/CI/badge.svg?branch=master["Build Status", link="https://github.com/vert-x3/vertx-lang-kotlin/actions?query=workflow%3ACI"]
 image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
-image:https://img.shields.io/badge/kotlin-1.4.32-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
-image:https://img.shields.io/badge/kotlinx.coroutines-1.4.3-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
+image:https://img.shields.io/badge/kotlin-1.7.0-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
+image:https://img.shields.io/badge/kotlinx.coroutines-1.6.2-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
 
 This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x 3].
 
@@ -20,7 +20,7 @@ Kotlin extensions are developed in this link:vertx-lang-kotlin/src/main/java/io/
 
 For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, etc...
 
-Extensions needs to be tested and link:vertx-lang-kotlin/src/main/asciidoc/vertx-core/kotlin/index.adoc[documented].
+Extensions need to be tested and link:vertx-lang-kotlin/src/main/asciidoc/vertx-core/kotlin/index.adoc[documented].
 
 === Bumping Kotlin version
 
@@ -30,4 +30,4 @@ There are a couple of rules to follow before increasing the project versions:
 `kotlin-stdlib`, still match between the two versions.
 * If changing the `kotlin` version, open a PR also on https://github.com/vert-x3/vertx-codetrans[vertx-codetrans]
 
-Kotlin evolves fast, so just change the project versions, test it, and shot a PR.
+Kotlin evolves fast, so just change the project versions, test it, and shoot a PR.
