@@ -28,6 +28,5 @@ There are a couple of rules to follow before increasing the project versions:
 
 * If changing one between `kotlin` and `kotlinx.coroutines` version, make sure that all transitive dependencies, like
 `kotlin-stdlib`, still match between the two versions.
-* If changing the `kotlin` version, open a PR also on https://github.com/vert-x3/vertx-codetrans[vertx-codetrans]
 
 Kotlin evolves fast, so just change the project versions, test it, and shoot a PR.
