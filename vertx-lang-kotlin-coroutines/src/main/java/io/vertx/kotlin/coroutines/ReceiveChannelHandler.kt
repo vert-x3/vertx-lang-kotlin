@@ -55,10 +55,6 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.iterator()
   }
 
-  override fun poll(): T? {
-    return channel.poll()
-  }
-
   override suspend fun receive(): T {
     return channel.receive()
   }
