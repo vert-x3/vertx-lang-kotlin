@@ -18,6 +18,9 @@ package io.vertx.kotlin.kafka.admin
 import io.vertx.kafka.admin.ClusterDescription
 import io.vertx.kafka.admin.ConsumerGroupDescription
 import io.vertx.kafka.admin.ConsumerGroupListing
+import io.vertx.kafka.admin.DescribeClusterOptions
+import io.vertx.kafka.admin.DescribeConsumerGroupsOptions
+import io.vertx.kafka.admin.DescribeTopicsOptions
 import io.vertx.kafka.admin.KafkaAdminClient
 import io.vertx.kafka.admin.NewPartitions
 import io.vertx.kafka.admin.NewTopic
@@ -51,6 +54,22 @@ suspend fun KafkaAdminClient.listTopicsAwait(): Set<String> {
 suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>): Map<String,TopicDescription> {
   return awaitResult {
     this.describeTopics(topicNames, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeTopics]
+ *
+ * @param topicNames 
+ * @param options 
+ * @return [Map<String,TopicDescription>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use describeTopics returning a future and chain with await()", replaceWith = ReplaceWith("describeTopics(topicNames, options).await()"))
+suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>, options: DescribeTopicsOptions): Map<String,TopicDescription> {
+  return awaitResult {
+    this.describeTopics(topicNames, options, it)
   }
 }
 
@@ -126,6 +145,22 @@ suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>)
 }
 
 /**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeConsumerGroups]
+ *
+ * @param groupIds 
+ * @param options 
+ * @return [Map<String,ConsumerGroupDescription>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use describeConsumerGroups returning a future and chain with await()", replaceWith = ReplaceWith("describeConsumerGroups(groupIds, options).await()"))
+suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>, options: DescribeConsumerGroupsOptions): Map<String,ConsumerGroupDescription> {
+  return awaitResult {
+    this.describeConsumerGroups(groupIds, options, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeCluster]
  *
  * @return [ClusterDescription]
@@ -136,6 +171,21 @@ suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>)
 suspend fun KafkaAdminClient.describeClusterAwait(): ClusterDescription {
   return awaitResult {
     this.describeCluster(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeCluster]
+ *
+ * @param options 
+ * @return [ClusterDescription]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use describeCluster returning a future and chain with await()", replaceWith = ReplaceWith("describeCluster(options).await()"))
+suspend fun KafkaAdminClient.describeClusterAwait(options: DescribeClusterOptions): ClusterDescription {
+  return awaitResult {
+    this.describeCluster(options, it)
   }
 }
 

@@ -97,6 +97,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
+ * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param termJsResource  Set <code>term.js</code> resource to use.
  * @param tracingPolicy  Set the tracing policy for the server behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
@@ -178,6 +179,7 @@ fun httpTermOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tcpUserTimeout: Int? = null,
   termJsResource: io.vertx.core.buffer.Buffer? = null,
   tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
@@ -384,6 +386,9 @@ fun httpTermOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tcpUserTimeout != null) {
+    this.setTcpUserTimeout(tcpUserTimeout)
   }
   if (termJsResource != null) {
     this.setTermJsResource(termJsResource)

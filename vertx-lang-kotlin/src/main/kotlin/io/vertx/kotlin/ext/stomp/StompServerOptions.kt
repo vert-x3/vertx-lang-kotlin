@@ -78,6 +78,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
+ * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param timeFactor  Sets the time factor.
  * @param trafficClass  Set the value of traffic class
  * @param trailingLine  Sets whether or not an empty line should be appended to the written STOMP frame. This option is disabled by default. This option is not compliant with the STOMP specification, and so is not documented on purpose.
@@ -141,6 +142,7 @@ fun stompServerOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tcpUserTimeout: Int? = null,
   timeFactor: Int? = null,
   trafficClass: Int? = null,
   trailingLine: Boolean? = null,
@@ -299,6 +301,9 @@ fun stompServerOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tcpUserTimeout != null) {
+    this.setTcpUserTimeout(tcpUserTimeout)
   }
   if (timeFactor != null) {
     this.setTimeFactor(timeFactor)

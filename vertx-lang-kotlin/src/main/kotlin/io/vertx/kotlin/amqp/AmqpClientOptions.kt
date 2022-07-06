@@ -81,6 +81,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive 
  * @param tcpNoDelay 
  * @param tcpQuickAck 
+ * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param trafficClass 
  * @param trustAll 
  * @param trustOptions 
@@ -143,6 +144,7 @@ fun amqpClientOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tcpUserTimeout: Int? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
@@ -306,6 +308,9 @@ fun amqpClientOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tcpUserTimeout != null) {
+    this.setTcpUserTimeout(tcpUserTimeout)
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)

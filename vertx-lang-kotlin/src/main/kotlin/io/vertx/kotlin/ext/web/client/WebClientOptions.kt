@@ -101,6 +101,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
+ * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param templateExpandOptions 
  * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
@@ -191,6 +192,7 @@ fun webClientOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tcpUserTimeout: Int? = null,
   templateExpandOptions: io.vertx.uritemplate.ExpandOptions? = null,
   tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
@@ -416,6 +418,9 @@ fun webClientOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tcpUserTimeout != null) {
+    this.setTcpUserTimeout(tcpUserTimeout)
   }
   if (templateExpandOptions != null) {
     this.setTemplateExpandOptions(templateExpandOptions)

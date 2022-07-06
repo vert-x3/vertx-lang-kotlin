@@ -71,6 +71,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
+ * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param trafficClass  Set the value of traffic class
  * @param trustAll  Set whether all server certificates should be trusted
  * @param trustOptions  Set the trust options.
@@ -122,6 +123,7 @@ fun netClientOptionsOf(
   tcpKeepAlive: Boolean? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
+  tcpUserTimeout: Int? = null,
   trafficClass: Int? = null,
   trustAll: Boolean? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
@@ -254,6 +256,9 @@ fun netClientOptionsOf(
   }
   if (tcpQuickAck != null) {
     this.setTcpQuickAck(tcpQuickAck)
+  }
+  if (tcpUserTimeout != null) {
+    this.setTcpUserTimeout(tcpUserTimeout)
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
