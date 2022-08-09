@@ -27,6 +27,8 @@ import io.vertx.kafka.admin.NewTopic
 import io.vertx.kafka.admin.TopicDescription
 import io.vertx.kafka.client.common.TopicPartition
 import io.vertx.kotlin.coroutines.awaitResult
+import org.apache.kafka.common.acl.AclBinding
+import org.apache.kafka.common.acl.AclBindingFilter
 
 /**
  * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.listTopics]
@@ -242,6 +244,51 @@ suspend fun KafkaAdminClient.closeAwait(): Unit {
 suspend fun KafkaAdminClient.closeAwait(timeout: Long): Unit {
   return awaitResult {
     this.close(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.describeAcls]
+ *
+ * @param aclBindingFilter The filter to use.
+ * @return [List<AclBinding>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use describeAcls returning a future and chain with await()", replaceWith = ReplaceWith("describeAcls(aclBindingFilter).await()"))
+suspend fun KafkaAdminClient.describeAclsAwait(aclBindingFilter: AclBindingFilter): List<AclBinding> {
+  return awaitResult {
+    this.describeAcls(aclBindingFilter, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.createAcls]
+ *
+ * @param aclBindings The ACL to create.
+ * @return [List<AclBinding>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use createAcls returning a future and chain with await()", replaceWith = ReplaceWith("createAcls(aclBindings).await()"))
+suspend fun KafkaAdminClient.createAclsAwait(aclBindings: List<AclBinding>): List<AclBinding> {
+  return awaitResult {
+    this.createAcls(aclBindings, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.kafka.admin.KafkaAdminClient.deleteAcls]
+ *
+ * @param aclBindings The filter to delete matching ACLs.
+ * @return [List<AclBinding>]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use deleteAcls returning a future and chain with await()", replaceWith = ReplaceWith("deleteAcls(aclBindings).await()"))
+suspend fun KafkaAdminClient.deleteAclsAwait(aclBindings: List<AclBindingFilter>): List<AclBinding> {
+  return awaitResult {
+    this.deleteAcls(aclBindings, it)
   }
 }
 

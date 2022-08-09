@@ -10,7 +10,7 @@
 
   <artifactId>vertx-lang-kotlin-parent</artifactId>
 
-  <version>4.3.3</version>
+  <version>4.3.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -24,7 +24,7 @@
     <kotlin.coroutines.version>1.5.2</kotlin.coroutines.version>
     <kotlin.version>1.5.31</kotlin.version>
     <junit.version>4.13.2</junit.version>
-    <stack.version>4.3.3</stack.version>
+    <stack.version>4.3.4-SNAPSHOT</stack.version>
   </properties>
 
   <dependencyManagement>

@@ -37,7 +37,7 @@ import io.vertx.ext.auth.webauthn.UserVerification
  * @param requireResidentKey 
  * @param rootCertificates 
  * @param rootCrls  Load a CRL, for example MDS3 certificate should use http://crl.globalsign.net/Root.crl
- * @param timeout 
+ * @param timeoutInMilliseconds 
  * @param transports 
  * @param userVerification 
  *
@@ -54,7 +54,7 @@ fun webAuthnOptionsOf(
   requireResidentKey: Boolean? = null,
   rootCertificates: Map<String, String>? = null,
   rootCrls: Iterable<String>? = null,
-  timeout: Long? = null,
+  timeoutInMilliseconds: Long? = null,
   transports: Iterable<AuthenticatorTransport>? = null,
   userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
 
@@ -85,8 +85,8 @@ fun webAuthnOptionsOf(
   if (rootCrls != null) {
     this.setRootCrls(rootCrls.toList())
   }
-  if (timeout != null) {
-    this.setTimeout(timeout)
+  if (timeoutInMilliseconds != null) {
+    this.setTimeoutInMilliseconds(timeoutInMilliseconds)
   }
   if (transports != null) {
     this.setTransports(transports.toList())

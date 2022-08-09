@@ -37,6 +37,7 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param headers  Set custom headers to be sent with every request to the provider
  * @param httpClientOptions 
  * @param introspectionPath  Set the provider token introspection resource path
+ * @param jwkMaxAgeInSeconds  -1 means no rotation for JWKs
  * @param jwkPath 
  * @param jwtOptions 
  * @param logoutPath  Set the provider logout path
@@ -46,7 +47,7 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param scopeSeparator  Set the provider scope separator
  * @param site  Root URL for the provider without trailing slashes
  * @param supportedGrantTypes  The provider supported grant types
- * @param tenant  Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs. The tenant should be set prior to any URL as it affects the way the URLs will be stored. Some provders may name this differently, for example: `realm`.
+ * @param tenant  Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs. The tenant should be set prior to any URL as it affects the way the URLs will be stored. <p> Some provders may name this differently, for example: `realm`.
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
@@ -68,6 +69,7 @@ fun oAuth2OptionsOf(
   headers: io.vertx.core.json.JsonObject? = null,
   httpClientOptions: io.vertx.core.http.HttpClientOptions? = null,
   introspectionPath: String? = null,
+  jwkMaxAgeInSeconds: Long? = null,
   jwkPath: String? = null,
   jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   logoutPath: String? = null,
@@ -116,6 +118,9 @@ fun oAuth2OptionsOf(
   }
   if (introspectionPath != null) {
     this.setIntrospectionPath(introspectionPath)
+  }
+  if (jwkMaxAgeInSeconds != null) {
+    this.setJwkMaxAgeInSeconds(jwkMaxAgeInSeconds)
   }
   if (jwkPath != null) {
     this.setJwkPath(jwkPath)
