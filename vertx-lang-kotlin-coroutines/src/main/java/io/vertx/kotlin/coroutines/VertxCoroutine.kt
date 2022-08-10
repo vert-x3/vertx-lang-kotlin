@@ -16,6 +16,7 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.AsyncResult
+import io.vertx.core.CompositeFuture
 import io.vertx.core.Context
 import io.vertx.core.Future
 import io.vertx.core.Handler
@@ -172,6 +173,15 @@ suspend fun <T> Future<T>.await(): T = when {
     }
   }
 }
+
+/**
+ * Awaits the completion of all the futures in the list without blocking the event loop, and fails as soon as any future fails.
+ * @see Future.await
+ * @see CompositeFuture.all
+ * @see kotlinx.coroutines.awaitAll
+ */
+suspend fun <T> List<Future<T>>.awaitAll(): List<T> =
+  CompositeFuture.all(this).await().list()
 
 /**
  * Launch a coroutine and converts it into a [Future]

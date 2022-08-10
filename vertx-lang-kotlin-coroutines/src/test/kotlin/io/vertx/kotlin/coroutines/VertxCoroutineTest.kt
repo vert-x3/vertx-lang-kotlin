@@ -30,6 +30,8 @@ import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
@@ -380,6 +382,61 @@ class VertxCoroutineTest {
     }
   }
 
+  @Test
+  fun `test awaitAll of succeeded futures`() = runTest {
+    val list = List(LIST_SIZE) { it }
+    val promises = list.map { Promise.promise<Int>() }
+    val futures = promises.map { it.future() }
+    awaitAll(
+      async {
+        assertEquals(list, futures.awaitAll())
+      },
+      *promises.mapIndexed { index, promise ->
+        async { promise.complete(index) }
+      }.toTypedArray()
+    )
+  }
+
+  class IntThrowable(val value: Int) : Throwable()
+
+  @Test
+  fun `test awaitAll of futures containing failed futures`() = runTest {
+    val list = List(LIST_SIZE) { it }
+    val promises = list.map { Promise.promise<Int>() }
+    val futures = promises.map { it.future() }
+    val firstFailIndex = list.random()
+    val list2 = list - firstFailIndex
+    val laterFailIndex = list2.random()
+    val list3 = list2 - laterFailIndex
+    val noOpIndex = list3.random()
+
+    awaitAll(
+      async {
+        try {
+          futures.awaitAll()
+          fail()
+        } catch (throwable: IntThrowable) {
+          assertEquals(firstFailIndex, throwable.value)
+        }
+      },
+      async {
+        promises.asSequence().withIndex().shuffled()
+          .filterNot { (index, _) -> index == laterFailIndex || index == noOpIndex }
+          .map { (index, promise) ->
+            async {
+              when (index) {
+                firstFailIndex -> promise.fail(IntThrowable(index))
+                else -> promise.complete(index)
+              }
+            }
+          }
+          .toList().awaitAll()
+
+        promises[laterFailIndex].fail(IntThrowable(laterFailIndex))
+      }
+    )
+  }
+
   private fun `test awaitBlocking or awaitBlockingSuspend`(
     testContext: TestContext, callAwaitBlocking: suspend (block: () -> String) -> String
   ) {
@@ -484,6 +541,7 @@ class VertxCoroutineTest {
 
   companion object {
     const val DEFAULT_SLEEP_OR_DELAY_DURATION = 1000L
+    const val LIST_SIZE = 4
   }
 
   @Test
