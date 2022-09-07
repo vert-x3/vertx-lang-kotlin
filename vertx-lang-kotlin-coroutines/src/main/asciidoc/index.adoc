@@ -236,7 +236,7 @@ include::Example.kt[tags=withTimeout]
 
 == Coroutine builders
 
-Vert.x works will all coroutine builders, as long as an instance of `CoroutineScope` is available: `launch`, `async`,
+Vert.x works with all coroutine builders, as long as an instance of `CoroutineScope` is available: `launch`, `async`,
 `produce', ... . A couple of important things to remember:
 
 - The `runBlocking` doesn't need a `CoroutineScope` and must not be used from a Vert.x event loop thread.
