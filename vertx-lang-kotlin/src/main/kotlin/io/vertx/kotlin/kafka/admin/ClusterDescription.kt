@@ -17,12 +17,14 @@ package io.vertx.kotlin.kafka.admin
 
 import io.vertx.kafka.admin.ClusterDescription
 import io.vertx.kafka.client.common.Node
+import org.apache.kafka.common.acl.AclOperation
 
 /**
  * A function providing a DSL for building [io.vertx.kafka.admin.ClusterDescription] objects.
  *
  * A detailed description of the cluster
  *
+ * @param authorizedOperations  Set the authorizedOperations
  * @param clusterId  Set the cluster ID
  * @param controller  Set the controller node.
  * @param nodes  Set the nodes belonging to this cluster
@@ -31,10 +33,14 @@ import io.vertx.kafka.client.common.Node
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ClusterDescription original] using Vert.x codegen.
  */
 fun clusterDescriptionOf(
+  authorizedOperations: Iterable<AclOperation>? = null,
   clusterId: String? = null,
   controller: io.vertx.kafka.client.common.Node? = null,
   nodes: Iterable<io.vertx.kafka.client.common.Node>? = null): ClusterDescription = io.vertx.kafka.admin.ClusterDescription().apply {
 
+  if (authorizedOperations != null) {
+    this.setAuthorizedOperations(authorizedOperations.toSet())
+  }
   if (clusterId != null) {
     this.setClusterId(clusterId)
   }
