@@ -23,15 +23,18 @@ import io.vertx.micrometer.VertxInfluxDbOptions
  * Vert.x InfluxDb micrometer configuration.
  *
  * @param batchSize  Maximum number of measurements sent per request to the InfluxDB server. When the maximum is reached, several requests are made. Default is 10000.
+ * @param bucket  Specifies the destination bucket for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
  * @param compressed  Activate or deactivate GZIP compression. It is activated by default.
  * @param connectTimeout  Connection timeout for InfluxDB server connections, in seconds. Default is 1 second.
  * @param db  Database name used to store metrics. Default is "default".
  * @param enabled  Set true to enable InfluxDB reporting
  * @param numThreads  Number of threads to use by the push scheduler. Default is 2.
+ * @param org  Specifies the destination organization for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
  * @param password  Password used for authenticated connections
  * @param readTimeout  Read timeout for InfluxDB server connections, in seconds. Default is 10 seconds.
  * @param retentionPolicy  InfluxDB retention policy
  * @param step  Push interval steps, in seconds. Default is 10 seconds.
+ * @param token  Authentication token for the InfluxDB API. This takes precedence over userName/password if configured.
  * @param uri  URI of the InfluxDB server. <i>Example: http://influx:8086</i>.
  * @param userName  Username used for authenticated connections
  *
@@ -40,20 +43,26 @@ import io.vertx.micrometer.VertxInfluxDbOptions
  */
 fun vertxInfluxDbOptionsOf(
   batchSize: Int? = null,
+  bucket: String? = null,
   compressed: Boolean? = null,
   connectTimeout: Int? = null,
   db: String? = null,
   enabled: Boolean? = null,
   numThreads: Int? = null,
+  org: String? = null,
   password: String? = null,
   readTimeout: Int? = null,
   retentionPolicy: String? = null,
   step: Int? = null,
+  token: String? = null,
   uri: String? = null,
   userName: String? = null): VertxInfluxDbOptions = io.vertx.micrometer.VertxInfluxDbOptions().apply {
 
   if (batchSize != null) {
     this.setBatchSize(batchSize)
+  }
+  if (bucket != null) {
+    this.setBucket(bucket)
   }
   if (compressed != null) {
     this.setCompressed(compressed)
@@ -70,6 +79,9 @@ fun vertxInfluxDbOptionsOf(
   if (numThreads != null) {
     this.setNumThreads(numThreads)
   }
+  if (org != null) {
+    this.setOrg(org)
+  }
   if (password != null) {
     this.setPassword(password)
   }
@@ -81,6 +93,9 @@ fun vertxInfluxDbOptionsOf(
   }
   if (step != null) {
     this.setStep(step)
+  }
+  if (token != null) {
+    this.setToken(token)
   }
   if (uri != null) {
     this.setUri(uri)
