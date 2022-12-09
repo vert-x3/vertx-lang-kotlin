@@ -25,16 +25,8 @@ import io.vertx.core.http.HttpServerOptions
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeout
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertSame
-import org.junit.Assert.assertTrue
-import org.junit.Assert.fail
+import kotlinx.coroutines.*
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -415,5 +407,27 @@ class VertxCoroutineTest {
       testContext.assertEquals(cause, failure)
       async.complete()
     }
+  }
+
+  @Test
+  fun `test success of vertxFuture coroutine launcher`(testContext: TestContext) {
+    val future = vertxFuture {
+      delay(500)
+      "3"
+    }
+    future.onComplete(testContext.asyncAssertSuccess {
+      testContext.assertEquals(it, "3")
+    })
+  }
+
+  @Test
+  fun `test failure of vertxFuture coroutine launcher`(testContext: TestContext) {
+    val future = vertxFuture {
+      delay(500)
+      throw java.lang.RuntimeException("Boom")
+    }
+    future.onComplete(testContext.asyncAssertFailure() {
+      testContext.assertEquals(it.message, "Boom")
+    })
   }
 }

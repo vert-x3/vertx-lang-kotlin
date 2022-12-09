@@ -243,6 +243,13 @@ Vert.x works with all coroutine builders, as long as an instance of `CoroutineSc
 - To avoid memory leaks, always use `coroutineScope {..}` to define a child scope. In this way, if a coroutine fails
 inside the scope, all the others, defined inside that scope, will be cancelled too.
 
+Vert.x also provides a coroutine builder which returns a `io.vertx.core.Future` instance.
+
+[source,kotlin,indent=0]
+----
+include::Example.kt[tags=vertxFutureCoroutineBuilder]
+----
+
 == Coroutine interoperability
 
 Vert.x integration has been designed to be fully interoperable with Kotlin coroutines

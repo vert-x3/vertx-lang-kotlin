@@ -2,30 +2,18 @@
 
 package examples
 
-import io.vertx.core.*
+import io.vertx.core.CompositeFuture
+import io.vertx.core.Future
+import io.vertx.core.Handler
+import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.ReplyException
-import io.vertx.core.http.HttpServer
 import io.vertx.core.http.HttpServerResponse
-import io.vertx.core.net.NetClient
-import io.vertx.core.net.NetSocket
 import io.vertx.core.parsetools.RecordParser
-import io.vertx.kotlin.coroutines.CoroutineVerticle
-import io.vertx.kotlin.coroutines.await
-import io.vertx.kotlin.coroutines.awaitBlocking
-import io.vertx.kotlin.coroutines.awaitEvent
-import io.vertx.kotlin.coroutines.awaitResult
-import io.vertx.kotlin.coroutines.dispatcher
-import io.vertx.kotlin.coroutines.receiveChannelHandler
-import io.vertx.kotlin.coroutines.toChannel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.TimeoutCancellationException
+import io.vertx.kotlin.coroutines.*
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeout
 
 fun launchCoroutineExample() {
   // tag::launchCoroutine[]
@@ -355,4 +343,22 @@ class ExampleVerticle : CoroutineVerticle() {
   fun anAsyncMethod(handler: Handler<String>) {
     TODO()
   }
+
+  fun vertxFutureCoroutineBuilderExample() {
+    // tag::vertxFutureCoroutineBuilder[]
+
+    // Can be called on any thread
+    val future1: Future<String> = vertxFuture(vertx) {
+      computeSomethingWithSuspendingFunction()
+    }
+
+    // Can be called only when running on a Vert.x context
+    val future2: Future<String> = vertxFuture {
+      computeSomethingWithSuspendingFunction()
+    }
+
+    // end::vertxFutureCoroutineBuilder[]
+  }
+
+  private suspend fun computeSomethingWithSuspendingFunction(): String = "42"
 }
