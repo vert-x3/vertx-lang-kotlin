@@ -260,7 +260,7 @@ private class VertxCoroutineExecutor(val vertxContext: Context) : AbstractExecut
 
 fun <T> vertxFuture(scope: CoroutineScope = GlobalScope, block: suspend CoroutineScope.() -> T): Future<T> {
   val currentContext: Context? = Vertx.currentContext()
-  require(currentContext != null) { "Not running on Vert.x context" }
+  requireNotNull(currentContext) { "Not running on Vert.x context" }
   return vertxFuture(currentContext.owner(), scope, block)
 }
 
