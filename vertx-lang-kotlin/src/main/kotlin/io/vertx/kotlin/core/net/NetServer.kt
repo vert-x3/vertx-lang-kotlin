@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.NetServer
+import io.vertx.core.net.SSLOptions
 import io.vertx.core.net.SocketAddress
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -89,6 +90,20 @@ suspend fun NetServer.listenAwait(localAddress: SocketAddress): NetServer {
 suspend fun NetServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetServer.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+suspend fun NetServer.updateSSLOptionsAwait(options: SSLOptions): Unit {
+  return awaitResult {
+    this.updateSSLOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

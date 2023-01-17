@@ -27,6 +27,7 @@ import io.vertx.ext.auth.webauthn.AttestationCertificates
  * @param attestationCertificates 
  * @param counter 
  * @param credID 
+ * @param flags 
  * @param fmt 
  * @param publicKey 
  * @param type 
@@ -40,6 +41,7 @@ fun authenticatorOf(
   attestationCertificates: io.vertx.ext.auth.webauthn.AttestationCertificates? = null,
   counter: Long? = null,
   credID: String? = null,
+  flags: Int? = null,
   fmt: String? = null,
   publicKey: String? = null,
   type: String? = null,
@@ -56,6 +58,9 @@ fun authenticatorOf(
   }
   if (credID != null) {
     this.setCredID(credID)
+  }
+  if (flags != null) {
+    this.setFlags(flags)
   }
   if (fmt != null) {
     this.setFmt(fmt)

@@ -47,6 +47,7 @@ import java.util.concurrent.TimeUnit
  * @param preferNativeTransport  Set wether to prefer the native transport to the JDK transport.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
  * @param tracingOptions  Set the tracing options
+ * @param useDaemonThread  Mark the vertx thread as daemon thread or user thread. <p/> For keeping the old behavior, the default value is <code>false</code> instead of <code>null</code>.
  * @param warningExceptionTime  Set the threshold value above this, the blocked warning contains a stack trace. in [io.vertx.core.VertxOptions]. The default value of [io.vertx.core.VertxOptions] is 
  * @param warningExceptionTimeUnit  Set the time unit of <code>warningExceptionTime</code>.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance.
@@ -74,6 +75,7 @@ fun vertxOptionsOf(
   preferNativeTransport: Boolean? = null,
   quorumSize: Int? = null,
   tracingOptions: io.vertx.core.tracing.TracingOptions? = null,
+  useDaemonThread: Boolean? = null,
   warningExceptionTime: Long? = null,
   warningExceptionTimeUnit: TimeUnit? = null,
   workerPoolSize: Int? = null): VertxOptions = io.vertx.core.VertxOptions().apply {
@@ -134,6 +136,9 @@ fun vertxOptionsOf(
   }
   if (tracingOptions != null) {
     this.setTracingOptions(tracingOptions)
+  }
+  if (useDaemonThread != null) {
+    this.setUseDaemonThread(useDaemonThread)
   }
   if (warningExceptionTime != null) {
     this.setWarningExceptionTime(warningExceptionTime)

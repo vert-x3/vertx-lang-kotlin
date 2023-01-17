@@ -23,6 +23,7 @@ import io.vertx.core.http.RequestOptions
 import io.vertx.core.http.WebSocket
 import io.vertx.core.http.WebSocketConnectOptions
 import io.vertx.core.http.WebsocketVersion
+import io.vertx.core.net.SSLOptions
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -169,6 +170,20 @@ suspend fun HttpClient.webSocketAwait(options: WebSocketConnectOptions): WebSock
 suspend fun HttpClient.webSocketAbsAwait(url: String, headers: MultiMap, version: WebsocketVersion, subProtocols: List<String>): WebSocket {
   return awaitResult {
     this.webSocketAbs(url, headers, version, subProtocols, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpClient.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+suspend fun HttpClient.updateSSLOptionsAwait(options: SSLOptions): Unit {
+  return awaitResult {
+    this.updateSSLOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

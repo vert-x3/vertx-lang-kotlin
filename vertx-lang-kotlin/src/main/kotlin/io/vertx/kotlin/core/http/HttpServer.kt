@@ -16,8 +16,23 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.HttpServer
+import io.vertx.core.net.SSLOptions
 import io.vertx.core.net.SocketAddress
 import io.vertx.kotlin.coroutines.awaitResult
+
+/**
+ * Suspending version of method [io.vertx.core.http.HttpServer.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+suspend fun HttpServer.updateSSLOptionsAwait(options: SSLOptions): Unit {
+  return awaitResult {
+    this.updateSSLOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
 
 /**
  * Suspending version of method [io.vertx.core.http.HttpServer.listen]

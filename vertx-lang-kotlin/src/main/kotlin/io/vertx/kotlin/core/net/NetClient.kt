@@ -17,6 +17,7 @@ package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.NetClient
 import io.vertx.core.net.NetSocket
+import io.vertx.core.net.SSLOptions
 import io.vertx.core.net.SocketAddress
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -94,6 +95,20 @@ suspend fun NetClient.connectAwait(remoteAddress: SocketAddress, serverName: Str
 suspend fun NetClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetClient.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+suspend fun NetClient.updateSSLOptionsAwait(options: SSLOptions): Unit {
+  return awaitResult {
+    this.updateSSLOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

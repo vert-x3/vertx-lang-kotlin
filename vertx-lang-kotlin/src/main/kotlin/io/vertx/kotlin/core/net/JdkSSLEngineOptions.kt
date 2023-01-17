@@ -22,12 +22,16 @@ import io.vertx.core.net.JdkSSLEngineOptions
  *
  * Configures a [io.vertx.core.net.TCPSSLOptions] to use the JDK ssl engine implementation.
  *
+ * @param useWorkerThread  Set the thread pool to use for SSL blocking operations.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.JdkSSLEngineOptions original] using Vert.x codegen.
  */
 fun jdkSSLEngineOptionsOf(
-): JdkSSLEngineOptions = io.vertx.core.net.JdkSSLEngineOptions().apply {
+  useWorkerThread: Boolean? = null): JdkSSLEngineOptions = io.vertx.core.net.JdkSSLEngineOptions().apply {
 
+  if (useWorkerThread != null) {
+    this.setUseWorkerThread(useWorkerThread)
+  }
 }
 
