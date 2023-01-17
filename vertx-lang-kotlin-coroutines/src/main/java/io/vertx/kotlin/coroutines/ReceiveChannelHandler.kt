@@ -55,8 +55,13 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.iterator()
   }
 
+  @Deprecated(
+    "Deprecated in the favour of 'tryReceive'. Please note that the provided replacement does not rethrow channel's close cause as 'poll' did, for the precise replacement please refer to the 'poll' documentation",
+    replaceWith = ReplaceWith("tryReceive().getOrNull()"),
+    level = DeprecationLevel.ERROR
+  )
   override fun poll(): T? {
-    return channel.poll()
+    return channel.tryReceive().getOrNull()
   }
 
   override suspend fun receive(): T {

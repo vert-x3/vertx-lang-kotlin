@@ -160,7 +160,7 @@ class ReceiveChannelHandlerTest {
     stream.handler { elt -> received.add(elt) }
     runBlocking {
       expected.forEach {
-        val offered = channel.offer(it)
+        val offered = channel.trySend(it).isSuccess
         testContext.assertTrue(offered)
       }
     }
@@ -175,7 +175,7 @@ class ReceiveChannelHandlerTest {
         channel.send(elt)
       }
       channel.send(capacity) // Need an extra element for the inflight
-      val isNotFull = channel.offer(-1)
+      val isNotFull = channel.trySend(-1).isSuccess
       testContext.assertFalse(isNotFull)
       channel.send(capacity + 1) // Shall be suspended until resume
       foo = true
