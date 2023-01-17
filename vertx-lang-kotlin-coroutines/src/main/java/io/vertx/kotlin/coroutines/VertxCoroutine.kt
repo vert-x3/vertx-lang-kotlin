@@ -15,22 +15,11 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.AsyncResult
-import io.vertx.core.Context
+import io.vertx.core.*
 import io.vertx.core.Future
-import io.vertx.core.Handler
-import io.vertx.core.Vertx
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Runnable
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.suspendCancellableCoroutine
-import java.util.concurrent.AbstractExecutorService
-import java.util.concurrent.Callable
-import java.util.concurrent.Delayed
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.ScheduledFuture
-import java.util.concurrent.TimeUnit
+import io.vertx.core.impl.ContextInternal
+import kotlinx.coroutines.*
+import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -267,4 +256,27 @@ private class VertxCoroutineExecutor(val vertxContext: Context) : AbstractExecut
   override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
     throw UnsupportedOperationException("should not be called")
   }
+}
+
+fun <T> vertxFuture(scope: CoroutineScope = GlobalScope, block: suspend CoroutineScope.() -> T): Future<T> {
+  val currentContext: Context? = Vertx.currentContext()
+  requireNotNull(currentContext) { "Not running on Vert.x context" }
+  return vertxFuture(currentContext.owner(), scope, block)
+}
+
+fun <T> vertxFuture(
+  vertx: Vertx,
+  scope: CoroutineScope = GlobalScope,
+  block: suspend CoroutineScope.() -> T
+): Future<T> {
+  val ctx = vertx.getOrCreateContext() as ContextInternal
+  val promise = ctx.promise<T>()
+  scope.launch(ctx.dispatcher()) {
+    try {
+      promise.tryComplete(block())
+    } catch (ex: Exception) {
+      promise.tryFail(ex)
+    }
+  }
+  return promise.future()
 }
