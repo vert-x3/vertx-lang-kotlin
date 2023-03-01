@@ -67,6 +67,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
+ * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -130,6 +131,7 @@ fun stompClientOptionsOf(
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -264,6 +266,9 @@ fun stompClientOptionsOf(
   }
   if (reconnectInterval != null) {
     this.setReconnectInterval(reconnectInterval)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)

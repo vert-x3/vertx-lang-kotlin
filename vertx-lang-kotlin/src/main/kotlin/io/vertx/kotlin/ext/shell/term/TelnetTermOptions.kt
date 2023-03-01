@@ -59,6 +59,7 @@ import java.util.concurrent.TimeUnit
  * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
+ * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -113,6 +114,7 @@ fun telnetTermOptionsOf(
   proxyProtocolTimeoutUnit: TimeUnit? = null,
   readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -224,6 +226,9 @@ fun telnetTermOptionsOf(
   }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)

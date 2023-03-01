@@ -65,6 +65,7 @@ fun oracleConnectOptionsOf(
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -206,6 +207,9 @@ fun oracleConnectOptionsOf(
   }
   if (reconnectInterval != null) {
     this.setReconnectInterval(reconnectInterval)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)

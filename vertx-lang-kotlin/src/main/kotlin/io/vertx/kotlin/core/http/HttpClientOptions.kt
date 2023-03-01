@@ -46,6 +46,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param forceSni  By default, the server name is only sent for Fully Qualified Domain Name (FQDN), setting this property to <code>true</code> forces the server name to be always sent.
  * @param http2ClearTextUpgrade  Set to <code>true</code> when an <i>h2c</i> connection is established using an HTTP/1.1 upgrade request, and <code>false</code> when an <i>h2c</i> connection is established directly (with prior knowledge).
+ * @param http2ClearTextUpgradeWithPreflightRequest  Set to <code>true</code> when an <i>h2c</i> connection established using an HTTP/1.1 upgrade request should perform a preflight <code>OPTIONS</code> request to the origin server to establish the <i>h2c</i> connection.
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by [io.vertx.core.http.Http2Settings], so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
  * @param http2KeepAliveTimeout  Set the keep alive timeout for HTTP/2 connections, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed. <p/> A timeout of <code>0</code> means there is no timeout.
  * @param http2MaxPoolSize  Set the maximum pool size for HTTP/2 connections
@@ -133,6 +134,7 @@ fun httpClientOptionsOf(
   enabledSecureTransportProtocols: Iterable<String>? = null,
   forceSni: Boolean? = null,
   http2ClearTextUpgrade: Boolean? = null,
+  http2ClearTextUpgradeWithPreflightRequest: Boolean? = null,
   http2ConnectionWindowSize: Int? = null,
   http2KeepAliveTimeout: Int? = null,
   http2MaxPoolSize: Int? = null,
@@ -245,6 +247,9 @@ fun httpClientOptionsOf(
   }
   if (http2ClearTextUpgrade != null) {
     this.setHttp2ClearTextUpgrade(http2ClearTextUpgrade)
+  }
+  if (http2ClearTextUpgradeWithPreflightRequest != null) {
+    this.setHttp2ClearTextUpgradeWithPreflightRequest(http2ClearTextUpgradeWithPreflightRequest)
   }
   if (http2ConnectionWindowSize != null) {
     this.setHttp2ConnectionWindowSize(http2ConnectionWindowSize)

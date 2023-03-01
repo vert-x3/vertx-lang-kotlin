@@ -120,7 +120,22 @@ suspend fun MqttClient.subscribeAwait(topics: Map<String,Int>): Int {
 /**
  * Suspending version of method [io.vertx.mqtt.MqttClient.unsubscribe]
  *
- * @param topic Topic you want to unsubscribe from
+ * @param topics list of topics you want to unsubscribe from
+ * @return [Int]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe(topics).await()"))
+suspend fun MqttClient.unsubscribeAwait(topics: List<String>): Int {
+  return awaitResult {
+    this.unsubscribe(topics, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.mqtt.MqttClient.unsubscribe]
+ *
+ * @param topic list of topics you want to unsubscribe from
  * @return [Int]
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttClient] using Vert.x codegen.

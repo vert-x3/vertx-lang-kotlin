@@ -46,10 +46,13 @@ import java.util.concurrent.TimeUnit
  * @param keyCertOptions  Set the key/cert options.
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
+ * @param maxClientIdLength  Set the max client id length.
  * @param maxMessageSize  Set max MQTT message size
  * @param openSslEngineOptions 
  * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param pemTrustOptions  Set the trust options in pem format
+ * @param perFrameWebSocketCompressionSupported  Enable or disable support for the WebSocket per-frame deflate compression extension.
+ * @param perMessageWebSocketCompressionSupported  Enable or disable support for WebSocket per-message deflate compression extension.
  * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
  * @param pfxTrustOptions  Set the trust options in pfx format
  * @param port  Set the port
@@ -57,6 +60,7 @@ import java.util.concurrent.TimeUnit
  * @param proxyProtocolTimeoutUnit  Set the Proxy protocol timeout unit. If not specified, default is seconds.
  * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  * @param receiveBufferSize  Set the TCP receive buffer size
+ * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -79,7 +83,10 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param useWebSocket  enable mqtt over websocket
+ * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
+ * @param webSocketCompressionLevel  Set the WebSocket compression level.
  * @param webSocketMaxFrameSize  Set the WebSocket max frame size. <p> This should be used when WebSocket transport is used and [io.vertx.mqtt.MqttServerOptions] is larger than the WebSocket frame size
+ * @param webSocketPreferredClientNoContext  Set whether the WebSocket server will accept the <code>client_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  *
  * <p/>
@@ -101,10 +108,13 @@ fun mqttServerOptionsOf(
   keyCertOptions: io.vertx.core.net.KeyCertOptions? = null,
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   logActivity: Boolean? = null,
+  maxClientIdLength: Int? = null,
   maxMessageSize: Int? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
+  perFrameWebSocketCompressionSupported: Boolean? = null,
+  perMessageWebSocketCompressionSupported: Boolean? = null,
   pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
   pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
   port: Int? = null,
@@ -112,6 +122,7 @@ fun mqttServerOptionsOf(
   proxyProtocolTimeoutUnit: TimeUnit? = null,
   readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -134,7 +145,10 @@ fun mqttServerOptionsOf(
   useAlpn: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   useWebSocket: Boolean? = null,
+  webSocketAllowServerNoContext: Boolean? = null,
+  webSocketCompressionLevel: Int? = null,
   webSocketMaxFrameSize: Int? = null,
+  webSocketPreferredClientNoContext: Boolean? = null,
   writeIdleTimeout: Int? = null): MqttServerOptions = io.vertx.mqtt.MqttServerOptions().apply {
 
   if (acceptBacklog != null) {
@@ -188,6 +202,9 @@ fun mqttServerOptionsOf(
   if (logActivity != null) {
     this.setLogActivity(logActivity)
   }
+  if (maxClientIdLength != null) {
+    this.setMaxClientIdLength(maxClientIdLength)
+  }
   if (maxMessageSize != null) {
     this.setMaxMessageSize(maxMessageSize)
   }
@@ -199,6 +216,12 @@ fun mqttServerOptionsOf(
   }
   if (pemTrustOptions != null) {
     this.setPemTrustOptions(pemTrustOptions)
+  }
+  if (perFrameWebSocketCompressionSupported != null) {
+    this.setPerFrameWebSocketCompressionSupported(perFrameWebSocketCompressionSupported)
+  }
+  if (perMessageWebSocketCompressionSupported != null) {
+    this.setPerMessageWebSocketCompressionSupported(perMessageWebSocketCompressionSupported)
   }
   if (pfxKeyCertOptions != null) {
     this.setPfxKeyCertOptions(pfxKeyCertOptions)
@@ -220,6 +243,9 @@ fun mqttServerOptionsOf(
   }
   if (receiveBufferSize != null) {
     this.setReceiveBufferSize(receiveBufferSize)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)
@@ -287,8 +313,17 @@ fun mqttServerOptionsOf(
   if (useWebSocket != null) {
     this.setUseWebSocket(useWebSocket)
   }
+  if (webSocketAllowServerNoContext != null) {
+    this.setWebSocketAllowServerNoContext(webSocketAllowServerNoContext)
+  }
+  if (webSocketCompressionLevel != null) {
+    this.setWebSocketCompressionLevel(webSocketCompressionLevel)
+  }
   if (webSocketMaxFrameSize != null) {
     this.setWebSocketMaxFrameSize(webSocketMaxFrameSize)
+  }
+  if (webSocketPreferredClientNoContext != null) {
+    this.setWebSocketPreferredClientNoContext(webSocketPreferredClientNoContext)
   }
   if (writeIdleTimeout != null) {
     this.setWriteIdleTimeout(writeIdleTimeout)

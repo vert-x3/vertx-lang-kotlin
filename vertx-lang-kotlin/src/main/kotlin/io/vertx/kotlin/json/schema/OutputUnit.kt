@@ -18,14 +18,17 @@ package io.vertx.kotlin.json.schema
 import io.vertx.json.schema.OutputUnit
 
 fun outputUnitOf(
+  absoluteKeywordLocation: String? = null,
   annotations: Iterable<io.vertx.json.schema.OutputUnit>? = null,
   error: String? = null,
   errors: Iterable<io.vertx.json.schema.OutputUnit>? = null,
   instanceLocation: String? = null,
-  keyword: String? = null,
   keywordLocation: String? = null,
   valid: Boolean? = null): OutputUnit = io.vertx.json.schema.OutputUnit().apply {
 
+  if (absoluteKeywordLocation != null) {
+    this.setAbsoluteKeywordLocation(absoluteKeywordLocation)
+  }
   if (annotations != null) {
     this.setAnnotations(annotations.toList())
   }
@@ -37,9 +40,6 @@ fun outputUnitOf(
   }
   if (instanceLocation != null) {
     this.setInstanceLocation(instanceLocation)
-  }
-  if (keyword != null) {
-    this.setKeyword(keyword)
   }
   if (keywordLocation != null) {
     this.setKeywordLocation(keywordLocation)

@@ -17,6 +17,7 @@ package io.vertx.kotlin.ext.mongo
 
 import io.vertx.ext.mongo.CreateCollectionOptions
 import io.vertx.ext.mongo.CollationOptions
+import io.vertx.ext.mongo.TimeSeriesOptions
 import io.vertx.ext.mongo.ValidationOptions
 
 /**
@@ -30,6 +31,7 @@ import io.vertx.ext.mongo.ValidationOptions
  * @param maxDocuments  Optional. The maximum number of documents allowed in the capped collection.           The size limit takes precedence over this limit.           If a capped collection reaches the size limit before it reaches the maximum number of documents,           MongoDB removes old documents.           If you prefer to use the max limit, ensure that the size limit,           which is required for a capped collection, is sufficient to contain the maximum number of documents.
  * @param sizeInBytes  Optional. Specify a maximum size in bytes for a capped collection. Once a capped collection reaches its maximum size, MongoDB removes the older documents to make space for the new documents.           The size field is required for capped collections and ignored for other collections.
  * @param storageEngineOptions  Optional. Available for the WiredTiger storage engine only. Allows users to specify configuration to the storage engine on a per-collection basis when creating a collection.
+ * @param timeSeriesOptions 
  * @param validationOptions 
  *
  * <p/>
@@ -42,6 +44,7 @@ fun createCollectionOptionsOf(
   maxDocuments: Long? = null,
   sizeInBytes: Long? = null,
   storageEngineOptions: io.vertx.core.json.JsonObject? = null,
+  timeSeriesOptions: io.vertx.ext.mongo.TimeSeriesOptions? = null,
   validationOptions: io.vertx.ext.mongo.ValidationOptions? = null): CreateCollectionOptions = io.vertx.ext.mongo.CreateCollectionOptions().apply {
 
   if (capped != null) {
@@ -61,6 +64,9 @@ fun createCollectionOptionsOf(
   }
   if (storageEngineOptions != null) {
     this.setStorageEngineOptions(storageEngineOptions)
+  }
+  if (timeSeriesOptions != null) {
+    this.setTimeSeriesOptions(timeSeriesOptions)
   }
   if (validationOptions != null) {
     this.setValidationOptions(validationOptions)

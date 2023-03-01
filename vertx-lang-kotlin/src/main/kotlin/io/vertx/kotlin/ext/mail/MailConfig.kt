@@ -63,6 +63,7 @@ import java.util.concurrent.TimeUnit
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param login  Set the login mode for the connection. <p> Either DISABLED, OPTIONAL or REQUIRED
+ * @param maxMailsPerConnection  Sets the max emails count per connection before it gets closed. <p> Some SMTP servers have requirement to allow only a number of emails sent per connection. </p>
  * @param maxPoolSize  set the max allowed number of open connections to the mail server if not set the default is 10
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param multiPartOnly  Sets to encode multipart only or not. When sets to <code>true</code>, the mail message will be encoded as multipart even for simple mails without attachments, see https://github.com/vert-x3/vertx-mail-client/issues/161.
@@ -84,6 +85,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
+ * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
  * @param sendBufferSize  Set the TCP send buffer size
@@ -141,6 +143,7 @@ fun mailConfigOf(
   localAddress: String? = null,
   logActivity: Boolean? = null,
   login: LoginOption? = null,
+  maxMailsPerConnection: Long? = null,
   maxPoolSize: Int? = null,
   metricsName: String? = null,
   multiPartOnly: Boolean? = null,
@@ -162,6 +165,7 @@ fun mailConfigOf(
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -277,6 +281,9 @@ fun mailConfigOf(
   if (login != null) {
     this.setLogin(login)
   }
+  if (maxMailsPerConnection != null) {
+    this.setMaxMailsPerConnection(maxMailsPerConnection)
+  }
   if (maxPoolSize != null) {
     this.setMaxPoolSize(maxPoolSize)
   }
@@ -339,6 +346,9 @@ fun mailConfigOf(
   }
   if (reconnectInterval != null) {
     this.setReconnectInterval(reconnectInterval)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)

@@ -79,6 +79,20 @@ suspend fun HttpServerResponse.writeAwait(chunk: String): Unit {
 }
 
 /**
+ * Suspending version of method [io.vertx.core.http.HttpServerResponse.writeEarlyHints]
+ *
+ * @param headers headers to write
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use writeEarlyHints returning a future and chain with await()", replaceWith = ReplaceWith("writeEarlyHints(headers).await()"))
+suspend fun HttpServerResponse.writeEarlyHintsAwait(headers: MultiMap): Unit {
+  return awaitResult {
+    this.writeEarlyHints(headers, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.core.http.HttpServerResponse.end]
  *
  * @param chunk 

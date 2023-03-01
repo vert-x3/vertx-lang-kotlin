@@ -31,6 +31,7 @@ import io.vertx.core.net.ProxyOptions
  * @param host  Set the host name to be used by the client request.
  * @param port  Set the port to be used by the client request.
  * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
+ * @param registerWriteHandlers  Whether write-handlers should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param subProtocols  Set the WebSocket sub protocols to use.
@@ -50,6 +51,7 @@ fun webSocketConnectOptionsOf(
   host: String? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  registerWriteHandlers: Boolean? = null,
   server: io.vertx.core.net.SocketAddress? = null,
   ssl: Boolean? = null,
   subProtocols: Iterable<String>? = null,
@@ -80,6 +82,9 @@ fun webSocketConnectOptionsOf(
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
+  }
+  if (registerWriteHandlers != null) {
+    this.setRegisterWriteHandlers(registerWriteHandlers)
   }
   if (server != null) {
     this.setServer(server)

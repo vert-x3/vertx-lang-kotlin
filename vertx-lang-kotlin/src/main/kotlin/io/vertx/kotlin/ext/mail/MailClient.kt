@@ -35,3 +35,16 @@ suspend fun MailClient.sendMailAwait(email: MailMessage): MailResult {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.ext.mail.MailClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.mail.MailClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun MailClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

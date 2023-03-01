@@ -67,6 +67,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize 
  * @param reconnectAttempts 
  * @param reconnectInterval 
+ * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress 
  * @param reusePort 
  * @param sendBufferSize 
@@ -130,6 +131,7 @@ fun amqpClientOptionsOf(
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
+  registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
   sendBufferSize: Int? = null,
@@ -266,6 +268,9 @@ fun amqpClientOptionsOf(
   }
   if (reconnectInterval != null) {
     this.setReconnectInterval(reconnectInterval)
+  }
+  if (registerWriteHandler != null) {
+    this.setRegisterWriteHandler(registerWriteHandler)
   }
   if (reuseAddress != null) {
     this.setReuseAddress(reuseAddress)
