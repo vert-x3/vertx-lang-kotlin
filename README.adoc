@@ -1,6 +1,7 @@
 = Vert.x for Kotlin
 
-image:https://github.com/vert-x3/vertx-lang-kotlin/workflows/CI/badge.svg?branch=master["Build Status", link="https://github.com/vert-x3/vertx-lang-kotlin/actions?query=workflow%3ACI"]
+image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml/badge.svg["Build Status (5.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml"]
+image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml/badge.svg["Build Status (4.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml"]
 image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
 image:https://img.shields.io/badge/kotlin-1.4.32-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
 image:https://img.shields.io/badge/kotlinx.coroutines-1.4.3-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
