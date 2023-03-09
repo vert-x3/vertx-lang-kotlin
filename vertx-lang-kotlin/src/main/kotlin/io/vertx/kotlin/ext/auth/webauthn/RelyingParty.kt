@@ -22,7 +22,6 @@ import io.vertx.ext.auth.webauthn.RelyingParty
  *
  * Data object representing a Relying party (your server)
  *
- * @param icon 
  * @param id 
  * @param name 
  *
@@ -30,13 +29,9 @@ import io.vertx.ext.auth.webauthn.RelyingParty
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.RelyingParty original] using Vert.x codegen.
  */
 fun relyingPartyOf(
-  icon: String? = null,
   id: String? = null,
   name: String? = null): RelyingParty = io.vertx.ext.auth.webauthn.RelyingParty().apply {
 
-  if (icon != null) {
-    this.setIcon(icon)
-  }
   if (id != null) {
     this.setId(id)
   }

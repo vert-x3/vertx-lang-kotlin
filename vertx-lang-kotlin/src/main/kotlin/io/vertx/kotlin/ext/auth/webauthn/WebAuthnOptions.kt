@@ -33,6 +33,7 @@ import io.vertx.ext.auth.webauthn.UserVerification
  * @param challengeLength 
  * @param extensions 
  * @param pubKeyCredParams 
+ * @param relaxedSafetyNetIntegrityVeridict  Set to true to allow SafetyNet attestation with a relaxed integrity veridict. When the relaxed value is <code>true</code>, the SafetyNet attestation will be accepted even if: <ul>   <li>Certified, genuine device that passes CTS</li>   <li>Certified device with unlocked bootloader</li>   <li>Genuine but uncertified device, such as when the manufacturer doesn't apply for certification</li>   <li>Device with custom ROM (not rooted)</li> </ul>
  * @param relyingParty 
  * @param requireResidentKey 
  * @param rootCertificates 
@@ -50,6 +51,7 @@ fun webAuthnOptionsOf(
   challengeLength: Int? = null,
   extensions: io.vertx.core.json.JsonObject? = null,
   pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
+  relaxedSafetyNetIntegrityVeridict: Boolean? = null,
   relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
   requireResidentKey: Boolean? = null,
   rootCertificates: Map<String, String>? = null,
@@ -72,6 +74,9 @@ fun webAuthnOptionsOf(
   }
   if (pubKeyCredParams != null) {
     this.setPubKeyCredParams(pubKeyCredParams.toList())
+  }
+  if (relaxedSafetyNetIntegrityVeridict != null) {
+    this.setRelaxedSafetyNetIntegrityVeridict(relaxedSafetyNetIntegrityVeridict)
   }
   if (relyingParty != null) {
     this.setRelyingParty(relyingParty)

@@ -24,37 +24,6 @@ import io.vertx.ext.sql.UpdateResult
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.ext.sql.SQLConnection.querySingle]
- *
- * @param sql the statement to execute
- * @return [JsonArray?]
- *
- * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use querySingle returning a future and chain with await()", replaceWith = ReplaceWith("querySingle(sql).await()"))
-suspend fun SQLConnection.querySingleAwait(sql: String): JsonArray? {
-  return awaitResult {
-    this.querySingle(sql, it)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.ext.sql.SQLConnection.querySingleWithParams]
- *
- * @param sql the statement to execute
- * @param arguments the arguments
- * @return [JsonArray?]
- *
- * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLConnection] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use querySingleWithParams returning a future and chain with await()", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
-suspend fun SQLConnection.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
-  return awaitResult {
-    this.querySingleWithParams(sql, arguments, it)
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.ext.sql.SQLConnection.setAutoCommit]
  *
  * @param autoCommit the autoCommit flag, true by default.

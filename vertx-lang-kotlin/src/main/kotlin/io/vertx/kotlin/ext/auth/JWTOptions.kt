@@ -29,7 +29,6 @@ fun jwtOptionsOf(
   leeway: Int? = null,
   noTimestamp: Boolean? = null,
   nonceAlgorithm: String? = null,
-  permissions: Iterable<String>? = null,
   subject: String? = null): JWTOptions = io.vertx.ext.auth.JWTOptions().apply {
 
   if (algorithm != null) {
@@ -66,9 +65,6 @@ fun jwtOptionsOf(
   }
   if (nonceAlgorithm != null) {
     this.setNonceAlgorithm(nonceAlgorithm)
-  }
-  if (permissions != null) {
-    this.setPermissions(permissions.toList())
   }
   if (subject != null) {
     this.setSubject(subject)

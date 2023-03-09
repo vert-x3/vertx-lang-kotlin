@@ -31,7 +31,6 @@ import io.vertx.ext.auth.KeyStoreOptions
  * @param path 
  * @param provider 
  * @param type 
- * @param value 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.KeyStoreOptions original] using Vert.x codegen.
@@ -41,8 +40,7 @@ fun keyStoreOptionsOf(
   passwordProtection: Map<String, String>? = null,
   path: String? = null,
   provider: String? = null,
-  type: String? = null,
-  value: io.vertx.core.buffer.Buffer? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
+  type: String? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
 
   if (password != null) {
     this.setPassword(password)
@@ -58,9 +56,6 @@ fun keyStoreOptionsOf(
   }
   if (type != null) {
     this.setType(type)
-  }
-  if (value != null) {
-    this.setValue(value)
   }
 }
 

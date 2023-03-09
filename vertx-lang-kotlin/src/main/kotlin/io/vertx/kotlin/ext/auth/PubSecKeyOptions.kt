@@ -24,11 +24,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  *
  * @param algorithm 
  * @param buffer  The PEM or Secret key buffer. When working with secret materials, the material is expected to be encoded in <code>UTF-8</code>. PEM files are expected to be <code>US_ASCII</code> as the format uses a base64 encoding for the payload.
- * @param certificate 
  * @param id 
- * @param publicKey 
- * @param secretKey 
- * @param symmetric 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.PubSecKeyOptions original] using Vert.x codegen.
@@ -36,11 +32,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
 fun pubSecKeyOptionsOf(
   algorithm: String? = null,
   buffer: io.vertx.core.buffer.Buffer? = null,
-  certificate: Boolean? = null,
-  id: String? = null,
-  publicKey: String? = null,
-  secretKey: String? = null,
-  symmetric: Boolean? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
+  id: String? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
 
   if (algorithm != null) {
     this.setAlgorithm(algorithm)
@@ -48,20 +40,8 @@ fun pubSecKeyOptionsOf(
   if (buffer != null) {
     this.setBuffer(buffer)
   }
-  if (certificate != null) {
-    this.setCertificate(certificate)
-  }
   if (id != null) {
     this.setId(id)
-  }
-  if (publicKey != null) {
-    this.setPublicKey(publicKey)
-  }
-  if (secretKey != null) {
-    this.setSecretKey(secretKey)
-  }
-  if (symmetric != null) {
-    this.setSymmetric(symmetric)
   }
 }
 

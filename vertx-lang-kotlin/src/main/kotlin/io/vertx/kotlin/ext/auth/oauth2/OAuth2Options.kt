@@ -19,7 +19,6 @@ import io.vertx.ext.auth.oauth2.OAuth2Options
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.ext.auth.JWTOptions
 import io.vertx.ext.auth.PubSecKeyOptions
-import io.vertx.ext.auth.oauth2.OAuth2FlowType
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.oauth2.OAuth2Options] objects.
@@ -29,21 +28,19 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  * @param authorizationPath  Get the Oauth2 authorization resource path. e.g.: /oauth/authorize
  * @param clientAssertion 
  * @param clientAssertionType 
- * @param clientID 
  * @param clientId  Set the provider client id
  * @param clientSecret  Set the provider client secret
  * @param extraParameters  Set extra parameters to be sent to the provider on each request
- * @param flow 
  * @param headers  Set custom headers to be sent with every request to the provider
  * @param httpClientOptions 
  * @param introspectionPath  Set the provider token introspection resource path
  * @param jwkMaxAgeInSeconds  -1 means no rotation for JWKs
  * @param jwkPath 
+ * @param jwks  Sets the initial local JWKs
  * @param jwtOptions 
  * @param logoutPath  Set the provider logout path
  * @param pubSecKeys  The provider PubSec key options
  * @param revocationPath  Set the Oauth2 revocation resource path. e.g.: /oauth/revoke
- * @param rotateJWKs  Enable/Disable the JWKs rotation.
  * @param scopeSeparator  Set the provider scope separator
  * @param site  Root URL for the provider without trailing slashes
  * @param supportedGrantTypes  The provider supported grant types
@@ -61,21 +58,19 @@ fun oAuth2OptionsOf(
   authorizationPath: String? = null,
   clientAssertion: String? = null,
   clientAssertionType: String? = null,
-  clientID: String? = null,
   clientId: String? = null,
   clientSecret: String? = null,
   extraParameters: io.vertx.core.json.JsonObject? = null,
-  flow: OAuth2FlowType? = null,
   headers: io.vertx.core.json.JsonObject? = null,
   httpClientOptions: io.vertx.core.http.HttpClientOptions? = null,
   introspectionPath: String? = null,
   jwkMaxAgeInSeconds: Long? = null,
   jwkPath: String? = null,
+  jwks: Iterable<io.vertx.core.json.JsonObject>? = null,
   jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   logoutPath: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
   revocationPath: String? = null,
-  rotateJWKs: Boolean? = null,
   scopeSeparator: String? = null,
   site: String? = null,
   supportedGrantTypes: Iterable<String>? = null,
@@ -95,9 +90,6 @@ fun oAuth2OptionsOf(
   if (clientAssertionType != null) {
     this.setClientAssertionType(clientAssertionType)
   }
-  if (clientID != null) {
-    this.setClientID(clientID)
-  }
   if (clientId != null) {
     this.setClientId(clientId)
   }
@@ -106,9 +98,6 @@ fun oAuth2OptionsOf(
   }
   if (extraParameters != null) {
     this.setExtraParameters(extraParameters)
-  }
-  if (flow != null) {
-    this.setFlow(flow)
   }
   if (headers != null) {
     this.setHeaders(headers)
@@ -125,6 +114,9 @@ fun oAuth2OptionsOf(
   if (jwkPath != null) {
     this.setJwkPath(jwkPath)
   }
+  if (jwks != null) {
+    this.setJwks(jwks.toList())
+  }
   if (jwtOptions != null) {
     this.setJWTOptions(jwtOptions)
   }
@@ -136,9 +128,6 @@ fun oAuth2OptionsOf(
   }
   if (revocationPath != null) {
     this.setRevocationPath(revocationPath)
-  }
-  if (rotateJWKs != null) {
-    this.setRotateJWKs(rotateJWKs)
   }
   if (scopeSeparator != null) {
     this.setScopeSeparator(scopeSeparator)

@@ -37,7 +37,7 @@ import io.vertx.redis.client.RedisRole
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
  * @param password  Set the default password for cluster/sentinel connections.
- * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
+ * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. <p> For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
  * @param poolName  Set a user defined pool name (for metrics reporting).
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.

@@ -15,24 +15,8 @@
  */
 package io.vertx.kotlin.ext.sql
 
-import io.vertx.core.json.JsonArray
-import io.vertx.core.streams.WriteStream
 import io.vertx.ext.sql.SQLRowStream
 import io.vertx.kotlin.coroutines.awaitResult
-
-/**
- * Suspending version of method [io.vertx.ext.sql.SQLRowStream.pipeTo]
- *
- * @param dst the destination write stream
- *
- * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLRowStream] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
-suspend fun SQLRowStream.pipeToAwait(dst: WriteStream<JsonArray>): Unit {
-  return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
 
 /**
  * Suspending version of method [io.vertx.ext.sql.SQLRowStream.close]

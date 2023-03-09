@@ -28,7 +28,6 @@ import io.vertx.ext.auth.PubSecKeyOptions
  * @param jwks 
  * @param jwtOptions 
  * @param keyStore 
- * @param permissionsClaimKey 
  * @param pubSecKeys 
  *
  * <p/>
@@ -38,7 +37,6 @@ fun jwtAuthOptionsOf(
   jwks: Iterable<io.vertx.core.json.JsonObject>? = null,
   jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   keyStore: io.vertx.ext.auth.KeyStoreOptions? = null,
-  permissionsClaimKey: String? = null,
   pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null): JWTAuthOptions = io.vertx.ext.auth.jwt.JWTAuthOptions().apply {
 
   if (jwks != null) {
@@ -49,9 +47,6 @@ fun jwtAuthOptionsOf(
   }
   if (keyStore != null) {
     this.setKeyStore(keyStore)
-  }
-  if (permissionsClaimKey != null) {
-    this.setPermissionsClaimKey(permissionsClaimKey)
   }
   if (pubSecKeys != null) {
     this.setPubSecKeys(pubSecKeys.toList())
