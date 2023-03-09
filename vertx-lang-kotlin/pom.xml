@@ -69,11 +69,6 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-auth-jdbc</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-auth-htdigest</artifactId>
       <optional>true</optional>
     </dependency>
@@ -90,17 +85,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-auth-mongo</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
       <artifactId>vertx-auth-oauth2</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-auth-shiro</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -422,13 +407,10 @@
             vertx-cassandra-client,
             vertx-jdbc-client,
             vertx-auth-common,
-            vertx-auth-jdbc,
             vertx-auth-htdigest,
             vertx-auth-htpasswd,
             vertx-auth-jwt,
-            vertx-auth-mongo,
             vertx-auth-oauth2,
-            vertx-auth-shiro,
             vertx-auth-webauthn,
             vertx-auth-properties,
             vertx-auth-ldap,
