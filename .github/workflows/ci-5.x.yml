@@ -19,7 +19,7 @@ jobs:
             jdk: 17
     uses: ./.github/workflows/ci.yml
     with:
-      branch: ${{ github.head_ref || github.ref_name }}
+      branch: ${{ github.event.pull_request.head.sha || github.ref_name }}
       jdk: ${{ matrix.jdk }}
       os: ${{ matrix.os }}
     secrets: inherit
@@ -28,6 +28,6 @@ jobs:
     needs: CI
     uses: ./.github/workflows/deploy.yml
     with:
-      branch: ${{ github.head_ref || github.ref_name }}
+      branch: ${{ github.event.pull_request.head.sha || github.ref_name }}
       jdk: 11
     secrets: inherit
