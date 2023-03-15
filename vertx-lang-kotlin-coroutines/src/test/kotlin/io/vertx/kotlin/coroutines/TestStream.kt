@@ -74,25 +74,15 @@ class TestStream<T> : ReadStream<T>, WriteStream<T> {
   }
 
   override fun write(data: T): Future<Void> {
-    val promise = Promise.promise<Void>()
-    write(data, promise)
-    return promise.future()
-  }
-
-  override fun write(data: T, completionHandler: Handler<AsyncResult<Void>>?) {
     handler.handle(data)
     writtenElements++
-    if (completionHandler != null) {
-      completionHandler.handle(Future.succeededFuture())
-    }
+    return Future.succeededFuture()
   }
 
-  override fun end(completionHandler: Handler<AsyncResult<Void>>?) {
+  override fun end(): Future<Void> {
     isEnded = true
     endHandler?.handle(null)
-    if (completionHandler != null) {
-      completionHandler.handle(Future.succeededFuture())
-    }
+    return Future.succeededFuture();
   }
 
   override fun setWriteQueueMaxSize(size: Int): TestStream<T> {

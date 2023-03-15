@@ -21,6 +21,7 @@ import io.vertx.ext.auth.webauthn.AuthenticatorAttachment
 import io.vertx.ext.auth.webauthn.AuthenticatorTransport
 import io.vertx.ext.auth.webauthn.PublicKeyCredential
 import io.vertx.ext.auth.webauthn.RelyingParty
+import io.vertx.ext.auth.webauthn.ResidentKey
 import io.vertx.ext.auth.webauthn.UserVerification
 
 /**
@@ -36,6 +37,7 @@ import io.vertx.ext.auth.webauthn.UserVerification
  * @param relaxedSafetyNetIntegrityVeridict  Set to true to allow SafetyNet attestation with a relaxed integrity veridict. When the relaxed value is <code>true</code>, the SafetyNet attestation will be accepted even if: <ul>   <li>Certified, genuine device that passes CTS</li>   <li>Certified device with unlocked bootloader</li>   <li>Genuine but uncertified device, such as when the manufacturer doesn't apply for certification</li>   <li>Device with custom ROM (not rooted)</li> </ul>
  * @param relyingParty 
  * @param requireResidentKey 
+ * @param residentKey 
  * @param rootCertificates 
  * @param rootCrls  Load a CRL, for example MDS3 certificate should use http://crl.globalsign.net/Root.crl
  * @param timeoutInMilliseconds 
@@ -54,6 +56,7 @@ fun webAuthnOptionsOf(
   relaxedSafetyNetIntegrityVeridict: Boolean? = null,
   relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
   requireResidentKey: Boolean? = null,
+  residentKey: ResidentKey? = null,
   rootCertificates: Map<String, String>? = null,
   rootCrls: Iterable<String>? = null,
   timeoutInMilliseconds: Long? = null,
@@ -83,6 +86,9 @@ fun webAuthnOptionsOf(
   }
   if (requireResidentKey != null) {
     this.setRequireResidentKey(requireResidentKey)
+  }
+  if (residentKey != null) {
+    this.setResidentKey(residentKey)
   }
   if (rootCertificates != null) {
     this.setRootCertificates(rootCertificates)

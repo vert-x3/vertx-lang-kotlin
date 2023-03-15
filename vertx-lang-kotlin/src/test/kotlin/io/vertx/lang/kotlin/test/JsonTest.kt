@@ -127,14 +127,9 @@ class JsonTest {
         throw UnsupportedOperationException("not implemented")
       }
 
-      override fun write(data: Buffer?, handler: Handler<AsyncResult<Void>>?) {
-        data?.let { received.add(it) }
-        handler?.handle(Future.succeededFuture())
-      }
-
-      override fun end(handler: Handler<AsyncResult<Void>>?) {
+      override fun end(): Future<Void> {
         ended.set(true)
-        handler?.handle(Future.succeededFuture())
+        return Future.succeededFuture()
       }
 
       override fun drainHandler(handler: Handler<Void>?): WriteStream<Buffer> {
