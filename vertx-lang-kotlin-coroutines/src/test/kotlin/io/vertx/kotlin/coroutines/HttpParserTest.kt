@@ -44,7 +44,7 @@ class HttpParserTest {
 
   @After
   fun after(testContext: TestContext) {
-    vertx.close(testContext.asyncAssertSuccess())
+    vertx.close().onComplete(testContext.asyncAssertSuccess())
   }
 
   class Request(line: String, val body: Buffer? = null) {
@@ -81,7 +81,7 @@ class HttpParserTest {
         socket.write("HTTP/1.1 200 OK\r\n\r\n")
       }
     }
-    server.listen(8080, testContext.asyncAssertSuccess { async.complete() })
+    server.listen(8080).onComplete(testContext.asyncAssertSuccess { async.complete() })
     async.awaitSuccess(20000)
   }
 
@@ -121,8 +121,8 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.request(HttpMethod.GET, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
-      request.send(testContext.asyncAssertSuccess() { response ->
+    client.request(HttpMethod.GET, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
+      request.send().onComplete(testContext.asyncAssertSuccess() { response ->
 
       });
     })
@@ -139,8 +139,8 @@ class HttpParserTest {
       async.complete()
     }
     val client = vertx.createHttpClient()
-    client.request(HttpMethod.PUT, 8080, "localhost", "/foo", testContext.asyncAssertSuccess { request ->
-      request.send(Buffer.buffer("abc123"), testContext.asyncAssertSuccess() { response ->
+    client.request(HttpMethod.PUT, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
+      request.send(Buffer.buffer("abc123")).onComplete(testContext.asyncAssertSuccess() { response ->
 
       });
     })

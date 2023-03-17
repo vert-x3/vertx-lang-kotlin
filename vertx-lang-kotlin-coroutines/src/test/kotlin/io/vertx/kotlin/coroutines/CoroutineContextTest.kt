@@ -92,7 +92,7 @@ class CoroutineContextTest {
           runTest(testContext, isOnEventLoop = false)
         }
       }
-    }, DeploymentOptions().setWorker(true), testContext.asyncAssertSuccess {
+    }, DeploymentOptions().setWorker(true)).onComplete(testContext.asyncAssertSuccess {
       async.complete()
     })
   }

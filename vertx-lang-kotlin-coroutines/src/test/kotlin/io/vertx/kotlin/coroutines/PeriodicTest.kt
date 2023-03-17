@@ -40,7 +40,7 @@ class PeriodicTest {
 
   @After
   fun after(testContext: TestContext) {
-    vertx.close(testContext.asyncAssertSuccess())
+    vertx.close().onComplete(testContext.asyncAssertSuccess())
   }
 
   @Test

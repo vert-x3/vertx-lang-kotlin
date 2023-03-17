@@ -45,7 +45,7 @@ class EventBusTest {
 
   @After
   fun after(testContext: TestContext) {
-    vertx.close(testContext.asyncAssertSuccess())
+    vertx.close().onComplete(testContext.asyncAssertSuccess())
   }
 
   @Test
@@ -121,7 +121,7 @@ class EventBusTest {
       var count = 0
       for (msg in channel) {
         val reply = awaitResult<Message<Int?>> {
-          bus.request("another-address", msg, it)
+          bus.request<Int>("another-address", msg).onComplete(it)
         }
         val v = reply.body()
         if (v == null) {
@@ -147,7 +147,7 @@ class EventBusTest {
     GlobalScope.launch(vertx.dispatcher()) {
       try {
         awaitResult<Message<Int?>> {
-          bus.request("the-address", "the-body", it)
+          bus.request<Int>("the-address", "the-body").onComplete(it)
         }
       } catch (e: Exception) {
         testContext.assertTrue(e is ReplyException)

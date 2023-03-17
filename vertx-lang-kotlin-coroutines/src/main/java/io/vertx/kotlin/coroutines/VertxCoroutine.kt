@@ -111,7 +111,7 @@ suspend fun <T> awaitBlocking(block: () -> T): T {
     val ctx = Vertx.currentContext()
     ctx.executeBlocking<T>({ fut ->
       fut.complete(block())
-    }, { ar ->
+    }).onComplete({ ar ->
       handler.handle(ar)
     })
   }
