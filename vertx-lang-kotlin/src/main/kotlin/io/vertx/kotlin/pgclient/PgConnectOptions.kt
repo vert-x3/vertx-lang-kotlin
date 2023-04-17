@@ -90,6 +90,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useLayer7Proxy  Set the client to use a layer 7 (application) proxy compatible protocol, set to <code>true</code> when the client interacts with a layer 7 proxy like PgBouncer instead of a server. Prepared statement caching must be disabled.
  * @param user  Specify the user account to be used for the authentication.
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.pgclient.PgConnectOptions]
  *
@@ -155,6 +156,7 @@ fun pgConnectOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useLayer7Proxy: Boolean? = null,
   user: String? = null,
   writeIdleTimeout: Int? = null): PgConnectOptions = io.vertx.pgclient.PgConnectOptions().apply {
 
@@ -337,6 +339,9 @@ fun pgConnectOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useLayer7Proxy != null) {
+    this.setUseLayer7Proxy(useLayer7Proxy)
   }
   if (user != null) {
     this.setUser(user)

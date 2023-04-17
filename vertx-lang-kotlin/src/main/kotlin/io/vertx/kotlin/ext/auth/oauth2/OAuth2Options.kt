@@ -46,6 +46,7 @@ import io.vertx.ext.auth.PubSecKeyOptions
  * @param supportedGrantTypes  The provider supported grant types
  * @param tenant  Sets an optional tenant. Tenants are used in some OpenID servers as placeholders for the URLs. The tenant should be set prior to any URL as it affects the way the URLs will be stored. <p> Some provders may name this differently, for example: `realm`.
  * @param tokenPath  Get the Oauth2 token resource path. e.g.: /oauth/token
+ * @param useBasicAuthorization 
  * @param userAgent  Set a custom user agent to use when communicating to a provider
  * @param userInfoParameters  Set custom parameters to be sent during the userInfo resource request
  * @param userInfoPath  Set the provider userInfo resource path
@@ -76,6 +77,7 @@ fun oAuth2OptionsOf(
   supportedGrantTypes: Iterable<String>? = null,
   tenant: String? = null,
   tokenPath: String? = null,
+  useBasicAuthorization: Boolean? = null,
   userAgent: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   userInfoPath: String? = null,
@@ -143,6 +145,9 @@ fun oAuth2OptionsOf(
   }
   if (tokenPath != null) {
     this.setTokenPath(tokenPath)
+  }
+  if (useBasicAuthorization != null) {
+    this.setUseBasicAuthorization(useBasicAuthorization)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)
