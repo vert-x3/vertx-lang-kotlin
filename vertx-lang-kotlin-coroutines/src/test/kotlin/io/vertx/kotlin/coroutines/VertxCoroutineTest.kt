@@ -67,7 +67,7 @@ class VertxCoroutineTest {
     val job: Job = GlobalScope.launch(vertx.dispatcher()) {
       val th = Thread.currentThread()
       val cnt = AtomicInteger()
-      val periodicTimer = vertx.periodicStream(1L).handler {
+      val periodicTimer = vertx.setPeriodic(1L) {
         assertSame(Thread.currentThread(), th)
         cnt.incrementAndGet()
       }
@@ -75,7 +75,7 @@ class VertxCoroutineTest {
       awaitEvent<Long> { h -> vertx.setTimer(1000L, h) }
       assertTrue(cnt.get() > 900)
       assertSame(Thread.currentThread(), th)
-      periodicTimer.cancel()
+      vertx.cancelTimer(periodicTimer)
       async.countDown()
     }
     job.invokeOnCompletion {

@@ -26,8 +26,10 @@ import java.util.concurrent.TimeUnit
  * @param connectionTimeout  Set the amount of time a client will wait for a connection from the pool. If the time is exceeded without a connection available, an exception is provided.
  * @param connectionTimeoutUnit  Set the time unit of [io.vertx.sqlclient.PoolOptions]
  * @param eventLoopSize  Set the number of event-loop the pool use. <ul>   <li>when the size is <code>0</code>, the client pool will use the current event-loop</li>   <li>otherwise the client will create and use its own event loop</li> </ul> The default size is <code>0</code>.
- * @param idleTimeout  Establish an idle timeout for pooled connections.
+ * @param idleTimeout  Establish an idle timeout for pooled connections, a value of zero disables the idle timeout.
  * @param idleTimeoutUnit  Establish an idle timeout unit for pooled connections.
+ * @param maxLifetime  Establish a max lifetime for pooled connections, a value of zero disables the maximum lifetime.
+ * @param maxLifetimeUnit  Establish a max lifetime unit for pooled connections.
  * @param maxSize  Set the maximum pool size
  * @param maxWaitQueueSize  Set the maximum connection request allowed in the wait queue, any requests beyond the max size will result in an failure.  If the value is set to a negative number then the queue will be unbounded.
  * @param name  Set the pool name, used when the pool shared, otherwise ignored.
@@ -43,6 +45,8 @@ fun poolOptionsOf(
   eventLoopSize: Int? = null,
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
+  maxLifetime: Int? = null,
+  maxLifetimeUnit: TimeUnit? = null,
   maxSize: Int? = null,
   maxWaitQueueSize: Int? = null,
   name: String? = null,
@@ -63,6 +67,12 @@ fun poolOptionsOf(
   }
   if (idleTimeoutUnit != null) {
     this.setIdleTimeoutUnit(idleTimeoutUnit)
+  }
+  if (maxLifetime != null) {
+    this.setMaxLifetime(maxLifetime)
+  }
+  if (maxLifetimeUnit != null) {
+    this.setMaxLifetimeUnit(maxLifetimeUnit)
   }
   if (maxSize != null) {
     this.setMaxSize(maxSize)
