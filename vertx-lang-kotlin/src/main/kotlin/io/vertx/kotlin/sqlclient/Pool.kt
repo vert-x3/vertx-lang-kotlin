@@ -19,6 +19,7 @@ import io.vertx.core.Future
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.Pool
 import io.vertx.sqlclient.SqlConnection
+import io.vertx.sqlclient.TransactionPropagation
 import java.util.function.Function
 
 /**
@@ -47,6 +48,22 @@ suspend fun Pool.getConnectionAwait(): SqlConnection {
 suspend fun <T> Pool.withTransactionAwait(function: (SqlConnection) -> Future<T?>): T? {
   return awaitResult {
     this.withTransaction(function, it::handle)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.sqlclient.Pool.withTransaction]
+ *
+ * @param txPropagation 
+ * @param function 
+ * @return [T?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use withTransaction returning a future and chain with await()", replaceWith = ReplaceWith("withTransaction(txPropagation, function).await()"))
+suspend fun <T> Pool.withTransactionAwait(txPropagation: TransactionPropagation, function: (SqlConnection) -> Future<T?>): T? {
+  return awaitResult {
+    this.withTransaction(txPropagation, function, it::handle)
   }
 }
 
