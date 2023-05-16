@@ -2,7 +2,6 @@
 
 package examples
 
-import io.vertx.core.CompositeFuture
 import io.vertx.core.Future
 import io.vertx.core.Handler
 import io.vertx.core.Vertx
@@ -132,7 +131,7 @@ class ExampleVerticle : CoroutineVerticle() {
     println("HTTP server port: ${httpServer.actualPort()}")
 
     // It also works for composite futures
-    val result = CompositeFuture.all(httpServerFuture, anotherFuture).await()
+    val result = Future.all(httpServerFuture, anotherFuture).await()
     if (result.succeeded()) {
       println("The server is now running!")
     } else {
