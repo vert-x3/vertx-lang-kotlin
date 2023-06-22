@@ -8,7 +8,7 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>4.4.4-SNAPSHOT</version>
+    <version>4.4.4</version>
   </parent>
 
   <artifactId>vertx-lang-kotlin</artifactId>
