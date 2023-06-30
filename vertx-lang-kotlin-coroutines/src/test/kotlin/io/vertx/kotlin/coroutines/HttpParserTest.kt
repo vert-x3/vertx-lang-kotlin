@@ -17,6 +17,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
+import io.vertx.core.http.HttpClient
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
@@ -36,10 +37,12 @@ import org.junit.runner.RunWith
 class HttpParserTest {
 
   private lateinit var vertx: Vertx
+  private lateinit var client: HttpClient
 
   @Before
   fun before() {
     vertx = Vertx.vertx()
+    client = vertx.createHttpClient()
   }
 
   @After
@@ -120,7 +123,6 @@ class HttpParserTest {
       testContext.assertNull(req.body)
       async.complete()
     }
-    val client = vertx.createHttpClient()
     client.request(HttpMethod.GET, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
       request.send().onComplete(testContext.asyncAssertSuccess() { response ->
 
@@ -138,7 +140,6 @@ class HttpParserTest {
       testContext.assertEquals("abc123", req.body.toString())
       async.complete()
     }
-    val client = vertx.createHttpClient()
     client.request(HttpMethod.PUT, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
       request.send(Buffer.buffer("abc123")).onComplete(testContext.asyncAssertSuccess() { response ->
 
@@ -156,7 +157,6 @@ class HttpParserTest {
       testContext.assertEquals("abc123", req.body.toString())
       async.complete()
     }
-    val client = vertx.createHttpClient()
     client.request(HttpMethod.PUT, 8080, "localhost", "/foo")
       .onComplete(testContext.asyncAssertSuccess() { req ->
         req.setChunked(true)
