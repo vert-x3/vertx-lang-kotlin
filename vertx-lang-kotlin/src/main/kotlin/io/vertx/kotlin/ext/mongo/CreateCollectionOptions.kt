@@ -27,6 +27,7 @@ import io.vertx.ext.mongo.ValidationOptions
  *
  * @param capped  Optional. To create a capped collection, specify true. If you specify true, you must also set a maximum size in the size field.
  * @param collation  Specifies the default collation for the collection. Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
+ * @param expireAfterSeconds  Optional. A duration indicating after how long old time-series data should be deleted. Currently, applies only to time-series collections, so if this value is set then so must the time-series options.
  * @param indexOptionDefaults  Optional. Allows users to specify a default configuration for indexes when creating a collection.
  * @param maxDocuments  Optional. The maximum number of documents allowed in the capped collection.           The size limit takes precedence over this limit.           If a capped collection reaches the size limit before it reaches the maximum number of documents,           MongoDB removes old documents.           If you prefer to use the max limit, ensure that the size limit,           which is required for a capped collection, is sufficient to contain the maximum number of documents.
  * @param sizeInBytes  Optional. Specify a maximum size in bytes for a capped collection. Once a capped collection reaches its maximum size, MongoDB removes the older documents to make space for the new documents.           The size field is required for capped collections and ignored for other collections.
@@ -40,6 +41,7 @@ import io.vertx.ext.mongo.ValidationOptions
 fun createCollectionOptionsOf(
   capped: Boolean? = null,
   collation: io.vertx.ext.mongo.CollationOptions? = null,
+  expireAfterSeconds: Long? = null,
   indexOptionDefaults: io.vertx.core.json.JsonObject? = null,
   maxDocuments: Long? = null,
   sizeInBytes: Long? = null,
@@ -52,6 +54,9 @@ fun createCollectionOptionsOf(
   }
   if (collation != null) {
     this.setCollation(collation)
+  }
+  if (expireAfterSeconds != null) {
+    this.setExpireAfterSeconds(expireAfterSeconds)
   }
   if (indexOptionDefaults != null) {
     this.setIndexOptionDefaults(indexOptionDefaults)

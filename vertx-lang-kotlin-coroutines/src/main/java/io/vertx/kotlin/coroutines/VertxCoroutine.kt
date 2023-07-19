@@ -109,9 +109,9 @@ suspend fun <T> awaitResult(block: (h: Handler<AsyncResult<T>>) -> Unit): T {
 suspend fun <T> awaitBlocking(block: () -> T): T {
   return awaitResult { handler ->
     val ctx = Vertx.currentContext()
-    ctx.executeBlocking<T>({ fut ->
-      fut.complete(block())
-    }).onComplete({ ar ->
+    ctx
+      .executeBlocking({ block() })
+      .onComplete({ ar ->
       handler.handle(ar)
     })
   }
