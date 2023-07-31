@@ -46,13 +46,13 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
+      <artifactId>vertx-codegen-processor</artifactId>
       <classifier>tck-sources</classifier>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
+      <artifactId>vertx-codegen-processor</artifactId>
       <classifier>tck</classifier>
       <scope>test</scope>
     </dependency>
@@ -138,7 +138,7 @@
             </goals>
             <configuration>
               <includeGroupIds>io.vertx</includeGroupIds>
-              <includeArtifactIds>vertx-codegen</includeArtifactIds>
+              <includeArtifactIds>vertx-codegen-processor</includeArtifactIds>
               <includeTypes>jar</includeTypes>
               <includeClassifiers>tck-sources</includeClassifiers>
               <outputDirectory>${project.build.directory}/sources/vertx-codegen</outputDirectory>
