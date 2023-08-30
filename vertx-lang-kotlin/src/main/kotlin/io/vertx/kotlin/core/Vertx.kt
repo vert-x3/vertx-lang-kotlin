@@ -16,7 +16,6 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
-import io.vertx.core.Promise
 import io.vertx.core.Verticle
 import io.vertx.core.Vertx as VertxVertxAlias
 import io.vertx.core.VertxOptions
@@ -78,37 +77,6 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name: String, options: Deploymen
 suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
   return awaitResult {
     this.undeploy(deploymentID, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
- *
- * @param blockingCodeHandler handler representing the blocking code to run
- * @param ordered if true then if executeBlocking is called several times on the same context, the executions for that context will be executed serially, not in parallel. if false then they will be no ordering guarantees
- * @return [T?]
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit, ordered: Boolean): T? {
-  return awaitResult {
-    this.executeBlocking(blockingCodeHandler, ordered, it::handle)
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
- *
- * @param blockingCodeHandler 
- * @return [T?]
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
-suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: (Promise<T>) -> Unit): T? {
-  return awaitResult {
-    this.executeBlocking(blockingCodeHandler, it::handle)
   }
 }
 

@@ -25,7 +25,8 @@ import io.vertx.ext.consul.CheckStatus
  *
  * @param id  Set the ID of check
  * @param name  Set the name of check
- * @param nodeName  Set the name of node
+ * @param node  Set the name of node
+ * @param nodeName  Set the name of node Deprecated since consul 1.11, renamed to 'node'. Use [io.vertx.ext.consul.Check] ()} instead
  * @param notes  Set the human-readable note of check
  * @param output  Set the output of check
  * @param serviceId  Set the ID of service with which this check associated
@@ -38,6 +39,7 @@ import io.vertx.ext.consul.CheckStatus
 fun checkOf(
   id: String? = null,
   name: String? = null,
+  node: String? = null,
   nodeName: String? = null,
   notes: String? = null,
   output: String? = null,
@@ -50,6 +52,9 @@ fun checkOf(
   }
   if (name != null) {
     this.setName(name)
+  }
+  if (node != null) {
+    this.setNode(node)
   }
   if (nodeName != null) {
     this.setNodeName(nodeName)

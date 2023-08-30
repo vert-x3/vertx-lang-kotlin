@@ -24,6 +24,7 @@ import io.vertx.core.net.OpenSSLEngineOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
+import io.vertx.core.net.TrafficShapingOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -82,6 +83,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param timeFactor  Sets the time factor.
  * @param trafficClass  Set the value of traffic class
+ * @param trafficShapingOptions  Set traffic shaping options. If not specified, traffic is unthrottled.
  * @param trailingLine  Sets whether or not an empty line should be appended to the written STOMP frame. This option is disabled by default. This option is not compliant with the STOMP specification, and so is not documented on purpose.
  * @param transactionChunkSize  Sets the chunk size when replaying a transaction. To avoid blocking the event loop for too long, large transactions are split into chunks, replayed one by one. This settings sets the chunk size.
  * @param trustOptions  Set the trust options.
@@ -147,6 +149,7 @@ fun stompServerOptionsOf(
   tcpUserTimeout: Int? = null,
   timeFactor: Int? = null,
   trafficClass: Int? = null,
+  trafficShapingOptions: io.vertx.core.net.TrafficShapingOptions? = null,
   trailingLine: Boolean? = null,
   transactionChunkSize: Int? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
@@ -315,6 +318,9 @@ fun stompServerOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trafficShapingOptions != null) {
+    this.setTrafficShapingOptions(trafficShapingOptions)
   }
   if (trailingLine != null) {
     this.setTrailingLine(trailingLine)

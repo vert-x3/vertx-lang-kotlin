@@ -289,7 +289,7 @@ suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String): Http
  * Suspending version of method [io.vertx.core.http.HttpServerResponse.push]
  *
  * @param method the method of the promised request
- * @param host the host of the promised request
+ * @param host 
  * @param path the path of the promised request
  * @param headers the headers of the promised request
  * @return [HttpServerResponse]

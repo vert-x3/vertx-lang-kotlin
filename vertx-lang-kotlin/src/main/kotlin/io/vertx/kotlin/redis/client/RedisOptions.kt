@@ -17,6 +17,7 @@ package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisOptions
 import io.vertx.core.net.NetClientOptions
+import io.vertx.core.tracing.TracingPolicy
 import io.vertx.redis.client.RedisClientType
 import io.vertx.redis.client.RedisReplicas
 import io.vertx.redis.client.RedisRole
@@ -42,6 +43,7 @@ import io.vertx.redis.client.RedisRole
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param role  Set the role name (only considered in HA mode).
+ * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
  * @param type  Set the desired client type to be created.
  * @param useReplicas  Set whether or not to use replica nodes (only considered in Cluster mode).
  *
@@ -65,6 +67,7 @@ fun redisOptionsOf(
   poolRecycleTimeout: Int? = null,
   protocolNegotiation: Boolean? = null,
   role: RedisRole? = null,
+  tracingPolicy: TracingPolicy? = null,
   type: RedisClientType? = null,
   useReplicas: RedisReplicas? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
@@ -117,6 +120,9 @@ fun redisOptionsOf(
   }
   if (role != null) {
     this.setRole(role)
+  }
+  if (tracingPolicy != null) {
+    this.setTracingPolicy(tracingPolicy)
   }
   if (type != null) {
     this.setType(type)
