@@ -22,22 +22,25 @@ import io.vertx.ext.consul.Coordinate
  *
  * Holds network coordinates of node
  *
+ * @param node  Set name of node
  * @param adj  Set adjustment
  * @param err  Set error
  * @param height  Set height
- * @param node  Set name of node
  * @param vec  Set vector
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Coordinate original] using Vert.x codegen.
  */
 fun coordinateOf(
+  node: String? = null,
   adj: Float? = null,
   err: Float? = null,
   height: Float? = null,
-  node: String? = null,
   vec: Iterable<Float>? = null): Coordinate = io.vertx.ext.consul.Coordinate().apply {
 
+  if (node != null) {
+    this.setNode(node)
+  }
   if (adj != null) {
     this.setAdj(adj)
   }
@@ -46,9 +49,6 @@ fun coordinateOf(
   }
   if (height != null) {
     this.setHeight(height)
-  }
-  if (node != null) {
-    this.setNode(node)
   }
   if (vec != null) {
     this.setVec(vec.toList())

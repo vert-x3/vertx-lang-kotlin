@@ -22,15 +22,23 @@ import io.vertx.ext.consul.token.ServiceTokenApplyingOptions
 
 fun aclTokenOf(
   description: String? = null,
+  policies: Iterable<io.vertx.ext.consul.token.PolicyLink>? = null,
+  policys: Iterable<io.vertx.ext.consul.token.PolicyLink>? = null,
   expirationTime: String? = null,
   namespace: String? = null,
   nodeIdentities: Iterable<io.vertx.ext.consul.token.NodeTokenApplyingOptions>? = null,
-  policies: Iterable<io.vertx.ext.consul.token.PolicyLink>? = null,
-  policys: Iterable<io.vertx.ext.consul.token.PolicyLink>? = null,
   serviceIdentities: Iterable<io.vertx.ext.consul.token.ServiceTokenApplyingOptions>? = null): AclToken = io.vertx.ext.consul.token.AclToken().apply {
 
   if (description != null) {
     this.setDescription(description)
+  }
+  if (policies != null) {
+    this.setPolicies(policies.toList())
+  }
+  if (policys != null) {
+    for (item in policys) {
+      this.addPolicy(item)
+    }
   }
   if (expirationTime != null) {
     this.setExpirationTime(expirationTime)
@@ -40,14 +48,6 @@ fun aclTokenOf(
   }
   if (nodeIdentities != null) {
     this.setNodeIdentities(nodeIdentities.toList())
-  }
-  if (policies != null) {
-    this.setPolicies(policies.toList())
-  }
-  if (policys != null) {
-    for (item in policys) {
-      this.addPolicy(item)
-    }
   }
   if (serviceIdentities != null) {
     this.setServiceIdentities(serviceIdentities.toList())

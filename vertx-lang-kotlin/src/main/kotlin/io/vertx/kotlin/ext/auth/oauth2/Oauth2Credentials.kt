@@ -23,56 +23,56 @@ import io.vertx.ext.auth.oauth2.OAuth2FlowType
  *
  * Credentials specific to the [io.vertx.ext.auth.oauth2.OAuth2Auth] provider
  *
- * @param assertion 
  * @param code 
- * @param codeVerifier 
- * @param flow 
- * @param jwt 
- * @param password 
  * @param redirectUri 
+ * @param codeVerifier 
  * @param scopes 
+ * @param jwt 
+ * @param assertion 
+ * @param password 
  * @param username 
+ * @param flow 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.Oauth2Credentials original] using Vert.x codegen.
  */
 fun oauth2CredentialsOf(
-  assertion: String? = null,
   code: String? = null,
-  codeVerifier: String? = null,
-  flow: OAuth2FlowType? = null,
-  jwt: io.vertx.core.json.JsonObject? = null,
-  password: String? = null,
   redirectUri: String? = null,
+  codeVerifier: String? = null,
   scopes: Iterable<String>? = null,
-  username: String? = null): Oauth2Credentials = io.vertx.ext.auth.oauth2.Oauth2Credentials().apply {
+  jwt: io.vertx.core.json.JsonObject? = null,
+  assertion: String? = null,
+  password: String? = null,
+  username: String? = null,
+  flow: OAuth2FlowType? = null): Oauth2Credentials = io.vertx.ext.auth.oauth2.Oauth2Credentials().apply {
 
-  if (assertion != null) {
-    this.setAssertion(assertion)
-  }
   if (code != null) {
     this.setCode(code)
-  }
-  if (codeVerifier != null) {
-    this.setCodeVerifier(codeVerifier)
-  }
-  if (flow != null) {
-    this.setFlow(flow)
-  }
-  if (jwt != null) {
-    this.setJwt(jwt)
-  }
-  if (password != null) {
-    this.setPassword(password)
   }
   if (redirectUri != null) {
     this.setRedirectUri(redirectUri)
   }
+  if (codeVerifier != null) {
+    this.setCodeVerifier(codeVerifier)
+  }
   if (scopes != null) {
     this.setScopes(scopes.toList())
   }
+  if (jwt != null) {
+    this.setJwt(jwt)
+  }
+  if (assertion != null) {
+    this.setAssertion(assertion)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
   if (username != null) {
     this.setUsername(username)
+  }
+  if (flow != null) {
+    this.setFlow(flow)
   }
 }
 

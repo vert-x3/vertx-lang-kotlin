@@ -22,66 +22,63 @@ import io.vertx.pgclient.PgNotice
  *
  * A notification emited by Postgres.
  *
+ * @param severity 
  * @param code 
- * @param column 
- * @param constraint 
- * @param dataType 
+ * @param message 
  * @param detail 
- * @param file 
  * @param hint 
+ * @param position 
  * @param internalPosition 
  * @param internalQuery 
+ * @param where 
+ * @param file 
  * @param line 
- * @param message 
- * @param position 
  * @param routine 
  * @param schema 
- * @param severity 
  * @param table 
- * @param where 
+ * @param column 
+ * @param dataType 
+ * @param constraint 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.pgclient.PgNotice original] using Vert.x codegen.
  */
 fun pgNoticeOf(
+  severity: String? = null,
   code: String? = null,
-  column: String? = null,
-  constraint: String? = null,
-  dataType: String? = null,
+  message: String? = null,
   detail: String? = null,
-  file: String? = null,
   hint: String? = null,
+  position: String? = null,
   internalPosition: String? = null,
   internalQuery: String? = null,
+  where: String? = null,
+  file: String? = null,
   line: String? = null,
-  message: String? = null,
-  position: String? = null,
   routine: String? = null,
   schema: String? = null,
-  severity: String? = null,
   table: String? = null,
-  where: String? = null): PgNotice = io.vertx.pgclient.PgNotice().apply {
+  column: String? = null,
+  dataType: String? = null,
+  constraint: String? = null): PgNotice = io.vertx.pgclient.PgNotice().apply {
 
+  if (severity != null) {
+    this.setSeverity(severity)
+  }
   if (code != null) {
     this.setCode(code)
   }
-  if (column != null) {
-    this.setColumn(column)
-  }
-  if (constraint != null) {
-    this.setConstraint(constraint)
-  }
-  if (dataType != null) {
-    this.setDataType(dataType)
+  if (message != null) {
+    this.setMessage(message)
   }
   if (detail != null) {
     this.setDetail(detail)
   }
-  if (file != null) {
-    this.setFile(file)
-  }
   if (hint != null) {
     this.setHint(hint)
+  }
+  if (position != null) {
+    this.setPosition(position)
   }
   if (internalPosition != null) {
     this.setInternalPosition(internalPosition)
@@ -89,14 +86,14 @@ fun pgNoticeOf(
   if (internalQuery != null) {
     this.setInternalQuery(internalQuery)
   }
+  if (where != null) {
+    this.setWhere(where)
+  }
+  if (file != null) {
+    this.setFile(file)
+  }
   if (line != null) {
     this.setLine(line)
-  }
-  if (message != null) {
-    this.setMessage(message)
-  }
-  if (position != null) {
-    this.setPosition(position)
   }
   if (routine != null) {
     this.setRoutine(routine)
@@ -104,14 +101,17 @@ fun pgNoticeOf(
   if (schema != null) {
     this.setSchema(schema)
   }
-  if (severity != null) {
-    this.setSeverity(severity)
-  }
   if (table != null) {
     this.setTable(table)
   }
-  if (where != null) {
-    this.setWhere(where)
+  if (column != null) {
+    this.setColumn(column)
+  }
+  if (dataType != null) {
+    this.setDataType(dataType)
+  }
+  if (constraint != null) {
+    this.setConstraint(constraint)
   }
 }
 

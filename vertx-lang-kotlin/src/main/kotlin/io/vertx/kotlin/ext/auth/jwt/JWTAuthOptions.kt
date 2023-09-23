@@ -25,31 +25,31 @@ import io.vertx.ext.auth.PubSecKeyOptions
  *
  * Options describing how an JWT Auth should behave.
  *
- * @param jwks 
- * @param jwtOptions 
  * @param keyStore 
  * @param pubSecKeys 
+ * @param jwtOptions 
+ * @param jwks 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jwt.JWTAuthOptions original] using Vert.x codegen.
  */
 fun jwtAuthOptionsOf(
-  jwks: Iterable<io.vertx.core.json.JsonObject>? = null,
-  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
   keyStore: io.vertx.ext.auth.KeyStoreOptions? = null,
-  pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null): JWTAuthOptions = io.vertx.ext.auth.jwt.JWTAuthOptions().apply {
+  pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
+  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
+  jwks: Iterable<io.vertx.core.json.JsonObject>? = null): JWTAuthOptions = io.vertx.ext.auth.jwt.JWTAuthOptions().apply {
 
-  if (jwks != null) {
-    this.setJwks(jwks.toList())
-  }
-  if (jwtOptions != null) {
-    this.setJWTOptions(jwtOptions)
-  }
   if (keyStore != null) {
     this.setKeyStore(keyStore)
   }
   if (pubSecKeys != null) {
     this.setPubSecKeys(pubSecKeys.toList())
+  }
+  if (jwtOptions != null) {
+    this.setJWTOptions(jwtOptions)
+  }
+  if (jwks != null) {
+    this.setJwks(jwks.toList())
   }
 }
 

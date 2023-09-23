@@ -20,18 +20,18 @@ import com.mongodb.client.model.ValidationAction
 import com.mongodb.client.model.ValidationLevel
 
 fun validationOptionsOf(
-  validationAction: ValidationAction? = null,
+  validator: io.vertx.core.json.JsonObject? = null,
   validationLevel: ValidationLevel? = null,
-  validator: io.vertx.core.json.JsonObject? = null): ValidationOptions = io.vertx.ext.mongo.ValidationOptions().apply {
+  validationAction: ValidationAction? = null): ValidationOptions = io.vertx.ext.mongo.ValidationOptions().apply {
 
-  if (validationAction != null) {
-    this.setValidationAction(validationAction)
+  if (validator != null) {
+    this.setValidator(validator)
   }
   if (validationLevel != null) {
     this.setValidationLevel(validationLevel)
   }
-  if (validator != null) {
-    this.setValidator(validator)
+  if (validationAction != null) {
+    this.setValidationAction(validationAction)
   }
 }
 

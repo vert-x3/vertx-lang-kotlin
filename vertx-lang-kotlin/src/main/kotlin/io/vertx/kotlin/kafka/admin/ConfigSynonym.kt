@@ -24,25 +24,25 @@ import org.apache.kafka.clients.admin.ConfigEntry.ConfigSource
  * Class representing a configuration synonym of a [io.vertx.kafka.admin.ConfigEntry]
  *
  * @param name  Set the name of this configuration
- * @param source  Set the source of this configuration
  * @param value  Set the value of this configuration, which may be null if the configuration is sensitive
+ * @param source  Set the source of this configuration
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ConfigSynonym original] using Vert.x codegen.
  */
 fun configSynonymOf(
   name: String? = null,
-  source: ConfigSource? = null,
-  value: String? = null): ConfigSynonym = io.vertx.kafka.admin.ConfigSynonym().apply {
+  value: String? = null,
+  source: ConfigSource? = null): ConfigSynonym = io.vertx.kafka.admin.ConfigSynonym().apply {
 
   if (name != null) {
     this.setName(name)
   }
-  if (source != null) {
-    this.setSource(source)
-  }
   if (value != null) {
     this.setValue(value)
+  }
+  if (source != null) {
+    this.setSource(source)
   }
 }
 

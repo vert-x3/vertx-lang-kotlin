@@ -15,13 +15,13 @@
  */
 package io.vertx.kotlin.core.net
 
-import io.vertx.core.net.SSLOptions
+import io.vertx.core.net.ClientSSLOptions
 import java.util.concurrent.TimeUnit
 
 /**
- * A function providing a DSL for building [io.vertx.core.net.SSLOptions] objects.
+ * A function providing a DSL for building [io.vertx.core.net.ClientSSLOptions] objects.
  *
- * Client/Server SSL options.
+ * Client SSL options.
  *
  * @param trustOptions  Set the trust options.
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -32,11 +32,14 @@ import java.util.concurrent.TimeUnit
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
+ * @param hostnameVerificationAlgorithm  Set the hostname verification algorithm interval
+ * @param trustAll  Set whether all server certificates should be trusted
+ * @param keyCertOptions  Set the key/cert options.
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.core.net.SSLOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.core.net.ClientSSLOptions original] using Vert.x codegen.
  */
-fun sslOptionsOf(
+fun clientSSLOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   enabledCipherSuites: Iterable<String>? = null,
   crlPaths: Iterable<String>? = null,
@@ -45,7 +48,10 @@ fun sslOptionsOf(
   enabledSecureTransportProtocols: Iterable<String>? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
-  applicationLayerProtocols: Iterable<String>? = null): SSLOptions = io.vertx.core.net.SSLOptions().apply {
+  applicationLayerProtocols: Iterable<String>? = null,
+  hostnameVerificationAlgorithm: String? = null,
+  trustAll: Boolean? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null): ClientSSLOptions = io.vertx.core.net.ClientSSLOptions().apply {
 
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)
@@ -79,6 +85,15 @@ fun sslOptionsOf(
   }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
+  if (hostnameVerificationAlgorithm != null) {
+    this.setHostnameVerificationAlgorithm(hostnameVerificationAlgorithm)
+  }
+  if (trustAll != null) {
+    this.setTrustAll(trustAll)
+  }
+  if (keyCertOptions != null) {
+    this.setKeyCertOptions(keyCertOptions)
   }
 }
 

@@ -19,40 +19,40 @@ import io.vertx.redis.client.RedisClusterConnectOptions
 import io.vertx.redis.client.RedisReplicas
 
 fun redisClusterConnectOptionsOf(
-  connectionString: String? = null,
-  connectionStrings: Iterable<String>? = null,
-  endpoints: Iterable<String>? = null,
   maxNestedArrays: Int? = null,
-  maxWaitingHandlers: Int? = null,
-  password: String? = null,
   protocolNegotiation: Boolean? = null,
-  useReplicas: RedisReplicas? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
+  password: String? = null,
+  endpoints: Iterable<String>? = null,
+  connectionStrings: Iterable<String>? = null,
+  maxWaitingHandlers: Int? = null,
+  useReplicas: RedisReplicas? = null,
+  connectionString: String? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
 
-  if (connectionString != null) {
-    this.setConnectionString(connectionString)
+  if (maxNestedArrays != null) {
+    this.setMaxNestedArrays(maxNestedArrays)
+  }
+  if (protocolNegotiation != null) {
+    this.setProtocolNegotiation(protocolNegotiation)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (endpoints != null) {
+    this.setEndpoints(endpoints.toList())
   }
   if (connectionStrings != null) {
     for (item in connectionStrings) {
       this.addConnectionString(item)
     }
   }
-  if (endpoints != null) {
-    this.setEndpoints(endpoints.toList())
-  }
-  if (maxNestedArrays != null) {
-    this.setMaxNestedArrays(maxNestedArrays)
-  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
-  if (password != null) {
-    this.setPassword(password)
-  }
-  if (protocolNegotiation != null) {
-    this.setProtocolNegotiation(protocolNegotiation)
-  }
   if (useReplicas != null) {
     this.setUseReplicas(useReplicas)
+  }
+  if (connectionString != null) {
+    this.setConnectionString(connectionString)
   }
 }
 

@@ -23,31 +23,31 @@ import io.vertx.ext.mongo.CollationOptions
  *
  * Options used to configure aggregate operations.
  *
- * @param allowDiskUse  Set the flag if writing to temporary files is enabled.
- * @param batchSize  Set the batch size for methods loading found data in batches.
  * @param collation  Optional. <p> Specifies the collation to use for the operation. <p> Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
  * @param maxTime  Set the time limit in milliseconds for processing operations on a cursor.
+ * @param batchSize  Set the batch size for methods loading found data in batches.
+ * @param allowDiskUse  Set the flag if writing to temporary files is enabled.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.AggregateOptions original] using Vert.x codegen.
  */
 fun aggregateOptionsOf(
-  allowDiskUse: Boolean? = null,
-  batchSize: Int? = null,
   collation: io.vertx.ext.mongo.CollationOptions? = null,
-  maxTime: Long? = null): AggregateOptions = io.vertx.ext.mongo.AggregateOptions().apply {
+  maxTime: Long? = null,
+  batchSize: Int? = null,
+  allowDiskUse: Boolean? = null): AggregateOptions = io.vertx.ext.mongo.AggregateOptions().apply {
 
-  if (allowDiskUse != null) {
-    this.setAllowDiskUse(allowDiskUse)
-  }
-  if (batchSize != null) {
-    this.setBatchSize(batchSize)
-  }
   if (collation != null) {
     this.setCollation(collation)
   }
   if (maxTime != null) {
     this.setMaxTime(maxTime)
+  }
+  if (batchSize != null) {
+    this.setBatchSize(batchSize)
+  }
+  if (allowDiskUse != null) {
+    this.setAllowDiskUse(allowDiskUse)
   }
 }
 

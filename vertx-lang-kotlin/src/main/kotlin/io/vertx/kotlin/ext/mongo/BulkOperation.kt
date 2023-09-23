@@ -25,50 +25,50 @@ import io.vertx.ext.mongo.CollationOptions
  * Contains all data needed for one operation of a bulk write operation.
  *
  * @param collation 
- * @param document  Sets the document, used by insert, replace, and update operations
+ * @param type  Sets the operation type
  * @param filter  Sets the filter document, used by replace, update, and delete operations
+ * @param document  Sets the document, used by insert, replace, and update operations
+ * @param upsert  Sets the upsert flag, used by update and replace operations
+ * @param multi  Sets the multi flag, used by update and delete operations
  * @param hint  Sets the operation hint
  * @param hintString  Sets the operation hint string
- * @param multi  Sets the multi flag, used by update and delete operations
- * @param type  Sets the operation type
- * @param upsert  Sets the upsert flag, used by update and replace operations
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.BulkOperation original] using Vert.x codegen.
  */
 fun bulkOperationOf(
   collation: io.vertx.ext.mongo.CollationOptions? = null,
-  document: io.vertx.core.json.JsonObject? = null,
-  filter: io.vertx.core.json.JsonObject? = null,
-  hint: io.vertx.core.json.JsonObject? = null,
-  hintString: String? = null,
-  multi: Boolean? = null,
   type: BulkOperationType? = null,
-  upsert: Boolean? = null): BulkOperation = io.vertx.ext.mongo.BulkOperation(io.vertx.core.json.JsonObject()).apply {
+  filter: io.vertx.core.json.JsonObject? = null,
+  document: io.vertx.core.json.JsonObject? = null,
+  upsert: Boolean? = null,
+  multi: Boolean? = null,
+  hint: io.vertx.core.json.JsonObject? = null,
+  hintString: String? = null): BulkOperation = io.vertx.ext.mongo.BulkOperation(io.vertx.core.json.JsonObject()).apply {
 
   if (collation != null) {
     this.setCollation(collation)
   }
-  if (document != null) {
-    this.setDocument(document)
+  if (type != null) {
+    this.setType(type)
   }
   if (filter != null) {
     this.setFilter(filter)
+  }
+  if (document != null) {
+    this.setDocument(document)
+  }
+  if (upsert != null) {
+    this.setUpsert(upsert)
+  }
+  if (multi != null) {
+    this.setMulti(multi)
   }
   if (hint != null) {
     this.setHint(hint)
   }
   if (hintString != null) {
     this.setHintString(hintString)
-  }
-  if (multi != null) {
-    this.setMulti(multi)
-  }
-  if (type != null) {
-    this.setType(type)
-  }
-  if (upsert != null) {
-    this.setUpsert(upsert)
   }
 }
 

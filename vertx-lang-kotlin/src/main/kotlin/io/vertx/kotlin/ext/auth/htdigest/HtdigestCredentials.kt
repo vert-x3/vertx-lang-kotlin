@@ -22,36 +22,42 @@ import io.vertx.ext.auth.htdigest.HtdigestCredentials
  *
  * Credentials specific to the [io.vertx.ext.auth.htdigest.HtdigestAuth] authentication provider
  *
+ * @param password 
+ * @param username 
  * @param algorithm 
  * @param cnonce 
  * @param method 
  * @param nc 
  * @param nonce 
  * @param opaque 
- * @param password 
  * @param qop 
  * @param realm 
  * @param response 
  * @param uri 
- * @param username 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.htdigest.HtdigestCredentials original] using Vert.x codegen.
  */
 fun htdigestCredentialsOf(
+  password: String? = null,
+  username: String? = null,
   algorithm: String? = null,
   cnonce: String? = null,
   method: String? = null,
   nc: String? = null,
   nonce: String? = null,
   opaque: String? = null,
-  password: String? = null,
   qop: String? = null,
   realm: String? = null,
   response: String? = null,
-  uri: String? = null,
-  username: String? = null): HtdigestCredentials = io.vertx.ext.auth.htdigest.HtdigestCredentials().apply {
+  uri: String? = null): HtdigestCredentials = io.vertx.ext.auth.htdigest.HtdigestCredentials().apply {
 
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (username != null) {
+    this.setUsername(username)
+  }
   if (algorithm != null) {
     this.setAlgorithm(algorithm)
   }
@@ -70,9 +76,6 @@ fun htdigestCredentialsOf(
   if (opaque != null) {
     this.setOpaque(opaque)
   }
-  if (password != null) {
-    this.setPassword(password)
-  }
   if (qop != null) {
     this.setQop(qop)
   }
@@ -84,9 +87,6 @@ fun htdigestCredentialsOf(
   }
   if (uri != null) {
     this.setUri(uri)
-  }
-  if (username != null) {
-    this.setUsername(username)
   }
 }
 

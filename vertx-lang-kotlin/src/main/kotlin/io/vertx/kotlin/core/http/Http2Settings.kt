@@ -26,40 +26,40 @@ import io.vertx.core.http.Http2Settings
  * protocol extensions.
  *
  * @param headerTableSize  Set  HTTP/2 setting.
- * @param initialWindowSize  Set the  HTTP/2 setting
+ * @param pushEnabled  Set the  HTTP/2 setting
  * @param maxConcurrentStreams  Set the  HTTP/2 setting
+ * @param initialWindowSize  Set the  HTTP/2 setting
  * @param maxFrameSize  Set the  HTTP/2 setting
  * @param maxHeaderListSize  Set the  HTTP/2 setting
- * @param pushEnabled  Set the  HTTP/2 setting
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.Http2Settings original] using Vert.x codegen.
  */
 fun http2SettingsOf(
   headerTableSize: Long? = null,
-  initialWindowSize: Int? = null,
+  pushEnabled: Boolean? = null,
   maxConcurrentStreams: Long? = null,
+  initialWindowSize: Int? = null,
   maxFrameSize: Int? = null,
-  maxHeaderListSize: Long? = null,
-  pushEnabled: Boolean? = null): Http2Settings = io.vertx.core.http.Http2Settings().apply {
+  maxHeaderListSize: Long? = null): Http2Settings = io.vertx.core.http.Http2Settings().apply {
 
   if (headerTableSize != null) {
     this.setHeaderTableSize(headerTableSize)
   }
-  if (initialWindowSize != null) {
-    this.setInitialWindowSize(initialWindowSize)
+  if (pushEnabled != null) {
+    this.setPushEnabled(pushEnabled)
   }
   if (maxConcurrentStreams != null) {
     this.setMaxConcurrentStreams(maxConcurrentStreams)
+  }
+  if (initialWindowSize != null) {
+    this.setInitialWindowSize(initialWindowSize)
   }
   if (maxFrameSize != null) {
     this.setMaxFrameSize(maxFrameSize)
   }
   if (maxHeaderListSize != null) {
     this.setMaxHeaderListSize(maxHeaderListSize)
-  }
-  if (pushEnabled != null) {
-    this.setPushEnabled(pushEnabled)
   }
 }
 

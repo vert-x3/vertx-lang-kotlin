@@ -25,44 +25,38 @@ import io.vertx.ext.mongo.ValidationOptions
  *
  * Options for creating a collection
  *
- * @param capped  Optional. To create a capped collection, specify true. If you specify true, you must also set a maximum size in the size field.
- * @param collation  Specifies the default collation for the collection. Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
- * @param expireAfterSeconds  Optional. A duration indicating after how long old time-series data should be deleted. Currently, applies only to time-series collections, so if this value is set then so must the time-series options.
- * @param indexOptionDefaults  Optional. Allows users to specify a default configuration for indexes when creating a collection.
  * @param maxDocuments  Optional. The maximum number of documents allowed in the capped collection.           The size limit takes precedence over this limit.           If a capped collection reaches the size limit before it reaches the maximum number of documents,           MongoDB removes old documents.           If you prefer to use the max limit, ensure that the size limit,           which is required for a capped collection, is sufficient to contain the maximum number of documents.
+ * @param capped  Optional. To create a capped collection, specify true. If you specify true, you must also set a maximum size in the size field.
+ * @param timeSeriesOptions 
  * @param sizeInBytes  Optional. Specify a maximum size in bytes for a capped collection. Once a capped collection reaches its maximum size, MongoDB removes the older documents to make space for the new documents.           The size field is required for capped collections and ignored for other collections.
  * @param storageEngineOptions  Optional. Available for the WiredTiger storage engine only. Allows users to specify configuration to the storage engine on a per-collection basis when creating a collection.
- * @param timeSeriesOptions 
+ * @param indexOptionDefaults  Optional. Allows users to specify a default configuration for indexes when creating a collection.
  * @param validationOptions 
+ * @param collation  Specifies the default collation for the collection. Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
+ * @param expireAfterSeconds  Optional. A duration indicating after how long old time-series data should be deleted. Currently, applies only to time-series collections, so if this value is set then so must the time-series options.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.CreateCollectionOptions original] using Vert.x codegen.
  */
 fun createCollectionOptionsOf(
-  capped: Boolean? = null,
-  collation: io.vertx.ext.mongo.CollationOptions? = null,
-  expireAfterSeconds: Long? = null,
-  indexOptionDefaults: io.vertx.core.json.JsonObject? = null,
   maxDocuments: Long? = null,
+  capped: Boolean? = null,
+  timeSeriesOptions: io.vertx.ext.mongo.TimeSeriesOptions? = null,
   sizeInBytes: Long? = null,
   storageEngineOptions: io.vertx.core.json.JsonObject? = null,
-  timeSeriesOptions: io.vertx.ext.mongo.TimeSeriesOptions? = null,
-  validationOptions: io.vertx.ext.mongo.ValidationOptions? = null): CreateCollectionOptions = io.vertx.ext.mongo.CreateCollectionOptions().apply {
+  indexOptionDefaults: io.vertx.core.json.JsonObject? = null,
+  validationOptions: io.vertx.ext.mongo.ValidationOptions? = null,
+  collation: io.vertx.ext.mongo.CollationOptions? = null,
+  expireAfterSeconds: Long? = null): CreateCollectionOptions = io.vertx.ext.mongo.CreateCollectionOptions().apply {
 
+  if (maxDocuments != null) {
+    this.setMaxDocuments(maxDocuments)
+  }
   if (capped != null) {
     this.setCapped(capped)
   }
-  if (collation != null) {
-    this.setCollation(collation)
-  }
-  if (expireAfterSeconds != null) {
-    this.setExpireAfterSeconds(expireAfterSeconds)
-  }
-  if (indexOptionDefaults != null) {
-    this.setIndexOptionDefaults(indexOptionDefaults)
-  }
-  if (maxDocuments != null) {
-    this.setMaxDocuments(maxDocuments)
+  if (timeSeriesOptions != null) {
+    this.setTimeSeriesOptions(timeSeriesOptions)
   }
   if (sizeInBytes != null) {
     this.setSizeInBytes(sizeInBytes)
@@ -70,11 +64,17 @@ fun createCollectionOptionsOf(
   if (storageEngineOptions != null) {
     this.setStorageEngineOptions(storageEngineOptions)
   }
-  if (timeSeriesOptions != null) {
-    this.setTimeSeriesOptions(timeSeriesOptions)
+  if (indexOptionDefaults != null) {
+    this.setIndexOptionDefaults(indexOptionDefaults)
   }
   if (validationOptions != null) {
     this.setValidationOptions(validationOptions)
+  }
+  if (collation != null) {
+    this.setCollation(collation)
+  }
+  if (expireAfterSeconds != null) {
+    this.setExpireAfterSeconds(expireAfterSeconds)
   }
 }
 

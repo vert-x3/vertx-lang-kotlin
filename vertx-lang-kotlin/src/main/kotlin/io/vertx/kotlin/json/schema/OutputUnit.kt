@@ -18,19 +18,25 @@ package io.vertx.kotlin.json.schema
 import io.vertx.json.schema.OutputUnit
 
 fun outputUnitOf(
+  valid: Boolean? = null,
   absoluteKeywordLocation: String? = null,
-  annotations: Iterable<io.vertx.json.schema.OutputUnit>? = null,
+  keywordLocation: String? = null,
+  instanceLocation: String? = null,
   error: String? = null,
   errors: Iterable<io.vertx.json.schema.OutputUnit>? = null,
-  instanceLocation: String? = null,
-  keywordLocation: String? = null,
-  valid: Boolean? = null): OutputUnit = io.vertx.json.schema.OutputUnit().apply {
+  annotations: Iterable<io.vertx.json.schema.OutputUnit>? = null): OutputUnit = io.vertx.json.schema.OutputUnit().apply {
 
+  if (valid != null) {
+    this.setValid(valid)
+  }
   if (absoluteKeywordLocation != null) {
     this.setAbsoluteKeywordLocation(absoluteKeywordLocation)
   }
-  if (annotations != null) {
-    this.setAnnotations(annotations.toList())
+  if (keywordLocation != null) {
+    this.setKeywordLocation(keywordLocation)
+  }
+  if (instanceLocation != null) {
+    this.setInstanceLocation(instanceLocation)
   }
   if (error != null) {
     this.setError(error)
@@ -38,14 +44,8 @@ fun outputUnitOf(
   if (errors != null) {
     this.setErrors(errors.toList())
   }
-  if (instanceLocation != null) {
-    this.setInstanceLocation(instanceLocation)
-  }
-  if (keywordLocation != null) {
-    this.setKeywordLocation(keywordLocation)
-  }
-  if (valid != null) {
-    this.setValid(valid)
+  if (annotations != null) {
+    this.setAnnotations(annotations.toList())
   }
 }
 

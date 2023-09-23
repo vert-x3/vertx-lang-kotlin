@@ -24,8 +24,8 @@ import org.apache.kafka.clients.admin.ConfigEntry.ConfigSource
  *
  * A class representing a configuration entry containing name, value and additional metadata
  *
- * @param default  Set whether the config value is the default or if it's been explicitly set
  * @param name  Set the config name
+ * @param default  Set whether the config value is the default or if it's been explicitly set
  * @param readOnly  Set whether the config is read-only and cannot be updated
  * @param sensitive  Set whether the config value is sensitive. The value is always set to null by the broker if the config value is sensitive
  * @param source  Set the source of this configuration entry
@@ -36,19 +36,19 @@ import org.apache.kafka.clients.admin.ConfigEntry.ConfigSource
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ConfigEntry original] using Vert.x codegen.
  */
 fun configEntryOf(
-  default: Boolean? = null,
   name: String? = null,
+  default: Boolean? = null,
   readOnly: Boolean? = null,
   sensitive: Boolean? = null,
   source: ConfigSource? = null,
   synonyms: Iterable<io.vertx.kafka.admin.ConfigSynonym>? = null,
   value: String? = null): ConfigEntry = io.vertx.kafka.admin.ConfigEntry().apply {
 
-  if (default != null) {
-    this.setDefault(default)
-  }
   if (name != null) {
     this.setName(name)
+  }
+  if (default != null) {
+    this.setDefault(default)
   }
   if (readOnly != null) {
     this.setReadOnly(readOnly)

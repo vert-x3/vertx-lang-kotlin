@@ -23,28 +23,28 @@ import io.vertx.kafka.admin.MemberAssignment
  *
  * A detailed description of a single group instance in the cluster
  *
- * @param assignment  Set the assignment of the group member
- * @param clientId  Set the client id of the group member
  * @param consumerId  Set the consumer id of the group member
+ * @param clientId  Set the client id of the group member
+ * @param assignment  Set the assignment of the group member
  * @param host  Set the host where the group member is running
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.MemberDescription original] using Vert.x codegen.
  */
 fun memberDescriptionOf(
-  assignment: io.vertx.kafka.admin.MemberAssignment? = null,
-  clientId: String? = null,
   consumerId: String? = null,
+  clientId: String? = null,
+  assignment: io.vertx.kafka.admin.MemberAssignment? = null,
   host: String? = null): MemberDescription = io.vertx.kafka.admin.MemberDescription().apply {
 
-  if (assignment != null) {
-    this.setAssignment(assignment)
+  if (consumerId != null) {
+    this.setConsumerId(consumerId)
   }
   if (clientId != null) {
     this.setClientId(clientId)
   }
-  if (consumerId != null) {
-    this.setConsumerId(consumerId)
+  if (assignment != null) {
+    this.setAssignment(assignment)
   }
   if (host != null) {
     this.setHost(host)

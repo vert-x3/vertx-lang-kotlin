@@ -23,36 +23,36 @@ import io.vertx.ext.consul.BlockingQueryOptions
  *
  * Options used to requesting list of checks
  *
- * @param blockingOptions  Set options for blocking query
  * @param dc  Set an optional datacenter. This will default to the datacenter of the agent being queried
  * @param filter  Set the expression to filter the queries results prior to returning the data
- * @param near  Set node name for sorting the list in ascending order based on the estimated round trip time from that node.
  * @param ns  Sets the optional namespace to list checks. By default, the namespace will be inherited from the request's ACL token or will default to the default namespace.
+ * @param near  Set node name for sorting the list in ascending order based on the estimated round trip time from that node.
+ * @param blockingOptions  Set options for blocking query
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.CheckQueryOptions original] using Vert.x codegen.
  */
 fun checkQueryOptionsOf(
-  blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null,
   dc: String? = null,
   filter: String? = null,
+  ns: String? = null,
   near: String? = null,
-  ns: String? = null): CheckQueryOptions = io.vertx.ext.consul.CheckQueryOptions().apply {
+  blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null): CheckQueryOptions = io.vertx.ext.consul.CheckQueryOptions().apply {
 
-  if (blockingOptions != null) {
-    this.setBlockingOptions(blockingOptions)
-  }
   if (dc != null) {
     this.setDc(dc)
   }
   if (filter != null) {
     this.setFilter(filter)
   }
+  if (ns != null) {
+    this.setNs(ns)
+  }
   if (near != null) {
     this.setNear(near)
   }
-  if (ns != null) {
-    this.setNs(ns)
+  if (blockingOptions != null) {
+    this.setBlockingOptions(blockingOptions)
   }
 }
 

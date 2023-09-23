@@ -29,45 +29,66 @@ import io.vertx.ext.auth.webauthn.UserVerification
  *
  * Configuration for the webauthn object
  *
+ * @param relyingParty 
+ * @param transports 
  * @param attestation 
+ * @param residentKey 
+ * @param pubKeyCredParams 
  * @param authenticatorAttachment 
+ * @param requireResidentKey 
+ * @param userVerification 
+ * @param timeoutInMilliseconds 
  * @param challengeLength 
  * @param extensions 
- * @param pubKeyCredParams 
- * @param relaxedSafetyNetIntegrityVeridict  Set to true to allow SafetyNet attestation with a relaxed integrity veridict. When the relaxed value is <code>true</code>, the SafetyNet attestation will be accepted even if: <ul>   <li>Certified, genuine device that passes CTS</li>   <li>Certified device with unlocked bootloader</li>   <li>Genuine but uncertified device, such as when the manufacturer doesn't apply for certification</li>   <li>Device with custom ROM (not rooted)</li> </ul>
- * @param relyingParty 
- * @param requireResidentKey 
- * @param residentKey 
  * @param rootCertificates 
  * @param rootCrls  Load a CRL, for example MDS3 certificate should use http://crl.globalsign.net/Root.crl
- * @param timeoutInMilliseconds 
- * @param transports 
- * @param userVerification 
+ * @param relaxedSafetyNetIntegrityVeridict  Set to true to allow SafetyNet attestation with a relaxed integrity veridict. When the relaxed value is <code>true</code>, the SafetyNet attestation will be accepted even if: <ul>   <li>Certified, genuine device that passes CTS</li>   <li>Certified device with unlocked bootloader</li>   <li>Genuine but uncertified device, such as when the manufacturer doesn't apply for certification</li>   <li>Device with custom ROM (not rooted)</li> </ul>
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.WebAuthnOptions original] using Vert.x codegen.
  */
 fun webAuthnOptionsOf(
+  relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
+  transports: Iterable<AuthenticatorTransport>? = null,
   attestation: Attestation? = null,
+  residentKey: ResidentKey? = null,
+  pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
   authenticatorAttachment: AuthenticatorAttachment? = null,
+  requireResidentKey: Boolean? = null,
+  userVerification: UserVerification? = null,
+  timeoutInMilliseconds: Long? = null,
   challengeLength: Int? = null,
   extensions: io.vertx.core.json.JsonObject? = null,
-  pubKeyCredParams: Iterable<PublicKeyCredential>? = null,
-  relaxedSafetyNetIntegrityVeridict: Boolean? = null,
-  relyingParty: io.vertx.ext.auth.webauthn.RelyingParty? = null,
-  requireResidentKey: Boolean? = null,
-  residentKey: ResidentKey? = null,
   rootCertificates: Map<String, String>? = null,
   rootCrls: Iterable<String>? = null,
-  timeoutInMilliseconds: Long? = null,
-  transports: Iterable<AuthenticatorTransport>? = null,
-  userVerification: UserVerification? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
+  relaxedSafetyNetIntegrityVeridict: Boolean? = null): WebAuthnOptions = io.vertx.ext.auth.webauthn.WebAuthnOptions().apply {
 
+  if (relyingParty != null) {
+    this.setRelyingParty(relyingParty)
+  }
+  if (transports != null) {
+    this.setTransports(transports.toList())
+  }
   if (attestation != null) {
     this.setAttestation(attestation)
   }
+  if (residentKey != null) {
+    this.setResidentKey(residentKey)
+  }
+  if (pubKeyCredParams != null) {
+    this.setPubKeyCredParams(pubKeyCredParams.toList())
+  }
   if (authenticatorAttachment != null) {
     this.setAuthenticatorAttachment(authenticatorAttachment)
+  }
+  if (requireResidentKey != null) {
+    this.setRequireResidentKey(requireResidentKey)
+  }
+  if (userVerification != null) {
+    this.setUserVerification(userVerification)
+  }
+  if (timeoutInMilliseconds != null) {
+    this.setTimeoutInMilliseconds(timeoutInMilliseconds)
   }
   if (challengeLength != null) {
     this.setChallengeLength(challengeLength)
@@ -75,35 +96,14 @@ fun webAuthnOptionsOf(
   if (extensions != null) {
     this.setExtensions(extensions)
   }
-  if (pubKeyCredParams != null) {
-    this.setPubKeyCredParams(pubKeyCredParams.toList())
-  }
-  if (relaxedSafetyNetIntegrityVeridict != null) {
-    this.setRelaxedSafetyNetIntegrityVeridict(relaxedSafetyNetIntegrityVeridict)
-  }
-  if (relyingParty != null) {
-    this.setRelyingParty(relyingParty)
-  }
-  if (requireResidentKey != null) {
-    this.setRequireResidentKey(requireResidentKey)
-  }
-  if (residentKey != null) {
-    this.setResidentKey(residentKey)
-  }
   if (rootCertificates != null) {
     this.setRootCertificates(rootCertificates)
   }
   if (rootCrls != null) {
     this.setRootCrls(rootCrls.toList())
   }
-  if (timeoutInMilliseconds != null) {
-    this.setTimeoutInMilliseconds(timeoutInMilliseconds)
-  }
-  if (transports != null) {
-    this.setTransports(transports.toList())
-  }
-  if (userVerification != null) {
-    this.setUserVerification(userVerification)
+  if (relaxedSafetyNetIntegrityVeridict != null) {
+    this.setRelaxedSafetyNetIntegrityVeridict(relaxedSafetyNetIntegrityVeridict)
   }
 }
 

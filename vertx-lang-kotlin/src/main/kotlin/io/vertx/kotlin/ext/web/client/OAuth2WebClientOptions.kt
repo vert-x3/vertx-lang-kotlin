@@ -21,21 +21,21 @@ import io.vertx.ext.web.client.OAuth2WebClientOptions
  * A function providing a DSL for building [io.vertx.ext.web.client.OAuth2WebClientOptions] objects.
  *
  *
- * @param leeway  Set a default leeway in seconds to be considered while validating tokens for expiration.
  * @param renewTokenOnForbidden  Set a default behavior on how to handle the first forbidden response. <code>true</code> to attempt a token refresh and replay the request. <code>false</code> to continue the request to the user handler/promise.
+ * @param leeway  Set a default leeway in seconds to be considered while validating tokens for expiration.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.web.client.OAuth2WebClientOptions original] using Vert.x codegen.
  */
 fun oAuth2WebClientOptionsOf(
-  leeway: Int? = null,
-  renewTokenOnForbidden: Boolean? = null): OAuth2WebClientOptions = io.vertx.ext.web.client.OAuth2WebClientOptions().apply {
+  renewTokenOnForbidden: Boolean? = null,
+  leeway: Int? = null): OAuth2WebClientOptions = io.vertx.ext.web.client.OAuth2WebClientOptions().apply {
 
-  if (leeway != null) {
-    this.setLeeway(leeway)
-  }
   if (renewTokenOnForbidden != null) {
     this.setRenewTokenOnForbidden(renewTokenOnForbidden)
+  }
+  if (leeway != null) {
+    this.setLeeway(leeway)
   }
 }
 

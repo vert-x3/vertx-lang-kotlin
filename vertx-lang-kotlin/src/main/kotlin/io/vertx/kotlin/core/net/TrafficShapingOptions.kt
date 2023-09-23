@@ -23,34 +23,31 @@ import java.util.concurrent.TimeUnit
  *
  * Options describing how [io.netty.handler.traffic.GlobalTrafficShapingHandler] will handle traffic shaping.
  *
- * @param checkIntervalForStats  Set the delay between two computations of performances for channels or 0 if no stats are to be computed
- * @param checkIntervalForStatsTimeUnit  Set time unit for check interval for stats.
  * @param inboundGlobalBandwidth  Set bandwidth limit in bytes per second for inbound connections
+ * @param outboundGlobalBandwidth  Set bandwidth limit in bytes per second for outbound connections
  * @param maxDelayToWait  Set the maximum delay to wait in case of traffic excess
  * @param maxDelayToWaitUnit  Set the maximum delay to wait time unit
- * @param outboundGlobalBandwidth  Set bandwidth limit in bytes per second for outbound connections
+ * @param checkIntervalForStats  Set the delay between two computations of performances for channels or 0 if no stats are to be computed
+ * @param checkIntervalForStatsTimeUnit  Set time unit for check interval for stats.
  * @param peakOutboundGlobalBandwidth  Set the maximum global write size in bytes per second allowed in the buffer globally for all channels before write suspended is set. Default value is 400 MB
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.TrafficShapingOptions original] using Vert.x codegen.
  */
 fun trafficShapingOptionsOf(
-  checkIntervalForStats: Long? = null,
-  checkIntervalForStatsTimeUnit: TimeUnit? = null,
   inboundGlobalBandwidth: Long? = null,
+  outboundGlobalBandwidth: Long? = null,
   maxDelayToWait: Long? = null,
   maxDelayToWaitUnit: TimeUnit? = null,
-  outboundGlobalBandwidth: Long? = null,
+  checkIntervalForStats: Long? = null,
+  checkIntervalForStatsTimeUnit: TimeUnit? = null,
   peakOutboundGlobalBandwidth: Long? = null): TrafficShapingOptions = io.vertx.core.net.TrafficShapingOptions().apply {
 
-  if (checkIntervalForStats != null) {
-    this.setCheckIntervalForStats(checkIntervalForStats)
-  }
-  if (checkIntervalForStatsTimeUnit != null) {
-    this.setCheckIntervalForStatsTimeUnit(checkIntervalForStatsTimeUnit)
-  }
   if (inboundGlobalBandwidth != null) {
     this.setInboundGlobalBandwidth(inboundGlobalBandwidth)
+  }
+  if (outboundGlobalBandwidth != null) {
+    this.setOutboundGlobalBandwidth(outboundGlobalBandwidth)
   }
   if (maxDelayToWait != null) {
     this.setMaxDelayToWait(maxDelayToWait)
@@ -58,8 +55,11 @@ fun trafficShapingOptionsOf(
   if (maxDelayToWaitUnit != null) {
     this.setMaxDelayToWaitUnit(maxDelayToWaitUnit)
   }
-  if (outboundGlobalBandwidth != null) {
-    this.setOutboundGlobalBandwidth(outboundGlobalBandwidth)
+  if (checkIntervalForStats != null) {
+    this.setCheckIntervalForStats(checkIntervalForStats)
+  }
+  if (checkIntervalForStatsTimeUnit != null) {
+    this.setCheckIntervalForStatsTimeUnit(checkIntervalForStatsTimeUnit)
   }
   if (peakOutboundGlobalBandwidth != null) {
     this.setPeakOutboundGlobalBandwidth(peakOutboundGlobalBandwidth)

@@ -22,51 +22,51 @@ import io.vertx.ext.consul.Service
  *
  * Holds properties of service and node that its containing
  *
- * @param address  Set service address
- * @param id  Set ID of service
- * @param meta  Specifies arbitrary KV metadata linked to the service instance.
- * @param name  Set service name
  * @param node  Set node name
  * @param nodeAddress  Set node address
- * @param port  Set service port
+ * @param id  Set ID of service
+ * @param name  Set service name
  * @param tags  Set list of service tags
+ * @param address  Set service address
+ * @param meta  Specifies arbitrary KV metadata linked to the service instance.
+ * @param port  Set service port
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Service original] using Vert.x codegen.
  */
 fun serviceOf(
-  address: String? = null,
-  id: String? = null,
-  meta: Map<String, String>? = null,
-  name: String? = null,
   node: String? = null,
   nodeAddress: String? = null,
-  port: Int? = null,
-  tags: Iterable<String>? = null): Service = io.vertx.ext.consul.Service().apply {
+  id: String? = null,
+  name: String? = null,
+  tags: Iterable<String>? = null,
+  address: String? = null,
+  meta: Map<String, String>? = null,
+  port: Int? = null): Service = io.vertx.ext.consul.Service().apply {
 
-  if (address != null) {
-    this.setAddress(address)
-  }
-  if (id != null) {
-    this.setId(id)
-  }
-  if (meta != null) {
-    this.setMeta(meta)
-  }
-  if (name != null) {
-    this.setName(name)
-  }
   if (node != null) {
     this.setNode(node)
   }
   if (nodeAddress != null) {
     this.setNodeAddress(nodeAddress)
   }
-  if (port != null) {
-    this.setPort(port)
+  if (id != null) {
+    this.setId(id)
+  }
+  if (name != null) {
+    this.setName(name)
   }
   if (tags != null) {
     this.setTags(tags.toList())
+  }
+  if (address != null) {
+    this.setAddress(address)
+  }
+  if (meta != null) {
+    this.setMeta(meta)
+  }
+  if (port != null) {
+    this.setPort(port)
   }
 }
 

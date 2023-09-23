@@ -22,23 +22,23 @@ import io.vertx.micrometer.VertxJmxMetricsOptions
  *
  * Options for Prometheus metrics backend.
  *
- * @param domain  Set the JMX domain under which to publish metrics
  * @param enabled  Set true to enable Prometheus reporting
+ * @param domain  Set the JMX domain under which to publish metrics
  * @param step  Push interval steps, in seconds. Default is 10 seconds.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.VertxJmxMetricsOptions original] using Vert.x codegen.
  */
 fun vertxJmxMetricsOptionsOf(
-  domain: String? = null,
   enabled: Boolean? = null,
+  domain: String? = null,
   step: Int? = null): VertxJmxMetricsOptions = io.vertx.micrometer.VertxJmxMetricsOptions().apply {
 
-  if (domain != null) {
-    this.setDomain(domain)
-  }
   if (enabled != null) {
     this.setEnabled(enabled)
+  }
+  if (domain != null) {
+    this.setDomain(domain)
   }
   if (step != null) {
     this.setStep(step)

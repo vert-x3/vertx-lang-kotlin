@@ -18,14 +18,14 @@ package io.vertx.kotlin.ext.mongo
 import io.vertx.ext.mongo.GridFsUploadOptions
 
 fun gridFsUploadOptionsOf(
-  chunkSizeBytes: Int? = null,
-  metadata: io.vertx.core.json.JsonObject? = null): GridFsUploadOptions = io.vertx.ext.mongo.GridFsUploadOptions().apply {
+  metadata: io.vertx.core.json.JsonObject? = null,
+  chunkSizeBytes: Int? = null): GridFsUploadOptions = io.vertx.ext.mongo.GridFsUploadOptions().apply {
 
-  if (chunkSizeBytes != null) {
-    this.setChunkSizeBytes(chunkSizeBytes)
-  }
   if (metadata != null) {
     this.setMetadata(metadata)
+  }
+  if (chunkSizeBytes != null) {
+    this.setChunkSizeBytes(chunkSizeBytes)
   }
 }
 

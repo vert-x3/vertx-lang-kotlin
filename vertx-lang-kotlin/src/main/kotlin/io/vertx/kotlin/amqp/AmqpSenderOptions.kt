@@ -22,22 +22,28 @@ import io.vertx.amqp.AmqpSenderOptions
  *
  * Configures the AMQP Sender.
  *
+ * @param linkName 
+ * @param dynamic  Sets whether the Target terminus to be used should specify it is 'dynamic', requesting the peer creates a node and names it with a generated address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpSender] method on the [io.vertx.amqp.AmqpSender] received once opened.
  * @param autoDrained  Sets whether the link is automatically marked drained after the send queue drain handler callback returns if the receiving peer requested that credit be drained. <p> <code>true</code> by default.
  * @param capabilities  Sets the list of capabilities to be set on the sender target terminus.
  * @param capabilitys  Adds a capability to be set on the sender target terminus.
- * @param dynamic  Sets whether the Target terminus to be used should specify it is 'dynamic', requesting the peer creates a node and names it with a generated address. <p> The address provided by the peer can then be inspected using the [io.vertx.amqp.AmqpSender] method on the [io.vertx.amqp.AmqpSender] received once opened.
- * @param linkName 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpSenderOptions original] using Vert.x codegen.
  */
 fun amqpSenderOptionsOf(
+  linkName: String? = null,
+  dynamic: Boolean? = null,
   autoDrained: Boolean? = null,
   capabilities: Iterable<String>? = null,
-  capabilitys: Iterable<String>? = null,
-  dynamic: Boolean? = null,
-  linkName: String? = null): AmqpSenderOptions = io.vertx.amqp.AmqpSenderOptions().apply {
+  capabilitys: Iterable<String>? = null): AmqpSenderOptions = io.vertx.amqp.AmqpSenderOptions().apply {
 
+  if (linkName != null) {
+    this.setLinkName(linkName)
+  }
+  if (dynamic != null) {
+    this.setDynamic(dynamic)
+  }
   if (autoDrained != null) {
     this.setAutoDrained(autoDrained)
   }
@@ -48,12 +54,6 @@ fun amqpSenderOptionsOf(
     for (item in capabilitys) {
       this.addCapability(item)
     }
-  }
-  if (dynamic != null) {
-    this.setDynamic(dynamic)
-  }
-  if (linkName != null) {
-    this.setLinkName(linkName)
   }
 }
 

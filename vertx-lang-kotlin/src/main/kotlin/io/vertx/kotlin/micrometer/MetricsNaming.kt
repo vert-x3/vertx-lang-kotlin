@@ -22,101 +22,101 @@ import io.vertx.micrometer.MetricsNaming
  *
  * Options for naming all metrics
  *
- * @param clientProcessingPending 
- * @param clientProcessingTime 
- * @param clientQueuePending 
  * @param clientQueueTime 
+ * @param clientQueuePending 
+ * @param clientProcessingTime 
+ * @param clientProcessingPending 
  * @param clientResetsCount 
  * @param datagramBytesRead 
  * @param datagramBytesWritten 
  * @param datagramErrorCount 
- * @param ebBytesRead 
- * @param ebBytesWritten 
- * @param ebDelivered 
- * @param ebDiscarded 
  * @param ebHandlers 
  * @param ebPending 
  * @param ebProcessed 
  * @param ebPublished 
- * @param ebReceived 
- * @param ebReplyFailures 
  * @param ebSent 
- * @param httpActiveRequests 
- * @param httpActiveWsConnections 
- * @param httpQueuePending 
+ * @param ebReceived 
+ * @param ebDelivered 
+ * @param ebDiscarded 
+ * @param ebReplyFailures 
+ * @param ebBytesRead 
+ * @param ebBytesWritten 
  * @param httpQueueTime 
- * @param httpRequestBytes 
- * @param httpRequestResetsCount 
+ * @param httpQueuePending 
+ * @param httpActiveRequests 
  * @param httpRequestsCount 
- * @param httpResponseBytes 
+ * @param httpRequestBytes 
  * @param httpResponseTime 
  * @param httpResponsesCount 
+ * @param httpResponseBytes 
+ * @param httpActiveWsConnections 
+ * @param httpRequestResetsCount 
  * @param netActiveConnections 
+ * @param poolUsage 
+ * @param poolInUse 
+ * @param poolUsageRatio 
+ * @param poolCompleted 
  * @param netBytesRead 
  * @param netBytesWritten 
  * @param netErrorCount 
- * @param poolCompleted 
- * @param poolInUse 
- * @param poolQueuePending 
  * @param poolQueueTime 
- * @param poolUsage 
- * @param poolUsageRatio 
+ * @param poolQueuePending 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.MetricsNaming original] using Vert.x codegen.
  */
 fun metricsNamingOf(
-  clientProcessingPending: String? = null,
-  clientProcessingTime: String? = null,
-  clientQueuePending: String? = null,
   clientQueueTime: String? = null,
+  clientQueuePending: String? = null,
+  clientProcessingTime: String? = null,
+  clientProcessingPending: String? = null,
   clientResetsCount: String? = null,
   datagramBytesRead: String? = null,
   datagramBytesWritten: String? = null,
   datagramErrorCount: String? = null,
-  ebBytesRead: String? = null,
-  ebBytesWritten: String? = null,
-  ebDelivered: String? = null,
-  ebDiscarded: String? = null,
   ebHandlers: String? = null,
   ebPending: String? = null,
   ebProcessed: String? = null,
   ebPublished: String? = null,
-  ebReceived: String? = null,
-  ebReplyFailures: String? = null,
   ebSent: String? = null,
-  httpActiveRequests: String? = null,
-  httpActiveWsConnections: String? = null,
-  httpQueuePending: String? = null,
+  ebReceived: String? = null,
+  ebDelivered: String? = null,
+  ebDiscarded: String? = null,
+  ebReplyFailures: String? = null,
+  ebBytesRead: String? = null,
+  ebBytesWritten: String? = null,
   httpQueueTime: String? = null,
-  httpRequestBytes: String? = null,
-  httpRequestResetsCount: String? = null,
+  httpQueuePending: String? = null,
+  httpActiveRequests: String? = null,
   httpRequestsCount: String? = null,
-  httpResponseBytes: String? = null,
+  httpRequestBytes: String? = null,
   httpResponseTime: String? = null,
   httpResponsesCount: String? = null,
+  httpResponseBytes: String? = null,
+  httpActiveWsConnections: String? = null,
+  httpRequestResetsCount: String? = null,
   netActiveConnections: String? = null,
+  poolUsage: String? = null,
+  poolInUse: String? = null,
+  poolUsageRatio: String? = null,
+  poolCompleted: String? = null,
   netBytesRead: String? = null,
   netBytesWritten: String? = null,
   netErrorCount: String? = null,
-  poolCompleted: String? = null,
-  poolInUse: String? = null,
-  poolQueuePending: String? = null,
   poolQueueTime: String? = null,
-  poolUsage: String? = null,
-  poolUsageRatio: String? = null): MetricsNaming = io.vertx.micrometer.MetricsNaming().apply {
+  poolQueuePending: String? = null): MetricsNaming = io.vertx.micrometer.MetricsNaming().apply {
 
-  if (clientProcessingPending != null) {
-    this.setClientProcessingPending(clientProcessingPending)
-  }
-  if (clientProcessingTime != null) {
-    this.setClientProcessingTime(clientProcessingTime)
+  if (clientQueueTime != null) {
+    this.setClientQueueTime(clientQueueTime)
   }
   if (clientQueuePending != null) {
     this.setClientQueuePending(clientQueuePending)
   }
-  if (clientQueueTime != null) {
-    this.setClientQueueTime(clientQueueTime)
+  if (clientProcessingTime != null) {
+    this.setClientProcessingTime(clientProcessingTime)
+  }
+  if (clientProcessingPending != null) {
+    this.setClientProcessingPending(clientProcessingPending)
   }
   if (clientResetsCount != null) {
     this.setClientResetsCount(clientResetsCount)
@@ -130,18 +130,6 @@ fun metricsNamingOf(
   if (datagramErrorCount != null) {
     this.setDatagramErrorCount(datagramErrorCount)
   }
-  if (ebBytesRead != null) {
-    this.setEbBytesRead(ebBytesRead)
-  }
-  if (ebBytesWritten != null) {
-    this.setEbBytesWritten(ebBytesWritten)
-  }
-  if (ebDelivered != null) {
-    this.setEbDelivered(ebDelivered)
-  }
-  if (ebDiscarded != null) {
-    this.setEbDiscarded(ebDiscarded)
-  }
   if (ebHandlers != null) {
     this.setEbHandlers(ebHandlers)
   }
@@ -154,38 +142,41 @@ fun metricsNamingOf(
   if (ebPublished != null) {
     this.setEbPublished(ebPublished)
   }
+  if (ebSent != null) {
+    this.setEbSent(ebSent)
+  }
   if (ebReceived != null) {
     this.setEbReceived(ebReceived)
+  }
+  if (ebDelivered != null) {
+    this.setEbDelivered(ebDelivered)
+  }
+  if (ebDiscarded != null) {
+    this.setEbDiscarded(ebDiscarded)
   }
   if (ebReplyFailures != null) {
     this.setEbReplyFailures(ebReplyFailures)
   }
-  if (ebSent != null) {
-    this.setEbSent(ebSent)
+  if (ebBytesRead != null) {
+    this.setEbBytesRead(ebBytesRead)
   }
-  if (httpActiveRequests != null) {
-    this.setHttpActiveRequests(httpActiveRequests)
-  }
-  if (httpActiveWsConnections != null) {
-    this.setHttpActiveWsConnections(httpActiveWsConnections)
-  }
-  if (httpQueuePending != null) {
-    this.setHttpQueuePending(httpQueuePending)
+  if (ebBytesWritten != null) {
+    this.setEbBytesWritten(ebBytesWritten)
   }
   if (httpQueueTime != null) {
     this.setHttpQueueTime(httpQueueTime)
   }
-  if (httpRequestBytes != null) {
-    this.setHttpRequestBytes(httpRequestBytes)
+  if (httpQueuePending != null) {
+    this.setHttpQueuePending(httpQueuePending)
   }
-  if (httpRequestResetsCount != null) {
-    this.setHttpRequestResetsCount(httpRequestResetsCount)
+  if (httpActiveRequests != null) {
+    this.setHttpActiveRequests(httpActiveRequests)
   }
   if (httpRequestsCount != null) {
     this.setHttpRequestsCount(httpRequestsCount)
   }
-  if (httpResponseBytes != null) {
-    this.setHttpResponseBytes(httpResponseBytes)
+  if (httpRequestBytes != null) {
+    this.setHttpRequestBytes(httpRequestBytes)
   }
   if (httpResponseTime != null) {
     this.setHttpResponseTime(httpResponseTime)
@@ -193,8 +184,29 @@ fun metricsNamingOf(
   if (httpResponsesCount != null) {
     this.setHttpResponsesCount(httpResponsesCount)
   }
+  if (httpResponseBytes != null) {
+    this.setHttpResponseBytes(httpResponseBytes)
+  }
+  if (httpActiveWsConnections != null) {
+    this.setHttpActiveWsConnections(httpActiveWsConnections)
+  }
+  if (httpRequestResetsCount != null) {
+    this.setHttpRequestResetsCount(httpRequestResetsCount)
+  }
   if (netActiveConnections != null) {
     this.setNetActiveConnections(netActiveConnections)
+  }
+  if (poolUsage != null) {
+    this.setPoolUsage(poolUsage)
+  }
+  if (poolInUse != null) {
+    this.setPoolInUse(poolInUse)
+  }
+  if (poolUsageRatio != null) {
+    this.setPoolUsageRatio(poolUsageRatio)
+  }
+  if (poolCompleted != null) {
+    this.setPoolCompleted(poolCompleted)
   }
   if (netBytesRead != null) {
     this.setNetBytesRead(netBytesRead)
@@ -205,23 +217,11 @@ fun metricsNamingOf(
   if (netErrorCount != null) {
     this.setNetErrorCount(netErrorCount)
   }
-  if (poolCompleted != null) {
-    this.setPoolCompleted(poolCompleted)
-  }
-  if (poolInUse != null) {
-    this.setPoolInUse(poolInUse)
-  }
-  if (poolQueuePending != null) {
-    this.setPoolQueuePending(poolQueuePending)
-  }
   if (poolQueueTime != null) {
     this.setPoolQueueTime(poolQueueTime)
   }
-  if (poolUsage != null) {
-    this.setPoolUsage(poolUsage)
-  }
-  if (poolUsageRatio != null) {
-    this.setPoolUsageRatio(poolUsageRatio)
+  if (poolQueuePending != null) {
+    this.setPoolQueuePending(poolQueuePending)
   }
 }
 

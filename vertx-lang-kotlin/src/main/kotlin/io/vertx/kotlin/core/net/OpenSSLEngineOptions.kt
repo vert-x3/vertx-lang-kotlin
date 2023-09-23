@@ -22,21 +22,21 @@ import io.vertx.core.net.OpenSSLEngineOptions
  *
  * Configures a [io.vertx.core.net.TCPSSLOptions] to use OpenSsl.
  *
- * @param sessionCacheEnabled  Set whether session cache is enabled in open SSL session server context
  * @param useWorkerThread  Set the thread pool to use for SSL blocking operations.
+ * @param sessionCacheEnabled  Set whether session cache is enabled in open SSL session server context
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.OpenSSLEngineOptions original] using Vert.x codegen.
  */
 fun openSSLEngineOptionsOf(
-  sessionCacheEnabled: Boolean? = null,
-  useWorkerThread: Boolean? = null): OpenSSLEngineOptions = io.vertx.core.net.OpenSSLEngineOptions().apply {
+  useWorkerThread: Boolean? = null,
+  sessionCacheEnabled: Boolean? = null): OpenSSLEngineOptions = io.vertx.core.net.OpenSSLEngineOptions().apply {
 
-  if (sessionCacheEnabled != null) {
-    this.setSessionCacheEnabled(sessionCacheEnabled)
-  }
   if (useWorkerThread != null) {
     this.setUseWorkerThread(useWorkerThread)
+  }
+  if (sessionCacheEnabled != null) {
+    this.setSessionCacheEnabled(sessionCacheEnabled)
   }
 }
 

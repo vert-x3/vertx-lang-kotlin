@@ -26,34 +26,34 @@ import org.apache.kafka.common.acl.AclOperation
  *
  * A detailed description of a single consumer group in the cluster
  *
- * @param authorizedOperations  Set the id of the consumer group
- * @param coordinator  Set the consumer group coordinator, or null if the coordinator is not known
  * @param groupId  Set the id of the consumer group
+ * @param simpleConsumerGroup  Set if consumer group is simple or not
+ * @param coordinator  Set the consumer group coordinator, or null if the coordinator is not known
  * @param members  Set a list of the members of the consumer group
  * @param partitionAssignor  Set the consumer group partition assignor
- * @param simpleConsumerGroup  Set if consumer group is simple or not
  * @param state  Set the consumer group state, or UNKNOWN if the state is too new for us to parse
+ * @param authorizedOperations  Set the id of the consumer group
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ConsumerGroupDescription original] using Vert.x codegen.
  */
 fun consumerGroupDescriptionOf(
-  authorizedOperations: Iterable<AclOperation>? = null,
-  coordinator: io.vertx.kafka.client.common.Node? = null,
   groupId: String? = null,
+  simpleConsumerGroup: Boolean? = null,
+  coordinator: io.vertx.kafka.client.common.Node? = null,
   members: Iterable<io.vertx.kafka.admin.MemberDescription>? = null,
   partitionAssignor: String? = null,
-  simpleConsumerGroup: Boolean? = null,
-  state: ConsumerGroupState? = null): ConsumerGroupDescription = io.vertx.kafka.admin.ConsumerGroupDescription().apply {
+  state: ConsumerGroupState? = null,
+  authorizedOperations: Iterable<AclOperation>? = null): ConsumerGroupDescription = io.vertx.kafka.admin.ConsumerGroupDescription().apply {
 
-  if (authorizedOperations != null) {
-    this.setAuthorizedOperations(authorizedOperations.toSet())
+  if (groupId != null) {
+    this.setGroupId(groupId)
+  }
+  if (simpleConsumerGroup != null) {
+    this.setSimpleConsumerGroup(simpleConsumerGroup)
   }
   if (coordinator != null) {
     this.setCoordinator(coordinator)
-  }
-  if (groupId != null) {
-    this.setGroupId(groupId)
   }
   if (members != null) {
     this.setMembers(members.toList())
@@ -61,11 +61,11 @@ fun consumerGroupDescriptionOf(
   if (partitionAssignor != null) {
     this.setPartitionAssignor(partitionAssignor)
   }
-  if (simpleConsumerGroup != null) {
-    this.setSimpleConsumerGroup(simpleConsumerGroup)
-  }
   if (state != null) {
     this.setState(state)
+  }
+  if (authorizedOperations != null) {
+    this.setAuthorizedOperations(authorizedOperations.toSet())
   }
 }
 

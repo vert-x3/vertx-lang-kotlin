@@ -22,64 +22,50 @@ import io.vertx.ext.mail.MailMessage
  *
  * represent a mail message that can be sent via the MailClient
  *
- * @param attachment  set the list of attachments of this mail
- * @param bcc  set list of bcc addresses
  * @param bounceAddress  set bounce address of this mail
- * @param cc  set list of cc addresses
- * @param fixedHeaders  set whether our own headers should be the only headers added to the message
  * @param from  set from address of this mail
- * @param headers  Add a message header.
- * @param html  set the html text of this mail
- * @param inlineAttachment  set the list of inline attachments of this mail
+ * @param to  set list of to addresses
+ * @param cc  set list of cc addresses
+ * @param bcc  set list of bcc addresses
  * @param subject  set the subject of this mail
  * @param text  set the plain text of this mail
- * @param to  set list of to addresses
+ * @param html  set the html text of this mail
+ * @param attachment  set the list of attachments of this mail
+ * @param inlineAttachment  set the list of inline attachments of this mail
+ * @param headers  Add a message header.
+ * @param fixedHeaders  set whether our own headers should be the only headers added to the message
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.MailMessage original] using Vert.x codegen.
  */
 fun mailMessageOf(
-  attachment: Iterable<io.vertx.ext.mail.MailAttachment>? = null,
-  bcc: Iterable<String>? = null,
   bounceAddress: String? = null,
-  cc: Iterable<String>? = null,
-  fixedHeaders: Boolean? = null,
   from: String? = null,
-  headers: Map<String, String>? = null,
-  html: String? = null,
-  inlineAttachment: Iterable<io.vertx.ext.mail.MailAttachment>? = null,
+  to: Iterable<String>? = null,
+  cc: Iterable<String>? = null,
+  bcc: Iterable<String>? = null,
   subject: String? = null,
   text: String? = null,
-  to: Iterable<String>? = null): MailMessage = io.vertx.ext.mail.MailMessage().apply {
+  html: String? = null,
+  attachment: Iterable<io.vertx.ext.mail.MailAttachment>? = null,
+  inlineAttachment: Iterable<io.vertx.ext.mail.MailAttachment>? = null,
+  headers: Map<String, String>? = null,
+  fixedHeaders: Boolean? = null): MailMessage = io.vertx.ext.mail.MailMessage().apply {
 
-  if (attachment != null) {
-    this.setAttachment(attachment.toList())
-  }
-  if (bcc != null) {
-    this.setBcc(bcc.toList())
-  }
   if (bounceAddress != null) {
     this.setBounceAddress(bounceAddress)
-  }
-  if (cc != null) {
-    this.setCc(cc.toList())
-  }
-  if (fixedHeaders != null) {
-    this.setFixedHeaders(fixedHeaders)
   }
   if (from != null) {
     this.setFrom(from)
   }
-  if (headers != null) {
-    for (item in headers) {
-      this.addHeader(item.key, item.value)
-    }
+  if (to != null) {
+    this.setTo(to.toList())
   }
-  if (html != null) {
-    this.setHtml(html)
+  if (cc != null) {
+    this.setCc(cc.toList())
   }
-  if (inlineAttachment != null) {
-    this.setInlineAttachment(inlineAttachment.toList())
+  if (bcc != null) {
+    this.setBcc(bcc.toList())
   }
   if (subject != null) {
     this.setSubject(subject)
@@ -87,8 +73,22 @@ fun mailMessageOf(
   if (text != null) {
     this.setText(text)
   }
-  if (to != null) {
-    this.setTo(to.toList())
+  if (html != null) {
+    this.setHtml(html)
+  }
+  if (attachment != null) {
+    this.setAttachment(attachment.toList())
+  }
+  if (inlineAttachment != null) {
+    this.setInlineAttachment(inlineAttachment.toList())
+  }
+  if (headers != null) {
+    for (item in headers) {
+      this.addHeader(item.key, item.value)
+    }
+  }
+  if (fixedHeaders != null) {
+    this.setFixedHeaders(fixedHeaders)
   }
 }
 

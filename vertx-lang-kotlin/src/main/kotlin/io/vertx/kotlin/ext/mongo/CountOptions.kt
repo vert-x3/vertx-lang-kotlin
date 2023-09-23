@@ -19,16 +19,13 @@ import io.vertx.ext.mongo.CountOptions
 import io.vertx.ext.mongo.CollationOptions
 
 fun countOptionsOf(
-  collation: io.vertx.ext.mongo.CollationOptions? = null,
   hint: io.vertx.core.json.JsonObject? = null,
   hintString: String? = null,
   limit: Int? = null,
+  skip: Int? = null,
   maxTime: Long? = null,
-  skip: Int? = null): CountOptions = io.vertx.ext.mongo.CountOptions().apply {
+  collation: io.vertx.ext.mongo.CollationOptions? = null): CountOptions = io.vertx.ext.mongo.CountOptions().apply {
 
-  if (collation != null) {
-    this.setCollation(collation)
-  }
   if (hint != null) {
     this.setHint(hint)
   }
@@ -38,11 +35,14 @@ fun countOptionsOf(
   if (limit != null) {
     this.setLimit(limit)
   }
+  if (skip != null) {
+    this.setSkip(skip)
+  }
   if (maxTime != null) {
     this.setMaxTime(maxTime)
   }
-  if (skip != null) {
-    this.setSkip(skip)
+  if (collation != null) {
+    this.setCollation(collation)
   }
 }
 

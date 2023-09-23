@@ -22,21 +22,21 @@ import io.vertx.kafka.client.consumer.OffsetAndMetadata
  *
  * Provide additional metadata when an offset is committed
  *
- * @param metadata  Set additional metadata for the offset committed
  * @param offset  Set the offset to commit
+ * @param metadata  Set additional metadata for the offset committed
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.consumer.OffsetAndMetadata original] using Vert.x codegen.
  */
 fun offsetAndMetadataOf(
-  metadata: String? = null,
-  offset: Long? = null): OffsetAndMetadata = io.vertx.kafka.client.consumer.OffsetAndMetadata().apply {
+  offset: Long? = null,
+  metadata: String? = null): OffsetAndMetadata = io.vertx.kafka.client.consumer.OffsetAndMetadata().apply {
 
-  if (metadata != null) {
-    this.setMetadata(metadata)
-  }
   if (offset != null) {
     this.setOffset(offset)
+  }
+  if (metadata != null) {
+    this.setMetadata(metadata)
   }
 }
 

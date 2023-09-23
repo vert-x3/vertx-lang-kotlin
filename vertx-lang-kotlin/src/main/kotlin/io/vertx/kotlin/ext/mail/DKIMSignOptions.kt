@@ -27,55 +27,40 @@ import io.vertx.ext.mail.DKIMSignAlgorithm
  *
  * See: https://tools.ietf.org/html/rfc6376
  *
- * @param auid  Sets the Agent or User Identifier(AUID)
- * @param bodyCanonAlgo  Sets the canonicalization algorithm for mail body.
- * @param bodyLimit  Sets the body limit to sign.
- * @param copiedHeaders  Sets the copied headers used in DKIM.
- * @param expireTime  Sets the expire time in seconds when the signature sign will be expired. Success call of this method indicates that the signature sign timestamp is enabled.
- * @param headerCanonAlgo  Sets the canonicalization algorithm for signed headers.
+ * @param signAlgo  Sets the signing algorithm.
  * @param privateKey  Sets the PKCS#8 format private key used to sign the email.
  * @param privateKeyPath  Sets the PKCS#8 format private key file path.
+ * @param signedHeaders  Sets the email signedHeaders used to sign.
  * @param sdid  Sets the Singing Domain Identifier(SDID).
  * @param selector  Sets the selector used to query the public key.
- * @param signAlgo  Sets the signing algorithm.
+ * @param headerCanonAlgo  Sets the canonicalization algorithm for signed headers.
+ * @param bodyCanonAlgo  Sets the canonicalization algorithm for mail body.
+ * @param auid  Sets the Agent or User Identifier(AUID)
+ * @param bodyLimit  Sets the body limit to sign.
  * @param signatureTimestamp  Sets to enable or disable signature sign timestmap. Default is disabled.
- * @param signedHeaders  Sets the email signedHeaders used to sign.
+ * @param expireTime  Sets the expire time in seconds when the signature sign will be expired. Success call of this method indicates that the signature sign timestamp is enabled.
+ * @param copiedHeaders  Sets the copied headers used in DKIM.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mail.DKIMSignOptions original] using Vert.x codegen.
  */
 fun dkimSignOptionsOf(
-  auid: String? = null,
-  bodyCanonAlgo: CanonicalizationAlgorithm? = null,
-  bodyLimit: Int? = null,
-  copiedHeaders: Iterable<String>? = null,
-  expireTime: Long? = null,
-  headerCanonAlgo: CanonicalizationAlgorithm? = null,
+  signAlgo: DKIMSignAlgorithm? = null,
   privateKey: String? = null,
   privateKeyPath: String? = null,
+  signedHeaders: Iterable<String>? = null,
   sdid: String? = null,
   selector: String? = null,
-  signAlgo: DKIMSignAlgorithm? = null,
+  headerCanonAlgo: CanonicalizationAlgorithm? = null,
+  bodyCanonAlgo: CanonicalizationAlgorithm? = null,
+  auid: String? = null,
+  bodyLimit: Int? = null,
   signatureTimestamp: Boolean? = null,
-  signedHeaders: Iterable<String>? = null): DKIMSignOptions = io.vertx.ext.mail.DKIMSignOptions().apply {
+  expireTime: Long? = null,
+  copiedHeaders: Iterable<String>? = null): DKIMSignOptions = io.vertx.ext.mail.DKIMSignOptions().apply {
 
-  if (auid != null) {
-    this.setAuid(auid)
-  }
-  if (bodyCanonAlgo != null) {
-    this.setBodyCanonAlgo(bodyCanonAlgo)
-  }
-  if (bodyLimit != null) {
-    this.setBodyLimit(bodyLimit)
-  }
-  if (copiedHeaders != null) {
-    this.setCopiedHeaders(copiedHeaders.toList())
-  }
-  if (expireTime != null) {
-    this.setExpireTime(expireTime)
-  }
-  if (headerCanonAlgo != null) {
-    this.setHeaderCanonAlgo(headerCanonAlgo)
+  if (signAlgo != null) {
+    this.setSignAlgo(signAlgo)
   }
   if (privateKey != null) {
     this.setPrivateKey(privateKey)
@@ -83,20 +68,35 @@ fun dkimSignOptionsOf(
   if (privateKeyPath != null) {
     this.setPrivateKeyPath(privateKeyPath)
   }
+  if (signedHeaders != null) {
+    this.setSignedHeaders(signedHeaders.toList())
+  }
   if (sdid != null) {
     this.setSdid(sdid)
   }
   if (selector != null) {
     this.setSelector(selector)
   }
-  if (signAlgo != null) {
-    this.setSignAlgo(signAlgo)
+  if (headerCanonAlgo != null) {
+    this.setHeaderCanonAlgo(headerCanonAlgo)
+  }
+  if (bodyCanonAlgo != null) {
+    this.setBodyCanonAlgo(bodyCanonAlgo)
+  }
+  if (auid != null) {
+    this.setAuid(auid)
+  }
+  if (bodyLimit != null) {
+    this.setBodyLimit(bodyLimit)
   }
   if (signatureTimestamp != null) {
     this.setSignatureTimestamp(signatureTimestamp)
   }
-  if (signedHeaders != null) {
-    this.setSignedHeaders(signedHeaders.toList())
+  if (expireTime != null) {
+    this.setExpireTime(expireTime)
+  }
+  if (copiedHeaders != null) {
+    this.setCopiedHeaders(copiedHeaders.toList())
   }
 }
 

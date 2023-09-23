@@ -24,31 +24,31 @@ import org.apache.kafka.common.acl.AclOperation
  *
  * A detailed description of the cluster
  *
- * @param authorizedOperations  Set the authorizedOperations
- * @param clusterId  Set the cluster ID
- * @param controller  Set the controller node.
  * @param nodes  Set the nodes belonging to this cluster
+ * @param controller  Set the controller node.
+ * @param clusterId  Set the cluster ID
+ * @param authorizedOperations  Set the authorizedOperations
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.ClusterDescription original] using Vert.x codegen.
  */
 fun clusterDescriptionOf(
-  authorizedOperations: Iterable<AclOperation>? = null,
-  clusterId: String? = null,
+  nodes: Iterable<io.vertx.kafka.client.common.Node>? = null,
   controller: io.vertx.kafka.client.common.Node? = null,
-  nodes: Iterable<io.vertx.kafka.client.common.Node>? = null): ClusterDescription = io.vertx.kafka.admin.ClusterDescription().apply {
+  clusterId: String? = null,
+  authorizedOperations: Iterable<AclOperation>? = null): ClusterDescription = io.vertx.kafka.admin.ClusterDescription().apply {
 
-  if (authorizedOperations != null) {
-    this.setAuthorizedOperations(authorizedOperations.toSet())
-  }
-  if (clusterId != null) {
-    this.setClusterId(clusterId)
+  if (nodes != null) {
+    this.setNodes(nodes.toList())
   }
   if (controller != null) {
     this.setController(controller)
   }
-  if (nodes != null) {
-    this.setNodes(nodes.toList())
+  if (clusterId != null) {
+    this.setClusterId(clusterId)
+  }
+  if (authorizedOperations != null) {
+    this.setAuthorizedOperations(authorizedOperations.toSet())
   }
 }
 

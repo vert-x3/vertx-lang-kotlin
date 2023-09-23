@@ -18,21 +18,39 @@ package io.vertx.kotlin.ext.auth
 import io.vertx.ext.auth.JWTOptions
 
 fun jwtOptionsOf(
+  leeway: Int? = null,
+  ignoreExpiration: Boolean? = null,
   algorithm: String? = null,
+  header: io.vertx.core.json.JsonObject? = null,
+  noTimestamp: Boolean? = null,
+  expiresInSeconds: Int? = null,
+  expiresInMinutes: Int? = null,
   audience: Iterable<String>? = null,
   audiences: Iterable<String>? = null,
-  expiresInMinutes: Int? = null,
-  expiresInSeconds: Int? = null,
-  header: io.vertx.core.json.JsonObject? = null,
-  ignoreExpiration: Boolean? = null,
   issuer: String? = null,
-  leeway: Int? = null,
-  noTimestamp: Boolean? = null,
-  nonceAlgorithm: String? = null,
-  subject: String? = null): JWTOptions = io.vertx.ext.auth.JWTOptions().apply {
+  subject: String? = null,
+  nonceAlgorithm: String? = null): JWTOptions = io.vertx.ext.auth.JWTOptions().apply {
 
+  if (leeway != null) {
+    this.setLeeway(leeway)
+  }
+  if (ignoreExpiration != null) {
+    this.setIgnoreExpiration(ignoreExpiration)
+  }
   if (algorithm != null) {
     this.setAlgorithm(algorithm)
+  }
+  if (header != null) {
+    this.setHeader(header)
+  }
+  if (noTimestamp != null) {
+    this.setNoTimestamp(noTimestamp)
+  }
+  if (expiresInSeconds != null) {
+    this.setExpiresInSeconds(expiresInSeconds)
+  }
+  if (expiresInMinutes != null) {
+    this.setExpiresInMinutes(expiresInMinutes)
   }
   if (audience != null) {
     this.setAudience(audience.toList())
@@ -42,32 +60,14 @@ fun jwtOptionsOf(
       this.addAudience(item)
     }
   }
-  if (expiresInMinutes != null) {
-    this.setExpiresInMinutes(expiresInMinutes)
-  }
-  if (expiresInSeconds != null) {
-    this.setExpiresInSeconds(expiresInSeconds)
-  }
-  if (header != null) {
-    this.setHeader(header)
-  }
-  if (ignoreExpiration != null) {
-    this.setIgnoreExpiration(ignoreExpiration)
-  }
   if (issuer != null) {
     this.setIssuer(issuer)
   }
-  if (leeway != null) {
-    this.setLeeway(leeway)
-  }
-  if (noTimestamp != null) {
-    this.setNoTimestamp(noTimestamp)
+  if (subject != null) {
+    this.setSubject(subject)
   }
   if (nonceAlgorithm != null) {
     this.setNonceAlgorithm(nonceAlgorithm)
-  }
-  if (subject != null) {
-    this.setSubject(subject)
   }
 }
 

@@ -25,26 +25,26 @@ import io.vertx.ext.mongo.TimeSeriesGranularity
  *
  * <p>Added in MongoDB 5.0 https://www.mongodb.com/docs/manual/core/timeseries-collections/
  *
- * @param granularity 
- * @param metaField 
  * @param timeField 
+ * @param metaField 
+ * @param granularity 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.TimeSeriesOptions original] using Vert.x codegen.
  */
 fun timeSeriesOptionsOf(
-  granularity: TimeSeriesGranularity? = null,
+  timeField: String? = null,
   metaField: String? = null,
-  timeField: String? = null): TimeSeriesOptions = io.vertx.ext.mongo.TimeSeriesOptions().apply {
+  granularity: TimeSeriesGranularity? = null): TimeSeriesOptions = io.vertx.ext.mongo.TimeSeriesOptions().apply {
 
-  if (granularity != null) {
-    this.setGranularity(granularity)
+  if (timeField != null) {
+    this.setTimeField(timeField)
   }
   if (metaField != null) {
     this.setMetaField(metaField)
   }
-  if (timeField != null) {
-    this.setTimeField(timeField)
+  if (granularity != null) {
+    this.setGranularity(granularity)
   }
 }
 

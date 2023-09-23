@@ -22,23 +22,20 @@ import io.vertx.kafka.admin.NewTopic
  *
  * A new topic to be created
  *
- * @param config  Set the configuration for the new topic or null if no configs ever specified
  * @param name  Set the name of the topic to be created
  * @param numPartitions  Set the number of partitions for the new topic or -1 if a replica assignment has been specified
  * @param replicationFactor  Set the replication factor for the new topic or -1 if a replica assignment has been specified
+ * @param config  Set the configuration for the new topic or null if no configs ever specified
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.admin.NewTopic original] using Vert.x codegen.
  */
 fun newTopicOf(
-  config: Map<String, String>? = null,
   name: String? = null,
   numPartitions: Int? = null,
-  replicationFactor: Short? = null): NewTopic = io.vertx.kafka.admin.NewTopic().apply {
+  replicationFactor: Short? = null,
+  config: Map<String, String>? = null): NewTopic = io.vertx.kafka.admin.NewTopic().apply {
 
-  if (config != null) {
-    this.setConfig(config)
-  }
   if (name != null) {
     this.setName(name)
   }
@@ -47,6 +44,9 @@ fun newTopicOf(
   }
   if (replicationFactor != null) {
     this.setReplicationFactor(replicationFactor)
+  }
+  if (config != null) {
+    this.setConfig(config)
   }
 }
 

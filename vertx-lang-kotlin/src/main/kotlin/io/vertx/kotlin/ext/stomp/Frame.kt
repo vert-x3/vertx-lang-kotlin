@@ -27,41 +27,41 @@ import io.vertx.ext.stomp.Command
  * <p/>
  * This class is <strong>NOT</strong> thread-safe.
  *
- * @param body  Sets the body of the frame.
- * @param command  Sets the frame command.
- * @param destination 
  * @param headers  Sets the headers of the frames.
- * @param id 
+ * @param command  Sets the frame command.
+ * @param body  Sets the body of the frame.
+ * @param destination 
  * @param transaction 
+ * @param id 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.stomp.Frame original] using Vert.x codegen.
  */
 fun frameOf(
-  body: io.vertx.core.buffer.Buffer? = null,
-  command: Command? = null,
-  destination: String? = null,
   headers: Map<String, String>? = null,
-  id: String? = null,
-  transaction: String? = null): Frame = io.vertx.ext.stomp.Frame().apply {
+  command: Command? = null,
+  body: io.vertx.core.buffer.Buffer? = null,
+  destination: String? = null,
+  transaction: String? = null,
+  id: String? = null): Frame = io.vertx.ext.stomp.Frame().apply {
 
-  if (body != null) {
-    this.setBody(body)
+  if (headers != null) {
+    this.setHeaders(headers)
   }
   if (command != null) {
     this.setCommand(command)
   }
+  if (body != null) {
+    this.setBody(body)
+  }
   if (destination != null) {
     this.setDestination(destination)
   }
-  if (headers != null) {
-    this.setHeaders(headers)
+  if (transaction != null) {
+    this.setTransaction(transaction)
   }
   if (id != null) {
     this.setId(id)
-  }
-  if (transaction != null) {
-    this.setTransaction(transaction)
   }
 }
 

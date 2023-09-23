@@ -25,8 +25,8 @@ import io.vertx.ext.consul.AclTokenType
  *
  * @param id  Set ID of token
  * @param name  Set name of token
- * @param rules  Set rules for token
  * @param type  Set type of token
+ * @param rules  Set rules for token
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.AclToken original] using Vert.x codegen.
@@ -34,8 +34,8 @@ import io.vertx.ext.consul.AclTokenType
 fun aclTokenOf(
   id: String? = null,
   name: String? = null,
-  rules: String? = null,
-  type: AclTokenType? = null): AclToken = io.vertx.ext.consul.AclToken().apply {
+  type: AclTokenType? = null,
+  rules: String? = null): AclToken = io.vertx.ext.consul.AclToken().apply {
 
   if (id != null) {
     this.setId(id)
@@ -43,11 +43,11 @@ fun aclTokenOf(
   if (name != null) {
     this.setName(name)
   }
-  if (rules != null) {
-    this.setRules(rules)
-  }
   if (type != null) {
     this.setType(type)
+  }
+  if (rules != null) {
+    this.setRules(rules)
   }
 }
 

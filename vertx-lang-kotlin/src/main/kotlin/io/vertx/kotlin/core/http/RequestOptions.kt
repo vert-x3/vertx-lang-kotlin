@@ -23,37 +23,37 @@ import io.vertx.core.net.ProxyOptions
  *
  * Options describing how an [io.vertx.core.http.HttpClient] will connect to make a request.
  *
- * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
- * @param followRedirects  Set whether to follow HTTP redirect
- * @param host  Set the host name to be used by the client request.
- * @param port  Set the port to be used by the client request.
  * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
  * @param server  Set the server address to be used by the client request. <p> When the server address is <code>null</code>, the address will be resolved after the <code>host</code> property by the Vert.x resolver. <p> Use this when you want to connect to a specific server address without name resolution.
+ * @param host  Set the host name to be used by the client request.
+ * @param port  Set the port to be used by the client request.
  * @param ssl  Set whether SSL/TLS is enabled.
- * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
- * @param traceOperation  Override the operation the tracer use for this request. When no operation is set, the HTTP method is used instead.
  * @param uri  Set the request relative URI.
+ * @param followRedirects  Set whether to follow HTTP redirect
+ * @param timeout  Sets the amount of time after which if the request does not return any data within the timeout period an [java.util.concurrent.TimeoutException] will be passed to the exception handler and the request will be closed.
+ * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
+ * @param traceOperation  Override the operation the tracer use for this request. When no operation is set, the HTTP method is used instead.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.RequestOptions original] using Vert.x codegen.
  */
 fun requestOptionsOf(
-  absoluteURI: String? = null,
-  followRedirects: Boolean? = null,
-  host: String? = null,
-  port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   server: io.vertx.core.net.SocketAddress? = null,
+  host: String? = null,
+  port: Int? = null,
   ssl: Boolean? = null,
+  uri: String? = null,
+  followRedirects: Boolean? = null,
   timeout: Long? = null,
-  traceOperation: String? = null,
-  uri: String? = null): RequestOptions = io.vertx.core.http.RequestOptions().apply {
+  absoluteURI: String? = null,
+  traceOperation: String? = null): RequestOptions = io.vertx.core.http.RequestOptions().apply {
 
-  if (absoluteURI != null) {
-    this.setAbsoluteURI(absoluteURI)
+  if (proxyOptions != null) {
+    this.setProxyOptions(proxyOptions)
   }
-  if (followRedirects != null) {
-    this.setFollowRedirects(followRedirects)
+  if (server != null) {
+    this.setServer(server)
   }
   if (host != null) {
     this.setHost(host)
@@ -61,23 +61,23 @@ fun requestOptionsOf(
   if (port != null) {
     this.setPort(port)
   }
-  if (proxyOptions != null) {
-    this.setProxyOptions(proxyOptions)
-  }
-  if (server != null) {
-    this.setServer(server)
-  }
   if (ssl != null) {
     this.setSsl(ssl)
+  }
+  if (uri != null) {
+    this.setURI(uri)
+  }
+  if (followRedirects != null) {
+    this.setFollowRedirects(followRedirects)
   }
   if (timeout != null) {
     this.setTimeout(timeout)
   }
+  if (absoluteURI != null) {
+    this.setAbsoluteURI(absoluteURI)
+  }
   if (traceOperation != null) {
     this.setTraceOperation(traceOperation)
-  }
-  if (uri != null) {
-    this.setURI(uri)
   }
 }
 

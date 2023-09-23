@@ -18,12 +18,15 @@ package io.vertx.kotlin.redis.client
 import io.vertx.redis.client.PoolOptions
 
 fun poolOptionsOf(
+  name: String? = null,
   cleanerInterval: Int? = null,
   maxSize: Int? = null,
   maxWaiting: Int? = null,
-  name: String? = null,
   recycleTimeout: Int? = null): PoolOptions = io.vertx.redis.client.PoolOptions().apply {
 
+  if (name != null) {
+    this.setName(name)
+  }
   if (cleanerInterval != null) {
     this.setCleanerInterval(cleanerInterval)
   }
@@ -32,9 +35,6 @@ fun poolOptionsOf(
   }
   if (maxWaiting != null) {
     this.setMaxWaiting(maxWaiting)
-  }
-  if (name != null) {
-    this.setName(name)
   }
   if (recycleTimeout != null) {
     this.setRecycleTimeout(recycleTimeout)

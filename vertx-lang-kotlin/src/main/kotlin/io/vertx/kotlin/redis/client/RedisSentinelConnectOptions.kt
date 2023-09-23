@@ -19,44 +19,44 @@ import io.vertx.redis.client.RedisSentinelConnectOptions
 import io.vertx.redis.client.RedisRole
 
 fun redisSentinelConnectOptionsOf(
-  connectionString: String? = null,
-  connectionStrings: Iterable<String>? = null,
-  endpoints: Iterable<String>? = null,
-  masterName: String? = null,
   maxNestedArrays: Int? = null,
-  maxWaitingHandlers: Int? = null,
-  password: String? = null,
   protocolNegotiation: Boolean? = null,
-  role: RedisRole? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
+  password: String? = null,
+  endpoints: Iterable<String>? = null,
+  connectionStrings: Iterable<String>? = null,
+  maxWaitingHandlers: Int? = null,
+  role: RedisRole? = null,
+  masterName: String? = null,
+  connectionString: String? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
 
-  if (connectionString != null) {
-    this.setConnectionString(connectionString)
+  if (maxNestedArrays != null) {
+    this.setMaxNestedArrays(maxNestedArrays)
+  }
+  if (protocolNegotiation != null) {
+    this.setProtocolNegotiation(protocolNegotiation)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (endpoints != null) {
+    this.setEndpoints(endpoints.toList())
   }
   if (connectionStrings != null) {
     for (item in connectionStrings) {
       this.addConnectionString(item)
     }
   }
-  if (endpoints != null) {
-    this.setEndpoints(endpoints.toList())
+  if (maxWaitingHandlers != null) {
+    this.setMaxWaitingHandlers(maxWaitingHandlers)
+  }
+  if (role != null) {
+    this.setRole(role)
   }
   if (masterName != null) {
     this.setMasterName(masterName)
   }
-  if (maxNestedArrays != null) {
-    this.setMaxNestedArrays(maxNestedArrays)
-  }
-  if (maxWaitingHandlers != null) {
-    this.setMaxWaitingHandlers(maxWaitingHandlers)
-  }
-  if (password != null) {
-    this.setPassword(password)
-  }
-  if (protocolNegotiation != null) {
-    this.setProtocolNegotiation(protocolNegotiation)
-  }
-  if (role != null) {
-    this.setRole(role)
+  if (connectionString != null) {
+    this.setConnectionString(connectionString)
   }
 }
 

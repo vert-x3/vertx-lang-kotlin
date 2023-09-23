@@ -23,51 +23,51 @@ import io.vertx.ext.consul.CheckOptions
  *
  * Options used to register service.
  *
- * @param address  Set service address
- * @param checkListOptions  Set checks options of service
- * @param checkOptions  Set check options of service
  * @param id  Set the ID of session
- * @param meta  Specifies arbitrary KV metadata linked to the service instance.
  * @param name  Set service name
- * @param port  Set service port
  * @param tags  Set list of tags associated with service
+ * @param address  Set service address
+ * @param meta  Specifies arbitrary KV metadata linked to the service instance.
+ * @param port  Set service port
+ * @param checkOptions  Set check options of service
+ * @param checkListOptions  Set checks options of service
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.ServiceOptions original] using Vert.x codegen.
  */
 fun serviceOptionsOf(
-  address: String? = null,
-  checkListOptions: Iterable<io.vertx.ext.consul.CheckOptions>? = null,
-  checkOptions: io.vertx.ext.consul.CheckOptions? = null,
   id: String? = null,
-  meta: Map<String, String>? = null,
   name: String? = null,
+  tags: Iterable<String>? = null,
+  address: String? = null,
+  meta: Map<String, String>? = null,
   port: Int? = null,
-  tags: Iterable<String>? = null): ServiceOptions = io.vertx.ext.consul.ServiceOptions().apply {
+  checkOptions: io.vertx.ext.consul.CheckOptions? = null,
+  checkListOptions: Iterable<io.vertx.ext.consul.CheckOptions>? = null): ServiceOptions = io.vertx.ext.consul.ServiceOptions().apply {
 
-  if (address != null) {
-    this.setAddress(address)
-  }
-  if (checkListOptions != null) {
-    this.setCheckListOptions(checkListOptions.toList())
-  }
-  if (checkOptions != null) {
-    this.setCheckOptions(checkOptions)
-  }
   if (id != null) {
     this.setId(id)
-  }
-  if (meta != null) {
-    this.setMeta(meta)
   }
   if (name != null) {
     this.setName(name)
   }
+  if (tags != null) {
+    this.setTags(tags.toList())
+  }
+  if (address != null) {
+    this.setAddress(address)
+  }
+  if (meta != null) {
+    this.setMeta(meta)
+  }
   if (port != null) {
     this.setPort(port)
   }
-  if (tags != null) {
-    this.setTags(tags.toList())
+  if (checkOptions != null) {
+    this.setCheckOptions(checkOptions)
+  }
+  if (checkListOptions != null) {
+    this.setCheckListOptions(checkListOptions.toList())
   }
 }
 

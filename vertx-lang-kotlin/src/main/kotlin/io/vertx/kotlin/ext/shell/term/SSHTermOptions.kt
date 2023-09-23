@@ -25,51 +25,51 @@ import io.vertx.core.net.PfxOptions
  *
  * The SSH term configuration options.
  *
+ * @param host  Set the host
+ * @param port  Set the port
+ * @param keyPairOptions  Set the key pair options in jks format, aka Java keystore.
+ * @param pfxKeyPairOptions  Set the key pair options in pfx format.
+ * @param pemKeyPairOptions  Set the key pair store options in pem format.
  * @param authOptions  Set the auth options.
  * @param defaultCharset  Set the default charset to use when the client does not specifies one.
- * @param host  Set the host
  * @param intputrc  The path of the <i>inputrc</i> config.
- * @param keyPairOptions  Set the key pair options in jks format, aka Java keystore.
- * @param pemKeyPairOptions  Set the key pair store options in pem format.
- * @param pfxKeyPairOptions  Set the key pair options in pfx format.
- * @param port  Set the port
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.shell.term.SSHTermOptions original] using Vert.x codegen.
  */
 fun sshTermOptionsOf(
+  host: String? = null,
+  port: Int? = null,
+  keyPairOptions: io.vertx.core.net.JksOptions? = null,
+  pfxKeyPairOptions: io.vertx.core.net.PfxOptions? = null,
+  pemKeyPairOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   authOptions: io.vertx.core.json.JsonObject? = null,
   defaultCharset: String? = null,
-  host: String? = null,
-  intputrc: String? = null,
-  keyPairOptions: io.vertx.core.net.JksOptions? = null,
-  pemKeyPairOptions: io.vertx.core.net.PemKeyCertOptions? = null,
-  pfxKeyPairOptions: io.vertx.core.net.PfxOptions? = null,
-  port: Int? = null): SSHTermOptions = io.vertx.ext.shell.term.SSHTermOptions().apply {
+  intputrc: String? = null): SSHTermOptions = io.vertx.ext.shell.term.SSHTermOptions().apply {
 
+  if (host != null) {
+    this.setHost(host)
+  }
+  if (port != null) {
+    this.setPort(port)
+  }
+  if (keyPairOptions != null) {
+    this.setKeyPairOptions(keyPairOptions)
+  }
+  if (pfxKeyPairOptions != null) {
+    this.setPfxKeyPairOptions(pfxKeyPairOptions)
+  }
+  if (pemKeyPairOptions != null) {
+    this.setPemKeyPairOptions(pemKeyPairOptions)
+  }
   if (authOptions != null) {
     this.setAuthOptions(authOptions)
   }
   if (defaultCharset != null) {
     this.setDefaultCharset(defaultCharset)
   }
-  if (host != null) {
-    this.setHost(host)
-  }
   if (intputrc != null) {
     this.setIntputrc(intputrc)
-  }
-  if (keyPairOptions != null) {
-    this.setKeyPairOptions(keyPairOptions)
-  }
-  if (pemKeyPairOptions != null) {
-    this.setPemKeyPairOptions(pemKeyPairOptions)
-  }
-  if (pfxKeyPairOptions != null) {
-    this.setPfxKeyPairOptions(pfxKeyPairOptions)
-  }
-  if (port != null) {
-    this.setPort(port)
   }
 }
 

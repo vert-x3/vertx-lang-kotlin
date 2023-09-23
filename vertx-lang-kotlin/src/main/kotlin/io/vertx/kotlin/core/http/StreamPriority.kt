@@ -22,26 +22,26 @@ import io.vertx.core.http.StreamPriority
  *
  * This class represents HTTP/2 stream priority defined in RFC 7540 clause 5.3
  *
+ * @param weight  Set the priority weight.
  * @param dependency  Set the priority dependency value.
  * @param exclusive  Set the priority exclusive value.
- * @param weight  Set the priority weight.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.StreamPriority original] using Vert.x codegen.
  */
 fun streamPriorityOf(
+  weight: Short? = null,
   dependency: Int? = null,
-  exclusive: Boolean? = null,
-  weight: Short? = null): StreamPriority = io.vertx.core.http.StreamPriority().apply {
+  exclusive: Boolean? = null): StreamPriority = io.vertx.core.http.StreamPriority().apply {
 
+  if (weight != null) {
+    this.setWeight(weight)
+  }
   if (dependency != null) {
     this.setDependency(dependency)
   }
   if (exclusive != null) {
     this.setExclusive(exclusive)
-  }
-  if (weight != null) {
-    this.setWeight(weight)
   }
 }
 

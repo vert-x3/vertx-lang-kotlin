@@ -18,14 +18,14 @@ package io.vertx.kotlin.ext.consul.token
 import io.vertx.ext.consul.token.NodeTokenApplyingOptions
 
 fun nodeTokenApplyingOptionsOf(
-  datacenters: Iterable<String>? = null,
-  name: String? = null): NodeTokenApplyingOptions = io.vertx.ext.consul.token.NodeTokenApplyingOptions(io.vertx.core.json.JsonObject()).apply {
+  name: String? = null,
+  datacenters: Iterable<String>? = null): NodeTokenApplyingOptions = io.vertx.ext.consul.token.NodeTokenApplyingOptions(io.vertx.core.json.JsonObject()).apply {
 
-  if (datacenters != null) {
-    this.setDatacenters(datacenters.toList())
-  }
   if (name != null) {
     this.setName(name)
+  }
+  if (datacenters != null) {
+    this.setDatacenters(datacenters.toList())
   }
 }
 

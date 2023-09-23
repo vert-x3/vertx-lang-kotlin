@@ -18,36 +18,36 @@ package io.vertx.kotlin.redis.client
 import io.vertx.redis.client.RedisStandaloneConnectOptions
 
 fun redisStandaloneConnectOptionsOf(
-  connectionString: String? = null,
-  connectionStrings: Iterable<String>? = null,
-  endpoints: Iterable<String>? = null,
   maxNestedArrays: Int? = null,
-  maxWaitingHandlers: Int? = null,
+  protocolNegotiation: Boolean? = null,
   password: String? = null,
-  protocolNegotiation: Boolean? = null): RedisStandaloneConnectOptions = io.vertx.redis.client.RedisStandaloneConnectOptions().apply {
+  endpoints: Iterable<String>? = null,
+  connectionStrings: Iterable<String>? = null,
+  maxWaitingHandlers: Int? = null,
+  connectionString: String? = null): RedisStandaloneConnectOptions = io.vertx.redis.client.RedisStandaloneConnectOptions().apply {
 
-  if (connectionString != null) {
-    this.setConnectionString(connectionString)
+  if (maxNestedArrays != null) {
+    this.setMaxNestedArrays(maxNestedArrays)
+  }
+  if (protocolNegotiation != null) {
+    this.setProtocolNegotiation(protocolNegotiation)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (endpoints != null) {
+    this.setEndpoints(endpoints.toList())
   }
   if (connectionStrings != null) {
     for (item in connectionStrings) {
       this.addConnectionString(item)
     }
   }
-  if (endpoints != null) {
-    this.setEndpoints(endpoints.toList())
-  }
-  if (maxNestedArrays != null) {
-    this.setMaxNestedArrays(maxNestedArrays)
-  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
-  if (password != null) {
-    this.setPassword(password)
-  }
-  if (protocolNegotiation != null) {
-    this.setProtocolNegotiation(protocolNegotiation)
+  if (connectionString != null) {
+    this.setConnectionString(connectionString)
   }
 }
 

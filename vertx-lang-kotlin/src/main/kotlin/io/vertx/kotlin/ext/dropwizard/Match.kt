@@ -23,26 +23,26 @@ import io.vertx.ext.dropwizard.MatchType
  *
  * A match for a value.
  *
- * @param alias  Set the alias the human readable name that will be used as a part of registry entry name when the value matches.
- * @param type  Set the type of matching to apply.
  * @param value  Set the matched value.
+ * @param type  Set the type of matching to apply.
+ * @param alias  Set the alias the human readable name that will be used as a part of registry entry name when the value matches.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.dropwizard.Match original] using Vert.x codegen.
  */
 fun matchOf(
-  alias: String? = null,
+  value: String? = null,
   type: MatchType? = null,
-  value: String? = null): Match = io.vertx.ext.dropwizard.Match().apply {
+  alias: String? = null): Match = io.vertx.ext.dropwizard.Match().apply {
 
-  if (alias != null) {
-    this.setAlias(alias)
+  if (value != null) {
+    this.setValue(value)
   }
   if (type != null) {
     this.setType(type)
   }
-  if (value != null) {
-    this.setValue(value)
+  if (alias != null) {
+    this.setAlias(alias)
   }
 }
 

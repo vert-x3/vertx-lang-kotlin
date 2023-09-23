@@ -22,36 +22,42 @@ import io.vertx.core.file.OpenOptions
  *
  * Describes how an [io.vertx.core.file.AsyncFile] should be opened.
  *
- * @param append  Whether the file should be opened in append mode. Defaults to <code>false</code>.
+ * @param perms  Set the permissions string
+ * @param read  Set whether the file is to be opened for reading
+ * @param write  Set whether the file is to be opened for writing
  * @param create  Set whether the file should be created if it does not already exist.
  * @param createNew  Set whether the file should be created and fail if it does exist already.
  * @param deleteOnClose  Set whether the file should be deleted when it's closed, or the JVM is shutdown.
- * @param dsync  Set whether every write to the file's content will be written synchronously to the underlying hardware.
- * @param perms  Set the permissions string
- * @param read  Set whether the file is to be opened for reading
+ * @param truncateExisting  Set whether the file should be truncated to zero length on opening if it exists and is opened for write
  * @param sparse  Set whether a hint should be provided that the file to created is sparse
  * @param sync  Set whether every write to the file's content and meta-data will be written synchronously to the underlying hardware.
- * @param truncateExisting  Set whether the file should be truncated to zero length on opening if it exists and is opened for write
- * @param write  Set whether the file is to be opened for writing
+ * @param dsync  Set whether every write to the file's content will be written synchronously to the underlying hardware.
+ * @param append  Whether the file should be opened in append mode. Defaults to <code>false</code>.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.file.OpenOptions original] using Vert.x codegen.
  */
 fun openOptionsOf(
-  append: Boolean? = null,
+  perms: String? = null,
+  read: Boolean? = null,
+  write: Boolean? = null,
   create: Boolean? = null,
   createNew: Boolean? = null,
   deleteOnClose: Boolean? = null,
-  dsync: Boolean? = null,
-  perms: String? = null,
-  read: Boolean? = null,
+  truncateExisting: Boolean? = null,
   sparse: Boolean? = null,
   sync: Boolean? = null,
-  truncateExisting: Boolean? = null,
-  write: Boolean? = null): OpenOptions = io.vertx.core.file.OpenOptions().apply {
+  dsync: Boolean? = null,
+  append: Boolean? = null): OpenOptions = io.vertx.core.file.OpenOptions().apply {
 
-  if (append != null) {
-    this.setAppend(append)
+  if (perms != null) {
+    this.setPerms(perms)
+  }
+  if (read != null) {
+    this.setRead(read)
+  }
+  if (write != null) {
+    this.setWrite(write)
   }
   if (create != null) {
     this.setCreate(create)
@@ -62,14 +68,8 @@ fun openOptionsOf(
   if (deleteOnClose != null) {
     this.setDeleteOnClose(deleteOnClose)
   }
-  if (dsync != null) {
-    this.setDsync(dsync)
-  }
-  if (perms != null) {
-    this.setPerms(perms)
-  }
-  if (read != null) {
-    this.setRead(read)
+  if (truncateExisting != null) {
+    this.setTruncateExisting(truncateExisting)
   }
   if (sparse != null) {
     this.setSparse(sparse)
@@ -77,11 +77,11 @@ fun openOptionsOf(
   if (sync != null) {
     this.setSync(sync)
   }
-  if (truncateExisting != null) {
-    this.setTruncateExisting(truncateExisting)
+  if (dsync != null) {
+    this.setDsync(dsync)
   }
-  if (write != null) {
-    this.setWrite(write)
+  if (append != null) {
+    this.setAppend(append)
   }
 }
 

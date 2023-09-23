@@ -23,41 +23,47 @@ import io.vertx.ext.auth.webauthn.AttestationCertificates
  *
  * Data Object representing an authenticator at rest.
  *
- * @param aaguid 
- * @param attestationCertificates 
- * @param counter 
+ * @param userName 
+ * @param type 
  * @param credID 
+ * @param publicKey 
+ * @param counter 
+ * @param attestationCertificates 
  * @param flags 
  * @param fmt 
- * @param publicKey 
- * @param type 
- * @param userName 
+ * @param aaguid 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.webauthn.Authenticator original] using Vert.x codegen.
  */
 fun authenticatorOf(
-  aaguid: String? = null,
-  attestationCertificates: io.vertx.ext.auth.webauthn.AttestationCertificates? = null,
-  counter: Long? = null,
+  userName: String? = null,
+  type: String? = null,
   credID: String? = null,
+  publicKey: String? = null,
+  counter: Long? = null,
+  attestationCertificates: io.vertx.ext.auth.webauthn.AttestationCertificates? = null,
   flags: Int? = null,
   fmt: String? = null,
-  publicKey: String? = null,
-  type: String? = null,
-  userName: String? = null): Authenticator = io.vertx.ext.auth.webauthn.Authenticator().apply {
+  aaguid: String? = null): Authenticator = io.vertx.ext.auth.webauthn.Authenticator().apply {
 
-  if (aaguid != null) {
-    this.setAaguid(aaguid)
+  if (userName != null) {
+    this.setUserName(userName)
   }
-  if (attestationCertificates != null) {
-    this.setAttestationCertificates(attestationCertificates)
+  if (type != null) {
+    this.setType(type)
+  }
+  if (credID != null) {
+    this.setCredID(credID)
+  }
+  if (publicKey != null) {
+    this.setPublicKey(publicKey)
   }
   if (counter != null) {
     this.setCounter(counter)
   }
-  if (credID != null) {
-    this.setCredID(credID)
+  if (attestationCertificates != null) {
+    this.setAttestationCertificates(attestationCertificates)
   }
   if (flags != null) {
     this.setFlags(flags)
@@ -65,14 +71,8 @@ fun authenticatorOf(
   if (fmt != null) {
     this.setFmt(fmt)
   }
-  if (publicKey != null) {
-    this.setPublicKey(publicKey)
-  }
-  if (type != null) {
-    this.setType(type)
-  }
-  if (userName != null) {
-    this.setUserName(userName)
+  if (aaguid != null) {
+    this.setAaguid(aaguid)
   }
 }
 

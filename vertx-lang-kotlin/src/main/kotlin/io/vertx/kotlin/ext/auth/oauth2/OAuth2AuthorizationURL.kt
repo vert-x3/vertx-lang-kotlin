@@ -22,43 +22,28 @@ import io.vertx.ext.auth.oauth2.OAuth2AuthorizationURL
  *
  * TypeSafe DataObject for passing needed parameters for [io.vertx.ext.auth.oauth2.OAuth2Auth]
  *
- * @param additionalParameters  Set the additional parameters
- * @param codeChallenge  PKCE code challenge
- * @param codeChallengeMethod  PKCE code challenge method
- * @param loginHint  Hint on login name for IdP UI
- * @param prompt  Hint on kind of IdP prompt
  * @param redirectUri  Set the redirect URI
  * @param scopes  Set the scopes
  * @param state  Set the state
+ * @param codeChallenge  PKCE code challenge
+ * @param codeChallengeMethod  PKCE code challenge method
+ * @param prompt  Hint on kind of IdP prompt
+ * @param loginHint  Hint on login name for IdP UI
+ * @param additionalParameters  Set the additional parameters
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.oauth2.OAuth2AuthorizationURL original] using Vert.x codegen.
  */
 fun oAuth2AuthorizationURLOf(
-  additionalParameters: Map<String, String>? = null,
-  codeChallenge: String? = null,
-  codeChallengeMethod: String? = null,
-  loginHint: String? = null,
-  prompt: String? = null,
   redirectUri: String? = null,
   scopes: Iterable<String>? = null,
-  state: String? = null): OAuth2AuthorizationURL = io.vertx.ext.auth.oauth2.OAuth2AuthorizationURL().apply {
+  state: String? = null,
+  codeChallenge: String? = null,
+  codeChallengeMethod: String? = null,
+  prompt: String? = null,
+  loginHint: String? = null,
+  additionalParameters: Map<String, String>? = null): OAuth2AuthorizationURL = io.vertx.ext.auth.oauth2.OAuth2AuthorizationURL().apply {
 
-  if (additionalParameters != null) {
-    this.setAdditionalParameters(additionalParameters)
-  }
-  if (codeChallenge != null) {
-    this.setCodeChallenge(codeChallenge)
-  }
-  if (codeChallengeMethod != null) {
-    this.setCodeChallengeMethod(codeChallengeMethod)
-  }
-  if (loginHint != null) {
-    this.setLoginHint(loginHint)
-  }
-  if (prompt != null) {
-    this.setPrompt(prompt)
-  }
   if (redirectUri != null) {
     this.setRedirectUri(redirectUri)
   }
@@ -67,6 +52,21 @@ fun oAuth2AuthorizationURLOf(
   }
   if (state != null) {
     this.setState(state)
+  }
+  if (codeChallenge != null) {
+    this.setCodeChallenge(codeChallenge)
+  }
+  if (codeChallengeMethod != null) {
+    this.setCodeChallengeMethod(codeChallengeMethod)
+  }
+  if (prompt != null) {
+    this.setPrompt(prompt)
+  }
+  if (loginHint != null) {
+    this.setLoginHint(loginHint)
+  }
+  if (additionalParameters != null) {
+    this.setAdditionalParameters(additionalParameters)
   }
 }
 

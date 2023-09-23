@@ -22,86 +22,86 @@ import io.vertx.micrometer.VertxInfluxDbOptions
  *
  * Vert.x InfluxDb micrometer configuration.
  *
- * @param batchSize  Maximum number of measurements sent per request to the InfluxDB server. When the maximum is reached, several requests are made. Default is 10000.
- * @param bucket  Specifies the destination bucket for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
- * @param compressed  Activate or deactivate GZIP compression. It is activated by default.
- * @param connectTimeout  Connection timeout for InfluxDB server connections, in seconds. Default is 1 second.
- * @param db  Database name used to store metrics. Default is "default".
  * @param enabled  Set true to enable InfluxDB reporting
- * @param numThreads  Number of threads to use by the push scheduler. Default is 2.
- * @param org  Specifies the destination organization for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
- * @param password  Password used for authenticated connections
- * @param readTimeout  Read timeout for InfluxDB server connections, in seconds. Default is 10 seconds.
- * @param retentionPolicy  InfluxDB retention policy
- * @param step  Push interval steps, in seconds. Default is 10 seconds.
- * @param token  Authentication token for the InfluxDB API. This takes precedence over userName/password if configured.
  * @param uri  URI of the InfluxDB server. <i>Example: http://influx:8086</i>.
+ * @param db  Database name used to store metrics. Default is "default".
  * @param userName  Username used for authenticated connections
+ * @param password  Password used for authenticated connections
+ * @param retentionPolicy  InfluxDB retention policy
+ * @param compressed  Activate or deactivate GZIP compression. It is activated by default.
+ * @param step  Push interval steps, in seconds. Default is 10 seconds.
+ * @param numThreads  Number of threads to use by the push scheduler. Default is 2.
+ * @param connectTimeout  Connection timeout for InfluxDB server connections, in seconds. Default is 1 second.
+ * @param readTimeout  Read timeout for InfluxDB server connections, in seconds. Default is 10 seconds.
+ * @param batchSize  Maximum number of measurements sent per request to the InfluxDB server. When the maximum is reached, several requests are made. Default is 10000.
+ * @param org  Specifies the destination organization for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
+ * @param bucket  Specifies the destination bucket for writes. Takes either the ID or Name interchangeably. This is only used with InfluxDB v2.
+ * @param token  Authentication token for the InfluxDB API. This takes precedence over userName/password if configured.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.VertxInfluxDbOptions original] using Vert.x codegen.
  */
 fun vertxInfluxDbOptionsOf(
-  batchSize: Int? = null,
-  bucket: String? = null,
-  compressed: Boolean? = null,
-  connectTimeout: Int? = null,
-  db: String? = null,
   enabled: Boolean? = null,
-  numThreads: Int? = null,
-  org: String? = null,
-  password: String? = null,
-  readTimeout: Int? = null,
-  retentionPolicy: String? = null,
-  step: Int? = null,
-  token: String? = null,
   uri: String? = null,
-  userName: String? = null): VertxInfluxDbOptions = io.vertx.micrometer.VertxInfluxDbOptions().apply {
+  db: String? = null,
+  userName: String? = null,
+  password: String? = null,
+  retentionPolicy: String? = null,
+  compressed: Boolean? = null,
+  step: Int? = null,
+  numThreads: Int? = null,
+  connectTimeout: Int? = null,
+  readTimeout: Int? = null,
+  batchSize: Int? = null,
+  org: String? = null,
+  bucket: String? = null,
+  token: String? = null): VertxInfluxDbOptions = io.vertx.micrometer.VertxInfluxDbOptions().apply {
 
-  if (batchSize != null) {
-    this.setBatchSize(batchSize)
-  }
-  if (bucket != null) {
-    this.setBucket(bucket)
-  }
-  if (compressed != null) {
-    this.setCompressed(compressed)
-  }
-  if (connectTimeout != null) {
-    this.setConnectTimeout(connectTimeout)
-  }
-  if (db != null) {
-    this.setDb(db)
-  }
   if (enabled != null) {
     this.setEnabled(enabled)
-  }
-  if (numThreads != null) {
-    this.setNumThreads(numThreads)
-  }
-  if (org != null) {
-    this.setOrg(org)
-  }
-  if (password != null) {
-    this.setPassword(password)
-  }
-  if (readTimeout != null) {
-    this.setReadTimeout(readTimeout)
-  }
-  if (retentionPolicy != null) {
-    this.setRetentionPolicy(retentionPolicy)
-  }
-  if (step != null) {
-    this.setStep(step)
-  }
-  if (token != null) {
-    this.setToken(token)
   }
   if (uri != null) {
     this.setUri(uri)
   }
+  if (db != null) {
+    this.setDb(db)
+  }
   if (userName != null) {
     this.setUserName(userName)
+  }
+  if (password != null) {
+    this.setPassword(password)
+  }
+  if (retentionPolicy != null) {
+    this.setRetentionPolicy(retentionPolicy)
+  }
+  if (compressed != null) {
+    this.setCompressed(compressed)
+  }
+  if (step != null) {
+    this.setStep(step)
+  }
+  if (numThreads != null) {
+    this.setNumThreads(numThreads)
+  }
+  if (connectTimeout != null) {
+    this.setConnectTimeout(connectTimeout)
+  }
+  if (readTimeout != null) {
+    this.setReadTimeout(readTimeout)
+  }
+  if (batchSize != null) {
+    this.setBatchSize(batchSize)
+  }
+  if (org != null) {
+    this.setOrg(org)
+  }
+  if (bucket != null) {
+    this.setBucket(bucket)
+  }
+  if (token != null) {
+    this.setToken(token)
   }
 }
 

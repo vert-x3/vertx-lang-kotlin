@@ -23,21 +23,21 @@ import io.vertx.ext.consul.BlockingQueryOptions
  *
  * Holds options for events list request
  *
- * @param blockingOptions  Set options for blocking query
  * @param name  Set event name for filtering on events
+ * @param blockingOptions  Set options for blocking query
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.EventListOptions original] using Vert.x codegen.
  */
 fun eventListOptionsOf(
-  blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null,
-  name: String? = null): EventListOptions = io.vertx.ext.consul.EventListOptions().apply {
+  name: String? = null,
+  blockingOptions: io.vertx.ext.consul.BlockingQueryOptions? = null): EventListOptions = io.vertx.ext.consul.EventListOptions().apply {
 
-  if (blockingOptions != null) {
-    this.setBlockingOptions(blockingOptions)
-  }
   if (name != null) {
     this.setName(name)
+  }
+  if (blockingOptions != null) {
+    this.setBlockingOptions(blockingOptions)
   }
 }
 

@@ -24,51 +24,51 @@ import io.vertx.ext.mongo.WriteOption
  *
  * Options for configuring updates.
  *
- * @param arrayFilters  Set the arrayFilters option
  * @param collation  Collation options
+ * @param writeOption  Set the write option
+ * @param upsert  Set whether upsert is enabled
+ * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
+ * @param multi  Set whether multi is enabled
+ * @param arrayFilters  Set the arrayFilters option
  * @param hint  Set the hint.
  * @param hintString  Set the hint string.
- * @param multi  Set whether multi is enabled
- * @param returningNewDocument  Set whether new document property is enabled. Valid only on findOneAnd* methods.
- * @param upsert  Set whether upsert is enabled
- * @param writeOption  Set the write option
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.mongo.UpdateOptions original] using Vert.x codegen.
  */
 fun updateOptionsOf(
-  arrayFilters: io.vertx.core.json.JsonArray? = null,
   collation: io.vertx.ext.mongo.CollationOptions? = null,
-  hint: io.vertx.core.json.JsonObject? = null,
-  hintString: String? = null,
-  multi: Boolean? = null,
-  returningNewDocument: Boolean? = null,
+  writeOption: WriteOption? = null,
   upsert: Boolean? = null,
-  writeOption: WriteOption? = null): UpdateOptions = io.vertx.ext.mongo.UpdateOptions().apply {
+  returningNewDocument: Boolean? = null,
+  multi: Boolean? = null,
+  arrayFilters: io.vertx.core.json.JsonArray? = null,
+  hint: io.vertx.core.json.JsonObject? = null,
+  hintString: String? = null): UpdateOptions = io.vertx.ext.mongo.UpdateOptions().apply {
 
-  if (arrayFilters != null) {
-    this.setArrayFilters(arrayFilters)
-  }
   if (collation != null) {
     this.setCollation(collation)
+  }
+  if (writeOption != null) {
+    this.setWriteOption(writeOption)
+  }
+  if (upsert != null) {
+    this.setUpsert(upsert)
+  }
+  if (returningNewDocument != null) {
+    this.setReturningNewDocument(returningNewDocument)
+  }
+  if (multi != null) {
+    this.setMulti(multi)
+  }
+  if (arrayFilters != null) {
+    this.setArrayFilters(arrayFilters)
   }
   if (hint != null) {
     this.setHint(hint)
   }
   if (hintString != null) {
     this.setHintString(hintString)
-  }
-  if (multi != null) {
-    this.setMulti(multi)
-  }
-  if (returningNewDocument != null) {
-    this.setReturningNewDocument(returningNewDocument)
-  }
-  if (upsert != null) {
-    this.setUpsert(upsert)
-  }
-  if (writeOption != null) {
-    this.setWriteOption(writeOption)
   }
 }
 

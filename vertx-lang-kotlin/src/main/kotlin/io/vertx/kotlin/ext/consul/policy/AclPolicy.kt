@@ -22,36 +22,36 @@ import io.vertx.ext.consul.policy.AclPolicy
  *
  * Holds properties of Acl policies
  *
- * @param datacenters  Sets an optional datacenters. By default, the policy is valid in all datacenters
- * @param description  Sets an optional free-form description that is human-readable.
  * @param name  Sets a name. Must be unique
- * @param namespace  Sets an optional namespace. Default value is ns URL query parameter or in the X-Consul-Namespace header, or 'default' namespace.
+ * @param description  Sets an optional free-form description that is human-readable.
  * @param rules  Sets a rules. The format of the Rules property is detailed in the ACL Rules documentation
+ * @param datacenters  Sets an optional datacenters. By default, the policy is valid in all datacenters
+ * @param namespace  Sets an optional namespace. Default value is ns URL query parameter or in the X-Consul-Namespace header, or 'default' namespace.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.policy.AclPolicy original] using Vert.x codegen.
  */
 fun aclPolicyOf(
-  datacenters: Iterable<String>? = null,
-  description: String? = null,
   name: String? = null,
-  namespace: String? = null,
-  rules: String? = null): AclPolicy = io.vertx.ext.consul.policy.AclPolicy().apply {
+  description: String? = null,
+  rules: String? = null,
+  datacenters: Iterable<String>? = null,
+  namespace: String? = null): AclPolicy = io.vertx.ext.consul.policy.AclPolicy().apply {
 
-  if (datacenters != null) {
-    this.setDatacenters(datacenters.toList())
+  if (name != null) {
+    this.setName(name)
   }
   if (description != null) {
     this.setDescription(description)
   }
-  if (name != null) {
-    this.setName(name)
+  if (rules != null) {
+    this.setRules(rules)
+  }
+  if (datacenters != null) {
+    this.setDatacenters(datacenters.toList())
   }
   if (namespace != null) {
     this.setNamespace(namespace)
-  }
-  if (rules != null) {
-    this.setRules(rules)
   }
 }
 

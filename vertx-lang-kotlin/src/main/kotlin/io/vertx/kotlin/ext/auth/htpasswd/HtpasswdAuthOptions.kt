@@ -22,21 +22,21 @@ import io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions
  *
  * Options configuring htpasswd authentication.
  *
- * @param htpasswdFile 
  * @param plainTextEnabled 
+ * @param htpasswdFile 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions original] using Vert.x codegen.
  */
 fun htpasswdAuthOptionsOf(
-  htpasswdFile: String? = null,
-  plainTextEnabled: Boolean? = null): HtpasswdAuthOptions = io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions().apply {
+  plainTextEnabled: Boolean? = null,
+  htpasswdFile: String? = null): HtpasswdAuthOptions = io.vertx.ext.auth.htpasswd.HtpasswdAuthOptions().apply {
 
-  if (htpasswdFile != null) {
-    this.setHtpasswdFile(htpasswdFile)
-  }
   if (plainTextEnabled != null) {
     this.setPlainTextEnabled(plainTextEnabled)
+  }
+  if (htpasswdFile != null) {
+    this.setHtpasswdFile(htpasswdFile)
   }
 }
 

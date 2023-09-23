@@ -22,26 +22,26 @@ import io.vertx.ext.healthchecks.Status
  * A function providing a DSL for building [io.vertx.ext.healthchecks.CheckResult] objects.
  *
  *
- * @param checks 
  * @param id 
  * @param status 
+ * @param checks 
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.healthchecks.CheckResult original] using Vert.x codegen.
  */
 fun checkResultOf(
-  checks: Iterable<io.vertx.ext.healthchecks.CheckResult>? = null,
   id: String? = null,
-  status: io.vertx.ext.healthchecks.Status? = null): CheckResult = io.vertx.ext.healthchecks.CheckResult().apply {
+  status: io.vertx.ext.healthchecks.Status? = null,
+  checks: Iterable<io.vertx.ext.healthchecks.CheckResult>? = null): CheckResult = io.vertx.ext.healthchecks.CheckResult().apply {
 
-  if (checks != null) {
-    this.setChecks(checks.toList())
-  }
   if (id != null) {
     this.setId(id)
   }
   if (status != null) {
     this.setStatus(status)
+  }
+  if (checks != null) {
+    this.setChecks(checks.toList())
   }
 }
 

@@ -18,18 +18,18 @@ package io.vertx.kotlin.kafka.admin
 import io.vertx.kafka.admin.ListOffsetsResultInfo
 
 fun listOffsetsResultInfoOf(
-  leaderEpoch: Int? = null,
   offset: Long? = null,
-  timestamp: Long? = null): ListOffsetsResultInfo = io.vertx.kafka.admin.ListOffsetsResultInfo(io.vertx.core.json.JsonObject()).apply {
+  timestamp: Long? = null,
+  leaderEpoch: Int? = null): ListOffsetsResultInfo = io.vertx.kafka.admin.ListOffsetsResultInfo(io.vertx.core.json.JsonObject()).apply {
 
-  if (leaderEpoch != null) {
-    this.setLeaderEpoch(leaderEpoch)
-  }
   if (offset != null) {
     this.setOffset(offset)
   }
   if (timestamp != null) {
     this.setTimestamp(timestamp)
+  }
+  if (leaderEpoch != null) {
+    this.setLeaderEpoch(leaderEpoch)
   }
 }
 

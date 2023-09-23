@@ -21,46 +21,46 @@ import io.vertx.ext.consul.Node
  * A function providing a DSL for building [io.vertx.ext.consul.Node] objects.
  *
  *
- * @param address  Set node address
- * @param datacenter  Set node datacenter
  * @param id  Set node id
- * @param lanAddress  Set node lan address
  * @param name  Set node name
- * @param nodeMeta  Set node meta
+ * @param address  Set node address
+ * @param lanAddress  Set node lan address
  * @param wanAddress  Set node wan address
+ * @param datacenter  Set node datacenter
+ * @param nodeMeta  Set node meta
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.consul.Node original] using Vert.x codegen.
  */
 fun nodeOf(
-  address: String? = null,
-  datacenter: String? = null,
   id: String? = null,
-  lanAddress: String? = null,
   name: String? = null,
-  nodeMeta: Map<String, String>? = null,
-  wanAddress: String? = null): Node = io.vertx.ext.consul.Node().apply {
+  address: String? = null,
+  lanAddress: String? = null,
+  wanAddress: String? = null,
+  datacenter: String? = null,
+  nodeMeta: Map<String, String>? = null): Node = io.vertx.ext.consul.Node().apply {
 
-  if (address != null) {
-    this.setAddress(address)
-  }
-  if (datacenter != null) {
-    this.setDatacenter(datacenter)
-  }
   if (id != null) {
     this.setId(id)
-  }
-  if (lanAddress != null) {
-    this.setLanAddress(lanAddress)
   }
   if (name != null) {
     this.setName(name)
   }
-  if (nodeMeta != null) {
-    this.setNodeMeta(nodeMeta)
+  if (address != null) {
+    this.setAddress(address)
+  }
+  if (lanAddress != null) {
+    this.setLanAddress(lanAddress)
   }
   if (wanAddress != null) {
     this.setWanAddress(wanAddress)
+  }
+  if (datacenter != null) {
+    this.setDatacenter(datacenter)
+  }
+  if (nodeMeta != null) {
+    this.setNodeMeta(nodeMeta)
   }
 }
 

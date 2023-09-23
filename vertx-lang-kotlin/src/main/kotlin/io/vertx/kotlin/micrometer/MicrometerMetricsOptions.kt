@@ -31,55 +31,52 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * It is required to set either <code>influxDbOptions</code>, <code>prometheusOptions</code> or <code>jmxMetricsOptions</code>
  * (or, programmatically, <code>micrometerRegistry</code>) in order to actually report metrics.
  *
- * @param disabledMetricsCategories  Sets metrics types that are disabled.
  * @param enabled  Set whether metrics will be enabled on the Vert.x instance. Metrics are not enabled by default.
  * @param factory  Programmatically set the metrics factory to be used when metrics are enabled. <p> Only valid if  = true. <p> Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one programmatically you can use this method.
- * @param influxDbOptions  Set InfluxDB options. Setting a registry backend option is mandatory in order to effectively report metrics.
- * @param jmxMetricsOptions  Set JMX metrics options. Setting a registry backend option is mandatory in order to effectively report metrics.
- * @param jvmMetricsEnabled  Whether JVM metrics should be collected. Defaults to <code>false</code>.
+ * @param disabledMetricsCategories  Sets metrics types that are disabled.
+ * @param registryName  Set a name for the metrics registry, so that a new registry will be created and associated with this name. If <code>registryName</code> is not provided (or null), a default registry will be used. If the same name is given to several Vert.x instances (within the same JVM), they will share the same registry.
+ * @param labels  Sets enabled labels. These labels can be fine-tuned later on using Micrometer's Meter filters (see http://micrometer.io/docs/concepts#_meter_filters)
  * @param labelMatches  Set a list of rules for label matching.
  * @param labelMatchs  Add a rule for label matching.
- * @param labels  Sets enabled labels. These labels can be fine-tuned later on using Micrometer's Meter filters (see http://micrometer.io/docs/concepts#_meter_filters)
- * @param metricsNaming  <code>MetricsNaming</code> is a structure that holds names of all metrics, each one can be changed individually. For instance, to retrieve compatibility with the names used in Vert.x 3.x, use <code>setMetricsNaming(MetricsNaming.v3Names())</code>
  * @param micrometerRegistry  Programmatically set the Micrometer MeterRegistry to be used by Vert.x. This is useful in several scenarios, such as: <ul>   <li>if there is already a MeterRegistry used in the application that should be used by Vert.x as well.</li>   <li>to define some backend configuration that is not covered in this module (example: reporting to non-covered backends such as New Relic)</li>   <li>to use Micrometer's CompositeRegistry</li> </ul> This setter is mutually exclusive with setInfluxDbOptions/setPrometheusOptions/setJmxMetricsOptions and takes precedence over them.
+ * @param influxDbOptions  Set InfluxDB options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param prometheusOptions  Set Prometheus options. Setting a registry backend option is mandatory in order to effectively report metrics.
- * @param registryName  Set a name for the metrics registry, so that a new registry will be created and associated with this name. If <code>registryName</code> is not provided (or null), a default registry will be used. If the same name is given to several Vert.x instances (within the same JVM), they will share the same registry.
+ * @param jmxMetricsOptions  Set JMX metrics options. Setting a registry backend option is mandatory in order to effectively report metrics.
+ * @param jvmMetricsEnabled  Whether JVM metrics should be collected. Defaults to <code>false</code>.
+ * @param metricsNaming  <code>MetricsNaming</code> is a structure that holds names of all metrics, each one can be changed individually. For instance, to retrieve compatibility with the names used in Vert.x 3.x, use <code>setMetricsNaming(MetricsNaming.v3Names())</code>
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.MicrometerMetricsOptions original] using Vert.x codegen.
  */
 fun micrometerMetricsOptionsOf(
-  disabledMetricsCategories: Iterable<String>? = null,
   enabled: Boolean? = null,
   factory: io.vertx.core.spi.VertxMetricsFactory? = null,
-  influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,
-  jmxMetricsOptions: io.vertx.micrometer.VertxJmxMetricsOptions? = null,
-  jvmMetricsEnabled: Boolean? = null,
+  disabledMetricsCategories: Iterable<String>? = null,
+  registryName: String? = null,
+  labels: Iterable<Label>? = null,
   labelMatches: Iterable<io.vertx.micrometer.Match>? = null,
   labelMatchs: Iterable<io.vertx.micrometer.Match>? = null,
-  labels: Iterable<Label>? = null,
-  metricsNaming: io.vertx.micrometer.MetricsNaming? = null,
   micrometerRegistry: io.micrometer.core.instrument.MeterRegistry? = null,
+  influxDbOptions: io.vertx.micrometer.VertxInfluxDbOptions? = null,
   prometheusOptions: io.vertx.micrometer.VertxPrometheusOptions? = null,
-  registryName: String? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
+  jmxMetricsOptions: io.vertx.micrometer.VertxJmxMetricsOptions? = null,
+  jvmMetricsEnabled: Boolean? = null,
+  metricsNaming: io.vertx.micrometer.MetricsNaming? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
 
-  if (disabledMetricsCategories != null) {
-    this.setDisabledMetricsCategories(disabledMetricsCategories.toSet())
-  }
   if (enabled != null) {
     this.setEnabled(enabled)
   }
   if (factory != null) {
     this.setFactory(factory)
   }
-  if (influxDbOptions != null) {
-    this.setInfluxDbOptions(influxDbOptions)
+  if (disabledMetricsCategories != null) {
+    this.setDisabledMetricsCategories(disabledMetricsCategories.toSet())
   }
-  if (jmxMetricsOptions != null) {
-    this.setJmxMetricsOptions(jmxMetricsOptions)
+  if (registryName != null) {
+    this.setRegistryName(registryName)
   }
-  if (jvmMetricsEnabled != null) {
-    this.setJvmMetricsEnabled(jvmMetricsEnabled)
+  if (labels != null) {
+    this.setLabels(labels.toSet())
   }
   if (labelMatches != null) {
     this.setLabelMatches(labelMatches.toList())
@@ -89,20 +86,23 @@ fun micrometerMetricsOptionsOf(
       this.addLabelMatch(item)
     }
   }
-  if (labels != null) {
-    this.setLabels(labels.toSet())
-  }
-  if (metricsNaming != null) {
-    this.setMetricsNaming(metricsNaming)
-  }
   if (micrometerRegistry != null) {
     this.setMicrometerRegistry(micrometerRegistry)
+  }
+  if (influxDbOptions != null) {
+    this.setInfluxDbOptions(influxDbOptions)
   }
   if (prometheusOptions != null) {
     this.setPrometheusOptions(prometheusOptions)
   }
-  if (registryName != null) {
-    this.setRegistryName(registryName)
+  if (jmxMetricsOptions != null) {
+    this.setJmxMetricsOptions(jmxMetricsOptions)
+  }
+  if (jvmMetricsEnabled != null) {
+    this.setJvmMetricsEnabled(jvmMetricsEnabled)
+  }
+  if (metricsNaming != null) {
+    this.setMetricsNaming(metricsNaming)
   }
 }
 

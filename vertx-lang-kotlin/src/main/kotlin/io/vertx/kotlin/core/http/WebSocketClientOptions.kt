@@ -13,9 +13,9 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.amqp
+package io.vertx.kotlin.core.http
 
-import io.vertx.amqp.AmqpClientOptions
+import io.vertx.core.http.WebSocketClientOptions
 import io.netty.handler.logging.ByteBufFormat
 import io.vertx.core.net.JdkSSLEngineOptions
 import io.vertx.core.net.JksOptions
@@ -26,76 +26,7 @@ import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
-/**
- * A function providing a DSL for building [io.vertx.amqp.AmqpClientOptions] objects.
- *
- * Configures the AMQP Client.
- * You can also configure the underlying Proton instance. Refer to  for details.
- *
- * @param sendBufferSize 
- * @param receiveBufferSize 
- * @param reuseAddress 
- * @param trafficClass 
- * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
- * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
- * @param reusePort 
- * @param tcpNoDelay 
- * @param tcpKeepAlive 
- * @param soLinger 
- * @param idleTimeout 
- * @param readIdleTimeout  Set the read idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout. If you want change default time unit, use [io.vertx.amqp.AmqpClientOptions]
- * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.amqp.AmqpClientOptions]
- * @param idleTimeoutUnit 
- * @param ssl 
- * @param keyStoreOptions 
- * @param pfxKeyCertOptions 
- * @param pemKeyCertOptions 
- * @param trustOptions 
- * @param trustStoreOptions 
- * @param pfxTrustOptions 
- * @param pemTrustOptions 
- * @param enabledCipherSuites 
- * @param crlPaths 
- * @param crlValues 
- * @param useAlpn  Set the ALPN usage.
- * @param sslEngineOptions 
- * @param jdkSslEngineOptions 
- * @param openSslEngineOptions 
- * @param tcpFastOpen 
- * @param tcpCork 
- * @param tcpQuickAck 
- * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
- * @param enabledSecureTransportProtocols 
- * @param sslHandshakeTimeout 
- * @param sslHandshakeTimeoutUnit 
- * @param trustAll 
- * @param connectTimeout 
- * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
- * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy.
- * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
- * @param localAddress 
- * @param reconnectAttempts 
- * @param hostnameVerificationAlgorithm 
- * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
- * @param reconnectInterval 
- * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
- * @param enabledSaslMechanisms 
- * @param virtualHost 
- * @param sniServerName 
- * @param heartbeat 
- * @param maxFrameSize 
- * @param host  Sets the host.
- * @param port  Sets the port.
- * @param username  Sets the username.
- * @param password  Sets the password.
- * @param containerId  Sets the container id.
- * @param connectionHostname  Explicitly override the hostname value used for the AMQP Open frame. The host connected to as per [io.vertx.amqp.AmqpClientOptions] will be used in the Open frame by default.
- * @param keyCertOptions 
- *
- * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.amqp.AmqpClientOptions original] using Vert.x codegen.
- */
-fun amqpClientOptionsOf(
+fun webSocketClientOptionsOf(
   sendBufferSize: Int? = null,
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
@@ -138,23 +69,22 @@ fun amqpClientOptionsOf(
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   nonProxyHosts: Iterable<String>? = null,
   localAddress: String? = null,
-  reconnectAttempts: Int? = null,
-  hostnameVerificationAlgorithm: String? = null,
-  applicationLayerProtocols: Iterable<String>? = null,
-  reconnectInterval: Long? = null,
-  registerWriteHandler: Boolean? = null,
-  enabledSaslMechanisms: Iterable<String>? = null,
-  virtualHost: String? = null,
-  sniServerName: String? = null,
-  heartbeat: Int? = null,
+  defaultHost: String? = null,
+  defaultPort: Int? = null,
+  verifyHost: Boolean? = null,
+  sendUnmaskedFrames: Boolean? = null,
   maxFrameSize: Int? = null,
-  host: String? = null,
-  port: Int? = null,
-  username: String? = null,
-  password: String? = null,
-  containerId: String? = null,
-  connectionHostname: String? = null,
-  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null): AmqpClientOptions = io.vertx.amqp.AmqpClientOptions().apply {
+  maxMessageSize: Int? = null,
+  maxConnections: Int? = null,
+  tryUsePerFrameCompression: Boolean? = null,
+  tryUsePerMessageCompression: Boolean? = null,
+  compressionLevel: Int? = null,
+  compressionAllowClientNoContext: Boolean? = null,
+  compressionRequestServerNoContext: Boolean? = null,
+  closingTimeout: Int? = null,
+  shared: Boolean? = null,
+  name: String? = null,
+  keyCertOptions: io.vertx.core.net.KeyCertOptions? = null): WebSocketClientOptions = io.vertx.core.http.WebSocketClientOptions().apply {
 
   if (sendBufferSize != null) {
     this.setSendBufferSize(sendBufferSize)
@@ -288,55 +218,50 @@ fun amqpClientOptionsOf(
   if (localAddress != null) {
     this.setLocalAddress(localAddress)
   }
-  if (reconnectAttempts != null) {
-    this.setReconnectAttempts(reconnectAttempts)
+  if (defaultHost != null) {
+    this.setDefaultHost(defaultHost)
   }
-  if (hostnameVerificationAlgorithm != null) {
-    this.setHostnameVerificationAlgorithm(hostnameVerificationAlgorithm)
+  if (defaultPort != null) {
+    this.setDefaultPort(defaultPort)
   }
-  if (applicationLayerProtocols != null) {
-    this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  if (verifyHost != null) {
+    this.setVerifyHost(verifyHost)
   }
-  if (reconnectInterval != null) {
-    this.setReconnectInterval(reconnectInterval)
-  }
-  if (registerWriteHandler != null) {
-    this.setRegisterWriteHandler(registerWriteHandler)
-  }
-  if (enabledSaslMechanisms != null) {
-    for (item in enabledSaslMechanisms) {
-      this.addEnabledSaslMechanism(item)
-    }
-  }
-  if (virtualHost != null) {
-    this.setVirtualHost(virtualHost)
-  }
-  if (sniServerName != null) {
-    this.setSniServerName(sniServerName)
-  }
-  if (heartbeat != null) {
-    this.setHeartbeat(heartbeat)
+  if (sendUnmaskedFrames != null) {
+    this.setSendUnmaskedFrames(sendUnmaskedFrames)
   }
   if (maxFrameSize != null) {
     this.setMaxFrameSize(maxFrameSize)
   }
-  if (host != null) {
-    this.setHost(host)
+  if (maxMessageSize != null) {
+    this.setMaxMessageSize(maxMessageSize)
   }
-  if (port != null) {
-    this.setPort(port)
+  if (maxConnections != null) {
+    this.setMaxConnections(maxConnections)
   }
-  if (username != null) {
-    this.setUsername(username)
+  if (tryUsePerFrameCompression != null) {
+    this.setTryUsePerFrameCompression(tryUsePerFrameCompression)
   }
-  if (password != null) {
-    this.setPassword(password)
+  if (tryUsePerMessageCompression != null) {
+    this.setTryUsePerMessageCompression(tryUsePerMessageCompression)
   }
-  if (containerId != null) {
-    this.setContainerId(containerId)
+  if (compressionLevel != null) {
+    this.setCompressionLevel(compressionLevel)
   }
-  if (connectionHostname != null) {
-    this.setConnectionHostname(connectionHostname)
+  if (compressionAllowClientNoContext != null) {
+    this.setCompressionAllowClientNoContext(compressionAllowClientNoContext)
+  }
+  if (compressionRequestServerNoContext != null) {
+    this.setCompressionRequestServerNoContext(compressionRequestServerNoContext)
+  }
+  if (closingTimeout != null) {
+    this.setClosingTimeout(closingTimeout)
+  }
+  if (shared != null) {
+    this.setShared(shared)
+  }
+  if (name != null) {
+    this.setName(name)
   }
   if (keyCertOptions != null) {
     this.setKeyCertOptions(keyCertOptions)

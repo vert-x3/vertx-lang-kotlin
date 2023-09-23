@@ -22,28 +22,22 @@ import io.vertx.core.net.JksOptions
  *
  * Key or trust store options configuring private key and/or certificates based on Java Keystore files.
  *
- * @param alias  Set the alias for a server certificate when the keystore has more than one.
- * @param aliasPassword  Set the password for the server certificate designated by [io.vertx.core.net.KeyStoreOptionsBase].
  * @param password  Set the password for the key store
  * @param path  Set the path to the key store
  * @param value  Set the key store as a buffer
+ * @param alias  Set the alias for a server certificate when the keystore has more than one.
+ * @param aliasPassword  Set the password for the server certificate designated by [io.vertx.core.net.KeyStoreOptionsBase].
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.JksOptions original] using Vert.x codegen.
  */
 fun jksOptionsOf(
-  alias: String? = null,
-  aliasPassword: String? = null,
   password: String? = null,
   path: String? = null,
-  value: io.vertx.core.buffer.Buffer? = null): JksOptions = io.vertx.core.net.JksOptions().apply {
+  value: io.vertx.core.buffer.Buffer? = null,
+  alias: String? = null,
+  aliasPassword: String? = null): JksOptions = io.vertx.core.net.JksOptions().apply {
 
-  if (alias != null) {
-    this.setAlias(alias)
-  }
-  if (aliasPassword != null) {
-    this.setAliasPassword(aliasPassword)
-  }
   if (password != null) {
     this.setPassword(password)
   }
@@ -52,6 +46,12 @@ fun jksOptionsOf(
   }
   if (value != null) {
     this.setValue(value)
+  }
+  if (alias != null) {
+    this.setAlias(alias)
+  }
+  if (aliasPassword != null) {
+    this.setAliasPassword(aliasPassword)
   }
 }
 

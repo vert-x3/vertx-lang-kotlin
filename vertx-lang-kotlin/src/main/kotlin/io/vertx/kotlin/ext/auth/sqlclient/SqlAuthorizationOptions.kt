@@ -22,21 +22,21 @@ import io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions
  *
  * Options configuring JDBC authentication.
  *
- * @param permissionsQuery  Set the permissions query to use. Use this if you want to override the default permissions query.
  * @param rolesQuery  Set the roles query to use. Use this if you want to override the default roles query.
+ * @param permissionsQuery  Set the permissions query to use. Use this if you want to override the default permissions query.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions original] using Vert.x codegen.
  */
 fun sqlAuthorizationOptionsOf(
-  permissionsQuery: String? = null,
-  rolesQuery: String? = null): SqlAuthorizationOptions = io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions().apply {
+  rolesQuery: String? = null,
+  permissionsQuery: String? = null): SqlAuthorizationOptions = io.vertx.ext.auth.sqlclient.SqlAuthorizationOptions().apply {
 
-  if (permissionsQuery != null) {
-    this.setPermissionsQuery(permissionsQuery)
-  }
   if (rolesQuery != null) {
     this.setRolesQuery(rolesQuery)
+  }
+  if (permissionsQuery != null) {
+    this.setPermissionsQuery(permissionsQuery)
   }
 }
 

@@ -24,25 +24,25 @@ import io.vertx.core.tracing.TracingPolicy
  * Generic KafkaClient options.
  *
  * @param config  Set the Kafka config.
- * @param tracePeerAddress  Set the Kafka address to show in trace tags. Or leave it unset to automatically pick up bootstrap server from config instead.
  * @param tracingPolicy  Set the Kafka tracing policy.
+ * @param tracePeerAddress  Set the Kafka address to show in trace tags. Or leave it unset to automatically pick up bootstrap server from config instead.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.kafka.client.common.KafkaClientOptions original] using Vert.x codegen.
  */
 fun kafkaClientOptionsOf(
   config: Map<String, Any>? = null,
-  tracePeerAddress: String? = null,
-  tracingPolicy: TracingPolicy? = null): KafkaClientOptions = io.vertx.kafka.client.common.KafkaClientOptions().apply {
+  tracingPolicy: TracingPolicy? = null,
+  tracePeerAddress: String? = null): KafkaClientOptions = io.vertx.kafka.client.common.KafkaClientOptions().apply {
 
   if (config != null) {
     this.setConfig(config)
   }
-  if (tracePeerAddress != null) {
-    this.setTracePeerAddress(tracePeerAddress)
-  }
   if (tracingPolicy != null) {
     this.setTracingPolicy(tracingPolicy)
+  }
+  if (tracePeerAddress != null) {
+    this.setTracePeerAddress(tracePeerAddress)
   }
 }
 

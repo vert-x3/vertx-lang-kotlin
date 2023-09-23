@@ -23,38 +23,38 @@ import io.netty.handler.logging.ByteBufFormat
  *
  * Configuration options for Vert.x DNS client.
  *
- * @param activityLogFormat  Set the value of Netty's logging handler's data format:  Netty's pipeline is configured for logging on Netty's logger.
- * @param host  Set the host name to be used by this client in requests.
- * @param logActivity  Set to true to enable network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param port  Set the port to be used by this client in requests.
+ * @param host  Set the host name to be used by this client in requests.
  * @param queryTimeout  Set the query timeout in milliseconds, i.e the amount of time after a query is considered to be failed.
+ * @param logActivity  Set to true to enable network activity logging: Netty's pipeline is configured for logging on Netty's logger.
+ * @param activityLogFormat  Set the value of Netty's logging handler's data format:  Netty's pipeline is configured for logging on Netty's logger.
  * @param recursionDesired  Set whether or not recursion is desired
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.dns.DnsClientOptions original] using Vert.x codegen.
  */
 fun dnsClientOptionsOf(
-  activityLogFormat: ByteBufFormat? = null,
-  host: String? = null,
-  logActivity: Boolean? = null,
   port: Int? = null,
+  host: String? = null,
   queryTimeout: Long? = null,
+  logActivity: Boolean? = null,
+  activityLogFormat: ByteBufFormat? = null,
   recursionDesired: Boolean? = null): DnsClientOptions = io.vertx.core.dns.DnsClientOptions().apply {
 
-  if (activityLogFormat != null) {
-    this.setActivityLogFormat(activityLogFormat)
+  if (port != null) {
+    this.setPort(port)
   }
   if (host != null) {
     this.setHost(host)
   }
+  if (queryTimeout != null) {
+    this.setQueryTimeout(queryTimeout)
+  }
   if (logActivity != null) {
     this.setLogActivity(logActivity)
   }
-  if (port != null) {
-    this.setPort(port)
-  }
-  if (queryTimeout != null) {
-    this.setQueryTimeout(queryTimeout)
+  if (activityLogFormat != null) {
+    this.setActivityLogFormat(activityLogFormat)
   }
   if (recursionDesired != null) {
     this.setRecursionDesired(recursionDesired)

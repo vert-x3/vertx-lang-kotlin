@@ -19,25 +19,25 @@ import io.vertx.ext.auth.webauthn.WebAuthnCredentials
 
 fun webAuthnCredentialsOf(
   challenge: String? = null,
-  domain: String? = null,
-  origin: String? = null,
+  webauthn: io.vertx.core.json.JsonObject? = null,
   username: String? = null,
-  webauthn: io.vertx.core.json.JsonObject? = null): WebAuthnCredentials = io.vertx.ext.auth.webauthn.WebAuthnCredentials().apply {
+  origin: String? = null,
+  domain: String? = null): WebAuthnCredentials = io.vertx.ext.auth.webauthn.WebAuthnCredentials().apply {
 
   if (challenge != null) {
     this.setChallenge(challenge)
   }
-  if (domain != null) {
-    this.setDomain(domain)
-  }
-  if (origin != null) {
-    this.setOrigin(origin)
+  if (webauthn != null) {
+    this.setWebauthn(webauthn)
   }
   if (username != null) {
     this.setUsername(username)
   }
-  if (webauthn != null) {
-    this.setWebauthn(webauthn)
+  if (origin != null) {
+    this.setOrigin(origin)
+  }
+  if (domain != null) {
+    this.setDomain(domain)
   }
 }
 

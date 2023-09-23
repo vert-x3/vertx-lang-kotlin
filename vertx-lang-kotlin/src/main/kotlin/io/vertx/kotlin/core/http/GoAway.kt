@@ -22,26 +22,26 @@ import io.vertx.core.http.GoAway
  *
  * A  frame.
  *
- * @param debugData  Set the additional debug data
  * @param errorCode 
  * @param lastStreamId  Set the last stream id.
+ * @param debugData  Set the additional debug data
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.GoAway original] using Vert.x codegen.
  */
 fun goAwayOf(
-  debugData: io.vertx.core.buffer.Buffer? = null,
   errorCode: Long? = null,
-  lastStreamId: Int? = null): GoAway = io.vertx.core.http.GoAway().apply {
+  lastStreamId: Int? = null,
+  debugData: io.vertx.core.buffer.Buffer? = null): GoAway = io.vertx.core.http.GoAway().apply {
 
-  if (debugData != null) {
-    this.setDebugData(debugData)
-  }
   if (errorCode != null) {
     this.setErrorCode(errorCode)
   }
   if (lastStreamId != null) {
     this.setLastStreamId(lastStreamId)
+  }
+  if (debugData != null) {
+    this.setDebugData(debugData)
   }
 }
 

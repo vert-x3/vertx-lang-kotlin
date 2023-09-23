@@ -49,46 +49,46 @@ import io.vertx.core.net.KeyStoreOptions
  * options.setKeyCertOptions(new JksOptions().setPath("/mykeystore.jks").setPassword("foo"));
  * </pre>
  *
- * @param alias  Set the alias for a server certificate when the keystore has more than one.
- * @param aliasPassword  Set the password for the server certificate designated by [io.vertx.core.net.KeyStoreOptionsBase].
  * @param password  Set the password for the key store
  * @param path  Set the path to the key store
+ * @param value  Set the key store as a buffer
+ * @param alias  Set the alias for a server certificate when the keystore has more than one.
+ * @param aliasPassword  Set the password for the server certificate designated by [io.vertx.core.net.KeyStoreOptionsBase].
  * @param provider  Set the store provider.
  * @param type  Set the store type.
- * @param value  Set the key store as a buffer
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.KeyStoreOptions original] using Vert.x codegen.
  */
 fun keyStoreOptionsOf(
-  alias: String? = null,
-  aliasPassword: String? = null,
   password: String? = null,
   path: String? = null,
+  value: io.vertx.core.buffer.Buffer? = null,
+  alias: String? = null,
+  aliasPassword: String? = null,
   provider: String? = null,
-  type: String? = null,
-  value: io.vertx.core.buffer.Buffer? = null): KeyStoreOptions = io.vertx.core.net.KeyStoreOptions().apply {
+  type: String? = null): KeyStoreOptions = io.vertx.core.net.KeyStoreOptions().apply {
 
-  if (alias != null) {
-    this.setAlias(alias)
-  }
-  if (aliasPassword != null) {
-    this.setAliasPassword(aliasPassword)
-  }
   if (password != null) {
     this.setPassword(password)
   }
   if (path != null) {
     this.setPath(path)
   }
+  if (value != null) {
+    this.setValue(value)
+  }
+  if (alias != null) {
+    this.setAlias(alias)
+  }
+  if (aliasPassword != null) {
+    this.setAliasPassword(aliasPassword)
+  }
   if (provider != null) {
     this.setProvider(provider)
   }
   if (type != null) {
     this.setType(type)
-  }
-  if (value != null) {
-    this.setValue(value)
   }
 }
 
