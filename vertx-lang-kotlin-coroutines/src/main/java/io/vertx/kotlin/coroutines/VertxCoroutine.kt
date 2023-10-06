@@ -212,7 +212,8 @@ private class VertxScheduledFuture(
 private class VertxCoroutineExecutor(val vertxContext: Context) : AbstractExecutorService(), ScheduledExecutorService {
 
   override fun execute(command: Runnable) {
-    if (Vertx.currentContext() != vertxContext) {
+    val current = ContextInternal.current()?.unwrap()
+    if (current != vertxContext || !current.inThread()) {
       vertxContext.runOnContext { command.run() }
     } else {
       command.run()
