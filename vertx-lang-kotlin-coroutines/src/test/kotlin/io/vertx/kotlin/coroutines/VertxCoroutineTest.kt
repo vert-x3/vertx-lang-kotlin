@@ -37,6 +37,7 @@ import java.util.concurrent.atomic.AtomicInteger
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
+@OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class VertxCoroutineTest {
 
@@ -429,5 +430,15 @@ class VertxCoroutineTest {
     future.onComplete(testContext.asyncAssertFailure() {
       testContext.assertEquals(it.message, "Boom")
     })
+  }
+
+  @Test
+  fun `test no StackOverflowError caused by two yield calls`(testContext: TestContext) {
+    GlobalScope.launch(vertx.dispatcher()) {
+      repeat(1000) {
+        yield()
+        yield()
+      }
+    }
   }
 }
