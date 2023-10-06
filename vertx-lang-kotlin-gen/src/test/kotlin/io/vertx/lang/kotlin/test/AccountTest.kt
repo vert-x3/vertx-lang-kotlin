@@ -28,7 +28,9 @@ class AccountTest {
     account = accountOf(
       id = 0L,
       name = "a name",
-      otherNames = listOf("name", "another_name")
+      otherNames = listOf("name", "another_name"),
+      isPrefixed = true,
+      notPrefixed = true
     )
   }
 }
