@@ -21,6 +21,7 @@ import io.vertx.core.impl.ContextInternal
 import kotlinx.coroutines.*
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference
+import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -150,7 +151,26 @@ fun Vertx.dispatcher(): CoroutineDispatcher {
  * This is necessary if you want to execute coroutine synchronous operations in your handler
  */
 fun Context.dispatcher(): CoroutineDispatcher {
-  return VertxCoroutineExecutor(this).asCoroutineDispatcher()
+  return ContextCoroutineDispatcher(this as ContextInternal)
+}
+
+@OptIn(InternalCoroutinesApi::class)
+private class ContextCoroutineDispatcher(val vertxContext: ContextInternal) : CoroutineDispatcher(), Delay {
+
+  private val delegate = VertxCoroutineExecutor(vertxContext).asCoroutineDispatcher()
+
+  override fun isDispatchNeeded(context: CoroutineContext): Boolean {
+    val current = ContextInternal.current()?.unwrap()
+    return current != vertxContext || !vertxContext.inThread()
+  }
+
+  override fun dispatch(context: CoroutineContext, block: Runnable) {
+    delegate.dispatch(context, block)
+  }
+
+  override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
+    (delegate as Delay).scheduleResumeAfterDelay(timeMillis, continuation)
+  }
 }
 
 private class VertxScheduledFuture(
@@ -209,15 +229,14 @@ private class VertxScheduledFuture(
   }
 }
 
-private class VertxCoroutineExecutor(val vertxContext: Context) : AbstractExecutorService(), ScheduledExecutorService {
+private class VertxCoroutineExecutor(val vertxContext: ContextInternal) : AbstractExecutorService(),
+  ScheduledExecutorService {
 
   override fun execute(command: Runnable) {
-    val current = ContextInternal.current()?.unwrap()
-    if (current != vertxContext || !current.inThread()) {
-      vertxContext.runOnContext { command.run() }
-    } else {
-      command.run()
-    }
+    val ctx = ContextInternal.current()?.let { current ->
+      if (current.unwrap() == vertxContext) current else vertxContext
+    } ?: vertxContext
+    ctx.runOnContext { command.run() }
   }
 
   override fun schedule(command: Runnable, delay: Long, unit: TimeUnit): ScheduledFuture<*> {
