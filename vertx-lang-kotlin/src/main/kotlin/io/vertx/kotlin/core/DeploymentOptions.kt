@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
+import io.vertx.core.WorkerOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is  <p> When the verticle does not use a [io.vertx.core.DeploymentOptions], this option has no effect.
  * @param maxWorkerExecuteTimeUnit  Set the time unit of <code>maxWorkerExecuteTime</code> <p> When the verticle does not use a [io.vertx.core.DeploymentOptions], this option has no effect.
  * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
+ * @param workerOptions  Set the verticle worker options.
  * @param workerPoolName  Set the worker pool name to use for this verticle. When no name is set, the Vert.x worker pool will be used, when a name is set, the verticle will use a named worker pool.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance. <p> When the verticle does not use a [io.vertx.core.DeploymentOptions], this option has no effect.
  *
@@ -45,6 +47,7 @@ fun deploymentOptionsOf(
   maxWorkerExecuteTime: Long? = null,
   maxWorkerExecuteTimeUnit: TimeUnit? = null,
   worker: Boolean? = null,
+  workerOptions: io.vertx.core.WorkerOptions? = null,
   workerPoolName: String? = null,
   workerPoolSize: Int? = null): DeploymentOptions = io.vertx.core.DeploymentOptions().apply {
 
@@ -68,6 +71,9 @@ fun deploymentOptionsOf(
   }
   if (worker != null) {
     this.setWorker(worker)
+  }
+  if (workerOptions != null) {
+    this.setWorkerOptions(workerOptions)
   }
   if (workerPoolName != null) {
     this.setWorkerPoolName(workerPoolName)

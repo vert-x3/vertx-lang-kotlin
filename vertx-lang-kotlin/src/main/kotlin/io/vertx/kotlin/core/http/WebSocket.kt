@@ -64,34 +64,6 @@ suspend fun WebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
 }
 
 /**
- * Suspending version of method [io.vertx.core.http.WebSocket.writePing]
- *
- * @param data the data to write, may be at most 125 bytes
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use writePing returning a future and chain with await()", replaceWith = ReplaceWith("writePing(data).await()"))
-suspend fun WebSocket.writePingAwait(data: Buffer): Unit {
-  return awaitResult {
-    this.writePing(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.http.WebSocket.writePong]
- *
- * @param data the data to write, may be at most 125 bytes
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use writePong returning a future and chain with await()", replaceWith = ReplaceWith("writePong(data).await()"))
-suspend fun WebSocket.writePongAwait(data: Buffer): Unit {
-  return awaitResult {
-    this.writePong(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.core.http.WebSocket.end]
  *
  *
@@ -178,6 +150,20 @@ suspend fun WebSocket.writeBinaryMessageAwait(data: Buffer): Unit {
 suspend fun WebSocket.writeTextMessageAwait(text: String): Unit {
   return awaitResult {
     this.writeTextMessage(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+@Deprecated(message = "Instead use writePing returning a future and chain with await()", replaceWith = ReplaceWith("writePing(data).await()"))
+suspend fun WebSocket.writePingAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writePing(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+@Deprecated(message = "Instead use writePong returning a future and chain with await()", replaceWith = ReplaceWith("writePong(data).await()"))
+suspend fun WebSocket.writePongAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.writePong(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

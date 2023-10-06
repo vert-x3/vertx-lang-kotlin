@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
 /**
  * A function providing a DSL for building [io.vertx.db2client.DB2ConnectOptions] objects.
  *
- * Connect options for configuring [io.vertx.db2client.DB2Connection] or [io.vertx.db2client.DB2Pool].
+ * Connect options for configuring [io.vertx.db2client.DB2Connection] or [io.vertx.db2client.DB2Builder].
  *
  * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.

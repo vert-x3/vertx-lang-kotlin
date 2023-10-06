@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.WebSocketConnectOptions
+import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.WebsocketVersion
 import io.vertx.core.net.ProxyOptions
 
@@ -24,11 +25,12 @@ import io.vertx.core.net.ProxyOptions
  *
  * Options describing how an [io.vertx.core.http.HttpClient] connect a [io.vertx.core.http.WebSocket].
  *
- * @param absoluteURI  Parse an absolute URI to use, this will update the <code>ssl</code>, <code>host</code>, <code>port</code> and <code>uri</code> fields.
+ * @param absoluteURI  Like [io.vertx.core.http.WebSocketConnectOptions] but using an  parameter.
  * @param allowOriginHeader  Set whether to add the <code>origin</code> header to the WebSocket handshake request, enabled by default. <p> Set to <code>false</code> when a server does not accept WebSocket with an origin header.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
+ * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
  * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
  * @param registerWriteHandlers  Whether write-handlers should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
@@ -44,11 +46,12 @@ import io.vertx.core.net.ProxyOptions
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.WebSocketConnectOptions original] using Vert.x codegen.
  */
 fun webSocketConnectOptionsOf(
-  absoluteURI: String? = null,
+  absoluteURI: java.net.URL? = null,
   allowOriginHeader: Boolean? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
+  method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   registerWriteHandlers: Boolean? = null,
@@ -76,6 +79,9 @@ fun webSocketConnectOptionsOf(
   }
   if (host != null) {
     this.setHost(host)
+  }
+  if (method != null) {
+    this.setMethod(method)
   }
   if (port != null) {
     this.setPort(port)

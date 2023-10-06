@@ -27,6 +27,7 @@ import io.vertx.core.dns.AddressResolverOptions
  * @param cacheMinTimeToLive  Set the cache minimum TTL value in seconds. After resolution successful IP addresses are cached with their DNS response TTL, use this to set a minimum value to all responses TTL.
  * @param cacheNegativeTimeToLive  Set the negative cache TTL value in seconds. After a failed hostname resolution, DNS queries won't be retried for a period of time equals to the negative TTL. This allows to reduce the response time of negative replies and reduce the amount of messages to DNS servers.
  * @param hostsPath  Set the path of an alternate hosts configuration file to use instead of the one provided by the os. <p/> The default value is null, so the operating system hosts config is used.
+ * @param hostsRefreshPeriod  Set the hosts configuration refresh period in millis, <code>0</code> disables it. <p/> The resolver caches the hosts configuration [io.vertx.core.dns.AddressResolverOptions] after it has read it. When the content of this file can change, setting a positive refresh period will load the configuration file again when necessary.
  * @param hostsValue  Set an alternate hosts configuration file to use instead of the one provided by the os. <p/> The value should contain the hosts content literaly, for instance <i>127.0.0.1 localhost</i> <p/> The default value is null, so the operating system hosts config is used.
  * @param maxQueries  Set the maximum number of queries when an hostname is resolved.
  * @param ndots  Set the ndots value used when resolving using search domains, the default value is <code>-1</code> which determines the value from the OS on Linux or uses the value <code>1</code>.
@@ -46,6 +47,7 @@ fun addressResolverOptionsOf(
   cacheMinTimeToLive: Int? = null,
   cacheNegativeTimeToLive: Int? = null,
   hostsPath: String? = null,
+  hostsRefreshPeriod: Int? = null,
   hostsValue: io.vertx.core.buffer.Buffer? = null,
   maxQueries: Int? = null,
   ndots: Int? = null,
@@ -68,6 +70,9 @@ fun addressResolverOptionsOf(
   }
   if (hostsPath != null) {
     this.setHostsPath(hostsPath)
+  }
+  if (hostsRefreshPeriod != null) {
+    this.setHostsRefreshPeriod(hostsRefreshPeriod)
   }
   if (hostsValue != null) {
     this.setHostsValue(hostsValue)
