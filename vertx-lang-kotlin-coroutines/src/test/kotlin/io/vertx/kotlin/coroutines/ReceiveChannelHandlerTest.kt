@@ -17,17 +17,16 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Vertx
 import io.vertx.core.eventbus.Message
+import io.vertx.core.file.OpenOptions
 import io.vertx.core.streams.ReadStream
 import io.vertx.core.streams.WriteStream
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.test.fakestream.FakeStream
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.onCompletion
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -37,6 +36,7 @@ import org.junit.runner.RunWith
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
+@OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class ReceiveChannelHandlerTest {
   companion object {
@@ -243,6 +243,23 @@ class ReceiveChannelHandlerTest {
       } catch (e: CancellationException) {
         async.complete()
       }
+    }
+  }
+
+  @Test
+  fun `test channel consumed as flow`(testContext: TestContext) {
+    val async = testContext.async()
+    GlobalScope.launch(vertx.dispatcher()) {
+      val fs = vertx.fileSystem()
+      val asyncFile = fs.open("META-INF/MANIFEST.MF", OpenOptions()).await()
+      asyncFile.toReceiveChannel(vertx).consumeAsFlow()
+        .onCompletion {
+          if (it != null) {
+            testContext.fail(it)
+          } else {
+            async.complete()
+          }
+        }.collect({})
     }
   }
 }
