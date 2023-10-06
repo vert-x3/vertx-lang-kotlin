@@ -39,7 +39,7 @@ import io.vertx.core.net.ProxyOptions
  */
 fun requestOptionsOf(
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
-  server: io.vertx.core.net.SocketAddress? = null,
+  server: io.vertx.core.net.Address? = null,
   host: String? = null,
   port: Int? = null,
   ssl: Boolean? = null,

@@ -46,7 +46,7 @@ import io.vertx.core.net.ProxyOptions
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.WebSocketConnectOptions original] using Vert.x codegen.
  */
 fun webSocketConnectOptionsOf(
-  server: io.vertx.core.net.SocketAddress? = null,
+  server: io.vertx.core.net.Address? = null,
   host: String? = null,
   port: Int? = null,
   ssl: Boolean? = null,
