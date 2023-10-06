@@ -25,6 +25,8 @@ class Account {
   var id: Long = 0
   var name: String? = null
   var otherNames: List<String> = ArrayList()
+  var isPrefixed: Boolean? = null
+  var notPrefixed: Boolean? = null
 
   constructor(jo: JsonObject) {
     id = jo.getLong("id", id)
@@ -33,5 +35,7 @@ class Account {
       .list
       .filter { it is String }
       .map { it as String }
+    isPrefixed = jo.getBoolean("isPrefixed")
+    notPrefixed = jo.getBoolean("notPrefixed")
   }
 }
