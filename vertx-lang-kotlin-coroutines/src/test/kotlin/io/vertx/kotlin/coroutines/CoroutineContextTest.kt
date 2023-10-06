@@ -18,6 +18,8 @@ package io.vertx.kotlin.coroutines
 import io.vertx.core.Context
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.Vertx
+import io.vertx.core.impl.ContextInternal
+import io.vertx.core.impl.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.CancellationException
@@ -250,5 +252,21 @@ class CoroutineContextTest {
     }
     assertNotNull(caught)
     assertEquals("it was true", caught!!.message)
+  }
+
+  @Test
+  fun `coroutine dispatcher executes commands on duplicated context`(testContext: TestContext) {
+    val latch = testContext.async()
+    val context = (vertx as VertxInternal).getOrCreateContext()
+    val duplicatedContext = context.duplicate()
+    duplicatedContext.runOnContext {
+      duplicatedContext.putLocal("foo", "bar")
+      GlobalScope.launch(context.dispatcher()) {
+        delay(100)
+        testContext.assertEquals(duplicatedContext, ContextInternal.current())
+        testContext.assertEquals(duplicatedContext.getLocal("foo"), "bar")
+        latch.complete()
+      }
+    }
   }
 }
