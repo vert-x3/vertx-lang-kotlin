@@ -24,7 +24,6 @@ import io.vertx.codegen.doc.Doc;
 import io.vertx.codegen.doc.Token;
 import io.vertx.codegen.format.LowerCamelCase;
 import io.vertx.codegen.type.ClassKind;
-import io.vertx.codegen.type.ClassTypeInfo;
 import io.vertx.codegen.type.TypeInfo;
 import io.vertx.codegen.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
@@ -121,13 +120,16 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
   private void generateFunction(String functionName, DataObjectModel model, CodeWriter writer) {
     boolean isKotlin = model.getAnnotations().stream().anyMatch(ann -> ann.getName().equals("kotlin.Metadata"));
 
-    ClassTypeInfo type = model.getType();
     writer.println("fun " + functionName + "(");
     String paramsInfo = model.getPropertyMap()
       .values()
       .stream()
       .filter(filterProperties())
-      .map(p -> "  " + p.getName() + ": " + applyPropertyKind(mapKotlinType(p.getType()), p.getKind()) + "? = null")
+      .map(p -> {
+        String type = mapKotlinType(p.getType());
+        String name = isKotlin ? getKotlinName(p, type) : p.getName();
+        return "  " + name + ": " + applyPropertyKind(type, p.getKind()) + "? = null";
+      })
       .collect(Collectors.joining(",\n"));
     writer.print(paramsInfo);
     writer.print("): ");
@@ -149,12 +151,13 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
       .stream()
       .filter(filterProperties())
       .forEach(p -> {
-        String propertyName = p.getName();
+        String type = mapKotlinType(p.getType());
+        String propertyName = isKotlin ? getKotlinName(p, type) : p.getName();
         PropertyKind propertyKind = p.getKind();
         writer.println("if (" + propertyName + " != null) {");
         writer.indent();
         if (p.getSetterMethod() != null) {
-          writer.print("this." + (isKotlin ? (p.getName() + " = ") : (p.getSetterMethod() + "(")));
+          writer.print("this." + (isKotlin ? (propertyName + " = ") : (p.getSetterMethod() + "(")));
           writer.print(propertyName);
           if (propertyKind.isList()) {
             writer.print(".toList()");
@@ -178,6 +181,21 @@ public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectMod
       });
     writer.unindent().println("}");
     writer.println();
+  }
+
+  /**
+   * Kotlin converts boolean fields to "isFoo" and "setFoo".
+   * Consequently, the field "isFoo" will incorrectly be mapped to "foo".
+   *
+   * @see <a href="https://github.com/vert-x3/vertx-lang-kotlin/issues/158">Releva</a>
+   */
+  private String getKotlinName(PropertyInfo p, String kotlinType) {
+    String name = p.getName();
+
+    if (kotlinType.equals("Boolean") && (p.getGetterMethod().startsWith("is") && !p.getSetterMethod().startsWith("is"))) {
+      name = p.getGetterMethod();
+    }
+    return name;
   }
 
   private String mapKotlinType(TypeInfo type) {
