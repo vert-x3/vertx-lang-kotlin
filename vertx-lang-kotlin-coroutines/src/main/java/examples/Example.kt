@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED")
+@file:OptIn(DelicateCoroutinesApi::class)
 
 package examples
 
@@ -360,4 +361,14 @@ class ExampleVerticle : CoroutineVerticle() {
   }
 
   private suspend fun computeSomethingWithSuspendingFunction(): String = "42"
+
+  fun usingCoroutineEventBus() {
+    // tag::usingCoroutineEventBus[]
+    val bus = vertx.coEventBus()
+    bus.consumer<String>("some-address") {
+      computeSomethingWithSuspendingFunction()
+      it.reply("done")
+    }
+    // tag::usingCoroutineEventBus[]
+  }
 }
