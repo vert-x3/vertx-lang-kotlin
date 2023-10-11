@@ -22,6 +22,8 @@ import io.vertx.core.Vertx
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerOptions
+import io.vertx.core.http.RequestOptions
+import io.vertx.core.impl.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
@@ -438,6 +440,24 @@ class VertxCoroutineTest {
       repeat(1000) {
         yield()
         yield()
+      }
+    }
+  }
+
+  @Test
+  fun `test Coroutine execution not always performed with dispatch`(testContext: TestContext) {
+    val latch = testContext.async()
+    val context = (vertx as VertxInternal).getOrCreateContext()
+    val duplicatedContext = context.duplicate()
+    val httpClient = vertx.createHttpClient()
+    duplicatedContext.runOnContext {
+      GlobalScope.launch(Vertx.currentContext().dispatcher()) {
+        val resp = httpClient.request(RequestOptions().setMethod(HttpMethod.GET).setAbsoluteURI("https://example.com"))
+          .await().apply { end().await() }
+          .response()
+          .await()
+        resp.body().await()
+        latch.complete()
       }
     }
   }
