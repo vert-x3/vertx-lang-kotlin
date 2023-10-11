@@ -160,8 +160,8 @@ private class ContextCoroutineDispatcher(val vertxContext: ContextInternal) : Co
   private val delegate = VertxCoroutineExecutor(vertxContext).asCoroutineDispatcher()
 
   override fun isDispatchNeeded(context: CoroutineContext): Boolean {
-    val current = ContextInternal.current()?.unwrap()
-    return current != vertxContext || !vertxContext.inThread()
+    val current = ContextInternal.current() ?: return true
+    return current != vertxContext && current.unwrap() != vertxContext
   }
 
   override fun dispatch(context: CoroutineContext, block: Runnable) {
