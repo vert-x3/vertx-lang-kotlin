@@ -26,6 +26,7 @@ import io.vertx.core.net.OpenSSLEngineOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
+import io.vertx.core.net.TrafficShapingOptions
 import io.vertx.core.tracing.TracingPolicy
 import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions
 import java.util.concurrent.TimeUnit
@@ -54,6 +55,9 @@ import java.util.concurrent.TimeUnit
  * @param handle100ContinueAutomatically  Set whether 100 Continue should be handled automatically
  * @param host  Set the host
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by , so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
+ * @param http2RstFloodMaxRstFramePerWindow  Set the max number of RST frame allowed per time window, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
+ * @param http2RstFloodWindowDuration  Set the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
+ * @param http2RstFloodWindowDurationTimeUnit  Set the time unit of the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables the flood protection.
  * @param idleTimeout  Set the idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is received nor sent within the timeout. If you want change default time unit, use [io.vertx.core.http.HttpServerOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
@@ -103,6 +107,7 @@ import java.util.concurrent.TimeUnit
  * @param termJsResource  Set <code>term.js</code> resource to use.
  * @param tracingPolicy  Set the tracing policy for the server behavior when Vert.x has tracing enabled.
  * @param trafficClass  Set the value of traffic class
+ * @param trafficShapingOptions  Set traffic shaping options. If not specified, traffic is unthrottled.
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
@@ -138,6 +143,9 @@ fun httpTermOptionsOf(
   handle100ContinueAutomatically: Boolean? = null,
   host: String? = null,
   http2ConnectionWindowSize: Int? = null,
+  http2RstFloodMaxRstFramePerWindow: Int? = null,
+  http2RstFloodWindowDuration: Int? = null,
+  http2RstFloodWindowDurationTimeUnit: TimeUnit? = null,
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
@@ -187,6 +195,7 @@ fun httpTermOptionsOf(
   termJsResource: io.vertx.core.buffer.Buffer? = null,
   tracingPolicy: TracingPolicy? = null,
   trafficClass: Int? = null,
+  trafficShapingOptions: io.vertx.core.net.TrafficShapingOptions? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
@@ -261,6 +270,15 @@ fun httpTermOptionsOf(
   }
   if (http2ConnectionWindowSize != null) {
     this.setHttp2ConnectionWindowSize(http2ConnectionWindowSize)
+  }
+  if (http2RstFloodMaxRstFramePerWindow != null) {
+    this.setHttp2RstFloodMaxRstFramePerWindow(http2RstFloodMaxRstFramePerWindow)
+  }
+  if (http2RstFloodWindowDuration != null) {
+    this.setHttp2RstFloodWindowDuration(http2RstFloodWindowDuration)
+  }
+  if (http2RstFloodWindowDurationTimeUnit != null) {
+    this.setHttp2RstFloodWindowDurationTimeUnit(http2RstFloodWindowDurationTimeUnit)
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
@@ -408,6 +426,9 @@ fun httpTermOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trafficShapingOptions != null) {
+    this.setTrafficShapingOptions(trafficShapingOptions)
   }
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)

@@ -24,6 +24,7 @@ import io.vertx.core.net.OpenSSLEngineOptions
 import io.vertx.core.net.PemKeyCertOptions
 import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
+import io.vertx.core.net.TrafficShapingOptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -78,6 +79,7 @@ import java.util.concurrent.TimeUnit
  * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
  * @param timeoutOnConnect  Set the timeout on CONNECT packet
  * @param trafficClass  Set the value of traffic class
+ * @param trafficShapingOptions  Set traffic shaping options. If not specified, traffic is unthrottled.
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
@@ -140,6 +142,7 @@ fun mqttServerOptionsOf(
   tcpUserTimeout: Int? = null,
   timeoutOnConnect: Int? = null,
   trafficClass: Int? = null,
+  trafficShapingOptions: io.vertx.core.net.TrafficShapingOptions? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
@@ -297,6 +300,9 @@ fun mqttServerOptionsOf(
   }
   if (trafficClass != null) {
     this.setTrafficClass(trafficClass)
+  }
+  if (trafficShapingOptions != null) {
+    this.setTrafficShapingOptions(trafficShapingOptions)
   }
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)

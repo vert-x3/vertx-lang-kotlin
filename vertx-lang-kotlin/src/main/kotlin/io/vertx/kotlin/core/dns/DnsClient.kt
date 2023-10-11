@@ -200,3 +200,16 @@ suspend fun DnsClient.reverseLookupAwait(ipaddress: String): String? {
   }
 }
 
+/**
+ * Suspending version of method [io.vertx.core.dns.DnsClient.close]
+ *
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.dns.DnsClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+suspend fun DnsClient.closeAwait(): Unit {
+  return awaitResult {
+    this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+

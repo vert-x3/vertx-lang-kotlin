@@ -16,7 +16,6 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.core.json.JsonObject
-import io.vertx.ext.consul.AclToken
 import io.vertx.ext.consul.BlockingQueryOptions
 import io.vertx.ext.consul.Check
 import io.vertx.ext.consul.CheckList
@@ -51,6 +50,9 @@ import io.vertx.ext.consul.SessionList
 import io.vertx.ext.consul.SessionOptions
 import io.vertx.ext.consul.TxnRequest
 import io.vertx.ext.consul.TxnResponse
+import io.vertx.ext.consul.policy.AclPolicy
+import io.vertx.ext.consul.token.AclToken
+import io.vertx.ext.consul.token.CloneAclTokenOptions
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
@@ -280,15 +282,76 @@ suspend fun ConsulClient.transactionAwait(request: TxnRequest): TxnResponse {
 }
 
 /**
- * Suspending version of method [io.vertx.ext.consul.ConsulClient.createAclToken]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createAclPolicy]
  *
- * @param token properties of the token
+ * @param policy properties of policy
  * @return [String]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
+@Deprecated(message = "Instead use createAclPolicy returning a future and chain with await()", replaceWith = ReplaceWith("createAclPolicy(policy).await()"))
+suspend fun ConsulClient.createAclPolicyAwait(policy: AclPolicy): String {
+  return awaitResult {
+    this.createAclPolicy(policy, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.readPolicy]
+ *
+ * @param id uuid policy
+ * @return [AclPolicy]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use readPolicy returning a future and chain with await()", replaceWith = ReplaceWith("readPolicy(id).await()"))
+suspend fun ConsulClient.readPolicyAwait(id: String): AclPolicy {
+  return awaitResult {
+    this.readPolicy(id, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.readPolicyByName]
+ *
+ * @param name unique name of created policy
+ * @return [AclPolicy]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use readPolicyByName returning a future and chain with await()", replaceWith = ReplaceWith("readPolicyByName(name).await()"))
+suspend fun ConsulClient.readPolicyByNameAwait(name: String): AclPolicy {
+  return awaitResult {
+    this.readPolicyByName(name, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.updatePolicy]
+ *
+ * @param id uuid of existing policy
+ * @param policy options that will be applied to the existing policy
+ * @return [AclPolicy]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updatePolicy returning a future and chain with await()", replaceWith = ReplaceWith("updatePolicy(id, policy).await()"))
+suspend fun ConsulClient.updatePolicyAwait(id: String, policy: AclPolicy): AclPolicy {
+  return awaitResult {
+    this.updatePolicy(id, policy, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.createAclToken]
+ *
+ * @param token properties of the token
+ * @return [AclToken]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
 @Deprecated(message = "Instead use createAclToken returning a future and chain with await()", replaceWith = ReplaceWith("createAclToken(token).await()"))
-suspend fun ConsulClient.createAclTokenAwait(token: AclToken): String {
+suspend fun ConsulClient.createAclTokenAwait(token: AclToken): AclToken {
   return awaitResult {
     this.createAclToken(token, it)
   }
@@ -297,73 +360,76 @@ suspend fun ConsulClient.createAclTokenAwait(token: AclToken): String {
 /**
  * Suspending version of method [io.vertx.ext.consul.ConsulClient.updateAclToken]
  *
- * @param token properties of the token to be updated
- * @return [String]
+ * @param accessorId uuid of the token
+ * @param token properties of the token
+ * @return [AclToken]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateAclToken returning a future and chain with await()", replaceWith = ReplaceWith("updateAclToken(token).await()"))
-suspend fun ConsulClient.updateAclTokenAwait(token: AclToken): String {
+@Deprecated(message = "Instead use updateAclToken returning a future and chain with await()", replaceWith = ReplaceWith("updateAclToken(accessorId, token).await()"))
+suspend fun ConsulClient.updateAclTokenAwait(accessorId: String, token: AclToken): AclToken {
   return awaitResult {
-    this.updateAclToken(token, it)
+    this.updateAclToken(accessorId, token, it)
   }
 }
 
 /**
  * Suspending version of method [io.vertx.ext.consul.ConsulClient.cloneAclToken]
  *
- * @param id the ID of token to be cloned
- * @return [String]
+ * @param accessorId uuid of the token
+ * @param cloneAclToken properties of cloned token
+ * @return [AclToken]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use cloneAclToken returning a future and chain with await()", replaceWith = ReplaceWith("cloneAclToken(id).await()"))
-suspend fun ConsulClient.cloneAclTokenAwait(id: String): String {
+@Deprecated(message = "Instead use cloneAclToken returning a future and chain with await()", replaceWith = ReplaceWith("cloneAclToken(accessorId, cloneAclToken).await()"))
+suspend fun ConsulClient.cloneAclTokenAwait(accessorId: String, cloneAclToken: CloneAclTokenOptions): AclToken {
   return awaitResult {
-    this.cloneAclToken(id, it)
+    this.cloneAclToken(accessorId, cloneAclToken, it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.ext.consul.ConsulClient.listAclTokens]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.getAclTokens]
  *
  * @return [List<AclToken>]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listAclTokens returning a future and chain with await()", replaceWith = ReplaceWith("listAclTokens().await()"))
-suspend fun ConsulClient.listAclTokensAwait(): List<AclToken> {
+@Deprecated(message = "Instead use getAclTokens returning a future and chain with await()", replaceWith = ReplaceWith("getAclTokens().await()"))
+suspend fun ConsulClient.getAclTokensAwait(): List<AclToken> {
   return awaitResult {
-    this.listAclTokens(it)
+    this.getAclTokens(it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.ext.consul.ConsulClient.infoAclToken]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.readAclToken]
  *
- * @param id the ID of token
+ * @param accessorId uuid of token
  * @return [AclToken]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use infoAclToken returning a future and chain with await()", replaceWith = ReplaceWith("infoAclToken(id).await()"))
-suspend fun ConsulClient.infoAclTokenAwait(id: String): AclToken {
+@Deprecated(message = "Instead use readAclToken returning a future and chain with await()", replaceWith = ReplaceWith("readAclToken(accessorId).await()"))
+suspend fun ConsulClient.readAclTokenAwait(accessorId: String): AclToken {
   return awaitResult {
-    this.infoAclToken(id, it)
+    this.readAclToken(accessorId, it)
   }
 }
 
 /**
- * Suspending version of method [io.vertx.ext.consul.ConsulClient.destroyAclToken]
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.deleteAclToken]
  *
- * @param id the ID of token
+ * @param accessorId uuid of token
+ * @return [Boolean]
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use destroyAclToken returning a future and chain with await()", replaceWith = ReplaceWith("destroyAclToken(id).await()"))
-suspend fun ConsulClient.destroyAclTokenAwait(id: String): Unit {
+@Deprecated(message = "Instead use deleteAclToken returning a future and chain with await()", replaceWith = ReplaceWith("deleteAclToken(accessorId).await()"))
+suspend fun ConsulClient.deleteAclTokenAwait(accessorId: String): Boolean {
   return awaitResult {
-    this.destroyAclToken(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.deleteAclToken(accessorId, it)
   }
 }
 
@@ -635,6 +701,22 @@ suspend fun ConsulClient.healthServiceNodesAwait(service: String, passing: Boole
 suspend fun ConsulClient.healthServiceNodesWithOptionsAwait(service: String, passing: Boolean, options: ServiceQueryOptions): ServiceEntryList {
   return awaitResult {
     this.healthServiceNodesWithOptions(service, passing, options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.ext.consul.ConsulClient.healthNodesWithOptions]
+ *
+ * @param node the node name or ID
+ * @param options options used to request node health checks
+ * @return [CheckList]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.consul.ConsulClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use healthNodesWithOptions returning a future and chain with await()", replaceWith = ReplaceWith("healthNodesWithOptions(node, options).await()"))
+suspend fun ConsulClient.healthNodesWithOptionsAwait(node: String, options: CheckQueryOptions): CheckList {
+  return awaitResult {
+    this.healthNodesWithOptions(node, options, it)
   }
 }
 
