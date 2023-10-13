@@ -31,6 +31,7 @@ import io.vertx.redis.client.RedisRole
  * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
+ * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. This is only meaningful in case of a  Redis client. <p> The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second).
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
  * @param maxPoolSize  Tune the maximum size of the connection pool. When working with cluster or sentinel this value should be atleast the total number of cluster member (or number of sentinels + 1)
@@ -55,6 +56,7 @@ fun redisOptionsOf(
   connectionStrings: Iterable<String>? = null,
   endpoint: String? = null,
   endpoints: Iterable<String>? = null,
+  hashSlotCacheTTL: Long? = null,
   masterName: String? = null,
   maxNestedArrays: Int? = null,
   maxPoolSize: Int? = null,
@@ -84,6 +86,9 @@ fun redisOptionsOf(
   }
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
+  }
+  if (hashSlotCacheTTL != null) {
+    this.setHashSlotCacheTTL(hashSlotCacheTTL)
   }
   if (masterName != null) {
     this.setMasterName(masterName)
