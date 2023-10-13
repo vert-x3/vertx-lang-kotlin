@@ -171,6 +171,10 @@ private class ContextCoroutineDispatcher(val vertxContext: ContextInternal) : Co
   override fun scheduleResumeAfterDelay(timeMillis: Long, continuation: CancellableContinuation<Unit>) {
     (delegate as Delay).scheduleResumeAfterDelay(timeMillis, continuation)
   }
+
+  override fun invokeOnTimeout(timeMillis: Long, block: Runnable, context: CoroutineContext): DisposableHandle {
+    return (delegate as Delay).invokeOnTimeout(timeMillis, block, context)
+  }
 }
 
 private class VertxScheduledFuture(
