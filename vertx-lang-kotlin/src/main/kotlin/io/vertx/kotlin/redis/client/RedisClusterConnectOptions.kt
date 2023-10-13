@@ -22,6 +22,7 @@ fun redisClusterConnectOptionsOf(
   connectionString: String? = null,
   connectionStrings: Iterable<String>? = null,
   endpoints: Iterable<String>? = null,
+  hashSlotCacheTTL: Long? = null,
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   password: String? = null,
@@ -38,6 +39,9 @@ fun redisClusterConnectOptionsOf(
   }
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
+  }
+  if (hashSlotCacheTTL != null) {
+    this.setHashSlotCacheTTL(hashSlotCacheTTL)
   }
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)
