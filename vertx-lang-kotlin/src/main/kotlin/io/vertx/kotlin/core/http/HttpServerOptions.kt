@@ -107,6 +107,9 @@ import java.util.concurrent.TimeUnit
  * @param tracingPolicy  Set the tracing policy for the server behavior when Vert.x has tracing enabled.
  * @param registerWriteHandler  Has no effect on HTTP server options.
  * @param registerWebSocketWriteHandlers  Whether write-handlers for server websockets should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
+ * @param http2RstFloodMaxRstFramePerWindow  Set the max number of RST frame allowed per time window, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
+ * @param http2RstFloodWindowDuration  Set the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
+ * @param http2RstFloodWindowDurationTimeUnit  Set the time unit of the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables the flood protection.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.http.HttpServerOptions original] using Vert.x codegen.
@@ -183,7 +186,10 @@ fun httpServerOptionsOf(
   webSocketClosingTimeout: Int? = null,
   tracingPolicy: TracingPolicy? = null,
   registerWriteHandler: Boolean? = null,
-  registerWebSocketWriteHandlers: Boolean? = null): HttpServerOptions = io.vertx.core.http.HttpServerOptions().apply {
+  registerWebSocketWriteHandlers: Boolean? = null,
+  http2RstFloodMaxRstFramePerWindow: Int? = null,
+  http2RstFloodWindowDuration: Int? = null,
+  http2RstFloodWindowDurationTimeUnit: TimeUnit? = null): HttpServerOptions = io.vertx.core.http.HttpServerOptions().apply {
 
   if (sendBufferSize != null) {
     this.setSendBufferSize(sendBufferSize)
@@ -406,6 +412,15 @@ fun httpServerOptionsOf(
   }
   if (registerWebSocketWriteHandlers != null) {
     this.setRegisterWebSocketWriteHandlers(registerWebSocketWriteHandlers)
+  }
+  if (http2RstFloodMaxRstFramePerWindow != null) {
+    this.setHttp2RstFloodMaxRstFramePerWindow(http2RstFloodMaxRstFramePerWindow)
+  }
+  if (http2RstFloodWindowDuration != null) {
+    this.setHttp2RstFloodWindowDuration(http2RstFloodWindowDuration)
+  }
+  if (http2RstFloodWindowDurationTimeUnit != null) {
+    this.setHttp2RstFloodWindowDurationTimeUnit(http2RstFloodWindowDurationTimeUnit)
   }
 }
 

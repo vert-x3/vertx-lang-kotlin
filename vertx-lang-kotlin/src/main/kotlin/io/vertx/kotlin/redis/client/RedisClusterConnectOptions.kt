@@ -26,6 +26,7 @@ fun redisClusterConnectOptionsOf(
   connectionStrings: Iterable<String>? = null,
   maxWaitingHandlers: Int? = null,
   useReplicas: RedisReplicas? = null,
+  hashSlotCacheTTL: Long? = null,
   connectionString: String? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
 
   if (maxNestedArrays != null) {
@@ -50,6 +51,9 @@ fun redisClusterConnectOptionsOf(
   }
   if (useReplicas != null) {
     this.setUseReplicas(useReplicas)
+  }
+  if (hashSlotCacheTTL != null) {
+    this.setHashSlotCacheTTL(hashSlotCacheTTL)
   }
   if (connectionString != null) {
     this.setConnectionString(connectionString)

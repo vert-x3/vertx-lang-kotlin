@@ -46,6 +46,7 @@ import io.vertx.redis.client.RedisRole
  * @param password  Set the default password for cluster/sentinel connections.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param poolName  Set a user defined pool name (for metrics reporting).
+ * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. This is only meaningful in case of a  Redis client. <p> The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second).
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.redis.client.RedisOptions original] using Vert.x codegen.
@@ -69,7 +70,8 @@ fun redisOptionsOf(
   poolRecycleTimeout: Int? = null,
   password: String? = null,
   protocolNegotiation: Boolean? = null,
-  poolName: String? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
+  poolName: String? = null,
+  hashSlotCacheTTL: Long? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
   if (type != null) {
     this.setType(type)
@@ -129,6 +131,9 @@ fun redisOptionsOf(
   }
   if (poolName != null) {
     this.setPoolName(poolName)
+  }
+  if (hashSlotCacheTTL != null) {
+    this.setHashSlotCacheTTL(hashSlotCacheTTL)
   }
 }
 
