@@ -18,9 +18,9 @@ package io.vertx.kotlin.coroutines
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.rxjava3.core.Vertx
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.reactive.openSubscription
 import kotlinx.coroutines.rx3.await
 import org.junit.After
 import org.junit.Before
@@ -30,6 +30,7 @@ import org.junit.runner.RunWith
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
+@OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class RxTest {
 

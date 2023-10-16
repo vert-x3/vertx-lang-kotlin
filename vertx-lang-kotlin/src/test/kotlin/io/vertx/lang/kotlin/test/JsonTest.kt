@@ -15,19 +15,23 @@
  */
 package io.vertx.lang.kotlin.test
 
-import io.vertx.core.*
-import io.vertx.core.buffer.*
-import io.vertx.core.json.*
-import io.vertx.core.streams.*
+import io.vertx.core.Future
+import io.vertx.core.Handler
+import io.vertx.core.buffer.Buffer
+import io.vertx.core.json.JsonArray
+import io.vertx.core.json.JsonObject
+import io.vertx.core.streams.WriteStream
+import io.vertx.kotlin.core.buffer.appendJson
 import io.vertx.kotlin.core.json.*
-import io.vertx.kotlin.core.streams.*
-import io.vertx.kotlin.core.buffer.*
-import io.vertx.kotlin.core.json.Json
+import io.vertx.kotlin.core.streams.end
+import io.vertx.kotlin.core.streams.write
 import org.junit.Test
 import java.time.Instant
-import java.util.*
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.test.*
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class JsonTest {
   @Test
@@ -153,9 +157,6 @@ class JsonTest {
     assertFalse(ended.get())
 
     received.clear()
-    val block: Json.() -> JsonObject = {
-      obj("k" to "v")
-    }
     ws.end(block = {
       obj("k" to "v")
     })

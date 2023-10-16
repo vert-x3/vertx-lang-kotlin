@@ -36,6 +36,7 @@ import org.junit.runner.RunWith
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
  */
+@ExperimentalCoroutinesApi
 @OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class ReceiveChannelHandlerTest {
@@ -63,7 +64,7 @@ class ReceiveChannelHandlerTest {
     val stream = FakeStream<Int>()
     val numItems = 3
     val expected = List(numItems) { it }
-    val channel = (stream as ReadStream<Int>).toChannel(vertx)
+    val channel = (stream as ReadStream<Int>).toReceiveChannel(vertx)
 
     runBlocking {
       launch {
@@ -92,7 +93,7 @@ class ReceiveChannelHandlerTest {
     stream.write(-1)
     stream.write(-2)
     stream.end()
-    var ended = false
+    var ended: Boolean
     runBlocking {
       var count = -1
       for (item in channel) {
@@ -109,7 +110,7 @@ class ReceiveChannelHandlerTest {
     val stream = FakeStream<Int>()
     val numItems = 3
     val expected = List(numItems) { it }
-    val channel = (stream as ReadStream<Int>).toChannel(vertx)
+    val channel = (stream as ReadStream<Int>).toReceiveChannel(vertx)
 
     runBlocking {
       launch {
@@ -154,7 +155,7 @@ class ReceiveChannelHandlerTest {
     val stream = TestStream<Int>()
     val capacity = 3
     val expected = List(capacity) { it }
-    val channel = (stream as WriteStream<Int>).toChannel(vertx, capacity)
+    val channel = (stream as WriteStream<Int>).toSendChannel(vertx, capacity)
     val received = mutableListOf<Int>()
 
     stream.handler { elt -> received.add(elt) }
@@ -224,11 +225,11 @@ class ReceiveChannelHandlerTest {
       val end = System.currentTimeMillis()
       testContext.assertTrue(end - start >= 100)
 
-      // Try a receive with timeout
+      // Try receiving with timeout
       var received1: Message<String>? = null
       try {
         received1 = withTimeout(1000) { adaptor1.receive() }
-      } catch (e: CancellationException) {
+      } catch (_: CancellationException) {
       }
 
       if (received1 is Message<*>) Assert.assertEquals("wibble", received1.body())
@@ -259,7 +260,7 @@ class ReceiveChannelHandlerTest {
           } else {
             async.complete()
           }
-        }.collect({})
+        }.collect {}
     }
   }
 }

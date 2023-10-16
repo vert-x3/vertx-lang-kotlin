@@ -14,6 +14,9 @@ import io.vertx.core.parsetools.RecordParser
 import io.vertx.kotlin.coroutines.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ReceiveChannel
+import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 fun launchCoroutineExample() {
   // tag::launchCoroutine[]
@@ -40,6 +43,8 @@ class MyVerticle : CoroutineVerticle() {
 }
 // end::CoroutineVerticle[]
 
+@OptIn(ExperimentalCoroutinesApi::class)
+@Suppress("UNUSED_VARIABLE", "UNUSED_PARAMETER")
 class ExampleVerticle : CoroutineVerticle() {
 
   override suspend fun start() {
@@ -163,7 +168,7 @@ class ExampleVerticle : CoroutineVerticle() {
   // tag::channel0[]
   suspend fun handleTemperatureStream() {
     val stream = vertx.eventBus().consumer<Double>("temperature")
-    val channel = stream.toChannel(vertx)
+    val channel = stream.toReceiveChannel(vertx)
 
     var min = Double.MAX_VALUE
     var max = Double.MIN_VALUE
@@ -172,8 +177,8 @@ class ExampleVerticle : CoroutineVerticle() {
     // Non-blocking
     for (msg in channel) {
       val temperature = msg.body()
-      min = Math.min(min, temperature)
-      max = Math.max(max, temperature)
+      min = min(min, temperature)
+      max = max(max, temperature)
     }
 
     // The stream is now closed
@@ -188,7 +193,7 @@ class ExampleVerticle : CoroutineVerticle() {
       val stream = RecordParser.newDelimited("\r\n", socket)
 
       // Convert the stream to a Kotlin channel
-      val channel = stream.toChannel(vertx)
+      val channel = stream.toReceiveChannel(vertx)
 
       // Run the coroutine
       launch {
@@ -222,7 +227,7 @@ class ExampleVerticle : CoroutineVerticle() {
       }
 
       val pos = header.indexOf(':')
-      headers[header.substring(0, pos).toLowerCase()] = header.substring(pos + 1).trim()
+      headers[header.substring(0, pos).lowercase(Locale.getDefault())] = header.substring(pos + 1).trim()
     }
 
     println("Received HTTP request ($method, $uri) with headers ${headers.keys}")
@@ -287,7 +292,7 @@ class ExampleVerticle : CoroutineVerticle() {
 
   // tag::sendChannel[]
   suspend fun sendChannel(httpResponse : HttpServerResponse) {
-    val channel = httpResponse.toChannel(vertx)
+    val channel = httpResponse.toSendChannel(vertx)
 
     while (true) {
       val buffer = readBuffer()
@@ -305,7 +310,7 @@ class ExampleVerticle : CoroutineVerticle() {
   fun delayExample() {
     // tag::delay[]
     launch {
-      // Set a one second Vertx timer
+      // Set a one-second Vertx timer
       delay(1000)
     }
     // end::delay[]
@@ -330,7 +335,7 @@ class ExampleVerticle : CoroutineVerticle() {
     // tag::withTimeout[]
     launch {
       try {
-        val id = withTimeout<String>(1000) {
+        val id = withTimeout(1000) {
           awaitEvent { anAsyncMethod(it) }
         }
       } catch (e: TimeoutCancellationException) {
