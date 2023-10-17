@@ -15,7 +15,10 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.*
+import io.vertx.core.Context
+import io.vertx.core.Promise
+import io.vertx.core.Verticle
+import io.vertx.core.Vertx
 import io.vertx.core.json.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -93,9 +96,11 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
 
   /**
    * Get the arguments used when deploying the Vert.x process.
-   * @return the list of arguments
+   * @return an empty list
    */
+  @Deprecated("As of version 5, Vert.x is no longer tightly coupled to the CLI")
   protected val processArgs: List<String> by lazy {
+    @Suppress("DEPRECATION")
     context.processArgs()
   }
 

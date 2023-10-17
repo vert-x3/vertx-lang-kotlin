@@ -22,13 +22,7 @@ import io.vertx.core.impl.ContextInternal
 import io.vertx.core.impl.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.junit.After
@@ -47,6 +41,7 @@ import kotlin.test.assertTrue
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
+@OptIn(DelicateCoroutinesApi::class, ExperimentalCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class CoroutineContextTest {
 
@@ -229,7 +224,7 @@ class CoroutineContextTest {
   @Test
   fun `test error in runBlocking builder`() {
     val expected = Exception()
-    var caught: Exception? = null
+    val caught: Exception?
     try {
       runBlocking<Long>(vertx.dispatcher()) {
         throw expected

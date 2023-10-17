@@ -22,6 +22,7 @@ import io.vertx.core.http.HttpMethod
 import io.vertx.core.parsetools.RecordParser
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.launch
@@ -29,10 +30,12 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.*
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
+@OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class HttpParserTest {
 
@@ -62,7 +65,7 @@ class HttpParserTest {
     val server = vertx.createNetServer().connectHandler { socket ->
       val recordParser = RecordParser.newDelimited("\r\n", socket)
       GlobalScope.launch(vertx.dispatcher()) {
-        val channel = recordParser.toChannel(vertx)
+        val channel = recordParser.toReceiveChannel(vertx)
         val line = channel.receive().toString()
         val headers = HashMap<String, String>()
         while (true) {
@@ -71,7 +74,7 @@ class HttpParserTest {
             break
           }
           val pos = header.indexOf(':')
-          headers[header.substring(0, pos).toLowerCase()] = header.substring(pos + 1).trim()
+          headers[header.substring(0, pos).lowercase(Locale.getDefault())] = header.substring(pos + 1).trim()
         }
         val transferEncoding = headers["transfer-encoding"]
         val contentLength = headers["content-length"]
@@ -124,7 +127,7 @@ class HttpParserTest {
       async.complete()
     }
     client.request(HttpMethod.GET, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
-      request.send().onComplete(testContext.asyncAssertSuccess() { response ->
+      request.send().onComplete(testContext.asyncAssertSuccess { _ ->
 
       });
     })
@@ -141,7 +144,7 @@ class HttpParserTest {
       async.complete()
     }
     client.request(HttpMethod.PUT, 8080, "localhost", "/foo").onComplete(testContext.asyncAssertSuccess { request ->
-      request.send(Buffer.buffer("abc123")).onComplete(testContext.asyncAssertSuccess() { response ->
+      request.send(Buffer.buffer("abc123")).onComplete(testContext.asyncAssertSuccess { _ ->
 
       });
     })

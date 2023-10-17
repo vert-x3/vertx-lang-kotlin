@@ -53,9 +53,9 @@ import kotlin.coroutines.resumeWithException
 suspend fun <T> awaitEvent(block: (h: Handler<T>) -> Unit): T {
   return suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
     try {
-      block.invoke(Handler { t ->
+      block.invoke { t ->
         cont.resume(t)
-      })
+      }
     } catch (e: Exception) {
       cont.resumeWithException(e)
     }
@@ -111,10 +111,10 @@ suspend fun <T> awaitBlocking(block: () -> T): T {
   return awaitResult { handler ->
     val ctx = Vertx.currentContext()
     ctx
-      .executeBlocking({ block() })
-      .onComplete({ ar ->
-      handler.handle(ar)
-    })
+      .executeBlocking { block() }
+      .onComplete { ar ->
+        handler.handle(ar)
+      }
   }
 }
 
@@ -198,7 +198,7 @@ private class VertxScheduledFuture(
     return null
   }
 
-  override fun get(timeout: Long, unit: TimeUnit?): Any? {
+  override fun get(timeout: Long, unit: TimeUnit): Any? {
     return null
   }
 
@@ -249,15 +249,15 @@ private class VertxCoroutineExecutor(val vertxContext: ContextInternal) : Abstra
     return t
   }
 
-  override fun scheduleAtFixedRate(command: Runnable, initialDelay: Long, period: Long, unit: TimeUnit?): ScheduledFuture<*> {
+  override fun scheduleAtFixedRate(command: Runnable, initialDelay: Long, period: Long, unit: TimeUnit): ScheduledFuture<*> {
     throw UnsupportedOperationException("should not be called")
   }
 
-  override fun <V : Any?> schedule(callable: Callable<V>?, delay: Long, unit: TimeUnit?): ScheduledFuture<V> {
+  override fun <V : Any?> schedule(callable: Callable<V>, delay: Long, unit: TimeUnit): ScheduledFuture<V> {
     throw UnsupportedOperationException("should not be called")
   }
 
-  override fun scheduleWithFixedDelay(command: Runnable?, initialDelay: Long, delay: Long, unit: TimeUnit?): ScheduledFuture<*> {
+  override fun scheduleWithFixedDelay(command: Runnable, initialDelay: Long, delay: Long, unit: TimeUnit): ScheduledFuture<*> {
     throw UnsupportedOperationException("should not be called")
   }
 
@@ -277,7 +277,7 @@ private class VertxCoroutineExecutor(val vertxContext: ContextInternal) : Abstra
     throw UnsupportedOperationException("should not be called")
   }
 
-  override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
+  override fun awaitTermination(timeout: Long, unit: TimeUnit): Boolean {
     throw UnsupportedOperationException("should not be called")
   }
 }

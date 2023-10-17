@@ -55,15 +55,6 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     return channel.iterator()
   }
 
-  @Deprecated(
-    "Deprecated in the favour of 'tryReceive'. Please note that the provided replacement does not rethrow channel's close cause as 'poll' did, for the precise replacement please refer to the 'poll' documentation",
-    replaceWith = ReplaceWith("tryReceive().getOrNull()"),
-    level = DeprecationLevel.ERROR
-  )
-  override fun poll(): T? {
-    return channel.tryReceive().getOrNull()
-  }
-
   override suspend fun receive(): T {
     return channel.receive()
   }
@@ -87,7 +78,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
   }
 
   @ObsoleteCoroutinesApi
-  @Deprecated(level = DeprecationLevel.HIDDEN, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
+  @Deprecated(level = DeprecationLevel.HIDDEN, message = "Since 1.2.0, binary compatibility with versions <= 1.1.x")
   override fun cancel(cause: Throwable?): Boolean {
     channel.cancel(CancellationException(message = null, cause = cause))
     return true
@@ -97,7 +88,7 @@ class ReceiveChannelHandler<T>(context: Context) : ReceiveChannel<T>, Handler<T>
     channel.cancel(cause)
   }
 
-  @Deprecated(level = DeprecationLevel.ERROR, message = "Since 3.7.1, binary compatibility with versions <= 3.7.0")
+  @Deprecated(level = DeprecationLevel.HIDDEN, message = "Since 1.2.0, binary compatibility with versions <= 1.1.x")
   override fun cancel() {
     return channel.cancel()
   }
@@ -114,23 +105,9 @@ fun <T> Vertx.receiveChannelHandler(): ReceiveChannelHandler<T> = ReceiveChannel
  * The adapter will fetch at most max channel capacity from the stream and pause it when the channel is full.
  *
  * @param vertx the related vertx instance
- * @param capacity the channel buffering capacity
- */
-@Deprecated("Please use toReceiveChannel instead to avoid name clash")
-fun <T> ReadStream<T>.toChannel(vertx: Vertx): ReceiveChannel<T> {
-  return toChannel(vertx.orCreateContext)
-}
-
-/**
- * Adapts the current read stream to Kotlin [ReceiveChannel].
- *
- * The adapter will fetch at most max channel capacity from the stream and pause it when the channel is full.
- *
- * @param vertx the related vertx instance
- * @param capacity the channel buffering capacity
  */
 fun <T> ReadStream<T>.toReceiveChannel(vertx: Vertx): ReceiveChannel<T> {
-  return toChannel(vertx.orCreateContext)
+  return toReceiveChannel(vertx.orCreateContext)
 }
 
 /**
@@ -138,8 +115,7 @@ fun <T> ReadStream<T>.toReceiveChannel(vertx: Vertx): ReceiveChannel<T> {
  *
  * @param context the vertx context
  */
-@Deprecated("Pleas use toReceiveChannel instead to avoid name clashes")
-fun <T> ReadStream<T>.toChannel(context: Context): ReceiveChannel<T> {
+fun <T> ReadStream<T>.toReceiveChannel(context: Context): ReceiveChannel<T> {
   this.pause()
   val ret = ChannelReadStream(
     stream = this,
@@ -149,15 +125,6 @@ fun <T> ReadStream<T>.toChannel(context: Context): ReceiveChannel<T> {
   ret.subscribe()
   this.fetch(1)
   return ret
-}
-
-/**
- * Adapts the current read stream to Kotlin [ReceiveChannel].
- *
- * @param context the vertx context
- */
-fun <T> ReadStream<T>.toReceiveChannel(context: Context): ReceiveChannel<T> {
-  return this.toChannel(context)
 }
 
 private class ChannelReadStream<T>(val stream: ReadStream<T>,
@@ -191,44 +158,9 @@ private class ChannelReadStream<T>(val stream: ReadStream<T>,
  * @param vertx the related vertx instance
  * @param capacity the channel buffering capacity
  */
-@Deprecated("Please use instead toSendChannel, to avoid name clashes")
 @ExperimentalCoroutinesApi
-fun <T> WriteStream<T>.toChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
-  return toChannel(vertx.orCreateContext, capacity)
-}
-
-/**
- * Adapts the current write stream to Kotlin [SendChannel].
- *
- * The channel can be used to write items, the coroutine is suspended when the stream is full
- * and resumed when the stream is drained.
- *
- * @param vertx the related vertx instance
- * @param capacity the channel buffering capacity
- */
 fun <T> WriteStream<T>.toSendChannel(vertx: Vertx, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
-  return toChannel(vertx.orCreateContext, capacity)
-}
-
-/**
- * Adapts the current write stream to Kotlin [SendChannel].
- *
- * The channel can be used to write items, the coroutine is suspended when the stream is full
- * and resumed when the stream is drained.
- *
- * @param context the vertx context
- * @param capacity the channel buffering capacity
- */
-@Deprecated("Please use toSendChannel, to avoid name clash")
-@ExperimentalCoroutinesApi
-fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
-  val ret = ChannelWriteStream(
-    stream = this,
-    channel = Channel(capacity),
-    context = context
-  )
-  ret.subscribe()
-  return ret
+  return toSendChannel(vertx.orCreateContext, capacity)
 }
 
 /**
@@ -242,7 +174,13 @@ fun <T> WriteStream<T>.toChannel(context: Context, capacity: Int = DEFAULT_CAPAC
  */
 @ExperimentalCoroutinesApi
 fun <T> WriteStream<T>.toSendChannel(context: Context, capacity: Int = DEFAULT_CAPACITY): SendChannel<T> {
-  return this.toChannel(context, capacity)
+  val ret = ChannelWriteStream(
+    stream = this,
+    channel = Channel(capacity),
+    context = context
+  )
+  ret.subscribe()
+  return ret
 }
 
 private class ChannelWriteStream<T>(val stream: WriteStream<T>,
