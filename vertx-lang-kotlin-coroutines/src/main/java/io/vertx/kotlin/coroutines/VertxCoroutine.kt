@@ -161,7 +161,7 @@ private class ContextCoroutineDispatcher(val vertxContext: ContextInternal) : Co
 
   override fun isDispatchNeeded(context: CoroutineContext): Boolean {
     val current = ContextInternal.current() ?: return true
-    return current != vertxContext && current.unwrap() != vertxContext
+    return (current != vertxContext && current.unwrap() != vertxContext) || !vertxContext.inThread()
   }
 
   override fun dispatch(context: CoroutineContext, block: Runnable) {
