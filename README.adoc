@@ -3,10 +3,10 @@
 image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml/badge.svg["Build Status (5.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml"]
 image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml/badge.svg["Build Status (4.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml"]
 image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
-image:https://img.shields.io/badge/kotlin-1.4.32-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
-image:https://img.shields.io/badge/kotlinx.coroutines-1.4.3-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
+image:https://img.shields.io/badge/kotlin-1.7.21-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
+image:https://img.shields.io/badge/kotlinx.coroutines-1.6.4-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
 
-This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x 3].
+This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x].
 
 The following modules are available in this project:
 
@@ -17,7 +17,7 @@ The following modules are available in this project:
 
 === Extending Vert.x for Kotlin
 
-Kotlin extensions are developed in this link:vertx-lang-kotlin/src/main/java/io/vertx/kotlin[directory].
+Kotlin's extensions are developed in this link:vertx-lang-kotlin/src/main/java/io/vertx/kotlin[directory].
 
 For instance `vertx-core` extensions are in the `io.vertx.kotlin.core` package, etc...
 
@@ -29,6 +29,5 @@ There are a couple of rules to follow before increasing the project versions:
 
 * If changing one between `kotlin` and `kotlinx.coroutines` version, make sure that all transitive dependencies, like
 `kotlin-stdlib`, still match between the two versions.
-* If changing the `kotlin` version, open a PR also on https://github.com/vert-x3/vertx-codetrans[vertx-codetrans]
 
 Kotlin evolves fast, so just change the project versions, test it, and shot a PR.
