@@ -185,6 +185,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-web-openapi-router</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-circuit-breaker</artifactId>
       <optional>true</optional>
     </dependency>
@@ -338,6 +343,11 @@
       <artifactId>vertx-json-schema</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-openapi</artifactId>
+      <optional>true</optional>
+    </dependency>
 
     <!-- Extra dependencies -->
     <dependency>
@@ -428,6 +438,7 @@
             vertx-web-sstore-infinispan,
             vertx-web-graphql,
             vertx-web-validation,
+            vertx-web-openapi-router,
             vertx-circuit-breaker,
             vertx-dropwizard-metrics,
             vertx-redis-client,
@@ -458,7 +469,8 @@
             vertx-shell,
             vertx-micrometer-metrics,
             vertx-tcp-eventbus-bridge,
-            vertx-json-schema
+            vertx-json-schema,
+            vertx-openapi
           </includeArtifactIds>
           <classifier>sources</classifier>
           <includeTypes>jar</includeTypes>
