@@ -23,6 +23,7 @@ import io.vertx.core.http.HttpMethod.GET
 import io.vertx.core.impl.ContextInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -110,13 +111,14 @@ class CoroutineRouterTest {
   }
 }
 
-class TestVerticle : CoroutineVerticle() {
+class TestVerticle : CoroutineVerticle(), CoroutineRouterSupport {
 
   @Volatile
   var actualPort: Int = 0
 
   override suspend fun start() {
-    val router = CoroutineRouter(vertx, this).coErrorHandler(404) { rc ->
+    val router = Router.router(vertx)
+    router.coErrorHandler(404) { rc ->
       delay(100)
       rc.response().setStatusCode(404).end("Too bad...")
     }
@@ -150,8 +152,9 @@ class TestVerticle : CoroutineVerticle() {
         rc.response().setStatusCode(500).end()
       }
     }
-    router.get("/externalRoute").coHandler(ExternalRouteHandler())
-    router.route("/parent/*").subRouter(createSubRouter(vertx, this))
+    val externalRouteHandler = ExternalRouteHandler()
+    router.get("/externalRoute").coHandler { externalRouteHandler.handle(it) }
+    router.route("/parent/*").subRouter(createSubRouter(vertx))
     val httpServer = vertx.createHttpServer()
       .requestHandler(router)
       .listen(0)
@@ -160,8 +163,8 @@ class TestVerticle : CoroutineVerticle() {
   }
 }
 
-class ExternalRouteHandler : CoroutineRouteHandler {
-  override suspend fun handle(rc: RoutingContext) {
+class ExternalRouteHandler {
+  suspend fun handle(rc: RoutingContext) {
     delay(100)
     val current = ContextInternal.current()
     if (!current.isDuplicate || current != rc.get("capturedContext")) {
@@ -171,15 +174,17 @@ class ExternalRouteHandler : CoroutineRouteHandler {
   }
 }
 
-fun createSubRouter(vertx: Vertx, scope: CoroutineScope): CoroutineRouter {
-  val router = CoroutineRouter(vertx, scope)
-  router.get("/child").coRespond { rc ->
-    delay(100)
-    val current = ContextInternal.current()
-    if (!current.isDuplicate || current != rc.get("capturedContext")) {
-      throw RuntimeException()
+fun CoroutineScope.createSubRouter(vertx: Vertx): Router {
+  val router = Router.router(vertx)
+  coroutineRouter(vertx) {
+    router.get("/child").coRespond { rc ->
+      delay(100)
+      val current = ContextInternal.current()
+      if (!current.isDuplicate || current != rc.get("capturedContext")) {
+        throw RuntimeException()
+      }
+      "Hello, IT"
     }
-    "Hello, IT"
   }
   return router
 }
