@@ -176,7 +176,7 @@ class ExternalRouteHandler {
 
 fun CoroutineScope.createSubRouter(vertx: Vertx): Router {
   val router = Router.router(vertx)
-  coroutineRouter(vertx) {
+  coroutineRouter {
     router.get("/child").coRespond { rc ->
       delay(100)
       val current = ContextInternal.current()

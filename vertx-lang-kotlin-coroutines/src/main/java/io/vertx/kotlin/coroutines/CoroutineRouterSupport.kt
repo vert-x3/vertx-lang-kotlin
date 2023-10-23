@@ -15,49 +15,44 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.Vertx
 import io.vertx.core.impl.VertxInternal
 import io.vertx.ext.web.Route
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
+/**
+ * Calls the specified function [block] with a [CoroutineRouterSupport] object as its receiver.
+ *
+ * The receiver's scope is the [CoroutineScope] of the caller.
+ */
 fun CoroutineScope.coroutineRouter(
-  vertx: Vertx,
   block: CoroutineRouterSupport.() -> Unit
 ) = with(object : CoroutineRouterSupport {
-  override fun getVertx() = vertx
   override val coroutineContext = this@coroutineRouter.coroutineContext
 }) { block() }
 
 /**
- * Adds support for suspending function in the Vert.x Web [Router].
+ * Adds support for suspending functions to the Vert.x Web [Router].
  *
  * Objects of this type implement [CoroutineScope] to define a scope for new coroutines.
- * Typically, this is the scope of [CoroutineVerticle].
+ * Typically, this is the scope of a [CoroutineVerticle].
  */
 interface CoroutineRouterSupport : CoroutineScope {
 
   /**
-   * The [Vertx] instance related to this scope.
-   */
-  fun getVertx(): Vertx
-
-  /**
-   * The [CoroutineDispatcher] used to dispatch new coroutines.
-   *
-   * By default, this is the [Vertx.dispatcher].
-   */
-  fun getDispatcher(): CoroutineDispatcher = getVertx().dispatcher()
-
-  /**
    * Similar to [Router.errorHandler] but using a suspended [errorHandler].
    */
-  fun Router.coErrorHandler(statusCode: Int, errorHandler: suspend (RoutingContext) -> Unit): Router =
+  fun Router.coErrorHandler(
+    statusCode: Int,
+    context: CoroutineContext = EmptyCoroutineContext,
+    errorHandler: suspend (RoutingContext) -> Unit
+  ): Router =
     errorHandler(statusCode) {
-      launch(getDispatcher()) {
+      launch(context) {
         try {
           errorHandler(it)
         } catch (t: Throwable) {
@@ -69,8 +64,11 @@ interface CoroutineRouterSupport : CoroutineScope {
   /**
    * Similar to [Route.handler] but using a suspended [requestHandler].
    */
-  fun Route.coHandler(requestHandler: suspend (RoutingContext) -> Unit): Route = handler {
-    launch(getDispatcher()) {
+  fun Route.coHandler(
+    context: CoroutineContext = EmptyCoroutineContext,
+    requestHandler: suspend (RoutingContext) -> Unit
+  ): Route = handler {
+    launch(context) {
       try {
         requestHandler(it)
       } catch (t: Throwable) {
@@ -82,8 +80,11 @@ interface CoroutineRouterSupport : CoroutineScope {
   /**
    * Similar to [Route.failureHandler] but using a suspended [failureHandler].
    */
-  fun Route.coFailureHandler(failureHandler: suspend (RoutingContext) -> Unit): Route = failureHandler {
-    launch(getDispatcher()) {
+  fun Route.coFailureHandler(
+    context: CoroutineContext = EmptyCoroutineContext,
+    failureHandler: suspend (RoutingContext) -> Unit
+  ): Route = failureHandler {
+    launch(context) {
       try {
         failureHandler(it)
       } catch (t: Throwable) {
@@ -95,10 +96,13 @@ interface CoroutineRouterSupport : CoroutineScope {
   /**
    * Similar to [Route.respond] but using a suspended [function].
    */
-  fun <T> Route.coRespond(function: suspend (RoutingContext) -> T): Route = respond {
+  fun <T> Route.coRespond(
+    context: CoroutineContext = EmptyCoroutineContext,
+    function: suspend (RoutingContext) -> T
+  ): Route = respond {
     val vertx = it.vertx() as VertxInternal
     val promise = vertx.promise<T>()
-    launch(getDispatcher()) {
+    launch(context) {
       try {
         promise.complete(function.invoke(it))
       } catch (t: Throwable) {
