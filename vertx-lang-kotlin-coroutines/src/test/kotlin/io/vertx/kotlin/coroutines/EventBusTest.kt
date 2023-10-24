@@ -19,11 +19,13 @@ import io.vertx.core.Vertx
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.ReplyException
 import io.vertx.core.eventbus.ReplyFailure
+import io.vertx.core.impl.ContextInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -52,31 +54,35 @@ class EventBusTest {
   @Test
   fun `test EventBus consumer with handler supports suspending functions`(testContext: TestContext) {
     val async = testContext.async()
-    val bus = vertx.coEventBus()
-    bus.consumer<String>("some-address") {
-      // Making sure that we have some kind of suspending function here
-      delay(10)
-      async.complete()
+    val bus = vertx.eventBus()
+    GlobalScope.coroutineEventBus {
+      bus.coConsumer<String>("some-address") {
+        // Making sure that we have some kind of suspending function here
+        withContext(Dispatchers.IO) {
+          Thread.sleep(100)
+        }
+        testContext.assertTrue(ContextInternal.current().isDuplicate)
+        async.complete()
+      }
     }
-
     bus.send("some-address", "some message")
-
-    async.awaitSuccess(1000)
   }
 
   @Test
   fun `test EventBus consumer supports suspending functions`(testContext: TestContext) {
-    val async = testContext.async(1)
-    val bus: CoroutineEventBus = vertx.coEventBus()
-    bus.consumer<String>("some-address").handler {
-      // Making sure that we have some kind of suspending function here
-      delay(10)
-      async.countDown()
+    val async = testContext.async()
+    val bus = vertx.eventBus()
+    GlobalScope.coroutineEventBus {
+      bus.consumer<String>("some-address").coHandler {
+        // Making sure that we have some kind of suspending function here
+        withContext(Dispatchers.IO) {
+          Thread.sleep(100)
+        }
+        testContext.assertTrue(ContextInternal.current().isDuplicate)
+        async.complete()
+      }
     }
-
     bus.send("some-address", "some message")
-
-    async.awaitSuccess(1000)
   }
 
   @Test

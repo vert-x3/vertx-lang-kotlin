@@ -375,13 +375,26 @@ class ExampleVerticle : CoroutineVerticle() {
 
   fun usingCoroutineEventBus() {
     // tag::usingCoroutineEventBus[]
-    val bus = vertx.coEventBus()
-    bus.consumer<String>("some-address") {
-      computeSomethingWithSuspendingFunction()
-      it.reply("done")
+    val bus = vertx.eventBus()
+    coroutineEventBus {
+      bus.coConsumer<String>("some-address") {
+        computeSomethingWithSuspendingFunction()
+        it.reply("done")
+      }
     }
     // end::usingCoroutineEventBus[]
   }
+
+  // tag::VerticleWithCoroutineEventBusSupport[]
+  class VerticleWithCoroutineEventBusSupport : CoroutineVerticle(), CoroutineEventBusSupport {
+    override suspend fun start() {
+      val bus = vertx.eventBus()
+      bus.coConsumer<String>("some-address") {
+        // call suspending functions and do something
+      }
+    }
+  }
+  // end::VerticleWithCoroutineEventBusSupport[]
 
   fun usingCoroutineRouter() {
     // tag::usingCoroutineRouter[]
