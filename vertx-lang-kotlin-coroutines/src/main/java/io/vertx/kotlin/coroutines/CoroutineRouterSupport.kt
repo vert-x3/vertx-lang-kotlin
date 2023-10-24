@@ -47,7 +47,7 @@ fun CoroutineScope.coroutineRouter(block: CoroutineRouterSupport.() -> Unit) {
 interface CoroutineRouterSupport : CoroutineScope {
 
   /**
-   * Similar to [Router.errorHandler] but using a suspended [errorHandler].
+   * Similar to [Router.errorHandler] but using a suspending [errorHandler].
    *
    * The coroutine context is inherited from the [CoroutineScope].
    * Additional context elements can be specified with the [context] argument.
@@ -70,7 +70,7 @@ interface CoroutineRouterSupport : CoroutineScope {
     }
 
   /**
-   * Similar to [Route.handler] but using a suspended [requestHandler].
+   * Similar to [Route.handler] but using a suspending [requestHandler].
    *
    * The coroutine context is inherited from the [CoroutineScope].
    * Additional context elements can be specified with the [context] argument.
@@ -91,7 +91,7 @@ interface CoroutineRouterSupport : CoroutineScope {
   }
 
   /**
-   * Similar to [Route.failureHandler] but using a suspended [failureHandler].
+   * Similar to [Route.failureHandler] but using a suspending [failureHandler].
    *
    * The coroutine context is inherited from the [CoroutineScope].
    * Additional context elements can be specified with the [context] argument.
@@ -112,7 +112,7 @@ interface CoroutineRouterSupport : CoroutineScope {
   }
 
   /**
-   * Similar to [Route.respond] but using a suspended [function].
+   * Similar to [Route.respond] but using a suspending [function].
    *
    * The coroutine context is inherited from the [CoroutineScope].
    * Additional context elements can be specified with the [context] argument.
