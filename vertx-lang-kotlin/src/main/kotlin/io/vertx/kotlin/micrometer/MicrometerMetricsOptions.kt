@@ -44,6 +44,7 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * @param jmxMetricsOptions  Set JMX metrics options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param jvmMetricsEnabled  Whether JVM metrics should be collected. Defaults to <code>false</code>.
  * @param metricsNaming  <code>MetricsNaming</code> is a structure that holds names of all metrics, each one can be changed individually. For instance, to retrieve compatibility with the names used in Vert.x 3.x, use <code>setMetricsNaming(MetricsNaming.v3Names())</code>
+ * @param meterCacheEnabled  Whether a meter cache should be enabled. Defaults to <code>true</code>.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.micrometer.MicrometerMetricsOptions original] using Vert.x codegen.
@@ -61,7 +62,8 @@ fun micrometerMetricsOptionsOf(
   prometheusOptions: io.vertx.micrometer.VertxPrometheusOptions? = null,
   jmxMetricsOptions: io.vertx.micrometer.VertxJmxMetricsOptions? = null,
   jvmMetricsEnabled: Boolean? = null,
-  metricsNaming: io.vertx.micrometer.MetricsNaming? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
+  metricsNaming: io.vertx.micrometer.MetricsNaming? = null,
+  meterCacheEnabled: Boolean? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
 
   if (enabled != null) {
     this.setEnabled(enabled)
@@ -103,6 +105,9 @@ fun micrometerMetricsOptionsOf(
   }
   if (metricsNaming != null) {
     this.setMetricsNaming(metricsNaming)
+  }
+  if (meterCacheEnabled != null) {
+    this.setMeterCacheEnabled(meterCacheEnabled)
   }
 }
 
