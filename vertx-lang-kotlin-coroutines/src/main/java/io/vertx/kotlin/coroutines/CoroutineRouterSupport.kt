@@ -48,6 +48,11 @@ interface CoroutineRouterSupport : CoroutineScope {
 
   /**
    * Similar to [Router.errorHandler] but using a suspended [errorHandler].
+   *
+   * The coroutine context is inherited from the [CoroutineScope].
+   * Additional context elements can be specified with the [context] argument.
+   *
+   * @param context additional context elements, [EmptyCoroutineContext] by default
    */
   fun Router.coErrorHandler(
     statusCode: Int,
@@ -55,7 +60,7 @@ interface CoroutineRouterSupport : CoroutineScope {
     errorHandler: suspend (RoutingContext) -> Unit
   ): Router =
     errorHandler(statusCode) {
-      launch(context) {
+      launch(it.vertx().dispatcher() + context) {
         try {
           errorHandler(it)
         } catch (t: Throwable) {
@@ -66,12 +71,17 @@ interface CoroutineRouterSupport : CoroutineScope {
 
   /**
    * Similar to [Route.handler] but using a suspended [requestHandler].
+   *
+   * The coroutine context is inherited from the [CoroutineScope].
+   * Additional context elements can be specified with the [context] argument.
+   *
+   * @param context additional context elements, [EmptyCoroutineContext] by default
    */
   fun Route.coHandler(
     context: CoroutineContext = EmptyCoroutineContext,
     requestHandler: suspend (RoutingContext) -> Unit
   ): Route = handler {
-    launch(context) {
+    launch(it.vertx().dispatcher() + context) {
       try {
         requestHandler(it)
       } catch (t: Throwable) {
@@ -82,12 +92,17 @@ interface CoroutineRouterSupport : CoroutineScope {
 
   /**
    * Similar to [Route.failureHandler] but using a suspended [failureHandler].
+   *
+   * The coroutine context is inherited from the [CoroutineScope].
+   * Additional context elements can be specified with the [context] argument.
+   *
+   * @param context additional context elements, [EmptyCoroutineContext] by default
    */
   fun Route.coFailureHandler(
     context: CoroutineContext = EmptyCoroutineContext,
     failureHandler: suspend (RoutingContext) -> Unit
   ): Route = failureHandler {
-    launch(context) {
+    launch(it.vertx().dispatcher() + context) {
       try {
         failureHandler(it)
       } catch (t: Throwable) {
@@ -98,6 +113,11 @@ interface CoroutineRouterSupport : CoroutineScope {
 
   /**
    * Similar to [Route.respond] but using a suspended [function].
+   *
+   * The coroutine context is inherited from the [CoroutineScope].
+   * Additional context elements can be specified with the [context] argument.
+   *
+   * @param context additional context elements, [EmptyCoroutineContext] by default
    */
   fun <T> Route.coRespond(
     context: CoroutineContext = EmptyCoroutineContext,
@@ -105,7 +125,7 @@ interface CoroutineRouterSupport : CoroutineScope {
   ): Route = respond {
     val vertx = it.vertx() as VertxInternal
     val promise = vertx.promise<T>()
-    launch(context) {
+    launch(it.vertx().dispatcher() + context) {
       try {
         promise.complete(function.invoke(it))
       } catch (t: Throwable) {
