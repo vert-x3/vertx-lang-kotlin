@@ -56,17 +56,6 @@ include::Example.kt[tags=CoroutineVerticle]
 All code examples below assume to be run inside a `CoroutineVerticle` implementation, but you can replace all `<builder> { .. }`
 calls with `GlobalScope.<builder> { .. }` to use the application scope instead.
 
-== Using the CoroutineEventBus
-
-You can get a coroutine-aware `EventBus` by invoking `Vertx.coEventBus()`.
-
-The `io.vertx.kotlin.coroutines.CoroutineEventBus` delegates to the underlying `EventBus` for non-suspending cases, and implements suspending cases.
-
-[source,kotlin,indent=0]
-----
-include::Example.kt[tags=usingCoroutineEventBus]
-----
-
 == Getting one-shot asynchronous results
 
 Many asynchronous operations in Vert.x take a `Handler<AsyncResult<T>>` as the last argument.
@@ -273,3 +262,36 @@ The module `vertx-lang-kotlin-coroutines` does not have specific integration wit
 However, Kotlin coroutines provide integration with RxJava, which works out nicely with `vertx-lang-kotlin-coroutines`.
 
 You can read more about it in https://github.com/Kotlin/kotlinx.coroutines/tree/master/reactive[Coroutines for reactive streams].
+
+== Vert.x API extensions for coroutines
+
+== Event bus
+
+You can get a coroutine-aware `EventBus` by invoking `Vertx.coEventBus()`.
+
+The `io.vertx.kotlin.coroutines.CoroutineEventBus` delegates to the underlying `EventBus` for non-suspending cases, and implements suspending cases.
+
+[source,kotlin,indent=0]
+----
+include::Example.kt[tags=usingCoroutineEventBus]
+----
+
+== Vert.x Web
+
+The Vert.x Web `Router` and `Route` objects are extended with support for coroutines inside a `coroutineRouter` scope function:
+
+[source,kotlin,indent=0]
+----
+include::Example.kt[tags=usingCoroutineRouter]
+----
+
+[TIP]
+====
+The scope function is not necessary if the surrounding type implements `io.vertx.kotlin.coroutines.CoroutineRouterSupport`
+For example, with a coroutine verticle:
+
+[source,kotlin,indent=0]
+----
+include::Example.kt[tags=VerticleWithCoroutineRouterSupport]
+----
+====
