@@ -267,14 +267,23 @@ You can read more about it in https://github.com/Kotlin/kotlinx.coroutines/tree/
 
 == Event bus
 
-You can get a coroutine-aware `EventBus` by invoking `Vertx.coEventBus()`.
-
-The `io.vertx.kotlin.coroutines.CoroutineEventBus` delegates to the underlying `EventBus` for non-suspending cases, and implements suspending cases.
+The Vert.x `EventBus` and `MessageConsumer` objects are extended with support for coroutines inside a `coroutineEventBus` scope function:
 
 [source,kotlin,indent=0]
 ----
 include::Example.kt[tags=usingCoroutineEventBus]
 ----
+
+[TIP]
+====
+The scope function is not necessary if the surrounding type implements `io.vertx.kotlin.coroutines.CoroutineEventBusSupport`
+For example, with a coroutine verticle:
+
+[source,kotlin,indent=0]
+----
+include::Example.kt[tags=VerticleWithCoroutineEventBusSupport]
+----
+====
 
 == Vert.x Web
 
