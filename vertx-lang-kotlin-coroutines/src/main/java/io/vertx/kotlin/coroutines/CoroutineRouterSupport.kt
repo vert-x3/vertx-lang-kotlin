@@ -29,11 +29,14 @@ import kotlin.coroutines.EmptyCoroutineContext
  *
  * The receiver's scope is the [CoroutineScope] of the caller.
  */
-fun CoroutineScope.coroutineRouter(
-  block: CoroutineRouterSupport.() -> Unit
-) = with(object : CoroutineRouterSupport {
-  override val coroutineContext = this@coroutineRouter.coroutineContext
-}) { block() }
+fun CoroutineScope.coroutineRouter(block: CoroutineRouterSupport.() -> Unit) {
+  val receiver = object : CoroutineRouterSupport {
+    override val coroutineContext = this@coroutineRouter.coroutineContext
+  }
+  with(receiver) {
+    block()
+  }
+}
 
 /**
  * Adds support for suspending functions to the Vert.x Web [Router].
