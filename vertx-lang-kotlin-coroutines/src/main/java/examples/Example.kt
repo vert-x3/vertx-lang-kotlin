@@ -9,12 +9,16 @@ import io.vertx.core.Vertx
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.ReplyException
+import io.vertx.core.http.HttpHeaders.CONTENT_TYPE
+import io.vertx.core.http.HttpHeaders.TEXT_HTML
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.core.parsetools.RecordParser
+import io.vertx.ext.web.Router
 import io.vertx.kotlin.coroutines.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ReceiveChannel
 import java.util.*
+import kotlin.collections.set
 import kotlin.math.max
 import kotlin.math.min
 
@@ -365,7 +369,14 @@ class ExampleVerticle : CoroutineVerticle() {
     // end::vertxFutureCoroutineBuilder[]
   }
 
-  private suspend fun computeSomethingWithSuspendingFunction(): String = "42"
+  private suspend fun computeSomethingWithSuspendingFunction(): String {
+    delay(100)
+    return "42"
+  }
+
+  private suspend fun computeHtmlPageWithSuspendingFunction(): String {
+    return computeSomethingWithSuspendingFunction()
+  }
 
   fun usingCoroutineEventBus() {
     // tag::usingCoroutineEventBus[]
@@ -374,6 +385,36 @@ class ExampleVerticle : CoroutineVerticle() {
       computeSomethingWithSuspendingFunction()
       it.reply("done")
     }
-    // tag::usingCoroutineEventBus[]
+    // end::usingCoroutineEventBus[]
   }
+
+  fun usingCoroutineRouter() {
+    // tag::usingCoroutineRouter[]
+    val router = Router.router(vertx)
+    coroutineRouter {
+      // Route.coRespond is similar to Route.respond but using a suspending function
+      router.get("/my-resource").coRespond { rc ->
+        // similar to Route.respond but using a suspending function
+        val response = computeSomethingWithSuspendingFunction()
+        response // sent by Vert.x to the client
+      }
+      // Router.coErrorHandler is similar to Router.errorHandler but using a suspending function
+      router.coErrorHandler(404) { rc ->
+        val html = computeHtmlPageWithSuspendingFunction()
+        rc.response().setStatusCode(404).putHeader(CONTENT_TYPE, TEXT_HTML).end(html)
+      }
+    }
+    // end::usingCoroutineRouter[]
+  }
+
+  // tag::VerticleWithCoroutineRouterSupport[]
+  class VerticleWithCoroutineRouterSupport : CoroutineVerticle(), CoroutineRouterSupport {
+    override suspend fun start() {
+      val router = Router.router(vertx)
+      router.get("/my-resource").coRespond { rc ->
+        // call suspending functions and build response
+      }
+    }
+  }
+  // end::VerticleWithCoroutineRouterSupport[]
 }
