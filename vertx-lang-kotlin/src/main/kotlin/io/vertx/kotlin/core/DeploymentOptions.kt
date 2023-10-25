@@ -16,7 +16,7 @@
 package io.vertx.kotlin.core
 
 import io.vertx.core.DeploymentOptions
-import io.vertx.core.WorkerOptions
+import io.vertx.core.ThreadingModel
 import java.util.concurrent.TimeUnit
 
 /**
@@ -26,10 +26,9 @@ import java.util.concurrent.TimeUnit
  * <p>
  *
  * @param config  Set the JSON configuration that will be passed to the verticle(s) when it's deployed
- * @param worker  Set whether the verticle(s) should be deployed as a worker verticle
+ * @param threadingModel  Set the verticle(s) verticle(s) threading model, e.g. a worker or a virtual thread verticle
  * @param ha  Set whether the verticle(s) will be deployed as HA.
  * @param instances  Set the number of instances that should be deployed.
- * @param workerOptions  Set the verticle worker options.
  * @param workerPoolName  Set the worker pool name to use for this verticle. When no name is set, the Vert.x worker pool will be used, when a name is set, the verticle will use a named worker pool.
  * @param workerPoolSize  Set the maximum number of worker threads to be used by the Vert.x instance. <p> When the verticle does not use a [io.vertx.core.DeploymentOptions], this option has no effect.
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.DeploymentOptions]. <p> The default value of [io.vertx.core.DeploymentOptions] is  <p> When the verticle does not use a [io.vertx.core.DeploymentOptions], this option has no effect.
@@ -41,10 +40,9 @@ import java.util.concurrent.TimeUnit
  */
 fun deploymentOptionsOf(
   config: io.vertx.core.json.JsonObject? = null,
-  worker: Boolean? = null,
+  threadingModel: ThreadingModel? = null,
   ha: Boolean? = null,
   instances: Int? = null,
-  workerOptions: io.vertx.core.WorkerOptions? = null,
   workerPoolName: String? = null,
   workerPoolSize: Int? = null,
   maxWorkerExecuteTime: Long? = null,
@@ -54,17 +52,14 @@ fun deploymentOptionsOf(
   if (config != null) {
     this.setConfig(config)
   }
-  if (worker != null) {
-    this.setWorker(worker)
+  if (threadingModel != null) {
+    this.setThreadingModel(threadingModel)
   }
   if (ha != null) {
     this.setHa(ha)
   }
   if (instances != null) {
     this.setInstances(instances)
-  }
-  if (workerOptions != null) {
-    this.setWorkerOptions(workerOptions)
   }
   if (workerPoolName != null) {
     this.setWorkerPoolName(workerPoolName)

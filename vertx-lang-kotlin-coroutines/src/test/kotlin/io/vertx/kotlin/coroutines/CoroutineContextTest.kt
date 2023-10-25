@@ -17,6 +17,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.Context
 import io.vertx.core.DeploymentOptions
+import io.vertx.core.ThreadingModel
 import io.vertx.core.Vertx
 import io.vertx.core.impl.ContextInternal
 import io.vertx.core.impl.VertxInternal
@@ -89,7 +90,7 @@ class CoroutineContextTest {
           runTest(testContext, isOnEventLoop = false)
         }
       }
-    }, DeploymentOptions().setWorker(true)).onComplete(testContext.asyncAssertSuccess {
+    }, DeploymentOptions().setThreadingModel(ThreadingModel.WORKER)).onComplete(testContext.asyncAssertSuccess {
       async.complete()
     })
   }
