@@ -168,7 +168,6 @@ class ReceiveChannelHandlerTest {
     received.clear()
     stream.pause()
 
-    val async = testContext.async()
     var foo = false
     GlobalScope.launch(vertx.dispatcher()) {
       for (elt in expected) {
@@ -190,9 +189,19 @@ class ReceiveChannelHandlerTest {
     }
     testContext.assertEquals(listOf(0, 1, 2, 3, 4, 5), received)
     testContext.assertFalse(stream.isEnded)
+    stream.pause()
+    received.clear()
+    runBlocking {
+      expected.forEach {
+        val offered = channel.trySend(it).isSuccess
+        testContext.assertTrue(offered)
+      }
+    }
     channel.close()
+    testContext.assertFalse(stream.isEnded)
+    stream.resume()
+    testContext.assertEquals(expected, received)
     testContext.assertTrue(stream.isEnded)
-    async.complete()
   }
 
   @Test
