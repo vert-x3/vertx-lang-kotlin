@@ -158,7 +158,7 @@ class TestVerticle : CoroutineVerticle(), CoroutineRouterSupport {
     val httpServer = vertx.createHttpServer()
       .requestHandler(router)
       .listen(0)
-      .await()
+      .coAwait()
     actualPort = httpServer.actualPort()
   }
 }
