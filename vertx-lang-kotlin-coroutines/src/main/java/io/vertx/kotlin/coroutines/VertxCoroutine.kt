@@ -121,7 +121,22 @@ suspend fun <T> awaitBlocking(block: () -> T): T {
 /**
  * Awaits the completion of a future without blocking the event loop.
  */
+@Deprecated("As of 4.5, deprecated in favor of coAwait()", ReplaceWith("coAwait()"))
 suspend fun <T> Future<T>.await(): T = when {
+  succeeded() -> result()
+  failed() -> throw cause()
+  else -> suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
+    onComplete { asyncResult ->
+      if (asyncResult.succeeded()) cont.resume(asyncResult.result() as T)
+      else cont.resumeWithException(asyncResult.cause())
+    }
+  }
+}
+
+/**
+ * Awaits the completion of a future without blocking the event loop.
+ */
+suspend fun <T> Future<T>.coAwait(): T = when {
   succeeded() -> result()
   failed() -> throw cause()
   else -> suspendCancellableCoroutine { cont: CancellableContinuation<T> ->
