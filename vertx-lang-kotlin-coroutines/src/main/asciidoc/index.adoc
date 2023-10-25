@@ -10,8 +10,9 @@ One of the key advantages of Vert.x over many legacy application platforms is th
 This allows Vert.x-based applications to handle a lot of concurrency (e.g., many connections and messages) using a very
 small number of kernel threads, which in turns unlocks great scalability.
 
-The non-blocking nature of Vert.x leads to asynchronous APIs. Asynchronous APIs can take various forms including
-callbacks, promises, fibers or reactive extensions. Vert.x uses the callback style for the core APIs but it
+The non-blocking nature of Vert.x leads to asynchronous APIs.
+Asynchronous APIs can take various forms including callbacks, promises, fibers or reactive extensions.
+Vert.x uses the callback style for the core APIs, but it
 also supports other models like RxJava.
 
 In some cases, programming using asynchronous APIs can be more challenging than using a classic / sequential style
@@ -22,7 +23,7 @@ complex when using asynchronous APIs.
 to underlying kernel threads, so that when a _coroutine_ needs to _"block_" it gets _suspended_ and frees
 its current kernel thread so that another coroutine can process events.
 
-`vertx-lang-kotlin-coroutines` uses https://github.com/Kotlin/kotlinx.coroutines[kotlinx.coroutines] to implement the Coroutines.
+`vertx-lang-kotlin-coroutines` uses https://github.com/Kotlin/kotlinx.coroutines[`kotlinx.coroutines`] to implement the Coroutines.
 
 == Running a coroutine from a Vert.x context
 
@@ -59,8 +60,7 @@ calls with `GlobalScope.<builder> { .. }` to use the application scope instead.
 == Getting one-shot asynchronous results
 
 Many asynchronous operations in Vert.x take a `Handler<AsyncResult<T>>` as the last argument.
-An example would be executing an object retrieval using the Vert.x Mongo client, or sending an event bus message then
-awaiting for a reply.
+An example would be executing an object retrieval using the Vert.x Mongo client, or sending an event bus message then waiting for a reply.
 
 This is achieved by using the `awaitResult` method which returns the value or throws an exception.
 
@@ -116,27 +116,13 @@ include::Example.kt[tags=streamExample]
 
 == Awaiting the completion of Vert.x asynchronous results
 
-Vert.x 4 provides futures and `Future` has an `await()` suspending method latching the asynchronous result.
+Vert.x 4 provides futures and `Future` has a `coAwait()` suspending method latching the asynchronous result.
 
-The `await` extension method on instances of Vert.x asynchronous results suspend coroutines until they have completed, in
-which case the method returns the corresponding `AsyncResult<T>` object.
+The `coAwait` extension method on instances of Vert.x `Future` suspends coroutines until they have completed, in which case the method returns the value or throws the failure of the corresponding `AsyncResult<T>` object.
 
 [source,kotlin,indent=0]
 ----
 include::Example.kt[tags=awaitingFuture]
-----
-
-== Suspending extension methods
-
-Vert.x 3 generated extension methods to simplify writing coroutines with Vert.x asynchronous APIs. It relieved
-the user from using the idiomatic `awaitResult` and makes the code more natural and readable.
-
-Since Vert.x 4 provides a future based API, such extension methods still exists for compatibility but
-are _deprecated_.
-
-[source,kotlin,indent=0]
-----
-include::Example.kt[tags=generatedSuspendingExtensionMethod]
 ----
 
 == Channels
@@ -163,7 +149,8 @@ Channel can be really useful when you need to handle a stream of correlated valu
 include::Example.kt[tags=channel0]
 ----
 
-It can also be useful for parsing protocols. We will build a non blocking HTTP request parser to show
+It can also be useful for parsing protocols.
+We will build a non-blocking HTTP request parser to show
 the power of channels.
 
 We will rely on the http://vertx.io/docs/apidocs/io/vertx/core/parsetools/RecordParser.html[`RecordParser`]
@@ -185,7 +172,7 @@ The next step parses HTTP headers by receiving chunks until we get an empty one
 include::Example.kt[tags=channel2]
 ----
 
-Finally we terminate the parser by handling optional request bodies
+Finally, we terminate the parser by handling optional request bodies
 
 [source,kotlin,indent=0]
 ----
@@ -201,7 +188,7 @@ Using a channel to send data is quite straightforward:
 include::Example.kt[tags=sendChannel]
 ----
 
-Both `SendChannel#send` and `WriteStream#write` are non blocking operations, however unlike `SendChannel#send`
+Both `SendChannel#send` and `WriteStream#write` are non-blocking operations, however unlike `SendChannel#send`
 can suspend the execution when the channel is full, the equivalent without a channel would look like
 
 [source,kotlin,indent=0]

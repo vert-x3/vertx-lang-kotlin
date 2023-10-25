@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED")
+@file:Suppress("UNUSED", "MemberVisibilityCanBePrivate")
 @file:OptIn(DelicateCoroutinesApi::class)
 
 package examples
@@ -58,7 +58,7 @@ class ExampleVerticle : CoroutineVerticle() {
       streamExample()
       handlerAndCoroutineExample()
       awaitingFuture(Future.succeededFuture("hello"))
-      generatedSuspendingExtensionMethod()
+      computeSomethingWithSuspendingFunction()
     }
   }
 
@@ -137,11 +137,11 @@ class ExampleVerticle : CoroutineVerticle() {
       .requestHandler { req -> req.response().end("Hello!") }
       .listen(8000)
 
-    val httpServer = httpServerFuture.await()
+    val httpServer = httpServerFuture.coAwait()
     println("HTTP server port: ${httpServer.actualPort()}")
 
     // It also works for composite futures
-    val result = Future.all(httpServerFuture, anotherFuture).await()
+    val result = Future.all(httpServerFuture, anotherFuture).coAwait()
     if (result.succeeded()) {
       println("The server is now running!")
     } else {
@@ -149,14 +149,6 @@ class ExampleVerticle : CoroutineVerticle() {
     }
   }
   // end::awaitingFuture[]
-
-  // tag::generatedSuspendingExtensionMethod[]
-  suspend fun generatedSuspendingExtensionMethod() {
-    // Use the extension instead of wrapping with awaitResult
-    val client = vertx.createNetClient()
-    val socket = client.connect(1234, "localhost").await()
-  }
-  // end::generatedSuspendingExtensionMethod[]
 
   fun handlerAndCoroutineExample() {
     // tag::handlerAndCoroutine[]
@@ -323,7 +315,7 @@ class ExampleVerticle : CoroutineVerticle() {
   fun cancellationExample() {
     // tag::cancellation[]
     val job = launch {
-      // Set a one second Vertx timer
+      // Set a one-second Vertx timer
       while (true) {
         delay(1000)
         // Do something periodically
@@ -406,7 +398,7 @@ class ExampleVerticle : CoroutineVerticle() {
     val router = Router.router(vertx)
     coroutineRouter {
       // Route.coRespond is similar to Route.respond but using a suspending function
-      router.get("/my-resource").coRespond { rc ->
+      router.get("/my-resource").coRespond {
         // similar to Route.respond but using a suspending function
         val response = computeSomethingWithSuspendingFunction()
         response // sent by Vert.x to the client
@@ -424,7 +416,7 @@ class ExampleVerticle : CoroutineVerticle() {
   class VerticleWithCoroutineRouterSupport : CoroutineVerticle(), CoroutineRouterSupport {
     override suspend fun start() {
       val router = Router.router(vertx)
-      router.get("/my-resource").coRespond { rc ->
+      router.get("/my-resource").coRespond {
         // call suspending functions and build response
       }
     }

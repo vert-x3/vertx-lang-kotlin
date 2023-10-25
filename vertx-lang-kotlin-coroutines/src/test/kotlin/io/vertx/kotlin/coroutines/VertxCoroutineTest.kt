@@ -344,7 +344,7 @@ class VertxCoroutineTest {
     val async = testContext.async()
     val fut = Promise.promise<String>()
     GlobalScope.launch(vertx.dispatcher()) {
-      val s = fut.future().await()
+      val s = fut.future().coAwait()
       testContext.assertEquals("the-string", s)
       async.complete()
     }
@@ -360,7 +360,7 @@ class VertxCoroutineTest {
     val cause = RuntimeException()
     GlobalScope.launch(vertx.dispatcher()) {
       try {
-        fut.future().await()
+        fut.future().coAwait()
         testContext.fail()
       } catch (e: Exception) {
         testContext.assertEquals(cause, e.cause)
@@ -456,10 +456,10 @@ class VertxCoroutineTest {
     duplicatedContext.runOnContext {
       GlobalScope.launch(Vertx.currentContext().dispatcher()) {
         val resp = httpClient.request(RequestOptions().setMethod(HttpMethod.GET).setAbsoluteURI("https://example.com"))
-          .await().apply { end().await() }
+          .coAwait().apply { end().coAwait() }
           .response()
-          .await()
-        resp.body().await()
+          .coAwait()
+        resp.body().coAwait()
         latch.complete()
       }
     }
@@ -477,7 +477,7 @@ class VertxCoroutineTest {
           testContext.assertTrue(captured.inThread())
           latch.countDown()
         }
-      }.await()
+      }.coAwait()
       latch.countDown()
     }
   }

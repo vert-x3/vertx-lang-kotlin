@@ -252,7 +252,7 @@ class ReceiveChannelHandlerTest {
     val async = testContext.async()
     GlobalScope.launch(vertx.dispatcher()) {
       val fs = vertx.fileSystem()
-      val asyncFile = fs.open("META-INF/MANIFEST.MF", OpenOptions()).await()
+      val asyncFile = fs.open("META-INF/MANIFEST.MF", OpenOptions()).coAwait()
       asyncFile.toReceiveChannel(vertx).consumeAsFlow()
         .onCompletion {
           if (it != null) {
