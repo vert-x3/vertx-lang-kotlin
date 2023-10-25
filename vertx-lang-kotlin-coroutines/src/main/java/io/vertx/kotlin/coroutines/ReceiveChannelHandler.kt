@@ -199,7 +199,7 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
       while (true) {
         val res = channel.receiveCatching()
         if (res.isSuccess) {
-          val elt = res.getOrNull();
+          val elt = res.getOrNull()
           if (stream.writeQueueFull()) {
             stream.drainHandler {
               if (dispatch(elt)) {
@@ -213,6 +213,7 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
             }
           }
         } else if (res.isClosed) {
+          stream.end()
           break
         } else {
           // Can it happen?
@@ -232,9 +233,7 @@ private class ChannelWriteStream<T>(val stream: WriteStream<T>,
   }
 
   override fun close(cause: Throwable?): Boolean {
-    val ret = channel.close(cause)
-    if (ret) stream.end()
-    return ret
+    return channel.close(cause)
   }
 }
 
