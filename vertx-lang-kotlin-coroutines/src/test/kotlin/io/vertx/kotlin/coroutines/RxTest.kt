@@ -30,6 +30,7 @@ import org.junit.runner.RunWith
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
+@Suppress("ReactiveStreamsUnusedPublisher")
 @OptIn(DelicateCoroutinesApi::class)
 @RunWith(VertxUnitRunner::class)
 class RxTest {
@@ -45,32 +46,6 @@ class RxTest {
   fun after() {
     vertx.close()
   }
-
-/*
-  @Test
-  fun `test flowable`(testContext: TestContext) {
-    val async = testContext.async()
-    val source = vertx.eventBus().consumer<Long>("the-address").toFlowable()
-    val latch = testContext.async()
-
-    GlobalScope.launch(vertx.delegate.dispatcher()) {
-      val channel = source.openSubscription()
-      latch.complete()
-      var cnt = 0
-      for (x in channel) {
-        testContext.assertEquals(x.body(), cnt)
-        if (++cnt >= 3) {
-          break
-        }
-      }
-      async.complete()
-    }
-    latch.await(10000)
-    for (i in 0..4) {
-      vertx.eventBus().send("the-address", i)
-    }
-  }
- */
 
   @Test
   fun `test await`(testContext: TestContext) {

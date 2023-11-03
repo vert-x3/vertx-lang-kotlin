@@ -24,12 +24,12 @@ class CoroutineVerticleTest {
   @Test
   fun `a child coroutine launched from a coroutine verticle gets canceled upon vertx undeployment`() {
     runBlocking {
-      val deploymentId = vertx.deployVerticle(coroutineVerticleMock).coAwait();
+      val deploymentId = vertx.deployVerticle(coroutineVerticleMock).coAwait()
       assertTrue { coroutineVerticleMock.isStartCalled }
       assertFalse { coroutineVerticleMock.isStopCalled }
       assertTrue { coroutineVerticleMock.childJob.isActive }
 
-      vertx.undeploy(deploymentId).coAwait();
+      vertx.undeploy(deploymentId).coAwait()
       assertTrue { coroutineVerticleMock.isStopCalled }
       assertEventually(delay = Duration.ofSeconds(1)) { coroutineVerticleMock.childJob.isCancelled }
     }

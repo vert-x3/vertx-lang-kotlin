@@ -13,6 +13,8 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
+@file:OptIn(DelicateCoroutinesApi::class)
+
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
@@ -121,6 +123,7 @@ suspend fun <T> awaitBlocking(block: () -> T): T {
 /**
  * Awaits the completion of a future without blocking the event loop.
  */
+@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
 @Deprecated("As of 4.5, deprecated in favor of coAwait()", ReplaceWith("coAwait()"))
 suspend fun <T> Future<T>.await(): T = when {
   succeeded() -> result()

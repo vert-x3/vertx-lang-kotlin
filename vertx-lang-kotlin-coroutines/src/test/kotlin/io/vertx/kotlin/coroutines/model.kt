@@ -16,7 +16,6 @@
 package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
-import java.lang.RuntimeException
 
 /**
  * @author <a href="http://www.streamis.me">Stream Liu</a>
@@ -84,7 +83,7 @@ class AsyncInterfaceImpl(private val vertx: Vertx) : AsyncInterface {
   }
 
   override fun methodThatFails(foo: String, resultHandler: Handler<AsyncResult<String>>) {
-    vertx.runOnContext { resultHandler.handle(Future.failedFuture<String>(VertxException(foo))) }
+    vertx.runOnContext { resultHandler.handle(Future.failedFuture(VertxException(foo))) }
   }
 
   override fun methodThatThrowsException(foo: String, resultHandler: Handler<AsyncResult<String>>) {

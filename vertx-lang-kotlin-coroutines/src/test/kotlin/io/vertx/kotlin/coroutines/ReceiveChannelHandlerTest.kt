@@ -124,7 +124,7 @@ class ReceiveChannelHandlerTest {
     Assert.assertTrue(stream.isPaused)
     val list = mutableListOf<Int>()
     runBlocking {
-      expected.forEach {
+      repeat(expected.size) {
         val item = channel.receive()
         list.add(item)
         val demand = stream.demand()
