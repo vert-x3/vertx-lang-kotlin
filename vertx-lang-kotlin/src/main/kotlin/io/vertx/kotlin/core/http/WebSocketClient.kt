@@ -88,13 +88,30 @@ suspend fun WebSocketClient.connectAwait(options: WebSocketConnectOptions): WebS
  * Suspending version of method [io.vertx.core.http.WebSocketClient.updateSSLOptions]
  *
  * @param options the new SSL options
+ * @return [Boolean]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
 @Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
-suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions): Unit {
+suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions): Boolean {
   return awaitResult {
-    this.updateSSLOptions(options, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.updateSSLOptions(options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.WebSocketClient.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ * @param force force the update when options are equals
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options, force).await()"))
+suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
+  return awaitResult {
+    this.updateSSLOptions(options, force, it)
   }
 }
 

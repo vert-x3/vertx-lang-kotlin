@@ -43,6 +43,7 @@ import java.util.concurrent.TimeUnit
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param decoderInitialBufferSize  set to <code>initialBufferSizeHttpDecoder</code> the initial buffer of the HttpDecoder.
+ * @param decompressionSupported  Whether the client should send requests with an <code>accepting-encoding</code> header set to a compression algorithm.
  * @param defaultHost  Set the default host name to be used by this client in requests if none is provided when making the request.
  * @param defaultPort  Set the default port to be used by this client in requests if none is provided when making the request.
  * @param enableVaryCaching  Configure the client cache behavior for <code>Vary</code> responses.
@@ -138,6 +139,7 @@ fun cachingWebClientOptionsOf(
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   decoderInitialBufferSize: Int? = null,
+  decompressionSupported: Boolean? = null,
   defaultHost: String? = null,
   defaultPort: Int? = null,
   enableVaryCaching: Boolean? = null,
@@ -248,6 +250,9 @@ fun cachingWebClientOptionsOf(
   }
   if (decoderInitialBufferSize != null) {
     this.setDecoderInitialBufferSize(decoderInitialBufferSize)
+  }
+  if (decompressionSupported != null) {
+    this.setDecompressionSupported(decompressionSupported)
   }
   if (defaultHost != null) {
     this.setDefaultHost(defaultHost)

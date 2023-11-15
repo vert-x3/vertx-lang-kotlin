@@ -43,6 +43,7 @@ import java.util.concurrent.TimeUnit
  * @param crlValues  Add a CRL value
  * @param dc  Set the datacenter name. When provided, the client will use it when making requests to the Consul by providing the "?dc" query parameter. When not provided, the datacenter of the consul agent is queried.
  * @param decoderInitialBufferSize  set to <code>initialBufferSizeHttpDecoder</code> the initial buffer of the HttpDecoder.
+ * @param decompressionSupported  Whether the client should send requests with an <code>accepting-encoding</code> header set to a compression algorithm.
  * @param defaultHost  Set the default host name to be used by this client in requests if none is provided when making the request.
  * @param defaultPort  Set the default port to be used by this client in requests if none is provided when making the request.
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
@@ -138,6 +139,7 @@ fun consulClientOptionsOf(
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   dc: String? = null,
   decoderInitialBufferSize: Int? = null,
+  decompressionSupported: Boolean? = null,
   defaultHost: String? = null,
   defaultPort: Int? = null,
   enabledCipherSuites: Iterable<String>? = null,
@@ -248,6 +250,9 @@ fun consulClientOptionsOf(
   }
   if (decoderInitialBufferSize != null) {
     this.setDecoderInitialBufferSize(decoderInitialBufferSize)
+  }
+  if (decompressionSupported != null) {
+    this.setDecompressionSupported(decompressionSupported)
   }
   if (defaultHost != null) {
     this.setDefaultHost(defaultHost)

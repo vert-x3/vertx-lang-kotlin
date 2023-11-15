@@ -90,7 +90,7 @@ import java.util.concurrent.TimeUnit
  * @param useAlpn  Set the ALPN usage.
  * @param username  Set the username
  * @param willFlag  Set if will information are provided on connection
- * @param willMessage  Set the content of the will message
+ * @param willMessageBytes  Set the content of the will message
  * @param willQoS  Set the QoS level for the will message
  * @param willRetain  Set if the will message must be retained
  * @param willTopic  Set the topic on which the will message will be published
@@ -159,7 +159,7 @@ fun mqttClientOptionsOf(
   useAlpn: Boolean? = null,
   username: String? = null,
   willFlag: Boolean? = null,
-  willMessage: String? = null,
+  willMessageBytes: io.vertx.core.buffer.Buffer? = null,
   willQoS: Int? = null,
   willRetain: Boolean? = null,
   willTopic: String? = null,
@@ -348,8 +348,8 @@ fun mqttClientOptionsOf(
   if (willFlag != null) {
     this.setWillFlag(willFlag)
   }
-  if (willMessage != null) {
-    this.setWillMessage(willMessage)
+  if (willMessageBytes != null) {
+    this.setWillMessageBytes(willMessageBytes)
   }
   if (willQoS != null) {
     this.setWillQoS(willQoS)

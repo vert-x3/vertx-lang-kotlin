@@ -27,9 +27,11 @@ import io.vertx.core.net.ProxyOptions
  *
  * @param absoluteURI  Like [io.vertx.core.http.WebSocketConnectOptions] but using an  parameter.
  * @param allowOriginHeader  Set whether to add the <code>origin</code> header to the WebSocket handshake request, enabled by default. <p> Set to <code>false</code> when a server does not accept WebSocket with an origin header.
+ * @param connectTimeout  Sets the amount of time after which, if the request is not obtained from the client within the timeout period, the <code>Future<HttpClientRequest></code> obtained from the client is failed with a [java.util.concurrent.TimeoutException]. Note this is not related to the TCP [io.vertx.core.http.HttpClientOptions] option, when a request is made against a pooled HTTP client, the timeout applies to the duration to obtain a connection from the pool to serve the request, the timeout might fire because the server does not respond in time or the pool is too busy to serve a request.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param headers  Add a request header.
  * @param host  Set the host name to be used by the client request.
+ * @param idleTimeout  Sets the amount of time after which if the WebSocket handshake does not happen within the timeout period an  will be passed to the exception handler and the connection will be closed.
  * @param method  Set the HTTP method to be used by the client request.
  * @param port  Set the port to be used by the client request.
  * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
@@ -48,9 +50,11 @@ import io.vertx.core.net.ProxyOptions
 fun webSocketConnectOptionsOf(
   absoluteURI: java.net.URL? = null,
   allowOriginHeader: Boolean? = null,
+  connectTimeout: Long? = null,
   followRedirects: Boolean? = null,
   headers: Map<String, String>? = null,
   host: String? = null,
+  idleTimeout: Long? = null,
   method: io.vertx.core.http.HttpMethod? = null,
   port: Int? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
@@ -69,6 +73,9 @@ fun webSocketConnectOptionsOf(
   if (allowOriginHeader != null) {
     this.setAllowOriginHeader(allowOriginHeader)
   }
+  if (connectTimeout != null) {
+    this.setConnectTimeout(connectTimeout)
+  }
   if (followRedirects != null) {
     this.setFollowRedirects(followRedirects)
   }
@@ -79,6 +86,9 @@ fun webSocketConnectOptionsOf(
   }
   if (host != null) {
     this.setHost(host)
+  }
+  if (idleTimeout != null) {
+    this.setIdleTimeout(idleTimeout)
   }
   if (method != null) {
     this.setMethod(method)
