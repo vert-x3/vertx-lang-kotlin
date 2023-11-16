@@ -252,7 +252,7 @@ You can read more about it in https://github.com/Kotlin/kotlinx.coroutines/tree/
 
 == Vert.x API extensions for coroutines
 
-== Event bus
+=== Event bus
 
 The Vert.x `EventBus` and `MessageConsumer` objects are extended with support for coroutines inside a `coroutineEventBus` scope function:
 
@@ -272,7 +272,7 @@ include::Example.kt[tags=VerticleWithCoroutineEventBusSupport]
 ----
 ====
 
-== Vert.x Web
+=== Vert.x Web
 
 The Vert.x Web `Router` and `Route` objects are extended with support for coroutines inside a `coroutineRouter` scope function:
 
