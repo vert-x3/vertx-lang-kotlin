@@ -18,6 +18,7 @@ package io.vertx.kotlin.redis.client
 import io.vertx.redis.client.RedisOptions
 import io.vertx.core.net.NetClientOptions
 import io.vertx.core.tracing.TracingPolicy
+import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisClientType
 import io.vertx.redis.client.RedisReplicas
 import io.vertx.redis.client.RedisRole
@@ -42,6 +43,7 @@ import io.vertx.redis.client.RedisRole
  * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
  * @param poolName  Set a user defined pool name (for metrics reporting).
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
+ * @param preferredProtocolVersion  Sets the preferred protocol version to be used during protocol negotiation. When not set, defaults to RESP 3. When protocol negotiation is disabled, this setting has no effect.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param role  Set the role name (only considered in HA mode).
  * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
@@ -67,6 +69,7 @@ fun redisOptionsOf(
   poolCleanerInterval: Int? = null,
   poolName: String? = null,
   poolRecycleTimeout: Int? = null,
+  preferredProtocolVersion: ProtocolVersion? = null,
   protocolNegotiation: Boolean? = null,
   role: RedisRole? = null,
   tracingPolicy: TracingPolicy? = null,
@@ -119,6 +122,9 @@ fun redisOptionsOf(
   }
   if (poolRecycleTimeout != null) {
     this.setPoolRecycleTimeout(poolRecycleTimeout)
+  }
+  if (preferredProtocolVersion != null) {
+    this.setPreferredProtocolVersion(preferredProtocolVersion)
   }
   if (protocolNegotiation != null) {
     this.setProtocolNegotiation(protocolNegotiation)

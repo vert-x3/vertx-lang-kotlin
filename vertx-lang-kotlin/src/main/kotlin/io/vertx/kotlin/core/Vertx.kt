@@ -20,6 +20,7 @@ import io.vertx.core.Verticle
 import io.vertx.core.Vertx as VertxVertxAlias
 import io.vertx.core.VertxOptions
 import io.vertx.kotlin.coroutines.awaitResult
+import java.util.concurrent.Callable
 import java.util.function.Supplier
 
 /**
@@ -124,6 +125,37 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle, options: Dep
 suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier: Supplier<Verticle>, options: DeploymentOptions): String {
   return awaitResult {
     this.deployVerticle(verticleSupplier, options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
+ *
+ * @param blockingCodeHandler 
+ * @return [T?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: Callable<T>): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.Vertx.executeBlocking]
+ *
+ * @param blockingCodeHandler 
+ * @param ordered 
+ * @return [T?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
+suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: Callable<T>, ordered: Boolean): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, ordered, it)
   }
 }
 

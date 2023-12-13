@@ -17,6 +17,7 @@ package io.vertx.kotlin.core
 
 import io.vertx.core.WorkerExecutor
 import io.vertx.kotlin.coroutines.awaitResult
+import java.util.concurrent.Callable
 
 /**
  * Suspending version of method [io.vertx.core.WorkerExecutor.close]
@@ -28,6 +29,37 @@ import io.vertx.kotlin.coroutines.awaitResult
 suspend fun WorkerExecutor.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.WorkerExecutor.executeBlocking]
+ *
+ * @param blockingCodeHandler 
+ * @return [T?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
+suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: Callable<T>): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.WorkerExecutor.executeBlocking]
+ *
+ * @param blockingCodeHandler 
+ * @param ordered 
+ * @return [T?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
+suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: Callable<T>, ordered: Boolean): T? {
+  return awaitResult {
+    this.executeBlocking(blockingCodeHandler, ordered, it)
   }
 }
 

@@ -54,6 +54,7 @@ import java.util.concurrent.TimeUnit
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
  * @param handle100ContinueAutomatically  Set whether 100 Continue should be handled automatically
  * @param host  Set the host
+ * @param http2ClearTextEnabled  Set whether HTTP/2 over clear text is enabled or disabled, default is enabled.
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by , so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
  * @param http2RstFloodMaxRstFramePerWindow  Set the max number of RST frame allowed per time window, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
  * @param http2RstFloodWindowDuration  Set the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
@@ -142,6 +143,7 @@ fun httpTermOptionsOf(
   enabledSecureTransportProtocols: Iterable<String>? = null,
   handle100ContinueAutomatically: Boolean? = null,
   host: String? = null,
+  http2ClearTextEnabled: Boolean? = null,
   http2ConnectionWindowSize: Int? = null,
   http2RstFloodMaxRstFramePerWindow: Int? = null,
   http2RstFloodWindowDuration: Int? = null,
@@ -267,6 +269,9 @@ fun httpTermOptionsOf(
   }
   if (host != null) {
     this.setHost(host)
+  }
+  if (http2ClearTextEnabled != null) {
+    this.setHttp2ClearTextEnabled(http2ClearTextEnabled)
   }
   if (http2ConnectionWindowSize != null) {
     this.setHttp2ConnectionWindowSize(http2ConnectionWindowSize)

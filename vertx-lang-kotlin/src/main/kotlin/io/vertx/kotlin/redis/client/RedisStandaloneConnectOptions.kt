@@ -16,6 +16,7 @@
 package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisStandaloneConnectOptions
+import io.vertx.redis.client.ProtocolVersion
 
 fun redisStandaloneConnectOptionsOf(
   connectionString: String? = null,
@@ -24,6 +25,7 @@ fun redisStandaloneConnectOptionsOf(
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   password: String? = null,
+  preferredProtocolVersion: ProtocolVersion? = null,
   protocolNegotiation: Boolean? = null): RedisStandaloneConnectOptions = io.vertx.redis.client.RedisStandaloneConnectOptions().apply {
 
   if (connectionString != null) {
@@ -45,6 +47,9 @@ fun redisStandaloneConnectOptionsOf(
   }
   if (password != null) {
     this.setPassword(password)
+  }
+  if (preferredProtocolVersion != null) {
+    this.setPreferredProtocolVersion(preferredProtocolVersion)
   }
   if (protocolNegotiation != null) {
     this.setProtocolNegotiation(protocolNegotiation)

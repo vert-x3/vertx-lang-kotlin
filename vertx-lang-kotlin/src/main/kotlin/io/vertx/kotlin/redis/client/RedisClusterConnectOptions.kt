@@ -16,6 +16,7 @@
 package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisClusterConnectOptions
+import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisReplicas
 
 fun redisClusterConnectOptionsOf(
@@ -26,6 +27,7 @@ fun redisClusterConnectOptionsOf(
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   password: String? = null,
+  preferredProtocolVersion: ProtocolVersion? = null,
   protocolNegotiation: Boolean? = null,
   useReplicas: RedisReplicas? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
 
@@ -51,6 +53,9 @@ fun redisClusterConnectOptionsOf(
   }
   if (password != null) {
     this.setPassword(password)
+  }
+  if (preferredProtocolVersion != null) {
+    this.setPreferredProtocolVersion(preferredProtocolVersion)
   }
   if (protocolNegotiation != null) {
     this.setProtocolNegotiation(protocolNegotiation)

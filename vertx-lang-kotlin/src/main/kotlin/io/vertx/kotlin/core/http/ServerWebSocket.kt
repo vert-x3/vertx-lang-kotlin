@@ -23,20 +23,6 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.http.ServerWebSocket.pipeTo]
- *
- * @param dst the destination write stream
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
-suspend fun ServerWebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
-  return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.core.http.ServerWebSocket.write]
  *
  * @param data 
@@ -61,6 +47,20 @@ suspend fun ServerWebSocket.writeAwait(data: Buffer): Unit {
 suspend fun ServerWebSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.ServerWebSocket.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+suspend fun ServerWebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
+  return awaitResult {
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

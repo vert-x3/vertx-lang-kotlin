@@ -695,6 +695,21 @@ suspend fun RedisAPI.bfAddAwait(args: List<String>): Response? {
 }
 
 /**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.bfCard]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use bfCard returning a future and chain with await()", replaceWith = ReplaceWith("bfCard(args).await()"))
+suspend fun RedisAPI.bfCardAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.bfCard(args, it)
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.bfDebug]
  *
  * @param args 
@@ -3368,15 +3383,16 @@ suspend fun RedisAPI.pfcountAwait(args: List<String>): Response? {
 /**
  * Suspending version of method [io.vertx.redis.client.RedisAPI.pfdebug]
  *
- * @param args 
+ * @param arg0 
+ * @param arg1 
  * @return [Response?]
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pfdebug returning a future and chain with await()", replaceWith = ReplaceWith("pfdebug(args).await()"))
-suspend fun RedisAPI.pfdebugAwait(args: List<String>): Response? {
+@Deprecated(message = "Instead use pfdebug returning a future and chain with await()", replaceWith = ReplaceWith("pfdebug(arg0, arg1).await()"))
+suspend fun RedisAPI.pfdebugAwait(arg0: String, arg1: String): Response? {
   return awaitResult {
-    this.pfdebug(args, it)
+    this.pfdebug(arg0, arg1, it)
   }
 }
 
@@ -4366,6 +4382,216 @@ suspend fun RedisAPI.swapdbAwait(arg0: String, arg1: String): Response? {
 suspend fun RedisAPI.syncAwait(): Response? {
   return awaitResult {
     this.sync(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestAdd]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestAdd returning a future and chain with await()", replaceWith = ReplaceWith("tdigestAdd(args).await()"))
+suspend fun RedisAPI.tdigestAddAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestAdd(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestByrank]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestByrank returning a future and chain with await()", replaceWith = ReplaceWith("tdigestByrank(args).await()"))
+suspend fun RedisAPI.tdigestByrankAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestByrank(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestByrevrank]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestByrevrank returning a future and chain with await()", replaceWith = ReplaceWith("tdigestByrevrank(args).await()"))
+suspend fun RedisAPI.tdigestByrevrankAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestByrevrank(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestCdf]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestCdf returning a future and chain with await()", replaceWith = ReplaceWith("tdigestCdf(args).await()"))
+suspend fun RedisAPI.tdigestCdfAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestCdf(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestCreate]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestCreate returning a future and chain with await()", replaceWith = ReplaceWith("tdigestCreate(args).await()"))
+suspend fun RedisAPI.tdigestCreateAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestCreate(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestInfo]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestInfo returning a future and chain with await()", replaceWith = ReplaceWith("tdigestInfo(args).await()"))
+suspend fun RedisAPI.tdigestInfoAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestInfo(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestMax]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestMax returning a future and chain with await()", replaceWith = ReplaceWith("tdigestMax(args).await()"))
+suspend fun RedisAPI.tdigestMaxAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestMax(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestMerge]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestMerge returning a future and chain with await()", replaceWith = ReplaceWith("tdigestMerge(args).await()"))
+suspend fun RedisAPI.tdigestMergeAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestMerge(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestMin]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestMin returning a future and chain with await()", replaceWith = ReplaceWith("tdigestMin(args).await()"))
+suspend fun RedisAPI.tdigestMinAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestMin(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestQuantile]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestQuantile returning a future and chain with await()", replaceWith = ReplaceWith("tdigestQuantile(args).await()"))
+suspend fun RedisAPI.tdigestQuantileAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestQuantile(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestRank]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestRank returning a future and chain with await()", replaceWith = ReplaceWith("tdigestRank(args).await()"))
+suspend fun RedisAPI.tdigestRankAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestRank(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestReset]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestReset returning a future and chain with await()", replaceWith = ReplaceWith("tdigestReset(args).await()"))
+suspend fun RedisAPI.tdigestResetAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestReset(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestRevrank]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestRevrank returning a future and chain with await()", replaceWith = ReplaceWith("tdigestRevrank(args).await()"))
+suspend fun RedisAPI.tdigestRevrankAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestRevrank(args, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.redis.client.RedisAPI.tdigestTrimmedMean]
+ *
+ * @param args 
+ * @return [Response?]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisAPI] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use tdigestTrimmedMean returning a future and chain with await()", replaceWith = ReplaceWith("tdigestTrimmedMean(args).await()"))
+suspend fun RedisAPI.tdigestTrimmedMeanAwait(args: List<String>): Response? {
+  return awaitResult {
+    this.tdigestTrimmedMean(args, it)
   }
 }
 
