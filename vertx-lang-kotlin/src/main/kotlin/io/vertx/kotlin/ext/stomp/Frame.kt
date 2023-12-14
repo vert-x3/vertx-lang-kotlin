@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.stomp
 
 import io.vertx.ext.stomp.Frame
+import io.vertx.core.buffer.Buffer
 import io.vertx.ext.stomp.Command
 
 /**

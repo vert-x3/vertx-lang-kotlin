@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.KeyStoreOptions
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.core.net.KeyStoreOptions] objects.

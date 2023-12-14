@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.GoAway
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.core.http.GoAway] objects.

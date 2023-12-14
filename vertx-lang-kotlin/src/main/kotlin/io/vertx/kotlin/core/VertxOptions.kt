@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit
  * @param blockedThreadCheckInterval  Sets the value of blocked thread check period, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
  * @param maxEventLoopExecuteTime  Sets the value of max event loop execute time, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions]is 
  * @param maxWorkerExecuteTime  Sets the value of max worker execute time, in [io.vertx.core.VertxOptions]. <p> The default value of [io.vertx.core.VertxOptions] is 
- * @param clusterManager  Programmatically set the cluster manager to be used when clustering. <p> Only valid if clustered = true. <p> Normally Vert.x will look on the classpath for a cluster manager, but if you want to set one programmatically you can use this method.
  * @param internalBlockingPoolSize  Set the value of internal blocking pool size
  * @param haEnabled  Set whether HA will be enabled on the Vert.x instance.
  * @param quorumSize  Set the quorum size to be used when HA is enabled.
@@ -61,7 +60,6 @@ fun vertxOptionsOf(
   blockedThreadCheckInterval: Long? = null,
   maxEventLoopExecuteTime: Long? = null,
   maxWorkerExecuteTime: Long? = null,
-  clusterManager: io.vertx.core.spi.cluster.ClusterManager? = null,
   internalBlockingPoolSize: Int? = null,
   haEnabled: Boolean? = null,
   quorumSize: Int? = null,
@@ -94,9 +92,6 @@ fun vertxOptionsOf(
   }
   if (maxWorkerExecuteTime != null) {
     this.setMaxWorkerExecuteTime(maxWorkerExecuteTime)
-  }
-  if (clusterManager != null) {
-    this.setClusterManager(clusterManager)
   }
   if (internalBlockingPoolSize != null) {
     this.setInternalBlockingPoolSize(internalBlockingPoolSize)

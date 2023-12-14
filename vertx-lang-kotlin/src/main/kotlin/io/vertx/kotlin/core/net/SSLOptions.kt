@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.SSLOptions
+import io.vertx.core.buffer.Buffer
 import java.util.concurrent.TimeUnit
 
 /**

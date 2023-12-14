@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.auth
 
 import io.vertx.ext.auth.PubSecKeyOptions
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.PubSecKeyOptions] objects.

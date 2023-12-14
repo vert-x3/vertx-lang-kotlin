@@ -18,6 +18,7 @@ package io.vertx.kotlin.core.net
 import io.vertx.core.net.ConnectOptions
 import io.vertx.core.net.ClientSSLOptions
 import io.vertx.core.net.ProxyOptions
+import io.vertx.core.net.SocketAddress
 
 /**
  * A function providing a DSL for building [io.vertx.core.net.ConnectOptions] objects.
@@ -31,6 +32,7 @@ import io.vertx.core.net.ProxyOptions
  * @param proxyOptions  Set proxy options for connections via CONNECT proxy (e.g. Squid) or a SOCKS proxy. <p> When none is provided, the [io.vertx.core.net.NetClientOptions] proxy options will be used instead.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param sslOptions  Set the SSL options to use. <p> When none is provided, the [io.vertx.core.net.NetClientOptions] SSL options will be used instead.
+ * @param timeout  Override the client connect timeout in millis when <code>timeout >= 0</code> or use the client defined connect timeout [io.vertx.core.net.ClientOptionsBase] when <code>timeout == -1</code>.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.ConnectOptions original] using Vert.x codegen.
@@ -42,7 +44,8 @@ fun connectOptionsOf(
   sniServerName: String? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
   ssl: Boolean? = null,
-  sslOptions: io.vertx.core.net.ClientSSLOptions? = null): ConnectOptions = io.vertx.core.net.ConnectOptions().apply {
+  sslOptions: io.vertx.core.net.ClientSSLOptions? = null,
+  timeout: Int? = null): ConnectOptions = io.vertx.core.net.ConnectOptions().apply {
 
   if (host != null) {
     this.setHost(host)
@@ -64,6 +67,9 @@ fun connectOptionsOf(
   }
   if (sslOptions != null) {
     this.setSslOptions(sslOptions)
+  }
+  if (timeout != null) {
+    this.setTimeout(timeout)
   }
 }
 

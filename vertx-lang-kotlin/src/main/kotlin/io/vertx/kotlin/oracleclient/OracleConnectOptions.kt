@@ -17,6 +17,7 @@ package io.vertx.kotlin.oracleclient
 
 import io.vertx.oracleclient.OracleConnectOptions
 import io.vertx.core.net.ClientSSLOptions
+import io.vertx.core.net.SocketAddress
 import io.vertx.core.tracing.TracingPolicy
 import io.vertx.oracleclient.ServerMode
 

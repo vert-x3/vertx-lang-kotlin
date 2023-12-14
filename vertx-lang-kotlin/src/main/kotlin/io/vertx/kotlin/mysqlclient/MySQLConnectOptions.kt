@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mysqlclient
 
 import io.vertx.mysqlclient.MySQLConnectOptions
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.net.ClientSSLOptions
 import io.vertx.core.tracing.TracingPolicy
 import io.vertx.mysqlclient.MySQLAuthenticationPlugin

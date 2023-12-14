@@ -32,7 +32,6 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * (or, programmatically, <code>micrometerRegistry</code>) in order to actually report metrics.
  *
  * @param enabled  Set whether metrics will be enabled on the Vert.x instance. Metrics are not enabled by default.
- * @param factory  Programmatically set the metrics factory to be used when metrics are enabled. <p> Only valid if  = true. <p> Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one programmatically you can use this method.
  * @param disabledMetricsCategories  Sets metrics types that are disabled.
  * @param registryName  Set a name for the metrics registry, so that a new registry will be created and associated with this name. If <code>registryName</code> is not provided (or null), a default registry will be used. If the same name is given to several Vert.x instances (within the same JVM), they will share the same registry.
  * @param labels  Sets enabled labels. These labels can be fine-tuned later on using Micrometer's Meter filters (see http://micrometer.io/docs/concepts#_meter_filters)
@@ -43,6 +42,7 @@ import io.vertx.micrometer.VertxPrometheusOptions
  * @param prometheusOptions  Set Prometheus options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param jmxMetricsOptions  Set JMX metrics options. Setting a registry backend option is mandatory in order to effectively report metrics.
  * @param jvmMetricsEnabled  Whether JVM metrics should be collected. Defaults to <code>false</code>.
+ * @param nettyMetricsEnabled  Whether Netty metrics should be collected. Defaults to <code>false</code>.
  * @param metricsNaming  <code>MetricsNaming</code> is a structure that holds names of all metrics, each one can be changed individually. For instance, to retrieve compatibility with the names used in Vert.x 3.x, use <code>setMetricsNaming(MetricsNaming.v3Names())</code>
  * @param meterCacheEnabled  Whether a meter cache should be enabled. Defaults to <code>true</code>.
  *
@@ -51,7 +51,6 @@ import io.vertx.micrometer.VertxPrometheusOptions
  */
 fun micrometerMetricsOptionsOf(
   enabled: Boolean? = null,
-  factory: io.vertx.core.spi.VertxMetricsFactory? = null,
   disabledMetricsCategories: Iterable<String>? = null,
   registryName: String? = null,
   labels: Iterable<Label>? = null,
@@ -62,14 +61,12 @@ fun micrometerMetricsOptionsOf(
   prometheusOptions: io.vertx.micrometer.VertxPrometheusOptions? = null,
   jmxMetricsOptions: io.vertx.micrometer.VertxJmxMetricsOptions? = null,
   jvmMetricsEnabled: Boolean? = null,
+  nettyMetricsEnabled: Boolean? = null,
   metricsNaming: io.vertx.micrometer.MetricsNaming? = null,
   meterCacheEnabled: Boolean? = null): MicrometerMetricsOptions = io.vertx.micrometer.MicrometerMetricsOptions().apply {
 
   if (enabled != null) {
     this.setEnabled(enabled)
-  }
-  if (factory != null) {
-    this.setFactory(factory)
   }
   if (disabledMetricsCategories != null) {
     this.setDisabledMetricsCategories(disabledMetricsCategories.toSet())
@@ -102,6 +99,9 @@ fun micrometerMetricsOptionsOf(
   }
   if (jvmMetricsEnabled != null) {
     this.setJvmMetricsEnabled(jvmMetricsEnabled)
+  }
+  if (nettyMetricsEnabled != null) {
+    this.setNettyMetricsEnabled(nettyMetricsEnabled)
   }
   if (metricsNaming != null) {
     this.setMetricsNaming(metricsNaming)

@@ -23,16 +23,12 @@ import io.vertx.core.tracing.TracingOptions
  * Vert.x tracing base configuration, this class can be extended by provider implementations to configure
  * those specific implementations.
  *
- * @param factory  Programmatically set the tracer factory to be used when tracing are enabled. <p> Normally Vert.x will look on the classpath for a tracer factory implementation, but if you want to set one programmatically you can use this method.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.tracing.TracingOptions original] using Vert.x codegen.
  */
 fun tracingOptionsOf(
-  factory: io.vertx.core.spi.VertxTracerFactory? = null): TracingOptions = io.vertx.core.tracing.TracingOptions().apply {
+): TracingOptions = io.vertx.core.tracing.TracingOptions().apply {
 
-  if (factory != null) {
-    this.setFactory(factory)
-  }
 }
 

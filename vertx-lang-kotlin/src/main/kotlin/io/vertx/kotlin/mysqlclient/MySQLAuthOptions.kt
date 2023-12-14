@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mysqlclient
 
 import io.vertx.mysqlclient.MySQLAuthOptions
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.mysqlclient.MySQLAuthOptions] objects.

@@ -17,14 +17,9 @@ package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.ConsulClientOptions
 import io.netty.handler.logging.ByteBufFormat
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpVersion
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
 import io.vertx.core.tracing.TracingPolicy
 import io.vertx.uritemplate.ExpandOptions
@@ -50,20 +45,12 @@ import java.util.concurrent.TimeUnit
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.ext.consul.ConsulClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param ssl  Set whether SSL/TLS is enabled
- * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
- * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
- * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param trustOptions  Set the trust options.
- * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
- * @param pfxTrustOptions  Set the trust options in pfx format
- * @param pemTrustOptions  Set the trust options.
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param useAlpn  Set the ALPN usage.
  * @param sslEngineOptions  Set to use SSL engine implementation to use.
- * @param jdkSslEngineOptions 
- * @param openSslEngineOptions 
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
@@ -85,7 +72,7 @@ import java.util.concurrent.TimeUnit
  * @param pipelining  Set whether pipe-lining is enabled on the client
  * @param pipeliningLimit  Set the limit of pending requests a pipe-lined HTTP/1 connection can send.
  * @param verifyHost  Set whether hostname verification is enabled
- * @param tryUseCompression  Set whether compression is enabled
+ * @param decompressionSupported  Set whether compression is enabled
  * @param defaultHost  Set the default host name to be used by this client in requests if none is provided when making the request.
  * @param defaultPort  Set the default port to be used by this client in requests if none is provided when making the request.
  * @param protocolVersion  Set the protocol version.
@@ -130,20 +117,12 @@ fun consulClientOptionsOf(
   writeIdleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   ssl: Boolean? = null,
-  keyStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
-  pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
-  trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
-  pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   enabledCipherSuites: Iterable<String>? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   useAlpn: Boolean? = null,
   sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
-  jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
-  openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   tcpFastOpen: Boolean? = null,
   tcpCork: Boolean? = null,
   tcpQuickAck: Boolean? = null,
@@ -165,7 +144,7 @@ fun consulClientOptionsOf(
   pipelining: Boolean? = null,
   pipeliningLimit: Int? = null,
   verifyHost: Boolean? = null,
-  tryUseCompression: Boolean? = null,
+  decompressionSupported: Boolean? = null,
   defaultHost: String? = null,
   defaultPort: Int? = null,
   protocolVersion: HttpVersion? = null,
@@ -236,26 +215,8 @@ fun consulClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
-  if (keyStoreOptions != null) {
-    this.setKeyStoreOptions(keyStoreOptions)
-  }
-  if (pfxKeyCertOptions != null) {
-    this.setPfxKeyCertOptions(pfxKeyCertOptions)
-  }
-  if (pemKeyCertOptions != null) {
-    this.setPemKeyCertOptions(pemKeyCertOptions)
-  }
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)
-  }
-  if (trustStoreOptions != null) {
-    this.setTrustStoreOptions(trustStoreOptions)
-  }
-  if (pfxTrustOptions != null) {
-    this.setPfxTrustOptions(pfxTrustOptions)
-  }
-  if (pemTrustOptions != null) {
-    this.setPemTrustOptions(pemTrustOptions)
   }
   if (enabledCipherSuites != null) {
     for (item in enabledCipherSuites) {
@@ -277,12 +238,6 @@ fun consulClientOptionsOf(
   }
   if (sslEngineOptions != null) {
     this.setSslEngineOptions(sslEngineOptions)
-  }
-  if (jdkSslEngineOptions != null) {
-    this.setJdkSslEngineOptions(jdkSslEngineOptions)
-  }
-  if (openSslEngineOptions != null) {
-    this.setOpenSslEngineOptions(openSslEngineOptions)
   }
   if (tcpFastOpen != null) {
     this.setTcpFastOpen(tcpFastOpen)
@@ -347,8 +302,8 @@ fun consulClientOptionsOf(
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)
   }
-  if (tryUseCompression != null) {
-    this.setTryUseCompression(tryUseCompression)
+  if (decompressionSupported != null) {
+    this.setDecompressionSupported(decompressionSupported)
   }
   if (defaultHost != null) {
     this.setDefaultHost(defaultHost)

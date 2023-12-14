@@ -16,11 +16,13 @@
 package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisSentinelConnectOptions
+import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisRole
 
 fun redisSentinelConnectOptionsOf(
   maxNestedArrays: Int? = null,
   protocolNegotiation: Boolean? = null,
+  preferredProtocolVersion: ProtocolVersion? = null,
   password: String? = null,
   endpoints: Iterable<String>? = null,
   connectionStrings: Iterable<String>? = null,
@@ -34,6 +36,9 @@ fun redisSentinelConnectOptionsOf(
   }
   if (protocolNegotiation != null) {
     this.setProtocolNegotiation(protocolNegotiation)
+  }
+  if (preferredProtocolVersion != null) {
+    this.setPreferredProtocolVersion(preferredProtocolVersion)
   }
   if (password != null) {
     this.setPassword(password)

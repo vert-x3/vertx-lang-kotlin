@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.dns
 
 import io.vertx.core.dns.AddressResolverOptions
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.core.dns.AddressResolverOptions] objects.

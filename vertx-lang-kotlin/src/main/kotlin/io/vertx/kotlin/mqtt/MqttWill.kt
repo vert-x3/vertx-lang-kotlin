@@ -16,6 +16,7 @@
 package io.vertx.kotlin.mqtt
 
 import io.vertx.mqtt.MqttWill
+import io.vertx.core.buffer.Buffer
 
 /**
  * A function providing a DSL for building [io.vertx.mqtt.MqttWill] objects.

@@ -17,12 +17,7 @@ package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.NetClientOptions
 import io.netty.handler.logging.ByteBufFormat
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
@@ -46,20 +41,12 @@ import java.util.concurrent.TimeUnit
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param ssl  Set whether SSL/TLS is enabled
- * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
- * @param pfxKeyCertOptions  Set the key/cert options in pfx format.
- * @param pemKeyCertOptions  Set the key/cert store options in pem format.
  * @param trustOptions  Set the trust options.
- * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
- * @param pfxTrustOptions  Set the trust options in pfx format
- * @param pemTrustOptions  Set the trust options in pem format
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
  * @param useAlpn  Set the ALPN usage.
  * @param sslEngineOptions  Set to use SSL engine implementation to use.
- * @param jdkSslEngineOptions 
- * @param openSslEngineOptions 
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
@@ -99,20 +86,12 @@ fun netClientOptionsOf(
   writeIdleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   ssl: Boolean? = null,
-  keyStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
-  pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
-  trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
-  pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   enabledCipherSuites: Iterable<String>? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   useAlpn: Boolean? = null,
   sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
-  jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
-  openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   tcpFastOpen: Boolean? = null,
   tcpCork: Boolean? = null,
   tcpQuickAck: Boolean? = null,
@@ -178,26 +157,8 @@ fun netClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
-  if (keyStoreOptions != null) {
-    this.setKeyStoreOptions(keyStoreOptions)
-  }
-  if (pfxKeyCertOptions != null) {
-    this.setPfxKeyCertOptions(pfxKeyCertOptions)
-  }
-  if (pemKeyCertOptions != null) {
-    this.setPemKeyCertOptions(pemKeyCertOptions)
-  }
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)
-  }
-  if (trustStoreOptions != null) {
-    this.setTrustStoreOptions(trustStoreOptions)
-  }
-  if (pfxTrustOptions != null) {
-    this.setPfxTrustOptions(pfxTrustOptions)
-  }
-  if (pemTrustOptions != null) {
-    this.setPemTrustOptions(pemTrustOptions)
   }
   if (enabledCipherSuites != null) {
     for (item in enabledCipherSuites) {
@@ -219,12 +180,6 @@ fun netClientOptionsOf(
   }
   if (sslEngineOptions != null) {
     this.setSslEngineOptions(sslEngineOptions)
-  }
-  if (jdkSslEngineOptions != null) {
-    this.setJdkSslEngineOptions(jdkSslEngineOptions)
-  }
-  if (openSslEngineOptions != null) {
-    this.setOpenSslEngineOptions(openSslEngineOptions)
   }
   if (tcpFastOpen != null) {
     this.setTcpFastOpen(tcpFastOpen)

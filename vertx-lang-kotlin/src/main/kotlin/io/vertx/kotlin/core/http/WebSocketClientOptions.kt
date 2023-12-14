@@ -17,12 +17,7 @@ package io.vertx.kotlin.core.http
 
 import io.vertx.core.http.WebSocketClientOptions
 import io.netty.handler.logging.ByteBufFormat
-import io.vertx.core.net.JdkSSLEngineOptions
-import io.vertx.core.net.JksOptions
-import io.vertx.core.net.OpenSSLEngineOptions
-import io.vertx.core.net.PemKeyCertOptions
-import io.vertx.core.net.PemTrustOptions
-import io.vertx.core.net.PfxOptions
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.net.ProxyOptions
 import java.util.concurrent.TimeUnit
 
@@ -42,20 +37,12 @@ fun webSocketClientOptionsOf(
   writeIdleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   ssl: Boolean? = null,
-  keyStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxKeyCertOptions: io.vertx.core.net.PfxOptions? = null,
-  pemKeyCertOptions: io.vertx.core.net.PemKeyCertOptions? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
-  trustStoreOptions: io.vertx.core.net.JksOptions? = null,
-  pfxTrustOptions: io.vertx.core.net.PfxOptions? = null,
-  pemTrustOptions: io.vertx.core.net.PemTrustOptions? = null,
   enabledCipherSuites: Iterable<String>? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   useAlpn: Boolean? = null,
   sslEngineOptions: io.vertx.core.net.SSLEngineOptions? = null,
-  jdkSslEngineOptions: io.vertx.core.net.JdkSSLEngineOptions? = null,
-  openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
   tcpFastOpen: Boolean? = null,
   tcpCork: Boolean? = null,
   tcpQuickAck: Boolean? = null,
@@ -131,26 +118,8 @@ fun webSocketClientOptionsOf(
   if (ssl != null) {
     this.setSsl(ssl)
   }
-  if (keyStoreOptions != null) {
-    this.setKeyStoreOptions(keyStoreOptions)
-  }
-  if (pfxKeyCertOptions != null) {
-    this.setPfxKeyCertOptions(pfxKeyCertOptions)
-  }
-  if (pemKeyCertOptions != null) {
-    this.setPemKeyCertOptions(pemKeyCertOptions)
-  }
   if (trustOptions != null) {
     this.setTrustOptions(trustOptions)
-  }
-  if (trustStoreOptions != null) {
-    this.setTrustStoreOptions(trustStoreOptions)
-  }
-  if (pfxTrustOptions != null) {
-    this.setPfxTrustOptions(pfxTrustOptions)
-  }
-  if (pemTrustOptions != null) {
-    this.setPemTrustOptions(pemTrustOptions)
   }
   if (enabledCipherSuites != null) {
     for (item in enabledCipherSuites) {
@@ -172,12 +141,6 @@ fun webSocketClientOptionsOf(
   }
   if (sslEngineOptions != null) {
     this.setSslEngineOptions(sslEngineOptions)
-  }
-  if (jdkSslEngineOptions != null) {
-    this.setJdkSslEngineOptions(jdkSslEngineOptions)
-  }
-  if (openSslEngineOptions != null) {
-    this.setOpenSslEngineOptions(openSslEngineOptions)
   }
   if (tcpFastOpen != null) {
     this.setTcpFastOpen(tcpFastOpen)

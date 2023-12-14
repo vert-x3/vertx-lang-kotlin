@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.ServerSSLOptions
+import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ClientAuth
 import java.util.concurrent.TimeUnit
 

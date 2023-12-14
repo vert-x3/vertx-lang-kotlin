@@ -18,6 +18,7 @@ package io.vertx.kotlin.redis.client
 import io.vertx.redis.client.RedisOptions
 import io.vertx.core.net.NetClientOptions
 import io.vertx.core.tracing.TracingPolicy
+import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisClientType
 import io.vertx.redis.client.RedisReplicas
 import io.vertx.redis.client.RedisRole
@@ -45,6 +46,7 @@ import io.vertx.redis.client.RedisRole
  * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
  * @param password  Set the default password for cluster/sentinel connections.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
+ * @param preferredProtocolVersion  Sets the preferred protocol version to be used during protocol negotiation. When not set, defaults to RESP 3. When protocol negotiation is disabled, this setting has no effect.
  * @param poolName  Set a user defined pool name (for metrics reporting).
  * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. This is only meaningful in case of a  Redis client. <p> The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second).
  *
@@ -70,6 +72,7 @@ fun redisOptionsOf(
   poolRecycleTimeout: Int? = null,
   password: String? = null,
   protocolNegotiation: Boolean? = null,
+  preferredProtocolVersion: ProtocolVersion? = null,
   poolName: String? = null,
   hashSlotCacheTTL: Long? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
 
@@ -128,6 +131,9 @@ fun redisOptionsOf(
   }
   if (protocolNegotiation != null) {
     this.setProtocolNegotiation(protocolNegotiation)
+  }
+  if (preferredProtocolVersion != null) {
+    this.setPreferredProtocolVersion(preferredProtocolVersion)
   }
   if (poolName != null) {
     this.setPoolName(poolName)
