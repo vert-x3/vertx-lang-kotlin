@@ -145,7 +145,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-web-templ-jade</artifactId>
+      <artifactId>vertx-web-templ-pug</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -430,7 +430,7 @@
             vertx-web,
             vertx-web-templ-freemarker,
             vertx-web-templ-handlebars,
-            vertx-web-templ-jade,
+            vertx-web-templ-pug,
             vertx-web-templ-mvel,
             vertx-web-templ-pebble,
             vertx-web-templ-rocker,
