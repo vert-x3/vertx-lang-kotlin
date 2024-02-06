@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
  *
  * Options describing how [io.netty.handler.traffic.GlobalTrafficShapingHandler] will handle traffic shaping.
  *
- * @param checkIntervalForStats  Set the delay between two computations of performances for channels or 0 if no stats are to be computed
+ * @param checkIntervalForStats  Set the delay between two computations of performances for channels
  * @param checkIntervalForStatsTimeUnit  Set time unit for check interval for stats.
  * @param inboundGlobalBandwidth  Set bandwidth limit in bytes per second for inbound connections
  * @param maxDelayToWait  Set the maximum delay to wait in case of traffic excess
