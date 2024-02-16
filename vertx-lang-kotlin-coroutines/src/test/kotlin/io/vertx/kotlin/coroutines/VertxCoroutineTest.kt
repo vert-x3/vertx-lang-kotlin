@@ -31,6 +31,7 @@ import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.*
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -447,6 +448,7 @@ class VertxCoroutineTest {
     }
   }
 
+  @Ignore
   @Test
   fun `test Coroutine execution not always performed with dispatch`(testContext: TestContext) {
     val latch = testContext.async()

@@ -19,6 +19,7 @@ import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.Http2Settings
 import io.vertx.core.http.HttpConnection
 import io.vertx.kotlin.coroutines.awaitResult
+import java.util.concurrent.TimeUnit
 
 /**
  * Suspending version of method [io.vertx.core.http.HttpConnection.shutdown]
@@ -36,14 +37,15 @@ suspend fun HttpConnection.shutdownAwait(): Unit {
 /**
  * Suspending version of method [io.vertx.core.http.HttpConnection.shutdown]
  *
- * @param timeout 
+ * @param timeout the amount of time after which all resources are forcibly closed
+ * @param unit the of the timeout
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use shutdown returning a future and chain with await()", replaceWith = ReplaceWith("shutdown(timeout).await()"))
-suspend fun HttpConnection.shutdownAwait(timeout: Long): Unit {
+@Deprecated(message = "Instead use shutdown returning a future and chain with await()", replaceWith = ReplaceWith("shutdown(timeout, unit).await()"))
+suspend fun HttpConnection.shutdownAwait(timeout: Long, unit: TimeUnit): Unit {
   return awaitResult {
-    this.shutdown(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.shutdown(timeout, unit, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
