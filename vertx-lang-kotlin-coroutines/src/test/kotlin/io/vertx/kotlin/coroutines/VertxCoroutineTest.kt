@@ -19,18 +19,15 @@ import io.vertx.core.Context
 import io.vertx.core.Future
 import io.vertx.core.Promise
 import io.vertx.core.Vertx
-import io.vertx.core.http.HttpClientOptions
-import io.vertx.core.http.HttpMethod
-import io.vertx.core.http.HttpServerOptions
-import io.vertx.core.http.RequestOptions
+import io.vertx.core.http.*
 import io.vertx.core.impl.ContextInternal
 import io.vertx.core.impl.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.RunTestOnContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.*
+import org.junit.After
 import org.junit.Assert.*
-import org.junit.Ignore
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -51,11 +48,21 @@ class VertxCoroutineTest {
 
   private lateinit var vertx: Vertx
   private lateinit var ai: AsyncInterface
+  private lateinit var client: HttpClient
+  private lateinit var server: HttpServer
 
   @Before
-  fun before() {
+  fun before(tc: TestContext) {
     vertx = rule.vertx()
     ai = AsyncInterfaceImpl(vertx)
+    client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
+    server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
+  }
+
+  @After
+  fun tearDown(tc: TestContext) {
+    client.close()
+    server.close().onComplete(tc.asyncAssertSuccess())
   }
 
   @Test
@@ -89,9 +96,7 @@ class VertxCoroutineTest {
   }
 
   @Test
-  fun `test fiber Handler`(testContext: TestContext) {
-    val async = testContext.async()
-    val server = vertx.createHttpServer(HttpServerOptions().setPort(8080))
+  fun `test fiber Handler`(tc: TestContext) {
     server.requestHandler { req ->
       GlobalScope.launch(vertx.dispatcher()) {
         val res = awaitResult { ai.methodWithParamsAndHandlerNoReturn("oranges", 23, it) }
@@ -99,21 +104,13 @@ class VertxCoroutineTest {
         req.response().end()
       }
     }
-    server.listen().onComplete { res ->
-      assertTrue(res.succeeded())
-      val client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
-      client.request(HttpMethod.GET, "/somepath").onComplete { ar1 ->
-        assertTrue(ar1.succeeded())
-        val req = ar1.result()
-        req.send().onComplete { ar2 ->
-          assertTrue(ar2.succeeded())
-          val resp = ar2.result()
-          assertTrue(resp.statusCode() == 200)
-          client.close()
-          server.close().onComplete { async.complete() }
-        }
-      }
-    }
+    server.listen().onComplete(tc.asyncAssertSuccess {
+      client.request(HttpMethod.GET, "/somepath").onComplete(tc.asyncAssertSuccess { request ->
+        request.send().onComplete(tc.asyncAssertSuccess { response ->
+          assertEquals(200, response.statusCode())
+        })
+      })
+    })
   }
 
   @Test
@@ -448,23 +445,23 @@ class VertxCoroutineTest {
     }
   }
 
-  @Ignore
   @Test
-  fun `test Coroutine execution not always performed with dispatch`(testContext: TestContext) {
-    val latch = testContext.async()
-    val context = (vertx as VertxInternal).getOrCreateContext()
-    val duplicatedContext = context.duplicate()
-    val httpClient = vertx.createHttpClient()
-    duplicatedContext.runOnContext {
-      GlobalScope.launch(Vertx.currentContext().dispatcher()) {
-        val resp = httpClient.request(RequestOptions().setMethod(HttpMethod.GET).setAbsoluteURI("https://example.com"))
-          .coAwait().apply { end().coAwait() }
-          .response()
-          .coAwait()
-        resp.body().coAwait()
-        latch.complete()
+  fun `test Coroutine execution not always performed with dispatch`(tc: TestContext) {
+    server.requestHandler { it.response().end() }.listen().onComplete(tc.asyncAssertSuccess {
+      val latch = tc.async()
+      val context = (vertx as VertxInternal).getOrCreateContext()
+      val duplicatedContext = context.duplicate()
+      duplicatedContext.runOnContext {
+        GlobalScope.launch(Vertx.currentContext().dispatcher()) {
+          val resp = client.request(HttpMethod.GET, "/")
+            .coAwait().apply { end().coAwait() }
+            .response()
+            .coAwait()
+          resp.body().coAwait()
+          latch.complete()
+        }
       }
-    }
+    })
   }
 
   @Test
