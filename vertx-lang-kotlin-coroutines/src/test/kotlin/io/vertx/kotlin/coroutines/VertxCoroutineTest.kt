@@ -52,7 +52,7 @@ class VertxCoroutineTest {
   private lateinit var server: HttpServer
 
   @Before
-  fun before(tc: TestContext) {
+  fun before() {
     vertx = rule.vertx()
     ai = AsyncInterfaceImpl(vertx)
     client = vertx.createHttpClient(HttpClientOptions().setDefaultPort(8080))
