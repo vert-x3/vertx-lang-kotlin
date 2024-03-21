@@ -35,14 +35,14 @@ import io.vertx.redis.client.RedisRole
  * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. This is only meaningful in case of a  Redis client. <p> The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second).
  * @param masterName  Set the master name (only considered in HA mode).
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
- * @param maxPoolSize  Tune the maximum size of the connection pool. When working with cluster or sentinel this value should be atleast the total number of cluster member (or number of sentinels + 1)
- * @param maxPoolWaiting  Tune the maximum waiting requests for a connection from the pool.
+ * @param maxPoolSize  Set the maximum size of the connection pool. <p> By default, the maximum pool size is 6. <p> When working with cluster or sentinel, this value should be at least the total number of cluster member (or number of sentinels + 1).
+ * @param maxPoolWaiting  Set the maximum number of requests waiting for a connection from the pool. <p> By default, the maximum number of waiting requests size is 24.
  * @param maxWaitingHandlers  The client will always work on pipeline mode, this means that messages can start queueing. You can control how much backlog you're willing to accept. This methods sets how much handlers is the client willing to queue.
  * @param netClientOptions  Set the net client options to be used while connecting to the redis server. Use this to tune your connection.
  * @param password  Set the default password for cluster/sentinel connections.
- * @param poolCleanerInterval  Tune how often in milliseconds should the connection pool cleaner execute. For each connection in the pool, connections marked as invalid will be forcibly closed. A connection is marked invalid if it enters a exception or fatal state.
- * @param poolName  Set a user defined pool name (for metrics reporting).
- * @param poolRecycleTimeout  Tune when a connection should be recycled in milliseconds.
+ * @param poolCleanerInterval  Set how often the connection pool will be cleaned. Cleaning the connection pool means scanning for unused invalid connections and if any are found, they are forcibly closed and evicted from the pool. <p> A connection is marked invalid if it enters a exception or fatal state or if it exists longer than the . <p> The value is in milliseconds. By default, the cleaning interval is 30 seconds. The value of -1 means connection pool cleaning is disabled.
+ * @param poolName  Set the connection pool name to be used for metrics reporting. The default name is a random UUID.
+ * @param poolRecycleTimeout  Set how long a connection can exist before it is recycled during connection pool . <p> The value is in milliseconds. By default, the recycle timeout is 3 minutes. The value of -1 means connection recycling is disabled.
  * @param preferredProtocolVersion  Sets the preferred protocol version to be used during protocol negotiation. When not set, defaults to RESP 3. When protocol negotiation is disabled, this setting has no effect.
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param role  Set the role name (only considered in HA mode).
