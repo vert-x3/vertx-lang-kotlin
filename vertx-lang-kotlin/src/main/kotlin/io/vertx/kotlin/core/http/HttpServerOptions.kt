@@ -64,6 +64,8 @@ import java.util.concurrent.TimeUnit
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxChunkSize  Set the maximum HTTP chunk size that [io.vertx.core.http.HttpServerRequest] will receive
  * @param maxFormAttributeSize  Set the maximum size of a form attribute. Set to <code>-1</code> to allow unlimited length
+ * @param maxFormBufferedBytes  Set the maximum number of bytes a server can buffer when decoding a form. Set to <code>-1</code> to allow unlimited length
+ * @param maxFormFields  Set the maximum number of fields of a form. Set to <code>-1</code> to allow unlimited number of attributes
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxWebSocketFrameSize  Set the maximum WebSocket frames size
@@ -144,6 +146,8 @@ fun httpServerOptionsOf(
   logActivity: Boolean? = null,
   maxChunkSize: Int? = null,
   maxFormAttributeSize: Int? = null,
+  maxFormBufferedBytes: Int? = null,
+  maxFormFields: Int? = null,
   maxHeaderSize: Int? = null,
   maxInitialLineLength: Int? = null,
   maxWebSocketFrameSize: Int? = null,
@@ -283,6 +287,12 @@ fun httpServerOptionsOf(
   }
   if (maxFormAttributeSize != null) {
     this.setMaxFormAttributeSize(maxFormAttributeSize)
+  }
+  if (maxFormBufferedBytes != null) {
+    this.setMaxFormBufferedBytes(maxFormBufferedBytes)
+  }
+  if (maxFormFields != null) {
+    this.setMaxFormFields(maxFormFields)
   }
   if (maxHeaderSize != null) {
     this.setMaxHeaderSize(maxHeaderSize)
