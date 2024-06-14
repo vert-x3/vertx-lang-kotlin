@@ -13,18 +13,18 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.auth
+package io.vertx.kotlin.ext.auth.jose
 
-import io.vertx.ext.auth.KeyStoreOptions
+import io.vertx.ext.auth.jose.KeyStoreOptions
 
 /**
- * A function providing a DSL for building [io.vertx.ext.auth.KeyStoreOptions] objects.
+ * A function providing a DSL for building [io.vertx.ext.auth.jose.KeyStoreOptions] objects.
  *
  * Options describing how an JWT KeyStore should behave.
  * This is an extended version core's [io.vertx.core.net.KeyStoreOptions].
  * <p>
  * This extension sets the default type to the runtime keystore type (for compatibility, reasons)
- * plus it allows the configuration of password per key using [io.vertx.ext.auth.KeyStoreOptions].
+ * plus it allows the configuration of password per key using [io.vertx.ext.auth.jose.KeyStoreOptions].
  *
  * @param type 
  * @param provider 
@@ -33,14 +33,14 @@ import io.vertx.ext.auth.KeyStoreOptions
  * @param passwordProtection 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.KeyStoreOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jose.KeyStoreOptions original] using Vert.x codegen.
  */
 fun keyStoreOptionsOf(
   type: String? = null,
   provider: String? = null,
   password: String? = null,
   path: String? = null,
-  passwordProtection: Map<String, String>? = null): KeyStoreOptions = io.vertx.ext.auth.KeyStoreOptions().apply {
+  passwordProtection: Map<String, String>? = null): KeyStoreOptions = io.vertx.ext.auth.jose.KeyStoreOptions().apply {
 
   if (type != null) {
     this.setType(type)

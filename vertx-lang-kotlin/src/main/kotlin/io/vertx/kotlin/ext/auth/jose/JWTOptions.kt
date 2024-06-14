@@ -13,9 +13,9 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.auth
+package io.vertx.kotlin.ext.auth.jose
 
-import io.vertx.ext.auth.JWTOptions
+import io.vertx.ext.auth.jose.JWTOptions
 
 fun jwtOptionsOf(
   leeway: Int? = null,
@@ -29,7 +29,7 @@ fun jwtOptionsOf(
   audiences: Iterable<String>? = null,
   issuer: String? = null,
   subject: String? = null,
-  nonceAlgorithm: String? = null): JWTOptions = io.vertx.ext.auth.JWTOptions().apply {
+  nonceAlgorithm: String? = null): JWTOptions = io.vertx.ext.auth.jose.JWTOptions().apply {
 
   if (leeway != null) {
     this.setLeeway(leeway)

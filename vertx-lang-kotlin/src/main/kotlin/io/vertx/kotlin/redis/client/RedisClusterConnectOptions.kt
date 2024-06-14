@@ -25,10 +25,10 @@ fun redisClusterConnectOptionsOf(
   preferredProtocolVersion: ProtocolVersion? = null,
   password: String? = null,
   endpoints: Iterable<String>? = null,
-  connectionStrings: Iterable<String>? = null,
   maxWaitingHandlers: Int? = null,
   useReplicas: RedisReplicas? = null,
   hashSlotCacheTTL: Long? = null,
+  connectionStrings: Iterable<String>? = null,
   connectionString: String? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
 
   if (maxNestedArrays != null) {
@@ -46,11 +46,6 @@ fun redisClusterConnectOptionsOf(
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
   }
-  if (connectionStrings != null) {
-    for (item in connectionStrings) {
-      this.addConnectionString(item)
-    }
-  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
@@ -59,6 +54,11 @@ fun redisClusterConnectOptionsOf(
   }
   if (hashSlotCacheTTL != null) {
     this.setHashSlotCacheTTL(hashSlotCacheTTL)
+  }
+  if (connectionStrings != null) {
+    for (item in connectionStrings) {
+      this.addConnectionString(item)
+    }
   }
   if (connectionString != null) {
     this.setConnectionString(connectionString)

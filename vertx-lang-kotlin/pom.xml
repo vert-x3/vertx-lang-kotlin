@@ -588,25 +588,25 @@
           <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
-            <version>1.0.0</version>
+            <version>1.13.0</version>
             <optional>true</optional>
           </dependency>
           <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-influx</artifactId>
-            <version>1.0.0</version>
+            <version>1.13.0</version>
             <optional>true</optional>
           </dependency>
           <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-jmx</artifactId>
-            <version>1.0.0</version>
+            <version>1.13.0</version>
             <optional>true</optional>
           </dependency>
           <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-graphite</artifactId>
-            <version>1.0.0</version>
+            <version>1.13.0</version>
             <optional>true</optional>
           </dependency>
         </dependencies>

@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
  * @param outboundGlobalBandwidth  Set bandwidth limit in bytes per second for outbound connections
  * @param maxDelayToWait  Set the maximum delay to wait in case of traffic excess
  * @param maxDelayToWaitUnit  Set the maximum delay to wait time unit
- * @param checkIntervalForStats  Set the delay between two computations of performances for channels or 0 if no stats are to be computed
+ * @param checkIntervalForStats  Set the delay between two computations of performances for channels
  * @param checkIntervalForStatsTimeUnit  Set time unit for check interval for stats.
  * @param peakOutboundGlobalBandwidth  Set the maximum global write size in bytes per second allowed in the buffer globally for all channels before write suspended is set. Default value is 400 MB
  *

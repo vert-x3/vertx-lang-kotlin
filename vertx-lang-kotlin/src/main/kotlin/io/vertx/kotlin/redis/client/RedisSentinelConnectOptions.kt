@@ -25,10 +25,10 @@ fun redisSentinelConnectOptionsOf(
   preferredProtocolVersion: ProtocolVersion? = null,
   password: String? = null,
   endpoints: Iterable<String>? = null,
-  connectionStrings: Iterable<String>? = null,
   maxWaitingHandlers: Int? = null,
   role: RedisRole? = null,
   masterName: String? = null,
+  connectionStrings: Iterable<String>? = null,
   connectionString: String? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
 
   if (maxNestedArrays != null) {
@@ -46,11 +46,6 @@ fun redisSentinelConnectOptionsOf(
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
   }
-  if (connectionStrings != null) {
-    for (item in connectionStrings) {
-      this.addConnectionString(item)
-    }
-  }
   if (maxWaitingHandlers != null) {
     this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
@@ -59,6 +54,11 @@ fun redisSentinelConnectOptionsOf(
   }
   if (masterName != null) {
     this.setMasterName(masterName)
+  }
+  if (connectionStrings != null) {
+    for (item in connectionStrings) {
+      this.addConnectionString(item)
+    }
   }
   if (connectionString != null) {
     this.setConnectionString(connectionString)

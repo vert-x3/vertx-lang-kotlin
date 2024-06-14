@@ -17,8 +17,8 @@ package io.vertx.kotlin.ext.auth.oauth2
 
 import io.vertx.ext.auth.oauth2.OAuth2Options
 import io.vertx.core.http.HttpClientOptions
-import io.vertx.ext.auth.JWTOptions
-import io.vertx.ext.auth.PubSecKeyOptions
+import io.vertx.ext.auth.jose.JWTOptions
+import io.vertx.ext.auth.jose.PubSecKeyOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.oauth2.OAuth2Options] objects.
@@ -67,7 +67,7 @@ fun oAuth2OptionsOf(
   clientAssertion: String? = null,
   userAgent: String? = null,
   headers: io.vertx.core.json.JsonObject? = null,
-  pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
+  pubSecKeys: Iterable<io.vertx.ext.auth.jose.PubSecKeyOptions>? = null,
   logoutPath: String? = null,
   userInfoPath: String? = null,
   scopeSeparator: String? = null,
@@ -75,7 +75,7 @@ fun oAuth2OptionsOf(
   introspectionPath: String? = null,
   userInfoParameters: io.vertx.core.json.JsonObject? = null,
   jwkPath: String? = null,
-  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
+  jwtOptions: io.vertx.ext.auth.jose.JWTOptions? = null,
   validateIssuer: Boolean? = null,
   tenant: String? = null,
   supportedGrantTypes: Iterable<String>? = null,

@@ -24,8 +24,8 @@ fun redisStandaloneConnectOptionsOf(
   preferredProtocolVersion: ProtocolVersion? = null,
   password: String? = null,
   endpoints: Iterable<String>? = null,
-  connectionStrings: Iterable<String>? = null,
   maxWaitingHandlers: Int? = null,
+  connectionStrings: Iterable<String>? = null,
   connectionString: String? = null): RedisStandaloneConnectOptions = io.vertx.redis.client.RedisStandaloneConnectOptions().apply {
 
   if (maxNestedArrays != null) {
@@ -43,13 +43,13 @@ fun redisStandaloneConnectOptionsOf(
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
   }
+  if (maxWaitingHandlers != null) {
+    this.setMaxWaitingHandlers(maxWaitingHandlers)
+  }
   if (connectionStrings != null) {
     for (item in connectionStrings) {
       this.addConnectionString(item)
     }
-  }
-  if (maxWaitingHandlers != null) {
-    this.setMaxWaitingHandlers(maxWaitingHandlers)
   }
   if (connectionString != null) {
     this.setConnectionString(connectionString)

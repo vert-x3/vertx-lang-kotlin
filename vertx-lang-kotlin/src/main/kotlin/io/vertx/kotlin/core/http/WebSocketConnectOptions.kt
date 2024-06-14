@@ -32,12 +32,13 @@ import io.vertx.core.net.ProxyOptions
  * @param port  Set the port to be used by the client request.
  * @param ssl  Set whether SSL/TLS is enabled.
  * @param sslOptions  Set the SSL options to use. <p> When none is provided, the client SSL options will be used instead.
+ * @param connectTimeout  Sets the amount of time after which, if the request is not obtained from the client within the timeout period, the <code>Future<HttpClientRequest></code> obtained from the client is failed with a [java.util.concurrent.TimeoutException]. Note this is not related to the TCP [io.vertx.core.http.HttpClientOptions] option, when a request is made against a pooled HTTP client, the timeout applies to the duration to obtain a connection from the pool to serve the request, the timeout might fire because the server does not respond in time or the pool is too busy to serve a request.
  * @param uri  Set the request relative URI.
  * @param followRedirects  Set whether to follow HTTP redirect
  * @param timeout  Sets the amount of time after which if the WebSocket handshake does not happen within the timeout period an  will be passed to the exception handler and the connection will be closed.
- * @param connectTimeout  Sets the amount of time after which, if the request is not obtained from the client within the timeout period, the <code>Future<HttpClientRequest></code> obtained from the client is failed with a [java.util.concurrent.TimeoutException]. Note this is not related to the TCP [io.vertx.core.http.HttpClientOptions] option, when a request is made against a pooled HTTP client, the timeout applies to the duration to obtain a connection from the pool to serve the request, the timeout might fire because the server does not respond in time or the pool is too busy to serve a request.
  * @param idleTimeout  Sets the amount of time after which, if the request does not return any data within the timeout period, the request/response is closed and the related futures are failed with a [java.util.concurrent.TimeoutException], e.g. <code>Future<HttpClientResponse></code> or <code>Future<Buffer></code> response body. <p/>The timeout starts after a connection is obtained from the client, similar to calling [io.vertx.core.http.HttpClientRequest].
  * @param traceOperation  Override the operation the tracer use for this request. When no operation is set, the HTTP method is used instead.
+ * @param routingKey  Set the routing key, the routing key can be used by a Vert.x client side sticky load balancer to pin the request to a remote HTTP server.
  * @param version  Set the WebSocket version.
  * @param subProtocols  Set the WebSocket sub protocols to use.
  * @param proxyOptions  Override the [io.vertx.core.http.HttpClientOptions] proxy options for connections.
@@ -56,12 +57,13 @@ fun webSocketConnectOptionsOf(
   port: Int? = null,
   ssl: Boolean? = null,
   sslOptions: io.vertx.core.net.ClientSSLOptions? = null,
+  connectTimeout: Long? = null,
   uri: String? = null,
   followRedirects: Boolean? = null,
   timeout: Long? = null,
-  connectTimeout: Long? = null,
   idleTimeout: Long? = null,
   traceOperation: String? = null,
+  routingKey: String? = null,
   version: WebsocketVersion? = null,
   subProtocols: Iterable<String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
@@ -86,6 +88,9 @@ fun webSocketConnectOptionsOf(
   if (sslOptions != null) {
     this.setSslOptions(sslOptions)
   }
+  if (connectTimeout != null) {
+    this.setConnectTimeout(connectTimeout)
+  }
   if (uri != null) {
     this.setURI(uri)
   }
@@ -95,14 +100,14 @@ fun webSocketConnectOptionsOf(
   if (timeout != null) {
     this.setTimeout(timeout)
   }
-  if (connectTimeout != null) {
-    this.setConnectTimeout(connectTimeout)
-  }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)
   }
   if (traceOperation != null) {
     this.setTraceOperation(traceOperation)
+  }
+  if (routingKey != null) {
+    this.setRoutingKey(routingKey)
   }
   if (version != null) {
     this.setVersion(version)

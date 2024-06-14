@@ -17,10 +17,10 @@ package io.vertx.kotlin.jdbcclient
 
 import io.vertx.jdbcclient.JDBCConnectOptions
 import io.vertx.core.tracing.TracingPolicy
-import io.vertx.ext.sql.FetchDirection
-import io.vertx.ext.sql.ResultSetConcurrency
-import io.vertx.ext.sql.ResultSetType
-import io.vertx.ext.sql.TransactionIsolation
+import io.vertx.jdbcclient.FetchDirection
+import io.vertx.jdbcclient.ResultSetConcurrency
+import io.vertx.jdbcclient.ResultSetType
+import io.vertx.jdbcclient.TransactionIsolation
 
 fun jdbcConnectOptionsOf(
   readOnly: Boolean? = null,
@@ -43,7 +43,8 @@ fun jdbcConnectOptionsOf(
   database: String? = null,
   connectTimeout: Int? = null,
   idleTimeout: Int? = null,
-  tracingPolicy: TracingPolicy? = null): JDBCConnectOptions = io.vertx.jdbcclient.JDBCConnectOptions().apply {
+  tracingPolicy: TracingPolicy? = null,
+  extraConfig: io.vertx.core.json.JsonObject? = null): JDBCConnectOptions = io.vertx.jdbcclient.JDBCConnectOptions().apply {
 
   if (readOnly != null) {
     this.setReadOnly(readOnly)
@@ -107,6 +108,9 @@ fun jdbcConnectOptionsOf(
   }
   if (tracingPolicy != null) {
     this.setTracingPolicy(tracingPolicy)
+  }
+  if (extraConfig != null) {
+    this.setExtraConfig(extraConfig)
   }
 }
 

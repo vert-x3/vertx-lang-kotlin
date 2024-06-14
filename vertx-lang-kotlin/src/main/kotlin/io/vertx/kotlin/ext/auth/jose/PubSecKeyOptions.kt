@@ -13,13 +13,13 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.vertx.kotlin.ext.auth
+package io.vertx.kotlin.ext.auth.jose
 
-import io.vertx.ext.auth.PubSecKeyOptions
+import io.vertx.ext.auth.jose.PubSecKeyOptions
 import io.vertx.core.buffer.Buffer
 
 /**
- * A function providing a DSL for building [io.vertx.ext.auth.PubSecKeyOptions] objects.
+ * A function providing a DSL for building [io.vertx.ext.auth.jose.PubSecKeyOptions] objects.
  *
  * Options describing Key stored in PEM format.
  *
@@ -28,12 +28,12 @@ import io.vertx.core.buffer.Buffer
  * @param id 
  *
  * <p/>
- * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.PubSecKeyOptions original] using Vert.x codegen.
+ * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jose.PubSecKeyOptions original] using Vert.x codegen.
  */
 fun pubSecKeyOptionsOf(
   algorithm: String? = null,
   buffer: io.vertx.core.buffer.Buffer? = null,
-  id: String? = null): PubSecKeyOptions = io.vertx.ext.auth.PubSecKeyOptions().apply {
+  id: String? = null): PubSecKeyOptions = io.vertx.ext.auth.jose.PubSecKeyOptions().apply {
 
   if (algorithm != null) {
     this.setAlgorithm(algorithm)

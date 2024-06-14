@@ -80,6 +80,8 @@ import java.util.concurrent.TimeUnit
  * @param maxInitialLineLength  Set the maximum length of the initial line for HTTP/1.x (e.g. <code>"GET / HTTP/1.0"</code>)
  * @param maxHeaderSize  Set the maximum length of all headers for HTTP/1.x .
  * @param maxFormAttributeSize  Set the maximum size of a form attribute. Set to <code>-1</code> to allow unlimited length
+ * @param maxFormFields  Set the maximum number of fields of a form. Set to <code>-1</code> to allow unlimited number of attributes
+ * @param maxFormBufferedBytes  Set the maximum number of bytes a server can buffer when decoding a form. Set to <code>-1</code> to allow unlimited length
  * @param initialSettings  Set the HTTP/2 connection settings immediatly sent by the server when a client connects.
  * @param alpnVersions  Set the list of protocol versions to provide to the server during the Application-Layer Protocol Negotiatiation.
  * @param http2ClearTextEnabled  Set whether HTTP/2 over clear text is enabled or disabled, default is enabled.
@@ -153,6 +155,8 @@ fun httpServerOptionsOf(
   maxInitialLineLength: Int? = null,
   maxHeaderSize: Int? = null,
   maxFormAttributeSize: Int? = null,
+  maxFormFields: Int? = null,
+  maxFormBufferedBytes: Int? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
   alpnVersions: Iterable<HttpVersion>? = null,
   http2ClearTextEnabled: Boolean? = null,
@@ -327,6 +331,12 @@ fun httpServerOptionsOf(
   }
   if (maxFormAttributeSize != null) {
     this.setMaxFormAttributeSize(maxFormAttributeSize)
+  }
+  if (maxFormFields != null) {
+    this.setMaxFormFields(maxFormFields)
+  }
+  if (maxFormBufferedBytes != null) {
+    this.setMaxFormBufferedBytes(maxFormBufferedBytes)
   }
   if (initialSettings != null) {
     this.setInitialSettings(initialSettings)

@@ -16,9 +16,9 @@
 package io.vertx.kotlin.ext.auth.jwt
 
 import io.vertx.ext.auth.jwt.JWTAuthOptions
-import io.vertx.ext.auth.JWTOptions
-import io.vertx.ext.auth.KeyStoreOptions
-import io.vertx.ext.auth.PubSecKeyOptions
+import io.vertx.ext.auth.jose.JWTOptions
+import io.vertx.ext.auth.jose.KeyStoreOptions
+import io.vertx.ext.auth.jose.PubSecKeyOptions
 
 /**
  * A function providing a DSL for building [io.vertx.ext.auth.jwt.JWTAuthOptions] objects.
@@ -34,9 +34,9 @@ import io.vertx.ext.auth.PubSecKeyOptions
  * NOTE: This function has been automatically generated from the [io.vertx.ext.auth.jwt.JWTAuthOptions original] using Vert.x codegen.
  */
 fun jwtAuthOptionsOf(
-  keyStore: io.vertx.ext.auth.KeyStoreOptions? = null,
-  pubSecKeys: Iterable<io.vertx.ext.auth.PubSecKeyOptions>? = null,
-  jwtOptions: io.vertx.ext.auth.JWTOptions? = null,
+  keyStore: io.vertx.ext.auth.jose.KeyStoreOptions? = null,
+  pubSecKeys: Iterable<io.vertx.ext.auth.jose.PubSecKeyOptions>? = null,
+  jwtOptions: io.vertx.ext.auth.jose.JWTOptions? = null,
   jwks: Iterable<io.vertx.core.json.JsonObject>? = null): JWTAuthOptions = io.vertx.ext.auth.jwt.JWTAuthOptions().apply {
 
   if (keyStore != null) {
