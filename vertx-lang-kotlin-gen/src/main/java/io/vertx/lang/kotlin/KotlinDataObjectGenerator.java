@@ -15,17 +15,17 @@
  */
 package io.vertx.lang.kotlin;
 
-import io.vertx.codegen.DataObjectModel;
-import io.vertx.codegen.PropertyInfo;
-import io.vertx.codegen.PropertyKind;
+import io.vertx.codegen.processor.DataObjectModel;
+import io.vertx.codegen.processor.PropertyInfo;
+import io.vertx.codegen.processor.PropertyKind;
 import io.vertx.codegen.annotations.DataObject;
 import io.vertx.codegen.annotations.ModuleGen;
-import io.vertx.codegen.doc.Doc;
-import io.vertx.codegen.doc.Token;
+import io.vertx.codegen.processor.doc.Doc;
+import io.vertx.codegen.processor.doc.Token;
 import io.vertx.codegen.format.LowerCamelCase;
-import io.vertx.codegen.type.ClassKind;
-import io.vertx.codegen.type.TypeInfo;
-import io.vertx.codegen.writer.CodeWriter;
+import io.vertx.codegen.processor.type.ClassKind;
+import io.vertx.codegen.processor.type.TypeInfo;
+import io.vertx.codegen.processor.writer.CodeWriter;
 import io.vertx.lang.kotlin.helper.KotlinCodeGenHelper;
 
 import java.io.StringWriter;
@@ -34,7 +34,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static io.vertx.codegen.type.ClassKind.*;
+import static io.vertx.codegen.processor.type.ClassKind.*;
 import static io.vertx.lang.kotlin.helper.KotlinCodeGenHelper.LICENSE;
 
 public class KotlinDataObjectGenerator extends KotlinGeneratorBase<DataObjectModel> {
