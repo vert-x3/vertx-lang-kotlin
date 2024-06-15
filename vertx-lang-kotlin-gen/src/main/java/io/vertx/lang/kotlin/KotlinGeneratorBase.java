@@ -15,8 +15,8 @@
  */
 package io.vertx.lang.kotlin;
 
-import io.vertx.codegen.Generator;
-import io.vertx.codegen.Model;
+import io.vertx.codegen.processor.Generator;
+import io.vertx.codegen.processor.Model;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import java.io.File;

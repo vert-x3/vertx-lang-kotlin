@@ -15,9 +15,9 @@
  */
 package io.vertx.lang.kotlin.helper;
 
-import io.vertx.codegen.doc.Tag;
-import io.vertx.codegen.type.ClassKind;
-import io.vertx.codegen.type.ClassTypeInfo;
+import io.vertx.codegen.processor.doc.Tag;
+import io.vertx.codegen.processor.type.ClassKind;
+import io.vertx.codegen.processor.type.ClassTypeInfo;
 
 public class KotlinCodeGenHelper {
   public static String renderLinkToHtml(Tag.Link link) {
