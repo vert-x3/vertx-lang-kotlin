@@ -20,7 +20,7 @@ import io.vertx.core.http.HttpClient
 import io.vertx.core.http.HttpClientOptions
 import io.vertx.core.http.HttpClientResponse
 import io.vertx.core.http.HttpMethod.GET
-import io.vertx.core.impl.ContextInternal
+import io.vertx.core.internal.ContextInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import io.vertx.ext.web.Router

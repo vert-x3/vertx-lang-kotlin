@@ -15,7 +15,7 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.impl.VertxInternal
+import io.vertx.core.internal.VertxInternal
 import io.vertx.ext.web.Route
 import io.vertx.ext.web.Router
 import io.vertx.ext.web.RoutingContext

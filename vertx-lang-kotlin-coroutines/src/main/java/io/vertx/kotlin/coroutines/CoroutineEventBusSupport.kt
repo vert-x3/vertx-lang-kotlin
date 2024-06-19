@@ -19,7 +19,7 @@ import io.vertx.core.eventbus.EventBus
 import io.vertx.core.eventbus.Message
 import io.vertx.core.eventbus.MessageConsumer
 import io.vertx.core.eventbus.ReplyFailure.RECIPIENT_FAILURE
-import io.vertx.core.impl.ContextInternal
+import io.vertx.core.internal.ContextInternal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext

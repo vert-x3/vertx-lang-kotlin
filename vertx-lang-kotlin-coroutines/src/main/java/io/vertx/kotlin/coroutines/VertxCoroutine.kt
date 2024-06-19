@@ -19,7 +19,7 @@ package io.vertx.kotlin.coroutines
 
 import io.vertx.core.*
 import io.vertx.core.Future
-import io.vertx.core.impl.ContextInternal
+import io.vertx.core.internal.ContextInternal
 import kotlinx.coroutines.*
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicReference

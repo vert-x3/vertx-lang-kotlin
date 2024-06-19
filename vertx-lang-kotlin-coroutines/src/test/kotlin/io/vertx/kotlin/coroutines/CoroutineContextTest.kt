@@ -19,8 +19,8 @@ import io.vertx.core.Context
 import io.vertx.core.DeploymentOptions
 import io.vertx.core.ThreadingModel
 import io.vertx.core.Vertx
-import io.vertx.core.impl.ContextInternal
-import io.vertx.core.impl.VertxInternal
+import io.vertx.core.internal.ContextInternal
+import io.vertx.core.internal.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
 import kotlinx.coroutines.*
