@@ -64,6 +64,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-http-proxy</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-auth-common</artifactId>
       <optional>true</optional>
     </dependency>
@@ -186,6 +191,11 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web-openapi-router</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web-proxy</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -415,6 +425,7 @@
             vertx-mongo-client,
             vertx-cassandra-client,
             vertx-jdbc-client,
+            vertx-http-proxy,
             vertx-auth-common,
             vertx-auth-htdigest,
             vertx-auth-htpasswd,
@@ -439,6 +450,7 @@
             vertx-web-graphql,
             vertx-web-validation,
             vertx-web-openapi-router,
+            vertx-web-proxy,
             vertx-circuit-breaker,
             vertx-dropwizard-metrics,
             vertx-redis-client,
