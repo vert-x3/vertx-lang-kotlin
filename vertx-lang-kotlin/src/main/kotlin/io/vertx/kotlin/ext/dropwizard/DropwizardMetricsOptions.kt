@@ -29,7 +29,7 @@ import io.vertx.ext.dropwizard.Match
  * @param factory  Programmatically set the metrics factory to be used when metrics are enabled. <p> Only valid if  = true. <p> Normally Vert.x will look on the classpath for a metrics factory implementation, but if you want to set one programmatically you can use this method.
  * @param jmxDomain  Set the JMX domain to use when JMX metrics are enabled.
  * @param jmxEnabled  Set whether JMX will be enabled on the Vert.x instance.
- * @param metricRegistry  Set the optional metric registry used instead of the Dropwizard shared registry.
+ * @param metricRegistry  Deprecated, instead use a [io.vertx.core.VertxBuilder] setting an instance build using [io.vertx.ext.dropwizard.DropwizardVertxMetricsFactory].
  * @param monitoredEventBusHandlers  Add a monitored event bus handler.
  * @param monitoredHttpClientEndpoints  Add an monitored http client endpoint.
  * @param monitoredHttpClientUris  Add an monitored http client uri.

@@ -20,6 +20,7 @@ import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisRole
 
 fun redisSentinelConnectOptionsOf(
+  autoFailover: Boolean? = null,
   connectionString: String? = null,
   connectionStrings: Iterable<String>? = null,
   endpoints: Iterable<String>? = null,
@@ -31,6 +32,9 @@ fun redisSentinelConnectOptionsOf(
   protocolNegotiation: Boolean? = null,
   role: RedisRole? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
 
+  if (autoFailover != null) {
+    this.setAutoFailover(autoFailover)
+  }
   if (connectionString != null) {
     this.setConnectionString(connectionString)
   }

@@ -15,7 +15,7 @@
       
     <artifactId>vertx-lang-kotlin-parent</artifactId>
       
-    <version>4.5.10</version>
+    <version>4.5.11-SNAPSHOT</version>
       
     <packaging>pom</packaging>
       
@@ -39,7 +39,7 @@
             
         <junit.version>4.13.2</junit.version>
             
-        <stack.version>4.5.10</stack.version>
+        <stack.version>4.5.11-SNAPSHOT</stack.version>
           
     </properties>
       
