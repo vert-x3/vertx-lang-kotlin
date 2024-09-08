@@ -379,8 +379,28 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <version>4.13.1</version>
+      <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-influx</artifactId>
+      <version>1.13.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+      <version>1.13.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-jmx</artifactId>
+      <version>1.13.0</version>
+      <optional>true</optional>
+    </dependency>
+
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test-junit</artifactId>
@@ -505,136 +525,33 @@
       </plugin>
 
       <plugin>
-        <groupId>org.bsc.maven</groupId>
-        <artifactId>maven-processor-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-          <systemProperties>
-            <java.util.logging.SimpleFormatter.format>%4$s: %3$s - %5$s %6$s%n</java.util.logging.SimpleFormatter.format>
-            <mvel2.disable.jit>true</mvel2.disable.jit>
-          </systemProperties>
-        </configuration>
-        <executions>
-          <!-- Run the annotation processor on java sources and generate the API -->
-          <execution>
-            <id>generate-api</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>generate-sources</phase>
-            <configuration>
-              <sourceDirectory>${project.build.directory}/sources/java</sourceDirectory>
-              <processors>
-                <processor>io.vertx.codegen.CodeGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <codegen.output>${project.basedir}/src/main</codegen.output>
-              </optionMap>
-              <excludes>
-                <exclude>examples/**/*.java</exclude>
-              </excludes>
-            </configuration>
-          </execution>
-
-          <!-- Run the annotation processor on asciidoc sources and generate the docs -->
-          <execution>
-            <id>generate-doc</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>generate-sources</phase>
-            <configuration>
-              <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-              <processors>
-                <processor>io.vertx.docgen.JavaDocGenProcessor</processor>
-              </processors>
-              <optionMap>
-                <docgen.source>${project.basedir}/src/main/asciidoc</docgen.source>
-                <docgen.output>${project.build.directory}/asciidoc</docgen.output>
-                <maven.groupId>${project.groupId}</maven.groupId>
-                <maven.artifactId>${project.artifactId}</maven.artifactId>
-                <maven.version>${project.version}</maven.version>
-              </optionMap>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>2.4.7</version>
-          </dependency>
-          <dependency>
-            <groupId>com.netflix.hystrix</groupId>
-            <artifactId>hystrix-core</artifactId>
-            <version>1.5.2</version>
-            <exclusions>
-              <exclusion>
-                <groupId>io.reactivex</groupId>
-                <artifactId>rxjava</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-          <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j2.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j2.version}</version>
-          </dependency>
-
-          <!-- Transitive dependencies declared as optional in other modules, and needed for instance in docgen -->
-          <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <version>1.13.0</version>
-            <optional>true</optional>
-          </dependency>
-          <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-influx</artifactId>
-            <version>1.13.0</version>
-            <optional>true</optional>
-          </dependency>
-          <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-jmx</artifactId>
-            <version>1.13.0</version>
-            <optional>true</optional>
-          </dependency>
-          <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-graphite</artifactId>
-            <version>1.13.0</version>
-            <optional>true</optional>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-      <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
         <configuration>
-          <jvmTarget>1.8</jvmTarget>
+          <jvmTarget>11</jvmTarget>
         </configuration>
         <executions>
           <execution>
+            <id>default-kapt</id>
+            <goals>
+              <goal>kapt</goal>
+            </goals>
+            <configuration>
+              <annotationProcessors>
+                <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+              </annotationProcessors>
+              <annotationProcessorArgs>
+                <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
+              </annotationProcessorArgs>
+              <sourceDirs>
+                <sourceDir>${project.build.directory}/sources/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-compile</id>
             <configuration>
               <sourceDirs>
-                <sourceDir>${basedir}/src/main/kotlin</sourceDir>
                 <sourceDir>${basedir}/src/main/java</sourceDir>
               </sourceDirs>
             </configuration>
@@ -643,7 +560,7 @@
             </goals>
           </execution>
           <execution>
-            <id>test-compile</id>
+            <id>default-test-compile</id>
             <goals>
               <goal>test-compile</goal>
             </goals>
@@ -656,66 +573,6 @@
           </execution>
         </executions>
       </plugin>
-
-      <!--
-      <plugin>
-        <groupId>org.jetbrains.dokka</groupId>
-        <artifactId>dokka-maven-plugin</artifactId>
-        <version>0.9.18</version>
-        <configuration>
-          <moduleName>vertx</moduleName>
-          <sourceDirectories>
-            <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-            <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-          </sourceDirectories>
-          <jdkVersion>8</jdkVersion>
-          <outputFormat>html</outputFormat>
-          <outputDir>${project.build.directory}/kdoc</outputDir>
-          <skipDeprecated>true</skipDeprecated>
-          <skipEmptyPackages>true</skipEmptyPackages>
-          <impliedPlatforms>
-            <platform>JVM</platform>
-          </impliedPlatforms>
-          <includes>
-            <file>kotlin.md</file>
-          </includes>
-          <externalDocumentationLinks>
-            <link>
-              <url>http://docs.hazelcast.org/docs/3.5/javadoc/</url>
-            </link>
-            <link>
-              <url>http://reactivex.io/RxJava/1.x/javadoc/</url>
-            </link>
-            <link>
-              <url>http://reactivex.io/RxJava/javadoc/</url>
-            </link>
-            <link>
-              <url>http://netty.io/4.1/api/</url>
-            </link>
-            <link>
-              <url>http://fasterxml.github.com/jackson-annotations/javadoc/2.9/</url>
-            </link>
-            <link>
-              <url>http://fasterxml.github.io/jackson-core/javadoc/2.9/</url>
-            </link>
-            <link>
-              <url>http://fasterxml.github.io/jackson-databind/javadoc/2.9/</url>
-            </link>
-            <link>
-              <url>http://www.grpc.io/grpc-java/javadoc/</url>
-            </link>
-          </externalDocumentationLinks>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>dokka</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      -->
 
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -739,38 +596,9 @@
           <!-- Package docs -->
           <execution>
             <id>package-docs</id>
-            <phase>package</phase>
             <goals>
               <goal>single</goal>
             </goals>
-            <configuration>
-              <attach>true</attach>
-              <formats>
-                <format>zip</format>
-              </formats>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-          <!-- Assemble docs so they can be rendered to HTML for previewing with the asciidoctor plugin -->
-          <execution>
-            <id>assemble-docs</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <formats>
-                <format>dir</format>
-              </formats>
-              <finalName>docs</finalName>
-              <appendAssemblyId>false</appendAssemblyId>
-              <descriptors>
-                <descriptor>${project.basedir}/src/main/assembly/docs.xml</descriptor>
-              </descriptors>
-            </configuration>
           </execution>
 
           <!-- Make Nexus happy -->
@@ -785,22 +613,6 @@
               <descriptors>
                 <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
               </descriptors>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>default-clean</id>
-            <configuration>
-              <filesets>
-                <fileset>
-                  <directory>${project.basedir}/src/main/kotlin</directory>
-                </fileset>
-              </filesets>
             </configuration>
           </execution>
         </executions>
@@ -829,97 +641,6 @@
           </execution>
         </executions>
       </plugin>
-
-      <!-- Run it to preview docs : mvn asciidoctor:process-asciidoc -->
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <configuration>
-          <attributes>
-            <toc>left</toc>
-          </attributes>
-          <sourceDirectory>${project.build.directory}/docs</sourceDirectory>
-          <outputDirectory>${project.build.directory}/html</outputDirectory>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>repo</id>
-      <activation>
-        <property>
-          <name>!skipRepo</name>
-        </property>
-      </activation>
-      <pluginRepositories>
-        <pluginRepository>
-          <id>jcenter</id>
-          <name>JCenter</name>
-          <url>https://jcenter.bintray.com/</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
-
-    <!-- Java 8 => use Maven Toolchain to compile this module with JDK 11
-       The config file .m2/toolchains.xml is needed with this content
-
-       <toolchains>
-         <toolchain>
-           <type>jdk</type>
-           <provides>
-             <id>Java11</id>
-             <version>11</version>
-           </provides>
-           <configuration>
-             <jdkHome>/PATH/TO/JDK/11</jdkHome>
-           </configuration>
-         </toolchain>
-       </toolchains>
-  -->
-    <profile>
-      <id>Java8</id>
-      <activation>
-        <jdk>[1.8,11)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.bsc.maven</groupId>
-            <artifactId>maven-processor-plugin</artifactId>
-            <version>5.0-jdk8-rc3</version>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-toolchains-plugin</artifactId>
-            <version>1.0</version>
-            <executions>
-              <execution>
-                <phase>validate</phase>
-                <goals>
-                  <goal>toolchain</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <toolchains>
-                <jdk>
-                  <version>11</version>
-                </jdk>
-              </toolchains>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <release>8</release>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
 </project>

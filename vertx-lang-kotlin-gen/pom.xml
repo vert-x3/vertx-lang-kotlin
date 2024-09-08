@@ -63,7 +63,7 @@
     <profile>
       <id>generate-something</id>
       <activation>
-        <jdk>[8,16)</jdk>
+        <jdk>[11,16)</jdk>
       </activation>
       <build>
         <plugins>
