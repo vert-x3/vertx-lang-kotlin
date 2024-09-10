@@ -38,12 +38,17 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <scope>provided</scope>
+      <artifactId>vertx-codegen-api</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-docgen</artifactId>
+      <artifactId>vertx-codegen-json</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-docgen-api</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -219,19 +224,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <!-- Run it to preview docs : mvn asciidoctor:process-asciidoc -->
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <configuration>
-          <attributes>
-            <toc>left</toc>
-          </attributes>
-          <sourceDirectory>${project.build.directory}/asciidoc</sourceDirectory>
-          <outputDirectory>${project.build.directory}/html</outputDirectory>
-        </configuration>
       </plugin>
     </plugins>
   </build>

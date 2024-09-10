@@ -28,12 +28,7 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
-      <artifactId>vertx-codegen</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-docgen</artifactId>
+      <artifactId>vertx-docgen-api</artifactId>
       <optional>true</optional>
     </dependency>
 
@@ -537,9 +532,14 @@
               <goal>kapt</goal>
             </goals>
             <configuration>
-              <annotationProcessors>
-                <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
-              </annotationProcessors>
+              <annotationProcessorPaths>
+                <annotationProcessorPath>
+                  <groupId>io.vertx</groupId>
+                  <artifactId>vertx-codegen</artifactId>
+                  <classifier>processor</classifier>
+                  <version>${project.version}</version>
+                </annotationProcessorPath>
+              </annotationProcessorPaths>
               <annotationProcessorArgs>
                 <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
               </annotationProcessorArgs>
@@ -583,7 +583,7 @@
               <goal>jar</goal>
             </goals>
             <configuration>
-              <source>8</source>
+              <source>11</source>
               <sourcepath>${project.basedir}/src/main/java</sourcepath>
             </configuration>
           </execution>

@@ -21,7 +21,6 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-codegen</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -31,7 +30,6 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-lang-kotlin-coroutines</artifactId>
-      <optional>true</optional>
     </dependency>
 
     <dependency>
@@ -90,9 +88,14 @@
                   <goal>test-kapt</goal>
                 </goals>
                 <configuration>
-                  <annotationProcessors>
-                    <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
-                  </annotationProcessors>
+                  <annotationProcessorPaths>
+                    <annotationProcessorPath>
+                      <groupId>io.vertx</groupId>
+                      <artifactId>vertx-codegen</artifactId>
+                      <classifier>processor</classifier>
+                      <version>${project.version}</version>
+                    </annotationProcessorPath>
+                  </annotationProcessorPaths>
                   <annotationProcessorArgs>
                     <processorArg>codegen.generators=Kotlin,KotlinCoroutines</processorArg>
                   </annotationProcessorArgs>

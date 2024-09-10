@@ -8,7 +8,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>${asciidoc.dir}</directory>
+            <directory>${vertx.asciidoc.sources.dir}</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
     </fileSets>
