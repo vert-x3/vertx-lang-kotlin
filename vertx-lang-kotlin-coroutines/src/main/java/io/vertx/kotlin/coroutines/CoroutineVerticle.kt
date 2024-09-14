@@ -15,10 +15,8 @@
  */
 package io.vertx.kotlin.coroutines
 
-import io.vertx.core.Context
-import io.vertx.core.Promise
-import io.vertx.core.Verticle
-import io.vertx.core.Vertx
+import io.vertx.core.*
+import io.vertx.core.internal.ContextInternal
 import io.vertx.core.json.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -46,6 +44,33 @@ abstract class CoroutineVerticle : Verticle, CoroutineScope {
   override fun init(vertx: Vertx, context: Context) {
     this.vertxInstance = vertx
     this.context = context
+  }
+
+  override fun deploy(context: Context): Future<*> {
+    init(context.owner(), context);
+    val internal:ContextInternal = context as ContextInternal;
+    val promise:Promise<Void> = internal.promise();
+    try {
+      start(promise);
+    } catch (t:Throwable) {
+      if (!promise.tryFail(t)) {
+        internal.reportException(t);
+      }
+    }
+    return promise.future();
+  }
+
+  override fun undeploy(context: Context?): Future<*> {
+    val internal = context as ContextInternal
+    val promise: Promise<Void> = internal.promise()
+    try {
+      stop(promise)
+    } catch (t: Throwable) {
+      if (!promise.tryFail(t)) {
+        internal.reportException(t)
+      }
+    }
+    return promise.future()
   }
 
   override fun getVertx(): Vertx = vertxInstance
