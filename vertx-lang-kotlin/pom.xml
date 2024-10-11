@@ -95,6 +95,11 @@
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-webauthn4j</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
       <artifactId>vertx-auth-properties</artifactId>
       <optional>true</optional>
     </dependency>
@@ -447,6 +452,7 @@
             vertx-auth-jwt,
             vertx-auth-oauth2,
             vertx-auth-webauthn,
+            vertx-auth-webauthn4j,
             vertx-auth-properties,
             vertx-auth-ldap,
             vertx-auth-sql-client,
