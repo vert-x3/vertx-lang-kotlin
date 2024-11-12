@@ -16,6 +16,7 @@
 package io.vertx.kotlin.ext.consul
 
 import io.vertx.ext.consul.Service
+import io.vertx.ext.consul.TxnOperationType
 
 /**
  * A function providing a DSL for building [io.vertx.ext.consul.Service] objects.
@@ -23,8 +24,10 @@ import io.vertx.ext.consul.Service
  * Holds properties of service and node that its containing
  *
  * @param address  Set service address
+ * @param createIndex  Set the internal index value that represents when the entry was created.
  * @param id  Set ID of service
  * @param meta  Specifies arbitrary KV metadata linked to the service instance.
+ * @param modifyIndex  Set the last index that modified this key.
  * @param name  Set service name
  * @param node  Set node name
  * @param nodeAddress  Set node address
@@ -36,8 +39,10 @@ import io.vertx.ext.consul.Service
  */
 fun serviceOf(
   address: String? = null,
+  createIndex: Long? = null,
   id: String? = null,
   meta: Map<String, String>? = null,
+  modifyIndex: Long? = null,
   name: String? = null,
   node: String? = null,
   nodeAddress: String? = null,
@@ -47,11 +52,17 @@ fun serviceOf(
   if (address != null) {
     this.setAddress(address)
   }
+  if (createIndex != null) {
+    this.setCreateIndex(createIndex)
+  }
   if (id != null) {
     this.setId(id)
   }
   if (meta != null) {
     this.setMeta(meta)
+  }
+  if (modifyIndex != null) {
+    this.setModifyIndex(modifyIndex)
   }
   if (name != null) {
     this.setName(name)

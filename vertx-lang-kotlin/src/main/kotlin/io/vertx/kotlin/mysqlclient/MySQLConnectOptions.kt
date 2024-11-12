@@ -89,6 +89,9 @@ import java.util.concurrent.TimeUnit
  * @param tcpCork  Enable the <code>TCP_CORK</code> option - only with linux native transport.
  * @param tcpFastOpen  Enable the <code>TCP_FASTOPEN</code> option - only with linux native transport.
  * @param tcpKeepAlive  Set whether TCP keep alive is enabled
+ * @param tcpKeepAliveCount  The maximum number of keepalive probes TCP should send before dropping the connection.
+ * @param tcpKeepAliveIdleSeconds  The time in seconds the connection needs to remain idle before TCP starts sending keepalive probes, if the socket option keepalive has been set.
+ * @param tcpKeepAliveIntervalSeconds  The time in seconds between individual keepalive probes.
  * @param tcpNoDelay  Set whether TCP no delay is enabled
  * @param tcpQuickAck  Enable the <code>TCP_QUICKACK</code> option - only with linux native transport.
  * @param tcpUserTimeout  Sets the <code>TCP_USER_TIMEOUT</code> option - only with linux native transport.
@@ -161,6 +164,9 @@ fun mySQLConnectOptionsOf(
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
+  tcpKeepAliveCount: Int? = null,
+  tcpKeepAliveIdleSeconds: Int? = null,
+  tcpKeepAliveIntervalSeconds: Int? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   tcpUserTimeout: Int? = null,
@@ -344,6 +350,15 @@ fun mySQLConnectOptionsOf(
   }
   if (tcpKeepAlive != null) {
     this.setTcpKeepAlive(tcpKeepAlive)
+  }
+  if (tcpKeepAliveCount != null) {
+    this.setTcpKeepAliveCount(tcpKeepAliveCount)
+  }
+  if (tcpKeepAliveIdleSeconds != null) {
+    this.setTcpKeepAliveIdleSeconds(tcpKeepAliveIdleSeconds)
+  }
+  if (tcpKeepAliveIntervalSeconds != null) {
+    this.setTcpKeepAliveIntervalSeconds(tcpKeepAliveIntervalSeconds)
   }
   if (tcpNoDelay != null) {
     this.setTcpNoDelay(tcpNoDelay)

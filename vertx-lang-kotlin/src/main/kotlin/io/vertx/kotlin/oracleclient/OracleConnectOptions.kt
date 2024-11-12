@@ -80,6 +80,9 @@ fun oracleConnectOptionsOf(
   tcpCork: Boolean? = null,
   tcpFastOpen: Boolean? = null,
   tcpKeepAlive: Boolean? = null,
+  tcpKeepAliveCount: Int? = null,
+  tcpKeepAliveIdleSeconds: Int? = null,
+  tcpKeepAliveIntervalSeconds: Int? = null,
   tcpNoDelay: Boolean? = null,
   tcpQuickAck: Boolean? = null,
   tcpUserTimeout: Int? = null,
@@ -252,6 +255,15 @@ fun oracleConnectOptionsOf(
   }
   if (tcpKeepAlive != null) {
     this.setTcpKeepAlive(tcpKeepAlive)
+  }
+  if (tcpKeepAliveCount != null) {
+    this.setTcpKeepAliveCount(tcpKeepAliveCount)
+  }
+  if (tcpKeepAliveIdleSeconds != null) {
+    this.setTcpKeepAliveIdleSeconds(tcpKeepAliveIdleSeconds)
+  }
+  if (tcpKeepAliveIntervalSeconds != null) {
+    this.setTcpKeepAliveIntervalSeconds(tcpKeepAliveIntervalSeconds)
   }
   if (tcpNoDelay != null) {
     this.setTcpNoDelay(tcpNoDelay)

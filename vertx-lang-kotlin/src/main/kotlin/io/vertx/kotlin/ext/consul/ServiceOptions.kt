@@ -26,8 +26,10 @@ import io.vertx.ext.consul.CheckOptions
  * @param address  Set service address
  * @param checkListOptions  Set checks options of service
  * @param checkOptions  Set check options of service
+ * @param createIndex  Set the internal index value that represents when the entry was created.
  * @param id  Set the ID of session
  * @param meta  Specifies arbitrary KV metadata linked to the service instance.
+ * @param modifyIndex  Set the last index that modified this key.
  * @param name  Set service name
  * @param port  Set service port
  * @param tags  Set list of tags associated with service
@@ -39,8 +41,10 @@ fun serviceOptionsOf(
   address: String? = null,
   checkListOptions: Iterable<io.vertx.ext.consul.CheckOptions>? = null,
   checkOptions: io.vertx.ext.consul.CheckOptions? = null,
+  createIndex: Long? = null,
   id: String? = null,
   meta: Map<String, String>? = null,
+  modifyIndex: Long? = null,
   name: String? = null,
   port: Int? = null,
   tags: Iterable<String>? = null): ServiceOptions = io.vertx.ext.consul.ServiceOptions().apply {
@@ -54,11 +58,17 @@ fun serviceOptionsOf(
   if (checkOptions != null) {
     this.setCheckOptions(checkOptions)
   }
+  if (createIndex != null) {
+    this.setCreateIndex(createIndex)
+  }
   if (id != null) {
     this.setId(id)
   }
   if (meta != null) {
     this.setMeta(meta)
+  }
+  if (modifyIndex != null) {
+    this.setModifyIndex(modifyIndex)
   }
   if (name != null) {
     this.setName(name)

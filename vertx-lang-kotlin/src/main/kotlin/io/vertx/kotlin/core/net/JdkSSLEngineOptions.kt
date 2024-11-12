@@ -22,14 +22,19 @@ import io.vertx.core.net.JdkSSLEngineOptions
  *
  * Configures a [io.vertx.core.net.TCPSSLOptions] to use the JDK ssl engine implementation.
  *
+ * @param pooledHeapBuffers  Set whether to use pooled heap buffers. Default is <code>false</code>, but it is recommended to use pooled buffers
  * @param useWorkerThread  Set the thread pool to use for SSL blocking operations.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.JdkSSLEngineOptions original] using Vert.x codegen.
  */
 fun jdkSSLEngineOptionsOf(
+  pooledHeapBuffers: Boolean? = null,
   useWorkerThread: Boolean? = null): JdkSSLEngineOptions = io.vertx.core.net.JdkSSLEngineOptions().apply {
 
+  if (pooledHeapBuffers != null) {
+    this.setPooledHeapBuffers(pooledHeapBuffers)
+  }
   if (useWorkerThread != null) {
     this.setUseWorkerThread(useWorkerThread)
   }

@@ -15,26 +15,11 @@
  */
 package io.vertx.kotlin.core.http
 
-import io.vertx.core.Future
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.ServerWebSocket
 import io.vertx.core.http.WebSocketFrame
 import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
-
-/**
- * Suspending version of method [io.vertx.core.http.ServerWebSocket.pipeTo]
- *
- * @param dst the destination write stream
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
-suspend fun ServerWebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
-  return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
 
 /**
  * Suspending version of method [io.vertx.core.http.ServerWebSocket.write]
@@ -61,6 +46,20 @@ suspend fun ServerWebSocket.writeAwait(data: Buffer): Unit {
 suspend fun ServerWebSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.http.ServerWebSocket.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+suspend fun ServerWebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
+  return awaitResult {
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
@@ -165,21 +164,6 @@ suspend fun ServerWebSocket.writePingAwait(data: Buffer): Unit {
 suspend fun ServerWebSocket.writePongAwait(data: Buffer): Unit {
   return awaitResult {
     this.writePong(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.core.http.ServerWebSocket.setHandshake]
- *
- * @param future the future to complete with
- * @return [Int]
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.http.ServerWebSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use setHandshake returning a future and chain with await()", replaceWith = ReplaceWith("setHandshake(future).await()"))
-suspend fun ServerWebSocket.setHandshakeAwait(future: Future<Int>): Int {
-  return awaitResult {
-    this.setHandshake(future, it)
   }
 }
 
