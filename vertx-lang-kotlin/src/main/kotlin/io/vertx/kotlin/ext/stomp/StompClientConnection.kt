@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(headers, body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(headers, body).coAwait()"))
 suspend fun StompClientConnection.sendAwait(headers: Map<String,String>, body: Buffer): Frame {
   return awaitResult {
     this.send(headers, body, it)
@@ -45,7 +45,7 @@ suspend fun StompClientConnection.sendAwait(headers: Map<String,String>, body: B
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(destination, body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(destination, body).coAwait()"))
 suspend fun StompClientConnection.sendAwait(destination: String, body: Buffer): Frame {
   return awaitResult {
     this.send(destination, body, it)
@@ -60,7 +60,7 @@ suspend fun StompClientConnection.sendAwait(destination: String, body: Buffer): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(frame).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(frame).coAwait()"))
 suspend fun StompClientConnection.sendAwait(frame: Frame): Frame {
   return awaitResult {
     this.send(frame, it)
@@ -77,7 +77,7 @@ suspend fun StompClientConnection.sendAwait(frame: Frame): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(destination, headers, body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(destination, headers, body).coAwait()"))
 suspend fun StompClientConnection.sendAwait(destination: String, headers: Map<String,String>, body: Buffer): Frame {
   return awaitResult {
     this.send(destination, headers, body, it)
@@ -93,7 +93,7 @@ suspend fun StompClientConnection.sendAwait(destination: String, headers: Map<St
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(destination, handler).await()"))
+@Deprecated(message = "Instead use subscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("subscribe(destination, handler).coAwait()"))
 suspend fun StompClientConnection.subscribeAwait(destination: String, handler: (Frame) -> Unit): String {
   return awaitResult {
     this.subscribe(destination, handler, it::handle)
@@ -110,7 +110,7 @@ suspend fun StompClientConnection.subscribeAwait(destination: String, handler: (
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(destination, headers, handler).await()"))
+@Deprecated(message = "Instead use subscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("subscribe(destination, headers, handler).coAwait()"))
 suspend fun StompClientConnection.subscribeAwait(destination: String, headers: Map<String,String>, handler: (Frame) -> Unit): String {
   return awaitResult {
     this.subscribe(destination, headers, handler, it::handle)
@@ -125,7 +125,7 @@ suspend fun StompClientConnection.subscribeAwait(destination: String, headers: M
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe(destination).await()"))
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("unsubscribe(destination).coAwait()"))
 suspend fun StompClientConnection.unsubscribeAwait(destination: String): Frame {
   return awaitResult {
     this.unsubscribe(destination, it)
@@ -141,7 +141,7 @@ suspend fun StompClientConnection.unsubscribeAwait(destination: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe(destination, headers).await()"))
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("unsubscribe(destination, headers).coAwait()"))
 suspend fun StompClientConnection.unsubscribeAwait(destination: String, headers: Map<String,String>): Frame {
   return awaitResult {
     this.unsubscribe(destination, headers, it)
@@ -156,7 +156,7 @@ suspend fun StompClientConnection.unsubscribeAwait(destination: String, headers:
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use beginTX returning a future and chain with await()", replaceWith = ReplaceWith("beginTX(id).await()"))
+@Deprecated(message = "Instead use beginTX returning a future and chain with coAwait()", replaceWith = ReplaceWith("beginTX(id).coAwait()"))
 suspend fun StompClientConnection.beginTXAwait(id: String): Frame {
   return awaitResult {
     this.beginTX(id, it)
@@ -172,7 +172,7 @@ suspend fun StompClientConnection.beginTXAwait(id: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use beginTX returning a future and chain with await()", replaceWith = ReplaceWith("beginTX(id, headers).await()"))
+@Deprecated(message = "Instead use beginTX returning a future and chain with coAwait()", replaceWith = ReplaceWith("beginTX(id, headers).coAwait()"))
 suspend fun StompClientConnection.beginTXAwait(id: String, headers: Map<String,String>): Frame {
   return awaitResult {
     this.beginTX(id, headers, it)
@@ -187,7 +187,7 @@ suspend fun StompClientConnection.beginTXAwait(id: String, headers: Map<String,S
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use commit returning a future and chain with await()", replaceWith = ReplaceWith("commit(id).await()"))
+@Deprecated(message = "Instead use commit returning a future and chain with coAwait()", replaceWith = ReplaceWith("commit(id).coAwait()"))
 suspend fun StompClientConnection.commitAwait(id: String): Frame {
   return awaitResult {
     this.commit(id, it)
@@ -203,7 +203,7 @@ suspend fun StompClientConnection.commitAwait(id: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use commit returning a future and chain with await()", replaceWith = ReplaceWith("commit(id, headers).await()"))
+@Deprecated(message = "Instead use commit returning a future and chain with coAwait()", replaceWith = ReplaceWith("commit(id, headers).coAwait()"))
 suspend fun StompClientConnection.commitAwait(id: String, headers: Map<String,String>): Frame {
   return awaitResult {
     this.commit(id, headers, it)
@@ -218,7 +218,7 @@ suspend fun StompClientConnection.commitAwait(id: String, headers: Map<String,St
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use abort returning a future and chain with await()", replaceWith = ReplaceWith("abort(id).await()"))
+@Deprecated(message = "Instead use abort returning a future and chain with coAwait()", replaceWith = ReplaceWith("abort(id).coAwait()"))
 suspend fun StompClientConnection.abortAwait(id: String): Frame {
   return awaitResult {
     this.abort(id, it)
@@ -234,7 +234,7 @@ suspend fun StompClientConnection.abortAwait(id: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use abort returning a future and chain with await()", replaceWith = ReplaceWith("abort(id, headers).await()"))
+@Deprecated(message = "Instead use abort returning a future and chain with coAwait()", replaceWith = ReplaceWith("abort(id, headers).coAwait()"))
 suspend fun StompClientConnection.abortAwait(id: String, headers: Map<String,String>): Frame {
   return awaitResult {
     this.abort(id, headers, it)
@@ -248,7 +248,7 @@ suspend fun StompClientConnection.abortAwait(id: String, headers: Map<String,Str
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use disconnect returning a future and chain with await()", replaceWith = ReplaceWith("disconnect().await()"))
+@Deprecated(message = "Instead use disconnect returning a future and chain with coAwait()", replaceWith = ReplaceWith("disconnect().coAwait()"))
 suspend fun StompClientConnection.disconnectAwait(): Frame {
   return awaitResult {
     this.disconnect(it)
@@ -263,7 +263,7 @@ suspend fun StompClientConnection.disconnectAwait(): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use disconnect returning a future and chain with await()", replaceWith = ReplaceWith("disconnect(frame).await()"))
+@Deprecated(message = "Instead use disconnect returning a future and chain with coAwait()", replaceWith = ReplaceWith("disconnect(frame).coAwait()"))
 suspend fun StompClientConnection.disconnectAwait(frame: Frame): Frame {
   return awaitResult {
     this.disconnect(frame, it)
@@ -278,7 +278,7 @@ suspend fun StompClientConnection.disconnectAwait(frame: Frame): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ack returning a future and chain with await()", replaceWith = ReplaceWith("ack(id).await()"))
+@Deprecated(message = "Instead use ack returning a future and chain with coAwait()", replaceWith = ReplaceWith("ack(id).coAwait()"))
 suspend fun StompClientConnection.ackAwait(id: String): Frame {
   return awaitResult {
     this.ack(id, it)
@@ -293,7 +293,7 @@ suspend fun StompClientConnection.ackAwait(id: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use nack returning a future and chain with await()", replaceWith = ReplaceWith("nack(id).await()"))
+@Deprecated(message = "Instead use nack returning a future and chain with coAwait()", replaceWith = ReplaceWith("nack(id).coAwait()"))
 suspend fun StompClientConnection.nackAwait(id: String): Frame {
   return awaitResult {
     this.nack(id, it)
@@ -309,7 +309,7 @@ suspend fun StompClientConnection.nackAwait(id: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ack returning a future and chain with await()", replaceWith = ReplaceWith("ack(id, txId).await()"))
+@Deprecated(message = "Instead use ack returning a future and chain with coAwait()", replaceWith = ReplaceWith("ack(id, txId).coAwait()"))
 suspend fun StompClientConnection.ackAwait(id: String, txId: String): Frame {
   return awaitResult {
     this.ack(id, txId, it)
@@ -325,7 +325,7 @@ suspend fun StompClientConnection.ackAwait(id: String, txId: String): Frame {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.stomp.StompClientConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use nack returning a future and chain with await()", replaceWith = ReplaceWith("nack(id, txId).await()"))
+@Deprecated(message = "Instead use nack returning a future and chain with coAwait()", replaceWith = ReplaceWith("nack(id, txId).coAwait()"))
 suspend fun StompClientConnection.nackAwait(id: String, txId: String): Frame {
   return awaitResult {
     this.nack(id, txId, it)

@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.config.ConfigRetriever] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getConfig returning a future and chain with await()", replaceWith = ReplaceWith("getConfig().await()"))
+@Deprecated(message = "Instead use getConfig returning a future and chain with coAwait()", replaceWith = ReplaceWith("getConfig().coAwait()"))
 suspend fun ConfigRetriever.getConfigAwait(): JsonObject {
   return awaitResult {
     this.getConfig(it)

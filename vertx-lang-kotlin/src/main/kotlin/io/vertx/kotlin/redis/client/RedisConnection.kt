@@ -28,7 +28,7 @@ import io.vertx.redis.client.Response
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun RedisConnection.pipeToAwait(dst: WriteStream<Response>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -43,7 +43,7 @@ suspend fun RedisConnection.pipeToAwait(dst: WriteStream<Response>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(command).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(command).coAwait()"))
 suspend fun RedisConnection.sendAwait(command: Request): Response? {
   return awaitResult {
     this.send(command, it)
@@ -58,7 +58,7 @@ suspend fun RedisConnection.sendAwait(command: Request): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use batch returning a future and chain with await()", replaceWith = ReplaceWith("batch(commands).await()"))
+@Deprecated(message = "Instead use batch returning a future and chain with coAwait()", replaceWith = ReplaceWith("batch(commands).coAwait()"))
 suspend fun RedisConnection.batchAwait(commands: List<Request>): List<Response?> {
   return awaitResult {
     this.batch(commands, it)
@@ -71,7 +71,7 @@ suspend fun RedisConnection.batchAwait(commands: List<Request>): List<Response?>
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.RedisConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun RedisConnection.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

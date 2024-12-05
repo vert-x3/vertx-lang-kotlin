@@ -33,7 +33,7 @@ import java.time.Duration
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst: WriteStream<KafkaConsumerRecord<K,V>>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -47,7 +47,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pipeToAwait(dst: WriteStream<KafkaConsumerR
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(topic).await()"))
+@Deprecated(message = "Instead use subscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("subscribe(topic).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topic: String): Unit {
   return awaitResult {
     this.subscribe(topic, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -61,7 +61,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topic: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscribe returning a future and chain with await()", replaceWith = ReplaceWith("subscribe(topics).await()"))
+@Deprecated(message = "Instead use subscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("subscribe(topics).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topics: Set<String>): Unit {
   return awaitResult {
     this.subscribe(topics, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -75,7 +75,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscribeAwait(topics: Set<String>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use assign returning a future and chain with await()", replaceWith = ReplaceWith("assign(topicPartition).await()"))
+@Deprecated(message = "Instead use assign returning a future and chain with coAwait()", replaceWith = ReplaceWith("assign(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
     this.assign(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -89,7 +89,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartition: TopicPartition)
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use assign returning a future and chain with await()", replaceWith = ReplaceWith("assign(topicPartitions).await()"))
+@Deprecated(message = "Instead use assign returning a future and chain with coAwait()", replaceWith = ReplaceWith("assign(topicPartitions).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.assign(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -103,7 +103,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignAwait(topicPartitions: Set<TopicParti
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use assignment returning a future and chain with await()", replaceWith = ReplaceWith("assignment().await()"))
+@Deprecated(message = "Instead use assignment returning a future and chain with coAwait()", replaceWith = ReplaceWith("assignment().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.assignmentAwait(): Set<TopicPartition> {
   return awaitResult {
     this.assignment(it)
@@ -116,7 +116,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.assignmentAwait(): Set<TopicPartition> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unsubscribe returning a future and chain with await()", replaceWith = ReplaceWith("unsubscribe().await()"))
+@Deprecated(message = "Instead use unsubscribe returning a future and chain with coAwait()", replaceWith = ReplaceWith("unsubscribe().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.unsubscribeAwait(): Unit {
   return awaitResult {
     this.unsubscribe(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -130,7 +130,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.unsubscribeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use subscription returning a future and chain with await()", replaceWith = ReplaceWith("subscription().await()"))
+@Deprecated(message = "Instead use subscription returning a future and chain with coAwait()", replaceWith = ReplaceWith("subscription().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.subscriptionAwait(): Set<String> {
   return awaitResult {
     this.subscription(it)
@@ -144,7 +144,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.subscriptionAwait(): Set<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pause returning a future and chain with await()", replaceWith = ReplaceWith("pause(topicPartition).await()"))
+@Deprecated(message = "Instead use pause returning a future and chain with coAwait()", replaceWith = ReplaceWith("pause(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
     this.pause(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -158,7 +158,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartition: TopicPartition):
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pause returning a future and chain with await()", replaceWith = ReplaceWith("pause(topicPartitions).await()"))
+@Deprecated(message = "Instead use pause returning a future and chain with coAwait()", replaceWith = ReplaceWith("pause(topicPartitions).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.pause(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -172,7 +172,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pauseAwait(topicPartitions: Set<TopicPartit
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use paused returning a future and chain with await()", replaceWith = ReplaceWith("paused().await()"))
+@Deprecated(message = "Instead use paused returning a future and chain with coAwait()", replaceWith = ReplaceWith("paused().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.pausedAwait(): Set<TopicPartition> {
   return awaitResult {
     this.paused(it)
@@ -186,7 +186,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.pausedAwait(): Set<TopicPartition> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use resume returning a future and chain with await()", replaceWith = ReplaceWith("resume(topicPartition).await()"))
+@Deprecated(message = "Instead use resume returning a future and chain with coAwait()", replaceWith = ReplaceWith("resume(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
     this.resume(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -200,7 +200,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartition: TopicPartition)
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use resume returning a future and chain with await()", replaceWith = ReplaceWith("resume(topicPartitions).await()"))
+@Deprecated(message = "Instead use resume returning a future and chain with coAwait()", replaceWith = ReplaceWith("resume(topicPartitions).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.resume(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -215,7 +215,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.resumeAwait(topicPartitions: Set<TopicParti
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use seek returning a future and chain with await()", replaceWith = ReplaceWith("seek(topicPartition, offset).await()"))
+@Deprecated(message = "Instead use seek returning a future and chain with coAwait()", replaceWith = ReplaceWith("seek(topicPartition, offset).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.seekAwait(topicPartition: TopicPartition, offset: Long): Unit {
   return awaitResult {
     this.seek(topicPartition, offset, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -229,7 +229,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekAwait(topicPartition: TopicPartition, o
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use seekToBeginning returning a future and chain with await()", replaceWith = ReplaceWith("seekToBeginning(topicPartition).await()"))
+@Deprecated(message = "Instead use seekToBeginning returning a future and chain with coAwait()", replaceWith = ReplaceWith("seekToBeginning(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
     this.seekToBeginning(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -243,7 +243,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartition: TopicP
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use seekToBeginning returning a future and chain with await()", replaceWith = ReplaceWith("seekToBeginning(topicPartitions).await()"))
+@Deprecated(message = "Instead use seekToBeginning returning a future and chain with coAwait()", replaceWith = ReplaceWith("seekToBeginning(topicPartitions).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.seekToBeginning(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -257,7 +257,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToBeginningAwait(topicPartitions: Set<T
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use seekToEnd returning a future and chain with await()", replaceWith = ReplaceWith("seekToEnd(topicPartition).await()"))
+@Deprecated(message = "Instead use seekToEnd returning a future and chain with coAwait()", replaceWith = ReplaceWith("seekToEnd(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartition: TopicPartition): Unit {
   return awaitResult {
     this.seekToEnd(topicPartition, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -271,7 +271,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartition: TopicPartiti
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use seekToEnd returning a future and chain with await()", replaceWith = ReplaceWith("seekToEnd(topicPartitions).await()"))
+@Deprecated(message = "Instead use seekToEnd returning a future and chain with coAwait()", replaceWith = ReplaceWith("seekToEnd(topicPartitions).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.seekToEnd(topicPartitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -284,7 +284,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.seekToEndAwait(topicPartitions: Set<TopicPa
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use commit returning a future and chain with await()", replaceWith = ReplaceWith("commit().await()"))
+@Deprecated(message = "Instead use commit returning a future and chain with coAwait()", replaceWith = ReplaceWith("commit().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.commitAwait(): Unit {
   return awaitResult {
     this.commit(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -299,7 +299,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.commitAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use committed returning a future and chain with await()", replaceWith = ReplaceWith("committed(topicPartition).await()"))
+@Deprecated(message = "Instead use committed returning a future and chain with coAwait()", replaceWith = ReplaceWith("committed(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.committedAwait(topicPartition: TopicPartition): OffsetAndMetadata {
   return awaitResult {
     this.committed(topicPartition, it)
@@ -314,7 +314,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.committedAwait(topicPartition: TopicPartiti
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use partitionsFor returning a future and chain with await()", replaceWith = ReplaceWith("partitionsFor(topic).await()"))
+@Deprecated(message = "Instead use partitionsFor returning a future and chain with coAwait()", replaceWith = ReplaceWith("partitionsFor(topic).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.partitionsForAwait(topic: String): List<PartitionInfo> {
   return awaitResult {
     this.partitionsFor(topic, it)
@@ -327,7 +327,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.partitionsForAwait(topic: String): List<Par
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -342,7 +342,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use position returning a future and chain with await()", replaceWith = ReplaceWith("position(partition).await()"))
+@Deprecated(message = "Instead use position returning a future and chain with coAwait()", replaceWith = ReplaceWith("position(partition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.positionAwait(partition: TopicPartition): Long {
   return awaitResult {
     this.position(partition, it)
@@ -358,7 +358,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.positionAwait(partition: TopicPartition): L
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use offsetsForTimes returning a future and chain with await()", replaceWith = ReplaceWith("offsetsForTimes(topicPartition, timestamp).await()"))
+@Deprecated(message = "Instead use offsetsForTimes returning a future and chain with coAwait()", replaceWith = ReplaceWith("offsetsForTimes(topicPartition, timestamp).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.offsetsForTimesAwait(topicPartition: TopicPartition, timestamp: Long): OffsetAndTimestamp {
   return awaitResult {
     this.offsetsForTimes(topicPartition, timestamp, it)
@@ -373,7 +373,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.offsetsForTimesAwait(topicPartition: TopicP
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use beginningOffsets returning a future and chain with await()", replaceWith = ReplaceWith("beginningOffsets(topicPartition).await()"))
+@Deprecated(message = "Instead use beginningOffsets returning a future and chain with coAwait()", replaceWith = ReplaceWith("beginningOffsets(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.beginningOffsetsAwait(topicPartition: TopicPartition): Long {
   return awaitResult {
     this.beginningOffsets(topicPartition, it)
@@ -388,7 +388,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.beginningOffsetsAwait(topicPartition: Topic
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use endOffsets returning a future and chain with await()", replaceWith = ReplaceWith("endOffsets(topicPartition).await()"))
+@Deprecated(message = "Instead use endOffsets returning a future and chain with coAwait()", replaceWith = ReplaceWith("endOffsets(topicPartition).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.endOffsetsAwait(topicPartition: TopicPartition): Long {
   return awaitResult {
     this.endOffsets(topicPartition, it)
@@ -403,7 +403,7 @@ suspend fun <K,V> KafkaConsumer<K,V>.endOffsetsAwait(topicPartition: TopicPartit
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.client.consumer.KafkaConsumer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use poll returning a future and chain with await()", replaceWith = ReplaceWith("poll(timeout).await()"))
+@Deprecated(message = "Instead use poll returning a future and chain with coAwait()", replaceWith = ReplaceWith("poll(timeout).coAwait()"))
 suspend fun <K,V> KafkaConsumer<K,V>.pollAwait(timeout: Duration): KafkaConsumerRecords<K,V> {
   return awaitResult {
     this.poll(timeout, it)

@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.sqlclient.SqlUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createUser returning a future and chain with await()", replaceWith = ReplaceWith("createUser(username, password).await()"))
+@Deprecated(message = "Instead use createUser returning a future and chain with coAwait()", replaceWith = ReplaceWith("createUser(username, password).coAwait()"))
 suspend fun SqlUserUtil.createUserAwait(username: String, password: String): Unit {
   return awaitResult {
     this.createUser(username, password, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -41,7 +41,7 @@ suspend fun SqlUserUtil.createUserAwait(username: String, password: String): Uni
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.sqlclient.SqlUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createHashedUser returning a future and chain with await()", replaceWith = ReplaceWith("createHashedUser(username, hash).await()"))
+@Deprecated(message = "Instead use createHashedUser returning a future and chain with coAwait()", replaceWith = ReplaceWith("createHashedUser(username, hash).coAwait()"))
 suspend fun SqlUserUtil.createHashedUserAwait(username: String, hash: String): Unit {
   return awaitResult {
     this.createHashedUser(username, hash, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -56,7 +56,7 @@ suspend fun SqlUserUtil.createHashedUserAwait(username: String, hash: String): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.sqlclient.SqlUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createUserRole returning a future and chain with await()", replaceWith = ReplaceWith("createUserRole(username, role).await()"))
+@Deprecated(message = "Instead use createUserRole returning a future and chain with coAwait()", replaceWith = ReplaceWith("createUserRole(username, role).coAwait()"))
 suspend fun SqlUserUtil.createUserRoleAwait(username: String, role: String): Unit {
   return awaitResult {
     this.createUserRole(username, role, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -71,7 +71,7 @@ suspend fun SqlUserUtil.createUserRoleAwait(username: String, role: String): Uni
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.sqlclient.SqlUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createRolePermission returning a future and chain with await()", replaceWith = ReplaceWith("createRolePermission(role, permission).await()"))
+@Deprecated(message = "Instead use createRolePermission returning a future and chain with coAwait()", replaceWith = ReplaceWith("createRolePermission(role, permission).coAwait()"))
 suspend fun SqlUserUtil.createRolePermissionAwait(role: String, permission: String): Unit {
   return awaitResult {
     this.createRolePermission(role, permission, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

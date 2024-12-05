@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options).coAwait()"))
 suspend fun HttpServer.updateSSLOptionsAwait(options: SSLOptions): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, it)
@@ -44,7 +44,7 @@ suspend fun HttpServer.updateSSLOptionsAwait(options: SSLOptions): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options, force).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options, force).coAwait()"))
 suspend fun HttpServer.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, force, it)
@@ -60,7 +60,7 @@ suspend fun HttpServer.updateSSLOptionsAwait(options: SSLOptions, force: Boolean
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(port, host).coAwait()"))
 suspend fun HttpServer.listenAwait(port: Int, host: String): HttpServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -75,7 +75,7 @@ suspend fun HttpServer.listenAwait(port: Int, host: String): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(address).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(address).coAwait()"))
 suspend fun HttpServer.listenAwait(address: SocketAddress): HttpServer {
   return awaitResult {
     this.listen(address, it)
@@ -90,7 +90,7 @@ suspend fun HttpServer.listenAwait(address: SocketAddress): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(port).coAwait()"))
 suspend fun HttpServer.listenAwait(port: Int): HttpServer {
   return awaitResult {
     this.listen(port, it)
@@ -104,7 +104,7 @@ suspend fun HttpServer.listenAwait(port: Int): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen().coAwait()"))
 suspend fun HttpServer.listenAwait(): HttpServer {
   return awaitResult {
     this.listen(it)
@@ -117,7 +117,7 @@ suspend fun HttpServer.listenAwait(): HttpServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun HttpServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

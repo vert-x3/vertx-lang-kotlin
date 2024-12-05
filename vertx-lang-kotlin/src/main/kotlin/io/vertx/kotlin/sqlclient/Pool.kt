@@ -29,7 +29,7 @@ import java.util.function.Function
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getConnection returning a future and chain with await()", replaceWith = ReplaceWith("getConnection().await()"))
+@Deprecated(message = "Instead use getConnection returning a future and chain with coAwait()", replaceWith = ReplaceWith("getConnection().coAwait()"))
 suspend fun Pool.getConnectionAwait(): SqlConnection {
   return awaitResult {
     this.getConnection(it)
@@ -44,7 +44,7 @@ suspend fun Pool.getConnectionAwait(): SqlConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use withTransaction returning a future and chain with await()", replaceWith = ReplaceWith("withTransaction(function).await()"))
+@Deprecated(message = "Instead use withTransaction returning a future and chain with coAwait()", replaceWith = ReplaceWith("withTransaction(function).coAwait()"))
 suspend fun <T> Pool.withTransactionAwait(function: (SqlConnection) -> Future<T?>): T? {
   return awaitResult {
     this.withTransaction(function, it::handle)
@@ -60,7 +60,7 @@ suspend fun <T> Pool.withTransactionAwait(function: (SqlConnection) -> Future<T?
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use withTransaction returning a future and chain with await()", replaceWith = ReplaceWith("withTransaction(txPropagation, function).await()"))
+@Deprecated(message = "Instead use withTransaction returning a future and chain with coAwait()", replaceWith = ReplaceWith("withTransaction(txPropagation, function).coAwait()"))
 suspend fun <T> Pool.withTransactionAwait(txPropagation: TransactionPropagation, function: (SqlConnection) -> Future<T?>): T? {
   return awaitResult {
     this.withTransaction(txPropagation, function, it::handle)
@@ -75,7 +75,7 @@ suspend fun <T> Pool.withTransactionAwait(txPropagation: TransactionPropagation,
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use withConnection returning a future and chain with await()", replaceWith = ReplaceWith("withConnection(function).await()"))
+@Deprecated(message = "Instead use withConnection returning a future and chain with coAwait()", replaceWith = ReplaceWith("withConnection(function).coAwait()"))
 suspend fun <T> Pool.withConnectionAwait(function: (SqlConnection) -> Future<T?>): T? {
   return awaitResult {
     this.withConnection(function, it::handle)
@@ -88,7 +88,7 @@ suspend fun <T> Pool.withConnectionAwait(function: (SqlConnection) -> Future<T?>
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Pool] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun Pool.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

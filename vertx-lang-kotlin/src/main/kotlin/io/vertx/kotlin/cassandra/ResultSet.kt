@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fetchNextPage returning a future and chain with await()", replaceWith = ReplaceWith("fetchNextPage().await()"))
+@Deprecated(message = "Instead use fetchNextPage returning a future and chain with coAwait()", replaceWith = ReplaceWith("fetchNextPage().coAwait()"))
 suspend fun ResultSet.fetchNextPageAwait(): ResultSet {
   return awaitResult {
     this.fetchNextPage(it)
@@ -40,7 +40,7 @@ suspend fun ResultSet.fetchNextPageAwait(): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.cassandra.ResultSet] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use all returning a future and chain with await()", replaceWith = ReplaceWith("all().await()"))
+@Deprecated(message = "Instead use all returning a future and chain with coAwait()", replaceWith = ReplaceWith("all().coAwait()"))
 suspend fun ResultSet.allAwait(): List<Row> {
   return awaitResult {
     this.all(it)

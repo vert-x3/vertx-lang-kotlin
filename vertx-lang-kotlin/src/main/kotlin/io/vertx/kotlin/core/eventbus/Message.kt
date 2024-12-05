@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.Message] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replyAndRequest returning a future and chain with await()", replaceWith = ReplaceWith("replyAndRequest(message).await()"))
+@Deprecated(message = "Instead use replyAndRequest returning a future and chain with coAwait()", replaceWith = ReplaceWith("replyAndRequest(message).coAwait()"))
 suspend fun <R,T> Message<T>.replyAndRequestAwait(message: Any?): Message<R> {
   return awaitResult {
     this.replyAndRequest(message, it)
@@ -43,7 +43,7 @@ suspend fun <R,T> Message<T>.replyAndRequestAwait(message: Any?): Message<R> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.Message] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use replyAndRequest returning a future and chain with await()", replaceWith = ReplaceWith("replyAndRequest(message, options).await()"))
+@Deprecated(message = "Instead use replyAndRequest returning a future and chain with coAwait()", replaceWith = ReplaceWith("replyAndRequest(message, options).coAwait()"))
 suspend fun <R,T> Message<T>.replyAndRequestAwait(message: Any?, options: DeliveryOptions): Message<R> {
   return awaitResult {
     this.replyAndRequest(message, options, it)

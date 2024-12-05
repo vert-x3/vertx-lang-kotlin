@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use shutdown returning a future and chain with await()", replaceWith = ReplaceWith("shutdown().await()"))
+@Deprecated(message = "Instead use shutdown returning a future and chain with coAwait()", replaceWith = ReplaceWith("shutdown().coAwait()"))
 suspend fun HttpConnection.shutdownAwait(): Unit {
   return awaitResult {
     this.shutdown(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun HttpConnection.shutdownAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use shutdown returning a future and chain with await()", replaceWith = ReplaceWith("shutdown(timeout, unit).await()"))
+@Deprecated(message = "Instead use shutdown returning a future and chain with coAwait()", replaceWith = ReplaceWith("shutdown(timeout, unit).coAwait()"))
 suspend fun HttpConnection.shutdownAwait(timeout: Long, unit: TimeUnit): Unit {
   return awaitResult {
     this.shutdown(timeout, unit, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -55,7 +55,7 @@ suspend fun HttpConnection.shutdownAwait(timeout: Long, unit: TimeUnit): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun HttpConnection.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -69,7 +69,7 @@ suspend fun HttpConnection.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSettings returning a future and chain with await()", replaceWith = ReplaceWith("updateSettings(settings).await()"))
+@Deprecated(message = "Instead use updateSettings returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSettings(settings).coAwait()"))
 suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
   return awaitResult {
     this.updateSettings(settings, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -84,7 +84,7 @@ suspend fun HttpConnection.updateSettingsAwait(settings: Http2Settings): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ping returning a future and chain with await()", replaceWith = ReplaceWith("ping(data).await()"))
+@Deprecated(message = "Instead use ping returning a future and chain with coAwait()", replaceWith = ReplaceWith("ping(data).coAwait()"))
 suspend fun HttpConnection.pingAwait(data: Buffer): Buffer {
   return awaitResult {
     this.ping(data, it)

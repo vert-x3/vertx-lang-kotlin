@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(body).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(body).coAwait()"))
 suspend fun <T> MessageProducer<T>.writeAwait(body: T): Unit {
   return awaitResult {
     this.write(body, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -38,7 +38,7 @@ suspend fun <T> MessageProducer<T>.writeAwait(body: T): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.eventbus.MessageProducer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun <T> MessageProducer<T>.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

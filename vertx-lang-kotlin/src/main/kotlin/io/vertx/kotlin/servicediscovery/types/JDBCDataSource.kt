@@ -33,7 +33,7 @@ object JDBCDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.JDBCDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with await()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter).coAwait()"))
   suspend fun getJDBCClientAwait(discovery: ServiceDiscovery, filter: JsonObject): JDBCClient {
     return awaitResult {
       JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, it)
@@ -49,7 +49,7 @@ object JDBCDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.JDBCDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with await()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter).coAwait()"))
   suspend fun getJDBCClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): JDBCClient {
     return awaitResult {
       JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, it::handle)
@@ -66,7 +66,7 @@ object JDBCDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.JDBCDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with await()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter, consumerConfiguration).await()"))
+  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter, consumerConfiguration).coAwait()"))
   suspend fun getJDBCClientAwait(discovery: ServiceDiscovery, filter: JsonObject, consumerConfiguration: JsonObject): JDBCClient {
     return awaitResult {
       JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, consumerConfiguration, it)
@@ -83,7 +83,7 @@ object JDBCDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.JDBCDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with await()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter, consumerConfiguration).await()"))
+  @Deprecated(message = "Instead use getJDBCClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getJDBCClient(discovery, filter, consumerConfiguration).coAwait()"))
   suspend fun getJDBCClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, consumerConfiguration: JsonObject): JDBCClient {
     return awaitResult {
       JDBCDataSourceVertxAlias.getJDBCClient(discovery, filter, consumerConfiguration, it::handle)

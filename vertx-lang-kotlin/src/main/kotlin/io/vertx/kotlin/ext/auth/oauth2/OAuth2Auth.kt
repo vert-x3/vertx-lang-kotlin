@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use jWKSet returning a future and chain with await()", replaceWith = ReplaceWith("jWKSet().await()"))
+@Deprecated(message = "Instead use jWKSet returning a future and chain with coAwait()", replaceWith = ReplaceWith("jWKSet().coAwait()"))
 suspend fun OAuth2Auth.jWKSetAwait(): Unit {
   return awaitResult {
     this.jWKSet(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -41,7 +41,7 @@ suspend fun OAuth2Auth.jWKSetAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use refresh returning a future and chain with await()", replaceWith = ReplaceWith("refresh(user).await()"))
+@Deprecated(message = "Instead use refresh returning a future and chain with coAwait()", replaceWith = ReplaceWith("refresh(user).coAwait()"))
 suspend fun OAuth2Auth.refreshAwait(user: User): User {
   return awaitResult {
     this.refresh(user, it)
@@ -56,7 +56,7 @@ suspend fun OAuth2Auth.refreshAwait(user: User): User {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use revoke returning a future and chain with await()", replaceWith = ReplaceWith("revoke(user, tokenType).await()"))
+@Deprecated(message = "Instead use revoke returning a future and chain with coAwait()", replaceWith = ReplaceWith("revoke(user, tokenType).coAwait()"))
 suspend fun OAuth2Auth.revokeAwait(user: User, tokenType: String): Unit {
   return awaitResult {
     this.revoke(user, tokenType, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -70,7 +70,7 @@ suspend fun OAuth2Auth.revokeAwait(user: User, tokenType: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use revoke returning a future and chain with await()", replaceWith = ReplaceWith("revoke(user).await()"))
+@Deprecated(message = "Instead use revoke returning a future and chain with coAwait()", replaceWith = ReplaceWith("revoke(user).coAwait()"))
 suspend fun OAuth2Auth.revokeAwait(user: User): Unit {
   return awaitResult {
     this.revoke(user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -85,7 +85,7 @@ suspend fun OAuth2Auth.revokeAwait(user: User): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.OAuth2Auth] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use userInfo returning a future and chain with await()", replaceWith = ReplaceWith("userInfo(user).await()"))
+@Deprecated(message = "Instead use userInfo returning a future and chain with coAwait()", replaceWith = ReplaceWith("userInfo(user).coAwait()"))
 suspend fun OAuth2Auth.userInfoAwait(user: User): JsonObject {
   return awaitResult {
     this.userInfo(user, it)

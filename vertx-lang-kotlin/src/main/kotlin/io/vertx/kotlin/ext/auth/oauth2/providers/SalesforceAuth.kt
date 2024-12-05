@@ -31,7 +31,7 @@ object SalesforceAuth {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.auth.oauth2.providers.SalesforceAuth] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use discover returning a future and chain with await()", replaceWith = ReplaceWith("discover(vertx, config).await()"))
+  @Deprecated(message = "Instead use discover returning a future and chain with coAwait()", replaceWith = ReplaceWith("discover(vertx, config).coAwait()"))
   suspend fun discoverAwait(vertx: Vertx, config: OAuth2Options): OAuth2Auth {
     return awaitResult {
       SalesforceAuthVertxAlias.discover(vertx, config, it)

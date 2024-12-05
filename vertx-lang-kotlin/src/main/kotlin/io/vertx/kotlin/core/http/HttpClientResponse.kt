@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientResponse] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun HttpClientResponse.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -41,7 +41,7 @@ suspend fun HttpClientResponse.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientResponse] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use body returning a future and chain with await()", replaceWith = ReplaceWith("body().await()"))
+@Deprecated(message = "Instead use body returning a future and chain with coAwait()", replaceWith = ReplaceWith("body().coAwait()"))
 suspend fun HttpClientResponse.bodyAwait(): Buffer {
   return awaitResult {
     this.body(it)
@@ -54,7 +54,7 @@ suspend fun HttpClientResponse.bodyAwait(): Buffer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientResponse] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun HttpClientResponse.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

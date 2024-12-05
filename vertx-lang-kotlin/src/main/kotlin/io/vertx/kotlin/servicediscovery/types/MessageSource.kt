@@ -33,7 +33,7 @@ object MessageSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MessageSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getConsumer returning a future and chain with await()", replaceWith = ReplaceWith("getConsumer(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getConsumer returning a future and chain with coAwait()", replaceWith = ReplaceWith("getConsumer(discovery, filter).coAwait()"))
   suspend fun <T> getConsumerAwait(discovery: ServiceDiscovery, filter: JsonObject): MessageConsumer<T> {
     return awaitResult {
       MessageSourceVertxAlias.getConsumer(discovery, filter, it)
@@ -49,7 +49,7 @@ object MessageSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MessageSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getConsumer returning a future and chain with await()", replaceWith = ReplaceWith("getConsumer(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getConsumer returning a future and chain with coAwait()", replaceWith = ReplaceWith("getConsumer(discovery, filter).coAwait()"))
   suspend fun <T> getConsumerAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): MessageConsumer<T> {
     return awaitResult {
       MessageSourceVertxAlias.getConsumer(discovery, filter, it::handle)

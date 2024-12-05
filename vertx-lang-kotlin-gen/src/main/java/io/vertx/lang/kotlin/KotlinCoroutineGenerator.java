@@ -255,13 +255,13 @@ public class KotlinCoroutineGenerator extends KotlinGeneratorBase<ClassModel> {
   ) {
     writer.print("@Deprecated(message = \"Instead use ");
     writer.print(method.getName());
-    writer.print(" returning a future and chain with await()\", replaceWith = ReplaceWith(\"");
+    writer.print(" returning a future and chain with coAwait()\", replaceWith = ReplaceWith(\"");
     writer.print(method.getName());
     writer.print(method.getParams()
       .stream()
       .limit(method.getParams().size() - 1)
       .map(ParamInfo::getName).collect(Collectors
-      .joining(", ", "(", ").await()")));
+      .joining(", ", "(", ").coAwait()")));
     writer.println("\"))");
     writer.print("suspend fun ");
     if (!method.getTypeParams().isEmpty() || !type.getParams().isEmpty()) {

@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use flush returning a future and chain with await()", replaceWith = ReplaceWith("flush(ctx).await()"))
+@Deprecated(message = "Instead use flush returning a future and chain with coAwait()", replaceWith = ReplaceWith("flush(ctx).coAwait()"))
 suspend fun SessionHandler.flushAwait(ctx: RoutingContext): Unit {
   return awaitResult {
     this.flush(ctx, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun SessionHandler.flushAwait(ctx: RoutingContext): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use flush returning a future and chain with await()", replaceWith = ReplaceWith("flush(ctx, ignoreStatus).await()"))
+@Deprecated(message = "Instead use flush returning a future and chain with coAwait()", replaceWith = ReplaceWith("flush(ctx, ignoreStatus).coAwait()"))
 suspend fun SessionHandler.flushAwait(ctx: RoutingContext, ignoreStatus: Boolean): Unit {
   return awaitResult {
     this.flush(ctx, ignoreStatus, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -57,7 +57,7 @@ suspend fun SessionHandler.flushAwait(ctx: RoutingContext, ignoreStatus: Boolean
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.SessionHandler] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use setUser returning a future and chain with await()", replaceWith = ReplaceWith("setUser(context, user).await()"))
+@Deprecated(message = "Instead use setUser returning a future and chain with coAwait()", replaceWith = ReplaceWith("setUser(context, user).coAwait()"))
 suspend fun SessionHandler.setUserAwait(context: RoutingContext, user: User): Unit {
   return awaitResult {
     this.setUser(context, user, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

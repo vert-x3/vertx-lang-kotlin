@@ -31,7 +31,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(port, host, requestURI).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(port, host, requestURI).coAwait()"))
 suspend fun WebSocketClient.connectAwait(port: Int, host: String, requestURI: String): WebSocket {
   return awaitResult {
     this.connect(port, host, requestURI, it)
@@ -47,7 +47,7 @@ suspend fun WebSocketClient.connectAwait(port: Int, host: String, requestURI: St
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(host, requestURI).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(host, requestURI).coAwait()"))
 suspend fun WebSocketClient.connectAwait(host: String, requestURI: String): WebSocket {
   return awaitResult {
     this.connect(host, requestURI, it)
@@ -62,7 +62,7 @@ suspend fun WebSocketClient.connectAwait(host: String, requestURI: String): WebS
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(requestURI).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(requestURI).coAwait()"))
 suspend fun WebSocketClient.connectAwait(requestURI: String): WebSocket {
   return awaitResult {
     this.connect(requestURI, it)
@@ -77,7 +77,7 @@ suspend fun WebSocketClient.connectAwait(requestURI: String): WebSocket {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(options).await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(options).coAwait()"))
 suspend fun WebSocketClient.connectAwait(options: WebSocketConnectOptions): WebSocket {
   return awaitResult {
     this.connect(options, it)
@@ -92,7 +92,7 @@ suspend fun WebSocketClient.connectAwait(options: WebSocketConnectOptions): WebS
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options).coAwait()"))
 suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, it)
@@ -108,7 +108,7 @@ suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions): Boolean 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options, force).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options, force).coAwait()"))
 suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, force, it)
@@ -121,7 +121,7 @@ suspend fun WebSocketClient.updateSSLOptionsAwait(options: SSLOptions, force: Bo
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocketClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun WebSocketClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFileLock] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use isValid returning a future and chain with await()", replaceWith = ReplaceWith("isValid().await()"))
+@Deprecated(message = "Instead use isValid returning a future and chain with coAwait()", replaceWith = ReplaceWith("isValid().coAwait()"))
 suspend fun AsyncFileLock.isValidAwait(): Boolean {
   return awaitResult {
     this.isValid(it)
@@ -38,7 +38,7 @@ suspend fun AsyncFileLock.isValidAwait(): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.AsyncFileLock] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use release returning a future and chain with await()", replaceWith = ReplaceWith("release().await()"))
+@Deprecated(message = "Instead use release returning a future and chain with coAwait()", replaceWith = ReplaceWith("release().coAwait()"))
 suspend fun AsyncFileLock.releaseAwait(): Unit {
   return awaitResult {
     this.release(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

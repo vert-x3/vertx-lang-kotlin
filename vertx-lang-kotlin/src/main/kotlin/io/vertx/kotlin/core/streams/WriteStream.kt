@@ -25,7 +25,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.streams.WriteStream] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(data).coAwait()"))
 suspend fun <T> WriteStream<T>.writeAwait(data: T): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -38,7 +38,7 @@ suspend fun <T> WriteStream<T>.writeAwait(data: T): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.streams.WriteStream] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun <T> WriteStream<T>.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -52,7 +52,7 @@ suspend fun <T> WriteStream<T>.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.streams.WriteStream] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(data).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(data).coAwait()"))
 suspend fun <T> WriteStream<T>.endAwait(data: T): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

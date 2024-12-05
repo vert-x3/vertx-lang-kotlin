@@ -29,7 +29,7 @@ import io.vertx.sqlclient.PreparedStatement
  *
  * NOTE: This function has been automatically generated from [io.vertx.mssqlclient.MSSQLConnection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(s).await()"))
+@Deprecated(message = "Instead use prepare returning a future and chain with coAwait()", replaceWith = ReplaceWith("prepare(s).coAwait()"))
 suspend fun MSSQLConnectionVertxAlias.prepareAwait(s: String): PreparedStatement {
   return awaitResult {
     this.prepare(s, it)
@@ -46,7 +46,7 @@ object MSSQLConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.mssqlclient.MSSQLConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectOptions).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(vertx, connectOptions).coAwait()"))
   suspend fun connectAwait(vertx: Vertx, connectOptions: MSSQLConnectOptions): MSSQLConnectionVertxAlias {
     return awaitResult {
       MSSQLConnectionVertxAlias.connect(vertx, connectOptions, it)
@@ -62,7 +62,7 @@ object MSSQLConnection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.mssqlclient.MSSQLConnection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(vertx, connectionUri).coAwait()"))
   suspend fun connectAwait(vertx: Vertx, connectionUri: String): MSSQLConnectionVertxAlias {
     return awaitResult {
       MSSQLConnectionVertxAlias.connect(vertx, connectionUri, it)

@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -44,7 +44,7 @@ suspend fun DatagramSocket.pipeToAwait(dst: WriteStream<DatagramPacket>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(packet, port, host).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(packet, port, host).coAwait()"))
 suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): Unit {
   return awaitResult {
     this.send(packet, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -60,7 +60,7 @@ suspend fun DatagramSocket.sendAwait(packet: Buffer, port: Int, host: String): U
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(str, port, host).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(str, port, host).coAwait()"))
 suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Unit {
   return awaitResult {
     this.send(str, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -77,7 +77,7 @@ suspend fun DatagramSocket.sendAwait(str: String, port: Int, host: String): Unit
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(str, enc, port, host).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(str, enc, port, host).coAwait()"))
 suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: String): Unit {
   return awaitResult {
     this.send(str, enc, port, host, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -90,7 +90,7 @@ suspend fun DatagramSocket.sendAwait(str: String, enc: String, port: Int, host: 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun DatagramSocket.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -104,7 +104,7 @@ suspend fun DatagramSocket.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listenMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("listenMulticastGroup(multicastAddress).await()"))
+@Deprecated(message = "Instead use listenMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("listenMulticastGroup(multicastAddress).coAwait()"))
 suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
     this.listenMulticastGroup(multicastAddress, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -120,7 +120,7 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listenMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("listenMulticastGroup(multicastAddress, networkInterface, source).await()"))
+@Deprecated(message = "Instead use listenMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("listenMulticastGroup(multicastAddress, networkInterface, source).coAwait()"))
 suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String?): Unit {
   return awaitResult {
     this.listenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -134,7 +134,7 @@ suspend fun DatagramSocket.listenMulticastGroupAwait(multicastAddress: String, n
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unlistenMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("unlistenMulticastGroup(multicastAddress).await()"))
+@Deprecated(message = "Instead use unlistenMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("unlistenMulticastGroup(multicastAddress).coAwait()"))
 suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String): Unit {
   return awaitResult {
     this.unlistenMulticastGroup(multicastAddress, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -150,7 +150,7 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String)
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use unlistenMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("unlistenMulticastGroup(multicastAddress, networkInterface, source).await()"))
+@Deprecated(message = "Instead use unlistenMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("unlistenMulticastGroup(multicastAddress, networkInterface, source).coAwait()"))
 suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String, networkInterface: String, source: String?): Unit {
   return awaitResult {
     this.unlistenMulticastGroup(multicastAddress, networkInterface, source, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -165,7 +165,7 @@ suspend fun DatagramSocket.unlistenMulticastGroupAwait(multicastAddress: String,
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use blockMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("blockMulticastGroup(multicastAddress, sourceToBlock).await()"))
+@Deprecated(message = "Instead use blockMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("blockMulticastGroup(multicastAddress, sourceToBlock).coAwait()"))
 suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, sourceToBlock: String): Unit {
   return awaitResult {
     this.blockMulticastGroup(multicastAddress, sourceToBlock, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -181,7 +181,7 @@ suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, so
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use blockMulticastGroup returning a future and chain with await()", replaceWith = ReplaceWith("blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock).await()"))
+@Deprecated(message = "Instead use blockMulticastGroup returning a future and chain with coAwait()", replaceWith = ReplaceWith("blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock).coAwait()"))
 suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, networkInterface: String, sourceToBlock: String): Unit {
   return awaitResult {
     this.blockMulticastGroup(multicastAddress, networkInterface, sourceToBlock, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -197,7 +197,7 @@ suspend fun DatagramSocket.blockMulticastGroupAwait(multicastAddress: String, ne
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.datagram.DatagramSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(port, host).coAwait()"))
 suspend fun DatagramSocket.listenAwait(port: Int, host: String): DatagramSocket {
   return awaitResult {
     this.listen(port, host, it)

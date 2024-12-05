@@ -33,7 +33,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getMongoClient returning a future and chain with await()", replaceWith = ReplaceWith("getMongoClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getMongoClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getMongoClient(discovery, filter).coAwait()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: JsonObject): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it)
@@ -49,7 +49,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getMongoClient returning a future and chain with await()", replaceWith = ReplaceWith("getMongoClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getMongoClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getMongoClient(discovery, filter).coAwait()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, it::handle)
@@ -66,7 +66,7 @@ object MongoDataSource {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.MongoDataSource] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getMongoClient returning a future and chain with await()", replaceWith = ReplaceWith("getMongoClient(discovery, filter, consumerConfiguration).await()"))
+  @Deprecated(message = "Instead use getMongoClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getMongoClient(discovery, filter, consumerConfiguration).coAwait()"))
   suspend fun getMongoClientAwait(discovery: ServiceDiscovery, filter: JsonObject, consumerConfiguration: JsonObject): MongoClient {
     return awaitResult {
       MongoDataSourceVertxAlias.getMongoClient(discovery, filter, consumerConfiguration, it)

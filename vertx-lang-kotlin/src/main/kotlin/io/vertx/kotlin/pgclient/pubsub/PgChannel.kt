@@ -26,7 +26,7 @@ import io.vertx.pgclient.pubsub.PgChannel
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.pubsub.PgChannel] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun PgChannel.pipeToAwait(dst: WriteStream<String>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
