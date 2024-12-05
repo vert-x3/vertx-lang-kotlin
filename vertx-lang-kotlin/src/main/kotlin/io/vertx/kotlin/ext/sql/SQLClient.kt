@@ -31,7 +31,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingle returning a future and chain with await()", replaceWith = ReplaceWith("querySingle(sql).await()"))
+@Deprecated(message = "Instead use querySingle returning a future and chain with coAwait()", replaceWith = ReplaceWith("querySingle(sql).coAwait()"))
 suspend fun SQLClient.querySingleAwait(sql: String): JsonArray? {
   return awaitResult {
     this.querySingle(sql, it)
@@ -47,7 +47,7 @@ suspend fun SQLClient.querySingleAwait(sql: String): JsonArray? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use querySingleWithParams returning a future and chain with await()", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).await()"))
+@Deprecated(message = "Instead use querySingleWithParams returning a future and chain with coAwait()", replaceWith = ReplaceWith("querySingleWithParams(sql, arguments).coAwait()"))
 suspend fun SQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArray): JsonArray? {
   return awaitResult {
     this.querySingleWithParams(sql, arguments, it)
@@ -61,7 +61,7 @@ suspend fun SQLClient.querySingleWithParamsAwait(sql: String, arguments: JsonArr
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use getConnection returning a future and chain with await()", replaceWith = ReplaceWith("getConnection().await()"))
+@Deprecated(message = "Instead use getConnection returning a future and chain with coAwait()", replaceWith = ReplaceWith("getConnection().coAwait()"))
 suspend fun SQLClient.getConnectionAwait(): SQLConnection {
   return awaitResult {
     this.getConnection(it)
@@ -74,7 +74,7 @@ suspend fun SQLClient.getConnectionAwait(): SQLConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun SQLClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -89,7 +89,7 @@ suspend fun SQLClient.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use query returning a future and chain with await()", replaceWith = ReplaceWith("query(sql).await()"))
+@Deprecated(message = "Instead use query returning a future and chain with coAwait()", replaceWith = ReplaceWith("query(sql).coAwait()"))
 suspend fun SQLClient.queryAwait(sql: String): ResultSet {
   return awaitResult {
     this.query(sql, it)
@@ -104,7 +104,7 @@ suspend fun SQLClient.queryAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryStream returning a future and chain with await()", replaceWith = ReplaceWith("queryStream(sql).await()"))
+@Deprecated(message = "Instead use queryStream returning a future and chain with coAwait()", replaceWith = ReplaceWith("queryStream(sql).coAwait()"))
 suspend fun SQLClient.queryStreamAwait(sql: String): SQLRowStream {
   return awaitResult {
     this.queryStream(sql, it)
@@ -120,7 +120,7 @@ suspend fun SQLClient.queryStreamAwait(sql: String): SQLRowStream {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryStreamWithParams returning a future and chain with await()", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).await()"))
+@Deprecated(message = "Instead use queryStreamWithParams returning a future and chain with coAwait()", replaceWith = ReplaceWith("queryStreamWithParams(sql, params).coAwait()"))
 suspend fun SQLClient.queryStreamWithParamsAwait(sql: String, params: JsonArray): SQLRowStream {
   return awaitResult {
     this.queryStreamWithParams(sql, params, it)
@@ -136,7 +136,7 @@ suspend fun SQLClient.queryStreamWithParamsAwait(sql: String, params: JsonArray)
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use queryWithParams returning a future and chain with await()", replaceWith = ReplaceWith("queryWithParams(sql, arguments).await()"))
+@Deprecated(message = "Instead use queryWithParams returning a future and chain with coAwait()", replaceWith = ReplaceWith("queryWithParams(sql, arguments).coAwait()"))
 suspend fun SQLClient.queryWithParamsAwait(sql: String, arguments: JsonArray): ResultSet {
   return awaitResult {
     this.queryWithParams(sql, arguments, it)
@@ -151,7 +151,7 @@ suspend fun SQLClient.queryWithParamsAwait(sql: String, arguments: JsonArray): R
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use update returning a future and chain with await()", replaceWith = ReplaceWith("update(sql).await()"))
+@Deprecated(message = "Instead use update returning a future and chain with coAwait()", replaceWith = ReplaceWith("update(sql).coAwait()"))
 suspend fun SQLClient.updateAwait(sql: String): UpdateResult {
   return awaitResult {
     this.update(sql, it)
@@ -167,7 +167,7 @@ suspend fun SQLClient.updateAwait(sql: String): UpdateResult {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateWithParams returning a future and chain with await()", replaceWith = ReplaceWith("updateWithParams(sql, params).await()"))
+@Deprecated(message = "Instead use updateWithParams returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateWithParams(sql, params).coAwait()"))
 suspend fun SQLClient.updateWithParamsAwait(sql: String, params: JsonArray): UpdateResult {
   return awaitResult {
     this.updateWithParams(sql, params, it)
@@ -182,7 +182,7 @@ suspend fun SQLClient.updateWithParamsAwait(sql: String, params: JsonArray): Upd
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use call returning a future and chain with await()", replaceWith = ReplaceWith("call(sql).await()"))
+@Deprecated(message = "Instead use call returning a future and chain with coAwait()", replaceWith = ReplaceWith("call(sql).coAwait()"))
 suspend fun SQLClient.callAwait(sql: String): ResultSet {
   return awaitResult {
     this.call(sql, it)
@@ -199,7 +199,7 @@ suspend fun SQLClient.callAwait(sql: String): ResultSet {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.sql.SQLClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use callWithParams returning a future and chain with await()", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).await()"))
+@Deprecated(message = "Instead use callWithParams returning a future and chain with coAwait()", replaceWith = ReplaceWith("callWithParams(sql, params, outputs).coAwait()"))
 suspend fun SQLClient.callWithParamsAwait(sql: String, params: JsonArray, outputs: JsonArray): ResultSet {
   return awaitResult {
     this.callWithParams(sql, params, outputs, it)

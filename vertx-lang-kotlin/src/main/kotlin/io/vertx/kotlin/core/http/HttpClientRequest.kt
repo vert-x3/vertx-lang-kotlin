@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(data).coAwait()"))
 suspend fun HttpClientRequest.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun HttpClientRequest.writeAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(chunk).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(chunk).coAwait()"))
 suspend fun HttpClientRequest.writeAwait(chunk: String): Unit {
   return awaitResult {
     this.write(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -57,7 +57,7 @@ suspend fun HttpClientRequest.writeAwait(chunk: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(chunk, enc).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(chunk, enc).coAwait()"))
 suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
   return awaitResult {
     this.write(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -70,7 +70,7 @@ suspend fun HttpClientRequest.writeAwait(chunk: String, enc: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendHead returning a future and chain with await()", replaceWith = ReplaceWith("sendHead().await()"))
+@Deprecated(message = "Instead use sendHead returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendHead().coAwait()"))
 suspend fun HttpClientRequest.sendHeadAwait(): Unit {
   return awaitResult {
     this.sendHead(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -84,7 +84,7 @@ suspend fun HttpClientRequest.sendHeadAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect().coAwait()"))
 suspend fun HttpClientRequest.connectAwait(): HttpClientResponse {
   return awaitResult {
     this.connect(it)
@@ -98,7 +98,7 @@ suspend fun HttpClientRequest.connectAwait(): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use response returning a future and chain with await()", replaceWith = ReplaceWith("response().await()"))
+@Deprecated(message = "Instead use response returning a future and chain with coAwait()", replaceWith = ReplaceWith("response().coAwait()"))
 suspend fun HttpClientRequest.responseAwait(): HttpClientResponse {
   return awaitResult {
     this.response(it)
@@ -112,7 +112,7 @@ suspend fun HttpClientRequest.responseAwait(): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send().await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send().coAwait()"))
 suspend fun HttpClientRequest.sendAwait(): HttpClientResponse {
   return awaitResult {
     this.send(it)
@@ -127,7 +127,7 @@ suspend fun HttpClientRequest.sendAwait(): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(body).coAwait()"))
 suspend fun HttpClientRequest.sendAwait(body: String): HttpClientResponse {
   return awaitResult {
     this.send(body, it)
@@ -142,7 +142,7 @@ suspend fun HttpClientRequest.sendAwait(body: String): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(body).coAwait()"))
 suspend fun HttpClientRequest.sendAwait(body: Buffer): HttpClientResponse {
   return awaitResult {
     this.send(body, it)
@@ -157,7 +157,7 @@ suspend fun HttpClientRequest.sendAwait(body: Buffer): HttpClientResponse {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(body).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(body).coAwait()"))
 suspend fun HttpClientRequest.sendAwait(body: ReadStream<Buffer>): HttpClientResponse {
   return awaitResult {
     this.send(body, it)
@@ -171,7 +171,7 @@ suspend fun HttpClientRequest.sendAwait(body: ReadStream<Buffer>): HttpClientRes
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(chunk).coAwait()"))
 suspend fun HttpClientRequest.endAwait(chunk: String): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -186,7 +186,7 @@ suspend fun HttpClientRequest.endAwait(chunk: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk, enc).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(chunk, enc).coAwait()"))
 suspend fun HttpClientRequest.endAwait(chunk: String, enc: String): Unit {
   return awaitResult {
     this.end(chunk, enc, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -200,7 +200,7 @@ suspend fun HttpClientRequest.endAwait(chunk: String, enc: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(chunk).coAwait()"))
 suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -213,7 +213,7 @@ suspend fun HttpClientRequest.endAwait(chunk: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClientRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun HttpClientRequest.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

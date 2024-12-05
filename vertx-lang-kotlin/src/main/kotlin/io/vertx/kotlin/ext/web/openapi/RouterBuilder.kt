@@ -30,7 +30,7 @@ object RouterBuilder {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.web.openapi.RouterBuilder] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use create returning a future and chain with await()", replaceWith = ReplaceWith("create(vertx, url).await()"))
+  @Deprecated(message = "Instead use create returning a future and chain with coAwait()", replaceWith = ReplaceWith("create(vertx, url).coAwait()"))
   suspend fun createAwait(vertx: Vertx, url: String): RouterBuilderVertxAlias {
     return awaitResult {
       RouterBuilderVertxAlias.create(vertx, url, it)
@@ -47,7 +47,7 @@ object RouterBuilder {
    *
    * NOTE: This function has been automatically generated from [io.vertx.ext.web.openapi.RouterBuilder] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use create returning a future and chain with await()", replaceWith = ReplaceWith("create(vertx, url, options).await()"))
+  @Deprecated(message = "Instead use create returning a future and chain with coAwait()", replaceWith = ReplaceWith("create(vertx, url, options).coAwait()"))
   suspend fun createAwait(vertx: Vertx, url: String, options: OpenAPILoaderOptions): RouterBuilderVertxAlias {
     return awaitResult {
       RouterBuilderVertxAlias.create(vertx, url, options, it)

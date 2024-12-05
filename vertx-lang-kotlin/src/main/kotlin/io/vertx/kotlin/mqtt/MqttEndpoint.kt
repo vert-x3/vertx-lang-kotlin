@@ -33,7 +33,7 @@ import io.vertx.mqtt.MqttEndpoint
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttEndpoint] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain).await()"))
+@Deprecated(message = "Instead use publish returning a future and chain with coAwait()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain).coAwait()"))
 suspend fun MqttEndpoint.publishAwait(topic: String, payload: Buffer, qosLevel: MqttQoS, isDup: Boolean, isRetain: Boolean): Int {
   return awaitResult {
     this.publish(topic, payload, qosLevel, isDup, isRetain, it)
@@ -53,7 +53,7 @@ suspend fun MqttEndpoint.publishAwait(topic: String, payload: Buffer, qosLevel: 
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttEndpoint] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain, messageId).await()"))
+@Deprecated(message = "Instead use publish returning a future and chain with coAwait()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain, messageId).coAwait()"))
 suspend fun MqttEndpoint.publishAwait(topic: String, payload: Buffer, qosLevel: MqttQoS, isDup: Boolean, isRetain: Boolean, messageId: Int): Int {
   return awaitResult {
     this.publish(topic, payload, qosLevel, isDup, isRetain, messageId, it)
@@ -74,7 +74,7 @@ suspend fun MqttEndpoint.publishAwait(topic: String, payload: Buffer, qosLevel: 
  *
  * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttEndpoint] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use publish returning a future and chain with await()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain, messageId, properties).await()"))
+@Deprecated(message = "Instead use publish returning a future and chain with coAwait()", replaceWith = ReplaceWith("publish(topic, payload, qosLevel, isDup, isRetain, messageId, properties).coAwait()"))
 suspend fun MqttEndpoint.publishAwait(topic: String, payload: Buffer, qosLevel: MqttQoS, isDup: Boolean, isRetain: Boolean, messageId: Int, properties: MqttProperties): Int {
   return awaitResult {
     this.publish(topic, payload, qosLevel, isDup, isRetain, messageId, properties, it)

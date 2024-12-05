@@ -29,7 +29,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun HttpServerRequest.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun HttpServerRequest.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun HttpServerRequest.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -56,7 +56,7 @@ suspend fun HttpServerRequest.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use toNetSocket returning a future and chain with await()", replaceWith = ReplaceWith("toNetSocket().await()"))
+@Deprecated(message = "Instead use toNetSocket returning a future and chain with coAwait()", replaceWith = ReplaceWith("toNetSocket().coAwait()"))
 suspend fun HttpServerRequest.toNetSocketAwait(): NetSocket {
   return awaitResult {
     this.toNetSocket(it)
@@ -70,7 +70,7 @@ suspend fun HttpServerRequest.toNetSocketAwait(): NetSocket {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use toWebSocket returning a future and chain with await()", replaceWith = ReplaceWith("toWebSocket().await()"))
+@Deprecated(message = "Instead use toWebSocket returning a future and chain with coAwait()", replaceWith = ReplaceWith("toWebSocket().coAwait()"))
 suspend fun HttpServerRequest.toWebSocketAwait(): ServerWebSocket {
   return awaitResult {
     this.toWebSocket(it)

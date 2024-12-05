@@ -25,7 +25,7 @@ import java.util.concurrent.Callable
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun WorkerExecutor.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -40,7 +40,7 @@ suspend fun WorkerExecutor.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with coAwait()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).coAwait()"))
 suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: Callable<T>): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, it)
@@ -56,7 +56,7 @@ suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: Callabl
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.WorkerExecutor] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with coAwait()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).coAwait()"))
 suspend fun <T> WorkerExecutor.executeBlockingAwait(blockingCodeHandler: Callable<T>, ordered: Boolean): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, ordered, it)

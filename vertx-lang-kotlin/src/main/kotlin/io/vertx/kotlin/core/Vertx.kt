@@ -29,7 +29,7 @@ import java.util.function.Supplier
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun VertxVertxAlias.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -44,7 +44,7 @@ suspend fun VertxVertxAlias.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deployVerticle returning a future and chain with await()", replaceWith = ReplaceWith("deployVerticle(name).await()"))
+@Deprecated(message = "Instead use deployVerticle returning a future and chain with coAwait()", replaceWith = ReplaceWith("deployVerticle(name).coAwait()"))
 suspend fun VertxVertxAlias.deployVerticleAwait(name: String): String {
   return awaitResult {
     this.deployVerticle(name, it)
@@ -60,7 +60,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name: String): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deployVerticle returning a future and chain with await()", replaceWith = ReplaceWith("deployVerticle(name, options).await()"))
+@Deprecated(message = "Instead use deployVerticle returning a future and chain with coAwait()", replaceWith = ReplaceWith("deployVerticle(name, options).coAwait()"))
 suspend fun VertxVertxAlias.deployVerticleAwait(name: String, options: DeploymentOptions): String {
   return awaitResult {
     this.deployVerticle(name, options, it)
@@ -74,7 +74,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(name: String, options: Deploymen
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use undeploy returning a future and chain with await()", replaceWith = ReplaceWith("undeploy(deploymentID).await()"))
+@Deprecated(message = "Instead use undeploy returning a future and chain with coAwait()", replaceWith = ReplaceWith("undeploy(deploymentID).coAwait()"))
 suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
   return awaitResult {
     this.undeploy(deploymentID, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -89,7 +89,7 @@ suspend fun VertxVertxAlias.undeployAwait(deploymentID: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deployVerticle returning a future and chain with await()", replaceWith = ReplaceWith("deployVerticle(verticle).await()"))
+@Deprecated(message = "Instead use deployVerticle returning a future and chain with coAwait()", replaceWith = ReplaceWith("deployVerticle(verticle).coAwait()"))
 suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle): String {
   return awaitResult {
     this.deployVerticle(verticle, it)
@@ -105,7 +105,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle): String {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deployVerticle returning a future and chain with await()", replaceWith = ReplaceWith("deployVerticle(verticle, options).await()"))
+@Deprecated(message = "Instead use deployVerticle returning a future and chain with coAwait()", replaceWith = ReplaceWith("deployVerticle(verticle, options).coAwait()"))
 suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle, options: DeploymentOptions): String {
   return awaitResult {
     this.deployVerticle(verticle, options, it)
@@ -121,7 +121,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticle: Verticle, options: Dep
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deployVerticle returning a future and chain with await()", replaceWith = ReplaceWith("deployVerticle(verticleSupplier, options).await()"))
+@Deprecated(message = "Instead use deployVerticle returning a future and chain with coAwait()", replaceWith = ReplaceWith("deployVerticle(verticleSupplier, options).coAwait()"))
 suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier: Supplier<Verticle>, options: DeploymentOptions): String {
   return awaitResult {
     this.deployVerticle(verticleSupplier, options, it)
@@ -136,7 +136,7 @@ suspend fun VertxVertxAlias.deployVerticleAwait(verticleSupplier: Supplier<Verti
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).await()"))
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with coAwait()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler).coAwait()"))
 suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: Callable<T>): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, it)
@@ -152,7 +152,7 @@ suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: Callab
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use executeBlocking returning a future and chain with await()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).await()"))
+@Deprecated(message = "Instead use executeBlocking returning a future and chain with coAwait()", replaceWith = ReplaceWith("executeBlocking(blockingCodeHandler, ordered).coAwait()"))
 suspend fun <T> VertxVertxAlias.executeBlockingAwait(blockingCodeHandler: Callable<T>, ordered: Boolean): T? {
   return awaitResult {
     this.executeBlocking(blockingCodeHandler, ordered, it)
@@ -168,7 +168,7 @@ object Vertx {
    *
    * NOTE: This function has been automatically generated from [io.vertx.core.Vertx] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use clusteredVertx returning a future and chain with await()", replaceWith = ReplaceWith("clusteredVertx(options).await()"))
+  @Deprecated(message = "Instead use clusteredVertx returning a future and chain with coAwait()", replaceWith = ReplaceWith("clusteredVertx(options).coAwait()"))
   suspend fun clusteredVertxAwait(options: VertxOptions): VertxVertxAlias {
     return awaitResult {
       VertxVertxAlias.clusteredVertx(options, it)

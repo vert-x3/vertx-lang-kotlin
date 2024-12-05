@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.VertxBuilder] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use buildClustered returning a future and chain with await()", replaceWith = ReplaceWith("buildClustered().await()"))
+@Deprecated(message = "Instead use buildClustered returning a future and chain with coAwait()", replaceWith = ReplaceWith("buildClustered().coAwait()"))
 suspend fun VertxBuilder.buildClusteredAwait(): Vertx {
   return awaitResult {
     this.buildClustered(it)

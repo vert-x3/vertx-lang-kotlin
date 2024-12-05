@@ -34,7 +34,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getClient returning a future and chain with await()", replaceWith = ReplaceWith("getClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getClient(discovery, filter).coAwait()"))
   suspend fun getClientAwait(discovery: ServiceDiscovery, filter: JsonObject): HttpClient {
     return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, it)
@@ -50,7 +50,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getWebClient returning a future and chain with await()", replaceWith = ReplaceWith("getWebClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getWebClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getWebClient(discovery, filter).coAwait()"))
   suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: JsonObject): WebClient {
     return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, it)
@@ -67,7 +67,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getClient returning a future and chain with await()", replaceWith = ReplaceWith("getClient(discovery, filter, conf).await()"))
+  @Deprecated(message = "Instead use getClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getClient(discovery, filter, conf).coAwait()"))
   suspend fun getClientAwait(discovery: ServiceDiscovery, filter: JsonObject, conf: JsonObject): HttpClient {
     return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, conf, it)
@@ -84,7 +84,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getWebClient returning a future and chain with await()", replaceWith = ReplaceWith("getWebClient(discovery, filter, conf).await()"))
+  @Deprecated(message = "Instead use getWebClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getWebClient(discovery, filter, conf).coAwait()"))
   suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: JsonObject, conf: JsonObject): WebClient {
     return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it)
@@ -100,7 +100,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getClient returning a future and chain with await()", replaceWith = ReplaceWith("getClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getClient(discovery, filter).coAwait()"))
   suspend fun getClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): HttpClient {
     return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, it::handle)
@@ -116,7 +116,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getWebClient returning a future and chain with await()", replaceWith = ReplaceWith("getWebClient(discovery, filter).await()"))
+  @Deprecated(message = "Instead use getWebClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getWebClient(discovery, filter).coAwait()"))
   suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean): WebClient {
     return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, it::handle)
@@ -133,7 +133,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getClient returning a future and chain with await()", replaceWith = ReplaceWith("getClient(discovery, filter, conf).await()"))
+  @Deprecated(message = "Instead use getClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getClient(discovery, filter, conf).coAwait()"))
   suspend fun getClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, conf: JsonObject): HttpClient {
     return awaitResult {
       HttpEndpointVertxAlias.getClient(discovery, filter, conf, it::handle)
@@ -150,7 +150,7 @@ object HttpEndpoint {
    *
    * NOTE: This function has been automatically generated from [io.vertx.servicediscovery.types.HttpEndpoint] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use getWebClient returning a future and chain with await()", replaceWith = ReplaceWith("getWebClient(discovery, filter, conf).await()"))
+  @Deprecated(message = "Instead use getWebClient returning a future and chain with coAwait()", replaceWith = ReplaceWith("getWebClient(discovery, filter, conf).coAwait()"))
   suspend fun getWebClientAwait(discovery: ServiceDiscovery, filter: (Record) -> Boolean, conf: JsonObject): WebClient {
     return awaitResult {
       HttpEndpointVertxAlias.getWebClient(discovery, filter, conf, it::handle)

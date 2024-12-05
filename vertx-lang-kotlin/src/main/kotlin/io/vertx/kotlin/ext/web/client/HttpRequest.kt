@@ -32,7 +32,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendStream returning a future and chain with await()", replaceWith = ReplaceWith("sendStream(body).await()"))
+@Deprecated(message = "Instead use sendStream returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendStream(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendStreamAwait(body: ReadStream<Buffer>): HttpResponse<T> {
   return awaitResult {
     this.sendStream(body, it)
@@ -47,7 +47,7 @@ suspend fun <T> HttpRequest<T>.sendStreamAwait(body: ReadStream<Buffer>): HttpRe
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendBuffer returning a future and chain with await()", replaceWith = ReplaceWith("sendBuffer(body).await()"))
+@Deprecated(message = "Instead use sendBuffer returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendBuffer(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendBufferAwait(body: Buffer): HttpResponse<T> {
   return awaitResult {
     this.sendBuffer(body, it)
@@ -62,7 +62,7 @@ suspend fun <T> HttpRequest<T>.sendBufferAwait(body: Buffer): HttpResponse<T> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendJsonObject returning a future and chain with await()", replaceWith = ReplaceWith("sendJsonObject(body).await()"))
+@Deprecated(message = "Instead use sendJsonObject returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendJsonObject(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendJsonObjectAwait(body: JsonObject): HttpResponse<T> {
   return awaitResult {
     this.sendJsonObject(body, it)
@@ -77,7 +77,7 @@ suspend fun <T> HttpRequest<T>.sendJsonObjectAwait(body: JsonObject): HttpRespon
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendJson returning a future and chain with await()", replaceWith = ReplaceWith("sendJson(body).await()"))
+@Deprecated(message = "Instead use sendJson returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendJson(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendJsonAwait(body: Any?): HttpResponse<T> {
   return awaitResult {
     this.sendJson(body, it)
@@ -92,7 +92,7 @@ suspend fun <T> HttpRequest<T>.sendJsonAwait(body: Any?): HttpResponse<T> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendForm returning a future and chain with await()", replaceWith = ReplaceWith("sendForm(body).await()"))
+@Deprecated(message = "Instead use sendForm returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendForm(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap): HttpResponse<T> {
   return awaitResult {
     this.sendForm(body, it)
@@ -108,7 +108,7 @@ suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap): HttpResponse<T> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendForm returning a future and chain with await()", replaceWith = ReplaceWith("sendForm(body, charset).await()"))
+@Deprecated(message = "Instead use sendForm returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendForm(body, charset).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap, charset: String): HttpResponse<T> {
   return awaitResult {
     this.sendForm(body, charset, it)
@@ -123,7 +123,7 @@ suspend fun <T> HttpRequest<T>.sendFormAwait(body: MultiMap, charset: String): H
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use sendMultipartForm returning a future and chain with await()", replaceWith = ReplaceWith("sendMultipartForm(body).await()"))
+@Deprecated(message = "Instead use sendMultipartForm returning a future and chain with coAwait()", replaceWith = ReplaceWith("sendMultipartForm(body).coAwait()"))
 suspend fun <T> HttpRequest<T>.sendMultipartFormAwait(body: MultipartForm): HttpResponse<T> {
   return awaitResult {
     this.sendMultipartForm(body, it)
@@ -137,7 +137,7 @@ suspend fun <T> HttpRequest<T>.sendMultipartFormAwait(body: MultipartForm): Http
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.client.HttpRequest] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send().await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send().coAwait()"))
 suspend fun <T> HttpRequest<T>.sendAwait(): HttpResponse<T> {
   return awaitResult {
     this.send(it)

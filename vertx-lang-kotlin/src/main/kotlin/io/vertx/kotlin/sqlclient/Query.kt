@@ -25,7 +25,7 @@ import io.vertx.sqlclient.Query
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.Query] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use execute returning a future and chain with await()", replaceWith = ReplaceWith("execute().await()"))
+@Deprecated(message = "Instead use execute returning a future and chain with coAwait()", replaceWith = ReplaceWith("execute().coAwait()"))
 suspend fun <T> Query<T>.executeAwait(): T {
   return awaitResult {
     this.execute(it)

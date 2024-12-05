@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use get returning a future and chain with await()", replaceWith = ReplaceWith("get(cookieValue).await()"))
+@Deprecated(message = "Instead use get returning a future and chain with coAwait()", replaceWith = ReplaceWith("get(cookieValue).coAwait()"))
 suspend fun SessionStore.getAwait(cookieValue: String): Session? {
   return awaitResult {
     this.get(cookieValue, it)
@@ -41,7 +41,7 @@ suspend fun SessionStore.getAwait(cookieValue: String): Session? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use delete returning a future and chain with await()", replaceWith = ReplaceWith("delete(id).await()"))
+@Deprecated(message = "Instead use delete returning a future and chain with coAwait()", replaceWith = ReplaceWith("delete(id).coAwait()"))
 suspend fun SessionStore.deleteAwait(id: String): Unit {
   return awaitResult {
     this.delete(id, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -55,7 +55,7 @@ suspend fun SessionStore.deleteAwait(id: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use put returning a future and chain with await()", replaceWith = ReplaceWith("put(session).await()"))
+@Deprecated(message = "Instead use put returning a future and chain with coAwait()", replaceWith = ReplaceWith("put(session).coAwait()"))
 suspend fun SessionStore.putAwait(session: Session): Unit {
   return awaitResult {
     this.put(session, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -68,7 +68,7 @@ suspend fun SessionStore.putAwait(session: Session): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use clear returning a future and chain with await()", replaceWith = ReplaceWith("clear().await()"))
+@Deprecated(message = "Instead use clear returning a future and chain with coAwait()", replaceWith = ReplaceWith("clear().coAwait()"))
 suspend fun SessionStore.clearAwait(): Unit {
   return awaitResult {
     this.clear(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -82,7 +82,7 @@ suspend fun SessionStore.clearAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.sstore.SessionStore] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use size returning a future and chain with await()", replaceWith = ReplaceWith("size().await()"))
+@Deprecated(message = "Instead use size returning a future and chain with coAwait()", replaceWith = ReplaceWith("size().coAwait()"))
 suspend fun SessionStore.sizeAwait(): Int {
   return awaitResult {
     this.size(it)

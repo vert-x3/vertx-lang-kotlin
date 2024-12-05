@@ -24,7 +24,7 @@ import io.vertx.pgclient.pubsub.PgSubscriber
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.pubsub.PgSubscriber] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect().coAwait()"))
 suspend fun PgSubscriber.connectAwait(): Unit {
   return awaitResult {
     this.connect(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -37,7 +37,7 @@ suspend fun PgSubscriber.connectAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.pgclient.pubsub.PgSubscriber] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun PgSubscriber.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

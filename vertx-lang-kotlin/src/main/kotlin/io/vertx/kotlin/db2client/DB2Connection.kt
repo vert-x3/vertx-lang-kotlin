@@ -21,7 +21,7 @@ import io.vertx.db2client.DB2Connection as DB2ConnectionVertxAlias
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.sqlclient.PreparedStatement
 
-@Deprecated(message = "Instead use prepare returning a future and chain with await()", replaceWith = ReplaceWith("prepare(sql).await()"))
+@Deprecated(message = "Instead use prepare returning a future and chain with coAwait()", replaceWith = ReplaceWith("prepare(sql).coAwait()"))
 suspend fun DB2ConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement {
   return awaitResult {
     this.prepare(sql, it)
@@ -34,7 +34,7 @@ suspend fun DB2ConnectionVertxAlias.prepareAwait(sql: String): PreparedStatement
  *
  * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use ping returning a future and chain with await()", replaceWith = ReplaceWith("ping().await()"))
+@Deprecated(message = "Instead use ping returning a future and chain with coAwait()", replaceWith = ReplaceWith("ping().coAwait()"))
 suspend fun DB2ConnectionVertxAlias.pingAwait(): Unit {
   return awaitResult {
     this.ping(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -47,7 +47,7 @@ suspend fun DB2ConnectionVertxAlias.pingAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use debug returning a future and chain with await()", replaceWith = ReplaceWith("debug().await()"))
+@Deprecated(message = "Instead use debug returning a future and chain with coAwait()", replaceWith = ReplaceWith("debug().coAwait()"))
 suspend fun DB2ConnectionVertxAlias.debugAwait(): Unit {
   return awaitResult {
     this.debug(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -64,7 +64,7 @@ object DB2Connection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectOptions).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(vertx, connectOptions).coAwait()"))
   suspend fun connectAwait(vertx: Vertx, connectOptions: DB2ConnectOptions): DB2ConnectionVertxAlias {
     return awaitResult {
       DB2ConnectionVertxAlias.connect(vertx, connectOptions, it)
@@ -80,7 +80,7 @@ object DB2Connection {
    *
    * NOTE: This function has been automatically generated from [io.vertx.db2client.DB2Connection] using Vert.x codegen.
    */
-  @Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect(vertx, connectionUri).await()"))
+  @Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect(vertx, connectionUri).coAwait()"))
   suspend fun connectAwait(vertx: Vertx, connectionUri: String): DB2ConnectionVertxAlias {
     return awaitResult {
       DB2ConnectionVertxAlias.connect(vertx, connectionUri, it)

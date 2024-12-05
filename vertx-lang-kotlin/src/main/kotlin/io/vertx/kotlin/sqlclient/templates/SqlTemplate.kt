@@ -26,7 +26,7 @@ import io.vertx.sqlclient.templates.SqlTemplate
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.templates.SqlTemplate] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use execute returning a future and chain with await()", replaceWith = ReplaceWith("execute(parameters).await()"))
+@Deprecated(message = "Instead use execute returning a future and chain with coAwait()", replaceWith = ReplaceWith("execute(parameters).coAwait()"))
 suspend fun <I,R> SqlTemplate<I,R>.executeAwait(parameters: I): R {
   return awaitResult {
     this.execute(parameters, it)
@@ -41,7 +41,7 @@ suspend fun <I,R> SqlTemplate<I,R>.executeAwait(parameters: I): R {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.templates.SqlTemplate] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use executeBatch returning a future and chain with await()", replaceWith = ReplaceWith("executeBatch(batch).await()"))
+@Deprecated(message = "Instead use executeBatch returning a future and chain with coAwait()", replaceWith = ReplaceWith("executeBatch(batch).coAwait()"))
 suspend fun <I,R> SqlTemplate<I,R>.executeBatchAwait(batch: List<I>): R {
   return awaitResult {
     this.executeBatch(batch, it)

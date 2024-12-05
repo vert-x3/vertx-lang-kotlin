@@ -37,7 +37,7 @@ import org.apache.kafka.common.acl.AclBindingFilter
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listTopics returning a future and chain with await()", replaceWith = ReplaceWith("listTopics().await()"))
+@Deprecated(message = "Instead use listTopics returning a future and chain with coAwait()", replaceWith = ReplaceWith("listTopics().coAwait()"))
 suspend fun KafkaAdminClient.listTopicsAwait(): Set<String> {
   return awaitResult {
     this.listTopics(it)
@@ -52,7 +52,7 @@ suspend fun KafkaAdminClient.listTopicsAwait(): Set<String> {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeTopics returning a future and chain with await()", replaceWith = ReplaceWith("describeTopics(topicNames).await()"))
+@Deprecated(message = "Instead use describeTopics returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeTopics(topicNames).coAwait()"))
 suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>): Map<String,TopicDescription> {
   return awaitResult {
     this.describeTopics(topicNames, it)
@@ -68,7 +68,7 @@ suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>): Map<
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeTopics returning a future and chain with await()", replaceWith = ReplaceWith("describeTopics(topicNames, options).await()"))
+@Deprecated(message = "Instead use describeTopics returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeTopics(topicNames, options).coAwait()"))
 suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>, options: DescribeTopicsOptions): Map<String,TopicDescription> {
   return awaitResult {
     this.describeTopics(topicNames, options, it)
@@ -82,7 +82,7 @@ suspend fun KafkaAdminClient.describeTopicsAwait(topicNames: List<String>, optio
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createTopics returning a future and chain with await()", replaceWith = ReplaceWith("createTopics(topics).await()"))
+@Deprecated(message = "Instead use createTopics returning a future and chain with coAwait()", replaceWith = ReplaceWith("createTopics(topics).coAwait()"))
 suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
   return awaitResult {
     this.createTopics(topics, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -96,7 +96,7 @@ suspend fun KafkaAdminClient.createTopicsAwait(topics: List<NewTopic>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteTopics returning a future and chain with await()", replaceWith = ReplaceWith("deleteTopics(topicNames).await()"))
+@Deprecated(message = "Instead use deleteTopics returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteTopics(topicNames).coAwait()"))
 suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames: List<String>): Unit {
   return awaitResult {
     this.deleteTopics(topicNames, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -110,7 +110,7 @@ suspend fun KafkaAdminClient.deleteTopicsAwait(topicNames: List<String>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createPartitions returning a future and chain with await()", replaceWith = ReplaceWith("createPartitions(partitions).await()"))
+@Deprecated(message = "Instead use createPartitions returning a future and chain with coAwait()", replaceWith = ReplaceWith("createPartitions(partitions).coAwait()"))
 suspend fun KafkaAdminClient.createPartitionsAwait(partitions: Map<String,NewPartitions>): Unit {
   return awaitResult {
     this.createPartitions(partitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -124,7 +124,7 @@ suspend fun KafkaAdminClient.createPartitionsAwait(partitions: Map<String,NewPar
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listConsumerGroups returning a future and chain with await()", replaceWith = ReplaceWith("listConsumerGroups().await()"))
+@Deprecated(message = "Instead use listConsumerGroups returning a future and chain with coAwait()", replaceWith = ReplaceWith("listConsumerGroups().coAwait()"))
 suspend fun KafkaAdminClient.listConsumerGroupsAwait(): List<ConsumerGroupListing> {
   return awaitResult {
     this.listConsumerGroups(it)
@@ -139,7 +139,7 @@ suspend fun KafkaAdminClient.listConsumerGroupsAwait(): List<ConsumerGroupListin
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeConsumerGroups returning a future and chain with await()", replaceWith = ReplaceWith("describeConsumerGroups(groupIds).await()"))
+@Deprecated(message = "Instead use describeConsumerGroups returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeConsumerGroups(groupIds).coAwait()"))
 suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>): Map<String,ConsumerGroupDescription> {
   return awaitResult {
     this.describeConsumerGroups(groupIds, it)
@@ -155,7 +155,7 @@ suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>)
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeConsumerGroups returning a future and chain with await()", replaceWith = ReplaceWith("describeConsumerGroups(groupIds, options).await()"))
+@Deprecated(message = "Instead use describeConsumerGroups returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeConsumerGroups(groupIds, options).coAwait()"))
 suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>, options: DescribeConsumerGroupsOptions): Map<String,ConsumerGroupDescription> {
   return awaitResult {
     this.describeConsumerGroups(groupIds, options, it)
@@ -169,7 +169,7 @@ suspend fun KafkaAdminClient.describeConsumerGroupsAwait(groupIds: List<String>,
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeCluster returning a future and chain with await()", replaceWith = ReplaceWith("describeCluster().await()"))
+@Deprecated(message = "Instead use describeCluster returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeCluster().coAwait()"))
 suspend fun KafkaAdminClient.describeClusterAwait(): ClusterDescription {
   return awaitResult {
     this.describeCluster(it)
@@ -184,7 +184,7 @@ suspend fun KafkaAdminClient.describeClusterAwait(): ClusterDescription {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeCluster returning a future and chain with await()", replaceWith = ReplaceWith("describeCluster(options).await()"))
+@Deprecated(message = "Instead use describeCluster returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeCluster(options).coAwait()"))
 suspend fun KafkaAdminClient.describeClusterAwait(options: DescribeClusterOptions): ClusterDescription {
   return awaitResult {
     this.describeCluster(options, it)
@@ -198,7 +198,7 @@ suspend fun KafkaAdminClient.describeClusterAwait(options: DescribeClusterOption
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteConsumerGroups returning a future and chain with await()", replaceWith = ReplaceWith("deleteConsumerGroups(groupIds).await()"))
+@Deprecated(message = "Instead use deleteConsumerGroups returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteConsumerGroups(groupIds).coAwait()"))
 suspend fun KafkaAdminClient.deleteConsumerGroupsAwait(groupIds: List<String>): Unit {
   return awaitResult {
     this.deleteConsumerGroups(groupIds, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -213,7 +213,7 @@ suspend fun KafkaAdminClient.deleteConsumerGroupsAwait(groupIds: List<String>): 
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteConsumerGroupOffsets returning a future and chain with await()", replaceWith = ReplaceWith("deleteConsumerGroupOffsets(groupId, partitions).await()"))
+@Deprecated(message = "Instead use deleteConsumerGroupOffsets returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteConsumerGroupOffsets(groupId, partitions).coAwait()"))
 suspend fun KafkaAdminClient.deleteConsumerGroupOffsetsAwait(groupId: String, partitions: Set<TopicPartition>): Unit {
   return awaitResult {
     this.deleteConsumerGroupOffsets(groupId, partitions, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -226,7 +226,7 @@ suspend fun KafkaAdminClient.deleteConsumerGroupOffsetsAwait(groupId: String, pa
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun KafkaAdminClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -240,7 +240,7 @@ suspend fun KafkaAdminClient.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close(timeout).await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close(timeout).coAwait()"))
 suspend fun KafkaAdminClient.closeAwait(timeout: Long): Unit {
   return awaitResult {
     this.close(timeout, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -255,7 +255,7 @@ suspend fun KafkaAdminClient.closeAwait(timeout: Long): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use describeAcls returning a future and chain with await()", replaceWith = ReplaceWith("describeAcls(aclBindingFilter).await()"))
+@Deprecated(message = "Instead use describeAcls returning a future and chain with coAwait()", replaceWith = ReplaceWith("describeAcls(aclBindingFilter).coAwait()"))
 suspend fun KafkaAdminClient.describeAclsAwait(aclBindingFilter: AclBindingFilter): List<AclBinding> {
   return awaitResult {
     this.describeAcls(aclBindingFilter, it)
@@ -270,7 +270,7 @@ suspend fun KafkaAdminClient.describeAclsAwait(aclBindingFilter: AclBindingFilte
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createAcls returning a future and chain with await()", replaceWith = ReplaceWith("createAcls(aclBindings).await()"))
+@Deprecated(message = "Instead use createAcls returning a future and chain with coAwait()", replaceWith = ReplaceWith("createAcls(aclBindings).coAwait()"))
 suspend fun KafkaAdminClient.createAclsAwait(aclBindings: List<AclBinding>): List<AclBinding> {
   return awaitResult {
     this.createAcls(aclBindings, it)
@@ -285,7 +285,7 @@ suspend fun KafkaAdminClient.createAclsAwait(aclBindings: List<AclBinding>): Lis
  *
  * NOTE: This function has been automatically generated from [io.vertx.kafka.admin.KafkaAdminClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteAcls returning a future and chain with await()", replaceWith = ReplaceWith("deleteAcls(aclBindings).await()"))
+@Deprecated(message = "Instead use deleteAcls returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteAcls(aclBindings).coAwait()"))
 suspend fun KafkaAdminClient.deleteAclsAwait(aclBindings: List<AclBindingFilter>): List<AclBinding> {
   return awaitResult {
     this.deleteAcls(aclBindings, it)

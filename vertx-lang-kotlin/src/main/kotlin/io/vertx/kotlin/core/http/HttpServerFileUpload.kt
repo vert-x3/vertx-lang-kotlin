@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerFileUpload] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun HttpServerFileUpload.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -41,7 +41,7 @@ suspend fun HttpServerFileUpload.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerFileUpload] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use streamToFileSystem returning a future and chain with await()", replaceWith = ReplaceWith("streamToFileSystem(filename).await()"))
+@Deprecated(message = "Instead use streamToFileSystem returning a future and chain with coAwait()", replaceWith = ReplaceWith("streamToFileSystem(filename).coAwait()"))
 suspend fun HttpServerFileUpload.streamToFileSystemAwait(filename: String): Unit {
   return awaitResult {
     this.streamToFileSystem(filename, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

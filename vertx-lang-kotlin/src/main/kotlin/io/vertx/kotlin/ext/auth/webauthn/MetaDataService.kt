@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.MetaDataService] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fetchTOC returning a future and chain with await()", replaceWith = ReplaceWith("fetchTOC(url).await()"))
+@Deprecated(message = "Instead use fetchTOC returning a future and chain with coAwait()", replaceWith = ReplaceWith("fetchTOC(url).coAwait()"))
 suspend fun MetaDataService.fetchTOCAwait(url: String): Boolean {
   return awaitResult {
     this.fetchTOC(url, it)
@@ -40,7 +40,7 @@ suspend fun MetaDataService.fetchTOCAwait(url: String): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.webauthn.MetaDataService] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use fetchTOC returning a future and chain with await()", replaceWith = ReplaceWith("fetchTOC().await()"))
+@Deprecated(message = "Instead use fetchTOC returning a future and chain with coAwait()", replaceWith = ReplaceWith("fetchTOC().coAwait()"))
 suspend fun MetaDataService.fetchTOCAwait(): Boolean {
   return awaitResult {
     this.fetchTOC(it)

@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen().await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen().coAwait()"))
 suspend fun NetServer.listenAwait(): NetServer {
   return awaitResult {
     this.listen(it)
@@ -43,7 +43,7 @@ suspend fun NetServer.listenAwait(): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port, host).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(port, host).coAwait()"))
 suspend fun NetServer.listenAwait(port: Int, host: String): NetServer {
   return awaitResult {
     this.listen(port, host, it)
@@ -58,7 +58,7 @@ suspend fun NetServer.listenAwait(port: Int, host: String): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(port).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(port).coAwait()"))
 suspend fun NetServer.listenAwait(port: Int): NetServer {
   return awaitResult {
     this.listen(port, it)
@@ -73,7 +73,7 @@ suspend fun NetServer.listenAwait(port: Int): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use listen returning a future and chain with await()", replaceWith = ReplaceWith("listen(localAddress).await()"))
+@Deprecated(message = "Instead use listen returning a future and chain with coAwait()", replaceWith = ReplaceWith("listen(localAddress).coAwait()"))
 suspend fun NetServer.listenAwait(localAddress: SocketAddress): NetServer {
   return awaitResult {
     this.listen(localAddress, it)
@@ -86,7 +86,7 @@ suspend fun NetServer.listenAwait(localAddress: SocketAddress): NetServer {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun NetServer.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -101,7 +101,7 @@ suspend fun NetServer.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options).coAwait()"))
 suspend fun NetServer.updateSSLOptionsAwait(options: SSLOptions): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, it)
@@ -117,7 +117,7 @@ suspend fun NetServer.updateSSLOptionsAwait(options: SSLOptions): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.net.NetServer] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options, force).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options, force).coAwait()"))
 suspend fun NetServer.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, force, it)

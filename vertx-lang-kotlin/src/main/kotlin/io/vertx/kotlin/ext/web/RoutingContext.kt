@@ -26,7 +26,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.RoutingContext] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use redirect returning a future and chain with await()", replaceWith = ReplaceWith("redirect(url).await()"))
+@Deprecated(message = "Instead use redirect returning a future and chain with coAwait()", replaceWith = ReplaceWith("redirect(url).coAwait()"))
 suspend fun RoutingContext.redirectAwait(url: String): Unit {
   return awaitResult {
     this.redirect(url, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -40,7 +40,7 @@ suspend fun RoutingContext.redirectAwait(url: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.RoutingContext] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use json returning a future and chain with await()", replaceWith = ReplaceWith("json(json).await()"))
+@Deprecated(message = "Instead use json returning a future and chain with coAwait()", replaceWith = ReplaceWith("json(json).coAwait()"))
 suspend fun RoutingContext.jsonAwait(json: Any): Unit {
   return awaitResult {
     this.json(json, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -54,7 +54,7 @@ suspend fun RoutingContext.jsonAwait(json: Any): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.RoutingContext] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(chunk).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(chunk).coAwait()"))
 suspend fun RoutingContext.endAwait(chunk: String): Unit {
   return awaitResult {
     this.end(chunk, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -68,7 +68,7 @@ suspend fun RoutingContext.endAwait(chunk: String): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.RoutingContext] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(buffer).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(buffer).coAwait()"))
 suspend fun RoutingContext.endAwait(buffer: Buffer): Unit {
   return awaitResult {
     this.end(buffer, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -81,7 +81,7 @@ suspend fun RoutingContext.endAwait(buffer: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.web.RoutingContext] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun RoutingContext.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

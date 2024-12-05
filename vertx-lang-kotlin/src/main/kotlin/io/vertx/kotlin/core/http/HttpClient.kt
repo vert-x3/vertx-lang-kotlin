@@ -30,7 +30,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(options).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with coAwait()", replaceWith = ReplaceWith("request(options).coAwait()"))
 suspend fun HttpClient.requestAwait(options: RequestOptions): HttpClientRequest {
   return awaitResult {
     this.request(options, it)
@@ -48,7 +48,7 @@ suspend fun HttpClient.requestAwait(options: RequestOptions): HttpClientRequest 
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(method, port, host, requestURI).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with coAwait()", replaceWith = ReplaceWith("request(method, port, host, requestURI).coAwait()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, port: Int, host: String, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, port, host, requestURI, it)
@@ -65,7 +65,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, port: Int, host: String,
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(method, host, requestURI).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with coAwait()", replaceWith = ReplaceWith("request(method, host, requestURI).coAwait()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, host: String, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, host, requestURI, it)
@@ -81,7 +81,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, host: String, requestURI
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use request returning a future and chain with await()", replaceWith = ReplaceWith("request(method, requestURI).await()"))
+@Deprecated(message = "Instead use request returning a future and chain with coAwait()", replaceWith = ReplaceWith("request(method, requestURI).coAwait()"))
 suspend fun HttpClient.requestAwait(method: HttpMethod, requestURI: String): HttpClientRequest {
   return awaitResult {
     this.request(method, requestURI, it)
@@ -96,7 +96,7 @@ suspend fun HttpClient.requestAwait(method: HttpMethod, requestURI: String): Htt
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options).coAwait()"))
 suspend fun HttpClient.updateSSLOptionsAwait(options: SSLOptions): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, it)
@@ -112,7 +112,7 @@ suspend fun HttpClient.updateSSLOptionsAwait(options: SSLOptions): Boolean {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with await()", replaceWith = ReplaceWith("updateSSLOptions(options, force).await()"))
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options, force).coAwait()"))
 suspend fun HttpClient.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
   return awaitResult {
     this.updateSSLOptions(options, force, it)
@@ -125,7 +125,7 @@ suspend fun HttpClient.updateSSLOptionsAwait(options: SSLOptions, force: Boolean
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpClient] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun HttpClient.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

@@ -28,7 +28,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use write returning a future and chain with await()", replaceWith = ReplaceWith("write(data).await()"))
+@Deprecated(message = "Instead use write returning a future and chain with coAwait()", replaceWith = ReplaceWith("write(data).coAwait()"))
 suspend fun WebSocket.writeAwait(data: Buffer): Unit {
   return awaitResult {
     this.write(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -42,7 +42,7 @@ suspend fun WebSocket.writeAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end(data).await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(data).coAwait()"))
 suspend fun WebSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -56,7 +56,7 @@ suspend fun WebSocket.endAwait(data: Buffer): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun WebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -69,7 +69,7 @@ suspend fun WebSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use end returning a future and chain with await()", replaceWith = ReplaceWith("end().await()"))
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end().coAwait()"))
 suspend fun WebSocket.endAwait(): Unit {
   return awaitResult {
     this.end(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -82,7 +82,7 @@ suspend fun WebSocket.endAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun WebSocket.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -96,7 +96,7 @@ suspend fun WebSocket.closeAwait(): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close(statusCode).await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close(statusCode).coAwait()"))
 suspend fun WebSocket.closeAwait(statusCode: Short): Unit {
   return awaitResult {
     this.close(statusCode, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -111,56 +111,56 @@ suspend fun WebSocket.closeAwait(statusCode: Short): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.WebSocket] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close(statusCode, reason).await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close(statusCode, reason).coAwait()"))
 suspend fun WebSocket.closeAwait(statusCode: Short, reason: String?): Unit {
   return awaitResult {
     this.close(statusCode, reason, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writeFrame returning a future and chain with await()", replaceWith = ReplaceWith("writeFrame(frame).await()"))
+@Deprecated(message = "Instead use writeFrame returning a future and chain with coAwait()", replaceWith = ReplaceWith("writeFrame(frame).coAwait()"))
 suspend fun WebSocket.writeFrameAwait(frame: WebSocketFrame): Unit {
   return awaitResult {
     this.writeFrame(frame, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writeFinalTextFrame returning a future and chain with await()", replaceWith = ReplaceWith("writeFinalTextFrame(text).await()"))
+@Deprecated(message = "Instead use writeFinalTextFrame returning a future and chain with coAwait()", replaceWith = ReplaceWith("writeFinalTextFrame(text).coAwait()"))
 suspend fun WebSocket.writeFinalTextFrameAwait(text: String): Unit {
   return awaitResult {
     this.writeFinalTextFrame(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writeFinalBinaryFrame returning a future and chain with await()", replaceWith = ReplaceWith("writeFinalBinaryFrame(data).await()"))
+@Deprecated(message = "Instead use writeFinalBinaryFrame returning a future and chain with coAwait()", replaceWith = ReplaceWith("writeFinalBinaryFrame(data).coAwait()"))
 suspend fun WebSocket.writeFinalBinaryFrameAwait(data: Buffer): Unit {
   return awaitResult {
     this.writeFinalBinaryFrame(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writeBinaryMessage returning a future and chain with await()", replaceWith = ReplaceWith("writeBinaryMessage(data).await()"))
+@Deprecated(message = "Instead use writeBinaryMessage returning a future and chain with coAwait()", replaceWith = ReplaceWith("writeBinaryMessage(data).coAwait()"))
 suspend fun WebSocket.writeBinaryMessageAwait(data: Buffer): Unit {
   return awaitResult {
     this.writeBinaryMessage(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writeTextMessage returning a future and chain with await()", replaceWith = ReplaceWith("writeTextMessage(text).await()"))
+@Deprecated(message = "Instead use writeTextMessage returning a future and chain with coAwait()", replaceWith = ReplaceWith("writeTextMessage(text).coAwait()"))
 suspend fun WebSocket.writeTextMessageAwait(text: String): Unit {
   return awaitResult {
     this.writeTextMessage(text, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writePing returning a future and chain with await()", replaceWith = ReplaceWith("writePing(data).await()"))
+@Deprecated(message = "Instead use writePing returning a future and chain with coAwait()", replaceWith = ReplaceWith("writePing(data).coAwait()"))
 suspend fun WebSocket.writePingAwait(data: Buffer): Unit {
   return awaitResult {
     this.writePing(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
-@Deprecated(message = "Instead use writePong returning a future and chain with await()", replaceWith = ReplaceWith("writePong(data).await()"))
+@Deprecated(message = "Instead use writePong returning a future and chain with coAwait()", replaceWith = ReplaceWith("writePong(data).coAwait()"))
 suspend fun WebSocket.writePongAwait(data: Buffer): Unit {
   return awaitResult {
     this.writePong(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

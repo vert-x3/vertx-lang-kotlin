@@ -26,7 +26,7 @@ import io.vertx.sqlclient.RowStream
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.RowStream] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with await()", replaceWith = ReplaceWith("pipeTo(dst).await()"))
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
 suspend fun <T> RowStream<T>.pipeToAwait(dst: WriteStream<T>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
@@ -39,7 +39,7 @@ suspend fun <T> RowStream<T>.pipeToAwait(dst: WriteStream<T>): Unit {
  *
  * NOTE: This function has been automatically generated from [io.vertx.sqlclient.RowStream] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use close returning a future and chain with await()", replaceWith = ReplaceWith("close().await()"))
+@Deprecated(message = "Instead use close returning a future and chain with coAwait()", replaceWith = ReplaceWith("close().coAwait()"))
 suspend fun <T> RowStream<T>.closeAwait(): Unit {
   return awaitResult {
     this.close(io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })

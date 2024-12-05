@@ -28,7 +28,7 @@ import io.vertx.redis.client.Response
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use connect returning a future and chain with await()", replaceWith = ReplaceWith("connect().await()"))
+@Deprecated(message = "Instead use connect returning a future and chain with coAwait()", replaceWith = ReplaceWith("connect().coAwait()"))
 suspend fun Redis.connectAwait(): RedisConnection {
   return awaitResult {
     this.connect(it)
@@ -43,7 +43,7 @@ suspend fun Redis.connectAwait(): RedisConnection {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use send returning a future and chain with await()", replaceWith = ReplaceWith("send(command).await()"))
+@Deprecated(message = "Instead use send returning a future and chain with coAwait()", replaceWith = ReplaceWith("send(command).coAwait()"))
 suspend fun Redis.sendAwait(command: Request): Response? {
   return awaitResult {
     this.send(command, it)
@@ -58,7 +58,7 @@ suspend fun Redis.sendAwait(command: Request): Response? {
  *
  * NOTE: This function has been automatically generated from [io.vertx.redis.client.Redis] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use batch returning a future and chain with await()", replaceWith = ReplaceWith("batch(commands).await()"))
+@Deprecated(message = "Instead use batch returning a future and chain with coAwait()", replaceWith = ReplaceWith("batch(commands).coAwait()"))
 suspend fun Redis.batchAwait(commands: List<Request>): List<Response?> {
   return awaitResult {
     this.batch(commands, it)

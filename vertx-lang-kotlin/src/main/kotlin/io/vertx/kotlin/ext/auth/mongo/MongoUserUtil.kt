@@ -27,7 +27,7 @@ import io.vertx.kotlin.coroutines.awaitResult
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createUser returning a future and chain with await()", replaceWith = ReplaceWith("createUser(username, password).await()"))
+@Deprecated(message = "Instead use createUser returning a future and chain with coAwait()", replaceWith = ReplaceWith("createUser(username, password).coAwait()"))
 suspend fun MongoUserUtil.createUserAwait(username: String, password: String): String {
   return awaitResult {
     this.createUser(username, password, it)
@@ -43,7 +43,7 @@ suspend fun MongoUserUtil.createUserAwait(username: String, password: String): S
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createHashedUser returning a future and chain with await()", replaceWith = ReplaceWith("createHashedUser(username, hash).await()"))
+@Deprecated(message = "Instead use createHashedUser returning a future and chain with coAwait()", replaceWith = ReplaceWith("createHashedUser(username, hash).coAwait()"))
 suspend fun MongoUserUtil.createHashedUserAwait(username: String, hash: String): String {
   return awaitResult {
     this.createHashedUser(username, hash, it)
@@ -60,7 +60,7 @@ suspend fun MongoUserUtil.createHashedUserAwait(username: String, hash: String):
  *
  * NOTE: This function has been automatically generated from [io.vertx.ext.auth.mongo.MongoUserUtil] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use createUserRolesAndPermissions returning a future and chain with await()", replaceWith = ReplaceWith("createUserRolesAndPermissions(username, roles, permissions).await()"))
+@Deprecated(message = "Instead use createUserRolesAndPermissions returning a future and chain with coAwait()", replaceWith = ReplaceWith("createUserRolesAndPermissions(username, roles, permissions).coAwait()"))
 suspend fun MongoUserUtil.createUserRolesAndPermissionsAwait(username: String, roles: List<String>, permissions: List<String>): String {
   return awaitResult {
     this.createUserRolesAndPermissions(username, roles, permissions, it)
