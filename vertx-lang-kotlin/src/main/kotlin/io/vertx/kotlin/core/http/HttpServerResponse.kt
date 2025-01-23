@@ -19,6 +19,7 @@ import io.vertx.core.MultiMap
 import io.vertx.core.buffer.Buffer
 import io.vertx.core.http.HttpMethod
 import io.vertx.core.http.HttpServerResponse
+import io.vertx.core.net.HostAndPort
 import io.vertx.core.streams.ReadStream
 import io.vertx.kotlin.coroutines.awaitResult
 
@@ -246,7 +247,7 @@ suspend fun HttpServerResponse.sendFileAwait(filename: String, offset: Long, len
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
 @Deprecated(message = "Instead use push returning a future and chain with coAwait()", replaceWith = ReplaceWith("push(method, host, path).coAwait()"))
-suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: String, path: String): HttpServerResponse {
+suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: HostAndPort, path: String): HttpServerResponse {
   return awaitResult {
     this.push(method, host, path, it)
   }
@@ -289,17 +290,17 @@ suspend fun HttpServerResponse.pushAwait(method: HttpMethod, path: String): Http
  * Suspending version of method [io.vertx.core.http.HttpServerResponse.push]
  *
  * @param method the method of the promised request
- * @param host 
+ * @param authority the authority of the promised request
  * @param path the path of the promised request
  * @param headers the headers of the promised request
  * @return [HttpServerResponse]
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.http.HttpServerResponse] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use push returning a future and chain with coAwait()", replaceWith = ReplaceWith("push(method, host, path, headers).coAwait()"))
-suspend fun HttpServerResponse.pushAwait(method: HttpMethod, host: String, path: String, headers: MultiMap): HttpServerResponse {
+@Deprecated(message = "Instead use push returning a future and chain with coAwait()", replaceWith = ReplaceWith("push(method, authority, path, headers).coAwait()"))
+suspend fun HttpServerResponse.pushAwait(method: HttpMethod, authority: HostAndPort, path: String, headers: MultiMap): HttpServerResponse {
   return awaitResult {
-    this.push(method, host, path, headers, it)
+    this.push(method, authority, path, headers, it)
   }
 }
 
