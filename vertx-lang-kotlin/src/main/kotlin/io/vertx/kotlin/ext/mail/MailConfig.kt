@@ -62,7 +62,7 @@ import java.util.concurrent.TimeUnit
  * @param keyStorePassword  get the key store password to be used when opening SMTP connections
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
- * @param login  Set the login mode for the connection. <p> Either DISABLED, OPTIONAL or REQUIRED
+ * @param login  Set the login mode for the connection. <p> Either DISABLED, NONE, REQUIRED or XOAUTH2
  * @param maxMailsPerConnection  Sets the max emails count per connection before it gets closed. <p> Some SMTP servers have requirement to allow only a number of emails sent per connection. </p>
  * @param maxPoolSize  set the max allowed number of open connections to the mail server if not set the default is 10
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
