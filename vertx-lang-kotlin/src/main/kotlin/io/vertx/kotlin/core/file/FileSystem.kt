@@ -271,14 +271,13 @@ suspend fun FileSystem.deleteAwait(path: String): Unit {
  * Suspending version of method [io.vertx.core.file.FileSystem.deleteRecursive]
  *
  * @param path path to the file
- * @param recursive delete recursively?
  *
  * NOTE: This function has been automatically generated from [io.vertx.core.file.FileSystem] using Vert.x codegen.
  */
-@Deprecated(message = "Instead use deleteRecursive returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteRecursive(path, recursive).coAwait()"))
-suspend fun FileSystem.deleteRecursiveAwait(path: String, recursive: Boolean): Unit {
+@Deprecated(message = "Instead use deleteRecursive returning a future and chain with coAwait()", replaceWith = ReplaceWith("deleteRecursive(path).coAwait()"))
+suspend fun FileSystem.deleteRecursiveAwait(path: String): Unit {
   return awaitResult {
-    this.deleteRecursive(path, recursive, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+    this.deleteRecursive(path, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 
