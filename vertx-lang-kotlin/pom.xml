@@ -410,25 +410,6 @@
 
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <id>add-source</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>add-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${basedir}/src/main/kotlin</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.0.2</version>
         <configuration>
@@ -462,7 +443,7 @@
             vertx-web-templ-rocker,
             vertx-web-templ-thymeleaf,
             vertx-web-sstore-infinispan,
-            vertx-web-graphql,
+            vertx-web-grgit aphql,
             vertx-web-validation,
             vertx-web-openapi-router,
             vertx-web-proxy,
