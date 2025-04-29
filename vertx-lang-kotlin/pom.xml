@@ -581,21 +581,6 @@
               <goal>single</goal>
             </goals>
           </execution>
-
-          <!-- Make Nexus happy -->
-          <execution>
-            <id>assemble-javadocs</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <attach>true</attach>
-              <descriptors>
-                <descriptor>${basedir}/src/main/assembly/javadocs.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
 
