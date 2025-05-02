@@ -92,7 +92,7 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-jdbc-client</artifactId>
       <type>test-jar</type>
-      <version>${stack.version}</version>
+      <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

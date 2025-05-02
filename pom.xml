@@ -24,7 +24,6 @@
     <kotlin.coroutines.version>1.6.4</kotlin.coroutines.version>
     <kotlin.version>1.7.21</kotlin.version>
     <junit.version>4.13.2</junit.version>
-    <stack.version>4.5.15-SNAPSHOT</stack.version>
   </properties>
 
   <dependencyManagement>
@@ -32,7 +31,7 @@
       <dependency>
         <groupId>io.vertx</groupId>
         <artifactId>vertx-dependencies</artifactId>
-        <version>${stack.version}</version>
+        <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
