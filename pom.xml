@@ -13,6 +13,12 @@
   <version>4.5.15-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <scm>
+    <connection>scm:git:git@github.com:vert-x3/vertx-lang-kotlin.git</connection>
+    <developerConnection>scm:git:git@github.com:vert-x3/vertx-lang-kotlin.git</developerConnection>
+    <url>git@github.com:vert-x3/vertx-lang-kotlin.git</url>
+  </scm>
+
   <modules>
     <module>vertx-lang-kotlin-coroutines</module>
     <module>vertx-lang-kotlin-gen</module>
