@@ -21,6 +21,20 @@ import io.vertx.ext.web.handler.sockjs.SockJSSocket
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
+ * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.pipeTo]
+ *
+ * @param dst the destination write stream
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
+suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
+  return awaitResult {
+    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
  * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.end]
  *
  *
@@ -44,20 +58,6 @@ suspend fun SockJSSocket.endAwait(): Unit {
 suspend fun SockJSSocket.endAwait(data: Buffer): Unit {
   return awaitResult {
     this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
- * Suspending version of method [io.vertx.ext.web.handler.sockjs.SockJSSocket.pipeTo]
- *
- * @param dst the destination write stream
- *
- * NOTE: This function has been automatically generated from [io.vertx.ext.web.handler.sockjs.SockJSSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use pipeTo returning a future and chain with coAwait()", replaceWith = ReplaceWith("pipeTo(dst).coAwait()"))
-suspend fun SockJSSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
-  return awaitResult {
-    this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

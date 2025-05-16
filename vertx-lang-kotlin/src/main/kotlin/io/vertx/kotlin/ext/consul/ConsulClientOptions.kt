@@ -56,6 +56,7 @@ import java.util.concurrent.TimeUnit
  * @param http2KeepAliveTimeout  Set the keep alive timeout for HTTP/2 connections, in seconds. <p/> This value determines how long a connection remains unused in the pool before being evicted and closed. <p/> A timeout of <code>0</code> means there is no timeout.
  * @param http2MaxPoolSize  Set the maximum pool size for HTTP/2 connections
  * @param http2MultiplexingLimit  Set a client limit of the number concurrent streams for each HTTP/2 connection, this limits the number of streams the client can create for a connection. The effective number of streams for a connection is the min of this value and the server's initial settings. <p/> Setting the value to <code>-1</code> means to use the value sent by the server's initial settings. <code>-1</code> is the default value.
+ * @param http2UpgradeMaxContentLength  Set the HTTP/2 upgrade maximum length of the aggregated content in bytes. This is only taken into account when  is set to <code>false</code> (which is the default). When  is <code>true</code>, then the client makes a preflight OPTIONS request and the upgrade will not send a body, voiding the requirements.
  * @param idleTimeout  Set the idle timeout, in seconds. zero means don't timeout. This determines if a connection will timeout and be closed if no data is received within the timeout.
  * @param idleTimeoutUnit  Set the idle timeout unit. If not specified, default is seconds.
  * @param initialSettings  Set the HTTP/2 connection settings immediately sent by to the server when the client connects.
@@ -155,6 +156,7 @@ fun consulClientOptionsOf(
   http2KeepAliveTimeout: Int? = null,
   http2MaxPoolSize: Int? = null,
   http2MultiplexingLimit: Int? = null,
+  http2UpgradeMaxContentLength: Int? = null,
   idleTimeout: Int? = null,
   idleTimeoutUnit: TimeUnit? = null,
   initialSettings: io.vertx.core.http.Http2Settings? = null,
@@ -297,6 +299,9 @@ fun consulClientOptionsOf(
   }
   if (http2MultiplexingLimit != null) {
     this.setHttp2MultiplexingLimit(http2MultiplexingLimit)
+  }
+  if (http2UpgradeMaxContentLength != null) {
+    this.setHttp2UpgradeMaxContentLength(http2UpgradeMaxContentLength)
   }
   if (idleTimeout != null) {
     this.setIdleTimeout(idleTimeout)

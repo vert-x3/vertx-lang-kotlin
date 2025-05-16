@@ -21,20 +21,6 @@ import io.vertx.core.streams.WriteStream
 import io.vertx.kotlin.coroutines.awaitResult
 
 /**
- * Suspending version of method [io.vertx.core.net.NetSocket.end]
- *
- * @param data 
- *
- * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
- */
-@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(data).coAwait()"))
-suspend fun NetSocket.endAwait(data: Buffer): Unit {
-  return awaitResult {
-    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
-  }
-}
-
-/**
  * Suspending version of method [io.vertx.core.net.NetSocket.pipeTo]
  *
  * @param dst the destination write stream
@@ -45,6 +31,20 @@ suspend fun NetSocket.endAwait(data: Buffer): Unit {
 suspend fun NetSocket.pipeToAwait(dst: WriteStream<Buffer>): Unit {
   return awaitResult {
     this.pipeTo(dst, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.core.net.NetSocket.end]
+ *
+ * @param data 
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.core.net.NetSocket] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use end returning a future and chain with coAwait()", replaceWith = ReplaceWith("end(data).coAwait()"))
+suspend fun NetSocket.endAwait(data: Buffer): Unit {
+  return awaitResult {
+    this.end(data, io.vertx.core.Handler { ar -> it.handle(ar.mapEmpty()) })
   }
 }
 

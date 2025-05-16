@@ -10,7 +10,7 @@
 
   <artifactId>vertx-lang-kotlin-parent</artifactId>
 
-  <version>4.5.15</version>
+  <version>4.5.16-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <scm>
