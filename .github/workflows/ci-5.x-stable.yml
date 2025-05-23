@@ -1,4 +1,4 @@
-name: CI/CD (5.x-stable)
+name: vertx-lang-kotlin (5.x-stable)
 on:
   push:
     branches:
