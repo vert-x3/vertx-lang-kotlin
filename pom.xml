@@ -11,7 +11,7 @@
   <artifactId>vertx-lang-kotlin-parent</artifactId>
   <name>Vert.x for Kotlin parent</name>
 
-  <version>4.5.16-SNAPSHOT</version>
+  <version>4.5.16</version>
   <packaging>pom</packaging>
 
   <scm>
