@@ -12,6 +12,7 @@
   </parent>
 
   <artifactId>vertx-lang-kotlin-gen</artifactId>
+  <name>Vert.x for Kotlin generator</name>
 
   <dependencies>
     <dependency>

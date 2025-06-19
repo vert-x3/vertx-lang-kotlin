@@ -12,6 +12,7 @@
   </parent>
 
   <artifactId>vertx-lang-kotlin</artifactId>
+  <name>Vert.x for Kotlin</name>
 
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>

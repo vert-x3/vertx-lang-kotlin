@@ -17,6 +17,7 @@
   </properties>
 
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
+  <name>Vert.x for Kotlin coroutines</name>
 
   <dependencies>
     <dependency>
