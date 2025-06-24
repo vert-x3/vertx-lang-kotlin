@@ -10,6 +10,8 @@
     <version>5.0.1-SNAPSHOT</version>
   </parent>
 
+  <name>Vert.x for Kotlin parent</name>
+
   <properties>
     <!-- Files are copied there as it contains the examples -->
     <asciidoc.dir>${project.build.directory}/asciidoc</asciidoc.dir>

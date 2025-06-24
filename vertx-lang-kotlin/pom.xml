@@ -13,6 +13,8 @@
 
   <artifactId>vertx-lang-kotlin</artifactId>
 
+  <name>Vert.x for Kotlin</name>
+
   <properties>
     <asciidoc.path>/kotlin</asciidoc.path>
     <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>

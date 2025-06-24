@@ -13,6 +13,8 @@
   <version>5.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>Vert.x for Kotlin parent</name>
+
   <scm>
     <connection>scm:git:git@github.com:vert-x3/vertx-lang-kotlin.git</connection>
     <developerConnection>scm:git:git@github.com:vert-x3/vertx-lang-kotlin.git</developerConnection>
