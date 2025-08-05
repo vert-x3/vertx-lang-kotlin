@@ -7,7 +7,7 @@
   <parent>
     <artifactId>vertx-lang-kotlin-parent</artifactId>
     <groupId>io.vertx</groupId>
-    <version>5.0.2</version>
+    <version>5.0.3-SNAPSHOT</version>
   </parent>
 
   <name>Vert.x for Kotlin parent</name>
