@@ -10,7 +10,7 @@
 
   <artifactId>vertx-lang-kotlin-parent</artifactId>
 
-  <version>5.0.2-SNAPSHOT</version>
+  <version>5.0.2</version>
   <packaging>pom</packaging>
 
   <name>Vert.x for Kotlin parent</name>
