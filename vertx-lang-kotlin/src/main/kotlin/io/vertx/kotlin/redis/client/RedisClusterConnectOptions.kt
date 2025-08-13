@@ -17,9 +17,11 @@ package io.vertx.kotlin.redis.client
 
 import io.vertx.redis.client.RedisClusterConnectOptions
 import io.vertx.redis.client.ProtocolVersion
+import io.vertx.redis.client.RedisClusterTransactions
 import io.vertx.redis.client.RedisReplicas
 
 fun redisClusterConnectOptionsOf(
+  clusterTransactions: RedisClusterTransactions? = null,
   connectionString: String? = null,
   connectionStrings: Iterable<String>? = null,
   endpoints: Iterable<String>? = null,
@@ -31,6 +33,9 @@ fun redisClusterConnectOptionsOf(
   protocolNegotiation: Boolean? = null,
   useReplicas: RedisReplicas? = null): RedisClusterConnectOptions = io.vertx.redis.client.RedisClusterConnectOptions().apply {
 
+  if (clusterTransactions != null) {
+    this.setClusterTransactions(clusterTransactions)
+  }
   if (connectionString != null) {
     this.setConnectionString(connectionString)
   }

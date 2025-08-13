@@ -20,6 +20,7 @@ import io.vertx.core.net.NetClientOptions
 import io.vertx.core.tracing.TracingPolicy
 import io.vertx.redis.client.ProtocolVersion
 import io.vertx.redis.client.RedisClientType
+import io.vertx.redis.client.RedisClusterTransactions
 import io.vertx.redis.client.RedisReplicas
 import io.vertx.redis.client.RedisRole
 import io.vertx.redis.client.RedisTopology
@@ -30,6 +31,7 @@ import io.vertx.redis.client.RedisTopology
  * Redis Client Configuration options.
  *
  * @param autoFailover  Returns whether automatic failover is enabled. This only makes sense for sentinel clients with role of  and is ignored otherwise. <p> If enabled, the sentinel client will additionally create a connection to one sentinel node and watch for failover events. When new master is elected, all connections to the old master are automatically closed and new connections to the new master are created. Note that these new connections will <em>not</em> have the same event handlers (,  and ), will <em>not</em> be in the same streaming mode (,  and ), and will <em>not</em> watch the same subscriptions (<code>SUBSCRIBE</code>, <code>PSUBSCRIBE</code>, etc.) as the old ones. In other words, automatic failover makes sense for connections executing regular commands, but not for connections used to subscribe to Redis pub/sub channels. <p> Note that there is a brief period of time between the old master failing and the new master being elected when the existing connections will temporarily fail all operations. After the new master is elected, the connections will automatically fail over and start working again.
+ * @param clusterTransactions  Set how Redis transactions are handled in cluster mode.
  * @param connectionString  Sets a single connection string (endpoint) to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
@@ -59,6 +61,7 @@ import io.vertx.redis.client.RedisTopology
  */
 fun redisOptionsOf(
   autoFailover: Boolean? = null,
+  clusterTransactions: RedisClusterTransactions? = null,
   connectionString: String? = null,
   connectionStrings: Iterable<String>? = null,
   endpoint: String? = null,
@@ -85,6 +88,9 @@ fun redisOptionsOf(
 
   if (autoFailover != null) {
     this.setAutoFailover(autoFailover)
+  }
+  if (clusterTransactions != null) {
+    this.setClusterTransactions(clusterTransactions)
   }
   if (connectionString != null) {
     this.setConnectionString(connectionString)
