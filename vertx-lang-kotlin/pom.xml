@@ -451,7 +451,7 @@
             vertx-web-templ-rocker,
             vertx-web-templ-thymeleaf,
             vertx-web-sstore-infinispan,
-            vertx-web-grgit aphql,
+            vertx-web-graphql,
             vertx-web-validation,
             vertx-web-openapi-router,
             vertx-web-proxy,
