@@ -27,8 +27,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <kotlin.coroutines.version>1.8.1</kotlin.coroutines.version>
-    <kotlin.version>2.0.0</kotlin.version>
+    <kotlin.coroutines.version>1.10.2</kotlin.coroutines.version>
+    <kotlin.version>2.2.20</kotlin.version>
     <junit.version>4.13.2</junit.version>
   </properties>
 
@@ -77,7 +77,7 @@
           <artifactId>kotlin-maven-plugin</artifactId>
           <version>${kotlin.version}</version>
           <configuration>
-            <jvmTarget>1.8</jvmTarget>
+            <jvmTarget>11</jvmTarget>
           </configuration>
         </plugin>
       </plugins>

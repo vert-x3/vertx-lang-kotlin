@@ -3,8 +3,8 @@
 image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml/badge.svg["Build Status (5.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-5.x.yml"]
 image:https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml/badge.svg["Build Status (4.x)",link="https://github.com/vert-x3/vertx-lang-kotlin/actions/workflows/ci-4.x.yml"]
 image:https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat["GitHub license",link="http://www.apache.org/licenses/LICENSE-2.0"]
-image:https://img.shields.io/badge/kotlin-2.0.0-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
-image:https://img.shields.io/badge/kotlinx.coroutines-1.8.1-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
+image:https://img.shields.io/badge/kotlin-2.2.20-blue.svg["Kotlin version badge",link="https://kotlinlang.org"]
+image:https://img.shields.io/badge/kotlinx.coroutines-1.10.2-blue.svg["Coroutines version badge",link="https://github.com/Kotlin/kotlinx.coroutines#kotlinxcoroutines"]
 
 This is the repository for http://kotlinlang.org[Kotlin] language support for http://vertx.io/docs[Vert.x].
 
