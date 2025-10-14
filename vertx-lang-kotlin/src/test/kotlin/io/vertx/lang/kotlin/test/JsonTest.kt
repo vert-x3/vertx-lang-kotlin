@@ -36,7 +36,7 @@ import kotlin.test.assertTrue
 class JsonTest {
   @Test
   fun smoke() {
-    val result = json {
+    val result: JsonObject = json {
       obj(
         "a" to array(1, 2, 3),
         "obj" to obj("b1" to 1, "b2" to "2"),
@@ -50,23 +50,21 @@ class JsonTest {
       )
     }
 
-    assertTrue { result is JsonObject }
     assertEquals("""{"a":[1,2,3],"obj":{"b1":1,"b2":"2"},"imperative-loop":{"k_1":1,"k_2":2,"k_3":3},"map":{"k_1":1,"k_2":2,"k_3":3},"d":"d"}""", result.toString())
   }
 
   @Test
   fun testMapToObj() {
-    val result = json {
+    val result: JsonObject = json {
       obj(mapOf("k" to "v"))
     }
 
-    assertTrue { result is JsonObject }
     assertEquals("{\"k\":\"v\"}", result.toString())
   }
 
   @Test
   fun testArrays() {
-    val result = json {
+    val result: JsonArray = json {
       array(
         array(1, 2, 3),
         array(listOf(4, 5, 6)),
@@ -79,7 +77,6 @@ class JsonTest {
       )
     }
 
-    assertTrue { result is JsonArray }
     assertEquals("[[1,2,3],[4,5,6],[7],[8,9,10]]", result.toString())
   }
 
@@ -110,12 +107,12 @@ class JsonTest {
     assertEquals("{\"k\":\"v\"}", b.toString(Charsets.UTF_8))
     val c = Buffer.buffer().appendJson { User("Julien", "Viet") }
     assertEquals("{\"firstName\":\"Julien\",\"lastName\":\"Viet\"}", c.toString(Charsets.UTF_8))
-    val d = Buffer.buffer().appendJson(true, { User("Julien", "Viet") })
+    val d = Buffer.buffer().appendJson(true) { User("Julien", "Viet") }
     assertEquals("{\n  \"firstName\" : \"Julien\",\n  \"lastName\" : \"Viet\"\n}", d.toString(Charsets.UTF_8))
   }
 
-  class User(val firstName: String, val lastName: String) {
-  }
+  @Suppress("unused")
+  class User(val firstName: String, val lastName: String)
 
   @Test
   fun testWriteJson() {
@@ -202,9 +199,9 @@ class JsonTest {
   @Test
   fun testByteArrayProcessing() {
     val expected = ByteArray(3)
-    expected.set(0, 0)
-    expected.set(1, 1)
-    expected.set(2, 2)
+    expected[0] = 0
+    expected[1] = 1
+    expected[2] = 2
     val json = jsonObjectOf("bytes" to expected)
 
     val actual = json.getBinary("bytes")

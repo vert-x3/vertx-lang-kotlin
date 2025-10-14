@@ -20,6 +20,7 @@ import io.vertx.core.DeploymentOptions
 import io.vertx.core.ThreadingModel
 import io.vertx.core.Vertx
 import io.vertx.core.internal.ContextInternal
+import io.vertx.core.internal.ContextInternal.LOCAL_MAP
 import io.vertx.core.internal.VertxInternal
 import io.vertx.ext.unit.TestContext
 import io.vertx.ext.unit.junit.VertxUnitRunner
@@ -32,10 +33,12 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.atomic.AtomicReference
+import java.util.function.Supplier
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -139,7 +142,7 @@ class CoroutineContextTest {
     val dispatcher = vertx.dispatcher()
     val times = 10
     val latch = testContext.async(times)
-    for (i in 0..times) {
+    repeat(times) {
       GlobalScope.launch(dispatcher) {
         mutex.withLock {
           testContext.assertTrue(Context.isOnVertxThread())
@@ -256,11 +259,13 @@ class CoroutineContextTest {
     val context = (vertx as VertxInternal).getOrCreateContext()
     val duplicatedContext = context.duplicate()
     duplicatedContext.runOnContext {
-      duplicatedContext.putLocal("foo", "bar")
+      LOCAL_MAP.get(duplicatedContext, Supplier { ConcurrentHashMap() })["foo"] = "bar"
       GlobalScope.launch(context.dispatcher()) {
         delay(100)
         testContext.assertEquals(duplicatedContext, ContextInternal.current())
-        testContext.assertEquals(duplicatedContext.getLocal("foo"), "bar")
+        testContext.assertEquals(
+          LOCAL_MAP.get(duplicatedContext, Supplier { ConcurrentHashMap() }).get("foo") as String, "bar"
+        )
         latch.complete()
       }
     }
