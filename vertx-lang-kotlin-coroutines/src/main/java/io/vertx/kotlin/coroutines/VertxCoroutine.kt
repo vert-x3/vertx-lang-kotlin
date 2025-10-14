@@ -22,7 +22,6 @@ import io.vertx.core.Future
 import io.vertx.core.internal.ContextInternal
 import kotlinx.coroutines.*
 import java.util.concurrent.*
-import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -188,7 +187,7 @@ private class VertxScheduledFuture(
   // pending : null (no completion)
   // done : true
   // cancelled : false
-  val completion = AtomicReference<Boolean?>()
+  val completion: Promise<Boolean> = Promise.promise()
   var id: Long? = null
 
   fun schedule() {
@@ -205,17 +204,18 @@ private class VertxScheduledFuture(
   }
 
   override fun isCancelled(): Boolean {
-    return completion.get() == false
+    val future = completion.future()
+    return future.isComplete && future.result() == false
   }
 
   override fun handle(event: Long?) {
-    if (completion.compareAndSet(null, true)) {
+    if (completion.tryComplete(true)) {
       task.run()
     }
   }
 
   override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
-    return if (completion.compareAndSet(null, false)) {
+    return if (completion.tryComplete(false)) {
       vertxContext.owner().cancelTimer(id!!)
     } else {
       false
@@ -223,7 +223,8 @@ private class VertxScheduledFuture(
   }
 
   override fun isDone(): Boolean {
-    return completion.get() == true
+    val future = completion.future()
+    return future.isComplete && future.result() == true
   }
 
   override fun getDelay(u: TimeUnit): Long {
