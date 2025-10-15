@@ -188,13 +188,7 @@ Using a channel to send data is quite straightforward:
 include::Example.kt[tags=sendChannel]
 ----
 
-Both `SendChannel#send` and `WriteStream#write` are non-blocking operations, however unlike `SendChannel#send`
-can suspend the execution when the channel is full, the equivalent without a channel would look like
-
-[source,kotlin,indent=0]
-----
-include::Example.kt[tags=sendChannel]
-----
+Both `SendChannel#send` and `WriteStream#write` are non-blocking operations, however unlike `SendChannel#send` can suspend the execution when the channel is full.
 
 == Delay, cancellation and timeouts
 
