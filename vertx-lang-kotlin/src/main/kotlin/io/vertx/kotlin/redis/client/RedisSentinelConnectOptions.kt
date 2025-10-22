@@ -30,7 +30,8 @@ fun redisSentinelConnectOptionsOf(
   password: String? = null,
   preferredProtocolVersion: ProtocolVersion? = null,
   protocolNegotiation: Boolean? = null,
-  role: RedisRole? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
+  role: RedisRole? = null,
+  topologyCacheTTL: Long? = null): RedisSentinelConnectOptions = io.vertx.redis.client.RedisSentinelConnectOptions().apply {
 
   if (autoFailover != null) {
     this.setAutoFailover(autoFailover)
@@ -66,6 +67,9 @@ fun redisSentinelConnectOptionsOf(
   }
   if (role != null) {
     this.setRole(role)
+  }
+  if (topologyCacheTTL != null) {
+    this.setTopologyCacheTTL(topologyCacheTTL)
   }
 }
 

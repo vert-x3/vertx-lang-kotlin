@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit
  *
  * @param activityLogDataFormat  Set the value of Netty's logging handler's data format: Netty's pipeline is configured for logging on Netty's logger.
  * @param applicationLayerProtocols  Set the list of application-layer protocols to provide to the server during the Application-Layer Protocol Negotiation.
+ * @param authorizationId 
  * @param connectTimeout 
  * @param connectionHostname  Explicitly override the hostname value used for the AMQP Open frame. The host connected to as per [io.vertx.amqp.AmqpClientOptions] will be used in the Open frame by default.
  * @param containerId  Sets the container id.
@@ -101,6 +102,7 @@ import java.util.concurrent.TimeUnit
 fun amqpClientOptionsOf(
   activityLogDataFormat: ByteBufFormat? = null,
   applicationLayerProtocols: Iterable<String>? = null,
+  authorizationId: String? = null,
   connectTimeout: Int? = null,
   connectionHostname: String? = null,
   containerId: String? = null,
@@ -167,6 +169,9 @@ fun amqpClientOptionsOf(
   }
   if (applicationLayerProtocols != null) {
     this.setApplicationLayerProtocols(applicationLayerProtocols.toList())
+  }
+  if (authorizationId != null) {
+    this.setAuthorizationId(authorizationId)
   }
   if (connectTimeout != null) {
     this.setConnectTimeout(connectTimeout)

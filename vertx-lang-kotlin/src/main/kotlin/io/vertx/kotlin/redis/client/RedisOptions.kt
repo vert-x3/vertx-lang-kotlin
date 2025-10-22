@@ -36,7 +36,7 @@ import io.vertx.redis.client.RedisTopology
  * @param connectionStrings  Adds a connection string (endpoint) to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param endpoint  Sets a single connection string to use while connecting to the redis server. Will replace the previously configured connection strings.
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
- * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second). <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p>
+ * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second). <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p> <strong>Note:</strong> this method will be deprecated since Vert.x 5.1, where the configuration of (cluster) hash slot cache TTL and (sentinel) topology cache TTL will be unified. Currently, <code>hashSlotCacheTTL</code> applies only to cluster clients and <code>topologyCacheTTL</code> applies only to sentinel clients.
  * @param masterName  Set the name of the master set. <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p>
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
  * @param maxPoolSize  Set the maximum size of the connection pool. <p> By default, the maximum pool size is 6. <p> When working with cluster or sentinel, this value should be at least the total number of cluster member (or number of sentinels + 1).
@@ -52,6 +52,7 @@ import io.vertx.redis.client.RedisTopology
  * @param protocolNegotiation  Should the client perform <code>REST</code> protocol negotiation during the connection acquire. By default this is <code>true</code>, but there are situations when using broken servers it may be useful to skip this and always fallback to <code>RESP2</code> without using the <code>HELLO</code> command.
  * @param role  Set the client role; that is, to which kind of node should the connection be established. <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p>
  * @param topology  Set how the  should be obtained. By default, the topology is  automatically. <p> This is only meaningful in case of a  Redis client. In case of a  and  Redis client, topology is currently always discovered automatically and the topology mode is ignored. </p>
+ * @param topologyCacheTTL  Sets the TTL of the topology cache. The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second). <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p> <strong>Note:</strong> starting with Vert.x 5.1, this method will apply to both the cluster client and sentinel client and will replace [io.vertx.redis.client.RedisOptions].
  * @param tracingPolicy  Set the tracing policy for the client behavior when Vert.x has tracing enabled.
  * @param type  Set the desired client type to be created.
  * @param useReplicas  Set whether to use replica nodes for read only queries. <p> This is only meaningful in case of a  and  Redis client and is ignored otherwise. </p>
@@ -82,6 +83,7 @@ fun redisOptionsOf(
   protocolNegotiation: Boolean? = null,
   role: RedisRole? = null,
   topology: RedisTopology? = null,
+  topologyCacheTTL: Long? = null,
   tracingPolicy: TracingPolicy? = null,
   type: RedisClientType? = null,
   useReplicas: RedisReplicas? = null): RedisOptions = io.vertx.redis.client.RedisOptions().apply {
@@ -153,6 +155,9 @@ fun redisOptionsOf(
   }
   if (topology != null) {
     this.setTopology(topology)
+  }
+  if (topologyCacheTTL != null) {
+    this.setTopologyCacheTTL(topologyCacheTTL)
   }
   if (tracingPolicy != null) {
     this.setTracingPolicy(tracingPolicy)
