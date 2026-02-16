@@ -25,6 +25,7 @@ import io.vertx.core.file.FileSystemOptions
  *
  * @param classPathResolvingEnabled  When vert.x cannot find the file on the filesystem it tries to resolve the file from the class path when this is set to <code>true</code>.
  * @param fileCacheDir  When vert.x reads a file that is packaged with the application it gets extracted to this directory first and subsequent reads will use the extracted file to get better IO performance.
+ * @param fileCacheDirAsExactPath  Set to <code>true</code> to use the configured file cache dir as an exact path. When <code>false</code> (the default), a unique subdirectory is created under the file cache dir. When <code>true</code> and the directory already exists, a suffix like "-2", "-3", etc. is appended to guarantee uniqueness.
  * @param fileCachingEnabled  Set to <code>true</code> to cache files on the real file system when the filesystem performs class path resolving.
  *
  * <p/>
@@ -33,6 +34,7 @@ import io.vertx.core.file.FileSystemOptions
 fun fileSystemOptionsOf(
   classPathResolvingEnabled: Boolean? = null,
   fileCacheDir: String? = null,
+  fileCacheDirAsExactPath: Boolean? = null,
   fileCachingEnabled: Boolean? = null): FileSystemOptions = io.vertx.core.file.FileSystemOptions().apply {
 
   if (classPathResolvingEnabled != null) {
@@ -40,6 +42,9 @@ fun fileSystemOptionsOf(
   }
   if (fileCacheDir != null) {
     this.setFileCacheDir(fileCacheDir)
+  }
+  if (fileCacheDirAsExactPath != null) {
+    this.setFileCacheDirAsExactPath(fileCacheDirAsExactPath)
   }
   if (fileCachingEnabled != null) {
     this.setFileCachingEnabled(fileCachingEnabled)

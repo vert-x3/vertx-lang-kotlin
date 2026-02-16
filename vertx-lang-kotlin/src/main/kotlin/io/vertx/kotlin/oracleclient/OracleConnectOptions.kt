@@ -25,6 +25,7 @@ import io.vertx.core.net.PemTrustOptions
 import io.vertx.core.net.PfxOptions
 import io.vertx.core.net.ProxyOptions
 import io.vertx.core.tracing.TracingPolicy
+import io.vertx.oracleclient.FetchDirection
 import io.vertx.oracleclient.ServerMode
 import java.util.concurrent.TimeUnit
 
@@ -38,6 +39,8 @@ fun oracleConnectOptionsOf(
   database: String? = null,
   enabledCipherSuites: Iterable<String>? = null,
   enabledSecureTransportProtocols: Iterable<String>? = null,
+  fetchDirection: FetchDirection? = null,
+  fetchSize: Int? = null,
   host: String? = null,
   hostnameVerificationAlgorithm: String? = null,
   idleTimeout: Int? = null,
@@ -48,6 +51,7 @@ fun oracleConnectOptionsOf(
   keyStoreOptions: io.vertx.core.net.JksOptions? = null,
   localAddress: String? = null,
   logActivity: Boolean? = null,
+  maxRows: Int? = null,
   metricsName: String? = null,
   nonProxyHosts: Iterable<String>? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
@@ -61,6 +65,7 @@ fun oracleConnectOptionsOf(
   preparedStatementCacheSqlLimit: Int? = null,
   properties: Map<String, String>? = null,
   proxyOptions: io.vertx.core.net.ProxyOptions? = null,
+  queryTimeout: Int? = null,
   readIdleTimeout: Int? = null,
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
@@ -130,6 +135,12 @@ fun oracleConnectOptionsOf(
   if (enabledSecureTransportProtocols != null) {
     this.setEnabledSecureTransportProtocols(enabledSecureTransportProtocols.toSet())
   }
+  if (fetchDirection != null) {
+    this.setFetchDirection(fetchDirection)
+  }
+  if (fetchSize != null) {
+    this.setFetchSize(fetchSize)
+  }
   if (host != null) {
     this.setHost(host)
   }
@@ -159,6 +170,9 @@ fun oracleConnectOptionsOf(
   }
   if (logActivity != null) {
     this.setLogActivity(logActivity)
+  }
+  if (maxRows != null) {
+    this.setMaxRows(maxRows)
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
@@ -198,6 +212,9 @@ fun oracleConnectOptionsOf(
   }
   if (proxyOptions != null) {
     this.setProxyOptions(proxyOptions)
+  }
+  if (queryTimeout != null) {
+    this.setQueryTimeout(queryTimeout)
   }
   if (readIdleTimeout != null) {
     this.setReadIdleTimeout(readIdleTimeout)
