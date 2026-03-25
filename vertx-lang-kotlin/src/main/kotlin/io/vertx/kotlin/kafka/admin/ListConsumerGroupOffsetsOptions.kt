@@ -18,7 +18,10 @@ package io.vertx.kotlin.kafka.admin
 import io.vertx.kafka.admin.ListConsumerGroupOffsetsOptions
 
 fun listConsumerGroupOffsetsOptionsOf(
-): ListConsumerGroupOffsetsOptions = io.vertx.kafka.admin.ListConsumerGroupOffsetsOptions().apply {
+  requireStable: Boolean? = null): ListConsumerGroupOffsetsOptions = io.vertx.kafka.admin.ListConsumerGroupOffsetsOptions().apply {
 
+  if (requireStable != null) {
+    this.setRequireStable(requireStable)
+  }
 }
 
