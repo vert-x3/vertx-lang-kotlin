@@ -68,6 +68,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reconnectAttempts  Set the value of reconnect attempts
  * @param reconnectInterval  Set the reconnect interval
+ * @param recvByteBufAllocatorSize  Set the size for the FixedRecvByteBufAllocator used on the channel. Use -1 (default) to leave the allocator unchanged.
  * @param registerWriteHandler  Whether a write-handler should be registered on the [io.vertx.core.eventbus.EventBus]. <p> Defaults to <code>false</code>.
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
@@ -140,6 +141,7 @@ fun mqttClientOptionsOf(
   receiveBufferSize: Int? = null,
   reconnectAttempts: Int? = null,
   reconnectInterval: Long? = null,
+  recvByteBufAllocatorSize: Int? = null,
   registerWriteHandler: Boolean? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
@@ -287,6 +289,9 @@ fun mqttClientOptionsOf(
   }
   if (reconnectInterval != null) {
     this.setReconnectInterval(reconnectInterval)
+  }
+  if (recvByteBufAllocatorSize != null) {
+    this.setRecvByteBufAllocatorSize(recvByteBufAllocatorSize)
   }
   if (registerWriteHandler != null) {
     this.setRegisterWriteHandler(registerWriteHandler)

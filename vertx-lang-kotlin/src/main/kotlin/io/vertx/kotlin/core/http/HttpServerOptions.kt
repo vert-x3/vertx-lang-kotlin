@@ -53,6 +53,7 @@ import java.util.concurrent.TimeUnit
  * @param host  Set the host
  * @param http2ClearTextEnabled  Set whether HTTP/2 over clear text is enabled or disabled, default is enabled.
  * @param http2ConnectionWindowSize  Set the default HTTP/2 connection window size. It overrides the initial window size set by [io.vertx.core.http.Http2Settings], so the connection window size is greater than for its streams, in order the data throughput. <p/> A value of <code>-1</code> reuses the initial window size setting.
+ * @param http2MaxSmallContinuationFrames  Set the maximum number of small continuation frames allowed, this is used to prevent flood DoS attack via <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33871">zero-byte continuation frames</a>. The default value is [io.vertx.core.http.HttpServerOptions].
  * @param http2RstFloodMaxRstFramePerWindow  Set the max number of RST frame allowed per time window, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
  * @param http2RstFloodWindowDuration  Set the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables flood protection.
  * @param http2RstFloodWindowDurationTimeUnit  Set the time unit of the duration of the time window when checking the max number of RST frames, this is used to prevent HTTP/2 RST frame flood DDOS attacks. The default value is [io.vertx.core.http.HttpServerOptions], setting zero or a negative value, disables the flood protection.
@@ -139,6 +140,7 @@ fun httpServerOptionsOf(
   host: String? = null,
   http2ClearTextEnabled: Boolean? = null,
   http2ConnectionWindowSize: Int? = null,
+  http2MaxSmallContinuationFrames: Int? = null,
   http2RstFloodMaxRstFramePerWindow: Int? = null,
   http2RstFloodWindowDuration: Int? = null,
   http2RstFloodWindowDurationTimeUnit: TimeUnit? = null,
@@ -262,6 +264,9 @@ fun httpServerOptionsOf(
   }
   if (http2ConnectionWindowSize != null) {
     this.setHttp2ConnectionWindowSize(http2ConnectionWindowSize)
+  }
+  if (http2MaxSmallContinuationFrames != null) {
+    this.setHttp2MaxSmallContinuationFrames(http2MaxSmallContinuationFrames)
   }
   if (http2RstFloodMaxRstFramePerWindow != null) {
     this.setHttp2RstFloodMaxRstFramePerWindow(http2RstFloodMaxRstFramePerWindow)
