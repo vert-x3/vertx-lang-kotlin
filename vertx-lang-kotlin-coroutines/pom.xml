@@ -16,6 +16,7 @@
     <jar.manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</jar.manifest>
   </properties>
 
+  <name>vertx-lang-kotlin-coroutines</name>
   <artifactId>vertx-lang-kotlin-coroutines</artifactId>
 
   <dependencies>
