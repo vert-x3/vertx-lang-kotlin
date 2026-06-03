@@ -91,6 +91,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param useStompFrame  Sets whether or not the connection is made using the <code>STOMP</code> command instead of the <code>CONNECT</code> command. The <code>STOMP</code> command has been introduced in the 1.2 version of the protocol to ease the network analysis (as <code>CONNECT</code> is also used by HTTP. To be compliant with server not implementing the 1.2 specification, this option should be disabled. This option is disabled by default.
  * @param virtualHost  Sets the virtual host that will be used as "host" header value in the `CONNECT` frame.
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
@@ -158,6 +159,7 @@ fun stompClientOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null,
   useStompFrame: Boolean? = null,
   virtualHost: String? = null,
   writeIdleTimeout: Int? = null): StompClientOptions = io.vertx.ext.stomp.StompClientOptions().apply {
@@ -344,6 +346,9 @@ fun stompClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (useStompFrame != null) {
     this.setUseStompFrame(useStompFrame)

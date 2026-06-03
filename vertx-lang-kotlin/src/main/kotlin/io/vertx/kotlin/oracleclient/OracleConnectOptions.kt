@@ -99,6 +99,7 @@ fun oracleConnectOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null,
   user: String? = null,
   writeIdleTimeout: Int? = null): OracleConnectOptions = io.vertx.oracleclient.OracleConnectOptions().apply {
 
@@ -314,6 +315,9 @@ fun oracleConnectOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (user != null) {
     this.setUser(user)

@@ -118,7 +118,9 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
+ * @param useSemicolonAsQueryParamDelimiter  Configure whether to use the semicolon char <code>;</code> as a delimiter for query string parameters.
  * @param vertsShellJsResource  Set <code>vertxshell.js</code> resource to use.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
  * @param webSocketClosingTimeout  Set the amount of time a server WebSocket will wait until it closes the TCP connection after sending a close frame. <p> When a server closes a WebSocket, it should wait the client close frame to close the TCP connection. This timeout will close the TCP connection on the server when it expires. When the TCP connection is closed receiving the close frame, the  instead of the  will be called. <p> Set to <code>0L</code> closes the TCP connection immediately after sending the close frame. <p> Set to a negative value to disable it.
@@ -213,7 +215,9 @@ fun httpTermOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null,
   useProxyProtocol: Boolean? = null,
+  useSemicolonAsQueryParamDelimiter: Boolean? = null,
   vertsShellJsResource: io.vertx.core.buffer.Buffer? = null,
   webSocketAllowServerNoContext: Boolean? = null,
   webSocketClosingTimeout: Int? = null,
@@ -474,8 +478,14 @@ fun httpTermOptionsOf(
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
   }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
+  }
   if (useProxyProtocol != null) {
     this.setUseProxyProtocol(useProxyProtocol)
+  }
+  if (useSemicolonAsQueryParamDelimiter != null) {
+    this.setUseSemicolonAsQueryParamDelimiter(useSemicolonAsQueryParamDelimiter)
   }
   if (vertsShellJsResource != null) {
     this.setVertsShellJsResource(vertsShellJsResource)

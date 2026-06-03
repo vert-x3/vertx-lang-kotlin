@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param trustOptions  Set the trust options.
  * @param useAlpn  Set the ALPN usage.
+ * @param useHybridKeyExchangeProtocol  Enable or disable the hybrid post-quantum key exchange protocol X25519MLKEM768. <p> When enabled, TLS connections will use X25519MLKEM768 for key exchange, providing protection against quantum computer attacks. <p> This feature requires OpenSSL and will not work with the JDK SSL engine. You must: <ul>   <li>Use [io.vertx.core.net.OpenSSLEngineOptions] as the SSL engine</li>   <li>Have <code>io.netty:netty-tcnative-classes</code> on the classpath</li>   <li>Have an OpenSSL provider (e.g. <code>io.smallrye:smallrye-openssl</code>) on the classpath</li> </ul> If OpenSSL is not available, the TLS handshake will fail rather than silently falling back to a non-quantum-safe key exchange.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.SSLOptions original] using Vert.x codegen.
@@ -43,7 +44,8 @@ fun sslOptionsOf(
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
-  useAlpn: Boolean? = null): SSLOptions = io.vertx.core.net.SSLOptions().apply {
+  useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null): SSLOptions = io.vertx.core.net.SSLOptions().apply {
 
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -74,6 +76,9 @@ fun sslOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
 }
 

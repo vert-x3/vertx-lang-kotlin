@@ -118,6 +118,7 @@ import java.util.concurrent.TimeUnit
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebSocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
+ * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
@@ -215,6 +216,7 @@ fun webClientOptionsOf(
   tryUsePerFrameWebSocketCompression: Boolean? = null,
   tryUsePerMessageWebSocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null,
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
@@ -481,6 +483,9 @@ fun webClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)

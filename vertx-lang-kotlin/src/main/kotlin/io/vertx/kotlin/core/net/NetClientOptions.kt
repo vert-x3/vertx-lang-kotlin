@@ -81,6 +81,7 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
+ * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
  * <p/>
@@ -137,6 +138,7 @@ fun netClientOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
+  useHybridKeyExchangeProtocol: Boolean? = null,
   writeIdleTimeout: Int? = null): NetClientOptions = io.vertx.core.net.NetClientOptions().apply {
 
   if (activityLogDataFormat != null) {
@@ -294,6 +296,9 @@ fun netClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
+  }
+  if (useHybridKeyExchangeProtocol != null) {
+    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (writeIdleTimeout != null) {
     this.setWriteIdleTimeout(writeIdleTimeout)
