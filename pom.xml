@@ -11,7 +11,7 @@
   <name>vertx-lang-kotlin-parent</name>
   <artifactId>vertx-lang-kotlin-parent</artifactId>
 
-  <version>5.1.3-SNAPSHOT</version>
+  <version>5.1.3</version>
   <packaging>pom</packaging>
 
   <scm>
