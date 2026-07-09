@@ -15,6 +15,7 @@
  */
 package io.vertx.kotlin.mqtt
 
+import io.vertx.core.net.SSLOptions
 import io.vertx.kotlin.coroutines.awaitResult
 import io.vertx.mqtt.MqttServer
 
@@ -60,6 +61,37 @@ suspend fun MqttServer.listenAwait(port: Int): MqttServer {
 suspend fun MqttServer.listenAwait(): MqttServer {
   return awaitResult {
     this.listen(it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.mqtt.MqttServer.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options).coAwait()"))
+suspend fun MqttServer.updateSSLOptionsAwait(options: SSLOptions): Boolean {
+  return awaitResult {
+    this.updateSSLOptions(options, it)
+  }
+}
+
+/**
+ * Suspending version of method [io.vertx.mqtt.MqttServer.updateSSLOptions]
+ *
+ * @param options the new SSL options
+ * @param force force the update when options are equal
+ * @return [Boolean]
+ *
+ * NOTE: This function has been automatically generated from [io.vertx.mqtt.MqttServer] using Vert.x codegen.
+ */
+@Deprecated(message = "Instead use updateSSLOptions returning a future and chain with coAwait()", replaceWith = ReplaceWith("updateSSLOptions(options, force).coAwait()"))
+suspend fun MqttServer.updateSSLOptionsAwait(options: SSLOptions, force: Boolean): Boolean {
+  return awaitResult {
+    this.updateSSLOptions(options, force, it)
   }
 }
 
