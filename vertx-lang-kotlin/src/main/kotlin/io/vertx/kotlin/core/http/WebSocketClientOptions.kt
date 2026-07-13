@@ -86,7 +86,6 @@ fun webSocketClientOptionsOf(
   tryUsePerFrameCompression: Boolean? = null,
   tryUsePerMessageCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   verifyHost: Boolean? = null,
   writeIdleTimeout: Int? = null): WebSocketClientOptions = io.vertx.core.http.WebSocketClientOptions().apply {
 
@@ -272,9 +271,6 @@ fun webSocketClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (verifyHost != null) {
     this.setVerifyHost(verifyHost)

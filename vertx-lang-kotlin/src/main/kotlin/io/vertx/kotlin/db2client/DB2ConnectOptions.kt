@@ -91,7 +91,6 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param user  Specify the user account to be used for the authentication.
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetClientOptions]
  *
@@ -158,7 +157,6 @@ fun db2ConnectOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   user: String? = null,
   writeIdleTimeout: Int? = null): DB2ConnectOptions = io.vertx.db2client.DB2ConnectOptions().apply {
 
@@ -344,9 +342,6 @@ fun db2ConnectOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (user != null) {
     this.setUser(user)

@@ -84,7 +84,6 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param writeIdleTimeout  Set the write idle timeout, default time unit is seconds. Zero means don't timeout. This determines if a connection will timeout and be closed if no data is sent within the timeout. If you want change default time unit, use [io.vertx.core.net.NetServerOptions]
  *
@@ -144,7 +143,6 @@ fun telnetTermOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   writeIdleTimeout: Int? = null): TelnetTermOptions = io.vertx.ext.shell.term.TelnetTermOptions().apply {
 
@@ -309,9 +307,6 @@ fun telnetTermOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (useProxyProtocol != null) {
     this.setUseProxyProtocol(useProxyProtocol)

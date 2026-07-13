@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit
  * @param connectTimeout  Set the connect timeout
  * @param crlPaths  Add a CRL path
  * @param crlValues  Add a CRL value
+ * @param crossOriginRedirectBlockedHeaders  Update the set of blocked HTTP headers on a cross-origin redirection, , setting to <code>null</code> means using the default configuration.
  * @param dc  Set the datacenter name. When provided, the client will use it when making requests to the Consul by providing the "?dc" query parameter. When not provided, the datacenter of the consul agent is queried.
  * @param decoderInitialBufferSize  set to <code>initialBufferSizeHttpDecoder</code> the initial buffer of the HttpDecoder.
  * @param decompressionSupported  Whether the client should send requests with an <code>accepting-encoding</code> header set to a compression algorithm.
@@ -94,6 +95,7 @@ import java.util.concurrent.TimeUnit
  * @param receiveBufferSize  Set the TCP receive buffer size
  * @param reuseAddress  Set the value of reuse address
  * @param reusePort  Set the value of reuse port. <p/> This is only supported by native transports.
+ * @param sameOriginRedirectBlockedHeaders  Update the set of blocked HTTP headers on a same-origin redirection, setting to <code>null</code> means using the default configuration.
  * @param sendBufferSize  Set the TCP send buffer size
  * @param sendUnmaskedFrames  Set true when the client wants to skip frame masking. You may want to set it true on server by server websocket communication: In this case you are by passing RFC6455 protocol. It's false as default.
  * @param shared  Set to <code>true</code> to share the client. <p> There can be multiple shared clients distinguished by [io.vertx.core.http.HttpClientOptions], when no specific name is set, the [io.vertx.core.http.HttpClientOptions] is used.
@@ -122,7 +124,6 @@ import java.util.concurrent.TimeUnit
  * @param tryUsePerFrameWebSocketCompression  Set whether the client will offer the WebSocket per-frame deflate compression extension.
  * @param tryUsePerMessageWebSocketCompression  Set whether the client will offer the WebSocket per-message deflate compression extension.
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param userAgent  Sets the Web Client user agent header. Defaults to Vert.x-WebClient/&lt;version&gt;.
  * @param userAgentEnabled  Sets whether the Web Client should send a user agent header. Defaults to true.
  * @param verifyHost  Set whether hostname verification is enabled
@@ -142,6 +143,7 @@ fun consulClientOptionsOf(
   connectTimeout: Int? = null,
   crlPaths: Iterable<String>? = null,
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
+  crossOriginRedirectBlockedHeaders: Iterable<String>? = null,
   dc: String? = null,
   decoderInitialBufferSize: Int? = null,
   decompressionSupported: Boolean? = null,
@@ -195,6 +197,7 @@ fun consulClientOptionsOf(
   receiveBufferSize: Int? = null,
   reuseAddress: Boolean? = null,
   reusePort: Boolean? = null,
+  sameOriginRedirectBlockedHeaders: Iterable<String>? = null,
   sendBufferSize: Int? = null,
   sendUnmaskedFrames: Boolean? = null,
   shared: Boolean? = null,
@@ -223,7 +226,6 @@ fun consulClientOptionsOf(
   tryUsePerFrameWebSocketCompression: Boolean? = null,
   tryUsePerMessageWebSocketCompression: Boolean? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   userAgent: String? = null,
   userAgentEnabled: Boolean? = null,
   verifyHost: Boolean? = null,
@@ -254,6 +256,9 @@ fun consulClientOptionsOf(
     for (item in crlValues) {
       this.addCrlValue(item)
     }
+  }
+  if (crossOriginRedirectBlockedHeaders != null) {
+    this.setCrossOriginRedirectBlockedHeaders(crossOriginRedirectBlockedHeaders.toSet())
   }
   if (dc != null) {
     this.setDc(dc)
@@ -416,6 +421,9 @@ fun consulClientOptionsOf(
   if (reusePort != null) {
     this.setReusePort(reusePort)
   }
+  if (sameOriginRedirectBlockedHeaders != null) {
+    this.setSameOriginRedirectBlockedHeaders(sameOriginRedirectBlockedHeaders.toSet())
+  }
   if (sendBufferSize != null) {
     this.setSendBufferSize(sendBufferSize)
   }
@@ -499,9 +507,6 @@ fun consulClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (userAgent != null) {
     this.setUserAgent(userAgent)

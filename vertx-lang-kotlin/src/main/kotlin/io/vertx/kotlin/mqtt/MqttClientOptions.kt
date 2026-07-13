@@ -92,7 +92,6 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param username  Set the username
  * @param willFlag  Set if will information are provided on connection
  * @param willMessageBytes  Set the content of the will message
@@ -166,7 +165,6 @@ fun mqttClientOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   username: String? = null,
   willFlag: Boolean? = null,
   willMessageBytes: io.vertx.core.buffer.Buffer? = null,
@@ -363,9 +361,6 @@ fun mqttClientOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (username != null) {
     this.setUsername(username)

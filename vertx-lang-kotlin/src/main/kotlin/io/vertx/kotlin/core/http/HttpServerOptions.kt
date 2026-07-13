@@ -110,7 +110,6 @@ import java.util.concurrent.TimeUnit
  * @param trustOptions  Set the trust options.
  * @param trustStoreOptions  Set the trust options in jks format, aka Java truststore
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Set the ALPN usage.
  * @param useProxyProtocol  Set whether the server uses the HA Proxy protocol
  * @param useSemicolonAsQueryParamDelimiter  Configure whether to use the semicolon char <code>;</code> as a delimiter for query string parameters.
  * @param webSocketAllowServerNoContext  Set whether the WebSocket server will accept the <code>server_no_context_takeover</code> parameter of the per-message deflate compression extension offered by the client.
@@ -199,7 +198,6 @@ fun httpServerOptionsOf(
   trustOptions: io.vertx.core.net.TrustOptions? = null,
   trustStoreOptions: io.vertx.core.net.JksOptions? = null,
   useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null,
   useProxyProtocol: Boolean? = null,
   useSemicolonAsQueryParamDelimiter: Boolean? = null,
   webSocketAllowServerNoContext: Boolean? = null,
@@ -439,9 +437,6 @@ fun httpServerOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
   if (useProxyProtocol != null) {
     this.setUseProxyProtocol(useProxyProtocol)

@@ -16,6 +16,7 @@
 package io.vertx.kotlin.core.net
 
 import io.vertx.core.net.SSLOptions
+import io.vertx.core.net.PqcEnforcementPolicy
 import java.util.concurrent.TimeUnit
 
 /**
@@ -27,11 +28,12 @@ import java.util.concurrent.TimeUnit
  * @param crlValues  Add a CRL value
  * @param enabledCipherSuites  Add an enabled cipher suite, appended to the ordered suites.
  * @param enabledSecureTransportProtocols  Sets the list of enabled SSL/TLS protocols.
+ * @param keyExchangeGroups  Set the list of key exchange group names to use for TLS connections. <p> The effective groups used during the TLS handshake depend on the [io.vertx.core.net.SSLOptions]: <ul>   <li>: uses the specified groups as-is, or engine defaults if <code>null</code></li>   <li>: prepends <code>X25519MLKEM768</code> if not already present</li>   <li>: replaces the list with only <code>X25519MLKEM768</code></li> </ul>
+ * @param pqcEnforcementPolicy  Set the post-quantum cryptography enforcement policy. <p> When set to  or , the SSL engine will be automatically switched to OpenSSL if not already configured.
  * @param sslHandshakeTimeout  Set the SSL handshake timeout, default time unit is seconds.
  * @param sslHandshakeTimeoutUnit  Set the SSL handshake timeout unit. If not specified, default is seconds.
  * @param trustOptions  Set the trust options.
  * @param useAlpn  Set the ALPN usage.
- * @param useHybridKeyExchangeProtocol  Enable or disable the hybrid post-quantum key exchange protocol X25519MLKEM768. <p> When enabled, TLS connections will use X25519MLKEM768 for key exchange, providing protection against quantum computer attacks. <p> This feature requires OpenSSL and will not work with the JDK SSL engine. You must: <ul>   <li>Use [io.vertx.core.net.OpenSSLEngineOptions] as the SSL engine</li>   <li>Have <code>io.netty:netty-tcnative-classes</code> on the classpath</li>   <li>Have an OpenSSL provider (e.g. <code>io.smallrye:smallrye-openssl</code>) on the classpath</li> </ul> If OpenSSL is not available, the TLS handshake will fail rather than silently falling back to a non-quantum-safe key exchange.
  *
  * <p/>
  * NOTE: This function has been automatically generated from the [io.vertx.core.net.SSLOptions original] using Vert.x codegen.
@@ -41,11 +43,12 @@ fun sslOptionsOf(
   crlValues: Iterable<io.vertx.core.buffer.Buffer>? = null,
   enabledCipherSuites: Iterable<String>? = null,
   enabledSecureTransportProtocols: Iterable<String>? = null,
+  keyExchangeGroups: Iterable<String>? = null,
+  pqcEnforcementPolicy: PqcEnforcementPolicy? = null,
   sslHandshakeTimeout: Long? = null,
   sslHandshakeTimeoutUnit: TimeUnit? = null,
   trustOptions: io.vertx.core.net.TrustOptions? = null,
-  useAlpn: Boolean? = null,
-  useHybridKeyExchangeProtocol: Boolean? = null): SSLOptions = io.vertx.core.net.SSLOptions().apply {
+  useAlpn: Boolean? = null): SSLOptions = io.vertx.core.net.SSLOptions().apply {
 
   if (crlPaths != null) {
     for (item in crlPaths) {
@@ -65,6 +68,12 @@ fun sslOptionsOf(
   if (enabledSecureTransportProtocols != null) {
     this.setEnabledSecureTransportProtocols(enabledSecureTransportProtocols.toSet())
   }
+  if (keyExchangeGroups != null) {
+    this.setKeyExchangeGroups(keyExchangeGroups.toList())
+  }
+  if (pqcEnforcementPolicy != null) {
+    this.setPqcEnforcementPolicy(pqcEnforcementPolicy)
+  }
   if (sslHandshakeTimeout != null) {
     this.setSslHandshakeTimeout(sslHandshakeTimeout)
   }
@@ -76,9 +85,6 @@ fun sslOptionsOf(
   }
   if (useAlpn != null) {
     this.setUseAlpn(useAlpn)
-  }
-  if (useHybridKeyExchangeProtocol != null) {
-    this.setUseHybridKeyExchangeProtocol(useHybridKeyExchangeProtocol)
   }
 }
 
