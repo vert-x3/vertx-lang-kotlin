@@ -54,6 +54,9 @@ import java.util.concurrent.TimeUnit
  * @param localAddress 
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
  * @param maxFrameSize 
+ * @param maxTransfersPerDelivery 
+ * @param messageMaxDecodeDepth 
+ * @param messageZeroWidthArrayElementLimit 
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.
  * @param openSslEngineOptions 
@@ -122,6 +125,9 @@ fun amqpClientOptionsOf(
   localAddress: String? = null,
   logActivity: Boolean? = null,
   maxFrameSize: Int? = null,
+  maxTransfersPerDelivery: Int? = null,
+  messageMaxDecodeDepth: Int? = null,
+  messageZeroWidthArrayElementLimit: Int? = null,
   metricsName: String? = null,
   nonProxyHosts: Iterable<String>? = null,
   openSslEngineOptions: io.vertx.core.net.OpenSSLEngineOptions? = null,
@@ -237,6 +243,15 @@ fun amqpClientOptionsOf(
   }
   if (maxFrameSize != null) {
     this.setMaxFrameSize(maxFrameSize)
+  }
+  if (maxTransfersPerDelivery != null) {
+    this.setMaxTransfersPerDelivery(maxTransfersPerDelivery)
+  }
+  if (messageMaxDecodeDepth != null) {
+    this.setMessageMaxDecodeDepth(messageMaxDecodeDepth)
+  }
+  if (messageZeroWidthArrayElementLimit != null) {
+    this.setMessageZeroWidthArrayElementLimit(messageZeroWidthArrayElementLimit)
   }
   if (metricsName != null) {
     this.setMetricsName(metricsName)
