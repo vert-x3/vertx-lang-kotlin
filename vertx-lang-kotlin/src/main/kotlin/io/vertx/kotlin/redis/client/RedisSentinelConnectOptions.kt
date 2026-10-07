@@ -25,6 +25,7 @@ fun redisSentinelConnectOptionsOf(
   connectionStrings: Iterable<String>? = null,
   endpoints: Iterable<String>? = null,
   masterName: String? = null,
+  maxMultiLength: Int? = null,
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   password: String? = null,
@@ -49,6 +50,9 @@ fun redisSentinelConnectOptionsOf(
   }
   if (masterName != null) {
     this.setMasterName(masterName)
+  }
+  if (maxMultiLength != null) {
+    this.setMaxMultiLength(maxMultiLength)
   }
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)

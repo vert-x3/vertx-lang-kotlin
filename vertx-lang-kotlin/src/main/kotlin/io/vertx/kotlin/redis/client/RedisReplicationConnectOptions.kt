@@ -24,6 +24,7 @@ fun redisReplicationConnectOptionsOf(
   connectionString: String? = null,
   connectionStrings: Iterable<String>? = null,
   endpoints: Iterable<String>? = null,
+  maxMultiLength: Int? = null,
   maxNestedArrays: Int? = null,
   maxWaitingHandlers: Int? = null,
   password: String? = null,
@@ -42,6 +43,9 @@ fun redisReplicationConnectOptionsOf(
   }
   if (endpoints != null) {
     this.setEndpoints(endpoints.toList())
+  }
+  if (maxMultiLength != null) {
+    this.setMaxMultiLength(maxMultiLength)
   }
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)

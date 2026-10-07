@@ -53,7 +53,7 @@ import java.util.concurrent.TimeUnit
  * @param keyStoreOptions  Set the key/cert options in jks format, aka Java keystore.
  * @param localAddress  Set the local interface to bind for network connections. When the local address is null, it will pick any local address, the default local address is null.
  * @param logActivity  Set to true to enabled network activity logging: Netty's pipeline is configured for logging on Netty's logger.
- * @param maxInflightQueue  Set max count of unacknowledged messages
+ * @param maxInflightQueue  Set max count of unacknowledged messages. The limit applies to outbound QoS 1 and QoS 2 messages and to inbound QoS 2 messages received from the broker.
  * @param maxMessageSize  Set max MQTT message size
  * @param metricsName  Set the metrics name identifying the reported metrics, useful for grouping metrics with the same name.
  * @param nonProxyHosts  Set a list of remote hosts that are not proxied when the client is configured to use a proxy. This list serves the same purpose than the JVM <code>nonProxyHosts</code> configuration. <p> Entries can use the <i>*</i> wildcard character for pattern matching, e.g <i>*.example.com</i> matches <i>www.example.com</i>.

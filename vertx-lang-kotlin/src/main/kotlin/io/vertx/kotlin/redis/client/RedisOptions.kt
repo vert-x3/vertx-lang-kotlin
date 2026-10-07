@@ -38,6 +38,7 @@ import io.vertx.redis.client.RedisTopology
  * @param endpoints  Set the endpoints to use while connecting to the redis server. Only the cluster mode will consider more than 1 element. If more are provided, they are not considered by the client when in single server mode.
  * @param hashSlotCacheTTL  Sets the TTL of the hash slot cache. The TTL is expressed in milliseconds. Defaults to 1000 millis (1 second). <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p> <strong>Note:</strong> this method will be deprecated since Vert.x 5.1, where the configuration of (cluster) hash slot cache TTL and (sentinel) topology cache TTL will be unified. Currently, <code>hashSlotCacheTTL</code> applies only to cluster clients and <code>topologyCacheTTL</code> applies only to sentinel clients.
  * @param masterName  Set the name of the master set. <p> This is only meaningful in case of a  Redis client and is ignored otherwise. </p>
+ * @param maxMultiLength  Set the maximum number of elements allowed in any single RESP multi-bulk response (array, map, set, push, attribute). Responses exceeding this limit cause the connection to be closed with an error. The default value is 65535. <p> Users with legitimate large responses (e.g. large <code>LRANGE</code>) can increase this value.
  * @param maxNestedArrays  Tune how much nested arrays are allowed on a redis response. This affects the parser performance.
  * @param maxPoolSize  Set the maximum size of the connection pool. <p> By default, the maximum pool size is 6. <p> When working with cluster or sentinel, this value should be at least the total number of cluster member (or number of sentinels + 1).
  * @param maxPoolWaiting  Set the maximum number of requests waiting for a connection from the pool. <p> By default, the maximum number of waiting requests size is 24.
@@ -69,6 +70,7 @@ fun redisOptionsOf(
   endpoints: Iterable<String>? = null,
   hashSlotCacheTTL: Long? = null,
   masterName: String? = null,
+  maxMultiLength: Int? = null,
   maxNestedArrays: Int? = null,
   maxPoolSize: Int? = null,
   maxPoolWaiting: Int? = null,
@@ -113,6 +115,9 @@ fun redisOptionsOf(
   }
   if (masterName != null) {
     this.setMasterName(masterName)
+  }
+  if (maxMultiLength != null) {
+    this.setMaxMultiLength(maxMultiLength)
   }
   if (maxNestedArrays != null) {
     this.setMaxNestedArrays(maxNestedArrays)
